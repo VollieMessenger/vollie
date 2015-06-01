@@ -12,7 +12,7 @@
 
 #import "utilities.h"
 
-#import "IQKeyboardManager.h"
+//#import "IQKeyboardManager.h"
 
 //#import "camera.h"
 
@@ -48,7 +48,7 @@
 
 #import "AppDelegate.h"
 
-@interface MessagesView ()
+@interface MessagesView () <UIInputViewAudioFeedback>
 {
     UITapGestureRecognizer *tap;
 
@@ -270,7 +270,10 @@
 
 - (void)viewDidLoad
 {
-    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+//    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    [[UIDevice currentDevice] playInputClick];
+
+//    self..enableInputClicksWhenVisible = YES;
     if (_isArchive)
     {
         self.labelNoMessages.text = @"This is Albums, you can favorite any set of photos from any conversation into an album.";

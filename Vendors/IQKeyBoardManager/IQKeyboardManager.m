@@ -1146,7 +1146,6 @@ NSInteger const kIQPreviousNextButtonToolbarTag     =   -1005;
         NSLog(@"fire3");
         [[UIDevice currentDevice] playInputClick];
     }
-
     //Resign textFieldView.
     [self resignFirstResponder];
 }

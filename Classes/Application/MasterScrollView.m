@@ -26,12 +26,13 @@
     if (self)
     {
         self.delegate = self;
-
-        self.bounces = NO;
-        self.scrollEnabled = 1;
-        self.pagingEnabled = 1;
-        self.directionalLockEnabled = YES;
-        self.showsHorizontalScrollIndicator = 0;
+        //we already say this stuff in the app delegate
+        //commenting it out just in case
+//        self.bounces = NO;
+//        self.scrollEnabled = YES;
+//        self.pagingEnabled = YES;
+//        self.directionalLockEnabled = YES;
+//        self.showsHorizontalScrollIndicator = NO;
     }
 
     return self;

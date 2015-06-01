@@ -13,7 +13,7 @@
 #import "WelcomeView.h"
 #import "AppConstant.h"
 
-#import "IQKeyboardManager.h"
+//#import "IQKeyboardManager.h"
 
 @interface MasterLoginRegisterView ()
 @property NavigationController *navWelcome;
@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad
 {
-    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+//    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 
     [super viewDidLoad];
     scrollView = [[UIScrollView alloc] init];
@@ -107,7 +107,7 @@
 
 -(void)dismiss2
 {
-    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+//    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     [self dismissViewControllerAnimated:1 completion:0];
 }
 
