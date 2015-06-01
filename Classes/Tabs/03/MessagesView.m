@@ -1337,6 +1337,7 @@
 
     // Flag that we are animating
     self.isRefreshAnimating = YES;
+    self.labelNoMessages.hidden = YES;
 
     [UIView animateWithDuration:0.3
                           delay:0
@@ -1381,6 +1382,7 @@
             [UIView animateWithDuration:.3f animations:^{
                 if (_isArchive)
                 {
+                    self.labelNoMessages.hidden = YES;
                     self.tableView.backgroundColor = [UIColor volleyFamousGreen];
                 }
                 else
@@ -1394,6 +1396,7 @@
             _isRefreshingDown = YES;
             [UIView animateWithDuration:.2f animations:^{
                 self.tableView.backgroundColor = [UIColor whiteColor];
+                self.labelNoMessages.hidden = NO;
             }];
         }
     });
@@ -1474,6 +1477,7 @@
     self.isRefreshAnimating = NO;
     self.isRefreshIconsOverlap = NO;
     self.refreshColorView.backgroundColor = [UIColor clearColor];
+//    self.labelNoMessages.hidden = NO;
 }
 
 - (NSNumber *)deviceModelName {

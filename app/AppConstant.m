@@ -164,7 +164,6 @@
     return finalPhone;
 }
 
-
 /*
 + (NSArray *)arrayOfColors
 {
