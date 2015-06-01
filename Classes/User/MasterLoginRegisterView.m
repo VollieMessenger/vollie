@@ -37,12 +37,13 @@
     scrollView = [[UIScrollView alloc] init];
     scrollView.frame = self.view.frame;
     [self.view addSubview:scrollView];
-    
-    scrollView.bounces = NO;
-    scrollView.pagingEnabled = 1;
-    scrollView.directionalLockEnabled = YES;
-    scrollView.showsHorizontalScrollIndicator = 0;
-    scrollView.scrollEnabled = 1;
+    //we already say this stuff in the app delegate
+    //commenting it out just in case
+//    scrollView.bounces = NO;
+//    scrollView.pagingEnabled = 1;
+//    scrollView.directionalLockEnabled = YES;
+//    scrollView.showsHorizontalScrollIndicator = 0;
+//    scrollView.scrollEnabled = 1;
 
     WelcomeView *welcome = [WelcomeView new];
     welcome.scrollView = scrollView;

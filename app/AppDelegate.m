@@ -118,18 +118,19 @@
     scrollView.frame = self.window.bounds;
     [vc.view addSubview:scrollView];
     scrollView.bounces = NO;
-    scrollView.pagingEnabled = 1;
-    scrollView.scrollEnabled = 1;
+    scrollView.pagingEnabled = YES;
+    scrollView.scrollEnabled = YES;
     scrollView.directionalLockEnabled = YES;
-    scrollView.showsHorizontalScrollIndicator = 0;
+    scrollView.showsHorizontalScrollIndicator = NO;
 
     CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
     camera.scrollView = scrollView;
 
-    MessagesView *messages = [[MessagesView alloc] initWithArchive:0];
+    MessagesView *messages = [[MessagesView alloc] initWithArchive:NO];
     messages.scrollView = scrollView;
 
-    MessagesView *favorites = [[MessagesView alloc] initWithArchive:1];
+    MessagesView *favorites = [[MessagesView alloc] initWithArchive:YES];
+    //not sure why we need to say this one is true. flipped it to false and saw no change
     favorites.scrollView = scrollView;
 
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
@@ -247,9 +248,8 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
-
 {
-	
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

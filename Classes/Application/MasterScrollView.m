@@ -28,7 +28,7 @@
         self.delegate = self;
         //we already say this stuff in the app delegate
         //commenting it out just in case
-//        self.bounces = NO;
+        self.bounces = NO;
 //        self.scrollEnabled = YES;
 //        self.pagingEnabled = YES;
 //        self.directionalLockEnabled = YES;
@@ -104,7 +104,8 @@
         }
     }
     
-    if ([nav.viewControllers.lastObject isKindOfClass:[CustomChatView class]]) {
+    if ([nav.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
+    {
         NSInteger target=nav.viewControllers.count - 2;
         ChatView *chatView = nav.viewControllers[target];
         if ([chatView.room_.objectId isEqualToString: roomId])
