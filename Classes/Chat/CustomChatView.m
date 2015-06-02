@@ -382,8 +382,6 @@
         }
 
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        //we already say this stuff in the app delegate
-        //commenting it out just in case
         scrollView.bounces = YES;
         scrollView.pagingEnabled = 1;
         scrollView.alwaysBounceHorizontal = 1;
