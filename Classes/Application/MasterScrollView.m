@@ -29,10 +29,10 @@
         //we already say this stuff in the app delegate
         //commenting it out just in case
         self.bounces = NO;
-//        self.scrollEnabled = YES;
-//        self.pagingEnabled = YES;
-//        self.directionalLockEnabled = YES;
-//        self.showsHorizontalScrollIndicator = NO;
+        self.scrollEnabled = YES;
+        self.pagingEnabled = YES;
+        self.directionalLockEnabled = YES;
+        self.showsHorizontalScrollIndicator = NO;
     }
 
     return self;

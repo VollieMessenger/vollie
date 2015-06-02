@@ -384,13 +384,13 @@
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         //we already say this stuff in the app delegate
         //commenting it out just in case
-//        scrollView.bounces = YES;
-//        scrollView.pagingEnabled = 1;
-//        scrollView.alwaysBounceHorizontal = 1;
-//        scrollView.delegate = self;
-//        scrollView.tag = 22;
-//        scrollView.directionalLockEnabled = YES;
-//        scrollView.showsHorizontalScrollIndicator = 0;
+        scrollView.bounces = YES;
+        scrollView.pagingEnabled = 1;
+        scrollView.alwaysBounceHorizontal = 1;
+        scrollView.delegate = self;
+        scrollView.tag = 22;
+        scrollView.directionalLockEnabled = YES;
+        scrollView.showsHorizontalScrollIndicator = 0;
 
         self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height - 20, scrollView.frame.size.width, 10)];
         [self.pageControl setNumberOfPages:setPicturesObjects.count];
