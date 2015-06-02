@@ -70,8 +70,8 @@
 @property UIView *videoView;
 @property CGRect newImagePosition;
 
-@property BOOL firstCameraFlip;
 @property int camFlipCount;
+// ^ i don't like that we did this but...
 
 @end
 
@@ -109,7 +109,6 @@
     [super viewDidLoad];
     [self runCamera];
 
-    self.firstCameraFlip = true;
     self.camFlipCount = 0;
 
     self.captureVideoNowCounter = 0;
@@ -259,6 +258,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    self.camFlipCount = 0;
 
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.rightButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -931,7 +932,8 @@
         
         for (UIButton * button in self.savedButtons) {
             if (!button.hidden){
-                if (CGRectContainsPoint(button.frame, save)) {
+                if (CGRectContainsPoint(button.frame, save))
+                {
                     button.hidden = YES;
                     self.x1.hidden = YES;
                     self.x2.hidden = YES;
@@ -1728,8 +1730,8 @@
 
         scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * self.arrayOfTakenPhotos.count, self.view.bounds.size.width);
 
-
         self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height - 20, scrollView.frame.size.width, 10)];
+
         [self.pageControl setNumberOfPages:_arrayOfTakenPhotos.count];
         [self.pageControl setCurrentPage:(index)];
 
@@ -1744,11 +1746,13 @@
             if ([pictureOrDic isKindOfClass:[NSDictionary class]]) // VIDEO
             {
                 NSDictionary *dic = (NSDictionary *)pictureOrDic;
+                NSLog(@"%@", dic);
                 NSString *path = dic.allKeys.firstObject;
                 NSURL *url = [NSURL fileURLWithPath:path];
 
 
                 MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+//                NSLog(@"%@", moviePlayer);
                 moviePlayer.view.frame = rect;
                 moviePlayer.view.userInteractionEnabled = 1;
                 [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
@@ -1786,7 +1790,9 @@
                 if ([self.arrayOfTakenPhotos indexOfObject:pictureOrDic] != index)
                 {
                     [moviePlayer setShouldAutoplay:NO];
-                } else {
+                }
+                else
+                {
                     [moviePlayer play];
                     [moviePlayer stop];
                     [moviePlayer play];
@@ -1912,38 +1918,52 @@
 {
     self.counterButton.titleLabel.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.arrayOfTakenPhotos.count];
     if (self.movingImagePosition) {
-        if (self.arrayOfTakenPhotos.count>=1){
-            if ([[self.arrayOfTakenPhotos objectAtIndex:0] isKindOfClass:[NSDictionary class]]) {
+        if (self.arrayOfTakenPhotos.count>=1)
+        {
+            if ([[self.arrayOfTakenPhotos objectAtIndex:0] isKindOfClass:[NSDictionary class]])
+            {
                 NSArray * choice = [self.arrayOfTakenPhotos[0] allObjects];
                 [self.savedButton1 setImage:choice[0] forState:UIControlStateNormal];
-            } else {
+            } else
+            {
                 [self.savedButton1 setImage:self.arrayOfTakenPhotos[0] forState:UIControlStateNormal];
             }
         }
         
-        if (self.arrayOfTakenPhotos.count>=2){
-            if ([[self.arrayOfTakenPhotos objectAtIndex:1] isKindOfClass:[NSDictionary class]]) {
+        if (self.arrayOfTakenPhotos.count>=2)
+        {
+            if ([[self.arrayOfTakenPhotos objectAtIndex:1] isKindOfClass:[NSDictionary class]])
+            {
                 NSArray * choice = [self.arrayOfTakenPhotos[1] allObjects];
                 [self.savedButton2 setImage:choice[0] forState:UIControlStateNormal];
-            } else {
+            }
+            else
+            {
                 [self.savedButton2 setImage:self.arrayOfTakenPhotos[1] forState:UIControlStateNormal];
             }
         }
         
-        if (self.arrayOfTakenPhotos.count>=3){
-            if ([[self.arrayOfTakenPhotos objectAtIndex:2] isKindOfClass:[NSDictionary class]]) {
+        if (self.arrayOfTakenPhotos.count>=3)
+        {
+            if ([[self.arrayOfTakenPhotos objectAtIndex:2] isKindOfClass:[NSDictionary class]])
+            {
                 NSArray * choice = [self.arrayOfTakenPhotos[2] allObjects];
                 [self.savedButton3 setImage:choice[0] forState:UIControlStateNormal];
-            } else {
+            }
+            else
+            {
                 [self.savedButton3 setImage:self.arrayOfTakenPhotos[2] forState:UIControlStateNormal];
             }
         }
         
         if (self.arrayOfTakenPhotos.count>=4){
-            if ([[self.arrayOfTakenPhotos objectAtIndex:3] isKindOfClass:[NSDictionary class]]) {
+            if ([[self.arrayOfTakenPhotos objectAtIndex:3] isKindOfClass:[NSDictionary class]])
+            {
                 NSArray * choice = [self.arrayOfTakenPhotos[3] allObjects];
                 [self.savedButton4 setImage:choice[0] forState:UIControlStateNormal];
-            } else {
+            }
+            else
+            {
                 [self.savedButton4 setImage:self.arrayOfTakenPhotos[3] forState:UIControlStateNormal];
             }
         }
