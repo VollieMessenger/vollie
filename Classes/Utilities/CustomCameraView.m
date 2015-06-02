@@ -69,6 +69,9 @@
 
 @property UIView *videoView;
 @property CGRect newImagePosition;
+
+@property int camFlipCount;
+
 @end
 
 
@@ -1087,22 +1090,33 @@
     {
         //Indicate that some changes will be made to the session
         [self.captureSession beginConfiguration];
-
-        //Remove existing input
+        self.camFlipCount++;
         AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
-        [self.captureSession removeInput:currentCameraInput];
+        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
+        NSLog(@"1 %@", currentCameraInput);
+        NSLog(@"2 %@", audioInput);
 
-        [self cameraWithPosition:AVCaptureDevicePositionBack];
+        if (self.camFlipCount >= 3)
+        {
+            currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
+        }
 
         //Get new input
         AVCaptureDevice *newCamera = nil;
         if(((AVCaptureDeviceInput*)currentCameraInput).device.position == AVCaptureDevicePositionBack)
         {
             newCamera = [self cameraWithPosition:AVCaptureDevicePositionFront];
+            [self.captureSession removeInput:currentCameraInput];
+            NSLog(@"%@ was removed", currentCameraInput);
+            NSLog(@"Camera Flip %i", self.camFlipCount);
         }
         else
         {
             newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
+            AVCaptureInput *tempInput = [self.captureSession.inputs objectAtIndex:1];
+            [self.captureSession removeInput:tempInput];
+            NSLog(@"%@ was removed", tempInput);
+            NSLog(@"Camera Flip %i", self.camFlipCount);
         }
 
         //Add input to session
