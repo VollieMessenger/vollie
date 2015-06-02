@@ -70,7 +70,10 @@
 @property UIView *videoView;
 @property CGRect newImagePosition;
 
+<<<<<<< HEAD
+=======
 @property BOOL firstCameraFlip;
+>>>>>>> silenceBug
 @property int camFlipCount;
 
 @end
@@ -1104,6 +1107,8 @@
         {
             currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
         }
+<<<<<<< HEAD
+=======
 //        for (AVCaptureInput* input in self.captureSession.inputs)
 //        {
 //            i++;
@@ -1119,6 +1124,7 @@
 //        NSLog(@"now removing %@", currentCameraInput);
         //TODO Fix how it's selfie mode twice in a row
 //        [self cameraWithPosition:AVCaptureDevicePositionBack];
+>>>>>>> silenceBug
 
         //Get new input
         AVCaptureDevice *newCamera = nil;
@@ -1713,13 +1719,15 @@
         int index = (int)sender.tag;
 
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        scrollView.bounces = YES;
-        scrollView.pagingEnabled = 1;
-        scrollView.alwaysBounceHorizontal = 1;
-        scrollView.delegate = self;
-        scrollView.tag = 22;
-        scrollView.directionalLockEnabled = YES;
-        scrollView.showsHorizontalScrollIndicator = 0;
+        //we already say this stuff in the app delegate
+        //commenting it out just in case
+//        scrollView.bounces = NO;
+//        scrollView.pagingEnabled = 1;
+//        scrollView.alwaysBounceHorizontal = 1;
+//        scrollView.delegate = self;
+//        scrollView.tag = 22;
+//        scrollView.directionalLockEnabled = YES;
+//        scrollView.showsHorizontalScrollIndicator = 0;
 
 
         _arrayOfScrollview = [NSMutableArray arrayWithCapacity:self.arrayOfTakenPhotos.count];

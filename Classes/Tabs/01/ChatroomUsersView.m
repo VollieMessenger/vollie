@@ -49,30 +49,24 @@
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Hide this conversation?" message:@"Temporarily hide the conversation from your inbox until a new message appears?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Hide" , nil];
             alertView.tag = 32;
             [alertView show];
-    }
-
-        if (buttonIndex != actionSheet.cancelButtonIndex)
-        {
-            if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Flag"])
-            {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Flag this conversation?" message:@"Do you want to flag this conversation and all it's users for objectionable content?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Flag" , nil];
-                alertView.tag = 222;
-                [alertView show];
-            }
         }
 
-   else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Leave"])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Leaving the conversation will erase all your content in the conversation, and you will not see the conversation again." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Leave", nil];
-        alert.tag = 23;
-        [alert show];
-    }
-
-    else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Silence"] || [[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Un-Silence"])
-    {
+        if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Flag"])
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Flag this conversation?" message:@"Do you want to flag this conversation and all it's users for objectionable content?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Flag" , nil];
+            alertView.tag = 222;
+            [alertView show];
+        }
+        if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Leave"])
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning" message:@"Leaving the conversation will erase all your content in the conversation, and you will not see the conversation again." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Leave", nil];
+            alert.tag = 23;
+            [alert show];
+        }
+        if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Silence"] || [[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Un-Silence"])
+        {
             [self actionSilencePush];
-    }
-
+        }
     }
 }
 
@@ -112,6 +106,7 @@
 
     if (buttonIndex != alertView.cancelButtonIndex && alertView.tag == 69)
     {
+
         PFObject *message = _message;
         if ([alertView.title isEqualToString:@"Silence Push Notifications?"]) {
             [message removeObjectForKey:PF_MESSAGES_USER_DONOTDISTURB];
@@ -381,6 +376,7 @@
 
 - (void)actionSilencePush
 {
+    NSLog(@"hit the silence button");
         [_message fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             if (!error) {
             if (!object[PF_MESSAGES_USER_DONOTDISTURB])

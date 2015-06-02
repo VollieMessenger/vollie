@@ -12,7 +12,7 @@
 
 #import "utilities.h"
 
-#import "IQKeyboardManager.h"
+//#import "IQKeyboardManager.h"
 
 //#import "camera.h"
 
@@ -48,7 +48,7 @@
 
 #import "AppDelegate.h"
 
-@interface MessagesView ()
+@interface MessagesView () <UIInputViewAudioFeedback>
 {
     UITapGestureRecognizer *tap;
 
@@ -255,25 +255,37 @@
     //This is called ALWAYS because of longPress???
     CGPoint point = [touch locationInView:self.view];
 
-    if (self.tableView.editing) {
+    if (self.tableView.editing)
+    {
         if (point.x < 50)
         {
             //Let the button work
             return NO;
-        } else {
+        }
+        else
+        {
             return YES;
         }
-    } else {
+    }
+    else
+    {
         return NO;
     }
 }
 
 - (void)viewDidLoad
 {
-    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+//    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    [[UIDevice currentDevice] playInputClick];
+
+//    self..enableInputClicksWhenVisible = YES;
     if (_isArchive)
     {
-        self.labelNoMessages.text = @"This is Albums, you can favorite any set of photos from any conversation into an album.";
+//        self.labelNoMessages.text = @"This is Albums, you can favorite any set of photos from any conversation into an album.";
+    }
+    else
+    {
+//        self.labelNoMessages.text = @"This is the inbox where messages will appear once you take a picture and start a conversation.";
     }
 
     [super viewDidLoad];
@@ -838,13 +850,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_isSearching) {
+    if (_isSearching)
+    {
         return _searchMessages.count;
     }
-
-    if (self.isArchive) {
+    if(messages.count != 0)
+    {
+        self.labelNoMessages.text = @"";
+    }
+    if (self.isArchive)
+    {
         return messages.count;
-    } else {
+    }
+    else
+    {
         NSDate *dateRepresentingThisDay = [savedDates objectAtIndex:section];
         NSArray *eventsOnThisDay = [savedMessagesForDate objectForKey:dateRepresentingThisDay];
         return [eventsOnThisDay count];
@@ -1334,6 +1353,7 @@
 
     // Flag that we are animating
     self.isRefreshAnimating = YES;
+//    self.labelNoMessages.hidden = YES;
 
     [UIView animateWithDuration:0.3
                           delay:0
@@ -1378,10 +1398,12 @@
             [UIView animateWithDuration:.3f animations:^{
                 if (_isArchive)
                 {
+                    self.labelNoMessages.hidden = YES;
                     self.tableView.backgroundColor = [UIColor volleyFamousGreen];
                 }
                 else
                 {
+                    self.labelNoMessages.hidden = YES;
                     self.tableView.backgroundColor = [UIColor volleyFlatOrange];
                 }
             }];
@@ -1391,6 +1413,7 @@
             _isRefreshingDown = YES;
             [UIView animateWithDuration:.2f animations:^{
                 self.tableView.backgroundColor = [UIColor whiteColor];
+                self.labelNoMessages.hidden = NO;
             }];
         }
     });
@@ -1427,7 +1450,8 @@
     CGFloat spinnerX = (midX - spinnerWidth - spinnerWidthHalf) + (spinnerWidth * pullRatio);
 
     // When the compass and spinner overlap, keep them together
-    if (fabsf(compassX - spinnerX) < 1.0) {
+    if (fabsf(compassX - spinnerX) < 1.0)
+    {
         self.isRefreshIconsOverlap = YES;
     }
 
@@ -1471,6 +1495,7 @@
     self.isRefreshAnimating = NO;
     self.isRefreshIconsOverlap = NO;
     self.refreshColorView.backgroundColor = [UIColor clearColor];
+//    self.labelNoMessages.hidden = NO;
 }
 
 - (NSNumber *)deviceModelName {

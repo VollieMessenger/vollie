@@ -547,7 +547,8 @@
                     [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
 
                     self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
-                    
+                    self.moviePlayer.backgroundView.backgroundColor = [UIColor blackColor];
+
                     [self.moviePlayer play];
 
                     [self.view.window addSubview:self.moviePlayer.view];
@@ -644,6 +645,8 @@
 {
     [super viewDidLoad];
     [self setNavigationBarColor];
+    [[UIDevice currentDevice] playInputClick];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leaveChatroom:) name:NOTIFICATION_LEAVE_CHATROOM object:0];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadChat) name:NOTIFICATION_REFRESH_CHATROOM object:0];

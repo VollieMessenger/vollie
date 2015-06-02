@@ -382,13 +382,15 @@
         }
 
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        scrollView.bounces = YES;
-        scrollView.pagingEnabled = 1;
-        scrollView.alwaysBounceHorizontal = 1;
-        scrollView.delegate = self;
-        scrollView.tag = 22;
-        scrollView.directionalLockEnabled = YES;
-        scrollView.showsHorizontalScrollIndicator = 0;
+        //we already say this stuff in the app delegate
+        //commenting it out just in case
+//        scrollView.bounces = YES;
+//        scrollView.pagingEnabled = 1;
+//        scrollView.alwaysBounceHorizontal = 1;
+//        scrollView.delegate = self;
+//        scrollView.tag = 22;
+//        scrollView.directionalLockEnabled = YES;
+//        scrollView.showsHorizontalScrollIndicator = 0;
 
         self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height - 20, scrollView.frame.size.width, 10)];
         [self.pageControl setNumberOfPages:setPicturesObjects.count];
@@ -785,7 +787,8 @@
         if (abs([message.date timeIntervalSinceDate:previousMessage.date]) > 60 * 60) {
             return [[JSQMessagesTimestampFormatter new] attributedTimestampForDate:message.date];
         }
-    } else {
+    } else
+    {
         return [[JSQMessagesTimestampFormatter new] attributedTimestampForDate:message.date];
     }
     return nil;

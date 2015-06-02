@@ -13,7 +13,7 @@
 #import "WelcomeView.h"
 #import "AppConstant.h"
 
-#import "IQKeyboardManager.h"
+//#import "IQKeyboardManager.h"
 
 @interface MasterLoginRegisterView ()
 @property NavigationController *navWelcome;
@@ -31,18 +31,19 @@
 
 - (void)viewDidLoad
 {
-    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
+//    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 
     [super viewDidLoad];
     scrollView = [[UIScrollView alloc] init];
     scrollView.frame = self.view.frame;
     [self.view addSubview:scrollView];
-    
-    scrollView.bounces = NO;
-    scrollView.pagingEnabled = 1;
-    scrollView.directionalLockEnabled = YES;
-    scrollView.showsHorizontalScrollIndicator = 0;
-    scrollView.scrollEnabled = 1;
+    //we already say this stuff in the app delegate
+    //commenting it out just in case
+//    scrollView.bounces = NO;
+//    scrollView.pagingEnabled = 1;
+//    scrollView.directionalLockEnabled = YES;
+//    scrollView.showsHorizontalScrollIndicator = 0;
+//    scrollView.scrollEnabled = 1;
 
     WelcomeView *welcome = [WelcomeView new];
     welcome.scrollView = scrollView;
@@ -107,7 +108,7 @@
 
 -(void)dismiss2
 {
-    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+//    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     [self dismissViewControllerAnimated:1 completion:0];
 }
 
