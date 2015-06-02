@@ -15,7 +15,8 @@
 #import "messages.h"
 #import "AppConstant.h"
 
-@implementation MasterScrollView {
+@implementation MasterScrollView
+{
     CGFloat lastContentOffset;
 }
 
@@ -141,7 +142,9 @@
     if (gestureRecognizer.state != 0 && otherGestureRecognizer.state != 1)
     {
         return YES;
-    } else {
+    }
+    else
+    {
         return NO;
     }
 }

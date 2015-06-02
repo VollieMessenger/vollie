@@ -547,7 +547,6 @@
             self.composeButton.enabled = YES;
             [self updateEmptyView];
         }
-
     }
 }
 
