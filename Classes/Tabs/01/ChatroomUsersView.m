@@ -211,10 +211,31 @@
     [self.view addSubview:view2];
 */
 
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 70)];
+    //original:
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 70)];
+//    view.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//    textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 10, self.tableView.frame.size.width, 50)];
+//    UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 110)];
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 10, self.tableView.frame.size.width, 50)];
+    UILabel *groupNamelabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 120, 30)];
+    groupNamelabel.backgroundColor = [UIColor clearColor];
+    groupNamelabel.textColor=[UIColor blackColor];
+    groupNamelabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:15];
+    groupNamelabel.text = @"Room Name:";
+    groupNamelabel.textColor = [UIColor volleyFamousGreen];
+    [view addSubview:groupNamelabel];
+    UILabel *namesLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 80, 120, 30)];
+    namesLabel.backgroundColor = [UIColor clearColor];
+    namesLabel.textColor=[UIColor blackColor];
+    namesLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:15];
+    namesLabel.text = @"People In Room:";
+    namesLabel.textColor = [UIColor volleyFamousGreen];
+    [view addSubview:namesLabel];
+    textField = [[UITextField alloc] initWithFrame:CGRectMake(0, 30, self.tableView.frame.size.width, 50)];
     UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+//    textField.layer.borderWidth = .25;
     [textField setLeftViewMode:UITextFieldViewModeAlways];
     [textField setLeftView:spacerView];
     textField.placeholder = @"Personal Nickname";
