@@ -1088,11 +1088,48 @@
         //Indicate that some changes will be made to the session
         [self.captureSession beginConfiguration];
 
+
+//        AVCaptureDevice *currentVideoDevice = self.device;
+//        AVCaptureDevicePosition preferredPosition = AVCaptureDevicePositionUnspecified;
+//        AVCaptureDevicePosition currentPosition = [currentVideoDevice position];
+//
+//        switch (currentPosition)
+//        {
+//            case AVCaptureDevicePositionUnspecified:
+//                preferredPosition = AVCaptureDevicePositionBack;
+//                NSLog(@"not specified");
+//                break;
+//            case AVCaptureDevicePositionBack:
+//                preferredPosition = AVCaptureDevicePositionFront;
+//                NSLog(@"forwardfacing");
+//                break;
+//            case AVCaptureDevicePositionFront:
+//                preferredPosition = AVCaptureDevicePositionBack;
+//                NSLog(@"backFacing");
+//                break;
+//        }
+
+
         //Remove existing input
         AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
-        [self.captureSession removeInput:currentCameraInput];
+//        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
+        int i = 0;
+        for (AVCaptureInput* input in self.captureSession.inputs)
+        {
+            i++;
+            NSLog(@"%i, %@", i, input);
+        }
+        for (AVCaptureInput* input in self.captureSession.inputs)
+        {
+            NSLog(@"removing %@", input);
+            [self.captureSession removeInput:input];
+        }
+//        NSLog(@"%@", currentCameraInput);
+//        [self.captureSession removeInput:currentCameraInput];
+//        [self.captureSession removeInput:audioInput];
+//        NSLog(@"now removing %@", currentCameraInput);
         //TODO Fix how it's selfie mode twice in a row
-        [self cameraWithPosition:AVCaptureDevicePositionBack];
+//        [self cameraWithPosition:AVCaptureDevicePositionBack];
 
         //Get new input
         AVCaptureDevice *newCamera = nil;
@@ -1107,6 +1144,7 @@
 
         //Add input to session
         AVCaptureDeviceInput *newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:newCamera error:nil];
+
         if ([self.captureSession canAddInput:newVideoInput])
         {
         [self.captureSession addInput:newVideoInput];
@@ -1123,7 +1161,8 @@
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices)
     {
-        if ([device position] == position) return device;
+        if ([device position] == position)
+        return device;
     }
     return nil;
 }
