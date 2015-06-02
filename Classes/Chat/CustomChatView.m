@@ -787,7 +787,8 @@
         if (abs([message.date timeIntervalSinceDate:previousMessage.date]) > 60 * 60) {
             return [[JSQMessagesTimestampFormatter new] attributedTimestampForDate:message.date];
         }
-    } else {
+    } else
+    {
         return [[JSQMessagesTimestampFormatter new] attributedTimestampForDate:message.date];
     }
     return nil;

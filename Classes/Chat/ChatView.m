@@ -547,7 +547,8 @@
                     [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
 
                     self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
-                    
+                    self.moviePlayer.backgroundView.backgroundColor = [UIColor blackColor];
+
                     [self.moviePlayer play];
 
                     [self.view.window addSubview:self.moviePlayer.view];

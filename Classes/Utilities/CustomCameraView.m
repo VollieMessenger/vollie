@@ -1091,7 +1091,7 @@
         //Remove existing input
         AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
         [self.captureSession removeInput:currentCameraInput];
-
+        //TODO Fix how it's selfie mode twice in a row
         [self cameraWithPosition:AVCaptureDevicePositionBack];
 
         //Get new input
@@ -1799,7 +1799,6 @@
                 saveImageButton.layer.borderWidth = 2;
 
                 [popUpImageView addSubview:saveImageButton];
-
 
                 [scrollView addSubview:popUpImageView];
                 [self.arrayOfScrollview addObject:popUpImageView];
