@@ -69,6 +69,10 @@
 
 @property UIView *videoView;
 @property CGRect newImagePosition;
+
+@property BOOL firstCameraFlip;
+@property int camFlipCount;
+
 @end
 
 
@@ -104,6 +108,9 @@
 {
     [super viewDidLoad];
     [self runCamera];
+
+    self.firstCameraFlip = true;
+    self.camFlipCount = 0;
 
     self.captureVideoNowCounter = 0;
     self.takePictureButton.userInteractionEnabled = NO;
@@ -1087,46 +1094,28 @@
     {
         //Indicate that some changes will be made to the session
         [self.captureSession beginConfiguration];
-
-
-//        AVCaptureDevice *currentVideoDevice = self.device;
-//        AVCaptureDevicePosition preferredPosition = AVCaptureDevicePositionUnspecified;
-//        AVCaptureDevicePosition currentPosition = [currentVideoDevice position];
-//
-//        switch (currentPosition)
-//        {
-//            case AVCaptureDevicePositionUnspecified:
-//                preferredPosition = AVCaptureDevicePositionBack;
-//                NSLog(@"not specified");
-//                break;
-//            case AVCaptureDevicePositionBack:
-//                preferredPosition = AVCaptureDevicePositionFront;
-//                NSLog(@"forwardfacing");
-//                break;
-//            case AVCaptureDevicePositionFront:
-//                preferredPosition = AVCaptureDevicePositionBack;
-//                NSLog(@"backFacing");
-//                break;
-//        }
-
-
-        //Remove existing input
+        self.camFlipCount++;
         AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
-//        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
-        int i = 0;
-        for (AVCaptureInput* input in self.captureSession.inputs)
+        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
+        NSLog(@"1 %@", currentCameraInput);
+        NSLog(@"2 %@", audioInput);
+
+        if (self.camFlipCount >= 3)
         {
-            i++;
-            NSLog(@"%i, %@", i, input);
+            currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
         }
-        for (AVCaptureInput* input in self.captureSession.inputs)
-        {
-            NSLog(@"removing %@", input);
-            [self.captureSession removeInput:input];
-        }
+//        for (AVCaptureInput* input in self.captureSession.inputs)
+//        {
+//            i++;
+//            NSLog(@"%i, %@", i, input);
+//        }
+//        for (AVCaptureInput* input in self.captureSession.inputs)
+//        {
+//            NSLog(@"removing %@", input);
+//            [self.captureSession removeInput:input];
+//        }
 //        NSLog(@"%@", currentCameraInput);
 //        [self.captureSession removeInput:currentCameraInput];
-//        [self.captureSession removeInput:audioInput];
 //        NSLog(@"now removing %@", currentCameraInput);
         //TODO Fix how it's selfie mode twice in a row
 //        [self cameraWithPosition:AVCaptureDevicePositionBack];
@@ -1136,10 +1125,17 @@
         if(((AVCaptureDeviceInput*)currentCameraInput).device.position == AVCaptureDevicePositionBack)
         {
             newCamera = [self cameraWithPosition:AVCaptureDevicePositionFront];
+            [self.captureSession removeInput:currentCameraInput];
+            NSLog(@"%@ was removed", currentCameraInput);
+            NSLog(@"Camera Flip %i", self.camFlipCount);
         }
         else
         {
             newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
+            AVCaptureInput *tempInput = [self.captureSession.inputs objectAtIndex:1];
+            [self.captureSession removeInput:tempInput];
+            NSLog(@"%@ was removed", tempInput);
+            NSLog(@"Camera Flip %i", self.camFlipCount);
         }
 
         //Add input to session
