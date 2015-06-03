@@ -573,25 +573,25 @@
                          if ([[message valueForKey:PF_MESSAGES_LASTMESSAGE] isEqualToString:@""] && ![message valueForKey:PF_MESSAGES_LASTPICTURE])
                          {
                              NSLog(@"there's a message without text or a picture");
+                             //i'd like to make this cleaner and actually delete it off of parse, but this works for now
                          }
                          else
                          {
-                             //i think i'll put stuff here
-                         }
-                          [messages addObject:message];
-                         NSDate *date = [message valueForKey:PF_MESSAGES_UPDATEDACTION];
-                         date = [self dateAtBeginningOfDayForDate:date];
+                             [messages addObject:message];
+                             NSDate *date = [message valueForKey:PF_MESSAGES_UPDATEDACTION];
+                             date = [self dateAtBeginningOfDayForDate:date];
 
-                         if (![savedDates containsObject:date])
-                         {
-                        [savedDates addObject:date];
-                        NSMutableArray *array = [NSMutableArray arrayWithObject:message];
-                        NSDictionary *dict = [NSDictionary dictionaryWithObject:array forKey:date];
-                        [savedMessagesForDate addEntriesFromDictionary:dict];
-                         }
-                         else
-                         {
-                             [(NSMutableArray *)[savedMessagesForDate objectForKey:date] addObject:message];
+                             if (![savedDates containsObject:date])
+                             {
+                                 [savedDates addObject:date];
+                                 NSMutableArray *array = [NSMutableArray arrayWithObject:message];
+                                 NSDictionary *dict = [NSDictionary dictionaryWithObject:array forKey:date];
+                                 [savedMessagesForDate addEntriesFromDictionary:dict];
+                             }
+                             else
+                             {
+                                 [(NSMutableArray *)[savedMessagesForDate objectForKey:date] addObject:message];
+                             }
                          }
                      }
                  }
