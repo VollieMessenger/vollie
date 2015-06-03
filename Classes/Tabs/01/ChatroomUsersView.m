@@ -450,6 +450,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _arrayOfNames.count;
+//    return 1;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

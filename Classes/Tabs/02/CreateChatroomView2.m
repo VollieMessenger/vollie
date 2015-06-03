@@ -272,6 +272,7 @@
         NSString *key = [sortedKeys objectAtIndex:section];
         NSArray *arrayOfNamesForLetter = [lettersForWords objectForKey:key];
         return arrayOfNamesForLetter.count;
+//        return 1;
     }
 }
 

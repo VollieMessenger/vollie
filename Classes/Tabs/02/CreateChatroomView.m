@@ -741,6 +741,7 @@
         NSString *key = [sortedKeys objectAtIndex:section];
         NSArray *array = [lettersForWords objectForKey:key];
         return array.count;
+//        return 1;
     }
 }
 

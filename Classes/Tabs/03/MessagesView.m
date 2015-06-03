@@ -570,14 +570,15 @@
  #define		PF_MESSAGES_NICKNAME                @"nickname"             //	Date
  */
 
-                         if ([message valueForKey:PF_MESSAGES_LASTMESSAGE] || [message valueForKey:PF_MESSAGES_LASTPICTURE])
-
+                         if ([[message valueForKey:PF_MESSAGES_LASTMESSAGE] isEqualToString:@""] && ![message valueForKey:PF_MESSAGES_LASTPICTURE])
                          {
-                             NSString *testString = [message valueForKey:PF_MESSAGES_LASTMESSAGE];
-                             NSLog(testString);
-                             [messages addObject:message];
+                             NSLog(@"there's a message without text or a picture");
                          }
-
+                         else
+                         {
+                             //i think i'll put stuff here
+                         }
+                          [messages addObject:message];
                          NSDate *date = [message valueForKey:PF_MESSAGES_UPDATEDACTION];
                          date = [self dateAtBeginningOfDayForDate:date];
 
@@ -892,6 +893,7 @@
         NSDate *dateRepresentingThisDay = [savedDates objectAtIndex:section];
         NSArray *eventsOnThisDay = [savedMessagesForDate objectForKey:dateRepresentingThisDay];
         return [eventsOnThisDay count];
+        //KyleNote
 
     }
 }
