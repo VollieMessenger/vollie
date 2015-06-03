@@ -975,23 +975,27 @@
             {
                 [[file getData] writeToFile:outputPath atomically:1];
             }
-            
+
+            longPressImageView.backgroundColor = [UIColor blackColor];
+
             self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
-            
             [self.moviePlayer.view setFrame:self.view.window.frame];
-            
             self.moviePlayer.fullscreen = NO;
             [self.moviePlayer prepareToPlay];
-            
+
+            [UIView animateWithDuration:1.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                longPressImageView.alpha = 0;
+                longPressImageView.alpha = 1;
+                [spinner startAnimating];
+                [longPressImageView addSubview:spinner];
+                [self.view.window addSubview:longPressImageView];
+            } completion:0];
+
             self.moviePlayer.controlStyle = MPMovieControlStyleNone;
-            
             [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
-            
             self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
-            
             [self.moviePlayer play];
-            
-            [self.view.window addSubview:self.moviePlayer.view];
+            [longPressImageView addSubview:self.moviePlayer.view];
             return;
         }
         
@@ -1007,7 +1011,7 @@
             
             longPressImageView.backgroundColor = [UIColor blackColor];
             
-            [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 longPressImageView.alpha = 0;
                 longPressImageView.alpha = 1;
                 [spinner startAnimating];
