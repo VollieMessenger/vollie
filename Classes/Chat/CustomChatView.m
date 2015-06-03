@@ -392,7 +392,7 @@
 
 -(void)tappedAvatarPicWithIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSelector:@selector(stopTheDTapBlocker) withObject:self afterDelay:.2];
+    [self performSelector:@selector(stopTheDTapBlocker) withObject:self afterDelay:.5];
 
     if (setPicturesObjects.count && self.navigationController.visibleViewController == self && !self.inputToolbar.contentView.textView.isFirstResponder)
     {
