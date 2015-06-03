@@ -321,6 +321,7 @@
 {
     if (self.messagesSorted.count){
         [tableView deselectRowAtIndexPath:indexPath animated:1];
+        
         MessagesCellDot *cell = [tableView cellForRowAtIndexPath:indexPath];
 
         PFObject *favorite = [self.messagesSorted objectAtIndex:indexPath.row];

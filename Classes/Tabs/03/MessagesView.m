@@ -1257,6 +1257,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:1];
 
+
     if (!self.isArchive)
     { //NOT ARCHIVE
         MessagesCell *cell = [tableView cellForRowAtIndexPath:indexPath];
