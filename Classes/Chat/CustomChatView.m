@@ -312,7 +312,6 @@
         {
             [self finishReceivingMessage:1];
         }
-
     }
     [self.collectionView reloadData];
 }

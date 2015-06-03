@@ -184,7 +184,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleDone target:self action:@selector(showActionSheet)];
 
     [super viewDidLoad];
-    [self.tableView setRowHeight:66];
+    [self.tableView setRowHeight:50];
     self.tableView.separatorInset = UIEdgeInsetsZero;
 
     /*

@@ -33,7 +33,6 @@
         self.directionalLockEnabled = YES;
         self.showsHorizontalScrollIndicator = NO;
     }
-
     return self;
 }
 
