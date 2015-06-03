@@ -68,7 +68,8 @@
 - (id)initWithMessages:(NSArray *)messages
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         self.messages = [NSMutableArray arrayWithArray:messages];
     }
     return self;

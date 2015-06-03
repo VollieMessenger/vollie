@@ -176,12 +176,14 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
     [self.view addGestureRecognizer:tap];
 
-    UIBarButtonItem *close =  [[UIBarButtonItem alloc] initWithTitle:@"Close " style:UIBarButtonItemStyleBordered target:self action:@selector(actionDimiss)];
+//    UIBarButtonItem *close =  [[UIBarButtonItem alloc] initWithTitle:@"Close " style:UIBarButtonItemStyleBordered target:self action:@selector(actionDimiss)];
 
-    close.image = [UIImage imageNamed:ASSETS_CLOSE];
-    self.navigationItem.rightBarButtonItem = close;
+//    close.image = [UIImage imageNamed:ASSETS_CLOSE];
+//    self.navigationItem.rightBarButtonItem = close;
 
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleDone target:self action:@selector(showActionSheet)];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(actionDimiss)];
 
     [super viewDidLoad];
     [self.tableView setRowHeight:50];
