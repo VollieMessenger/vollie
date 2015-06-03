@@ -173,7 +173,8 @@
         // Fetch photo object
         [room fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
             // Show photo view controller
-            if (!error && [PFUser currentUser]) {
+            if (!error && [PFUser currentUser])
+            {
                 NSString *names = [room valueForKey:PF_CHATROOMS_NAME];
                 ChatView *chat = [[ChatView alloc] initWith:object name:names];
 #warning SEND TO MESSAGES VIEW (NOT ARCHIVE);
