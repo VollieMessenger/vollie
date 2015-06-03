@@ -976,12 +976,11 @@
                 [[file getData] writeToFile:outputPath atomically:1];
             }
 
-            longPressImageView.backgroundColor = [UIColor blackColor];
-
             self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
             [self.moviePlayer.view setFrame:self.view.window.frame];
             self.moviePlayer.fullscreen = NO;
             [self.moviePlayer prepareToPlay];
+            longPressImageView.backgroundColor = [UIColor blackColor];
 
             [UIView animateWithDuration:1.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 longPressImageView.alpha = 0;

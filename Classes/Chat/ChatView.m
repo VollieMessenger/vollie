@@ -535,24 +535,27 @@
                         [[file getData] writeToFile:outputPath atomically:1];
                     }
 
-                    self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
+            self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
+            [self.moviePlayer.view setFrame:self.view.window.frame];
+            self.moviePlayer.fullscreen = NO;
+            [self.moviePlayer prepareToPlay];
+            longPressImageView.backgroundColor = [UIColor blackColor];
 
-                    [self.moviePlayer.view setFrame:self.view.window.frame];
+            [UIView animateWithDuration:1.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                longPressImageView.alpha = 0;
+                longPressImageView.alpha = 1;
+                [spinner startAnimating];
+                [longPressImageView addSubview:spinner];
+                [self.view.window addSubview:longPressImageView];
+            } completion:0];
 
-                    self.moviePlayer.fullscreen = NO;
-                    [self.moviePlayer prepareToPlay];
+            self.moviePlayer.controlStyle = MPMovieControlStyleNone;
+            [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
+            self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
+            [self.moviePlayer play];
+            [longPressImageView addSubview:self.moviePlayer.view];
+            return;
 
-                    self.moviePlayer.controlStyle = MPMovieControlStyleNone;
-
-                    [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
-
-                    self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
-                    self.moviePlayer.backgroundView.backgroundColor = [UIColor blackColor];
-
-                    [self.moviePlayer play];
-
-                    [self.view.window addSubview:self.moviePlayer.view];
-                return;
         }
 
         if (file)
@@ -567,7 +570,7 @@
 
             longPressImageView.backgroundColor = [UIColor blackColor];
 
-            [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 longPressImageView.alpha = 0;
                 longPressImageView.alpha = 1;
                 [spinner startAnimating];
