@@ -472,6 +472,7 @@
 {
     CreateChatroomView *view2 = [[CreateChatroomView alloc] init];
     view2.delegate = self;
+    view2.invite = NO;
     view2.isTherePicturesToSend = YES;
     [self.navigationController pushViewController:view2 animated:1];
 }

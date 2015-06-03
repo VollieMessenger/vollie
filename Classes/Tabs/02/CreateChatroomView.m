@@ -23,7 +23,7 @@
 
 #import "pushnotification.h"
 
-@interface CreateChatroomView () <CreateChatroom2Delegate>
+@interface CreateChatroomView () <CreateChatroom2Delegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 {
     NSMutableArray *users;
 
@@ -322,6 +322,17 @@
 - (void)sendWithTextMessage
 {
     //Includes current user already.
+    if (self.invite) {
+        if ([MFMessageComposeViewController canSendText]) {
+            MFMessageComposeViewController * msgComposer = [[MFMessageComposeViewController alloc] init];
+            msgComposer.recipients = self.arrayOfSelectedUsers;
+            msgComposer.body = [NSString stringWithFormat:@"You should download Vollie so we can talk to each other! Download it from the App Store here: %@.",[NSURL URLWithString:@"https://appsto.re/us/D13q5.i"]];
+            msgComposer.messageComposeDelegate = self;
+            [self presentViewController:msgComposer animated:YES completion:nil];
+            return;
+        }
+    }
+    
     if (_arrayOfSelectedUsers.count < 2)
     {
         [ProgressHUD showError:@"Vollie User(s) Required"];
@@ -364,6 +375,10 @@
     }
 
     [self preSendCheck];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)actionSend
@@ -660,7 +675,7 @@
 
 #pragma mark - Table view data source
 
-- (void) wordsFromLetters:(NSArray *)words
+- (void)wordsFromLetters:(NSArray *)words
 {
     NSMutableArray *arrayOfUsedLetters = [NSMutableArray new];
     lettersForWords = [NSMutableDictionary new];
@@ -701,6 +716,39 @@
     [self.tableView reloadData];
 }
 
+-(void)inviteWordsFromLetters:(NSDictionary *)words{
+    NSMutableArray *arrayOfUsedLetters = [NSMutableArray new];
+    lettersForWords = [NSMutableDictionary new];
+    
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyz";
+    
+    int i = 0;
+    while (i < (int)words.count)
+    {
+        NSString *name = [words.allKeys objectAtIndex:i];
+        NSString *number = [words objectForKey:name][0];
+        NSString *letter = [[name substringToIndex:1] uppercaseString];
+        if (![letters containsString:[letter lowercaseString]]) {
+            letter = @"#";
+        }
+        if ([arrayOfUsedLetters containsObject:letter])
+        {
+            [(NSMutableDictionary *)[lettersForWords objectForKey:letter] setObject:number forKey:name];
+        } else {
+            NSDictionary *dict = [NSDictionary dictionaryWithObject:[@{name:number}mutableCopy] forKey:letter];
+            [lettersForWords addEntriesFromDictionary:dict];
+            [arrayOfUsedLetters addObject:letter];
+        }
+        i++;
+    }
+    
+    sortedKeys = [[lettersForWords allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    
+    NSLog(@"%@",lettersForWords);
+    
+    [self.tableView reloadData];
+}
+
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if (_isSearching) return nil;
@@ -734,8 +782,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 
 {
-    if (_isSearching)
-    {
+    if (_isSearching){
         return _searchMessages.count;
     } else {
         NSString *key = [sortedKeys objectAtIndex:section];
@@ -751,6 +798,7 @@
 
 
     PFUser *selectedUser;
+    NSString *inviteUser;
 
     if (_isSearching && _searchMessages.count)
     {
@@ -760,13 +808,17 @@
     else
     {
         NSString *key = [sortedKeys objectAtIndex:indexPath.section];
-        NSArray *arrayOfNamesForLetter = [lettersForWords objectForKey:key];
+        NSArray *arrayOfNamesForLetter = self.invite ? [[[lettersForWords objectForKey:key] allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] : [lettersForWords objectForKey:key];
+        NSLog(@"cell names %@",arrayOfNamesForLetter);
         if (arrayOfNamesForLetter.count) {
             selectedUser = arrayOfNamesForLetter[indexPath.row];
+            if (self.invite) inviteUser = arrayOfNamesForLetter[indexPath.row];
         }
     }
-
-    cell.textLabel.text = selectedUser[PF_USER_FULLNAME];
+    
+    NSLog(@"cell names %@",inviteUser);
+    
+    cell.textLabel.text = self.invite ? inviteUser : selectedUser[PF_USER_FULLNAME];
 
     if ([_arrayOfSelectedUsers containsObject:selectedUser])
     {
@@ -816,15 +868,29 @@
     else
     {
         NSString *key = [sortedKeys objectAtIndex:indexPath.section];
-        NSArray *arrayOfNamesForLetter = [lettersForWords objectForKey:key];
+        NSDictionary *phoneNumbers;
+        NSArray *arrayOfNamesForLetter;
+        if (self.invite) {
+            phoneNumbers = [lettersForWords objectForKey:key];
+        } else {
+            arrayOfNamesForLetter = [lettersForWords objectForKey:key];;
+        }
+        
         if (arrayOfNamesForLetter.count)
         {
-            selectedUser = arrayOfNamesForLetter[indexPath.row];
+            if (self.invite) {
+                selectedUser = phoneNumbers[cell.textLabel.text];
+            } else {
+                selectedUser = arrayOfNamesForLetter[indexPath.row];
+            }
         }
     }
 
     if (cell.accessoryView == nil && cell.accessoryType == UITableViewCellAccessoryNone)
     {
+        if (self.invite && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]]) {
+            [self.arrayOfSelectedUsers removeObjectAtIndex:0];
+        }
         if (_arrayOfSelectedUsers.count > 100) [ProgressHUD showError:@"100 People Only"];
         else
         {
@@ -835,15 +901,13 @@
             cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-    }
-    else
-    {
+    }else{
         [self.arrayOfSelectedUsers removeObject:selectedUser];
         cell.accessoryView = nil;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    if (self.arrayOfSelectedUsers.count == 1){
+    if (self.arrayOfSelectedUsers.count == 1 && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]]){
         self.buttonSend.hidden = YES;
         self.buttonSend.alpha = 1;
         self.buttonSendArrow.hidden = YES;
@@ -989,7 +1053,6 @@
         accessGranted = YES;
 
     } else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {
-
         if (&ABAddressBookRequestAccessWithCompletion != NULL) { // we're on iOS 6
             dispatch_semaphore_t sema = dispatch_semaphore_create(0);
             ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
@@ -998,8 +1061,7 @@
                 dispatch_semaphore_signal(sema);
             });
             dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-        }
-        else { // we're on iOS 5 or older
+        } else { // we're on iOS 5 or older
             accessGranted = YES;
         }
     }
@@ -1008,13 +1070,10 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
 
-            if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
-            {
+            if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0){
                 UIAlertView* curr1=[[UIAlertView alloc] initWithTitle:@"Contacts not enabled." message:@"Settings -> Vollie -> Contacts" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [curr1 show];
-            }
-            else
-            {
+            } else {
                 UIAlertView* curr2=[[UIAlertView alloc] initWithTitle:@"Contacts not enabled." message:@"Settings -> Vollie -> Contacts" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
                 curr2.tag=121;
                 [curr2 show];
@@ -1090,9 +1149,14 @@
                 }
             }
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self loadUsers];
-        });
+        
+        if (self.invite){
+            [self inviteWordsFromLetters:arrayOfNamesAndNumbers];
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self loadUsers];
+            });
+        }
     }
 }
 

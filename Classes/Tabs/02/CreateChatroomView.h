@@ -16,6 +16,8 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property BOOL invite;
+
 @property BOOL isTherePicturesToSend;
 
 @end

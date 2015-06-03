@@ -48,6 +48,8 @@
 
 #import "AppDelegate.h"
 
+#import "InviteCell.h"
+
 @interface MessagesView ()
 {
     UITapGestureRecognizer *tap;
@@ -327,6 +329,7 @@
     else
     {
         [self.tableView registerNib:[UINib nibWithNibName:@"MessagesCell" bundle:0] forCellReuseIdentifier:@"MessagesCell"];
+        [self.tableView registerNib:[UINib nibWithNibName:@"InviteCell" bundle:0] forCellReuseIdentifier:@"InviteCell"];
     }
 
     self.tableView.backgroundColor = [UIColor whiteColor];
@@ -480,18 +483,21 @@
     //        return view;
     //    }
     if (savedDates.count) {
-        NSDate *date = [savedDates objectAtIndex:section];
-        //        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        //        [dateFormat setDateFormat:@"MMMM dd"];
-        //        NSString *dateString = [dateFormat stringFromDate:date];
-        NSDateFormatter *dateFormate = [[NSDateFormatter alloc] init];
-        [dateFormate setDateFormat:@"MMMM dd"];
-        NSString *dateString = [dateFormate stringFromDate:date];
-        dateString = [@"  " stringByAppendingString:dateString];
-        if ([date isEqualToDate:[self dateAtBeginningOfDayForDate:[NSDate date]]]) {
-            label.text = @"   Today";
-        } else {
-            label.text = dateString;
+
+        if (savedDates.count - 1 > section) {
+            NSDate *date = [savedDates objectAtIndex:section];
+            //        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            //        [dateFormat setDateFormat:@"MMMM dd"];
+            //        NSString *dateString = [dateFormat stringFromDate:date];
+            NSDateFormatter *dateFormate = [[NSDateFormatter alloc] init];
+            [dateFormate setDateFormat:@"MMMM dd"];
+            NSString *dateString = [dateFormate stringFromDate:date];
+            dateString = [@"  " stringByAppendingString:dateString];
+            if ([date isEqualToDate:[self dateAtBeginningOfDayForDate:[NSDate date]]]) {
+                label.text = @"   Today";
+            } else {
+                label.text = dateString;
+            }
         }
     }
     if (_isArchive) {
@@ -598,7 +604,6 @@
             {
              if (![messagesObjectIds containsObject:object.objectId])
                 {
-                    NSLog(@"here %@",object);
                     [messages addObject:object];
                     [messagesObjectIds addObject:object.objectId];
                 }
@@ -833,7 +838,7 @@
         return 1;
     }
 
-    return savedDates.count;
+    return savedDates.count +1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -845,10 +850,15 @@
     if (self.isArchive) {
         return messages.count;
     } else {
+        NSInteger sectionsAmount = [tableView numberOfSections];
+        if (section == sectionsAmount - 1) {
+            return 1;
+        }else{
         NSDate *dateRepresentingThisDay = [savedDates objectAtIndex:section];
         NSArray *eventsOnThisDay = [savedMessagesForDate objectForKey:dateRepresentingThisDay];
-        return [eventsOnThisDay count];
 
+        return [eventsOnThisDay count];
+        }
     }
 }
 
@@ -856,6 +866,7 @@
 {
     MessagesCellDot *cell2;
     MessagesCell *cell;
+    InviteCell *cell3;
     if (_isArchive)
     {
         cell2 = [tableView dequeueReusableCellWithIdentifier:@"MessagesCell" forIndexPath:indexPath];
@@ -865,17 +876,26 @@
     }
     else
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"MessagesCell" forIndexPath:indexPath];
-        if (!cell) cell = [[MessagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessagesCell"];
-        [cell format];
-        cell.labelInitials.hidden = YES;
+        NSInteger sectionsAmount = [tableView numberOfSections];
+        NSInteger rowsAmount = [tableView numberOfRowsInSection:[indexPath section]];
+        if ([indexPath section] == sectionsAmount - 1 && [indexPath row] == rowsAmount - 1) {
+            cell3 = [tableView dequeueReusableCellWithIdentifier:@"InviteCell" forIndexPath:indexPath];
+            cell3.invite.backgroundColor = [UIColor volleyFamousGreen];
+            cell3.invite.textColor = [UIColor whiteColor];
+            
+            return cell3;
+        } else {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"MessagesCell" forIndexPath:indexPath];
+            if (!cell) cell = [[MessagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessagesCell"];
+            [cell format];
+            cell.labelInitials.hidden = YES;
+        }
     }
 
     if (self.isArchive) // LOADING PICTURES, THEN CHAT MESSAGES FOR PICTURES.
     {
         cell2.labelDescription.text = @"";
         cell2.labelLastMessage.text = @"";
-        NSLog(@"fired");
         PFObject *album = [messages objectAtIndex:indexPath.row];
         cell2.labelDescription.text = album[PF_ALBUMS_NICKNAME];
         cell2.imageUser.backgroundColor = [UIColor volleyFlatOrange];
@@ -1224,6 +1244,14 @@
         {
             if (savedDates.count)
             {
+                NSInteger sectionsAmount = [tableView numberOfSections];
+                if ([indexPath section] == sectionsAmount - 1) {
+                    CreateChatroomView * view = [[CreateChatroomView alloc]init];
+                    view.isTherePicturesToSend = NO;
+                    view.invite = YES;
+                    [self.navigationController pushViewController:view animated:YES];
+                    return;
+                }
                 NSDate *dateRepresentingThisDay = [savedDates objectAtIndex:indexPath.section];
                 NSArray *eventsOnThisDay = [savedMessagesForDate objectForKey:dateRepresentingThisDay];
                 message = [eventsOnThisDay objectAtIndex:indexPath.row];
