@@ -572,7 +572,7 @@
 
                          if ([[message valueForKey:PF_MESSAGES_LASTMESSAGE] isEqualToString:@""] && ![message valueForKey:PF_MESSAGES_LASTPICTURE])
                          {
-                             NSLog(@"there's a message without text or a picture");
+                             //this hides messages that have neither a message or picture yet
                              //i'd like to make this cleaner and actually delete it off of parse, but this works for now
                          }
                          else
