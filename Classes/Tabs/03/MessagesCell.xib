@@ -78,50 +78,25 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G3-f6-Zsa">
-                        <rect key="frame" x="262" y="67" width="17" height="17"/>
-                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="14"/>
-                        <color key="textColor" red="0.42745098040000001" green="0.7843137255" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contacts icon" translatesAutoresizingMaskIntoConstraints="NO" id="l2a-ee-UTd">
-                        <rect key="frame" x="279" y="55" width="25" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="28" id="4Ug-MF-t6U"/>
-                            <constraint firstAttribute="width" constant="25" id="8MZ-9C-hkL"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="l2a-ee-UTd" firstAttribute="leading" secondItem="4G3-f6-Zsa" secondAttribute="trailing" id="0xf-b4-A5a"/>
                     <constraint firstItem="LfM-WZ-wGC" firstAttribute="leading" secondItem="uxG-h3-jPt" secondAttribute="trailing" constant="8" symbolic="YES" id="7Vh-UM-jK2"/>
                     <constraint firstItem="Ois-e3-M4I" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="31" id="AUN-XV-tPD"/>
                     <constraint firstItem="aCl-zV-J5y" firstAttribute="top" secondItem="uxG-h3-jPt" secondAttribute="bottom" priority="800" constant="20" id="B1n-Aa-szR"/>
                     <constraint firstItem="Ois-e3-M4I" firstAttribute="top" secondItem="uxG-h3-jPt" secondAttribute="bottom" constant="-5" id="B2o-zJ-Rdt"/>
-                    <constraint firstItem="l2a-ee-UTd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="47" id="Gik-23-O3g"/>
-                    <constraint firstItem="4G3-f6-Zsa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="58" id="Jpt-1E-eh9"/>
-                    <constraint firstItem="4G3-f6-Zsa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="58" id="KjO-Hm-a2b"/>
-                    <constraint firstItem="l2a-ee-UTd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="55" id="Kv1-h8-TtL"/>
                     <constraint firstAttribute="bottomMargin" secondItem="aCl-zV-J5y" secondAttribute="bottom" constant="-7" id="LUF-nr-7yc"/>
-                    <constraint firstItem="l2a-ee-UTd" firstAttribute="leading" secondItem="aCl-zV-J5y" secondAttribute="trailing" constant="115" id="LjW-uS-q8S"/>
-                    <constraint firstItem="l2a-ee-UTd" firstAttribute="centerY" secondItem="aCl-zV-J5y" secondAttribute="centerY" id="Npt-bd-g7k"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qvr-X7-Kca" secondAttribute="trailing" constant="58" id="O5l-rR-PSg"/>
                     <constraint firstAttribute="bottomMargin" secondItem="qvr-X7-Kca" secondAttribute="bottom" constant="49" id="PTh-aW-KFn"/>
                     <constraint firstItem="45a-f0-KQe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="15" id="Qri-Nj-rR7"/>
-                    <constraint firstItem="LfM-WZ-wGC" firstAttribute="leading" secondItem="l2a-ee-UTd" secondAttribute="trailing" constant="13" id="R6F-D0-Ly1"/>
                     <constraint firstAttribute="bottomMargin" secondItem="45a-f0-KQe" secondAttribute="bottom" constant="22" id="UTQ-nP-goV"/>
                     <constraint firstAttribute="bottomMargin" secondItem="LfM-WZ-wGC" secondAttribute="bottom" constant="1" id="VkM-Gy-Vbg"/>
                     <constraint firstItem="qvr-X7-Kca" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-5" id="WZp-Tc-qLE"/>
-                    <constraint firstItem="4G3-f6-Zsa" firstAttribute="bottom" secondItem="LfM-WZ-wGC" secondAttribute="bottom" constant="5" id="Wdv-cE-w9M"/>
                     <constraint firstItem="LfM-WZ-wGC" firstAttribute="leading" secondItem="aCl-zV-J5y" secondAttribute="trailing" constant="153" id="Y5K-QU-A2r"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Ois-e3-M4I" secondAttribute="bottom" constant="11" id="adv-Eq-Rjb"/>
-                    <constraint firstItem="4G3-f6-Zsa" firstAttribute="leading" secondItem="aCl-zV-J5y" secondAttribute="trailing" priority="1" constant="90" id="cgg-CQ-0Dw"/>
-                    <constraint firstItem="l2a-ee-UTd" firstAttribute="bottom" secondItem="4G3-f6-Zsa" secondAttribute="bottom" constant="3" id="eVx-vj-YPS"/>
                     <constraint firstItem="uxG-h3-jPt" firstAttribute="leading" secondItem="45a-f0-KQe" secondAttribute="trailing" constant="5" id="fN6-7g-cLZ"/>
                     <constraint firstItem="uxG-h3-jPt" firstAttribute="top" secondItem="45a-f0-KQe" secondAttribute="top" id="fg7-ts-tD3"/>
                     <constraint firstItem="LfM-WZ-wGC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="gPw-88-zUc"/>
                     <constraint firstItem="Ois-e3-M4I" firstAttribute="leading" secondItem="uxG-h3-jPt" secondAttribute="leading" id="nb5-EP-bLS"/>
-                    <constraint firstItem="4G3-f6-Zsa" firstAttribute="trailing" secondItem="LfM-WZ-wGC" secondAttribute="trailing" constant="-116" id="nq4-Uh-f8t"/>
                     <constraint firstItem="45a-f0-KQe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="tFW-DM-JYo"/>
                     <constraint firstItem="LfM-WZ-wGC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="vsW-aT-zQu"/>
                     <constraint firstItem="LfM-WZ-wGC" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="wRv-T0-IFT"/>
@@ -132,32 +107,21 @@
                         <exclude reference="UTQ-nP-goV"/>
                         <exclude reference="AUN-XV-tPD"/>
                         <exclude reference="adv-Eq-Rjb"/>
-                        <exclude reference="Jpt-1E-eh9"/>
-                        <exclude reference="KjO-Hm-a2b"/>
-                        <exclude reference="cgg-CQ-0Dw"/>
-                        <exclude reference="nq4-Uh-f8t"/>
-                        <exclude reference="Kv1-h8-TtL"/>
-                        <exclude reference="LjW-uS-q8S"/>
-                        <exclude reference="Npt-bd-g7k"/>
-                        <exclude reference="eVx-vj-YPS"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contactsPeople" destination="l2a-ee-UTd" id="2c8-gl-VN8"/>
                 <outlet property="imageNew" destination="45a-f0-KQe" id="5yl-9s-o4o"/>
                 <outlet property="imageUser" destination="LfM-WZ-wGC" id="ZMP-Fi-Sfz"/>
                 <outlet property="labelDescription" destination="uxG-h3-jPt" id="zZj-wb-Zmk"/>
                 <outlet property="labelElapsed" destination="aCl-zV-J5y" id="ojp-rj-HN6"/>
                 <outlet property="labelInitials" destination="qvr-X7-Kca" id="W9I-AC-7Ah"/>
                 <outlet property="labelLastMessage" destination="Ois-e3-M4I" id="vrK-9B-5rf"/>
-                <outlet property="labelNumberOfPeople" destination="4G3-f6-Zsa" id="k23-0r-kvN"/>
             </connections>
             <point key="canvasLocation" x="490.5" y="661.5"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Blank V" width="400" height="400"/>
-        <image name="contacts icon" width="411" height="249"/>
     </resources>
 </document>
