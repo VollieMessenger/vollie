@@ -404,8 +404,8 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO
                                             withAnimation:UIStatusBarAnimationFade];
-    [self loadFavorites];
-    
+//    [self loadFavorites];
+
     didViewJustLoad = NO;
 }
 
@@ -1508,7 +1508,8 @@
 
     // If the graphics have overlapped or we are refreshing, keep them together
     //Changed to && from ||
-    if (self.isRefreshIconsOverlap || self.refreshControl.isRefreshing) {
+    if (self.isRefreshIconsOverlap || self.refreshControl.isRefreshing)
+    {
         compassX = midX - compassWidthHalf;
         spinnerX = midX - spinnerWidthHalf;
     }
@@ -1532,7 +1533,8 @@
     self.refreshLoadingView.frame = refreshBounds;
 
     // If we're refreshing and the animation is not playing, then play the animation
-    if (self.refreshControl.isRefreshing && !self.isRefreshAnimating) {
+    if (self.refreshControl.isRefreshing && !self.isRefreshAnimating)
+    {
         [self animateRefreshView];
         self.isRefreshIconsOverlap = NO;
     }

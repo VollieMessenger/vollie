@@ -485,7 +485,7 @@
         case 3:
             self.x4.hidden = YES;
             self.savedButton4.hidden = YES;
-            [self.arrayOfTakenPhotos removeObjectAtIndex:3];
+            [self.arrayOfTakenPhotos removeObjectAtIndex:3];  //kyle note this is where it crashes
             self.savedButton4.imageView.image = nil;
             [self moveImageUpToLatestBlank:self.x4];
             break;
