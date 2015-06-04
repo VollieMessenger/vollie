@@ -2330,22 +2330,29 @@
 -(void)createViewForImagePositionChange:(UIButton *)sender atPoint:(CGPoint)point
 {
 //    sender.hidden = YES;
-    self.movingImagePosition = YES;
-    self.movingImage = [[UIImageView alloc]initWithFrame:sender.frame];
-    self.movingImage.layer.masksToBounds = YES;
-    self.movingImage.layer.cornerRadius = 10;
-    self.movingImage.layer.borderWidth = 3;
-    self.movingImage.layer.borderColor = [UIColor whiteColor].CGColor;
-    [self.movingImage setContentMode:UIViewContentModeScaleAspectFill];
-    self.movingImage.center = point;
-    if ([[self.arrayOfTakenPhotos objectAtIndex:sender.tag] isKindOfClass:[NSDictionary class]]) {
-        NSArray * choice = [self.arrayOfTakenPhotos[sender.tag] allObjects];
-        [self.movingImage setImage:choice[0]];
-    } else {
-        [self.movingImage setImage:self.arrayOfTakenPhotos[sender.tag]];
+    if (self.arrayOfTakenPhotos.count > 1)
+    {
+        self.movingImagePosition = YES;
+        self.movingImage = [[UIImageView alloc]initWithFrame:sender.frame];
+        self.movingImage.layer.masksToBounds = YES;
+        self.movingImage.layer.cornerRadius = 10;
+        self.movingImage.layer.borderWidth = 3;
+        self.movingImage.layer.borderColor = [UIColor whiteColor].CGColor;
+        [self.movingImage setContentMode:UIViewContentModeScaleAspectFill];
+        self.movingImage.center = point;
+        if ([[self.arrayOfTakenPhotos objectAtIndex:sender.tag] isKindOfClass:[NSDictionary class]]) {
+            NSArray * choice = [self.arrayOfTakenPhotos[sender.tag] allObjects];
+            [self.movingImage setImage:choice[0]];
+        } else {
+            [self.movingImage setImage:self.arrayOfTakenPhotos[sender.tag]];
+        }
+        self.objectSelectedForOrderChange = self.arrayOfTakenPhotos[sender.tag];
+        [self.view addSubview:self.movingImage];
     }
-    self.objectSelectedForOrderChange = self.arrayOfTakenPhotos[sender.tag];
-    [self.view addSubview:self.movingImage];
+    else
+    {
+        self.movingImagePosition = NO;
+    }
 }
 
 - (UIImage*) drawImage:(UIImage*) fgImage
