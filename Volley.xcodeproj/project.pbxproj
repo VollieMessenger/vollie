@@ -83,6 +83,8 @@
 		29EB240B19E9292500D7AA97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240A19E9292500D7AA97 /* main.m */; };
 		29EB240E19E9292500D7AA97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240D19E9292500D7AA97 /* AppDelegate.m */; };
 		29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EB241719E9292500D7AA97 /* LaunchScreen.xib */; };
+		9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */; };
+		9CFEFAF41B1E1A3F005B1BF6 /* InviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF21B1E1A3F005B1BF6 /* InviteCell.xib */; };
 		C20BECA41A5E5520004C5A80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20BECA31A5E5520004C5A80 /* Images.xcassets */; };
 		C21DD6E51A71D73B0009BC6A /* JCNotificationBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = C21DD6CF1A71D73A0009BC6A /* JCNotificationBanner.m */; };
 		C21DD6E61A71D73B0009BC6A /* JCNotificationBannerPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C21DD6D11A71D73A0009BC6A /* JCNotificationBannerPresenter.m */; };
@@ -312,6 +314,9 @@
 		29EB240D19E9292500D7AA97 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		29EB241819E9292500D7AA97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		29EB254F19E92ACD00D7AA97 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
+		9CFEFAF01B1E1A3F005B1BF6 /* InviteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteCell.h; sourceTree = "<group>"; };
+		9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteCell.m; sourceTree = "<group>"; };
+		9CFEFAF21B1E1A3F005B1BF6 /* InviteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteCell.xib; sourceTree = "<group>"; };
 		C20BECA31A5E5520004C5A80 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = app/Images.xcassets; sourceTree = "<group>"; };
 		C21DD6CE1A71D73A0009BC6A /* JCNotificationBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JCNotificationBanner.h; sourceTree = "<group>"; };
 		C21DD6CF1A71D73A0009BC6A /* JCNotificationBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JCNotificationBanner.m; sourceTree = "<group>"; };
@@ -578,6 +583,9 @@
 				29271A4319F284B1009C308B /* MessagesView.h */,
 				29271A4419F284B1009C308B /* MessagesView.m */,
 				29271A4519F284B1009C308B /* MessagesView.xib */,
+				9CFEFAF01B1E1A3F005B1BF6 /* InviteCell.h */,
+				9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */,
+				9CFEFAF21B1E1A3F005B1BF6 /* InviteCell.xib */,
 			);
 			name = 2;
 			path = 03;
@@ -1137,6 +1145,7 @@
 				C2F314B01A79CF7400675959 /* NSDateTimeAgo.bundle in Resources */,
 				2930F93D19E96C73000F7799 /* blank_avatar@2x.png in Resources */,
 				296DD5E31A1F52F400AB9F8C /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				9CFEFAF41B1E1A3F005B1BF6 /* InviteCell.xib in Resources */,
 				296DD5D71A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming2.xib in Resources */,
 				296DD5BA1A1F52F400AB9F8C /* JSQMessages.strings in Resources */,
 				C2832C8E1A6F0ADE00CDF19D /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
@@ -1206,6 +1215,7 @@
 				296DD5CE1A1F52F400AB9F8C /* JSQMessage.m in Sources */,
 				296DD5BD1A1F52F400AB9F8C /* UIColor+JSQMessages.m in Sources */,
 				C2CA16E01A82860E00DD25AC /* DidFavoriteView.m in Sources */,
+				9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */,
 				296DD5E21A1F52F400AB9F8C /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				296DD5BE1A1F52F400AB9F8C /* UIDevice+JSQMessages.m in Sources */,
 				C28223571A642D5D001E6BF1 /* SelectChatroomView.m in Sources */,

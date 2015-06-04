@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Classes/Tabs/03/SelectChatroomView.m"
-            timestampString = "454349882.917727"
+            filePath = "Classes/Tabs/02/CreateChatroomView.m"
+            timestampString = "455063609.000953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "911"
+            endingLineNumber = "911"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
