@@ -48,10 +48,10 @@
 
 #import "AppDelegate.h"
 
-@interface MessagesView () <UIInputViewAudioFeedback>
 #import "InviteCell.h"
 
-@interface MessagesView ()
+@interface MessagesView () <UIInputViewAudioFeedback>
+
 {
     UITapGestureRecognizer *tap;
 
