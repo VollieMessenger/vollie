@@ -155,6 +155,7 @@
 
 - (void)actionDimiss
 {
+    [self saveNickname];
     [self dismissViewControllerAnimated:1 completion:0];
    // [self.navigationController popToRootViewControllerAnimated:1];
 }
