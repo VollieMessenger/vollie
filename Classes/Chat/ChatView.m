@@ -445,11 +445,11 @@
         JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
         if (messages.count)
         {
-            //            JSQMessage *message = messages[indexPath.item];
-            //Already is rasterized.
-            //      cell.textView.font = [UIFont boldSystemFontOfSize:14];
-//            cell.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];
-//            cell.textView.textColor = [UIColor whiteColor];
+            JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+            //        JSQMessage *message = setComments[indexPath.item];
+            cell.textView.textColor = [UIColor whiteColor];
+            cell.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];
+            return cell;
         }
         return cell;
     }
@@ -1228,22 +1228,30 @@
     /**
      *  iOS7-style sender name labels
      */
-    if ([message.senderId isEqualToString:self.senderId])
-    {
+    if ([message.senderId isEqualToString:self.senderId]) {
         return nil;
     }
-
-    if (indexPath.item - 1 > 0) {
+    if (indexPath.item - 1 > -1) {
         JSQMessage *previousMessage = [messages objectAtIndex:indexPath.item - 1];
         if ([[previousMessage senderId] isEqualToString:message.senderId]) {
             return nil;
         }
     }
-
     /**
      *  Don't specify attributes to use the defaults.
      */
-    return [[NSAttributedString alloc] initWithString:message.senderDisplayName];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[message.senderDisplayName componentsSeparatedByString:@" "]];
+    [array removeObject:@" "];
+    NSString *senderName = [NSString new];
+    if (array.count == 2)
+    {
+        NSString *first = [NSString stringWithFormat:@"%@ ", array.firstObject];
+        NSString *last = array.lastObject;
+        senderName = [first stringByAppendingString:last];
+    }
+
+    return [[NSAttributedString alloc] initWithString: senderName];
+
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
