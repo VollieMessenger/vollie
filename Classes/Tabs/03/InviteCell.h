@@ -7,7 +7,7 @@
 //
 
 
-//#import <UIKit/UIKit.h>
+#import <UIKit/UIKit.h>
 #import "AppConstant.h"
 
 @interface InviteCell : UITableViewCell
