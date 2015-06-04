@@ -650,6 +650,8 @@
     [self setNavigationBarColor];
     [[UIDevice currentDevice] playInputClick];
 
+    self.title = nil;
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leaveChatroom:) name:NOTIFICATION_LEAVE_CHATROOM object:0];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadChat) name:NOTIFICATION_REFRESH_CHATROOM object:0];
@@ -659,7 +661,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:NOTIFICATION_CAMERA_POPUP object:0];
 
-    self.title = self.name_;
+//    self.title = self.name_;
     //Disable automatic keyboard helper
     _isLoadingEarlierCount = 1;
 
@@ -803,10 +805,10 @@
     {
         if (_message_[PF_MESSAGES_NICKNAME]) {
             NSString *nickname = _message_[PF_MESSAGES_NICKNAME];
-            self.title = nickname;
+//            self.title = nickname;
         } else {
             NSString *description = _message_[PF_MESSAGES_DESCRIPTION];
-            self.title = description;
+//            self.title = description;
         }
     }
 
@@ -1248,6 +1250,13 @@
         NSString *first = [NSString stringWithFormat:@"%@ ", array.firstObject];
         NSString *last = array.lastObject;
         senderName = [first stringByAppendingString:last];
+        self.title = first;
+        self.navigationController.navigationBar.titleTextAttributes =  @{
+                                                                         NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                                         NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+                                                                         NSShadowAttributeName:[NSShadow new]
+                                                                         };
+
     }
 
     return [[NSAttributedString alloc] initWithString: senderName];
