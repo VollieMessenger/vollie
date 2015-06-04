@@ -649,18 +649,7 @@
     [super viewDidLoad];
     [self setNavigationBarColor];
     [[UIDevice currentDevice] playInputClick];
-//    NSLog(@"%@", self.title);
-    NSString *description = self.title;
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[description componentsSeparatedByString:@" "]];
-    [array removeObject:@" "];
-    NSString *senderName = [NSString new];
-    if (array.count == 2)
-    {
-        NSString *first = [NSString stringWithFormat:@"%@ ", array.firstObject];
-        NSString *last = array.lastObject;
-        senderName = [first stringByAppendingString:last];
-        self.title = first;
-    }
+    [self checkForNickname];
 
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leaveChatroom:) name:NOTIFICATION_LEAVE_CHATROOM object:0];
@@ -785,6 +774,31 @@
     [self loadChat];
 }
 
+-(void)checkForNickname
+{
+    if (_message_)
+    {
+        if (_message_[PF_MESSAGES_NICKNAME]) {
+            NSString *nickname = _message_[PF_MESSAGES_NICKNAME];
+            self.title = nickname;
+        }
+        else
+        {
+            NSString *description = self.title;
+            NSMutableArray *array = [NSMutableArray arrayWithArray:[description componentsSeparatedByString:@" "]];
+            [array removeObject:@" "];
+            NSString *senderName = [NSString new];
+            if (array.count == 2)
+            {
+                NSString *first = [NSString stringWithFormat:@"%@ ", array.firstObject];
+                NSString *last = array.lastObject;
+                senderName = [first stringByAppendingString:last];
+                self.title = first;
+            }
+        }
+    }
+}
+
 - (void) popUpNames
 {
     if (isLoadingPopup == NO)
@@ -805,6 +819,8 @@
 
     self.navigationController.navigationBarHidden = NO;
 
+    [self checkForNickname];
+
     if (room_ && _isNewChatroomWithPhotos && self.selectedSetForPictures)
     {
         NSNumber *countOfSets = [room_ valueForKey:PF_CHATROOMS_ROOMNUMBER];
@@ -812,17 +828,17 @@
 //        _isNewChatroomWithPhotos = NO;
     }
 
-    if (_message_)
-    {
-        if (_message_[PF_MESSAGES_NICKNAME]) {
-            NSString *nickname = _message_[PF_MESSAGES_NICKNAME];
-            self.title = nickname;
-        }
-        else
-        {
-//            self.title = description;
-        }
-    }
+//    if (_message_)
+//    {
+//        if (_message_[PF_MESSAGES_NICKNAME]) {
+//            NSString *nickname = _message_[PF_MESSAGES_NICKNAME];
+//            self.title = nickname;
+//        }
+//        else
+//        {
+////            self.title = description;
+//        }
+//    }
 
     if (!self.didViewJustLoad && !didSendPhotos) {
 #warning REPLACE WITH NOTIFICATION.
@@ -1257,12 +1273,12 @@
     NSMutableArray *array = [NSMutableArray arrayWithArray:[message.senderDisplayName componentsSeparatedByString:@" "]];
     [array removeObject:@" "];
     NSString *senderName = [NSString new];
-    if (array.count == 2)
+//    if (array.count == 2)
     {
         NSString *first = [NSString stringWithFormat:@"%@ ", array.firstObject];
         NSString *last = array.lastObject;
         senderName = [first stringByAppendingString:last];
-        self.title = first;
+//        self.title = first;
     }
 
     return [[NSAttributedString alloc] initWithString: senderName];
