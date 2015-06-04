@@ -854,7 +854,17 @@
     /**
      *  Don't specify attributes to use the defaults.
      */
-    return [[NSAttributedString alloc] initWithString:message.senderDisplayName];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[message.senderDisplayName componentsSeparatedByString:@" "]];
+    [array removeObject:@" "];
+    NSString *senderName = [NSString new];
+    if (array.count == 2)
+    {
+        NSString *first = [NSString stringWithFormat:@"%@ ", array.firstObject];
+        NSString *last = array.lastObject;
+        senderName = [first stringByAppendingString:last];
+    }
+
+    return [[NSAttributedString alloc] initWithString: senderName];
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
