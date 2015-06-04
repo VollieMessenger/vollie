@@ -1289,6 +1289,8 @@
                 NSInteger sectionsAmount = [tableView numberOfSections];
                 if ([indexPath section] == sectionsAmount - 1) {
                     CreateChatroomView * view = [[CreateChatroomView alloc]init];
+                    NSString *name = [message valueForKey:PF_USER_FULLNAME];
+                    view.title = @"ahhhhh";
                     view.isTherePicturesToSend = NO;
                     view.invite = YES;
                     [self.navigationController pushViewController:view animated:YES];

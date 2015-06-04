@@ -649,8 +649,19 @@
     [super viewDidLoad];
     [self setNavigationBarColor];
     [[UIDevice currentDevice] playInputClick];
+//    NSLog(@"%@", self.title);
+    NSString *description = self.title;
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[description componentsSeparatedByString:@" "]];
+    [array removeObject:@" "];
+    NSString *senderName = [NSString new];
+    if (array.count == 2)
+    {
+        NSString *first = [NSString stringWithFormat:@"%@ ", array.firstObject];
+        NSString *last = array.lastObject;
+        senderName = [first stringByAppendingString:last];
+        self.title = first;
+    }
 
-    self.title = nil;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(leaveChatroom:) name:NOTIFICATION_LEAVE_CHATROOM object:0];
 
@@ -805,9 +816,10 @@
     {
         if (_message_[PF_MESSAGES_NICKNAME]) {
             NSString *nickname = _message_[PF_MESSAGES_NICKNAME];
-//            self.title = nickname;
-        } else {
-            NSString *description = _message_[PF_MESSAGES_DESCRIPTION];
+            self.title = nickname;
+        }
+        else
+        {
 //            self.title = description;
         }
     }
@@ -1251,12 +1263,6 @@
         NSString *last = array.lastObject;
         senderName = [first stringByAppendingString:last];
         self.title = first;
-        self.navigationController.navigationBar.titleTextAttributes =  @{
-                                                                         NSForegroundColorAttributeName: [UIColor whiteColor],
-                                                                         NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
-                                                                         NSShadowAttributeName:[NSShadow new]
-                                                                         };
-
     }
 
     return [[NSAttributedString alloc] initWithString: senderName];
