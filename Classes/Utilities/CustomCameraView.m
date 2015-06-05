@@ -969,10 +969,20 @@
     }
 }
 
+- (IBAction)handleDrag:(UIButton *)sender forEvent:(UIEvent *)event
+{
+    CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
+    point.y = sender.center.y; //Always stick to the same y value
+
+    sender.center = point;
+}
+
 -(void)didLongPressFocusAndExposure:(UILongPressGestureRecognizer *)point
 {
     if (point.state == UIGestureRecognizerStateBegan)
     {
+        if (self.arrayOfTakenPhotos.count > 1)
+        {
         CGPoint save = [point locationInView:self.view];
         
         for (UIButton * button in self.savedButtons) {
@@ -1111,6 +1121,7 @@
                 }
             }
         }
+    }
         
     } else if(point.state == UIGestureRecognizerStateChanged) {
         if (self.movingImagePosition) {
@@ -2367,5 +2378,7 @@
 
     return newImage;
 }
+
+
 
 @end
