@@ -1107,10 +1107,7 @@
         {
             CGPoint save = [point locationInView:self.view];
             CGPoint temp = CGPointMake(self.x3.center.x, self.x1.center.y);
-//            CGPoint *tempPoint = CGPointMake(self.x1.center.x, save.y);
             CGPoint new = CGPointMake(temp.x, save.y);
-            NSLog(@"you'retouchingme");
-//            [self.movingImage setCenter:[point locationInView:self.view]];
             [self.movingImage setCenter:new];
             [self insertImageInSlot];
         }
