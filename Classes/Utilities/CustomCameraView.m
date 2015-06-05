@@ -936,37 +936,39 @@
 
 -(void) didTapForFocusAndExposurePoint:(UITapGestureRecognizer *)point
 {
-    if (point.state == UIGestureRecognizerStateEnded)
-    {
-        CGPoint save = [point locationInView:self.view];
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-        view.layer.borderWidth = 3;
-        view.layer.cornerRadius = 10;
-        view.layer.borderColor = [UIColor whiteColor].CGColor;
-        view.center = save;
-        view.alpha = 0;
-        [UIView animateWithDuration:0.3f animations:^{
-            [self.view addSubview:view];
-            view.alpha = 1;
-            view.alpha = 0;
-        } completion:^(BOOL finished) {
-            [view removeFromSuperview];
-        }];
-
-        NSString *save2 = NSStringFromCGPoint(save);
-        save = CGPointMake(save.y/self.view.frame.size.height, (1 -save.x/self.view.frame.size.width));
-        save2 = NSStringFromCGPoint(save);
-
-        if ([self.device lockForConfiguration:0]) {
-            if (point) {
-                [self.device setFocusPointOfInterest:save];
-                [self.device setExposurePointOfInterest:save];
-            }
-            [self.device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-            [self.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-            [self.device unlockForConfiguration];
-        }
-    }
+    //currently not working and not important for current build. users do not
+    //expect to have exposure settings
+//    if (point.state == UIGestureRecognizerStateEnded)
+//    {
+//        CGPoint save = [point locationInView:self.view];
+//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+//        view.layer.borderWidth = 3;
+//        view.layer.cornerRadius = 10;
+//        view.layer.borderColor = [UIColor whiteColor].CGColor;
+//        view.center = save;
+//        view.alpha = 0;
+//        [UIView animateWithDuration:0.3f animations:^{
+//            [self.view addSubview:view];
+//            view.alpha = 1;
+//            view.alpha = 0;
+//        } completion:^(BOOL finished) {
+//            [view removeFromSuperview];
+//        }];
+//
+//        NSString *save2 = NSStringFromCGPoint(save);
+//        save = CGPointMake(save.y/self.view.frame.size.height, (1 -save.x/self.view.frame.size.width));
+//        save2 = NSStringFromCGPoint(save);
+//
+//        if ([self.device lockForConfiguration:0]) {
+//            if (point) {
+//                [self.device setFocusPointOfInterest:save];
+//                [self.device setExposurePointOfInterest:save];
+//            }
+//            [self.device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+//            [self.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+//            [self.device unlockForConfiguration];
+//        }
+//    }
 }
 
 - (IBAction)handleDrag:(UIButton *)sender forEvent:(UIEvent *)event
@@ -981,20 +983,25 @@
 {
     if (point.state == UIGestureRecognizerStateBegan)
     {
-        if (self.arrayOfTakenPhotos.count > 1)
-        {
         CGPoint save = [point locationInView:self.view];
-        
-        for (UIButton * button in self.savedButtons) {
-            if (!button.hidden){
-                if (CGRectContainsPoint(button.frame, save)) {
-                    button.hidden = YES;
-                    self.x1.hidden = YES;
-                    self.x2.hidden = YES;
-                    self.x3.hidden = YES;
-                    self.x4.hidden = YES;
-                    self.x5.hidden = YES;
-                    [self createViewForImagePositionChange:button atPoint:save];
+//        CGPoint tempPoint = CGPointMake(save.x, self.x1.center.y);
+//        save = tempPoint;
+        if(self.arrayOfTakenPhotos.count > 1)
+        {
+        for (UIButton * button in self.savedButtons)
+            {
+                if (!button.hidden)
+                {
+                    if (CGRectContainsPoint(button.frame, save))
+                    {
+                        button.hidden = YES;
+                        self.x1.hidden = YES;
+                        self.x2.hidden = YES;
+                        self.x3.hidden = YES;
+                        self.x4.hidden = YES;
+                        self.x5.hidden = YES;
+                        [self createViewForImagePositionChange:button atPoint:save];
+                    }
                 }
             }
         }
@@ -1007,7 +1014,8 @@
             self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
 
 
-            for (UIButton *button in self.savedButtons) {
+            for (UIButton *button in self.savedButtons)
+            {
                 button.userInteractionEnabled = NO;
             }
 
@@ -1022,7 +1030,8 @@
             self.videoView.layer.borderWidth = 0;
             self.videoView.layer.borderColor = [UIColor whiteColor].CGColor;
             
-            switch (self.arrayOfTakenPhotos.count) {
+            switch (self.arrayOfTakenPhotos.count)
+            {
                 case 0:
                     [self.animationFrame setFrame:self.savedButton1.frame];
                     break;
@@ -1055,38 +1064,6 @@
 
             [self captureVideoNow];
             return;
-        }
-
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-        view.layer.borderWidth = 5;
-        view.layer.cornerRadius = 10;
-        view.layer.borderColor = [UIColor whiteColor].CGColor;
-        view.center = save;
-        view.alpha = 0;
-        [UIView animateWithDuration:0.9f animations:^{
-            [self.view addSubview:view];
-            view.alpha = 0;
-            view.alpha = 1;
-            view.backgroundColor = [UIColor lightTextColor];
-        } completion:^(BOOL finished) {
-            [view removeFromSuperview];
-        }];
-
-        NSString *save2 = {NSStringFromCGPoint(save)};
-
-        save = CGPointMake(save.y/self.view.frame.size.height, (1 -save.x/self.view.frame.size.width));
-        save2 = NSStringFromCGPoint(save);
-
-        if ([self.device lockForConfiguration:0])
-        {
-            if (point)
-            {
-                [self.device setFocusPointOfInterest:save];
-                [self.device setExposurePointOfInterest:save];
-            }
-            [self.device setExposureMode:AVCaptureExposureModeLocked];
-            [self.device setFocusMode:AVCaptureFocusModeLocked];
-            [self.device unlockForConfiguration];
         }
     }
     else if (point.state ==UIGestureRecognizerStateEnded)
@@ -1121,7 +1098,6 @@
                 }
             }
         }
-    }
         
     } else if(point.state == UIGestureRecognizerStateChanged) {
         if (self.movingImagePosition) {
@@ -2341,29 +2317,22 @@
 -(void)createViewForImagePositionChange:(UIButton *)sender atPoint:(CGPoint)point
 {
 //    sender.hidden = YES;
-    if (self.arrayOfTakenPhotos.count > 1)
-    {
-        self.movingImagePosition = YES;
-        self.movingImage = [[UIImageView alloc]initWithFrame:sender.frame];
-        self.movingImage.layer.masksToBounds = YES;
-        self.movingImage.layer.cornerRadius = 10;
-        self.movingImage.layer.borderWidth = 3;
-        self.movingImage.layer.borderColor = [UIColor whiteColor].CGColor;
-        [self.movingImage setContentMode:UIViewContentModeScaleAspectFill];
-        self.movingImage.center = point;
-        if ([[self.arrayOfTakenPhotos objectAtIndex:sender.tag] isKindOfClass:[NSDictionary class]]) {
-            NSArray * choice = [self.arrayOfTakenPhotos[sender.tag] allObjects];
-            [self.movingImage setImage:choice[0]];
-        } else {
-            [self.movingImage setImage:self.arrayOfTakenPhotos[sender.tag]];
-        }
-        self.objectSelectedForOrderChange = self.arrayOfTakenPhotos[sender.tag];
-        [self.view addSubview:self.movingImage];
+    self.movingImagePosition = YES;
+    self.movingImage = [[UIImageView alloc]initWithFrame:sender.frame];
+    self.movingImage.layer.masksToBounds = YES;
+    self.movingImage.layer.cornerRadius = 10;
+    self.movingImage.layer.borderWidth = 3;
+    self.movingImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    [self.movingImage setContentMode:UIViewContentModeScaleAspectFill];
+    self.movingImage.center = point;
+    if ([[self.arrayOfTakenPhotos objectAtIndex:sender.tag] isKindOfClass:[NSDictionary class]]) {
+        NSArray * choice = [self.arrayOfTakenPhotos[sender.tag] allObjects];
+        [self.movingImage setImage:choice[0]];
+    } else {
+        [self.movingImage setImage:self.arrayOfTakenPhotos[sender.tag]];
     }
-    else
-    {
-        self.movingImagePosition = NO;
-    }
+    self.objectSelectedForOrderChange = self.arrayOfTakenPhotos[sender.tag];
+    [self.view addSubview:self.movingImage];
 }
 
 - (UIImage*) drawImage:(UIImage*) fgImage
