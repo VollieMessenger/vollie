@@ -1085,8 +1085,10 @@
         }
         
         if (self.movingImagePosition) {
-            for (UIButton *button in self.savedButtons) {
-                if (CGRectEqualToRect(button.frame, self.newImagePosition)) {
+            for (UIButton *button in self.savedButtons)
+            {
+                if (CGRectEqualToRect(button.frame, self.newImagePosition))
+                {
                     [UIView animateWithDuration:.4 animations:^{
                         [self.movingImage setFrame:self.newImagePosition];
                     } completion:^(BOOL finished) {
@@ -1099,8 +1101,10 @@
             }
         }
         
-    } else if(point.state == UIGestureRecognizerStateChanged) {
-        if (self.movingImagePosition) {
+    } else if(point.state == UIGestureRecognizerStateChanged)
+    {
+        if (self.movingImagePosition)
+        {
             [self.movingImage setCenter:[point locationInView:self.view]];
             [self insertImageInSlot];
         }
