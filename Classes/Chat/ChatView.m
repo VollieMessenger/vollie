@@ -1092,7 +1092,21 @@
     object[PF_CHAT_ROOM] = room_;
     object[PF_CHAT_TEXT] = text;
     [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
-    if (set) [object setObject:set forKey:PF_CHAT_SETID];
+    if (set)
+    {
+        [object setObject:set forKey:PF_CHAT_SETID];
+    }
+    else
+    {
+
+        __block int numberOfSets;
+        numberOfSets = [[self.room_ valueForKey:PF_CHATROOMS_ROOMNUMBER] intValue];
+        PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
+        [set setValue:room_ forKey:PF_SET_ROOM];
+        [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
+        [set setValue:@(numberOfSets) forKey:PF_SET_ROOMNUMBER];
+        [object setObject:set forKey:PF_CHAT_SETID];
+    }
     [self finishSendingMessage];
 
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
