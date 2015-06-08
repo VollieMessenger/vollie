@@ -47,6 +47,8 @@
     NSMutableArray *messageObjectIds;
     NSMutableArray *pictureObjects;
     NSMutableArray *pictureObjectIds;
+    NSMutableArray *unassignedCommentArray;
+    NSMutableArray *unassignedCommentArrayIds;
 
     NSMutableArray *arrayOfAvailableColors;
     NSMutableArray *arrayOfSetIdPicturesObjects;
@@ -741,6 +743,8 @@
     messageToSetId = [NSDictionary new];
     messageObjectIds = [NSMutableArray new];
     colorForSetId = [NSMutableDictionary new];
+    unassignedCommentArray = [NSMutableArray new];
+    unassignedCommentArrayIds = [NSMutableArray new];
 
     //Set up colors to pic from everytime, use same one for first object.
     arrayOfAvailableColors = [NSMutableArray arrayWithArray: [AppConstant arrayOfColors]];
@@ -955,19 +959,28 @@
                  for (PFObject *picture in pictureObjects)
                  {
                      PFObject *setObject = [picture valueForKey:PF_PICTURES_SETID];
-                     NSString *setID = setObject.objectId;
-                     if (setID.length > 0 && ![colorForSetId objectForKey:setID])
+                     if(setObject.objectId)
                      {
-                         if (arrayOfAvailableColors.count == 0) {
-                             [arrayOfAvailableColors addObjectsFromArray:[AppConstant arrayOfColors]];
+                         NSString *setID = setObject.objectId;
+                         if (setID.length > 0 && ![colorForSetId objectForKey:setID])
+                         {
+                             if (arrayOfAvailableColors.count == 0) {
+                                 [arrayOfAvailableColors addObjectsFromArray:[AppConstant arrayOfColors]];
+                             }
+                             UIColor *randomColor = [arrayOfAvailableColors objectAtIndex:0];
+                             [arrayOfAvailableColors removeObject:randomColor];
+                            NSString *colorString = [UIColor stringFromColor:randomColor];
+                            NSDictionary *dict = [NSDictionary dictionaryWithObject:colorString forKey:setID];
+                             [colorForSetId addEntriesFromDictionary:dict];
                          }
-                         UIColor *randomColor = [arrayOfAvailableColors objectAtIndex:0];
-                         [arrayOfAvailableColors removeObject:randomColor];
-                        NSString *colorString = [UIColor stringFromColor:randomColor];
-                        NSDictionary *dict = [NSDictionary dictionaryWithObject:colorString forKey:setID];
-                         [colorForSetId addEntriesFromDictionary:dict];
+                     }
+
+                     else
+                     {
+                         NSLog(@"unassigned message");
                      }
                  }
+
 
                  //Sorting out what to do with the data
                  int newCount = (int)messages.count + (int)pictureObjects.count;
@@ -1092,7 +1105,20 @@
     object[PF_CHAT_ROOM] = room_;
     object[PF_CHAT_TEXT] = text;
     [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
-    if (set) [object setObject:set forKey:PF_CHAT_SETID];
+    if (set)
+    {
+        [object setObject:set forKey:PF_CHAT_SETID];
+    }
+    else
+    {
+        __block int numberOfSets;
+        numberOfSets = [[self.room_ valueForKey:PF_CHATROOMS_ROOMNUMBER] intValue];
+        PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
+        [set setValue:room_ forKey:PF_SET_ROOM];
+        [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
+        [set setValue:@(numberOfSets) forKey:PF_SET_ROOMNUMBER];
+        [object setObject:set forKey:PF_CHAT_SETID];
+    }
     [self finishSendingMessage];
 
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
@@ -1119,17 +1145,24 @@
     arrayOfSetIdComments = [NSMutableArray new];
     arrayOfSetIdPicturesObjects = [NSMutableArray new];
     int count = 0;
-    if (pictureObjects.count) {
-        for (PFObject *picture in pictureObjects) {
+    if (pictureObjects.count)
+    {
+        for (PFObject *picture in pictureObjects)
+        {
             count += 1;
             PFObject *set = [picture valueForKey:PF_PICTURES_SETID];
             if ([set.objectId isEqualToString:setId]) {
                 [arrayOfSetIdPicturesObjects addObject:picture];
             }
-            if (count == pictureObjects.count) {
+            if (count == pictureObjects.count)
+            {
                 [self SortCommentsByPictureToSetId:setId andUserId:user];
             }
         }
+    }
+    else
+    {
+        [self SortCommentsByPictureToSetId:setId andUserId:user];
     }
 }
 
@@ -1142,12 +1175,15 @@
     }
 
     int count = 0;
-    for (JSQMessage *commment in messages) {
+    for (JSQMessage *commment in messages)
+    {
         count += 1;
-        if ([commment.setId isEqualToString:setId]) {
+        if ([commment.setId isEqualToString:setId])
+        {
             [arrayOfSetIdComments addObject:commment];
         }
-        if (count == messages.count){
+        if (count == messages.count)
+        {
             [self sendCustomChatWithSet:setId andUserID:user];
         }
     }
