@@ -1175,12 +1175,15 @@
     }
 
     int count = 0;
-    for (JSQMessage *commment in messages) {
+    for (JSQMessage *commment in messages)
+    {
         count += 1;
-        if ([commment.setId isEqualToString:setId]) {
+        if ([commment.setId isEqualToString:setId])
+        {
             [arrayOfSetIdComments addObject:commment];
         }
-        if (count == messages.count){
+        if (count == messages.count)
+        {
             [self sendCustomChatWithSet:setId andUserID:user];
         }
     }
