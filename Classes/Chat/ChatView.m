@@ -676,7 +676,8 @@
         [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
         [query whereKey:PF_MESSAGES_ROOM  equalTo:room_];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error & objects.count) {
+            if (!error & objects.count)
+            {
                 _message_ = objects.firstObject;
             }
         }];
@@ -1067,6 +1068,14 @@
     PFUser *user = object[PF_CHAT_USER];
     NSDate *date = object[PF_PICTURES_UPDATEDACTION];
     PFObject *set = object[PF_CHAT_SETID];
+    if (!set)
+    {
+        // if it doesn't exist, set one?
+    }
+    else
+    {
+        
+    }
     if (!date) date = [NSDate date];
     JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId
                                              senderDisplayName:user[PF_USER_FULLNAME]

@@ -58,17 +58,21 @@
     PFObject *room = message[PF_MESSAGES_ROOM];
 
 
-    if (message[PF_MESSAGES_NICKNAME]) {
+    if (message[PF_MESSAGES_NICKNAME])
+    {
         labelDescription.text = message[PF_MESSAGES_NICKNAME];
-    } else {
+    }
+    else
+    {
         NSString *description = message[PF_MESSAGES_DESCRIPTION];
-        if (description.length) {
+        if (description.length)
+        {
             labelDescription.text = description;
         }
     }
 
     NSArray *array = [room valueForKey:PF_CHATROOMS_USEROBJECTS];
-    self.labelNumberOfPeople.text = [NSString stringWithFormat:@"%lu", (array.count - 1)];
+//    self.labelNumberOfPeople.text = [NSString stringWithFormat:@"%lu", (array.count - 1)];
 
 /*
     PFRelation *users = [room objectForKey:PF_CHATROOMS_USERS];

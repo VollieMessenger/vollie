@@ -1001,7 +1001,9 @@
             if (_isSearching && _searchMessages.count)
             {
                 message = [_searchMessages objectAtIndex:indexPath.row];
-            } else {
+            }
+            else
+            {
                 NSDate *dateRepresentingThisDay = [savedDates objectAtIndex:indexPath.section];
                 NSArray *eventsOnThisDay = [savedMessagesForDate objectForKey:dateRepresentingThisDay];
                 message = [eventsOnThisDay objectAtIndex:indexPath.row];
@@ -1020,7 +1022,8 @@
                         [array removeObject:@" "];
                         NSString *first = array.firstObject;
                         NSString *last = array.lastObject;
-                        if (first.length && last.length) {
+                        if (first.length && last.length)
+                        {
                             first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
                             last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
                             name = [first stringByAppendingString:last];
@@ -1031,7 +1034,8 @@
                     }
                 
                 PFObject * room = [message objectForKey:PF_MESSAGES_ROOM];
-                if ([room.objectId isEqualToString:selectedRoom]) {
+                if ([room.objectId isEqualToString:selectedRoom])
+                {
                     ClearMessageCounter(message);
                     selectedRoom = @"";
                 }
@@ -1071,14 +1075,13 @@
     return newColor;
 }
 
-
 /*
  - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
  {
  //Required for edit actions
  }
  */
-
+ 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;

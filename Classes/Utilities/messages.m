@@ -9,6 +9,8 @@
 
 NSString* CreateMessageItem(PFObject *room, NSArray *arrayOfUsers)
 {
+
+    //This entire thing pretty much is a chat room. Not a message. We definitely need to change names.
     NSString *returnString = [NSString new];
 
     for (PFUser *user in arrayOfUsers) { // WHOLE METHOD
