@@ -877,9 +877,10 @@
             arrayOfNamesForLetter = [lettersForWords objectForKey:key];;
         }
         
-        if (arrayOfNamesForLetter.count)
+        if (arrayOfNamesForLetter.count||phoneNumbers.count)
         {
             if (self.invite) {
+                NSLog(@"%@",cell.textLabel.text);
                 selectedUser = phoneNumbers[cell.textLabel.text];
             } else {
                 selectedUser = arrayOfNamesForLetter[indexPath.row];
@@ -897,7 +898,7 @@
         {
             [self.arrayOfSelectedUsers addObject:selectedUser];
             [self togglePhoneNumbersCountIndicator];
-            UIImage *image = [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *image = self.invite ? [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             cell.accessoryView = [[UIImageView alloc] initWithImage:image];
             cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;

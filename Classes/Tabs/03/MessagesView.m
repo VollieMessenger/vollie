@@ -50,7 +50,8 @@
 
 #import "InviteCell.h"
 
-@interface MessagesView ()
+@interface MessagesView () <UIInputViewAudioFeedback>
+
 {
     UITapGestureRecognizer *tap;
 
