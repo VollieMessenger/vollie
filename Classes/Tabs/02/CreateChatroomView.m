@@ -322,21 +322,6 @@
                         NSLog(@"FAIL");
                     }
                 }];
-
-
-
-
-                [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded)
-                    {
-//                        [ProgressHUD show:@"Sending Text..." Interaction:0];
-//                            [self sendText:newUser];
-                    }
-                    else
-                    {
-                        //
-                    }
-                }];
             }
         } else {
             [ProgressHUD showError:@"Network Error"];
