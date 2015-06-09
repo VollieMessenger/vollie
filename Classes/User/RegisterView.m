@@ -110,7 +110,7 @@
 
 	NSString *nameFirst		= [fieldFirstName.text capitalizedString];
     NSString *nameLast     = [fieldLasteName.text capitalizedString];
-    password	= fieldPassword.text;
+//    password	= fieldPassword.text;
     phoneNumber = fieldPhoneNumber.text;
 
     phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
@@ -130,7 +130,7 @@
 
 		[ProgressHUD show:@"Searching for users..." Interaction:1];
 
-        PFQuery *query = [PFUser query];
+        PFQuery *query = [PFUser query]; //this is checking to see if it exists
         [query whereKey:PF_USER_USERNAME equalTo:phoneNumber];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
@@ -179,6 +179,7 @@
 
                     if ([phoneNumber isEqualToString:@"0000000000"])
                     {
+                        //what is this?????
                         newUser[PF_USER_PHONEVERIFICATIONCODE] = [NSNumber numberWithLongLong:8675309665];
                     }
 

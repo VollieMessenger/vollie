@@ -368,7 +368,6 @@
         peopleWaiting = [NSString stringWithFormat:@"%@ and I are waiting for you to Vollie www.volleymessenger.com", peopleWaiting];
     }
 
-
     if (_isTherePicturesToSend)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APP_MAIL_SEND object:self userInfo:@{@"string": peopleWaiting, @"people": _arrayofSelectedPhoneNumbers}];

@@ -304,7 +304,7 @@
             if ([_arrayofSelectedPhoneNumbers containsObject:phoneNumber])
             {
                 cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
-                UIImage *image = [[UIImage imageNamed:@"email"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+                UIImage *image = [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
                 UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
                 imageView.tintColor = [UIColor volleyFamousOrange];
                 cell.accessoryView = imageView;
@@ -384,7 +384,7 @@
             }
             [_arrayofSelectedPhoneNumbers addObject:firstNumber];
             cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
-            UIImage *image = [[UIImage imageNamed:@"email"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *image = [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
             imageView.tintColor = [UIColor volleyFamousOrange];
             cell.accessoryView = imageView;
@@ -450,7 +450,7 @@
         NSString *phoneNumber = [alertView buttonTitleAtIndex:buttonIndex];
         if (phoneNumber.length && _selectedCell.accessoryType == UITableViewCellAccessoryNone)
         {
-            _selectedCell.accessoryView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"email"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+            _selectedCell.accessoryView = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
             _selectedCell.accessoryView.tintColor = [UIColor volleyFamousOrange];
             _selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
             [_arrayofSelectedPhoneNumbers addObject:phoneNumber];
