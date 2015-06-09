@@ -76,6 +76,7 @@
              [setComments addObject:message];
 
              [self.collectionView reloadData];
+//             [self.collectionView setContentOffset:self.collectionView.contentOffset animated:NO];
              [self scrollToBottomAnimated:1];
 
              [JSQSystemSoundPlayer jsq_playMessageSentSound];
@@ -134,6 +135,7 @@
     NSParameterAssert(self.room != nil);
 
     [self.collectionViewPictures registerClass:[CustomCollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
+//    [self.collectionViewPictures setContentOffset:self.collectionViewPictures.contentOffset animated:NO];
 
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @""
@@ -874,6 +876,8 @@
 
 #pragma mark - UICollectionView DataSource
 #pragma mark - JSQMessages collection view flow layout delegate
+
+
 #pragma mark - Adjusting cell label heights
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
@@ -1050,5 +1054,6 @@
         isTouching = NO;
     }
 }
+
 
 @end

@@ -234,9 +234,10 @@
         PFQuery *query = [PFUser query];
         [query whereKey:@"isVerified" equalTo:@NO];
         [query whereKey:PF_USER_USERNAME containedIn:_arrayofSelectedPhoneNumbers];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            if (!error) {
-
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+        {
+            if (!error)
+            {
                 NSMutableArray *arrayOfNumbersCopy = [NSMutableArray arrayWithArray:_arrayofSelectedPhoneNumbers];
 
                 // If users were found, add them to selectedUsers;
@@ -247,22 +248,26 @@
                     [_arrayOfSelectedUsers addObject:user];
                     x--;
                     //If all the users were found with phonenumbers, we can send. Otherwise create more phone numbers;
-                    if (x == 0) {
+                    if (x == 0)
+                    {
                         [self actionSend];
                         return;
                     }
                 }
 
                 //For the rest of the phone numbers, create an account.
-                for (NSString *phoneNumber in arrayOfNumbersCopy) {
+                for (NSString *phoneNumber in arrayOfNumbersCopy)
+                {
                     [self saveNewUserWithPhoneNumber:phoneNumber];
                 }
-            } else {
+            }
+            else
+            {
             }
         }];
-
-    } else {// No phone numbers
-
+    }
+    else
+    {// No phone numbers
         [self actionSend];
     }
 }
@@ -302,7 +307,10 @@
                                        [self actionSend];
                                    }
 
-                               } else {
+                               }
+                               else
+                               {
+                                   
                                }
                            }];
 }

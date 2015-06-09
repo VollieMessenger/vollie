@@ -672,6 +672,7 @@
 
     self.collectionView.loadEarlierMessagesHeaderTextColor = [UIColor lightGrayColor];
 
+
     if (!self.message_ && room_)
     {
         PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
