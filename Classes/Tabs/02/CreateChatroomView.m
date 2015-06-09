@@ -232,7 +232,7 @@
 
         //Looking for users in chatroom that already exist, so we don't make any new users.
         PFQuery *query = [PFUser query];
-        [query whereKey:@"isVerified" equalTo:@NO];
+//        [query whereKey:@"isVerified" equalTo:@NO];
         [query whereKey:PF_USER_USERNAME containedIn:_arrayofSelectedPhoneNumbers];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
         {
@@ -258,7 +258,7 @@
                 //For the rest of the phone numbers, create an account.
                 for (NSString *phoneNumber in arrayOfNumbersCopy)
                 {
-                    [self saveNewUserWithPhoneNumber:phoneNumber];
+                    [self actionRegisterWithPhoneNumber:phoneNumber];
                 }
             }
             else
@@ -271,6 +271,80 @@
         [self actionSend];
     }
 }
+
+- (void)actionRegisterWithPhoneNumber:(NSString *)phoneNumber
+{
+    PFQuery *query = [PFUser query]; //this is checking to see if it exists
+    [query whereKey:PF_USER_USERNAME equalTo:phoneNumber];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            if (objects.count == 1)
+            {
+                PFUser *user = objects.firstObject;
+                NSString *fullName = [user valueForKey:PF_USER_FULLNAME];
+
+                if  (fullName.length)
+                {
+                    [ProgressHUD showError:@"Phone Number Already Registered"];
+                }
+                else
+                {
+                    //USER FOUND BUT NO NAME YET.
+                    [PFUser logInWithUsernameInBackground:phoneNumber password:phoneNumber block:^(PFUser *user, NSError *error)
+                     {
+                         if (!error)
+                         {
+                             [ProgressHUD show:@"Sending Text..." Interaction:0];
+                             //Save name if user logs in.
+//                                 [self sendText:user];
+                         }
+                         else
+                         {
+//                             [ProgressHUD showError:@"Couldn't sign in existing user \n (Email for assistance)"];
+                         }
+                     }];
+                }
+            }
+            else if (objects.count == 0)
+            {
+                //Make the anonymouse user the current user
+                PFUser *newUser = [PFUser new];
+                newUser.username = phoneNumber;
+                newUser.password = phoneNumber;
+
+                [newUser signUpInBackgroundWithBlock: ^(BOOL succeeded, NSError *error) {
+                    // Why this code is never executed ?
+                    NSLog(@"(succeeded = %c)(error = %@)", succeeded, error);
+                    if (succeeded)
+                    {
+                        NSLog(@"OK");
+                    } else {
+                        NSLog(@"FAIL");
+                    }
+                }];
+
+
+
+
+                [newUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded)
+                    {
+//                        [ProgressHUD show:@"Sending Text..." Interaction:0];
+//                            [self sendText:newUser];
+                    }
+                    else
+                    {
+                        //
+                    }
+                }];
+            }
+        } else {
+            [ProgressHUD showError:@"Network Error"];
+        }
+    }];
+}
+
+
 
 - (void) saveNewUserWithPhoneNumber:(NSString *)phoneNumber
 {
@@ -285,34 +359,36 @@
     [request setValue:@"elq3rKjkGscvsbeeb21QP0GkuMfuEe3Zb8f3bvcq" forHTTPHeaderField:@"X-Parse-Application-Id"];
 
     NSDictionary *dict = @{@"username":phoneNumber,@"password":phoneNumber, PF_USER_ISVERIFIED: @NO};
-    NSError *error;
-    NSData *postBody = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+    NSError *error; // is successfully making dict with 0verify pw as number and username as number
 
-    [request setHTTPBody:postBody];
-
-    // Send request to Parse and parse returned data
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               if (!connectionError) {
-                                   NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
-
-                                   NSString *objectId = [responseDictionary valueForKey:@"objectId"];
-
-                                   [_arrayOfSelectedUsers addObject:[PFUser objectWithoutDataWithObjectId:objectId]];
-                                   x--;
-                                   //If we finished all the phone numbers, create the chatroom;
-                                   if (x == 0){
-                                       [self actionSend];
-                                   }
-
-                               }
-                               else
-                               {
-                                   
-                               }
-                           }];
+//    NSData *postBody = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:&error];
+//
+//    [request setHTTPBody:postBody];
+//
+//    // Send request to Parse and parse returned data
+//    [NSURLConnection sendAsynchronousRequest:request
+//                                       queue:[NSOperationQueue mainQueue]
+//                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+//                               if (!connectionError) {
+//                                   NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+//
+//
+//                                   NSString *objectId = [responseDictionary valueForKey:@"objectId"];
+//
+//                                   [_arrayOfSelectedUsers addObject:[PFUser objectWithoutDataWithObjectId:objectId]];
+//                                   x--;
+//                                   //If we finished all the phone numbers, create the chatroom;
+//                                   if (x == 0)
+//                                   {
+////                                       [self actionSend];
+//                                   }
+//
+//                               }
+//                               else
+//                               {
+//                                   
+//                               }
+//                           }];
 }
 
 -(void) setNavigationBarColor
