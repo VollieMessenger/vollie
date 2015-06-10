@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
+		2762FF621B289A530070AD59 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* CardVC.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
 		29271A5919F284B1009C308B /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3319F284B1009C308B /* NavigationController.m */; };
 		29271A5A19F284B1009C308B /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3619F284B1009C308B /* ChatView.m */; };
@@ -162,6 +164,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
+		2762FF601B289A530070AD59 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
+		2762FF611B289A530070AD59 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
 		292719D119F284AC009C308B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		29271A3219F284B1009C308B /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -503,6 +508,7 @@
 		29271A3019F284B1009C308B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */,
 				29271A3119F284B1009C308B /* Application */,
 				29271A3419F284B1009C308B /* Chat */,
 				29271A3719F284B1009C308B /* Tabs */,
@@ -526,6 +532,8 @@
 		29271A3419F284B1009C308B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				2762FF601B289A530070AD59 /* CardVC.h */,
+				2762FF611B289A530070AD59 /* CardVC.m */,
 				29271A3519F284B1009C308B /* ChatView.h */,
 				29271A3619F284B1009C308B /* ChatView.m */,
 				C2BD53E71A31077D006D721E /* CustomChatView.h */,
@@ -1160,6 +1168,7 @@
 				C2CA16E81A82A1FE00DD25AC /* AlbumView.xib in Resources */,
 				296DD5E11A1F52F400AB9F8C /* JSQMessagesToolbarContentView.xib in Resources */,
 				C2CA16E11A82860E00DD25AC /* DidFavoriteView.xib in Resources */,
+				2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */,
 				296DD5B91A1F52F400AB9F8C /* JSQMessagesAssets.bundle in Resources */,
 				296DD5C31A1F52F400AB9F8C /* JSQMessagesViewController.xib in Resources */,
 				29271A6919F284B1009C308B /* WelcomeView.xib in Resources */,
@@ -1210,6 +1219,7 @@
 				C21DD6EF1A71D73B0009BC6A /* JCNotificationCenter.m in Sources */,
 				C2832CB81A704A6100CDF19D /* IQBarButtonItem.m in Sources */,
 				29271A5B19F284B1009C308B /* ChatroomUsersView.m in Sources */,
+				2762FF621B289A530070AD59 /* CardVC.m in Sources */,
 				C2832CB51A704A6100CDF19D /* IQKeyboardReturnKeyHandler.m in Sources */,
 				C2832CB11A704A6100CDF19D /* IQNSArray+Sort.m in Sources */,
 				296DD5CE1A1F52F400AB9F8C /* JSQMessage.m in Sources */,

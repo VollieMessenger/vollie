@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--CardVC-->
+        <scene sceneID="Gfe-k3-H8a">
+            <objects>
+                <viewController storyboardIdentifier="CardVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UPo-ZF-5z1" customClass="CardVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="juJ-0A-Y6p"/>
+                        <viewControllerLayoutGuide type="bottom" id="4jE-2m-a4p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4Tx-8w-F0z">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSV-ry-XKU">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="TIz-N3-3uh"/>
+                                    <constraint firstAttribute="width" constant="42" id="rcR-4s-8l9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="TIz-N3-3uh"/>
+                                        <exclude reference="rcR-4s-8l9"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="TIz-N3-3uh"/>
+                                        <include reference="rcR-4s-8l9"/>
+                                    </mask>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tSV-ry-XKU" firstAttribute="leading" secondItem="4Tx-8w-F0z" secondAttribute="leadingMargin" constant="-16" id="Fdz-7R-2XD"/>
+                            <constraint firstItem="tSV-ry-XKU" firstAttribute="top" secondItem="juJ-0A-Y6p" secondAttribute="bottom" id="nPa-Ft-5BW"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="tSV-ry-XKU"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Fdz-7R-2XD"/>
+                                <exclude reference="nPa-Ft-5BW"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="tSV-ry-XKU"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Fdz-7R-2XD"/>
+                                <include reference="nPa-Ft-5BW"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="N08-G0-BJm"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SKk-Ae-Ezb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1471.5" y="274"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zz0-6L-GZf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dEP-vC-GYj" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Cj-os-ai1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UPo-ZF-5z1" kind="relationship" relationship="rootViewController" id="Ofj-AT-Kd5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j4Y-S5-T7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="553.5" y="274"/>
+        </scene>
+    </scenes>
+</document>
