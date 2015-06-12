@@ -18,6 +18,7 @@
 #import "messages.h"
 #import "pushnotification.h"
 #import "UIColor+JSQMessages.h"
+#import "JSQMessages.h"
 #import "CustomCameraView.h"
 #import "CustomChatView.h"
 #import "CustomCollectionViewCell.h"
@@ -26,11 +27,15 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface VollieCardDict : NSMutableDictionary
+@interface VollieCard : NSObject
 
-@property PFObject *set;
+@property NSString *set;
 @property NSMutableArray *photosArray;
 @property NSMutableArray *messagesArray;
 @property NSDate *dateUpdated;
+
+-(instancetype)initWithPFObject:(PFObject *)object;
+
+-(void)modifyCardWith:(PFObject *)object;
 
 @end

@@ -24,7 +24,7 @@
 #import "ChatroomUsersView.h"
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "VollieCardDict.h"
+#import "VollieCard.h"
 #import "CardCell.h"
 
 @interface CardVC () <UITableViewDataSource, UITableViewDelegate>
@@ -45,6 +45,7 @@
 @property NSMutableArray *setsArray;
 @property NSMutableArray *setsIDsArray;
 @property NSMutableArray *vollieCardArray;
+@property NSMutableArray *objectIdsArray;
 
 @property int isLoadingEarlierCount;
 
@@ -72,6 +73,7 @@
     self.setsArray = [NSMutableArray new];
     self.setsIDsArray = [NSMutableArray new];
     self.vollieCardArray = [NSMutableArray new];
+    self.objectIdsArray = [NSMutableArray new];
 
     [self loadMessages];
 }
@@ -138,15 +140,61 @@
          for (PFObject *object in [objects reverseObjectEnumerator])
          {
 //             NSLog(@"%@", [object objectForKey:@"setId"]);
-             [self checkIfIsPictureOrMessageWith:object];
+//             [self checkIfIsPictureOrMessageWith:object];
+
          }
      }];
 }
 
--(void)assignToCorrectSet
+-(void)checkForObjectIdWith:(PFObject *)object
 {
-
+    if ([self.objectIdsArray containsObject:object.objectId])
+    {
+        [self.objectIdsArray addObject:object.objectId];
+        [self checkForVollieCardWith:object];
+    }
 }
+
+-(void)checkForVollieCardWith:(PFObject *)object
+{
+    PFObject *set = [object objectForKey:@"setId"];
+    if ([self.objectIdsArray containsObject:set.objectId])
+    {
+        //find the correct vollie card
+        for (VollieCard *card in self.vollieCardArray)
+        {
+            if ([card.set isEqualToString:set.objectId])
+            {
+                [card modifyCardWith:object];
+            }
+        }
+    }
+    else
+    {
+        [self.objectIdsArray addObject:set.objectId];
+        VollieCard *card = [[VollieCard alloc] initWithPFObject:object];
+        [self.vollieCardArray addObject:card];
+        //create vollie card
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -(void)checkIfIsPictureOrMessageWith:(PFObject *)object
 {
@@ -176,24 +224,24 @@
     PFUser *user = object[PF_CHAT_USER];
     NSDate *date = object[PF_PICTURES_UPDATEDACTION];
     PFObject *set = object[PF_CHAT_SETID];
-    if (!set)
-    {
-        // if it doesn't exist, set one?
-        NSLog(@"found a message without a set");
-    }
-    else
-    {
-        if ([self.setsIDsArray containsObject:set.objectId])
-        {
-            //"this one already had a set"
-        }
-        else
-        {
-            [self.setsIDsArray addObject:set.objectId];
-            NSLog(@"%li sets", self.setsIDsArray.count);
-//            NSLog(@"ADDED A SET");
-        }
-    }
+//    if (!set)
+//    {
+//        // if it doesn't exist, set one?
+//        NSLog(@"found a message without a set");
+//    }
+//    else
+//    {
+//        if ([self.setsIDsArray containsObject:set.objectId])
+//        {
+//            //"this one already had a set"
+//        }
+//        else
+//        {
+//            [self.setsIDsArray addObject:set.objectId];
+//            NSLog(@"%li sets", self.setsIDsArray.count);
+////            NSLog(@"ADDED A SET");
+//        }
+//    }
     if (!date) date = [NSDate date];
     JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId
                                              senderDisplayName:user[PF_USER_FULLNAME]
