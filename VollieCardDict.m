@@ -10,16 +10,4 @@
 
 @implementation VollieCardDict
 
--(instancetype)initWithPFObject:(PFObject *)PFObject
-{
-    self = [super self];
-    if(self)
-    {
-        
-    }
-    return self;
-}
-
-
-
 @end

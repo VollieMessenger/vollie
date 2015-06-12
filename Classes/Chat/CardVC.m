@@ -24,6 +24,7 @@
 #import "ChatroomUsersView.h"
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "VollieCardDict.h"
 
 @interface CardVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -128,6 +129,7 @@
          if(error == nil);
          for (PFObject *object in [objects reverseObjectEnumerator])
          {
+//             NSLog(@"%@", [object objectForKey:@"setId"]);
              [self checkIfIsPictureOrMessageWith:object];
          }
      }];
@@ -144,11 +146,21 @@
     {// IS A PICTURE, ADD TO PICTURES
         if ([object valueForKey:PF_CHAT_ISUPLOADED])
         {
-            if (![self.pictureObjectIDs containsObject:object.objectId])
+            if ([self.pictureObjectIDs containsObject:object.objectId])
             {
-                [self.pictureObjects addObject:object];
+//                [self.pictureObjects addObject:object];
+                PFObject *set = object[PF_CHAT_SETID];
+                if ([self.setsIDsArray containsObject:set])
+                {
+//                    NSLog(@"set already added");
+                }
+                else
+                {
+                    [self.setsIDsArray addObject:set];
+                    NSLog(@"%li sets", self.setsIDsArray.count);
+                }
                 [self.pictureObjectIDs addObject:object.objectId];
-                NSLog(@"found a picture!!! we now have %li", self.pictureObjects.count);
+//                NSLog(@"found a picture!!! we now have %li", self.pictureObjects.count);
             }
         }
     }
@@ -169,11 +181,20 @@
     if (!set)
     {
         // if it doesn't exist, set one?
-        NSLog(@"found a message without a set");
+//        NSLog(@"found a message without a set");
     }
     else
     {
-
+        if ([self.setsIDsArray containsObject:set])
+        {
+            //"this one already had a set"
+        }
+        else
+        {
+            [self.setsIDsArray addObject:set];
+            NSLog(@"%li sets", self.setsIDsArray.count);
+//            NSLog(@"ADDED A SET");
+        }
     }
     if (!date) date = [NSDate date];
     JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId
@@ -183,7 +204,7 @@
                                                           text:object[PF_CHAT_TEXT]];
     [self.messages addObject:message];
     [self.messageObjectIDs addObject:object.objectId];
-    NSLog(@"added a message to messages, we now have %li", self.messages.count);
+//    NSLog(@"added a message to messages, we now have %li", self.messages.count);
     [self.tableView reloadData];
 }
 

@@ -28,10 +28,8 @@
 
 @interface VollieCardDict : NSMutableDictionary
 
-@property NSString *setID;
+@property PFObject *set;
 @property NSMutableArray *photosArray;
 @property NSMutableArray *messagesArray;
-
--(instancetype)initWithPFObject:(PFObject*)PFObject;
 
 @end
