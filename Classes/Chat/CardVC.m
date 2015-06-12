@@ -25,11 +25,24 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CardVC ()
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *testLabel;
+@interface CardVC () <UITableViewDataSource, UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property BOOL isLoading;
+
+@property NSMutableArray *messages;
+@property NSMutableArray *pictureObjects;
+@property NSMutableArray *pictureObjectIDs;
+@property NSMutableArray *messageObjects;
+@property NSDictionary *messageToSetIDs;
+@property NSMutableArray *messageObjectIDs;
+@property NSMutableDictionary *colorForSetID;
+@property NSMutableArray *unassignedCommentArray;
+@property NSMutableArray *unassignedCommentArrayIDs;
+@property NSMutableArray *setsArray;
+@property NSMutableArray *setsIDsArray;
+
+@property int isLoadingEarlierCount;
 
 @end
 
@@ -38,25 +51,142 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.nameLabel.text = self.name;
+
+    self.isLoading = NO;
     self.title = self.name;
 //    self.testLabel.text = ;
 
+    self.messages = [[NSMutableArray alloc] init];
+    self.pictureObjects = [NSMutableArray new];
+    self.pictureObjectIDs = [NSMutableArray new];
+    self.messageObjects = [NSMutableArray new];
+    self.messageToSetIDs = [NSDictionary new];
+    self.messageObjectIDs = [NSMutableArray new];
+    self.colorForSetID = [NSMutableDictionary new];
+    self.unassignedCommentArray = [NSMutableArray new];
+    self.unassignedCommentArrayIDs = [NSMutableArray new];
+    self.setsArray = [NSMutableArray new];
+    self.setsIDsArray = [NSMutableArray new];
 
+    [self loadMessages];
 }
 
-#pragma mark - Navigation
+#pragma mark - TableView
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.messages.count;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+    cell.textLabel.text = @"blaahhhhh";
+    return cell;
+}
+
+#pragma mark - ParseLoad
 
 -(void)loadMessages
 {
     if (self.isLoading == NO)
     {
-        PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
-        [query whereKey:PF_CHAT_ROOM equalTo:self.room];
-//        JSQMessage *message_last = [messages lastObject];
-//        PFObject *picture_last = [pictureObjects lastObject];
+        self.isLoading = YES;
+        [self createQuery];
     }
 }
+
+-(void)createQuery
+{
+    JSQMessage *message_last = [self.messages lastObject];
+    PFObject *picture_last = [self.pictureObjects lastObject];
+
+    PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
+    [query whereKey:PF_CHAT_ROOM equalTo:self.room];
+    [query includeKey:PF_CHAT_USER];
+    [query includeKey:PF_CHAT_SETID];
+    [query orderByDescending:PF_PICTURES_UPDATEDACTION];
+
+    if (message_last && picture_last)
+    {
+        if (message_last.date > picture_last.createdAt)
+        {
+            [query whereKey:PF_CHAT_CREATEDAT greaterThan:message_last.date];
+        }
+        else
+        {
+            [query whereKey:PF_CHAT_CREATEDAT greaterThan:picture_last.createdAt];
+        }
+    }
+
+    [self getMessagesWithPFQuery:query];
+}
+
+-(void)getMessagesWithPFQuery:(PFQuery *)query
+{
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if(error == nil);
+         for (PFObject *object in [objects reverseObjectEnumerator])
+         {
+             [self checkIfIsPictureOrMessageWith:object];
+         }
+     }];
+}
+
+-(void)assignToCorrectSet
+{
+
+}
+
+-(void)checkIfIsPictureOrMessageWith:(PFObject *)object
+{
+    if ([object objectForKey:PF_PICTURES_THUMBNAIL])
+    {// IS A PICTURE, ADD TO PICTURES
+        if ([object valueForKey:PF_CHAT_ISUPLOADED])
+        {
+            if (![self.pictureObjectIDs containsObject:object.objectId])
+            {
+                [self.pictureObjects addObject:object];
+                [self.pictureObjectIDs addObject:object.objectId];
+                NSLog(@"found a picture!!! we now have %li", self.pictureObjects.count);
+            }
+        }
+    }
+    else
+    {// IS A COMMENT
+        if (![self.messageObjectIDs containsObject:object.objectId])
+        {
+            [self parseThroughMessageDataWithObject:object];
+        }
+    }
+}
+
+-(void)parseThroughMessageDataWithObject:(PFObject*)object
+{
+    PFUser *user = object[PF_CHAT_USER];
+    NSDate *date = object[PF_PICTURES_UPDATEDACTION];
+    PFObject *set = object[PF_CHAT_SETID];
+    if (!set)
+    {
+        // if it doesn't exist, set one?
+        NSLog(@"found a message without a set");
+    }
+    else
+    {
+
+    }
+    if (!date) date = [NSDate date];
+    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId
+                                             senderDisplayName:user[PF_USER_FULLNAME]
+                                                         setId:set.objectId
+                                                          date:date
+                                                          text:object[PF_CHAT_TEXT]];
+    [self.messages addObject:message];
+    [self.messageObjectIDs addObject:object.objectId];
+    NSLog(@"added a message to messages, we now have %li", self.messages.count);
+    [self.tableView reloadData];
+}
+
 
 
 @end

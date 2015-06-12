@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* CardVC.m */; };
+		27C300F21B2B2FDB00EB9723 /* VollieCardDict.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCardDict.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
 		29271A5919F284B1009C308B /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3319F284B1009C308B /* NavigationController.m */; };
 		29271A5A19F284B1009C308B /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3619F284B1009C308B /* ChatView.m */; };
@@ -167,6 +168,8 @@
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
 		2762FF601B289A530070AD59 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
 		2762FF611B289A530070AD59 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
+		27C300F01B2B2FDB00EB9723 /* VollieCardDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCardDict.h; path = ../../VollieCardDict.h; sourceTree = "<group>"; };
+		27C300F11B2B2FDB00EB9723 /* VollieCardDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VollieCardDict.m; path = ../../VollieCardDict.m; sourceTree = "<group>"; };
 		292719D119F284AC009C308B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		29271A3219F284B1009C308B /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -532,6 +535,8 @@
 		29271A3419F284B1009C308B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				27C300F01B2B2FDB00EB9723 /* VollieCardDict.h */,
+				27C300F11B2B2FDB00EB9723 /* VollieCardDict.m */,
 				2762FF601B289A530070AD59 /* CardVC.h */,
 				2762FF611B289A530070AD59 /* CardVC.m */,
 				29271A3519F284B1009C308B /* ChatView.h */,
@@ -1282,6 +1287,7 @@
 				C2832CB61A704A6100CDF19D /* IQSegmentedNextPrevious.m in Sources */,
 				C285FA301A7AED3200DB007F /* VerifyTextView.m in Sources */,
 				29EB240B19E9292500D7AA97 /* main.m in Sources */,
+				27C300F21B2B2FDB00EB9723 /* VollieCardDict.m in Sources */,
 				29271A5E19F284B1009C308B /* MessagesCell.m in Sources */,
 				C27189381A3243BA00F52320 /* KLCPopup.m in Sources */,
 				C2832CB31A704A6100CDF19D /* IQUIWindow+Hierarchy.m in Sources */,
