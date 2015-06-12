@@ -1152,6 +1152,7 @@
         {
             count += 1;
             PFObject *set = [picture valueForKey:PF_PICTURES_SETID];
+            NSLog(@"%@", set);
             if ([set.objectId isEqualToString:setId]) {
                 [arrayOfSetIdPicturesObjects addObject:picture];
             }

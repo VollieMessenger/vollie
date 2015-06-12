@@ -1334,9 +1334,6 @@
             cardViewController.room = room;
             [self.navigationController pushViewController:cardViewController animated:YES];
 
-
-
-
         }
     }
     else

@@ -25,9 +25,11 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "VollieCardDict.h"
+#import "CardCell.h"
 
 @interface CardVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
 
 @property BOOL isLoading;
 
@@ -82,10 +84,13 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
+    CardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+    cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
+//    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
+//    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
     return cell;
+
+//    http://stackoverflow.com/questions/17398058/is-it-possible-to-add-uitableview-within-a-uitableviewcell
 }
 
 #pragma mark - ParseLoad
@@ -160,6 +165,7 @@
     {// IS A COMMENT
         if (![self.messageObjectIDs containsObject:object.objectId])
         {
+//            NSLog(@"%@", [object objectForKey:@"setId"]);
             [self parseThroughMessageDataWithObject:object];
         }
     }
@@ -177,13 +183,13 @@
     }
     else
     {
-        if ([self.setsIDsArray containsObject:set])
+        if ([self.setsIDsArray containsObject:set.objectId])
         {
             //"this one already had a set"
         }
         else
         {
-            [self.setsIDsArray addObject:set];
+            [self.setsIDsArray addObject:set.objectId];
             NSLog(@"%li sets", self.setsIDsArray.count);
 //            NSLog(@"ADDED A SET");
         }
