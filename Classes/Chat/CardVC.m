@@ -26,6 +26,10 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface CardVC ()
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *testLabel;
+
+@property BOOL isLoading;
 
 @end
 
@@ -34,21 +38,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.nameLabel.text = self.name;
+    self.title = self.name;
+//    self.testLabel.text = ;
+
+
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 #pragma mark - Navigation
-//- (id)initWith:(PFObject *)room name:(NSString *)name
-//{
-//    
-//}
 
-
+-(void)loadMessages
+{
+    if (self.isLoading == NO)
+    {
+        PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
+        [query whereKey:PF_CHAT_ROOM equalTo:self.room];
+//        JSQMessage *message_last = [messages lastObject];
+//        PFObject *picture_last = [pictureObjects lastObject];
+    }
+}
 
 
 @end

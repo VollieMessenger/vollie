@@ -1329,6 +1329,9 @@
             [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
             CardVC *cardViewController = (CardVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+//            cardViewController = [[CardVC alloc] initWith:room name:cell.labelDescription.text];
+            cardViewController.name = cell.labelDescription.text;
+            cardViewController.room = room;
             [self.navigationController pushViewController:cardViewController animated:YES];
 
 

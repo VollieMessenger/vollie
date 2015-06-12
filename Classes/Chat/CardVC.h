@@ -16,6 +16,7 @@
 
 @interface CardVC : UIViewController
 
-- (id)initWith:(PFObject *)room name:(NSString *)name;
+@property PFObject *room;
+@property NSString *name;
 
 @end
