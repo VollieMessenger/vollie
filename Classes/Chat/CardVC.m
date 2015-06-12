@@ -83,7 +83,7 @@
     CardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
     cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
     cell.picLabel.text = [NSString stringWithFormat:@"%li pics", card.photosArray.count];
-    cell.messageLabel.text = [NSString stringWithFormat:@"%li pics", card.messagesArray.count];
+    cell.messageLabel.text = [NSString stringWithFormat:@"%li messages", card.messagesArray.count];
 //    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
     return cell;
