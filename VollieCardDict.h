@@ -31,5 +31,6 @@
 @property PFObject *set;
 @property NSMutableArray *photosArray;
 @property NSMutableArray *messagesArray;
+@property NSDate *dateUpdated;
 
 @end

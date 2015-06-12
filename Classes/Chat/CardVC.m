@@ -42,6 +42,7 @@
 @property NSMutableArray *unassignedCommentArrayIDs;
 @property NSMutableArray *setsArray;
 @property NSMutableArray *setsIDsArray;
+@property NSMutableArray *vollieCardArray;
 
 @property int isLoadingEarlierCount;
 
@@ -68,6 +69,7 @@
     self.unassignedCommentArrayIDs = [NSMutableArray new];
     self.setsArray = [NSMutableArray new];
     self.setsIDsArray = [NSMutableArray new];
+    self.vollieCardArray = [NSMutableArray new];
 
     [self loadMessages];
 }
@@ -75,13 +77,14 @@
 #pragma mark - TableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.messages.count;
+    return self.setsIDsArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-    cell.textLabel.text = @"blaahhhhh";
+    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
     return cell;
 }
 
@@ -107,17 +110,17 @@
     [query includeKey:PF_CHAT_SETID];
     [query orderByDescending:PF_PICTURES_UPDATEDACTION];
 
-    if (message_last && picture_last)
-    {
-        if (message_last.date > picture_last.createdAt)
-        {
-            [query whereKey:PF_CHAT_CREATEDAT greaterThan:message_last.date];
-        }
-        else
-        {
-            [query whereKey:PF_CHAT_CREATEDAT greaterThan:picture_last.createdAt];
-        }
-    }
+//    if (message_last && picture_last)
+//    {
+//        if (message_last.date > picture_last.createdAt)
+//        {
+//            [query whereKey:PF_CHAT_CREATEDAT greaterThan:message_last.date];
+//        }
+//        else
+//        {
+//            [query whereKey:PF_CHAT_CREATEDAT greaterThan:picture_last.createdAt];
+//        }
+//    }
 
     [self getMessagesWithPFQuery:query];
 }
@@ -181,7 +184,7 @@
     if (!set)
     {
         // if it doesn't exist, set one?
-//        NSLog(@"found a message without a set");
+        NSLog(@"found a message without a set");
     }
     else
     {
