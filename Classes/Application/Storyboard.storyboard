@@ -28,62 +28,52 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QeF-da-Jqq" id="BsN-SJ-vHp">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mwy-bW-J7v">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <prototypes>
-                                                        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cardcellid" rowHeight="49" id="0nh-qF-wrk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0nh-qF-wrk" id="pUw-Sa-uSI">
-                                                                <autoresizingMask key="autoresizingMask"/>
-                                                            </tableViewCellContentView>
-                                                        </tableViewCell>
-                                                    </prototypes>
-                                                </tableView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="set#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOW-iJ-SSU">
                                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="321" y="8" width="79" height="21"/>
+                                                        <rect key="frame" x="8" y="8" width="79" height="21"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="how many pics" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QS-YN-q0y">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="8" y="32" width="173" height="21"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="how many messages" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIc-93-jvu">
+                                                    <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="8" y="53" width="173" height="21"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="mwy-bW-J7v" secondAttribute="bottom" constant="-8" id="0z5-Kt-nT8"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="mwy-bW-J7v" secondAttribute="trailing" constant="73" id="6mA-vG-LHF"/>
-                                                <constraint firstItem="mwy-bW-J7v" firstAttribute="top" secondItem="BsN-SJ-vHp" secondAttribute="topMargin" constant="-8" id="Qso-Z4-tg7"/>
-                                                <constraint firstItem="mwy-bW-J7v" firstAttribute="leading" secondItem="BsN-SJ-vHp" secondAttribute="leadingMargin" constant="-8" id="t6I-Up-NOg"/>
-                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
-                                                    <exclude reference="mwy-bW-J7v"/>
                                                     <exclude reference="jOW-iJ-SSU"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="0z5-Kt-nT8"/>
-                                                    <exclude reference="6mA-vG-LHF"/>
-                                                    <exclude reference="Qso-Z4-tg7"/>
-                                                    <exclude reference="t6I-Up-NOg"/>
+                                                    <exclude reference="0QS-YN-q0y"/>
+                                                    <exclude reference="EIc-93-jvu"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
-                                                    <include reference="mwy-bW-J7v"/>
                                                     <include reference="jOW-iJ-SSU"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="0z5-Kt-nT8"/>
-                                                    <include reference="6mA-vG-LHF"/>
-                                                    <include reference="Qso-Z4-tg7"/>
-                                                    <include reference="t6I-Up-NOg"/>
+                                                    <include reference="0QS-YN-q0y"/>
+                                                    <include reference="EIc-93-jvu"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="cardTableView" destination="mwy-bW-J7v" id="ysv-tV-txp"/>
+                                            <outlet property="messageLabel" destination="EIc-93-jvu" id="Mis-Q9-x67"/>
+                                            <outlet property="picLabel" destination="0QS-YN-q0y" id="2hx-DD-oAT"/>
                                             <outlet property="testLabel" destination="jOW-iJ-SSU" id="Dhe-M1-sBP"/>
                                         </connections>
                                     </tableViewCell>

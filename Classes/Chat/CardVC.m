@@ -61,33 +61,29 @@
     self.title = self.name;
 //    self.testLabel.text = ;
 
-    self.messages = [[NSMutableArray alloc] init];
-    self.pictureObjects = [NSMutableArray new];
-    self.pictureObjectIDs = [NSMutableArray new];
-    self.messageObjects = [NSMutableArray new];
-    self.messageToSetIDs = [NSDictionary new];
-    self.messageObjectIDs = [NSMutableArray new];
+    self.messages = [NSMutableArray new];
     self.colorForSetID = [NSMutableDictionary new];
-    self.unassignedCommentArray = [NSMutableArray new];
-    self.unassignedCommentArrayIDs = [NSMutableArray new];
-    self.setsArray = [NSMutableArray new];
     self.setsIDsArray = [NSMutableArray new];
     self.vollieCardArray = [NSMutableArray new];
     self.objectIdsArray = [NSMutableArray new];
 
     [self loadMessages];
+
 }
 
 #pragma mark - TableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.setsIDsArray.count;
+    return self.vollieCardArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    VollieCard *card = [self.vollieCardArray objectAtIndex:indexPath.row];
     CardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
     cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
+    cell.picLabel.text = [NSString stringWithFormat:@"%li pics", card.photosArray.count];
+    cell.messageLabel.text = [NSString stringWithFormat:@"%li pics", card.messagesArray.count];
 //    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
     return cell;
@@ -108,8 +104,8 @@
 
 -(void)createQuery
 {
-    JSQMessage *message_last = [self.messages lastObject];
-    PFObject *picture_last = [self.pictureObjects lastObject];
+//    JSQMessage *message_last = [self.messages lastObject];
+//    PFObject *picture_last = [self.pictureObjects lastObject];
 
     PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
     [query whereKey:PF_CHAT_ROOM equalTo:self.room];
@@ -139,121 +135,50 @@
          if(error == nil);
          for (PFObject *object in [objects reverseObjectEnumerator])
          {
-//             NSLog(@"%@", [object objectForKey:@"setId"]);
-//             [self checkIfIsPictureOrMessageWith:object];
-
+             [self checkForObjectIdWith:object];
          }
      }];
 }
 
 -(void)checkForObjectIdWith:(PFObject *)object
 {
-    if ([self.objectIdsArray containsObject:object.objectId])
+    if (![self.objectIdsArray containsObject:object.objectId])
     {
         [self.objectIdsArray addObject:object.objectId];
         [self checkForVollieCardWith:object];
+    }
+    else
+    {
+        NSLog(@"this message is already somewhere");
     }
 }
 
 -(void)checkForVollieCardWith:(PFObject *)object
 {
     PFObject *set = [object objectForKey:@"setId"];
-    if ([self.objectIdsArray containsObject:set.objectId])
+    if (set)
     {
-        //find the correct vollie card
-        for (VollieCard *card in self.vollieCardArray)
+        if ([self.setsIDsArray containsObject:set.objectId])
         {
-            if ([card.set isEqualToString:set.objectId])
+            //find the correct vollie card
+            for (VollieCard *card in self.vollieCardArray)
             {
-                [card modifyCardWith:object];
+                if ([card.set isEqualToString:set.objectId])
+                {
+                    [card modifyCardWith:object];
+                    [self.tableView reloadData];
+                }
             }
         }
-    }
-    else
-    {
-        [self.objectIdsArray addObject:set.objectId];
-        VollieCard *card = [[VollieCard alloc] initWithPFObject:object];
-        [self.vollieCardArray addObject:card];
-        //create vollie card
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--(void)checkIfIsPictureOrMessageWith:(PFObject *)object
-{
-    if ([object objectForKey:PF_PICTURES_THUMBNAIL])
-    {// IS A PICTURE, ADD TO PICTURES
-        if ([object valueForKey:PF_CHAT_ISUPLOADED])
+        else
         {
-            if ([self.pictureObjectIDs containsObject:object.objectId])
-            {
-                [self.pictureObjectIDs addObject:object.objectId];
-                [self.pictureObjects addObject:object];
-            }
-        }
-    }
-    else
-    {// IS A COMMENT
-        if (![self.messageObjectIDs containsObject:object.objectId])
-        {
-//            NSLog(@"%@", [object objectForKey:@"setId"]);
-            [self parseThroughMessageDataWithObject:object];
+            NSLog(@"%@", object.objectId);
+            VollieCard *card = [[VollieCard alloc] initWithPFObject:object];
+            [self.vollieCardArray addObject:card];
+            [self.setsIDsArray addObject:set.objectId];
+            [self.tableView reloadData];
+            //create vollie card
         }
     }
 }
-
--(void)parseThroughMessageDataWithObject:(PFObject*)object
-{
-    PFUser *user = object[PF_CHAT_USER];
-    NSDate *date = object[PF_PICTURES_UPDATEDACTION];
-    PFObject *set = object[PF_CHAT_SETID];
-//    if (!set)
-//    {
-//        // if it doesn't exist, set one?
-//        NSLog(@"found a message without a set");
-//    }
-//    else
-//    {
-//        if ([self.setsIDsArray containsObject:set.objectId])
-//        {
-//            //"this one already had a set"
-//        }
-//        else
-//        {
-//            [self.setsIDsArray addObject:set.objectId];
-//            NSLog(@"%li sets", self.setsIDsArray.count);
-////            NSLog(@"ADDED A SET");
-//        }
-//    }
-    if (!date) date = [NSDate date];
-    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId
-                                             senderDisplayName:user[PF_USER_FULLNAME]
-                                                         setId:set.objectId
-                                                          date:date
-                                                          text:object[PF_CHAT_TEXT]];
-    [self.messages addObject:message];
-    [self.messageObjectIDs addObject:object.objectId];
-//    NSLog(@"added a message to messages, we now have %li", self.messages.count);
-    [self.tableView reloadData];
-}
-
-
-
 @end

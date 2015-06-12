@@ -11,5 +11,7 @@
 @interface CardCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UITableView *cardTableView;
 @property (strong, nonatomic) IBOutlet UILabel *testLabel;
+@property (strong, nonatomic) IBOutlet UILabel *picLabel;
+@property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 
 @end
