@@ -1039,7 +1039,8 @@
                      self.collectionViewPictures.hidden = NO;
                      [self finishReceivingMessage:1];
 
-                     if (picture_last && newCount > count) {
+                     if (picture_last && newCount > count)
+                    {
                          NSUserDefaults *userDefualts = [NSUserDefaults standardUserDefaults];
                          if ([userDefualts boolForKey:PF_KEY_SHOULDVIBRATE]) {
                              [JSQSystemSoundPlayer jsq_playMessageReceivedAlert];

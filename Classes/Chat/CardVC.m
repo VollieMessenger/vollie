@@ -151,19 +151,8 @@
         {
             if ([self.pictureObjectIDs containsObject:object.objectId])
             {
-//                [self.pictureObjects addObject:object];
-                PFObject *set = object[PF_CHAT_SETID];
-                if ([self.setsIDsArray containsObject:set])
-                {
-//                    NSLog(@"set already added");
-                }
-                else
-                {
-                    [self.setsIDsArray addObject:set];
-                    NSLog(@"%li sets", self.setsIDsArray.count);
-                }
                 [self.pictureObjectIDs addObject:object.objectId];
-//                NSLog(@"found a picture!!! we now have %li", self.pictureObjects.count);
+                [self.pictureObjects addObject:object];
             }
         }
     }
