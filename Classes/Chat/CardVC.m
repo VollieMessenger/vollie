@@ -87,6 +87,7 @@
     cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
     cell.picLabel.text = [NSString stringWithFormat:@"%li pics", card.photosArray.count];
     cell.messageLabel.text = [NSString stringWithFormat:@"%li messages", card.messagesArray.count];
+    cell.card = card;
 //    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
     return cell;
@@ -97,14 +98,14 @@
 #pragma mark - CollectionView
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+//    VollieCard *card = self.vollieCardArray[section];
 //    NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
-    return 2;
+    return 7;
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
-
 //    NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
     cell.backgroundColor = [UIColor purpleColor];
 
