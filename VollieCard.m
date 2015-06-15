@@ -10,15 +10,17 @@
 
 @implementation VollieCard
 
+//this subclass contains the methods to create and modify cards
+
 -(instancetype)initWithPFObject:(PFObject *)object
 {
     self = [super self];
     if(self)
     {
-        NSLog(@"%@", object);
+//        NSLog(@"%@", object);
         PFObject *set = [object objectForKey:@"setId"];
         self.set = set.objectId;
-        NSLog(@"%@ is my my SetID", self.set);
+//        NSLog(@"%@ is my my SetID", self.set);
 
         self.photosArray = [NSMutableArray new];
         self.messagesArray = [NSMutableArray new];

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* CardVC.m */; };
+		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
 		27C300F21B2B2FDB00EB9723 /* VollieCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCard.m */; };
 		27C300F51B2B5C2300EB9723 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F41B2B5C2300EB9723 /* CardCell.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
@@ -169,6 +170,8 @@
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
 		2762FF601B289A530070AD59 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
 		2762FF611B289A530070AD59 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
+		279D7C971B2F38AC0090C1AD /* ChatColView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatColView.h; sourceTree = "<group>"; };
+		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
 		27C300F01B2B2FDB00EB9723 /* VollieCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCard.h; path = ../../VollieCard.h; sourceTree = "<group>"; };
 		27C300F11B2B2FDB00EB9723 /* VollieCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VollieCard.m; path = ../../VollieCard.m; sourceTree = "<group>"; };
 		27C300F31B2B5C2300EB9723 /* CardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCell.h; sourceTree = "<group>"; };
@@ -538,6 +541,8 @@
 		29271A3419F284B1009C308B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				279D7C971B2F38AC0090C1AD /* ChatColView.h */,
+				279D7C981B2F38AC0090C1AD /* ChatColView.m */,
 				27C300F01B2B2FDB00EB9723 /* VollieCard.h */,
 				27C300F11B2B2FDB00EB9723 /* VollieCard.m */,
 				27C300F31B2B5C2300EB9723 /* CardCell.h */,
@@ -1219,6 +1224,7 @@
 				C21DD6ED1A71D73B0009BC6A /* JCNotificationBannerViewIOSStyle.m in Sources */,
 				C2F314AF1A79CF7400675959 /* NSDate+TimeAgo.m in Sources */,
 				C21DD6EB1A71D73B0009BC6A /* JCNotificationBannerViewController.m in Sources */,
+				279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */,
 				296DD5BB1A1F52F400AB9F8C /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				29271A5C19F284B1009C308B /* CreateChatroomView.m in Sources */,
 				29271A6619F284B1009C308B /* RegisterView.m in Sources */,

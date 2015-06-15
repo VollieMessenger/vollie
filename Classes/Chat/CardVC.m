@@ -26,6 +26,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "VollieCard.h"
 #import "CardCell.h"
+#import "ChatColView.h"
 
 @interface CardVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -46,6 +47,7 @@
 @property NSMutableArray *setsIDsArray;
 @property NSMutableArray *vollieCardArray;
 @property NSMutableArray *objectIdsArray;
+@property (strong, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
 
 @property int isLoadingEarlierCount;
 
@@ -81,6 +83,7 @@
 {
     VollieCard *card = [self.vollieCardArray objectAtIndex:indexPath.row];
     CardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+    cell = [[CardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
     cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
     cell.picLabel.text = [NSString stringWithFormat:@"%li pics", card.photosArray.count];
     cell.messageLabel.text = [NSString stringWithFormat:@"%li messages", card.messagesArray.count];
@@ -90,6 +93,24 @@
 
 //    http://stackoverflow.com/questions/17398058/is-it-possible-to-add-uitableview-within-a-uitableviewcell
 }
+
+#pragma mark - CollectionView
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+//    NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
+    return 2;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
+
+//    NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
+    cell.backgroundColor = [UIColor purpleColor];
+
+    return cell;
+}
+
 
 #pragma mark - ParseLoad
 
@@ -149,7 +170,7 @@
     }
     else
     {
-        NSLog(@"this message is already somewhere");
+//        NSLog(@"this message is already somewhere");
     }
 }
 
@@ -172,7 +193,7 @@
         }
         else
         {
-            NSLog(@"%@", object.objectId);
+//            NSLog(@"%@", object.objectId);
             VollieCard *card = [[VollieCard alloc] initWithPFObject:object];
             [self.vollieCardArray addObject:card];
             [self.setsIDsArray addObject:set.objectId];
