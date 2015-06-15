@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 KZ. All rights reserved.
 //
 
-#import "CardVC.h"
+#import "MomentsVC.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "ProgressHUD.h"
@@ -24,12 +24,11 @@
 #import "ChatroomUsersView.h"
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
-#import "VollieCard.h"
+#import "VollieCardData.h"
 #import "CardCell.h"
 #import "ChatColView.h"
-#import "superTest.h"
 
-@interface CardVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 
@@ -46,15 +45,16 @@
 @property NSMutableArray *unassignedCommentArrayIDs;
 @property NSMutableArray *setsArray;
 @property NSMutableArray *setsIDsArray;
-@property NSMutableArray *vollieCardArray;
+@property NSMutableArray *vollieCardDataArray;
 @property NSMutableArray *objectIdsArray;
+@property NSMutableArray *vollieVCcardArray;
 @property (strong, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
 
 @property int isLoadingEarlierCount;
 
 @end
 
-@implementation CardVC
+@implementation MomentsVC
 
 - (void)viewDidLoad
 {
@@ -67,8 +67,9 @@
     self.messages = [NSMutableArray new];
     self.colorForSetID = [NSMutableDictionary new];
     self.setsIDsArray = [NSMutableArray new];
-    self.vollieCardArray = [NSMutableArray new];
+    self.vollieCardDataArray = [NSMutableArray new];
     self.objectIdsArray = [NSMutableArray new];
+    self.vollieVCcardArray = [NSMutableArray new];
 
     [self loadMessages];
 
@@ -77,12 +78,12 @@
 #pragma mark - TableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.vollieCardArray.count;
+    return self.vollieCardDataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    VollieCard *card = [self.vollieCardArray objectAtIndex:indexPath.row];
+    VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
     CardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
 //    cell = [[CardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
     cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
@@ -90,17 +91,17 @@
     cell.messageLabel.text = [NSString stringWithFormat:@"%li messages", card.messagesArray.count];
     cell.card = card;
 
-    CustomChatView *cv = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor redColor] andPictures:card.photosArray andComments:card.messagesArray];
-//    chatt.senderId = [self.senderId copy];
-//    chatt.senderDisplayName = [self.senderDisplayName copy];
-    cv.room = self.room;
-
+//    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor redColor] andPictures:card.photosArray andComments:card.messagesArray];
+////    chatt.senderId = [self.senderId copy];
+////    chatt.senderDisplayName = [self.senderDisplayName copy];
+//    vc.room = self.room;
+    CustomChatView *vc = self.vollieVCcardArray[indexPath.row];
 
 //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
-    cv.view.frame = cell.contentView.bounds;
-    [self addChildViewController:cv];
-    [cell.contentView addSubview:cv.view];
-    [cv didMoveToParentViewController:self];
+    vc.view.frame = cell.contentView.bounds;
+    [self addChildViewController:vc];
+    [cell.contentView addSubview:vc.view];
+    [vc didMoveToParentViewController:self];
 
 //    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
@@ -108,24 +109,6 @@
 
 //    http://stackoverflow.com/questions/17398058/is-it-possible-to-add-uitableview-within-a-uitableviewcell
 }
-
-#pragma mark - CollectionView
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-//    VollieCard *card = self.vollieCardArray[section];
-//    NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
-    return 7;
-}
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CollectionViewCellIdentifier forIndexPath:indexPath];
-//    NSArray *collectionViewArray = self.colorArray[[(AFIndexedCollectionView *)collectionView indexPath].row];
-    cell.backgroundColor = [UIColor purpleColor];
-
-    return cell;
-}
-
 
 #pragma mark - ParseLoad
 
@@ -197,24 +180,34 @@
         if ([self.setsIDsArray containsObject:set.objectId])
         {
             //find the correct vollie card
-            for (VollieCard *card in self.vollieCardArray)
+            for (VollieCardData *card in self.vollieCardDataArray)
             {
                 if ([card.set isEqualToString:set.objectId])
                 {
                     [card modifyCardWith:object];
-                    [self.tableView reloadData];
+                    [self createCardVCwithVollieCardData:card];
                 }
             }
         }
         else
         {
 //            NSLog(@"%@", object.objectId);
-            VollieCard *card = [[VollieCard alloc] initWithPFObject:object];
-            [self.vollieCardArray addObject:card];
+            VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object];
+            [self.vollieCardDataArray addObject:card];
             [self.setsIDsArray addObject:set.objectId];
-            [self.tableView reloadData];
             //create vollie card
+            [self createCardVCwithVollieCardData:card];
         }
     }
+}
+
+-(void)createCardVCwithVollieCardData:(VollieCardData*)cardData
+{
+    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:cardData.set andColor:[UIColor redColor] andPictures:cardData.photosArray andComments:cardData.messagesArray];
+    //    chatt.senderId = [self.senderId copy];
+    //    chatt.senderDisplayName = [self.senderDisplayName copy];
+    vc.room = self.room;
+    [self.vollieVCcardArray addObject:vc];
+    [self.tableView reloadData];
 }
 @end

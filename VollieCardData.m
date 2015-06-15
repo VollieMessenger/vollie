@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 KZ. All rights reserved.
 //
 
-#import "VollieCard.h"
+#import "VollieCardData.h"
 
-@implementation VollieCard
+@implementation VollieCardData
 
 //this subclass contains the methods to create and modify cards
 

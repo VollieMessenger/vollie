@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
-		2762FF621B289A530070AD59 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* CardVC.m */; };
+		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
-		279D7C9C1B2F613F0090C1AD /* superTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C9B1B2F613F0090C1AD /* superTest.m */; };
 		279D7C9F1B2F63C30090C1AD /* JSQTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C9E1B2F63C30090C1AD /* JSQTestVC.m */; };
-		27C300F21B2B2FDB00EB9723 /* VollieCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCard.m */; };
+		27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCardData.m */; };
 		27C300F51B2B5C2300EB9723 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F41B2B5C2300EB9723 /* CardCell.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
 		29271A5919F284B1009C308B /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3319F284B1009C308B /* NavigationController.m */; };
@@ -170,16 +169,14 @@
 
 /* Begin PBXFileReference section */
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
-		2762FF601B289A530070AD59 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
-		2762FF611B289A530070AD59 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
+		2762FF601B289A530070AD59 /* MomentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsVC.h; sourceTree = "<group>"; };
+		2762FF611B289A530070AD59 /* MomentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsVC.m; sourceTree = "<group>"; };
 		279D7C971B2F38AC0090C1AD /* ChatColView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatColView.h; sourceTree = "<group>"; };
 		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
-		279D7C9A1B2F613F0090C1AD /* superTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = superTest.h; path = ../superTest.h; sourceTree = "<group>"; };
-		279D7C9B1B2F613F0090C1AD /* superTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = superTest.m; path = ../superTest.m; sourceTree = "<group>"; };
 		279D7C9D1B2F63C30090C1AD /* JSQTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQTestVC.h; sourceTree = "<group>"; };
 		279D7C9E1B2F63C30090C1AD /* JSQTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQTestVC.m; sourceTree = "<group>"; };
-		27C300F01B2B2FDB00EB9723 /* VollieCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCard.h; path = ../../VollieCard.h; sourceTree = "<group>"; };
-		27C300F11B2B2FDB00EB9723 /* VollieCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VollieCard.m; path = ../../VollieCard.m; sourceTree = "<group>"; };
+		27C300F01B2B2FDB00EB9723 /* VollieCardData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCardData.h; path = ../../VollieCardData.h; sourceTree = "<group>"; };
+		27C300F11B2B2FDB00EB9723 /* VollieCardData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VollieCardData.m; path = ../../VollieCardData.m; sourceTree = "<group>"; };
 		27C300F31B2B5C2300EB9723 /* CardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCell.h; sourceTree = "<group>"; };
 		27C300F41B2B5C2300EB9723 /* CardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardCell.m; sourceTree = "<group>"; };
 		292719D119F284AC009C308B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
@@ -548,16 +545,14 @@
 			isa = PBXGroup;
 			children = (
 				29271A3B19F284B1009C308B /* 1 */,
-				279D7C9A1B2F613F0090C1AD /* superTest.h */,
-				279D7C9B1B2F613F0090C1AD /* superTest.m */,
 				279D7C971B2F38AC0090C1AD /* ChatColView.h */,
 				279D7C981B2F38AC0090C1AD /* ChatColView.m */,
-				27C300F01B2B2FDB00EB9723 /* VollieCard.h */,
-				27C300F11B2B2FDB00EB9723 /* VollieCard.m */,
+				27C300F01B2B2FDB00EB9723 /* VollieCardData.h */,
+				27C300F11B2B2FDB00EB9723 /* VollieCardData.m */,
 				27C300F31B2B5C2300EB9723 /* CardCell.h */,
 				27C300F41B2B5C2300EB9723 /* CardCell.m */,
-				2762FF601B289A530070AD59 /* CardVC.h */,
-				2762FF611B289A530070AD59 /* CardVC.m */,
+				2762FF601B289A530070AD59 /* MomentsVC.h */,
+				2762FF611B289A530070AD59 /* MomentsVC.m */,
 				29271A3519F284B1009C308B /* ChatView.h */,
 				29271A3619F284B1009C308B /* ChatView.m */,
 				C2BD53E71A31077D006D721E /* CustomChatView.h */,
@@ -1245,7 +1240,7 @@
 				C21DD6EF1A71D73B0009BC6A /* JCNotificationCenter.m in Sources */,
 				C2832CB81A704A6100CDF19D /* IQBarButtonItem.m in Sources */,
 				29271A5B19F284B1009C308B /* ChatroomUsersView.m in Sources */,
-				2762FF621B289A530070AD59 /* CardVC.m in Sources */,
+				2762FF621B289A530070AD59 /* MomentsVC.m in Sources */,
 				C2832CB51A704A6100CDF19D /* IQKeyboardReturnKeyHandler.m in Sources */,
 				C2832CB11A704A6100CDF19D /* IQNSArray+Sort.m in Sources */,
 				296DD5CE1A1F52F400AB9F8C /* JSQMessage.m in Sources */,
@@ -1277,7 +1272,6 @@
 				296DD5D21A1F52F400AB9F8C /* JSQVideoMediaItem.m in Sources */,
 				2932298219F55C1500FF00CC /* camera.m in Sources */,
 				C2832CB21A704A6100CDF19D /* IQUIView+Hierarchy.m in Sources */,
-				279D7C9C1B2F613F0090C1AD /* superTest.m in Sources */,
 				296DD5DA1A1F52F400AB9F8C /* JSQMessagesComposerTextView.m in Sources */,
 				296DD5CC1A1F52F400AB9F8C /* JSQLocationMediaItem.m in Sources */,
 				C2BD53EA1A31077D006D721E /* CustomChatView.m in Sources */,
@@ -1311,7 +1305,7 @@
 				C2832CB61A704A6100CDF19D /* IQSegmentedNextPrevious.m in Sources */,
 				C285FA301A7AED3200DB007F /* VerifyTextView.m in Sources */,
 				29EB240B19E9292500D7AA97 /* main.m in Sources */,
-				27C300F21B2B2FDB00EB9723 /* VollieCard.m in Sources */,
+				27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */,
 				29271A5E19F284B1009C308B /* MessagesCell.m in Sources */,
 				C27189381A3243BA00F52320 /* KLCPopup.m in Sources */,
 				C2832CB31A704A6100CDF19D /* IQUIWindow+Hierarchy.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CardVC.h"
+#import "MomentsVC.h"
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "ProgressHUD.h"
@@ -27,7 +27,7 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface VollieCard : NSObject
+@interface VollieCardData : NSObject
 
 @property NSString *set;
 @property NSMutableArray *photosArray;

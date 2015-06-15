@@ -14,7 +14,7 @@
 
 #import <Parse/Parse.h>
 
-@interface CardVC : UIViewController
+@interface MomentsVC : UIViewController
 
 @property PFObject *room;
 @property NSString *name;

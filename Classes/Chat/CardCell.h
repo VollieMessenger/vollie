@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ChatColView.h"
-#import "VollieCard.h"
+#import "VollieCardData.h"
 //
 //@interface AFIndexedCollectionView : UICollectionView
 //
@@ -25,9 +25,7 @@ static NSString *CollectionViewCellIdentifier = @"CollectionViewCellIdentifier";
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 @property (strong, nonatomic) IBOutlet UICollectionView *messagesView;
 @property (nonatomic, strong) ChatColView *collectionView;
-@property VollieCard *card;
+@property VollieCardData *card;
 
-
-- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath;
 
 @end
