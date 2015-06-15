@@ -27,6 +27,7 @@
 #import "VollieCard.h"
 #import "CardCell.h"
 #import "ChatColView.h"
+#import "superTest.h"
 
 @interface CardVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -83,11 +84,24 @@
 {
     VollieCard *card = [self.vollieCardArray objectAtIndex:indexPath.row];
     CardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-    cell = [[CardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
+//    cell = [[CardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
     cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
     cell.picLabel.text = [NSString stringWithFormat:@"%li pics", card.photosArray.count];
     cell.messageLabel.text = [NSString stringWithFormat:@"%li messages", card.messagesArray.count];
     cell.card = card;
+
+    CustomChatView *cv = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor redColor] andPictures:card.photosArray andComments:card.messagesArray];
+//    chatt.senderId = [self.senderId copy];
+//    chatt.senderDisplayName = [self.senderDisplayName copy];
+    cv.room = self.room;
+
+
+//    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
+    cv.view.frame = cell.contentView.bounds;
+    [self addChildViewController:cv];
+    [cell.contentView addSubview:cv.view];
+    [cv didMoveToParentViewController:self];
+
 //    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
 //    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
     return cell;
