@@ -20,6 +20,7 @@
 #import "AppDelegate.h"
 #import "pushnotification.h"
 #import "utilities.h"
+#import "VollieCardData.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -30,6 +31,7 @@
 @property UIPageControl *pageControl;
 @property MPMoviePlayerController *moviePlayer;
 @property BOOL doubleTapBlocker;
+@property VollieCardData *cardData;
 @end
 
 @implementation CustomChatView
@@ -268,6 +270,7 @@
             self.senderDisplayName = [PFUser currentUser][PF_USER_FULLNAME];
         }
         setId_ = setId;
+        self.setIDforCardCheck = setId;
 
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
         setComments = [NSMutableArray arrayWithArray:messages];

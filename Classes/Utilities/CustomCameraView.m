@@ -34,6 +34,9 @@
 @property UIImagePickerController *picker;
 @property UIPageControl *pageControl;
 
+//https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/ConfiguringanAudioSession/ConfiguringanAudioSession.html
+// bug for audio, maybe read
+
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *switchCameraButton;

@@ -72,13 +72,17 @@
     self.vollieVCcardArray = [NSMutableArray new];
 
     [self loadMessages];
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self loadMessages];
 }
 
 #pragma mark - TableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.vollieCardDataArray.count;
+    return self.vollieVCcardArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,7 +156,11 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if(error == nil);
-         for (PFObject *object in [objects reverseObjectEnumerator])
+//         for (PFObject *object in [objects reverseObjectEnumerator])
+//         {
+//             [self checkForObjectIdWith:object];
+//         }
+         for (PFObject *object in objects)
          {
              [self checkForObjectIdWith:object];
          }
@@ -184,6 +192,13 @@
             {
                 if ([card.set isEqualToString:set.objectId])
                 {
+//                    for (CustomChatView *vc in self.vollieVCcardArray)
+//                    {
+//                        if([vc.setIDforCardCheck isEqualToString:set.objectId])
+//                        {
+//                            [self.vollieVCcardArray removeObject:vc];
+//                        }
+//                    }
                     [card modifyCardWith:object];
                     [self createCardVCwithVollieCardData:card];
                 }

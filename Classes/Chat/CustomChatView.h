@@ -20,4 +20,5 @@
 @property PFObject *room;
 @property BOOL isFavoritesSets;
 @property PFObject *album;
+@property NSString *setIDforCardCheck;
 @end
