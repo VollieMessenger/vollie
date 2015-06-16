@@ -203,7 +203,7 @@
 
 -(void)createCardVCwithVollieCardData:(VollieCardData*)cardData
 {
-    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:cardData.set andColor:[UIColor redColor] andPictures:cardData.photosArray andComments:cardData.messagesArray];
+    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:cardData.set andColor:[UIColor volleyFamousGreen] andPictures:cardData.photosArray andComments:cardData.messagesArray];
     //    chatt.senderId = [self.senderId copy];
     //    chatt.senderDisplayName = [self.senderDisplayName copy];
     vc.room = self.room;

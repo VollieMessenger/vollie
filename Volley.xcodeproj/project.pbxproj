@@ -11,6 +11,9 @@
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
 		279D7C9F1B2F63C30090C1AD /* JSQTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C9E1B2F63C30090C1AD /* JSQTestVC.m */; };
+		279D7CA81B2F77540090C1AD /* JSQCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7CA61B2F77540090C1AD /* JSQCardVC.m */; };
+		279D7CA91B2F77540090C1AD /* JSQCardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 279D7CA71B2F77540090C1AD /* JSQCardVC.xib */; };
+		279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7CAB1B2F77FF0090C1AD /* TestViewController.m */; };
 		27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCardData.m */; };
 		27C300F51B2B5C2300EB9723 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F41B2B5C2300EB9723 /* CardCell.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
@@ -175,6 +178,11 @@
 		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
 		279D7C9D1B2F63C30090C1AD /* JSQTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQTestVC.h; sourceTree = "<group>"; };
 		279D7C9E1B2F63C30090C1AD /* JSQTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQTestVC.m; sourceTree = "<group>"; };
+		279D7CA51B2F77540090C1AD /* JSQCardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQCardVC.h; sourceTree = "<group>"; };
+		279D7CA61B2F77540090C1AD /* JSQCardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQCardVC.m; sourceTree = "<group>"; };
+		279D7CA71B2F77540090C1AD /* JSQCardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JSQCardVC.xib; sourceTree = "<group>"; };
+		279D7CAA1B2F77FF0090C1AD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../Tabs/02/TestViewController.h; sourceTree = "<group>"; };
+		279D7CAB1B2F77FF0090C1AD /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = ../Tabs/02/TestViewController.m; sourceTree = "<group>"; };
 		27C300F01B2B2FDB00EB9723 /* VollieCardData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCardData.h; path = ../../VollieCardData.h; sourceTree = "<group>"; };
 		27C300F11B2B2FDB00EB9723 /* VollieCardData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VollieCardData.m; path = ../../VollieCardData.m; sourceTree = "<group>"; };
 		27C300F31B2B5C2300EB9723 /* CardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardCell.h; sourceTree = "<group>"; };
@@ -547,6 +555,8 @@
 				29271A3B19F284B1009C308B /* 1 */,
 				279D7C971B2F38AC0090C1AD /* ChatColView.h */,
 				279D7C981B2F38AC0090C1AD /* ChatColView.m */,
+				279D7CAA1B2F77FF0090C1AD /* TestViewController.h */,
+				279D7CAB1B2F77FF0090C1AD /* TestViewController.m */,
 				27C300F01B2B2FDB00EB9723 /* VollieCardData.h */,
 				27C300F11B2B2FDB00EB9723 /* VollieCardData.m */,
 				27C300F31B2B5C2300EB9723 /* CardCell.h */,
@@ -732,6 +742,9 @@
 				296DD5701A1F52F400AB9F8C /* JSQMessagesViewController.h */,
 				296DD5711A1F52F400AB9F8C /* JSQMessagesViewController.m */,
 				296DD5721A1F52F400AB9F8C /* JSQMessagesViewController.xib */,
+				279D7CA51B2F77540090C1AD /* JSQCardVC.h */,
+				279D7CA61B2F77540090C1AD /* JSQCardVC.m */,
+				279D7CA71B2F77540090C1AD /* JSQCardVC.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1176,6 +1189,7 @@
 				9CFEFAF41B1E1A3F005B1BF6 /* InviteCell.xib in Resources */,
 				296DD5D71A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming2.xib in Resources */,
 				296DD5BA1A1F52F400AB9F8C /* JSQMessages.strings in Resources */,
+				279D7CA91B2F77540090C1AD /* JSQCardVC.xib in Resources */,
 				C2832C8E1A6F0ADE00CDF19D /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				2930F94219E96C73000F7799 /* tab_profile@2x.png in Resources */,
 				2930F94119E96C73000F7799 /* tab_private@2x.png in Resources */,
@@ -1225,6 +1239,7 @@
 				C2832CBA1A704A6100CDF19D /* IQToolbar.m in Sources */,
 				C21DD6EC1A71D73B0009BC6A /* JCNotificationBannerViewIOS7Style.m in Sources */,
 				C2CA16EC1A85116500DD25AC /* MessagesCellDot.m in Sources */,
+				279D7CA81B2F77540090C1AD /* JSQCardVC.m in Sources */,
 				296DD5C71A1F52F400AB9F8C /* JSQMessagesTimestampFormatter.m in Sources */,
 				C21DD6ED1A71D73B0009BC6A /* JCNotificationBannerViewIOSStyle.m in Sources */,
 				C2F314AF1A79CF7400675959 /* NSDate+TimeAgo.m in Sources */,
@@ -1253,6 +1268,7 @@
 				C21DD6E51A71D73B0009BC6A /* JCNotificationBanner.m in Sources */,
 				296DD5C51A1F52F400AB9F8C /* JSQMessagesBubbleImageFactory.m in Sources */,
 				296DD5C91A1F52F400AB9F8C /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
+				279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */,
 				29271A5919F284B1009C308B /* NavigationController.m in Sources */,
 				C21DD6E81A71D73B0009BC6A /* JCNotificationBannerPresenterIOSStyle.m in Sources */,
 				29271A6A19F284B1009C308B /* messages.m in Sources */,
