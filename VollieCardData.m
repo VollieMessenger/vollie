@@ -42,6 +42,8 @@
         if ([object valueForKey:PF_CHAT_ISUPLOADED])
         {
             [self.photosArray addObject:object];
+            PFObject *set = object[PF_CHAT_SETID];
+            [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];
         }
     }
     else
@@ -64,7 +66,19 @@
                                                           text:object[PF_CHAT_TEXT]];
 
     [self.messagesArray addObject:message];
+    [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];
 
+}
+
+-(void)createCardVCwithSetID:(NSString*)setID andPictures:(NSMutableArray*)picsArray andComments:(NSMutableArray *)commentsArray
+{
+    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen] andPictures:picsArray andComments:commentsArray];
+    self.viewController = vc;
+    //    chatt.senderId = [self.senderId copy];
+    //    chatt.senderDisplayName = [self.senderDisplayName copy];
+//    vc.room = self.room;
+//    [self.vollieVCcardArray addObject:vc];
+//    [self.tableView reloadData];
 }
 
 @end

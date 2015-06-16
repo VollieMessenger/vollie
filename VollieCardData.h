@@ -26,12 +26,14 @@
 #import "ChatroomUsersView.h"
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
+#import "CustomChatView.h"
 
 @interface VollieCardData : NSObject
 
 @property NSString *set;
 @property NSMutableArray *photosArray;
 @property NSMutableArray *messagesArray;
+@property CustomChatView *viewController;
 @property NSDate *dateUpdated;
 
 -(instancetype)initWithPFObject:(PFObject *)object;

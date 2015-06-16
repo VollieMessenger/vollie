@@ -82,7 +82,7 @@
 #pragma mark - TableView
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.vollieVCcardArray.count;
+    return self.vollieCardDataArray.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,7 +99,9 @@
 ////    chatt.senderId = [self.senderId copy];
 ////    chatt.senderDisplayName = [self.senderDisplayName copy];
 //    vc.room = self.room;
-    CustomChatView *vc = self.vollieVCcardArray[indexPath.row];
+    CustomChatView *vc = card.viewController;
+    vc.room = self.room;
+    [self.vollieVCcardArray addObject:vc];
 
 //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
     vc.view.frame = cell.contentView.bounds;
@@ -218,11 +220,11 @@
 
 -(void)createCardVCwithVollieCardData:(VollieCardData*)cardData
 {
-    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:cardData.set andColor:[UIColor volleyFamousGreen] andPictures:cardData.photosArray andComments:cardData.messagesArray];
-    //    chatt.senderId = [self.senderId copy];
-    //    chatt.senderDisplayName = [self.senderDisplayName copy];
-    vc.room = self.room;
-    [self.vollieVCcardArray addObject:vc];
+//    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:cardData.set andColor:[UIColor volleyFamousGreen] andPictures:cardData.photosArray andComments:cardData.messagesArray];
+//    //    chatt.senderId = [self.senderId copy];
+//    //    chatt.senderDisplayName = [self.senderDisplayName copy];
+//    vc.room = self.room;
+//    [self.vollieVCcardArray addObject:vc];
     [self.tableView reloadData];
 }
 @end
