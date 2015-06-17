@@ -790,8 +790,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 #pragma mark - Gesture recognizers
 
-//- (void)jsq_handleInteractivePopGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-//{
+- (void)jsq_handleInteractivePopGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+{
 //    switch (gestureRecognizer.state) {
 //        case UIGestureRecognizerStateBegan:
 //        {
@@ -828,7 +828,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 //        default:
 //            break;
 //    }
-//}
+}
 
 /*
  #pragma mark - Input toolbar utilities

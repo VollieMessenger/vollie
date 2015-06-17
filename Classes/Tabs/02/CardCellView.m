@@ -229,12 +229,12 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.doubleTapBlocker == false)
-    {
-        self.doubleTapBlocker = true;
-        [self tappedAvatarPicWithIndexPath:indexPath];
-    }
-    [collectionView deselectItemAtIndexPath:indexPath animated:1];
+//    if (self.doubleTapBlocker == false)
+//    {
+//        self.doubleTapBlocker = true;
+//        [self tappedAvatarPicWithIndexPath:indexPath];
+//    }
+//    [collectionView deselectItemAtIndexPath:indexPath animated:1];
 }
 
 -(void)stopTheDTapBlocker

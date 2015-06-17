@@ -83,7 +83,25 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected");
+    VollieCardData *card = self.vollieCardDataArray[indexPath.row];
+
+    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen]     andPictures:card.photosArray andComments:card.messagesArray];
+//    chatt.senderId = [self.senderId copy];
+//    chatt.senderDisplayName = [self.senderDisplayName copy];
+    chatt.room = self.room;
+
+    NSString *title;
+
+    [chatt setTitle:title];
+
+    CATransition* transition = [CATransition animation];
+    transition.duration = 0.3;
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromRight;
+    transition.timingFunction = UIViewAnimationCurveEaseInOut;
+    transition.fillMode = kCAFillModeForwards;
+    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+    [self.navigationController pushViewController:chatt animated:1];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -48,7 +48,7 @@
                     </connections>
                 </collectionView>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
-                    <rect key="frame" x="0.0" y="66" width="219" height="502"/>
+                    <rect key="frame" x="0.0" y="66" width="219" height="458"/>
                     <collectionViewLayout key="collectionViewLayout" id="dZl-7C-LHR" customClass="JSQMessagesCollectionViewFlowLayout"/>
                     <cells/>
                     <connections>
@@ -68,7 +68,7 @@
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="66" id="gwc-y1-N8n"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="BoD-Az-3DM" secondAttribute="leading" constant="-1" id="ipF-wa-T5s"/>
                 <constraint firstItem="BoD-Az-3DM" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" constant="1" id="ts7-8f-0lH"/>
-                <constraint firstItem="l9u-2b-4LK" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="uqN-3E-rgf"/>
+                <constraint firstItem="l9u-2b-4LK" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" constant="-44" id="uqN-3E-rgf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>
