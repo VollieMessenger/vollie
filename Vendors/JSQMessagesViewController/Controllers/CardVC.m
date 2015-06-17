@@ -64,7 +64,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (void)jsq_didReceiveMenuWillHideNotification:(NSNotification *)notification;
 
 - (void)jsq_updateKeyboardTriggerPoint;
-- (void)jsq_setToolbarBottomLayoutGuideConstant:(CGFloat)constant;
+//- (void)jsq_setToolbarBottomLayoutGuideConstant:(CGFloat)constant;
 
 - (void)jsq_handleInteractivePopGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer;
 
