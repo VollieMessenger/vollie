@@ -25,7 +25,7 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "VollieCardData.h"
-#import "CardCell.h"
+#import "CellForCard.h"
 #import "ChatColView.h"
 
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
@@ -88,25 +88,31 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
-    CardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+    CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
 //    cell = [[CardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
-    cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
-    cell.picLabel.text = [NSString stringWithFormat:@"%li pics", card.photosArray.count];
-    cell.messageLabel.text = [NSString stringWithFormat:@"%li messages", card.messagesArray.count];
-    cell.card = card;
+//    cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
+//    cell.picLabel.text = [NSString stringWithFormat:@"%li pics", card.photosArray.count];
+//    cell.messageLabel.text = [NSString stringWithFormat:@"%li messages", card.messagesArray.count];
+//    cell.card = card;
 
 //    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor redColor] andPictures:card.photosArray andComments:card.messagesArray];
 ////    chatt.senderId = [self.senderId copy];
 ////    chatt.senderDisplayName = [self.senderDisplayName copy];
 //    vc.room = self.room;
-    CustomChatView *vc = card.viewController;
+    CardCellView *vc = card.viewController;
     vc.room = self.room;
     [self.vollieVCcardArray addObject:vc];
 
 //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
-    vc.view.frame = cell.contentView.bounds;
+    vc.view.frame = cell.cardOutline.bounds;
+    cell.cardOutline.layer.cornerRadius = 45;
+    cell.cardOutline.layer.borderColor = [UIColor volleyFamousGreen].CGColor;
+    cell.cardOutline.layer.borderWidth = 1;
+    cell.cardOutline.layer.masksToBounds = YES;
+//    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
+//    NSLog(@"%f is VC height", vc.card.bounds.size.height);
     [self addChildViewController:vc];
-    [cell.contentView addSubview:vc.view];
+    [cell.cardOutline addSubview:vc.view];
     [vc didMoveToParentViewController:self];
 
 //    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
@@ -227,4 +233,5 @@
 //    [self.vollieVCcardArray addObject:vc];
     [self.tableView reloadData];
 }
+
 @end

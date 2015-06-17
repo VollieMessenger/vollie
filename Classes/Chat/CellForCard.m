@@ -1,18 +1,17 @@
 //
-//  CardCell.m
+//  CellForCard.m
 //  Volley
 //
-//  Created by Kyle on 6/12/15.
+//  Created by Kyle on 6/17/15.
 //  Copyright (c) 2015 KZ. All rights reserved.
 //
 
-#import "CardCell.h"
+#import "CellForCard.h"
 
-@implementation CardCell
+@implementation CellForCard
 
-- (void)awakeFromNib
-{
-
+- (void)awakeFromNib {
+    // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -20,9 +19,5 @@
 
     // Configure the view for the selected state
 }
-
-
-
-
 
 @end

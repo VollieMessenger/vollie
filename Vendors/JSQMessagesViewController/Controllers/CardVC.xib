@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardVC">
@@ -22,8 +21,8 @@
                     <rect key="frame" x="218" y="0.0" width="100" height="524"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="tp0-pL-mD2" secondAttribute="height" multiplier="1:6" id="URw-5I-MSG"/>
                         <constraint firstAttribute="width" constant="100" id="lGD-1e-Eeh"/>
+                        <constraint firstAttribute="width" constant="100" id="nVU-17-Cj3"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fgT-Dd-PMQ">
                         <size key="itemSize" width="80" height="80"/>
@@ -33,13 +32,13 @@
                     </collectionViewFlowLayout>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="URw-5I-MSG"/>
+                            <exclude reference="nVU-17-Cj3"/>
                         </mask>
                     </variation>
                     <variation key="widthClass=compact">
                         <mask key="constraints">
-                            <include reference="URw-5I-MSG"/>
                             <exclude reference="lGD-1e-Eeh"/>
+                            <include reference="nVU-17-Cj3"/>
                         </mask>
                     </variation>
                     <connections>
@@ -59,13 +58,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="tp0-pL-mD2" secondAttribute="trailing" id="Nt3-o3-4Ri"/>
-                <constraint firstAttribute="bottom" secondItem="tp0-pL-mD2" secondAttribute="bottom" id="OhT-BK-2pP"/>
-                <constraint firstItem="zEK-TV-z20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="VNI-jc-ShC"/>
-                <constraint firstItem="zEK-TV-z20" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WEN-H7-SR8"/>
-                <constraint firstItem="tp0-pL-mD2" firstAttribute="leading" secondItem="zEK-TV-z20" secondAttribute="trailing" id="Xa5-TW-xb6"/>
-                <constraint firstAttribute="bottom" secondItem="zEK-TV-z20" secondAttribute="bottom" id="erG-NK-gon"/>
-                <constraint firstItem="tp0-pL-mD2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="reF-xr-aBw"/>
+                <constraint firstAttribute="bottom" secondItem="tp0-pL-mD2" secondAttribute="bottom" id="8E2-q9-wKb"/>
+                <constraint firstItem="tp0-pL-mD2" firstAttribute="leading" secondItem="zEK-TV-z20" secondAttribute="trailing" id="PqY-wz-b8l"/>
+                <constraint firstAttribute="trailing" secondItem="tp0-pL-mD2" secondAttribute="trailing" id="UpX-00-NdG"/>
+                <constraint firstItem="tp0-pL-mD2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VJH-Z3-dsb"/>
+                <constraint firstAttribute="bottom" secondItem="zEK-TV-z20" secondAttribute="bottom" id="d1W-1r-4pG"/>
+                <constraint firstItem="zEK-TV-z20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="d27-3C-aPD"/>
+                <constraint firstItem="zEK-TV-z20" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lwL-NW-Ec6"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
@@ -73,13 +72,13 @@
                     <exclude reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="VNI-jc-ShC"/>
-                    <exclude reference="WEN-H7-SR8"/>
-                    <exclude reference="erG-NK-gon"/>
-                    <exclude reference="Nt3-o3-4Ri"/>
-                    <exclude reference="OhT-BK-2pP"/>
-                    <exclude reference="Xa5-TW-xb6"/>
-                    <exclude reference="reF-xr-aBw"/>
+                    <exclude reference="d1W-1r-4pG"/>
+                    <exclude reference="d27-3C-aPD"/>
+                    <exclude reference="lwL-NW-Ec6"/>
+                    <exclude reference="8E2-q9-wKb"/>
+                    <exclude reference="PqY-wz-b8l"/>
+                    <exclude reference="UpX-00-NdG"/>
+                    <exclude reference="VJH-Z3-dsb"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -88,13 +87,13 @@
                     <include reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="VNI-jc-ShC"/>
-                    <include reference="WEN-H7-SR8"/>
-                    <include reference="erG-NK-gon"/>
-                    <include reference="Nt3-o3-4Ri"/>
-                    <include reference="OhT-BK-2pP"/>
-                    <include reference="Xa5-TW-xb6"/>
-                    <include reference="reF-xr-aBw"/>
+                    <include reference="d1W-1r-4pG"/>
+                    <include reference="d27-3C-aPD"/>
+                    <include reference="lwL-NW-Ec6"/>
+                    <include reference="8E2-q9-wKb"/>
+                    <include reference="PqY-wz-b8l"/>
+                    <include reference="UpX-00-NdG"/>
+                    <include reference="VJH-Z3-dsb"/>
                 </mask>
             </variation>
         </view>

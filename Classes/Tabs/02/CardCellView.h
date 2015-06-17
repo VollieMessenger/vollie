@@ -17,7 +17,7 @@
 
 -(id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages;
 
-- (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor;
+//- (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor;
 
 @property PFObject *room;
 @property BOOL isFavoritesSets;
