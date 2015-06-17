@@ -285,8 +285,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     [self.collectionView reloadData];
 
-    if (self.automaticallyScrollsToMostRecentMessage) {
-        [self scrollToBottomAnimated:YES];
+    if (self.automaticallyScrollsToMostRecentMessage)
+    {
+//        [self scrollToBottomAnimated:YES];
     }
 }
 
@@ -328,8 +329,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
             //  workaround for the first few messages not scrolling
             //  when the collection view content size is too small, `scrollToItemAtIndexPath:` doesn't work properly
             //  this seems to be a UIKit bug, see #256 on GitHub
-            [self.collectionView scrollRectToVisible:CGRectMake(0.0, collectionViewContentHeight - 1.0f, 1.0f, 1.0f)
-                                            animated:animated];
+//            [self.collectionView scrollRectToVisible:CGRectMake(0.0, collectionViewContentHeight - 1.0f, 1.0f, 1.0f)
+//                                            animated:animated];
         }
 
         if (isContentTooSmall2) {

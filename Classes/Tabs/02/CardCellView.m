@@ -61,6 +61,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:1];
+//    [self scrollToBottomAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -68,11 +69,14 @@
     [super viewWillAppear:1];
 //    [self isSetFavorited];
     [self finishReceivingMessage:0];
+//    [self scrollToBottomAnimated:YES];
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    [self scrollToBottomAnimated:YES];
 
     //Change send button to orange
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];

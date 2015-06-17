@@ -22,7 +22,7 @@
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="lGD-1e-Eeh"/>
-                        <constraint firstAttribute="width" constant="100" id="nVU-17-Cj3"/>
+                        <constraint firstAttribute="width" constant="100" id="yEU-AN-O4s"/>
                     </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fgT-Dd-PMQ">
                         <size key="itemSize" width="80" height="80"/>
@@ -32,13 +32,13 @@
                     </collectionViewFlowLayout>
                     <variation key="default">
                         <mask key="constraints">
-                            <exclude reference="nVU-17-Cj3"/>
+                            <exclude reference="yEU-AN-O4s"/>
                         </mask>
                     </variation>
                     <variation key="widthClass=compact">
                         <mask key="constraints">
                             <exclude reference="lGD-1e-Eeh"/>
-                            <include reference="nVU-17-Cj3"/>
+                            <include reference="yEU-AN-O4s"/>
                         </mask>
                     </variation>
                     <connections>
@@ -58,13 +58,13 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="tp0-pL-mD2" secondAttribute="bottom" id="8E2-q9-wKb"/>
-                <constraint firstItem="tp0-pL-mD2" firstAttribute="leading" secondItem="zEK-TV-z20" secondAttribute="trailing" id="PqY-wz-b8l"/>
-                <constraint firstAttribute="trailing" secondItem="tp0-pL-mD2" secondAttribute="trailing" id="UpX-00-NdG"/>
-                <constraint firstItem="tp0-pL-mD2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VJH-Z3-dsb"/>
-                <constraint firstAttribute="bottom" secondItem="zEK-TV-z20" secondAttribute="bottom" id="d1W-1r-4pG"/>
-                <constraint firstItem="zEK-TV-z20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="d27-3C-aPD"/>
-                <constraint firstItem="zEK-TV-z20" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="lwL-NW-Ec6"/>
+                <constraint firstItem="tp0-pL-mD2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="19" id="0iQ-99-B7R"/>
+                <constraint firstItem="zEK-TV-z20" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="19" id="6eN-vD-EzA"/>
+                <constraint firstItem="tp0-pL-mD2" firstAttribute="leading" secondItem="zEK-TV-z20" secondAttribute="trailing" id="AXu-8z-UfG"/>
+                <constraint firstAttribute="bottom" secondItem="zEK-TV-z20" secondAttribute="bottom" constant="8" id="Bgg-vE-mng"/>
+                <constraint firstAttribute="trailing" secondItem="tp0-pL-mD2" secondAttribute="trailing" id="Dhc-IS-h1x"/>
+                <constraint firstItem="zEK-TV-z20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="OUD-0O-bZJ"/>
+                <constraint firstAttribute="bottom" secondItem="tp0-pL-mD2" secondAttribute="bottom" constant="8" id="TWp-QS-4L6"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
@@ -72,13 +72,13 @@
                     <exclude reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="d1W-1r-4pG"/>
-                    <exclude reference="d27-3C-aPD"/>
-                    <exclude reference="lwL-NW-Ec6"/>
-                    <exclude reference="8E2-q9-wKb"/>
-                    <exclude reference="PqY-wz-b8l"/>
-                    <exclude reference="UpX-00-NdG"/>
-                    <exclude reference="VJH-Z3-dsb"/>
+                    <exclude reference="6eN-vD-EzA"/>
+                    <exclude reference="Bgg-vE-mng"/>
+                    <exclude reference="OUD-0O-bZJ"/>
+                    <exclude reference="0iQ-99-B7R"/>
+                    <exclude reference="AXu-8z-UfG"/>
+                    <exclude reference="Dhc-IS-h1x"/>
+                    <exclude reference="TWp-QS-4L6"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -87,13 +87,13 @@
                     <include reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="d1W-1r-4pG"/>
-                    <include reference="d27-3C-aPD"/>
-                    <include reference="lwL-NW-Ec6"/>
-                    <include reference="8E2-q9-wKb"/>
-                    <include reference="PqY-wz-b8l"/>
-                    <include reference="UpX-00-NdG"/>
-                    <include reference="VJH-Z3-dsb"/>
+                    <include reference="6eN-vD-EzA"/>
+                    <include reference="Bgg-vE-mng"/>
+                    <include reference="OUD-0O-bZJ"/>
+                    <include reference="0iQ-99-B7R"/>
+                    <include reference="AXu-8z-UfG"/>
+                    <include reference="Dhc-IS-h1x"/>
+                    <include reference="TWp-QS-4L6"/>
                 </mask>
             </variation>
         </view>

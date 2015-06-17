@@ -105,7 +105,7 @@
 
 //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
     vc.view.frame = cell.cardOutline.bounds;
-    cell.cardOutline.layer.cornerRadius = 45;
+    cell.cardOutline.layer.cornerRadius = 10;
     cell.cardOutline.layer.borderColor = [UIColor volleyFamousGreen].CGColor;
     cell.cardOutline.layer.borderWidth = 1;
     cell.cardOutline.layer.masksToBounds = YES;
