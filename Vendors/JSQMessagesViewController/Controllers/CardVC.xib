@@ -46,7 +46,7 @@
                         <outlet property="delegate" destination="-1" id="oqz-nZ-YE7"/>
                     </connections>
                 </collectionView>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zEK-TV-z20" customClass="JSQMessagesCollectionView">
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zEK-TV-z20" customClass="JSQMessagesCollectionView">
                     <rect key="frame" x="0.0" y="66" width="219" height="502"/>
                     <collectionViewLayout key="collectionViewLayout" id="OpL-cA-Izd" customClass="JSQMessagesCollectionViewFlowLayout"/>
                     <cells/>
