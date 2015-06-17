@@ -192,7 +192,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
         [self.collectionView.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
     }
 
-    [self jsq_updateKeyboardTriggerPoint];
+//    [self jsq_updateKeyboardTriggerPoint];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -221,7 +221,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [super viewDidDisappear:animated];
     [self jsq_removeObservers];
     [self.keyboardController endListeningForKeyboard];
-    [self jsq_setToolbarBottomLayoutGuideConstant:0.0f];
+//    [self jsq_setToolbarBottomLayoutGuideConstant:0.0f];
 }
 
 - (void)didReceiveMemoryWarning
@@ -692,9 +692,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)jsq_handleDidChangeStatusBarFrameNotification:(NSNotification *)notification
 {
-    if (self.keyboardController.keyboardIsVisible) {
-        [self jsq_setToolbarBottomLayoutGuideConstant:CGRectGetHeight(self.keyboardController.currentKeyboardFrame)];
-    }
+//    if (self.keyboardController.keyboardIsVisible) {
+//        [self jsq_setToolbarBottomLayoutGuideConstant:CGRectGetHeight(self.keyboardController.currentKeyboardFrame)];
+//    }
 }
 
 - (void)jsq_didReceiveMenuWillShowNotification:(NSNotification *)notification
@@ -789,45 +789,45 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 #pragma mark - Gesture recognizers
 
-- (void)jsq_handleInteractivePopGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-{
-    switch (gestureRecognizer.state) {
-        case UIGestureRecognizerStateBegan:
-        {
-            if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
-                [self.snapshotView removeFromSuperview];
-            }
-
-            [self.keyboardController endListeningForKeyboard];
-
-            if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
-                [self.inputToolbar.contentView.textView resignFirstResponder];
-                [UIView animateWithDuration:0.0
-                                 animations:^{
-                                     [self jsq_setToolbarBottomLayoutGuideConstant:0.0f];
-                                 }];
-
-                UIView *snapshot = [self.view snapshotViewAfterScreenUpdates:YES];
-                [self.view addSubview:snapshot];
-                self.snapshotView = snapshot;
-            }
-        }
-            break;
-        case UIGestureRecognizerStateChanged:
-            break;
-        case UIGestureRecognizerStateCancelled:
-        case UIGestureRecognizerStateEnded:
-        case UIGestureRecognizerStateFailed:
-            [self.keyboardController beginListeningForKeyboard];
-
-            if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
-                [self.snapshotView removeFromSuperview];
-            }
-            break;
-        default:
-            break;
-    }
-}
+//- (void)jsq_handleInteractivePopGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+//{
+//    switch (gestureRecognizer.state) {
+//        case UIGestureRecognizerStateBegan:
+//        {
+//            if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
+//                [self.snapshotView removeFromSuperview];
+//            }
+//
+//            [self.keyboardController endListeningForKeyboard];
+//
+//            if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
+//                [self.inputToolbar.contentView.textView resignFirstResponder];
+//                [UIView animateWithDuration:0.0
+//                                 animations:^{
+//                                     [self jsq_setToolbarBottomLayoutGuideConstant:0.0f];
+//                                 }];
+//
+//                UIView *snapshot = [self.view snapshotViewAfterScreenUpdates:YES];
+//                [self.view addSubview:snapshot];
+//                self.snapshotView = snapshot;
+//            }
+//        }
+//            break;
+//        case UIGestureRecognizerStateChanged:
+//            break;
+//        case UIGestureRecognizerStateCancelled:
+//        case UIGestureRecognizerStateEnded:
+//        case UIGestureRecognizerStateFailed:
+//            [self.keyboardController beginListeningForKeyboard];
+//
+//            if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
+//                [self.snapshotView removeFromSuperview];
+//            }
+//            break;
+//        default:
+//            break;
+//    }
+//}
 
 /*
  #pragma mark - Input toolbar utilities

@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		274988781B31DDBD00560873 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 274988761B31DDBD00560873 /* CardVC.m */; };
 		274988791B31DDBD00560873 /* CardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274988771B31DDBD00560873 /* CardVC.xib */; };
+		2749887C1B31E71400560873 /* CardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887B1B31E71400560873 /* CardCellView.m */; };
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
-		279D7C9F1B2F63C30090C1AD /* JSQTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C9E1B2F63C30090C1AD /* JSQTestVC.m */; };
 		279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7CAB1B2F77FF0090C1AD /* TestViewController.m */; };
 		27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCardData.m */; };
 		27C300F51B2B5C2300EB9723 /* CardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F41B2B5C2300EB9723 /* CardCell.m */; };
@@ -174,13 +174,13 @@
 		274988751B31DDBD00560873 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
 		274988761B31DDBD00560873 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
 		274988771B31DDBD00560873 /* CardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardVC.xib; sourceTree = "<group>"; };
+		2749887A1B31E71400560873 /* CardCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardCellView.h; path = ../Tabs/02/CardCellView.h; sourceTree = "<group>"; };
+		2749887B1B31E71400560873 /* CardCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardCellView.m; path = ../Tabs/02/CardCellView.m; sourceTree = "<group>"; };
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
 		2762FF601B289A530070AD59 /* MomentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsVC.h; sourceTree = "<group>"; };
 		2762FF611B289A530070AD59 /* MomentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsVC.m; sourceTree = "<group>"; };
 		279D7C971B2F38AC0090C1AD /* ChatColView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatColView.h; sourceTree = "<group>"; };
 		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
-		279D7C9D1B2F63C30090C1AD /* JSQTestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQTestVC.h; sourceTree = "<group>"; };
-		279D7C9E1B2F63C30090C1AD /* JSQTestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQTestVC.m; sourceTree = "<group>"; };
 		279D7CAA1B2F77FF0090C1AD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../Tabs/02/TestViewController.h; sourceTree = "<group>"; };
 		279D7CAB1B2F77FF0090C1AD /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = ../Tabs/02/TestViewController.m; sourceTree = "<group>"; };
 		27C300F01B2B2FDB00EB9723 /* VollieCardData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCardData.h; path = ../../VollieCardData.h; sourceTree = "<group>"; };
@@ -565,6 +565,8 @@
 				2762FF611B289A530070AD59 /* MomentsVC.m */,
 				29271A3519F284B1009C308B /* ChatView.h */,
 				29271A3619F284B1009C308B /* ChatView.m */,
+				2749887A1B31E71400560873 /* CardCellView.h */,
+				2749887B1B31E71400560873 /* CardCellView.m */,
 				C2BD53E71A31077D006D721E /* CustomChatView.h */,
 				C2BD53E81A31077D006D721E /* CustomChatView.m */,
 				C2CDFB061A426A550078DE43 /* CustomCollectionViewCell.h */,
@@ -574,8 +576,6 @@
 				C2CA16DD1A82860E00DD25AC /* DidFavoriteView.h */,
 				C2CA16DE1A82860E00DD25AC /* DidFavoriteView.m */,
 				C2CA16DF1A82860E00DD25AC /* DidFavoriteView.xib */,
-				279D7C9D1B2F63C30090C1AD /* JSQTestVC.h */,
-				279D7C9E1B2F63C30090C1AD /* JSQTestVC.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1286,6 +1286,7 @@
 				29271A6819F284B1009C308B /* WelcomeView.m in Sources */,
 				296DD5D21A1F52F400AB9F8C /* JSQVideoMediaItem.m in Sources */,
 				274988781B31DDBD00560873 /* CardVC.m in Sources */,
+				2749887C1B31E71400560873 /* CardCellView.m in Sources */,
 				2932298219F55C1500FF00CC /* camera.m in Sources */,
 				C2832CB21A704A6100CDF19D /* IQUIView+Hierarchy.m in Sources */,
 				296DD5DA1A1F52F400AB9F8C /* JSQMessagesComposerTextView.m in Sources */,
@@ -1310,7 +1311,6 @@
 				296DD5D31A1F52F400AB9F8C /* JSQMessagesCellTextView.m in Sources */,
 				296DD5D61A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				296DD5DC1A1F52F400AB9F8C /* JSQMessagesLabel.m in Sources */,
-				279D7C9F1B2F63C30090C1AD /* JSQTestVC.m in Sources */,
 				27C300F51B2B5C2300EB9723 /* CardCell.m in Sources */,
 				296DD5C11A1F52F400AB9F8C /* JSQMessagesKeyboardController.m in Sources */,
 				296DD5D41A1F52F400AB9F8C /* JSQMessagesCollectionView.m in Sources */,

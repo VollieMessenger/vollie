@@ -27,13 +27,14 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "CustomChatView.h"
+#import "CardCellView.h"
 
 @interface VollieCardData : NSObject
 
 @property NSString *set;
 @property NSMutableArray *photosArray;
 @property NSMutableArray *messagesArray;
-@property CustomChatView *viewController;
+@property CardCellView *viewController;
 @property NSDate *dateUpdated;
 
 -(instancetype)initWithPFObject:(PFObject *)object;
