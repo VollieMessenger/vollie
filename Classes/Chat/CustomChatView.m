@@ -146,8 +146,8 @@
                                    target: nil action: nil];
     [self.navigationItem setBackBarButtonItem: backButton];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
 
     bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:backgroundColor_];
@@ -276,6 +276,7 @@
         self.setIDforCardCheck = setId;
 
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
+        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
 
 
@@ -353,6 +354,7 @@
                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
                     {
                         [setPicturesObjects addObject:object];
+                        NSLog(@"%li in pictureObjectsArray", setPicturesObjects.count);
                     }
                     else
                     {
@@ -951,8 +953,7 @@
     spinner.frame = CGRectMake(self.view.frame.size.width/2 -50, self.view.frame.size.height/2 - 50, 100, 100);
     
     NSIndexPath *indexPath = [self.collectionViewPictures indexPathForItemAtPoint:touch];
-    
-    
+
     if (self.inputToolbar.contentView.textView.isFirstResponder)
     {
         [self.inputToolbar.contentView.textView resignFirstResponder];

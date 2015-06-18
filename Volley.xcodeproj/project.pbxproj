@@ -175,7 +175,7 @@
 		274988761B31DDBD00560873 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
 		274988771B31DDBD00560873 /* CardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardVC.xib; sourceTree = "<group>"; };
 		2749887A1B31E71400560873 /* CardCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardCellView.h; path = ../Tabs/02/CardCellView.h; sourceTree = "<group>"; };
-		2749887B1B31E71400560873 /* CardCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardCellView.m; path = ../Tabs/02/CardCellView.m; sourceTree = "<group>"; };
+		2749887B1B31E71400560873 /* CardCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CardCellView.m; path = ../Tabs/02/CardCellView.m; sourceTree = "<group>"; usesTabs = 0; };
 		2749887D1B31F98200560873 /* CellForCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellForCard.h; sourceTree = "<group>"; };
 		2749887E1B31F98200560873 /* CellForCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellForCard.m; sourceTree = "<group>"; };
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };

@@ -42,6 +42,7 @@
 {
     UITapGestureRecognizer *tap;
     PFImageView *longPressImageView;
+    UIImageView *testImageView;
     JSQMessagesBubbleImage *outgoingBubbleImageData;
     JSQMessagesBubbleImage  *incomingBubbleImageData;
     JSQMessagesBubbleImageFactory *bubbleFactory;
@@ -671,7 +672,9 @@
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    JSQMessage *message = [setComments objectAtIndex:indexPath.item];
+    NSArray* reversed = [[setComments reverseObjectEnumerator] allObjects];
+
+    JSQMessage *message = [reversed objectAtIndex:indexPath.item];
 
     /**
      *  iOS7-style sender name labels
@@ -879,19 +882,8 @@
         }completion:^(BOOL finished){
             [longPressImageView removeFromSuperview];
         }];
-
         isTouching = NO;
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 @end

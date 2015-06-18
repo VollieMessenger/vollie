@@ -31,7 +31,7 @@
                     </connections>
                 </toolbar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eSa-Yo-Z0P">
-                    <rect key="frame" x="218" y="0.0" width="100" height="524"/>
+                    <rect key="frame" x="218" y="66" width="100" height="458"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="bvd-Rr-F5e"/>
@@ -60,7 +60,7 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" constant="-1" id="7xc-Ha-asg"/>
-                <constraint firstItem="eSa-Yo-Z0P" firstAttribute="top" secondItem="l9u-2b-4LK" secondAttribute="top" constant="-66" id="8JS-ut-zm7"/>
+                <constraint firstItem="eSa-Yo-Z0P" firstAttribute="top" secondItem="l9u-2b-4LK" secondAttribute="top" id="8JS-ut-zm7"/>
                 <constraint firstItem="eSa-Yo-Z0P" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="top" id="Gqc-Vj-RML"/>
                 <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="SSb-EC-Eyt"/>
                 <constraint firstAttribute="trailing" secondItem="eSa-Yo-Z0P" secondAttribute="trailing" constant="2" id="b1O-Vo-A70"/>
