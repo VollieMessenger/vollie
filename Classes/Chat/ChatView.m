@@ -206,7 +206,6 @@
             [picture setValue:[NSDate dateWithTimeIntervalSinceNow:[array indexOfObject:image]]forKey:PF_PICTURES_UPDATEDACTION];
             [picture setValue:set forKey:PF_PICTURES_SETID];
             [arrayOfPicturesObjectsTemp addObject:picture];
-
         }
         else if ([imageOrFile isKindOfClass:[NSDictionary class]])
         {
