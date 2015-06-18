@@ -230,6 +230,14 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:self.setIDforCardCheck andColor:[UIColor volleyFamousGreen]     andPictures:self.cardData.photosArray andComments:self.cardData.messagesArray];
+    //    chatt.senderId = [self.senderId copy];
+    //    chatt.senderDisplayName = [self.senderDisplayName copy];
+    chatt.room = self.room;
+    [self.navigationController pushViewController:chatt animated:1];
+
+    //kylenote
+
 //    if (self.doubleTapBlocker == false)
 //    {
 //        self.doubleTapBlocker = true;
