@@ -73,6 +73,8 @@
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // gets rid of line ^^
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
 
     [self loadMessages];
 }
