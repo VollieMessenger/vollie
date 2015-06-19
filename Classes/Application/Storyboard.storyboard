@@ -135,6 +135,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="onNewVollieButtonTapped:" destination="UPo-ZF-5z1" eventType="touchUpInside" id="bBM-9R-aBf"/>
+                                    <segue destination="BAF-W2-gmz" kind="presentation" id="d8I-kL-cXm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -216,28 +217,6 @@
                     <view key="view" contentMode="scaleToFill" id="MKy-RN-rFI">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yik Yak Style VC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Tp-VV-fG8">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="163" id="3bD-cC-WfU"/>
-                                    <constraint firstAttribute="height" constant="45" id="pOA-D5-Oj0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="3bD-cC-WfU"/>
-                                        <exclude reference="pOA-D5-Oj0"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="3bD-cC-WfU"/>
-                                        <include reference="pOA-D5-Oj0"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I55-bH-3WD">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
@@ -263,34 +242,110 @@
                                     <action selector="onDismissButtonTapped:" destination="BAF-W2-gmz" eventType="touchUpInside" id="wMf-BB-Bj3"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type Vollie Message Here..." translatesAutoresizingMaskIntoConstraints="NO" id="tXe-lP-mxS">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="153" id="7eT-4X-IQb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="7eT-4X-IQb"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="7eT-4X-IQb"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="MyW-yX-Dtb">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="Qvx-15-G12"/>
+                                    <constraint firstAttribute="height" constant="70" id="sbA-tP-ttK"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Qvx-15-G12"/>
+                                        <exclude reference="sbA-tP-ttK"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Qvx-15-G12"/>
+                                        <include reference="sbA-tP-ttK"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Hd4-AK-HEa">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="9PC-Uy-rUs"/>
+                                    <constraint firstAttribute="width" constant="70" id="PZI-6A-3tt"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="9PC-Uy-rUs"/>
+                                        <exclude reference="PZI-6A-3tt"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="9PC-Uy-rUs"/>
+                                        <include reference="PZI-6A-3tt"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="2Tp-VV-fG8" secondAttribute="centerX" id="5dV-ux-Wkx"/>
+                            <constraint firstItem="tXe-lP-mxS" firstAttribute="top" secondItem="Hoq-Wl-LUZ" secondAttribute="bottom" constant="18" id="5Pe-Kh-Khg"/>
                             <constraint firstAttribute="centerX" secondItem="I55-bH-3WD" secondAttribute="centerX" id="738-4H-GlP"/>
+                            <constraint firstItem="Hd4-AK-HEa" firstAttribute="top" secondItem="MyW-yX-Dtb" secondAttribute="bottom" constant="13" id="8Kw-Y8-KoP"/>
+                            <constraint firstItem="Hd4-AK-HEa" firstAttribute="trailing" secondItem="MKy-RN-rFI" secondAttribute="trailingMargin" id="HTR-zr-bDu"/>
+                            <constraint firstItem="tXe-lP-mxS" firstAttribute="leading" secondItem="MKy-RN-rFI" secondAttribute="leadingMargin" id="HgQ-2r-5ai"/>
+                            <constraint firstItem="MyW-yX-Dtb" firstAttribute="trailing" secondItem="MKy-RN-rFI" secondAttribute="trailingMargin" id="Jym-22-8MK"/>
                             <constraint firstItem="V26-b3-8nV" firstAttribute="top" secondItem="I55-bH-3WD" secondAttribute="bottom" constant="8" id="hu5-J2-U18"/>
-                            <constraint firstAttribute="centerY" secondItem="2Tp-VV-fG8" secondAttribute="centerY" id="n1g-6k-1kG"/>
+                            <constraint firstItem="MyW-yX-Dtb" firstAttribute="top" secondItem="Hoq-Wl-LUZ" secondAttribute="bottom" constant="18" id="jfc-zd-65c"/>
+                            <constraint firstItem="Hd4-AK-HEa" firstAttribute="leading" secondItem="tXe-lP-mxS" secondAttribute="trailing" id="nqa-pV-Pc8"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="2Tp-VV-fG8"/>
                                 <exclude reference="I55-bH-3WD"/>
+                                <exclude reference="tXe-lP-mxS"/>
+                                <exclude reference="MyW-yX-Dtb"/>
+                                <exclude reference="Hd4-AK-HEa"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="5dV-ux-Wkx"/>
-                                <exclude reference="n1g-6k-1kG"/>
+                                <exclude reference="5Pe-Kh-Khg"/>
+                                <exclude reference="HgQ-2r-5ai"/>
+                                <exclude reference="Jym-22-8MK"/>
+                                <exclude reference="jfc-zd-65c"/>
+                                <exclude reference="8Kw-Y8-KoP"/>
+                                <exclude reference="HTR-zr-bDu"/>
+                                <exclude reference="nqa-pV-Pc8"/>
                                 <exclude reference="738-4H-GlP"/>
                                 <exclude reference="hu5-J2-U18"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="2Tp-VV-fG8"/>
                                 <include reference="I55-bH-3WD"/>
+                                <include reference="tXe-lP-mxS"/>
+                                <include reference="MyW-yX-Dtb"/>
+                                <include reference="Hd4-AK-HEa"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="5dV-ux-Wkx"/>
-                                <include reference="n1g-6k-1kG"/>
+                                <include reference="5Pe-Kh-Khg"/>
+                                <include reference="HgQ-2r-5ai"/>
+                                <include reference="Jym-22-8MK"/>
+                                <include reference="jfc-zd-65c"/>
+                                <include reference="8Kw-Y8-KoP"/>
+                                <include reference="HTR-zr-bDu"/>
+                                <include reference="nqa-pV-Pc8"/>
                                 <include reference="738-4H-GlP"/>
                                 <include reference="hu5-J2-U18"/>
                             </mask>
@@ -319,24 +374,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4Y-S5-T7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="553.5" y="274"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="lol-1L-2uT">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zg7-cW-6Za" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="IBg-vc-Hbn">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BAF-W2-gmz" kind="relationship" relationship="rootViewController" id="jUN-Pf-KlT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="19G-OR-2Ru" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="553.5" y="1034"/>
         </scene>
     </scenes>
     <resources>

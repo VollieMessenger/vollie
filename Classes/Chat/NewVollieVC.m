@@ -7,6 +7,8 @@
 //
 
 #import "NewVollieVC.h"
+#import "AppDelegate.h"
+
 
 @interface NewVollieVC ()
 
@@ -14,9 +16,9 @@
 
 @implementation NewVollieVC
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,7 +28,7 @@
 }
 - (IBAction)onDismissButtonTapped:(id)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
