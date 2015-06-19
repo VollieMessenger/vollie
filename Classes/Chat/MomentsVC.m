@@ -31,6 +31,7 @@
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) IBOutlet UIImageView *vollieIconImageView;
 
 @property BOOL isLoading;
 
@@ -75,6 +76,8 @@
     // gets rid of line ^^
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    self.vollieIconImageView.layer.cornerRadius = 10;
+    self.vollieIconImageView.layer.masksToBounds = YES;
 
     [self loadMessages];
 }
@@ -118,16 +121,6 @@
 {
     VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
     CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-//    cell = [[CardCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellid"];
-//    cell.testLabel.text = [NSString stringWithFormat:@"set %li", indexPath.row];
-//    cell.picLabel.text = [NSString stringWithFormat:@"%li pics", card.photosArray.count];
-//    cell.messageLabel.text = [NSString stringWithFormat:@"%li messages", card.messagesArray.count];
-//    cell.card = card;
-
-//    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor redColor] andPictures:card.photosArray andComments:card.messagesArray];
-////    chatt.senderId = [self.senderId copy];
-////    chatt.senderDisplayName = [self.senderDisplayName copy];
-//    vc.room = self.room;
     CardCellView *vc = card.viewController;
     vc.room = self.room;
     [self.vollieVCcardArray addObject:vc];
@@ -143,12 +136,14 @@
     [self addChildViewController:vc];
     [cell.cardOutline addSubview:vc.view];
     [vc didMoveToParentViewController:self];
-
-//    PFObject *object = [self.setsIDsArray objectAtIndex:indexPath.row];
-//    cell.textLabel.text = [NSString stringWithFormat:@"%@", object];
     return cell;
+}
 
-//    http://stackoverflow.com/questions/17398058/is-it-possible-to-add-uitableview-within-a-uitableviewcell
+-(void)scrollToBottomAndReload
+{
+    [self.tableView reloadData];
+    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
 #pragma mark - ParseLoad
@@ -197,10 +192,6 @@
          {
              [self checkForObjectIdWith:object];
          }
-//         for (PFObject *object in objects)
-//         {
-//             [self checkForObjectIdWith:object];
-//         }
      }];
 }
 
@@ -229,38 +220,26 @@
             {
                 if ([card.set isEqualToString:set.objectId])
                 {
-//                    for (CustomChatView *vc in self.vollieVCcardArray)
-//                    {
-//                        if([vc.setIDforCardCheck isEqualToString:set.objectId])
-//                        {
-//                            [self.vollieVCcardArray removeObject:vc];
-//                        }
-//                    }
                     [card modifyCardWith:object];
-                    [self createCardVCwithVollieCardData:card];
+                    [self scrollToBottomAndReload];
                 }
             }
         }
         else
         {
-//            NSLog(@"%@", object.objectId);
             VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object];
             [self.vollieCardDataArray addObject:card];
             [self.setsIDsArray addObject:set.objectId];
             //create vollie card
-            [self createCardVCwithVollieCardData:card];
+            [self scrollToBottomAndReload];
         }
     }
 }
-
--(void)createCardVCwithVollieCardData:(VollieCardData*)cardData
+- (IBAction)onNewVollieButtonTapped:(id)sender
 {
-//    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:cardData.set andColor:[UIColor volleyFamousGreen] andPictures:cardData.photosArray andComments:cardData.messagesArray];
-//    //    chatt.senderId = [self.senderId copy];
-//    //    chatt.senderDisplayName = [self.senderDisplayName copy];
-//    vc.room = self.room;
-//    [self.vollieVCcardArray addObject:vc];
-    [self.tableView reloadData];
+    NSLog(@"you tapped me");
+
 }
+
 
 @end
