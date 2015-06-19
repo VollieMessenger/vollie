@@ -110,7 +110,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self runCamera];
 
     self.firstCameraFlip = true;
     self.camFlipCount = 0;
@@ -263,6 +262,8 @@
 {
     [super viewDidAppear:animated];
 
+    [self runCamera];
+    
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.rightButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.switchCameraButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -310,6 +311,11 @@
     {
         self.scrollView.scrollEnabled = NO;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+    
+    if (self.captureSession.isRunning)
+    {
+        [self.captureSession stopRunning];
     }
 }
 
@@ -834,13 +840,6 @@
 
 
     //ADD AUDIO INPUT
-    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-    NSError *error2 = nil;
-    AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-    if (audioInput)
-    {
-        [session addInput:audioInput];
-    }
 
     // Create a VideoDataOutput and add it to the session
     AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
@@ -1012,6 +1011,14 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
+            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+            NSError *error2 = nil;
+            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+            if (audioInput)
+            {
+                [self.captureSession addInput:audioInput];
+            }
+
             _isCapturingVideo = YES;
 
             self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
@@ -1085,6 +1092,12 @@
 
             [self captureStopVideoNow];
             [self.progressTimer invalidate];
+            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+            for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
+                if (input.device==audioCaptureDevice) {
+                    [self.captureSession removeInput:input];
+                }
+            }
         }
         
         if (self.movingImagePosition) {

@@ -160,6 +160,7 @@
     } else {
         [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
     }
+    
 }
 
 
