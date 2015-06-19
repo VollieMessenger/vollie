@@ -27,6 +27,7 @@
 #import "VollieCardData.h"
 #import "CellForCard.h"
 #import "ChatColView.h"
+#import "NewVollieVC.h"
 
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -238,6 +239,9 @@
 - (IBAction)onNewVollieButtonTapped:(id)sender
 {
     NSLog(@"you tapped me");
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+    [self presentViewController:vc animated:YES completion:nil];
 
 }
 
