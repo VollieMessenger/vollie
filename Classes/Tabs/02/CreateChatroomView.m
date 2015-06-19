@@ -292,10 +292,11 @@
                                if (!connectionError) {
                                    NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 
+//                                   if (!responseDictionary[@"error"]){
+                                       NSString *objectId = [responseDictionary valueForKey:@"objectId"];
 
-                                   NSString *objectId = [responseDictionary valueForKey:@"objectId"];
-
-                                   [_arrayOfSelectedUsers addObject:[PFUser objectWithoutDataWithObjectId:objectId]];
+                                       [_arrayOfSelectedUsers addObject:[PFUser objectWithoutDataWithObjectId:objectId]];
+//                                   }
                                    x--;
                                    //If we finished all the phone numbers, create the chatroom;
                                    if (x == 0){
@@ -386,9 +387,8 @@
     if (_arrayOfSelectedUsers.count > 0)
     {
         //Create chatroom object
-        if (_isTherePicturesToSend)
-        {
-        [ProgressHUD show:@"Sending..." Interaction:0];
+        if (_isTherePicturesToSend) {
+            [ProgressHUD show:@"Sending..." Interaction:0];
         }
 
         //New Chatroom
@@ -397,54 +397,42 @@
         NSMutableArray *arrayOfUserIds = [NSMutableArray new];
 
         //Create list of names in chatroom.
-       __block NSString *stringOfNames = @"";
-       __block NSString *stringWithoutUser = @"";
+        __block NSString *stringOfNames = @"";
+        __block NSString *stringWithoutUser = @"";
         __block int count = (int)_arrayOfSelectedUsers.count;
 
         for (PFUser *user  in _arrayOfSelectedUsers)
         {
 #warning MAY BE TOO SLOW WITHOUT BLOCK
-        [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error)
-            {
-            if (!error)
-            {
-                if (object == [PFUser currentUser])
-                {
+        [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error){
+            if (!error) {
+                if (object == [PFUser currentUser]){
                     [usersInRelation addObject:[PFUser currentUser]];
                     [arrayOfUserIds addObject:[PFUser currentUser].objectId];
-                }
-                else
-                {
+                }else{
                     [usersInRelation addObject:object];
                     [arrayOfUserIds addObject:object.objectId];
                 }
 
-            NSString *fullName = [user objectForKey:PF_USER_FULLNAME];
-            NSString *phoneNumber = [user valueForKey:PF_USER_USERNAME];
+                NSString *fullName = [user objectForKey:PF_USER_FULLNAME];
+                NSString *phoneNumber = [user valueForKey:PF_USER_USERNAME];
 
-            if (fullName.length && fullName)
-            {
+            if (fullName.length && fullName){
                 stringOfNames = [stringOfNames stringByAppendingString:[NSString stringWithFormat:@"%@, ", fullName]];
 
-                if (object != [PFUser currentUser])
-                {
+                if (object != [PFUser currentUser]){
                     stringWithoutUser = [stringWithoutUser stringByAppendingString:[NSString stringWithFormat:@"%@, ", fullName]];
                 }
-            }
-            else
-            {
+            }else{
                 stringOfNames = [stringOfNames stringByAppendingString:[NSString stringWithFormat:@"%@, ", phoneNumber]];
 
-                if (object != [PFUser currentUser])
-                {
+                if (object != [PFUser currentUser]){
                     stringWithoutUser = [@"*" stringByAppendingString:stringWithoutUser];
                 }
             }
                 count--;
-                if (count == 0)
-                {
-                    if (stringOfNames.length > 2 && stringWithoutUser.length > 2)
-                    {
+                if (count == 0){
+                    if (stringOfNames.length > 2 && stringWithoutUser.length > 2){
                         stringOfNames = [stringOfNames substringToIndex:stringOfNames.length - 2];
                         stringWithoutUser = [stringWithoutUser substringToIndex:stringWithoutUser.length - 2];
                     }
@@ -458,9 +446,7 @@
                     //NEXT
                     [self findChatroomAndSend:chatroom andUserIds:arrayOfUserIds andString:stringWithoutUser];
                 }
-        }
-        else
-        {
+        }else{
         }
         }];
 

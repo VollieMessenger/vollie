@@ -68,12 +68,10 @@
 
 -(IBAction)didSlideRight:(id)sender
 {
-    if (!_isTextFieldUp)
-    {
-    PostNotification(NOTIFICATION_SLIDE_MIDDLE_WELCOME);
+    if (!_isTextFieldUp){
+        PostNotification(NOTIFICATION_SLIDE_MIDDLE_WELCOME);
     }
-    else
-    {
+    else{
         [self.view endEditing:1];
     }
 }
@@ -118,14 +116,12 @@
     nameLast    = [nameLast stringByReplacingOccurrencesOfString:@" " withString:@""];
 //  password	= [password stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-    if (phoneNumber.length < 10 || [phoneNumber isEqualToString:@"Phone Number"])
-    {
+    if (phoneNumber.length < 10 || [phoneNumber isEqualToString:@"Phone Number"]){
         [ProgressHUD showError:@"Enter Phone Number"];
         return;
     }
 
-	if ((nameFirst.length != 0) && (phoneNumber.length != 0) && (nameLast.length != 0))
-    {
+	if ((nameFirst.length != 0) && (phoneNumber.length != 0) && (nameLast.length != 0)){
         phoneNumber  = [AppConstant formatPhoneNumberForCountry:phoneNumber];
 
 		[ProgressHUD show:@"Searching for users..." Interaction:1];
