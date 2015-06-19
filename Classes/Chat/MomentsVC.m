@@ -193,14 +193,14 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if(error == nil);
-//         for (PFObject *object in [objects reverseObjectEnumerator])
-//         {
-//             [self checkForObjectIdWith:object];
-//         }
-         for (PFObject *object in objects)
+         for (PFObject *object in [objects reverseObjectEnumerator])
          {
              [self checkForObjectIdWith:object];
          }
+//         for (PFObject *object in objects)
+//         {
+//             [self checkForObjectIdWith:object];
+//         }
      }];
 }
 
