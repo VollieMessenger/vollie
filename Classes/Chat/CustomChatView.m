@@ -101,7 +101,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:1];
-    setPicturesObjects = [NSMutableArray new];
+//    setPicturesObjects = [NSMutableArray new];
 
 }
 
