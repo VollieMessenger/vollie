@@ -230,7 +230,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:self.setIDforCardCheck andColor:[UIColor volleyFamousGreen]     andPictures:self.cardData.photosArray andComments:self.cardData.messagesArray];
+    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:self.setIDforCardCheck andColor:[UIColor volleyFamousGreen]     andPictures:setPicturesObjects andComments:setComments];
     //    chatt.senderId = [self.senderId copy];
     //    chatt.senderDisplayName = [self.senderDisplayName copy];
     chatt.room = self.room;
