@@ -1150,16 +1150,16 @@
     {
         //Indicate that some changes will be made to the session
         [self.captureSession beginConfiguration];
-        self.camFlipCount++;
+//        self.camFlipCount++;
         AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
-        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
-        NSLog(@"1 %@", currentCameraInput);
-        NSLog(@"2 %@", audioInput);
+//        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
+//        NSLog(@"1 %@", currentCameraInput);
+//        NSLog(@"2 %@", audioInput);
 
-        if (self.camFlipCount >= 3)
-        {
-            currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
-        }
+//        if (self.camFlipCount >= 3)
+//        {
+//            currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
+//        }
 //        for (AVCaptureInput* input in self.captureSession.inputs)
 //        {
 //            i++;
@@ -1186,8 +1186,9 @@
         else
         {
             newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
-            AVCaptureInput *tempInput = [self.captureSession.inputs objectAtIndex:1];
-            [self.captureSession removeInput:tempInput];
+//            AVCaptureInput *tempInput = [self.captureSession.inputs objectAtIndex:1];
+//            [self.captureSession removeInput:tempInput];
+            [self.captureSession removeInput:currentCameraInput];
         }
 
         //Add input to session
