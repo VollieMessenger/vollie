@@ -300,14 +300,6 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Knf-kD-qav">
-                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="152" y="233" width="97" height="30"/>
-                                </variation>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -327,7 +319,6 @@
                                 <exclude reference="tXe-lP-mxS"/>
                                 <exclude reference="MyW-yX-Dtb"/>
                                 <exclude reference="Hd4-AK-HEa"/>
-                                <exclude reference="Knf-kD-qav"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="hu5-J2-U18"/>
@@ -347,7 +338,6 @@
                                 <include reference="tXe-lP-mxS"/>
                                 <include reference="MyW-yX-Dtb"/>
                                 <include reference="Hd4-AK-HEa"/>
-                                <include reference="Knf-kD-qav"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="hu5-J2-U18"/>
