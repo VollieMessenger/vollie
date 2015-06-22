@@ -11,12 +11,12 @@
 		274988791B31DDBD00560873 /* CardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274988771B31DDBD00560873 /* CardVC.xib */; };
 		2749887C1B31E71400560873 /* CardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887B1B31E71400560873 /* CardCellView.m */; };
 		2749887F1B31F98200560873 /* CellForCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887E1B31F98200560873 /* CellForCard.m */; };
+		27595EEB1B38522C009A0F09 /* NewVollieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27595EEA1B38522C009A0F09 /* NewVollieVC.m */; };
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
 		279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7CAB1B2F77FF0090C1AD /* TestViewController.m */; };
 		27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCardData.m */; };
-		27E60AAE1B34BE7A00EDE8B1 /* NewVollieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E60AAD1B34BE7A00EDE8B1 /* NewVollieVC.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
 		29271A5919F284B1009C308B /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3319F284B1009C308B /* NavigationController.m */; };
 		29271A5A19F284B1009C308B /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3619F284B1009C308B /* ChatView.m */; };
@@ -179,6 +179,8 @@
 		2749887B1B31E71400560873 /* CardCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CardCellView.m; path = ../Tabs/02/CardCellView.m; sourceTree = "<group>"; usesTabs = 0; };
 		2749887D1B31F98200560873 /* CellForCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellForCard.h; sourceTree = "<group>"; };
 		2749887E1B31F98200560873 /* CellForCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellForCard.m; sourceTree = "<group>"; };
+		27595EE91B38522C009A0F09 /* NewVollieVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewVollieVC.h; path = ../../../../../.Trash/NewVollieVC.h; sourceTree = "<group>"; };
+		27595EEA1B38522C009A0F09 /* NewVollieVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewVollieVC.m; path = ../../../../../.Trash/NewVollieVC.m; sourceTree = "<group>"; };
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
 		2762FF601B289A530070AD59 /* MomentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsVC.h; sourceTree = "<group>"; };
 		2762FF611B289A530070AD59 /* MomentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsVC.m; sourceTree = "<group>"; };
@@ -188,8 +190,6 @@
 		279D7CAB1B2F77FF0090C1AD /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = ../Tabs/02/TestViewController.m; sourceTree = "<group>"; };
 		27C300F01B2B2FDB00EB9723 /* VollieCardData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCardData.h; path = ../../VollieCardData.h; sourceTree = "<group>"; };
 		27C300F11B2B2FDB00EB9723 /* VollieCardData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VollieCardData.m; path = ../../VollieCardData.m; sourceTree = "<group>"; };
-		27E60AAC1B34BE7A00EDE8B1 /* NewVollieVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewVollieVC.h; sourceTree = "<group>"; };
-		27E60AAD1B34BE7A00EDE8B1 /* NewVollieVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVollieVC.m; sourceTree = "<group>"; };
 		292719D119F284AC009C308B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		29271A3219F284B1009C308B /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -579,8 +579,8 @@
 				C2CA16DD1A82860E00DD25AC /* DidFavoriteView.h */,
 				C2CA16DE1A82860E00DD25AC /* DidFavoriteView.m */,
 				C2CA16DF1A82860E00DD25AC /* DidFavoriteView.xib */,
-				27E60AAC1B34BE7A00EDE8B1 /* NewVollieVC.h */,
-				27E60AAD1B34BE7A00EDE8B1 /* NewVollieVC.m */,
+				27595EE91B38522C009A0F09 /* NewVollieVC.h */,
+				27595EEA1B38522C009A0F09 /* NewVollieVC.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1237,7 +1237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27E60AAE1B34BE7A00EDE8B1 /* NewVollieVC.m in Sources */,
+				27595EEB1B38522C009A0F09 /* NewVollieVC.m in Sources */,
 				C21DD6E91A71D73B0009BC6A /* JCNotificationBannerPresenterSmokeStyle.m in Sources */,
 				296DD5BC1A1F52F400AB9F8C /* NSString+JSQMessages.m in Sources */,
 				296DD5C21A1F52F400AB9F8C /* JSQMessagesViewController.m in Sources */,

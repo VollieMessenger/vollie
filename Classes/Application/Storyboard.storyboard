@@ -135,7 +135,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="onNewVollieButtonTapped:" destination="UPo-ZF-5z1" eventType="touchUpInside" id="bBM-9R-aBf"/>
-                                    <segue destination="54s-pu-3PP" kind="presentation" id="2sj-Nf-vpF"/>
+                                    <segue destination="BAF-W2-gmz" kind="show" id="DcF-6q-EO5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -300,6 +300,14 @@
                                     </mask>
                                 </variation>
                             </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Knf-kD-qav">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="152" y="233" width="97" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -319,6 +327,7 @@
                                 <exclude reference="tXe-lP-mxS"/>
                                 <exclude reference="MyW-yX-Dtb"/>
                                 <exclude reference="Hd4-AK-HEa"/>
+                                <exclude reference="Knf-kD-qav"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="hu5-J2-U18"/>
@@ -338,6 +347,7 @@
                                 <include reference="tXe-lP-mxS"/>
                                 <include reference="MyW-yX-Dtb"/>
                                 <include reference="Hd4-AK-HEa"/>
+                                <include reference="Knf-kD-qav"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="hu5-J2-U18"/>
@@ -353,10 +363,76 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="cuf-K5-x3N"/>
+                    <connections>
+                        <outlet property="textView" destination="tXe-lP-mxS" id="Rna-pa-21n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLu-fb-Sjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2389.5" y="1034"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="RYE-c3-aXa">
+            <objects>
+                <viewController id="LWr-0p-STo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PeG-34-6Yd"/>
+                        <viewControllerLayoutGuide type="bottom" id="MSG-Ha-sJD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YVv-ZR-EUt">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="write message here." translatesAutoresizingMaskIntoConstraints="NO" id="yzD-9B-VpR">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="115" id="JLm-7p-OyP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="JLm-7p-OyP"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="JLm-7p-OyP"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yzD-9B-VpR" firstAttribute="top" secondItem="PeG-34-6Yd" secondAttribute="bottom" id="1nk-Zx-SxD"/>
+                            <constraint firstItem="yzD-9B-VpR" firstAttribute="leading" secondItem="YVv-ZR-EUt" secondAttribute="leadingMargin" constant="-16" id="kSs-I0-Vcp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yzD-9B-VpR" secondAttribute="trailing" constant="-16" id="yM2-yC-l3a"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="yzD-9B-VpR"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="1nk-Zx-SxD"/>
+                                <exclude reference="kSs-I0-Vcp"/>
+                                <exclude reference="yM2-yC-l3a"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="yzD-9B-VpR"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="1nk-Zx-SxD"/>
+                                <include reference="kSs-I0-Vcp"/>
+                                <include reference="yM2-yC-l3a"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zlx-nc-7bQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2253" y="1757"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="zz0-6L-GZf">
@@ -398,4 +474,7 @@
     <resources>
         <image name="Vollie-icon" width="205" height="205"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="DcF-6q-EO5"/>
+    </inferredMetricsTieBreakers>
 </document>
