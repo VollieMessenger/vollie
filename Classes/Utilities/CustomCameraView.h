@@ -48,5 +48,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *x5;
 
 -(void) moveImageUpToLatestBlank:(UIButton *)sender;
+-(void) freezeCamera;
 
 @end

@@ -111,6 +111,8 @@
 {
     [super viewDidLoad];
 
+//    [self runCamera];
+
     self.firstCameraFlip = true;
     self.camFlipCount = 0;
 
@@ -200,7 +202,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopup) name:NOTIFICATION_CAMERA_POPUP object:0];
     }
      */
-    
+//    [self dismissPopup];
+
 }
 
 - (void)removeInputs
@@ -547,11 +550,16 @@
     self.didPickImageFromAlbum = NO;
 }
 
+-(void)freezeCamera
+{
+    
+}
 
 
 -(IBAction)didSlideRight:(id)sender
 {
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:YES];
+    NSLog(@"%i", self.scrollView.contentOffset);
 }
 
 - (void)updateUI:(NSTimer *)timer
@@ -1573,6 +1581,9 @@
 
             [self.navigationController pushViewController:selectView animated:0];
             button.userInteractionEnabled = YES;
+
+            //kyle note
+            //we're going to need to send this to the NewVollieVC
         }
     }
 }

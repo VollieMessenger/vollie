@@ -7,6 +7,7 @@
 //
 
 #import "MasterScrollView.h"
+#import "CustomCameraView.h"
 #import "CustomChatView.h"
 #import "ChatView.h"
 #import "AppDelegate.h"
@@ -23,7 +24,6 @@
 - (id) init
 {
     self = [super init];
-
     if (self)
     {
         self.delegate = self;
