@@ -176,6 +176,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     [self jsq_configureMessagesViewController];
     [self jsq_registerForNotifications:YES];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionViewPictures.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated

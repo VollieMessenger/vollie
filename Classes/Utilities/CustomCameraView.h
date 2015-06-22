@@ -40,6 +40,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *savedButton5;
 
 @property (atomic) BOOL isPoppingUp;
+@property (atomic) BOOL comingFromNewVollie;
+@property NSString *textFromLastVC;
 
 @property (weak, nonatomic) IBOutlet UIButton *x1;
 @property (weak, nonatomic) IBOutlet UIButton *x2;

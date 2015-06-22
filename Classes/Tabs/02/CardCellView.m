@@ -195,6 +195,7 @@
 
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
+//        self.view.backgroundColor = [UIColor purpleColor];
     }
     return self;
 }
@@ -556,6 +557,7 @@
     if (collectionView == self.collectionViewPictures)
     {
         CustomCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+        cell.backgroundColor = [UIColor clearColor];
 
         if (setPicturesObjects.count > 0)
         {

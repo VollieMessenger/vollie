@@ -19,6 +19,7 @@
 #import "utilities.h"
 #import "AppDelegate.h"
 #import "SelectChatroomView.h"
+#import "NewVollieVC.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -1571,6 +1572,13 @@
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
             PostNotification(NOTIFICATION_CAMERA_POPUP);
+        }
+        else if(self.comingFromNewVollie == true)
+        {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+            vc.textFromLastVC = self.textFromLastVC;
+            [self.navigationController pushViewController:vc animated:YES];
         }
         else
         {
