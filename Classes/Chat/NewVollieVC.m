@@ -19,6 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.title = @"New Vollie";
+//    self.navigationBar.tintColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning
