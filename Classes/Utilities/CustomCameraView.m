@@ -1578,6 +1578,7 @@
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
             NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
             vc.textFromLastVC = self.textFromLastVC;
+            vc.photosArray = self.arrayOfTakenPhotos;
             [self.navigationController pushViewController:vc animated:YES];
         }
         else

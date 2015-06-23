@@ -22,60 +22,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="21s-0G-dfq">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="286" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bJ6-gv-Klf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="cellid" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellid" rowHeight="286" id="QeF-da-Jqq" customClass="CellForCard">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QeF-da-Jqq" id="BsN-SJ-vHp">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFY-Bv-GSu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="gFY-Bv-GSu" firstAttribute="leading" secondItem="BsN-SJ-vHp" secondAttribute="leadingMargin" id="EBc-jX-cqI"/>
-                                                <constraint firstItem="gFY-Bv-GSu" firstAttribute="bottom" secondItem="BsN-SJ-vHp" secondAttribute="bottomMargin" id="KUO-1q-LKI"/>
-                                                <constraint firstItem="gFY-Bv-GSu" firstAttribute="top" secondItem="BsN-SJ-vHp" secondAttribute="topMargin" id="agf-sR-8z4"/>
-                                                <constraint firstItem="gFY-Bv-GSu" firstAttribute="trailing" secondItem="BsN-SJ-vHp" secondAttribute="trailingMargin" id="hbO-3W-ppb"/>
-                                            </constraints>
-                                            <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="gFY-Bv-GSu"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <exclude reference="EBc-jX-cqI"/>
-                                                    <exclude reference="KUO-1q-LKI"/>
-                                                    <exclude reference="agf-sR-8z4"/>
-                                                    <exclude reference="hbO-3W-ppb"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="widthClass=compact">
-                                                <mask key="subviews">
-                                                    <include reference="gFY-Bv-GSu"/>
-                                                </mask>
-                                                <mask key="constraints">
-                                                    <include reference="EBc-jX-cqI"/>
-                                                    <include reference="KUO-1q-LKI"/>
-                                                    <include reference="agf-sR-8z4"/>
-                                                    <include reference="hbO-3W-ppb"/>
-                                                </mask>
-                                            </variation>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cardOutline" destination="gFY-Bv-GSu" id="OaJ-OE-CvX"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="UPo-ZF-5z1" id="WdA-7b-vsJ"/>
-                                    <outlet property="delegate" destination="UPo-ZF-5z1" id="Dy2-bP-kT3"/>
-                                </connections>
-                            </tableView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="WI7-OH-oRb">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.40000000596046448" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
@@ -142,6 +88,60 @@
                                     <segue destination="BAF-W2-gmz" kind="show" id="DcF-6q-EO5"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="286" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="bJ6-gv-Klf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="cellid" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellid" rowHeight="286" id="QeF-da-Jqq" customClass="CellForCard">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QeF-da-Jqq" id="BsN-SJ-vHp">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFY-Bv-GSu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="gFY-Bv-GSu" firstAttribute="leading" secondItem="BsN-SJ-vHp" secondAttribute="leadingMargin" id="EBc-jX-cqI"/>
+                                                <constraint firstItem="gFY-Bv-GSu" firstAttribute="bottom" secondItem="BsN-SJ-vHp" secondAttribute="bottomMargin" id="KUO-1q-LKI"/>
+                                                <constraint firstItem="gFY-Bv-GSu" firstAttribute="top" secondItem="BsN-SJ-vHp" secondAttribute="topMargin" id="agf-sR-8z4"/>
+                                                <constraint firstItem="gFY-Bv-GSu" firstAttribute="trailing" secondItem="BsN-SJ-vHp" secondAttribute="trailingMargin" id="hbO-3W-ppb"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="gFY-Bv-GSu"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="EBc-jX-cqI"/>
+                                                    <exclude reference="KUO-1q-LKI"/>
+                                                    <exclude reference="agf-sR-8z4"/>
+                                                    <exclude reference="hbO-3W-ppb"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="widthClass=compact">
+                                                <mask key="subviews">
+                                                    <include reference="gFY-Bv-GSu"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <include reference="EBc-jX-cqI"/>
+                                                    <include reference="KUO-1q-LKI"/>
+                                                    <include reference="agf-sR-8z4"/>
+                                                    <include reference="hbO-3W-ppb"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cardOutline" destination="gFY-Bv-GSu" id="OaJ-OE-CvX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="UPo-ZF-5z1" id="WdA-7b-vsJ"/>
+                                    <outlet property="delegate" destination="UPo-ZF-5z1" id="Dy2-bP-kT3"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -164,10 +164,10 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="21s-0G-dfq"/>
-                                <exclude reference="bJ6-gv-Klf"/>
                                 <exclude reference="WI7-OH-oRb"/>
                                 <exclude reference="z4N-0V-gJs"/>
                                 <exclude reference="TWX-U2-Z6f"/>
+                                <exclude reference="bJ6-gv-Klf"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="MAn-jl-Iqc"/>
@@ -190,10 +190,10 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="21s-0G-dfq"/>
-                                <include reference="bJ6-gv-Klf"/>
                                 <include reference="WI7-OH-oRb"/>
                                 <include reference="z4N-0V-gJs"/>
                                 <include reference="TWX-U2-Z6f"/>
+                                <include reference="bJ6-gv-Klf"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="MAn-jl-Iqc"/>
