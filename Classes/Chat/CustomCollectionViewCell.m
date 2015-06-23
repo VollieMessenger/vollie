@@ -11,7 +11,6 @@
 @implementation CustomCollectionViewCell
 
 @synthesize imageView = _imageView;
-@synthesize notParseImageView = _notParseImageView;
 @synthesize name = _name;
 @synthesize label = _label;
 

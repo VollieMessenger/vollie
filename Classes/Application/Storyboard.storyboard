@@ -290,7 +290,7 @@
                                     <constraint firstAttribute="height" constant="327" id="SZc-6A-epA"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6r3-m3-rvL">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="69" height="69"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -300,10 +300,46 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nHi-30-Eg7">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="nHi-30-Eg7" firstAttribute="top" secondItem="Lnp-Si-kNO" secondAttribute="topMargin" constant="-8" id="Y93-Tm-TAC"/>
+                                            <constraint firstItem="nHi-30-Eg7" firstAttribute="leading" secondItem="Lnp-Si-kNO" secondAttribute="leadingMargin" constant="-8" id="fSP-AK-UPm"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="nHi-30-Eg7" secondAttribute="trailing" constant="-8" id="qbf-a9-bfw"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="nHi-30-Eg7" secondAttribute="bottom" constant="-8" id="z6o-fW-mxR"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="nHi-30-Eg7"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="Y93-Tm-TAC"/>
+                                                <exclude reference="fSP-AK-UPm"/>
+                                                <exclude reference="qbf-a9-bfw"/>
+                                                <exclude reference="z6o-fW-mxR"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="nHi-30-Eg7"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <include reference="Y93-Tm-TAC"/>
+                                                <include reference="fSP-AK-UPm"/>
+                                                <include reference="qbf-a9-bfw"/>
+                                                <include reference="z6o-fW-mxR"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="imageView" destination="nHi-30-Eg7" id="b7V-ps-vPh"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <variation key="default">

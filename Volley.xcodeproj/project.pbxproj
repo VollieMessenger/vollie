@@ -16,6 +16,7 @@
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
 		279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7CAB1B2F77FF0090C1AD /* TestViewController.m */; };
+		27AC59511B39E0B800633EAB /* NewVolliePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC59501B39E0B800633EAB /* NewVolliePicCell.m */; };
 		27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCardData.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
 		29271A5919F284B1009C308B /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3319F284B1009C308B /* NavigationController.m */; };
@@ -188,6 +189,8 @@
 		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
 		279D7CAA1B2F77FF0090C1AD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../Tabs/02/TestViewController.h; sourceTree = "<group>"; };
 		279D7CAB1B2F77FF0090C1AD /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = ../Tabs/02/TestViewController.m; sourceTree = "<group>"; };
+		27AC594F1B39E0B800633EAB /* NewVolliePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewVolliePicCell.h; sourceTree = "<group>"; };
+		27AC59501B39E0B800633EAB /* NewVolliePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVolliePicCell.m; sourceTree = "<group>"; };
 		27C300F01B2B2FDB00EB9723 /* VollieCardData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCardData.h; path = ../../VollieCardData.h; sourceTree = "<group>"; };
 		27C300F11B2B2FDB00EB9723 /* VollieCardData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VollieCardData.m; path = ../../VollieCardData.m; sourceTree = "<group>"; };
 		292719D119F284AC009C308B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
@@ -581,6 +584,8 @@
 				C2CA16DF1A82860E00DD25AC /* DidFavoriteView.xib */,
 				27595EE91B38522C009A0F09 /* NewVollieVC.h */,
 				27595EEA1B38522C009A0F09 /* NewVollieVC.m */,
+				27AC594F1B39E0B800633EAB /* NewVolliePicCell.h */,
+				27AC59501B39E0B800633EAB /* NewVolliePicCell.m */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1334,6 +1339,7 @@
 				296DD5C41A1F52F400AB9F8C /* JSQMessagesAvatarImageFactory.m in Sources */,
 				296DD5CD1A1F52F400AB9F8C /* JSQMediaItem.m in Sources */,
 				296DD5CB1A1F52F400AB9F8C /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
+				27AC59511B39E0B800633EAB /* NewVolliePicCell.m in Sources */,
 				C2CA16E71A82A1FE00DD25AC /* AlbumView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
