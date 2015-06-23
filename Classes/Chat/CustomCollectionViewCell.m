@@ -11,6 +11,7 @@
 @implementation CustomCollectionViewCell
 
 @synthesize imageView = _imageView;
+@synthesize notParseImageView = _notParseImageView;
 @synthesize name = _name;
 @synthesize label = _label;
 
@@ -19,9 +20,15 @@
     self.imageView.layer.borderWidth = 2;
     self.imageView.layer.masksToBounds = YES;
     self.imageView.layer.cornerRadius = 10;
+
+    self.notParseImageView.layer.borderWidth = 2;
+    self.notParseImageView.layer.masksToBounds = YES;
+    self.notParseImageView.layer.cornerRadius = 10;
 #warning RASTERIZING
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.layer.shouldRasterize = YES;
+
+
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -40,6 +47,17 @@
         self.imageView.layer.cornerRadius = 5;
         self.imageView.layer.masksToBounds = 1;
 
+        self.notParseImageView.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.notParseImageView.layer.shadowRadius = 5.0f;
+        self.notParseImageView.layer.shadowOffset = CGSizeMake(2.0f, 2.0f);
+        self.notParseImageView.layer.shadowOpacity = 0.5f;
+        self.notParseImageView.layer.borderColor = [UIColor redColor].CGColor;
+        self.notParseImageView.layer.borderWidth = 1;
+        self.notParseImageView.backgroundColor = [UIColor clearColor];
+        self.notParseImageView.layer.cornerRadius = 5;
+        self.notParseImageView.layer.masksToBounds = 1;
+
+
         // Selected background view
         UIView *backgroundView = [[UIView alloc]initWithFrame:self.bounds];
         backgroundView.layer.borderColor = [[UIColor colorWithRed:1 green:1 blue:1 alpha:1]CGColor];
@@ -52,6 +70,12 @@
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         self.imageView.clipsToBounds = YES;
         [self.contentView addSubview:self.imageView];
+
+        self.notParseImageView = [[UIImageView alloc] initWithFrame:frame];
+        self.notParseImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.notParseImageView.clipsToBounds = YES;
+        [self.contentView addSubview:self.notParseImageView];
+
 
         CGRect frame2 = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 28, 28);
         self.label = [[UILabel alloc] initWithFrame:frame2];
