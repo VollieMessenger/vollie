@@ -815,8 +815,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)keyboardController:(JSQMessagesKeyboardController *)keyboardController keyboardDidChangeFrame:(CGRect)keyboardFrame
 {
-    CGFloat heightFromBottom = CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(keyboardFrame);
-    
+    CGFloat heightFromBottom = keyboardFrame.size.height;
+//    NSLog(@"%f",self.inputToolbar.frame.size.height);
     heightFromBottom = MAX(0.0f, heightFromBottom);
     
     [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
