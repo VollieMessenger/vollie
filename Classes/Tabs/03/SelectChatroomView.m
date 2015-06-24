@@ -204,9 +204,8 @@
                 }
             }
         }];
-            
     }
-        else if ([imageOrFile isKindOfClass:[NSDictionary class]])
+    else if ([imageOrFile isKindOfClass:[NSDictionary class]])
     {
         NSDictionary *dic = imageOrFile;
         NSString *path = dic.allKeys.firstObject;
