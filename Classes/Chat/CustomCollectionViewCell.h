@@ -13,7 +13,6 @@
 
 @interface CustomCollectionViewCell : UICollectionViewCell
 @property PFImageView *imageView;
-@property UIImageView *notParseImageView;
 @property NSString *name;
 @property UILabel *label;
 - (void)format;

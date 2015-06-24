@@ -40,8 +40,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *savedButton5;
 
 @property (atomic) BOOL isPoppingUp;
+
+//kyle's new VC properties:
 @property (atomic) BOOL comingFromNewVollie;
 @property NSString *textFromLastVC;
+@property NSMutableArray *photosFromNewVC;
 
 @property (weak, nonatomic) IBOutlet UIButton *x1;
 @property (weak, nonatomic) IBOutlet UIButton *x2;

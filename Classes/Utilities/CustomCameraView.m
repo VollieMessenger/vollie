@@ -165,10 +165,18 @@
     _refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     [_refreshControl beginRefreshing];
 
-    [self removeBackgroundsAndHideObjects];
+//    [self removeBackgroundsAndHideObjects];
 
     [self moveImageUpToLatestBlank:0];
-    self.arrayOfTakenPhotos = [NSMutableArray new];
+    if (self.photosFromNewVC.count)
+    {
+        self.arrayOfTakenPhotos = self.photosFromNewVC;
+        [self loadImagesSaved];
+    }
+    else
+    {
+        self.arrayOfTakenPhotos = [NSMutableArray new];
+    }
 
     for (UIButton *button in self.savedButtons)
     {
@@ -316,6 +324,8 @@
         self.scrollView.scrollEnabled = NO;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
+
+    [self stopCaptureSession];
     
     if (self.captureSession.isRunning)
     {
@@ -2307,7 +2317,7 @@
 {
     if (_arrayOfTakenPhotos.count > 0)
     {
-        self.isReturningFromBackButton = NO;
+//        self.isReturningFromBackButton = NO;
 
         switch (self.arrayOfTakenPhotos.count) {
             case 1:
