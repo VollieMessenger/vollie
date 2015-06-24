@@ -764,30 +764,30 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
  #pragma mark - Keyboard controller delegate
 
- - (void)keyboardController:(JSQMessagesKeyboardController *)keyboardController keyboardDidChangeFrame:(CGRect)keyboardFrame
- {
- CGFloat heightFromBottom = CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(keyboardFrame);
+- (void)keyboardController:(JSQMessagesKeyboardController *)keyboardController keyboardDidChangeFrame:(CGRect)keyboardFrame
+{
+    CGFloat heightFromBottom = CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(keyboardFrame);
 
- heightFromBottom = MAX(0.0f, heightFromBottom);
+    heightFromBottom = MAX(0.0f, heightFromBottom);
 
- [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
- }
+    [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
+}
 
- - (void)jsq_setToolbarBottomLayoutGuideConstant:(CGFloat)constant
- {
- self.toolbarBottomLayoutGuide.constant = constant;
+- (void)jsq_setToolbarBottomLayoutGuideConstant:(CGFloat)constant
+{
+    self.toolbarBottomLayoutGuide.constant = constant;
 
- [self.view setNeedsUpdateConstraints];
+    [self.view setNeedsUpdateConstraints];
 
- [self.view layoutIfNeeded];
+    [self.view layoutIfNeeded];
 
- [self jsq_updateCollectionViewInsets];
- }
+    [self jsq_updateCollectionViewInsets];
+}
 
- - (void)jsq_updateKeyboardTriggerPoint
- {
- self.keyboardController.keyboardTriggerPoint = CGPointMake(0.0f, CGRectGetHeight(self.inputToolbar.bounds));
- }
+- (void)jsq_updateKeyboardTriggerPoint
+{
+    self.keyboardController.keyboardTriggerPoint = CGPointMake(0.0f, CGRectGetHeight(self.inputToolbar.bounds));
+}
  
 
 #pragma mark - Gesture recognizers
