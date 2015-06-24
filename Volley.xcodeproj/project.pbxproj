@@ -19,6 +19,7 @@
 		27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C300F11B2B2FDB00EB9723 /* VollieCardData.m */; };
 		27C3C1241B3B1A6B00F555FD /* NewVollieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3C1231B3B1A6B00F555FD /* NewVollieVC.m */; };
 		27C3C1291B3B2EBC00F555FD /* SelectRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3C1281B3B2EBC00F555FD /* SelectRoomVC.m */; };
+		27C3C12F1B3B3A0900F555FD /* ChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3C12E1B3B3A0900F555FD /* ChatRoomCell.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
 		29271A5919F284B1009C308B /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3319F284B1009C308B /* NavigationController.m */; };
 		29271A5A19F284B1009C308B /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3619F284B1009C308B /* ChatView.m */; };
@@ -196,6 +197,8 @@
 		27C3C1231B3B1A6B00F555FD /* NewVollieVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVollieVC.m; sourceTree = "<group>"; };
 		27C3C1271B3B2EBC00F555FD /* SelectRoomVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRoomVC.h; sourceTree = "<group>"; };
 		27C3C1281B3B2EBC00F555FD /* SelectRoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRoomVC.m; sourceTree = "<group>"; };
+		27C3C12D1B3B3A0900F555FD /* ChatRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomCell.h; sourceTree = "<group>"; };
+		27C3C12E1B3B3A0900F555FD /* ChatRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomCell.m; sourceTree = "<group>"; };
 		292719D119F284AC009C308B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		29271A3219F284B1009C308B /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -506,22 +509,48 @@
 		27C3C1261B3B2E7000F555FD /* MomentsVCs */ = {
 			isa = PBXGroup;
 			children = (
-				27C300F01B2B2FDB00EB9723 /* VollieCardData.h */,
-				27C300F11B2B2FDB00EB9723 /* VollieCardData.m */,
+				27C3C12C1B3B39F000F555FD /* Select Chat */,
+				27C3C12B1B3B39D500F555FD /* New Vollie View */,
+				27C3C12A1B3B344800F555FD /* Moments View */,
+			);
+			name = MomentsVCs;
+			sourceTree = "<group>";
+		};
+		27C3C12A1B3B344800F555FD /* Moments View */ = {
+			isa = PBXGroup;
+			children = (
 				2762FF601B289A530070AD59 /* MomentsVC.h */,
 				2762FF611B289A530070AD59 /* MomentsVC.m */,
+				27C300F01B2B2FDB00EB9723 /* VollieCardData.h */,
+				27C300F11B2B2FDB00EB9723 /* VollieCardData.m */,
 				2749887A1B31E71400560873 /* CardCellView.h */,
 				2749887B1B31E71400560873 /* CardCellView.m */,
 				2749887D1B31F98200560873 /* CellForCard.h */,
 				2749887E1B31F98200560873 /* CellForCard.m */,
+			);
+			name = "Moments View";
+			sourceTree = "<group>";
+		};
+		27C3C12B1B3B39D500F555FD /* New Vollie View */ = {
+			isa = PBXGroup;
+			children = (
 				27C3C1221B3B1A6B00F555FD /* NewVollieVC.h */,
 				27C3C1231B3B1A6B00F555FD /* NewVollieVC.m */,
 				27AC594F1B39E0B800633EAB /* NewVolliePicCell.h */,
 				27AC59501B39E0B800633EAB /* NewVolliePicCell.m */,
+			);
+			name = "New Vollie View";
+			sourceTree = "<group>";
+		};
+		27C3C12C1B3B39F000F555FD /* Select Chat */ = {
+			isa = PBXGroup;
+			children = (
 				27C3C1271B3B2EBC00F555FD /* SelectRoomVC.h */,
 				27C3C1281B3B2EBC00F555FD /* SelectRoomVC.m */,
+				27C3C12D1B3B3A0900F555FD /* ChatRoomCell.h */,
+				27C3C12E1B3B3A0900F555FD /* ChatRoomCell.m */,
 			);
-			name = MomentsVCs;
+			name = "Select Chat";
 			sourceTree = "<group>";
 		};
 		2927192F19F284AC009C308B /* Vendors */ = {
@@ -1347,6 +1376,7 @@
 				C285FA301A7AED3200DB007F /* VerifyTextView.m in Sources */,
 				29EB240B19E9292500D7AA97 /* main.m in Sources */,
 				27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */,
+				27C3C12F1B3B3A0900F555FD /* ChatRoomCell.m in Sources */,
 				29271A5E19F284B1009C308B /* MessagesCell.m in Sources */,
 				C27189381A3243BA00F52320 /* KLCPopup.m in Sources */,
 				C2832CB31A704A6100CDF19D /* IQUIWindow+Hierarchy.m in Sources */,

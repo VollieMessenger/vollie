@@ -13,6 +13,7 @@
 #import "AppConstant.h"
 #import <Parse/Parse.h>
 #import "SelectChatroomView.h"
+#import "SelectRoomVC.h"
 
 
 @interface NewVollieVC ()
@@ -66,11 +67,10 @@ UICollectionViewDelegate>
 - (IBAction)onDismissButtonTapped:(id)sender
 {
 //    [self dismissViewControllerAnimated:YES completion:nil];
-    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
-    camera.comingFromNewVollie = true;
-    camera.textFromLastVC = self.textView.text;
-    [self.navigationController pushViewController:camera animated:YES];
-    
+//    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
+//    camera.comingFromNewVollie = true;
+//    camera.textFromLastVC = self.textView.text;
+//    [self.navigationController pushViewController:camera animated:YES];
 }
 
 #pragma mark "TextView Stuff"
@@ -109,14 +109,19 @@ UICollectionViewDelegate>
     //this code makes "done" or "return" button resign first responder
     if ([text isEqualToString:@"\n"])
     {
-//        [textView resignFirstResponder];
-//        return NO;
-        SelectChatroomView *selectView = [SelectChatroomView new];
-//        self.delegate = selectView;
-        [[UIApplication sharedApplication] setStatusBarHidden:0];
-//        [delegate sendBackPictures:_arrayOfTakenPhotos withBool:YES andComment:@""];
 
-        [self.navigationController pushViewController:selectView animated:0];
+
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
+        [self.navigationController pushViewController:selectRoomVC animated:YES];
+        
+////        [textView resignFirstResponder];
+////        return NO;
+//        SelectChatroomView *selectView = [SelectChatroomView new];
+////        self.delegate = selectView;
+//        [[UIApplication sharedApplication] setStatusBarHidden:0];
+////        [delegate sendBackPictures:_arrayOfTakenPhotos withBool:YES andComment:@""];
+//        [self.navigationController pushViewController:selectView animated:0];
     }
     return YES;
 }

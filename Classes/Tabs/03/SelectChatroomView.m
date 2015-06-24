@@ -62,18 +62,18 @@
 @implementation SelectChatroomView
 
 @synthesize tap;
-
-
-//Don't have a use for this anymore.
-- (id)initWithMessages:(NSArray *)messages
-{
-    self = [super init];
-    if (self)
-    {
-        self.messages = [NSMutableArray arrayWithArray:messages];
-    }
-    return self;
-}
+//
+//
+////Don't have a use for this anymore.
+//- (id)initWithMessages:(NSArray *)messages
+//{
+//    self = [super init];
+//    if (self)
+//    {
+//        self.messages = [NSMutableArray arrayWithArray:messages];
+//    }
+//    return self;
+//}
 
 
 
