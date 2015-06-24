@@ -67,7 +67,6 @@
 
     [self.messagesArray addObject:message];
     [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];
-
 }
 
 -(void)createCardVCwithSetID:(NSString*)setID andPictures:(NSMutableArray*)picsArray andComments:(NSMutableArray *)commentsArray
