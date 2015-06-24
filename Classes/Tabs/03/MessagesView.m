@@ -16,6 +16,8 @@
 
 //#import "camera.h"
 
+#import "MomentsVC.h"
+
 #import "ProfileView.h"
 
 #import "utilities.h"
@@ -1291,7 +1293,8 @@
             if (savedDates.count)
             {
                 NSInteger sectionsAmount = [tableView numberOfSections];
-                if ([indexPath section] == sectionsAmount - 1) {
+                if ([indexPath section] == sectionsAmount - 1)
+                {
                     CreateChatroomView * view = [[CreateChatroomView alloc]init];
                     NSString *name = [message valueForKey:PF_USER_FULLNAME];
                     view.title = @"ahhhhh";
@@ -1324,7 +1327,13 @@
             transition.timingFunction = UIViewAnimationCurveEaseInOut;
             transition.fillMode = kCAFillModeForwards;
             [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-            [self.navigationController pushViewController:chatView animated:YES];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+            MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+//            cardViewController = [[CardVC alloc] initWith:room name:cell.labelDescription.text];
+            cardViewController.name = cell.labelDescription.text;
+            cardViewController.room = room;
+            [self.navigationController pushViewController:cardViewController animated:YES];
+
         }
     }
     else

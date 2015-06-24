@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JSQMessagesViewController">
@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eSa-Yo-Z0P">
-                    <rect key="frame" x="218" y="0.0" width="100" height="524"/>
+                    <rect key="frame" x="218" y="66" width="100" height="458"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="bvd-Rr-F5e"/>
@@ -37,8 +37,8 @@
                         <outlet property="delegate" destination="-1" id="Efm-vh-Lk8"/>
                     </connections>
                 </collectionView>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
-                    <rect key="frame" x="0.0" y="66" width="219" height="502"/>
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
+                    <rect key="frame" x="0.0" y="66" width="219" height="458"/>
                     <collectionViewLayout key="collectionViewLayout" id="dZl-7C-LHR" customClass="JSQMessagesCollectionViewFlowLayout"/>
                     <cells/>
                     <connections>
@@ -60,7 +60,7 @@
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" constant="-1" id="7xc-Ha-asg"/>
-                <constraint firstItem="eSa-Yo-Z0P" firstAttribute="top" secondItem="l9u-2b-4LK" secondAttribute="top" constant="-66" id="8JS-ut-zm7"/>
+                <constraint firstItem="eSa-Yo-Z0P" firstAttribute="top" secondItem="l9u-2b-4LK" secondAttribute="top" id="8JS-ut-zm7"/>
                 <constraint firstItem="eSa-Yo-Z0P" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="top" id="Gqc-Vj-RML"/>
                 <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="SSb-EC-Eyt"/>
                 <constraint firstAttribute="trailing" secondItem="eSa-Yo-Z0P" secondAttribute="trailing" constant="2" id="b1O-Vo-A70"/>
@@ -68,7 +68,7 @@
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="66" id="gwc-y1-N8n"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="BoD-Az-3DM" secondAttribute="leading" constant="-1" id="ipF-wa-T5s"/>
                 <constraint firstItem="BoD-Az-3DM" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" constant="1" id="ts7-8f-0lH"/>
-                <constraint firstItem="l9u-2b-4LK" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="uqN-3E-rgf"/>
+                <constraint firstItem="l9u-2b-4LK" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" constant="-44" id="uqN-3E-rgf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
         </view>

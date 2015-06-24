@@ -72,10 +72,10 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
                         delegate:(id<JSQMessagesKeyboardControllerDelegate>)delegate
 
 {
-    NSParameterAssert(textView != nil);
+//    NSParameterAssert(textView != nil);
     NSParameterAssert(contextView != nil);
     NSParameterAssert(panGestureRecognizer != nil);
-    
+
     self = [super init];
     if (self) {
         _textView = textView;
