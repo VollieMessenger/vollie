@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface ChatRoomCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet PFImageView *imageView;
+@property (strong, nonatomic) IBOutlet UILabel *lastTextLabel;
 @property (strong, nonatomic) IBOutlet UILabel *roomNameLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *lastImageView;
+//@property (strong, nonatomic) IBOutlet UIImageView *lastImageView;
 
 @end

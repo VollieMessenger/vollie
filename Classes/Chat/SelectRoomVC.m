@@ -36,7 +36,6 @@
     [self loadData];
 }
 
-
 - (void)loadData
 {
     if ([PFUser currentUser])
@@ -45,21 +44,8 @@
         // LOAD MESSAGES FROM INBOX INSTEAD.
         MessagesView *view = nav.viewControllers.firstObject;
         self.messages = view.messages;
-        NSLog(@"%li rooms", self.messages.count);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 #pragma mark - "TableView Stuff"
 
@@ -67,8 +53,10 @@
 {
     ChatRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
-    cell.lastImageView.layer.cornerRadius = 10;
-    cell.lastImageView.layer.masksToBounds = YES;
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+//    cell.lastImageView.layer.cornerRadius = 10;
+//    cell.lastImageView.layer.masksToBounds = YES;
 
     if (room[PF_MESSAGES_NICKNAME])
     {
@@ -79,21 +67,31 @@
         NSString *description = room[PF_MESSAGES_DESCRIPTION];
         cell.roomNameLabel.text = description;
     }
+    if(room[PF_MESSAGES_LASTMESSAGE])
+    {
+        cell.lastTextLabel.text = room[PF_MESSAGES_LASTMESSAGE];
+    }
 
+    
+//
     PFObject *picture = room[PF_MESSAGES_LASTPICTURE];
-
+//
     if (picture)
     {
         PFFile *file = [picture valueForKey:PF_PICTURES_THUMBNAIL];
-        NSString *tempString = file.url;
-        NSURL *tempURL = [NSURL URLWithString:tempString];
-        NSData *tempData = [NSData dataWithContentsOfURL:tempURL];
-        UIImage *thumbnailImage = [UIImage imageWithData:tempData];
-        cell.lastImageView.image = thumbnailImage;
-//        NSLog(@"%@", file);
+        cell.imageView.file = file;
+        [cell.imageView loadInBackground];
+
     }
-
-
+//    {
+//        PFFile *file = [picture valueForKey:PF_PICTURES_THUMBNAIL];
+//        NSString *tempString = file.url;
+//        NSURL *tempURL = [NSURL URLWithString:tempString];
+//        NSData *tempData = [NSData dataWithContentsOfURL:tempURL];
+//        UIImage *thumbnailImage = [UIImage imageWithData:tempData];
+//        cell.lastImageView.image = thumbnailImage;
+////        NSLog(@"%@", file);
+//    }
     return cell;
 }
 
@@ -101,6 +99,13 @@
 {
 
     return self.messages.count;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //make it send messages here
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [tableView reloadData];
 }
 
 
