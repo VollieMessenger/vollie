@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MasterScrollView.h"
+
 
 @interface Test2ViewController : UIViewController
+
+@property MasterScrollView *scrollView;
 
 @end

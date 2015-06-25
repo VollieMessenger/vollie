@@ -41,6 +41,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "Test2ViewController.h"
+
 #import "JCNotificationCenter.h"
 #import "JCNotificationBannerPresenterSmokeStyle.h"
 #import "JCNotificationBannerPresenterIOS7Style.h"
@@ -133,6 +135,11 @@
     //not sure why we need to say this one is true. flipped it to false and saw no change
     favorites.scrollView = scrollView;
 
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    Test2ViewController *testView = (Test2ViewController *)[storyboard instantiateViewControllerWithIdentifier:@"Test2ViewController"];
+    testView.scrollView = scrollView;
+
+
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
     [scrollView setContentOffset:CGPointMake(vc.view.frame.size.width, 0) animated:0];
 
@@ -142,18 +149,24 @@
 
     self.navCamera = [[NavigationController alloc] initWithRootViewController:camera];
 
+//    self.navTest = [[NavigationController alloc] initWithRootViewController:testView];
+
     self.navFavorites.navigationBar.barTintColor = [UIColor volleyFamousOrange];
 
     _navCamera.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
+
+//    _navTest.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
     _navInbox.view.frame = CGRectMake(vc.view.frame.size.width, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
     _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
+//    [_navTest didMoveToParentViewController:vc];
     [_navCamera didMoveToParentViewController:vc];
     [_navFavorites didMoveToParentViewController:vc];
     [_navInbox didMoveToParentViewController:vc];
 
+//    [scrollView addSubview:_navTest.view];
     [scrollView addSubview:_navCamera.view];
     [scrollView addSubview:_navInbox.view];
     [scrollView addSubview:_navFavorites.view];
