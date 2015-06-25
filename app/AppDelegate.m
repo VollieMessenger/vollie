@@ -41,7 +41,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "Test2ViewController.h"
+#import "RoomSettingsVC.h"
 
 #import "JCNotificationCenter.h"
 #import "JCNotificationBannerPresenterSmokeStyle.h"
@@ -135,9 +135,9 @@
     //not sure why we need to say this one is true. flipped it to false and saw no change
     favorites.scrollView = scrollView;
 
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    Test2ViewController *testView = (Test2ViewController *)[storyboard instantiateViewControllerWithIdentifier:@"Test2ViewController"];
-    testView.scrollView = scrollView;
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+//    RoomSettingsVC *testView = (RoomSettingsVC *)[storyboard instantiateViewControllerWithIdentifier:@"Test2ViewController"];
+//    testView.scrollView = scrollView;
 
 
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
@@ -149,24 +149,24 @@
 
     self.navCamera = [[NavigationController alloc] initWithRootViewController:camera];
 
-//    self.navTest = [[NavigationController alloc] initWithRootViewController:testView];
+//    self.settingsVC = [[NavigationController alloc] initWithRootViewController:testView];
 
     self.navFavorites.navigationBar.barTintColor = [UIColor volleyFamousOrange];
 
     _navCamera.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
-//    _navTest.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
+//    _settingsVC.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
     _navInbox.view.frame = CGRectMake(vc.view.frame.size.width, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
     _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
-//    [_navTest didMoveToParentViewController:vc];
+//    [_settingsVC didMoveToParentViewController:vc];
     [_navCamera didMoveToParentViewController:vc];
     [_navFavorites didMoveToParentViewController:vc];
     [_navInbox didMoveToParentViewController:vc];
 
-//    [scrollView addSubview:_navTest.view];
+//    [scrollView addSubview:_settingsVC.view];
     [scrollView addSubview:_navCamera.view];
     [scrollView addSubview:_navInbox.view];
     [scrollView addSubview:_navFavorites.view];

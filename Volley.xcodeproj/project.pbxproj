@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270D0D9A1B3C5EFC0070F2F1 /* Test2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D0D991B3C5EFC0070F2F1 /* Test2ViewController.m */; };
+		270D0D9A1B3C5EFC0070F2F1 /* RoomSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D0D991B3C5EFC0070F2F1 /* RoomSettingsVC.m */; };
 		274988781B31DDBD00560873 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 274988761B31DDBD00560873 /* CardVC.m */; };
 		274988791B31DDBD00560873 /* CardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274988771B31DDBD00560873 /* CardVC.xib */; };
 		2749887C1B31E71400560873 /* CardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887B1B31E71400560873 /* CardCellView.m */; };
@@ -176,8 +176,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		270D0D981B3C5EFC0070F2F1 /* Test2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test2ViewController.h; sourceTree = "<group>"; };
-		270D0D991B3C5EFC0070F2F1 /* Test2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test2ViewController.m; sourceTree = "<group>"; };
+		270D0D981B3C5EFC0070F2F1 /* RoomSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSettingsVC.h; sourceTree = "<group>"; };
+		270D0D991B3C5EFC0070F2F1 /* RoomSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSettingsVC.m; sourceTree = "<group>"; };
 		274988751B31DDBD00560873 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
 		274988761B31DDBD00560873 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
 		274988771B31DDBD00560873 /* CardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardVC.xib; sourceTree = "<group>"; };
@@ -512,8 +512,8 @@
 		27C3C1261B3B2E7000F555FD /* MomentsVCs */ = {
 			isa = PBXGroup;
 			children = (
-				270D0D981B3C5EFC0070F2F1 /* Test2ViewController.h */,
-				270D0D991B3C5EFC0070F2F1 /* Test2ViewController.m */,
+				270D0D981B3C5EFC0070F2F1 /* RoomSettingsVC.h */,
+				270D0D991B3C5EFC0070F2F1 /* RoomSettingsVC.m */,
 				27C3C12C1B3B39F000F555FD /* Select Chat */,
 				27C3C12B1B3B39D500F555FD /* New Vollie View */,
 				27C3C12A1B3B344800F555FD /* Moments View */,
@@ -1352,7 +1352,7 @@
 				C2BD53EA1A31077D006D721E /* CustomChatView.m in Sources */,
 				C21DD6EA1A71D73B0009BC6A /* JCNotificationBannerView.m in Sources */,
 				C27374971A2FFF4800C4B22A /* CustomCameraView.m in Sources */,
-				270D0D9A1B3C5EFC0070F2F1 /* Test2ViewController.m in Sources */,
+				270D0D9A1B3C5EFC0070F2F1 /* RoomSettingsVC.m in Sources */,
 				296DD5C61A1F52F400AB9F8C /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				296DD5D01A1F52F400AB9F8C /* JSQMessagesBubbleImage.m in Sources */,
 				29271A6B19F284B1009C308B /* utilities.m in Sources */,

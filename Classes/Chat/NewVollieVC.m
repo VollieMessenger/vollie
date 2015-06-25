@@ -23,6 +23,7 @@ UICollectionViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property CustomCameraView *cameraView;
 
 @end
 
@@ -33,6 +34,8 @@ UICollectionViewDelegate>
     [super viewDidLoad];
     [self basicSetUpAndInit];
     [self checkForPreviousVC];
+    self.cameraView = [[CustomCameraView alloc] initWithPopUp:YES];
+
 }
 
 -(void)basicSetUpAndInit
@@ -174,16 +177,11 @@ UICollectionViewDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
-    camera.comingFromNewVollie = true;
-    camera.textFromLastVC = self.textView.text;
-    camera.photosFromNewVC = self.photosArray;
-    [self.navigationController pushViewController:camera animated:YES];
+//    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
+    self.cameraView.comingFromNewVollie = true;
+    self.cameraView.textFromLastVC = self.textView.text;
+    self.cameraView.photosFromNewVC = self.photosArray;
+    [self.navigationController pushViewController:self.cameraView animated:YES];
 }
-
-
-
-
-
 
 @end

@@ -20,6 +20,6 @@
 @property (strong, nonatomic) NavigationController *navInbox;
 @property (strong, nonatomic) NavigationController *navCamera;
 @property (strong, nonatomic) NavigationController *navFavorites;
-@property (strong, nonatomic) NavigationController *navTest;
+@property (strong, nonatomic) NavigationController *settingsVC;
 
 @end

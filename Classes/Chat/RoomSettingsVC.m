@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 KZ. All rights reserved.
 //
 
-#import "Test2ViewController.h"
+#import "RoomSettingsVC.h"
 
-@interface Test2ViewController ()
+@interface RoomSettingsVC ()
 
 @end
 
-@implementation Test2ViewController
+@implementation RoomSettingsVC
 
 - (void)viewDidLoad
 {

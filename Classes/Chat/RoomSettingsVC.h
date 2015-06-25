@@ -10,7 +10,7 @@
 #import "MasterScrollView.h"
 
 
-@interface Test2ViewController : UIViewController
+@interface RoomSettingsVC : UIViewController
 
 @property MasterScrollView *scrollView;
 
