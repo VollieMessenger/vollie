@@ -34,7 +34,7 @@ UICollectionViewDelegate>
     [super viewDidLoad];
     [self basicSetUpAndInit];
     [self checkForPreviousVC];
-    self.cameraView = [[CustomCameraView alloc] initWithPopUp:YES];
+//    self.cameraView = [[CustomCameraView alloc] initWithPopUp:NO];
 
 }
 
@@ -178,10 +178,26 @@ UICollectionViewDelegate>
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 //    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
-    self.cameraView.comingFromNewVollie = true;
-    self.cameraView.textFromLastVC = self.textView.text;
-    self.cameraView.photosFromNewVC = self.photosArray;
-    [self.navigationController pushViewController:self.cameraView animated:YES];
+//    self.cameraView.comingFromNewVollie = true;
+//    self.cameraView.textFromLastVC = self.textView.text;
+//    self.cameraView.photosFromNewVC = self.photosArray;
+//    [self.navigationController pushViewController:self.cameraView animated:YES];
+
+    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+
+    if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
+    {
+        CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+        [cam setPopUp];
+        cam.delegate = self;
+        cam.comingFromNewVollie = YES;
+        cam.textFromLastVC = self.textView.text;
+        cam.photosFromNewVC = self.photosArray;
+        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:0 completion:0];
+    }
+
+//    [self.cameraView.delegate freezeCamera];
+
 }
 
 @end

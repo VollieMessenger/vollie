@@ -113,6 +113,7 @@
     [super viewDidLoad];
 
 //    [self runCamera];
+    [self deallocSession];
 
     self.firstCameraFlip = true;
     self.camFlipCount = 0;
@@ -563,14 +564,13 @@
 
 -(void)freezeCamera
 {
-    
+    NSLog(@"frozen!");
 }
 
 
 -(IBAction)didSlideRight:(id)sender
 {
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:YES];
-    NSLog(@"%i", self.scrollView.contentOffset);
 }
 
 - (void)updateUI:(NSTimer *)timer
@@ -1566,7 +1566,24 @@
     }
     else
     {
-        if (self.isPoppingUp)
+        if(self.comingFromNewVollie == true)
+        {
+
+            UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:0];
+
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+            vc.textFromLastVC = self.textFromLastVC;
+            vc.photosArray = self.arrayOfTakenPhotos;
+//            [self.navigationController pushViewController:vc animated:NO];
+
+//            UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:3];
+            [self.navigationController popToViewController:prevVC animated:YES];
+
+
+
+        }
+        else if (self.isPoppingUp)
         {
             self.isPoppingUp = NO;
 
@@ -1582,14 +1599,6 @@
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
             PostNotification(NOTIFICATION_CAMERA_POPUP);
-        }
-        else if(self.comingFromNewVollie == true)
-        {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-            vc.textFromLastVC = self.textFromLastVC;
-            vc.photosArray = self.arrayOfTakenPhotos;
-            [self.navigationController pushViewController:vc animated:YES];
         }
         else
         {
