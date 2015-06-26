@@ -83,6 +83,7 @@
 @implementation CustomCameraView
 
 @synthesize delegate;
+@synthesize myDelegate;
 
 - (id)initWithPopUp:(BOOL)popup
 {
@@ -1568,18 +1569,21 @@
     {
         if(self.comingFromNewVollie == true)
         {
-
-            UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:0];
-
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-            vc.textFromLastVC = self.textFromLastVC;
-            vc.photosArray = self.arrayOfTakenPhotos;
+//
+//            UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:0];
+//
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+//            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+//            vc.textFromLastVC = self.textFromLastVC;
+//            vc.photosArray = self.arrayOfTakenPhotos;
 //            [self.navigationController pushViewController:vc animated:NO];
 
 //            UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:3];
-            [self.navigationController popToViewController:prevVC animated:YES];
-
+        if([self.myDelegate respondsToSelector:@selector(secondViewControllerDismissed:)])
+        {
+            [self.myDelegate secondViewControllerDismissed:@"passing data back"];
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
 
 
         }

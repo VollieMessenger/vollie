@@ -19,7 +19,8 @@
 @interface NewVollieVC ()
 <UITextViewDelegate,
 UICollectionViewDataSource,
-UICollectionViewDelegate>
+UICollectionViewDelegate,
+SecondDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -140,6 +141,12 @@ UICollectionViewDelegate>
     }
 }
 
+- (void)secondViewControllerDismissed:(NSString *)stringForFirst
+{
+    NSString *thisIsTheDesiredString = stringForFirst; //And there you have it.....
+    NSLog(thisIsTheDesiredString);
+}
+
 #pragma mark "CollectionView Stuff"
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -193,6 +200,9 @@ UICollectionViewDelegate>
         cam.comingFromNewVollie = YES;
         cam.textFromLastVC = self.textView.text;
         cam.photosFromNewVC = self.photosArray;
+        cam.myDelegate = self;
+        
+
         [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:0 completion:0];
     }
 

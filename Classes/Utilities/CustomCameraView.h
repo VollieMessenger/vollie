@@ -13,8 +13,15 @@
 -(void)sendBackPictures:(NSArray *)images withBool:(bool)didTakePicture andComment:(NSString *)comment;
 @end
 
-@interface CustomCameraView : UIViewController
+@protocol SecondDelegate <NSObject>
+-(void) secondViewControllerDismissed:(NSString *)stringForFirst;
+@end
 
+@interface CustomCameraView : UIViewController
+{
+//    id                              myDelegate;
+}
+@property (nonatomic, assign) id<SecondDelegate>    myDelegate;
 @property(nonatomic,assign)id delegate;
 
 -(id)initWithPopUp:(BOOL)popup;
