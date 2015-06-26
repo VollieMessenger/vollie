@@ -1581,7 +1581,7 @@
 //            UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:3];
         if([self.myDelegate respondsToSelector:@selector(secondViewControllerDismissed:)])
         {
-            [self.myDelegate secondViewControllerDismissed:@"passing data back"];
+            [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
         }
         [self dismissViewControllerAnimated:YES completion:nil];
 

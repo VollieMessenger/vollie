@@ -141,10 +141,12 @@ SecondDelegate>
     }
 }
 
-- (void)secondViewControllerDismissed:(NSString *)stringForFirst
+- (void)secondViewControllerDismissed:(NSMutableArray *)stringForFirst
 {
-    NSString *thisIsTheDesiredString = stringForFirst; //And there you have it.....
-    NSLog(thisIsTheDesiredString);
+//    NSString *thisIsTheDesiredString = stringForFirst; //And there you have it.....
+    self.photosArray = stringForFirst;
+    NSLog(@"%li", self.photosArray.count);
+    [self.collectionView reloadData];
 }
 
 #pragma mark "CollectionView Stuff"
