@@ -348,6 +348,7 @@
 #warning NOT USED DISABLE PLEASE
 - (IBAction)dragOut: (id)sender withEvent: (UIEvent *) event
 {
+
 }
 /*
  return;
@@ -528,6 +529,8 @@
             break;
     }
 }
+
+
 
 - (IBAction)onCloseCameraPressed:(UIButton *)sender
 {
@@ -1559,7 +1562,7 @@
         button.transform = CGAffineTransformMakeScale(1,1);
     }];
 
-    button.userInteractionEnabled = NO;
+//    button.userInteractionEnabled = NO;
     if (_arrayOfTakenPhotos.count == 0)
     {
         [ProgressHUD showError:@"No Pictures Taken"];
@@ -1569,23 +1572,15 @@
     {
         if(self.comingFromNewVollie == true)
         {
-//
-//            UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:0];
-//
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-//            vc.textFromLastVC = self.textFromLastVC;
-//            vc.photosArray = self.arrayOfTakenPhotos;
-//            [self.navigationController pushViewController:vc animated:NO];
+            if([self.myDelegate respondsToSelector:@selector(secondViewControllerDismissed:)])
+            {
+                [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
+            }
+            PostNotification(NOTIFICATION_CAMERA_POPUP);
 
-//            UIViewController *prevVC = [self.navigationController.viewControllers objectAtIndex:3];
-        if([self.myDelegate respondsToSelector:@selector(secondViewControllerDismissed:)])
-        {
-            [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
-        }
-        [self dismissViewControllerAnimated:YES completion:nil];
+            [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
-
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
         else if (self.isPoppingUp)
         {
@@ -1613,9 +1608,6 @@
 
             [self.navigationController pushViewController:selectView animated:0];
             button.userInteractionEnabled = YES;
-
-            //kyle note
-            //we're going to need to send this to the NewVollieVC
         }
     }
 }
