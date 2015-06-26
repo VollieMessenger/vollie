@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		270D0D9A1B3C5EFC0070F2F1 /* RoomSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D0D991B3C5EFC0070F2F1 /* RoomSettingsVC.m */; };
+		270D7EF81B3DE1DA00FE28E9 /* PopUpScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */; };
 		274988781B31DDBD00560873 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 274988761B31DDBD00560873 /* CardVC.m */; };
 		274988791B31DDBD00560873 /* CardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274988771B31DDBD00560873 /* CardVC.xib */; };
 		2749887C1B31E71400560873 /* CardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887B1B31E71400560873 /* CardCellView.m */; };
@@ -178,6 +179,8 @@
 /* Begin PBXFileReference section */
 		270D0D981B3C5EFC0070F2F1 /* RoomSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSettingsVC.h; sourceTree = "<group>"; };
 		270D0D991B3C5EFC0070F2F1 /* RoomSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSettingsVC.m; sourceTree = "<group>"; };
+		270D7EF61B3DE1DA00FE28E9 /* PopUpScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpScrollView.h; path = Classes/Application/PopUpScrollView.h; sourceTree = SOURCE_ROOT; };
+		270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopUpScrollView.m; path = Classes/Application/PopUpScrollView.m; sourceTree = SOURCE_ROOT; };
 		274988751B31DDBD00560873 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
 		274988761B31DDBD00560873 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
 		274988771B31DDBD00560873 /* CardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardVC.xib; sourceTree = "<group>"; };
@@ -509,6 +512,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270D7EF51B3DDD0200FE28E9 /* MomentsObjects */ = {
+			isa = PBXGroup;
+			children = (
+				270D7EF61B3DE1DA00FE28E9 /* PopUpScrollView.h */,
+				270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */,
+			);
+			name = MomentsObjects;
+			sourceTree = "<group>";
+		};
 		27C3C1261B3B2E7000F555FD /* MomentsVCs */ = {
 			isa = PBXGroup;
 			children = (
@@ -616,6 +628,7 @@
 		29271A3419F284B1009C308B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				270D7EF51B3DDD0200FE28E9 /* MomentsObjects */,
 				27C3C1261B3B2E7000F555FD /* MomentsVCs */,
 				29271A3B19F284B1009C308B /* 1 */,
 				279D7C971B2F38AC0090C1AD /* ChatColView.h */,
@@ -1317,6 +1330,7 @@
 				296DD5CE1A1F52F400AB9F8C /* JSQMessage.m in Sources */,
 				296DD5BD1A1F52F400AB9F8C /* UIColor+JSQMessages.m in Sources */,
 				C2CA16E01A82860E00DD25AC /* DidFavoriteView.m in Sources */,
+				270D7EF81B3DE1DA00FE28E9 /* PopUpScrollView.m in Sources */,
 				9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */,
 				296DD5E21A1F52F400AB9F8C /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				296DD5BE1A1F52F400AB9F8C /* UIDevice+JSQMessages.m in Sources */,

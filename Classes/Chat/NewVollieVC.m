@@ -12,8 +12,11 @@
 #import "NewVolliePicCell.h"
 #import "AppConstant.h"
 #import <Parse/Parse.h>
-#import "SelectChatroomView.h"
+#import <ParseUI/ParseUI.h>
 #import "SelectRoomVC.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "KLCPopup.h"
+
 
 
 @interface NewVollieVC ()
@@ -25,6 +28,10 @@ SecondDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property CustomCameraView *cameraView;
+@property NSMutableArray *arrayForScrollView;
+@property UIPageControl *pageControl;
+@property PFImageView *popUpImageView;
+@property KLCPopup *popUp;
 
 @end
 
@@ -45,6 +52,9 @@ SecondDelegate>
     [self.textView becomeFirstResponder];
     [self.textView setReturnKeyType:UIReturnKeySend];
     self.collectionView.backgroundColor = [UIColor clearColor];
+
+    self.arrayForScrollView = [NSMutableArray new];
+    self.pageControl = [UIPageControl new];
 }
 
 -(void)checkForPreviousVC
@@ -149,6 +159,30 @@ SecondDelegate>
     [self.collectionView reloadData];
 }
 
+-(void)bringUpCameraView
+{
+    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+    if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
+    {
+        CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+        //        CustomCameraView *cam = [[CustomCameraView alloc] initWithPopUp:YES];
+        [cam setPopUp];
+        cam.delegate = self;
+        cam.comingFromNewVollie = YES;
+        cam.textFromLastVC = self.textView.text;
+        cam.photosFromNewVC = self.photosArray;
+        cam.myDelegate = self;
+        //        [self presentViewController:cam animated:YES completion:nil];
+        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
+    }
+}
+
+#pragma mark "ScrollView"
+-(void)setUpPhotoScrollViewWithIndexPathItem:(NSInteger)indexPathItem
+{
+
+}
+
 
 
 #pragma mark "CollectionView Stuff"
@@ -188,19 +222,13 @@ SecondDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
-    if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
+    if (indexPath.item > self.photosArray.count)
     {
-        CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-//        CustomCameraView *cam = [[CustomCameraView alloc] initWithPopUp:YES];
-        [cam setPopUp];
-        cam.delegate = self;
-        cam.comingFromNewVollie = YES;
-        cam.textFromLastVC = self.textView.text;
-        cam.photosFromNewVC = self.photosArray;
-        cam.myDelegate = self;
-//        [self presentViewController:cam animated:YES completion:nil];
-        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
+        [self bringUpCameraView];
+    }
+    if(self.photosArray.count)
+    {
+
     }
 }
 
