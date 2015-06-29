@@ -19,7 +19,6 @@
 #import "utilities.h"
 #import "AppDelegate.h"
 #import "SelectChatroomView.h"
-#import "NewVollieVC.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -89,7 +88,7 @@
     self = [super init];
     if (self)
     {
-        self.isPoppingUp = popup;
+        self.isPoppingUp = NO;
     }
     return self;
 }
@@ -1585,11 +1584,10 @@
         }
         else if(self.comingFromNewVollie == true)
         {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-            vc.textFromLastVC = self.textFromLastVC;
-            vc.photosArray = self.arrayOfTakenPhotos;
-            [self.navigationController pushViewController:vc animated:YES];
+            NSLog(@"%@",self.presentingViewController);
+            self.roomView.textFromLastVC = self.textFromLastVC;
+            self.roomView.photosArray = self.arrayOfTakenPhotos;
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else
         {

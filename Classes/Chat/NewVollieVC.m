@@ -188,9 +188,14 @@ UICollectionViewDelegate>
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
         [cam setPopUp];
+        cam.isPoppingUp = NO;
+        cam.roomView = self;
+        cam.comingFromNewVollie = YES;
         cam.delegate = self;
-        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:0 completion:0];
+        [self.navigationController presentViewController:navCamera animated:0 completion:0];
     }
 }
+
+
 
 @end

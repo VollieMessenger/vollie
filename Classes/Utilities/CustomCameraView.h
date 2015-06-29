@@ -7,6 +7,7 @@
 #import <UIKit/UIKit.h>
 #import "MessagesView.h"
 #import "MasterScrollView.h"
+#import "NewVollieVC.h"
 
 #pragma mark - DELEGATE
 @protocol CustomCameraDelegate <NSObject>
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) MasterScrollView *scrollView;
 
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *savedButtons;
+@property NewVollieVC *roomView;
 
 @property BOOL isReturningFromBackButton;
 
@@ -54,5 +56,7 @@
 
 -(void) moveImageUpToLatestBlank:(UIButton *)sender;
 -(void) freezeCamera;
+-(void) removeInputs;
+-(void) setupCaptureSessionAndStartRunning;
 
 @end
