@@ -109,8 +109,6 @@
 }
 
 
-
-
 /*
  PFObject *message = [self.messages objectAtIndex:indexPath.row];
 

@@ -160,7 +160,7 @@ SecondDelegate>
         cam.textFromLastVC = self.textView.text;
         cam.photosFromNewVC = self.photosArray;
         cam.myDelegate = self;
-        //        [self presentViewController:cam animated:YES completion:nil];
+
         [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
     }
 }
