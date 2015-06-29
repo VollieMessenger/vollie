@@ -746,7 +746,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="ykN-VB-1xY"/>
+                    <navigationItem key="navigationItem" id="ykN-VB-1xY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="FzU-gS-5Ek">
+                            <connections>
+                                <action selector="onSendButtonPushed:" destination="V8p-ac-hE8" id="uW3-ft-U6r"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="IZv-cz-gJI" id="5WZ-uw-18I"/>
                     </connections>

@@ -125,6 +125,8 @@ SecondDelegate>
     {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
         SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
+        selectRoomVC.photosToSend = self.photosArray;
+        selectRoomVC.textToSend = self.textView.text;
         [self.navigationController pushViewController:selectRoomVC animated:YES];
     }
     return YES;

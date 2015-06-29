@@ -20,6 +20,15 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property NSMutableArray *messages;
+@property NSMutableArray *savedPhotoObjects;
+
+@property PFObject *selectedRoom;
+@property PFObject *selectedSet;
+@property PFObject *selectedMessage;
+
+@property int countDownToPhotoRefresh;
+@property BOOL isThePicturesReadyToSend;
+
 
 @end
 
@@ -29,10 +38,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@"%li", self.photosToSend.count);
+    NSLog(@"%@", self.textToSend);
 
     self.tableView.backgroundColor = [UIColor clearColor];
     self.title = @"Send to...";
     self.messages = [NSMutableArray new];
+    self.savedPhotoObjects = [NSMutableArray new];
     [self loadData];
 }
 
@@ -47,6 +59,56 @@
     }
 }
 
+-(void)beginSendingVolliePackage
+{
+    [self.selectedRoom fetchInBackgroundWithBlock:^(PFObject *object, NSError *error)
+     {
+         if (!error)
+         {
+             [ProgressHUD show:@"Sending..." Interaction:NO];
+             int numberOfSets = [[object valueForKey:PF_CHATROOMS_ROOMNUMBER] intValue];
+             if (numberOfSets == 0)
+             {
+                 [self.selectedSet setValue:@(0) forKey:PF_SET_ROOMNUMBER];
+             }
+             else
+             {
+                 [self.selectedSet setValue:@(numberOfSets) forKey:PF_SET_ROOMNUMBER];
+             }
+
+             [self.selectedRoom setValue:@(numberOfSets + 1) forKey:PF_CHATROOMS_ROOMNUMBER];
+             [self.selectedRoom saveInBackground];
+
+             [_selectedSet setValue:_selectedRoom forKey:PF_SET_ROOM];
+             [_selectedSet setValue:[PFUser currentUser] forKey:PF_SET_USER];
+             [_selectedSet saveInBackground];
+
+             [self savePicturesinRoom:self.selectedRoom];
+         }
+         else
+         {
+             [ProgressHUD showError:@"Network Error"];
+         }
+     }];
+}
+
+-(void)savePicturesinRoom:(PFObject *)room
+{
+    self.countDownToPhotoRefresh = (int)self.savedPhotoObjects.count;
+
+//    while (_isThePicturesReadyToSend == NO)
+//    {
+//        [self savePicturesinRoom:room];
+//        return;
+//    }
+
+    for (PFObject *picture in self.photosToSend)
+    {
+        
+    }
+
+}
+
 #pragma mark - "TableView Stuff"
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -55,8 +117,6 @@
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
-//    cell.lastImageView.layer.cornerRadius = 10;
-//    cell.lastImageView.layer.masksToBounds = YES;
 
     if (room[PF_MESSAGES_NICKNAME])
     {
@@ -71,11 +131,7 @@
     {
         cell.lastTextLabel.text = room[PF_MESSAGES_LASTMESSAGE];
     }
-
-    
-//
     PFObject *picture = room[PF_MESSAGES_LASTPICTURE];
-//
     if (picture)
     {
         PFFile *file = [picture valueForKey:PF_PICTURES_THUMBNAIL];
@@ -83,16 +139,15 @@
         [cell.imageView loadInBackground];
 
     }
-//    {
-//        PFFile *file = [picture valueForKey:PF_PICTURES_THUMBNAIL];
-//        NSString *tempString = file.url;
-//        NSURL *tempURL = [NSURL URLWithString:tempString];
-//        NSData *tempData = [NSData dataWithContentsOfURL:tempURL];
-//        UIImage *thumbnailImage = [UIImage imageWithData:tempData];
-//        cell.lastImageView.image = thumbnailImage;
-////        NSLog(@"%@", file);
-//    }
     return cell;
+}
+
+- (IBAction)onSendButtonPushed:(id)sender
+{
+    if (self.selectedRoom)
+    {
+        [self beginSendingVolliePackage];
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -103,9 +158,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //make it send messages here
+    ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor volleyFamousOrange];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    [tableView reloadData];
+    PFObject *room = [self.messages objectAtIndex:indexPath.row];
+    self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
 }
 
 

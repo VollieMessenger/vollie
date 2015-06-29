@@ -10,4 +10,7 @@
 
 @interface SelectRoomVC : UIViewController
 
+@property NSMutableArray *photosToSend;
+@property NSString *textToSend;
+
 @end
