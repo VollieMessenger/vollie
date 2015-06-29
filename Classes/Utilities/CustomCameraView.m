@@ -561,7 +561,7 @@
 
     [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
-    [self dismissViewControllerAnimated:0 completion:0];
+    [self dismissViewControllerAnimated:1 completion:0];
 
     self.didPickImageFromAlbum = NO;
 }
@@ -1575,6 +1575,7 @@
             if([self.myDelegate respondsToSelector:@selector(secondViewControllerDismissed:)])
             {
                 [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
+                self.comingFromNewVollie = false;
             }
             PostNotification(NOTIFICATION_CAMERA_POPUP);
 

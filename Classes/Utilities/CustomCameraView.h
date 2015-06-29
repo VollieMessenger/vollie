@@ -14,7 +14,7 @@
 @end
 
 @protocol SecondDelegate <NSObject>
--(void) secondViewControllerDismissed:(NSMutableArray *)stringForFirst;
+-(void) secondViewControllerDismissed:(NSMutableArray *)photosForFirst;
 @end
 
 @interface CustomCameraView : UIViewController

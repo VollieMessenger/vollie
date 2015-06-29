@@ -198,6 +198,11 @@
 	return YES;
 }
 
+-(void)stupidTestMethod
+{
+    NSLog(@"test method called");
+}
+
 - (void)setCameraBack
 {
 #warning TOO SLOW?
@@ -247,7 +252,6 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
-
 {
 	
 }
@@ -381,7 +385,9 @@
         }
 
             completionHandler(UIBackgroundFetchResultNewData);
-        } else {
+        }
+        else
+        {
             completionHandler(UIBackgroundFetchResultNoData);
         }
     }];

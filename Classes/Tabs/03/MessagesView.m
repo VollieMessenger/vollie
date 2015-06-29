@@ -392,7 +392,8 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     //Deleted && !_isArchive
-    if (self.navigationController.visibleViewController == self){
+    if (self.navigationController.visibleViewController == self)
+    {
         self.scrollView.scrollEnabled = YES;
     } else {
         self.scrollView.scrollEnabled = NO;

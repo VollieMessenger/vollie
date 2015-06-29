@@ -43,8 +43,14 @@ SecondDelegate>
     [super viewDidLoad];
     [self basicSetUpAndInit];
     [self checkForPreviousVC];
-//    self.cameraView = [[CustomCameraView alloc] initWithPopUp:NO];
 
+    self.arrayForScrollView = [NSMutableArray new];
+    self.pageControl = [UIPageControl new];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self basicSetUpAndInit];
 }
 
 -(void)basicSetUpAndInit
@@ -53,9 +59,6 @@ SecondDelegate>
     [self.textView becomeFirstResponder];
     [self.textView setReturnKeyType:UIReturnKeySend];
     self.collectionView.backgroundColor = [UIColor clearColor];
-
-    self.arrayForScrollView = [NSMutableArray new];
-    self.pageControl = [UIPageControl new];
 }
 
 -(void)checkForPreviousVC
@@ -67,10 +70,6 @@ SecondDelegate>
     if ([self.textView.text isEqualToString:@"Type Message Here..."])
     {
         [self.textView setTextColor:[UIColor lightGrayColor]];
-    }
-    if (self.photosArray.count)
-    {
-
     }
 }
 
@@ -124,19 +123,9 @@ SecondDelegate>
     //this code makes "done" or "return" button resign first responder
     if ([text isEqualToString:@"\n"])
     {
-
-
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
         SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
         [self.navigationController pushViewController:selectRoomVC animated:YES];
-        
-////        [textView resignFirstResponder];
-////        return NO;
-//        SelectChatroomView *selectView = [SelectChatroomView new];
-////        self.delegate = selectView;
-//        [[UIApplication sharedApplication] setStatusBarHidden:0];
-////        [delegate sendBackPictures:_arrayOfTakenPhotos withBool:YES andComment:@""];
-//        [self.navigationController pushViewController:selectView animated:0];
     }
     return YES;
 }
@@ -152,11 +141,10 @@ SecondDelegate>
     }
 }
 
-- (void)secondViewControllerDismissed:(NSMutableArray *)stringForFirst
+- (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
 {
-//    NSString *thisIsTheDesiredString = stringForFirst; //And there you have it.....
-    self.photosArray = stringForFirst;
-    NSLog(@"%li", self.photosArray.count);
+    //custom delegation method
+    self.photosArray = photosForFirst;
     [self.collectionView reloadData];
 }
 
@@ -166,7 +154,6 @@ SecondDelegate>
     if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-        //        CustomCameraView *cam = [[CustomCameraView alloc] initWithPopUp:YES];
         [cam setPopUp];
         cam.delegate = self;
         cam.comingFromNewVollie = YES;
@@ -223,11 +210,12 @@ SecondDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.item > self.photosArray.count)
+    if (indexPath.item + 1 > self.photosArray.count)
     {
+        NSLog(@"%li", self.photosArray.count);
         [self bringUpCameraView];
     }
-    if(self.photosArray.count)
+    else
     {
         [self setUpPhotoScrollViewWithIndexPathItem:indexPath.item];
     }
