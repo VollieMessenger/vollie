@@ -16,6 +16,7 @@
 #import "SelectRoomVC.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "KLCPopup.h"
+#import "PopUpScrollView.h"
 
 
 
@@ -180,7 +181,7 @@ SecondDelegate>
 #pragma mark "ScrollView"
 -(void)setUpPhotoScrollViewWithIndexPathItem:(NSInteger)indexPathItem
 {
-
+//    PopUpScrollView *newScrollView =
 }
 
 
@@ -228,7 +229,7 @@ SecondDelegate>
     }
     if(self.photosArray.count)
     {
-
+        [self setUpPhotoScrollViewWithIndexPathItem:indexPath.item];
     }
 }
 
