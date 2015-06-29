@@ -34,6 +34,9 @@
 @property UIImagePickerController *picker;
 @property UIPageControl *pageControl;
 
+//https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/ConfiguringanAudioSession/ConfiguringanAudioSession.html
+// bug for audio, maybe read
+
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
 @property (weak, nonatomic) IBOutlet UIButton *switchCameraButton;
@@ -85,7 +88,7 @@
     self = [super init];
     if (self)
     {
-        self.isPoppingUp = popup;
+        self.isPoppingUp = NO;
     }
     return self;
 }
@@ -107,7 +110,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self runCamera];
+
+//    [self runCamera];
 
     self.firstCameraFlip = true;
     self.camFlipCount = 0;
@@ -160,10 +164,18 @@
     _refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     [_refreshControl beginRefreshing];
 
-    [self removeBackgroundsAndHideObjects];
+//    [self removeBackgroundsAndHideObjects];
 
     [self moveImageUpToLatestBlank:0];
-    self.arrayOfTakenPhotos = [NSMutableArray new];
+    if (self.photosFromNewVC.count)
+    {
+        self.arrayOfTakenPhotos = self.photosFromNewVC;
+        [self loadImagesSaved];
+    }
+    else
+    {
+        self.arrayOfTakenPhotos = [NSMutableArray new];
+    }
 
     for (UIButton *button in self.savedButtons)
     {
@@ -198,7 +210,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopup) name:NOTIFICATION_CAMERA_POPUP object:0];
     }
      */
-    
+//    [self dismissPopup];
+
 }
 
 - (void)removeInputs
@@ -260,6 +273,8 @@
 {
     [super viewDidAppear:animated];
 
+    [self runCamera];
+    
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.rightButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.switchCameraButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -307,6 +322,13 @@
     {
         self.scrollView.scrollEnabled = NO;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+
+    [self stopCaptureSession];
+    
+    if (self.captureSession.isRunning)
+    {
+        [self.captureSession stopRunning];
     }
 }
 
@@ -538,11 +560,16 @@
     self.didPickImageFromAlbum = NO;
 }
 
+-(void)freezeCamera
+{
+    
+}
 
 
 -(IBAction)didSlideRight:(id)sender
 {
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:YES];
+    NSLog(@"%i", self.scrollView.contentOffset);
 }
 
 - (void)updateUI:(NSTimer *)timer
@@ -831,13 +858,6 @@
 
 
     //ADD AUDIO INPUT
-    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-    NSError *error2 = nil;
-    AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-    if (audioInput)
-    {
-        [session addInput:audioInput];
-    }
 
     // Create a VideoDataOutput and add it to the session
     AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
@@ -1009,6 +1029,14 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
+            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+            NSError *error2 = nil;
+            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+            if (audioInput)
+            {
+                [self.captureSession addInput:audioInput];
+            }
+
             _isCapturingVideo = YES;
 
             self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
@@ -1082,6 +1110,12 @@
 
             [self captureStopVideoNow];
             [self.progressTimer invalidate];
+            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+            for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
+                if (input.device==audioCaptureDevice) {
+                    [self.captureSession removeInput:input];
+                }
+            }
         }
         
         if (self.movingImagePosition) {
@@ -1134,16 +1168,16 @@
     {
         //Indicate that some changes will be made to the session
         [self.captureSession beginConfiguration];
-        self.camFlipCount++;
+//        self.camFlipCount++;
         AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
-        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
-        NSLog(@"1 %@", currentCameraInput);
-        NSLog(@"2 %@", audioInput);
+//        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
+//        NSLog(@"1 %@", currentCameraInput);
+//        NSLog(@"2 %@", audioInput);
 
-        if (self.camFlipCount >= 3)
-        {
-            currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
-        }
+//        if (self.camFlipCount >= 3)
+//        {
+//            currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
+//        }
 //        for (AVCaptureInput* input in self.captureSession.inputs)
 //        {
 //            i++;
@@ -1170,8 +1204,9 @@
         else
         {
             newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
-            AVCaptureInput *tempInput = [self.captureSession.inputs objectAtIndex:1];
-            [self.captureSession removeInput:tempInput];
+//            AVCaptureInput *tempInput = [self.captureSession.inputs objectAtIndex:1];
+//            [self.captureSession removeInput:tempInput];
+            [self.captureSession removeInput:currentCameraInput];
         }
 
         //Add input to session
@@ -1547,6 +1582,13 @@
 
             PostNotification(NOTIFICATION_CAMERA_POPUP);
         }
+        else if(self.comingFromNewVollie == true)
+        {
+            NSLog(@"%@",self.presentingViewController);
+            self.roomView.textFromLastVC = self.textFromLastVC;
+            self.roomView.photosArray = self.arrayOfTakenPhotos;
+            [self.navigationController popViewControllerAnimated:YES];
+        }
         else
         {
             SelectChatroomView *selectView = [SelectChatroomView new];
@@ -1556,6 +1598,9 @@
 
             [self.navigationController pushViewController:selectView animated:0];
             button.userInteractionEnabled = YES;
+
+            //kyle note
+            //we're going to need to send this to the NewVollieVC
         }
     }
 }
@@ -2270,7 +2315,7 @@
 {
     if (_arrayOfTakenPhotos.count > 0)
     {
-        self.isReturningFromBackButton = NO;
+//        self.isReturningFromBackButton = NO;
 
         switch (self.arrayOfTakenPhotos.count) {
             case 1:

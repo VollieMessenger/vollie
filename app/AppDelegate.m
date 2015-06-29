@@ -74,7 +74,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSendMail:) name:NOTIFICATION_APP_MAIL_SEND object:0];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCameraBack) name:NOTIFICATION_CAMERA_POPUP object:0];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setCameraBack) name:NOTIFICATION_CAMERA_POPUP object:0];
 
 
 	if ([application respondsToSelector:@selector(registerUserNotificationSettings:)])
@@ -123,8 +123,8 @@
     scrollView.directionalLockEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = NO;
 
-    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
-    camera.scrollView = scrollView;
+//    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
+//    camera.scrollView = scrollView;
 
     MessagesView *messages = [[MessagesView alloc] initWithArchive:NO];
     messages.scrollView = scrollView;
@@ -133,28 +133,28 @@
     //not sure why we need to say this one is true. flipped it to false and saw no change
     favorites.scrollView = scrollView;
 
-    scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
+    scrollView.contentSize = CGSizeMake(2 * vc.view.frame.size.width, vc.view.frame.size.height);
     [scrollView setContentOffset:CGPointMake(vc.view.frame.size.width, 0) animated:0];
 
     self.navInbox = [[NavigationController alloc] initWithRootViewController:messages];
 
     self.navFavorites = [[NavigationController alloc] initWithRootViewController:favorites];
 
-    self.navCamera = [[NavigationController alloc] initWithRootViewController:camera];
+//    self.navCamera = [[NavigationController alloc] initWithRootViewController:camera];
 
     self.navFavorites.navigationBar.barTintColor = [UIColor volleyFamousOrange];
 
-    _navCamera.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
+//    _navCamera.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
     _navInbox.view.frame = CGRectMake(vc.view.frame.size.width, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
-    _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
+    _navFavorites.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
-    [_navCamera didMoveToParentViewController:vc];
+//    [_navCamera didMoveToParentViewController:vc];
     [_navFavorites didMoveToParentViewController:vc];
     [_navInbox didMoveToParentViewController:vc];
 
-    [scrollView addSubview:_navCamera.view];
+//    [scrollView addSubview:_navCamera.view];
     [scrollView addSubview:_navInbox.view];
     [scrollView addSubview:_navFavorites.view];
 

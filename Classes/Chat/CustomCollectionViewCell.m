@@ -22,6 +22,8 @@
 #warning RASTERIZING
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.layer.shouldRasterize = YES;
+
+
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -40,6 +42,7 @@
         self.imageView.layer.cornerRadius = 5;
         self.imageView.layer.masksToBounds = 1;
 
+
         // Selected background view
         UIView *backgroundView = [[UIView alloc]initWithFrame:self.bounds];
         backgroundView.layer.borderColor = [[UIColor colorWithRed:1 green:1 blue:1 alpha:1]CGColor];
@@ -52,6 +55,7 @@
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         self.imageView.clipsToBounds = YES;
         [self.contentView addSubview:self.imageView];
+
 
         CGRect frame2 = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 28, 28);
         self.label = [[UILabel alloc] initWithFrame:frame2];

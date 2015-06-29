@@ -7,6 +7,7 @@
 //
 
 #import "MasterScrollView.h"
+#import "CustomCameraView.h"
 #import "CustomChatView.h"
 #import "ChatView.h"
 #import "AppDelegate.h"
@@ -23,7 +24,6 @@
 - (id) init
 {
     self = [super init];
-
     if (self)
     {
         self.delegate = self;
@@ -40,36 +40,40 @@
 {
     NavigationController *_navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
 
-    if ([_navInbox.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
-    {
-        CustomChatView *chat = _navInbox.viewControllers.lastObject;
-        ChatView *chat2 = [_navInbox.viewControllers objectAtIndex:_navInbox.viewControllers.count - 2];
-        if (chat2.room_ == chat.room)
-        {
-            //Your in the same chatroom
-            [_navInbox popViewControllerAnimated:1];
-            //Already done on viewdiddissapaer
-//            PostNotification(NOTIFICATION_REFRESH_CHATROOM);
-            return;
-        }
-        else
-        {
-            //Your in a completely different chatroom.
-            [_navInbox popToRootViewControllerAnimated:0];
-        }
-    }
-    else if ([_navInbox.viewControllers.lastObject isKindOfClass:[ChatView class]])
-    {
-        //Your in a different chat.
-        [_navInbox popViewControllerAnimated:0];
-    }
-    else
-    {
-        //New Conversation Perhaps.
-        [_navInbox popToRootViewControllerAnimated:0];
-    }
+//    if ([_navInbox.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
+//    {
+//        CustomChatView *chat = _navInbox.viewControllers.lastObject;
+//        ChatView *chat2 = [_navInbox.viewControllers objectAtIndex:_navInbox.viewControllers.count - 2];
+//        NSLog(@"%@",_navInbox.viewControllers);
+//        if (chat2.room_ == chat.room)
+//        {
+//            //Your in the same chatroom
+//            [_navInbox popViewControllerAnimated:1];
+//            [_navInbox popViewControllerAnimated:1];
+//            [_navInbox pushViewController:view2 animated:YES];
+//            //Already done on viewdiddissapaer
+////            PostNotification(NOTIFICATION_REFRESH_CHATROOM);
+//            return;
+//        }
+//        else
+//        {
+//            //Your in a completely different chatroom.
+//            [_navInbox popToRootViewControllerAnimated:0];
+//        }
+//    }
+//    else if ([_navInbox.viewControllers.lastObject isKindOfClass:[ChatView class]])
+//    {
+//        //Your in a different chat.
+//        [_navInbox popViewControllerAnimated:0];
+//    }
+//    else
+//    {
+//        //New Conversation Perhaps.
+//        [_navInbox popToRootViewControllerAnimated:0];
+//    }
 
     /// IF CUSTOM CHAT ROOM IS SAME AS ROOM BEFORE, POP THE STACK ONCE.
+    [_navInbox popToRootViewControllerAnimated:NO];
     [_navInbox pushViewController:view2 animated:0];
     [self setContentOffset:CGPointMake([UIScreen mainScreen].bounds.size.width, 0) animated:0];
 
@@ -156,6 +160,7 @@
     } else {
         [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
     }
+    
 }
 
 
