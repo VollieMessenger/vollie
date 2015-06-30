@@ -21,6 +21,7 @@
 
 @property NSMutableArray *messages;
 @property NSMutableArray *savedPhotoObjects;
+@property NSMutableArray *objectsForParse;
 
 @property PFObject *selectedRoom;
 @property PFObject *selectedSet;
@@ -45,6 +46,7 @@
     self.title = @"Send to...";
     self.messages = [NSMutableArray new];
     self.savedPhotoObjects = [NSMutableArray new];
+    self.objectsForParse = [NSMutableArray new];
     [self loadData];
 }
 
@@ -65,25 +67,34 @@
      {
          if (!error)
          {
-             [ProgressHUD show:@"Sending..." Interaction:NO];
+//             [ProgressHUD show:@"Sending..." Interaction:NO];
              int numberOfSets = [[object valueForKey:PF_CHATROOMS_ROOMNUMBER] intValue];
+//             NSLog(@"%i is the number of sets", numberOfSets);
+             self.selectedSet = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
              if (numberOfSets == 0)
              {
                  [self.selectedSet setValue:@(0) forKey:PF_SET_ROOMNUMBER];
+                 //i mean when would this happen? If we're creatin a new room? meh....
              }
              else
              {
                  [self.selectedSet setValue:@(numberOfSets) forKey:PF_SET_ROOMNUMBER];
+//                 NSLog(@"%@ set roomnumber", [self.selectedSet objectForKey:PF_SET_ROOMNUMBER]);
              }
 
              [self.selectedRoom setValue:@(numberOfSets + 1) forKey:PF_CHATROOMS_ROOMNUMBER];
+//             NSLog(@"%@ set chatrooms roomnumber", [self.selectedRoom objectForKey:PF_SET_ROOMNUMBER]);
+
              [self.selectedRoom saveInBackground];
 
-             [_selectedSet setValue:_selectedRoom forKey:PF_SET_ROOM];
-             [_selectedSet setValue:[PFUser currentUser] forKey:PF_SET_USER];
-             [_selectedSet saveInBackground];
+             [self.selectedSet setValue:_selectedRoom forKey:PF_SET_ROOM];
+             [self.selectedSet setValue:[PFUser currentUser] forKey:PF_SET_USER];
+             [self.selectedSet saveInBackground];
+             NSLog(@"%@ is teh selected set", self.selectedSet);
 
-             [self savePicturesinRoom:self.selectedRoom];
+             [self createParseObjectsWithPhotosArray];
+
+//             [self savePicturesinRoom:self.selectedRoom];
          }
          else
          {
@@ -92,9 +103,37 @@
      }];
 }
 
+-(void)createParseObjectsWithPhotosArray
+{
+    for (id imageOrFile in self.photosToSend)
+    {
+        if ([imageOrFile isKindOfClass:[UIImage class]])
+        {
+            PFObject *picture = [self basicParseObjectSetupWith:imageOrFile];
+//            NSLog(@"%@", picture);
+        }
+        else if ([imageOrFile isKindOfClass:[NSDictionary class]])
+        {
+            PFObject *video = [self basicParseObjectSetupWith:imageOrFile];
+        }
+    }
+}
+
+-(PFObject*)basicParseObjectSetupWith:(id)imageOrFile
+{
+    PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
+    [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
+    [object setValue:@YES forKey:PF_CHAT_ISUPLOADED];
+    [object setValue:[NSDate dateWithTimeIntervalSinceNow:[self.photosToSend indexOfObject:object]]forKey:PF_PICTURES_UPDATEDACTION];
+//    [object setValue:self.selectedSet forKey:PF_PICTURES_SETID];
+    NSLog(@"%@ should be the selected set", self.selectedSet);
+    NSLog(@"%@", object);
+    return object;
+}
+
 -(void)savePicturesinRoom:(PFObject *)room
 {
-    self.countDownToPhotoRefresh = (int)self.savedPhotoObjects.count;
+//    self.countDownToPhotoRefresh = (int)self.savedPhotoObjects.count;
 
 //    while (_isThePicturesReadyToSend == NO)
 //    {
@@ -104,9 +143,55 @@
 
     for (PFObject *picture in self.photosToSend)
     {
-        
-    }
+//
+//        NSLog(@"%li in the photosToSend forin loop", self.photosToSend.count);
+//
+//        [picture setValue:self.selectedRoom forKey:PF_PICTURES_CHATROOM];
+//        NSLog(@"%@", [picture objectForKey:PF_PICTURES_CHATROOM]);
 
+//        [self savePictureInBGwithObject:picture andFile:imageOrVideo];
+    }
+}
+
+-(void)savePictureInBGwithObject:(PFObject *)picture andFile:(PFFile *)imageOrVideo
+{
+    NSLog(@"at least i went");
+    [picture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         if (succeeded)
+         {
+             [picture setValue:imageOrVideo forKey:PF_PICTURES_PICTURE];
+             [picture saveInBackground];
+
+             _countDownToPhotoRefresh--;
+
+             if (_countDownToPhotoRefresh == 0)
+             {
+//                 [ProgressHUD showSuccess:@"Saved" Interaction:1];
+
+//                 PFObject *lastPicture = self.savedPhotoObjects.lastObject;
+
+//                 SendPushNotification(self.selectedRoom, @"New Picture!");
+//                 UpdateMessageCounter(self.selectedRoom, @"New Picture!", lastPicture);
+
+//                 PostNotification(NOTIFICATION_REFRESH_INBOX);
+//                 PostNotification(NOTIFICATION_CLEAR_CAMERA_STUFF);
+//
+//                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OPEN_CHAT_VIEW object:chatView userInfo:@{@"view": chatView}];
+
+//                 self.buttonSend.userInteractionEnabled = YES;
+
+//                 _didSendPictures = YES;
+             }
+         }
+//         else
+//         {
+//             if (self.navigationController.visibleViewController == self && picture == self.savedPhotoObjects.lastObject && _countDownToPhotoRefresh == 0)
+//             {
+//                 [ProgressHUD showError:@"Network error."];
+//             }
+//         }
+     }];
 }
 
 #pragma mark - "TableView Stuff"
