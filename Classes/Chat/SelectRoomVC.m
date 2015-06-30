@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "AppConstant.h"
 #import "ProgressHUD.h"
+#import "utilities.h"
 #import "AppDelegate.h"
 //#import "messages.h"
 
@@ -21,6 +22,7 @@
 
 @property NSMutableArray *messages;
 @property NSMutableArray *savedPhotoObjects;
+@property NSMutableArray *savedImageFiles;
 @property NSMutableArray *objectsForParse;
 
 @property PFObject *selectedRoom;
@@ -39,13 +41,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"%li", self.photosToSend.count);
-    NSLog(@"%@", self.textToSend);
+//    NSLog(@"%li photos", self.photosToSend.count);
+//    NSLog(@"%@ is the text i'm gonna send", self.textToSend);
 
     self.tableView.backgroundColor = [UIColor clearColor];
     self.title = @"Send to...";
     self.messages = [NSMutableArray new];
     self.savedPhotoObjects = [NSMutableArray new];
+    self.savedImageFiles = [NSMutableArray new];
     self.objectsForParse = [NSMutableArray new];
     [self loadData];
 }
@@ -87,10 +90,10 @@
 
              [self.selectedRoom saveInBackground];
 
-             [self.selectedSet setValue:_selectedRoom forKey:PF_SET_ROOM];
+             [self.selectedSet setValue:self.selectedRoom forKey:PF_SET_ROOM];
              [self.selectedSet setValue:[PFUser currentUser] forKey:PF_SET_USER];
              [self.selectedSet saveInBackground];
-             NSLog(@"%@ is teh selected set", self.selectedSet);
+//             NSLog(@"%@ is teh selected set", self.selectedSet);
 
              [self createParseObjectsWithPhotosArray];
 
@@ -109,25 +112,57 @@
     {
         if ([imageOrFile isKindOfClass:[UIImage class]])
         {
-            PFObject *picture = [self basicParseObjectSetupWith:imageOrFile];
+            UIImage *image = imageOrFile;
+            PFFile *imageFile = [PFFile fileWithName:@"image.png"
+                                                data:UIImageJPEGRepresentation(image, .5)];
+            PFObject *picture = [self basicParseObjectSetupWith:imageOrFile and:image];
+            [picture setObject:imageFile forKey:PF_PICTURES_PICTURE];
+
+            [self.savedPhotoObjects addObject:picture];
+            [self.savedImageFiles addObject:imageFile];
+            [self saveParseObjectInBackgroundWith:picture];
 //            NSLog(@"%@", picture);
+
         }
         else if ([imageOrFile isKindOfClass:[NSDictionary class]])
         {
-            PFObject *video = [self basicParseObjectSetupWith:imageOrFile];
+//            NSDictionary *dic = imageOrFile;
+//            NSString *path = dic.allKeys.firstObject;
+//            UIImage *image = dic.allValues.firstObject;
+//            PFObject *video = [self basicParseObjectSetupWith:imageOrFile];
         }
     }
 }
 
--(PFObject*)basicParseObjectSetupWith:(id)imageOrFile
+-(void)saveParseObjectInBackgroundWith:(PFObject*)object
+{
+    NSLog(@"I'M SAVING THIS: %@", object);
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error)
+        {
+//            count--;
+//            if (count == 0) _isThePicturesReadyToSend = YES;
+            if (object == self.savedPhotoObjects.firstObject)
+            {
+                [self.selectedSet setValue:object forKey:PF_SET_LASTPICTURE];
+            }
+        }
+    }];
+}
+
+-(PFObject*)basicParseObjectSetupWith:(id)imageOrFile and:(UIImage *)image
 {
     PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
     [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
     [object setValue:@YES forKey:PF_CHAT_ISUPLOADED];
     [object setValue:[NSDate dateWithTimeIntervalSinceNow:[self.photosToSend indexOfObject:object]]forKey:PF_PICTURES_UPDATEDACTION];
-//    [object setValue:self.selectedSet forKey:PF_PICTURES_SETID];
-    NSLog(@"%@ should be the selected set", self.selectedSet);
-    NSLog(@"%@", object);
+    [object setValue:self.selectedSet forKey:PF_PICTURES_SETID];
+    [object setValue:self.selectedRoom forKey:PF_PICTURES_CHATROOM];
+    UIImage *thumbnail = ResizeImage(image, image.size.width, image.size.height);
+    PFFile *file = [PFFile fileWithName:@"thumbnail.png" data:UIImageJPEGRepresentation(thumbnail, .2)];
+    [object setValue:[NSDate dateWithTimeIntervalSinceNow:[self.photosToSend indexOfObject:image]]forKey:PF_PICTURES_UPDATEDACTION];
+    [object setObject:file forKey:PF_PICTURES_THUMBNAIL];
+
     return object;
 }
 
@@ -155,7 +190,7 @@
 
 -(void)savePictureInBGwithObject:(PFObject *)picture andFile:(PFFile *)imageOrVideo
 {
-    NSLog(@"at least i went");
+//    NSLog(@"at least i went");
     [picture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
      {
          if (succeeded)
