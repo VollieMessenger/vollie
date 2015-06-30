@@ -27,11 +27,12 @@
 
 @property PFObject *selectedRoom;
 @property PFObject *selectedSet;
-@property PFObject *selectedMessage;
+//@property PFObject *selectedMessage;
 
 @property int countDownToPhotoRefresh;
 @property BOOL isThePicturesReadyToSend;
 
+@property int counterForLastPhotoTaken;
 
 @end
 
@@ -51,6 +52,7 @@
     self.savedImageFiles = [NSMutableArray new];
     self.objectsForParse = [NSMutableArray new];
     [self loadData];
+    self.counterForLastPhotoTaken = (int)self.photosToSend.count;
 }
 
 - (void)loadData
@@ -108,10 +110,13 @@
 
 -(void)createParseObjectsWithPhotosArray
 {
+    self.counterForLastPhotoTaken = (int)self.photosToSend.count;
+
     for (id imageOrFile in self.photosToSend)
     {
         if ([imageOrFile isKindOfClass:[UIImage class]])
         {
+            self.counterForLastPhotoTaken--;
             UIImage *image = imageOrFile;
             PFFile *imageFile = [PFFile fileWithName:@"image.png"
                                                 data:UIImageJPEGRepresentation(image, .5)];
@@ -121,31 +126,75 @@
             [self.savedPhotoObjects addObject:picture];
             [self.savedImageFiles addObject:imageFile];
             [self saveParseObjectInBackgroundWith:picture];
-//            NSLog(@"%@", picture);
+            [self lastPhotoCheckerAndSetterWith:picture];
 
         }
         else if ([imageOrFile isKindOfClass:[NSDictionary class]])
         {
-//            NSDictionary *dic = imageOrFile;
-//            NSString *path = dic.allKeys.firstObject;
-//            UIImage *image = dic.allValues.firstObject;
-//            PFObject *video = [self basicParseObjectSetupWith:imageOrFile];
+            self.counterForLastPhotoTaken--;
+            NSDictionary *dic = imageOrFile;
+            NSString *path = dic.allKeys.firstObject;
+            UIImage *image = dic.allValues.firstObject;
+            PFFile *videoFile = [PFFile fileWithName:@"video.mov" contentsAtPath:path];
+            PFObject *video = [self basicParseObjectSetupWith:imageOrFile and:image];
+            [video setValue:@YES forKey:PF_PICTURES_IS_VIDEO];
+
+            [video setValue:[NSDate dateWithTimeIntervalSinceNow:[self.photosToSend indexOfObject:dic]]forKey:PF_PICTURES_UPDATEDACTION];
+
+            [self.savedPhotoObjects addObject:video];
+            [self.savedImageFiles addObject:videoFile];
+
+            [self saveParseObjectInBackgroundWith:video];
+            [self lastPhotoCheckerAndSetterWith:video];
         }
+    }
+    [self checkForTextAndSendIt];
+}
+
+-(void)checkForTextAndSendIt
+{
+    if (![self.textToSend isEqualToString:@""] && ![self.textToSend isEqualToString:@"Type Message Here..."])
+    {
+        PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
+        object[PF_CHAT_USER] = [PFUser currentUser];
+        object[PF_CHAT_ROOM] = self.selectedRoom;
+        object[PF_CHAT_TEXT] = self.textToSend;
+        object[PF_CHAT_SETID] = self.selectedSet;
+        [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
+        [self saveParseObjectInBackgroundWith:object];
+    }
+}
+
+-(void)lastPhotoCheckerAndSetterWith:(PFObject*)object
+{
+    if (self.counterForLastPhotoTaken == 0)
+    {
+        [self.selectedSet setValue:object forKey:PF_SET_LASTPICTURE];
+        [self.selectedSet saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
+            if (!error)
+            {
+                NSLog(@"updated last picture for set");
+            }
+        }];
+        [self.selectedRoom setValue:object forKey:@"lastPicture"];
+        [self.selectedRoom saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+         {
+             if (!error)
+             {
+                 NSLog(@"updated last picture for set");
+             }
+         }];
     }
 }
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object
 {
-    NSLog(@"I'M SAVING THIS: %@", object);
+//    NSLog(@"I'M SAVING THIS: %@", object);
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
-//            count--;
-//            if (count == 0) _isThePicturesReadyToSend = YES;
-            if (object == self.savedPhotoObjects.firstObject)
-            {
-                [self.selectedSet setValue:object forKey:PF_SET_LASTPICTURE];
-            }
+
         }
     }];
 }
@@ -164,69 +213,6 @@
     [object setObject:file forKey:PF_PICTURES_THUMBNAIL];
 
     return object;
-}
-
--(void)savePicturesinRoom:(PFObject *)room
-{
-//    self.countDownToPhotoRefresh = (int)self.savedPhotoObjects.count;
-
-//    while (_isThePicturesReadyToSend == NO)
-//    {
-//        [self savePicturesinRoom:room];
-//        return;
-//    }
-
-    for (PFObject *picture in self.photosToSend)
-    {
-//
-//        NSLog(@"%li in the photosToSend forin loop", self.photosToSend.count);
-//
-//        [picture setValue:self.selectedRoom forKey:PF_PICTURES_CHATROOM];
-//        NSLog(@"%@", [picture objectForKey:PF_PICTURES_CHATROOM]);
-
-//        [self savePictureInBGwithObject:picture andFile:imageOrVideo];
-    }
-}
-
--(void)savePictureInBGwithObject:(PFObject *)picture andFile:(PFFile *)imageOrVideo
-{
-//    NSLog(@"at least i went");
-    [picture saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-     {
-         if (succeeded)
-         {
-             [picture setValue:imageOrVideo forKey:PF_PICTURES_PICTURE];
-             [picture saveInBackground];
-
-             _countDownToPhotoRefresh--;
-
-             if (_countDownToPhotoRefresh == 0)
-             {
-//                 [ProgressHUD showSuccess:@"Saved" Interaction:1];
-
-//                 PFObject *lastPicture = self.savedPhotoObjects.lastObject;
-
-//                 SendPushNotification(self.selectedRoom, @"New Picture!");
-//                 UpdateMessageCounter(self.selectedRoom, @"New Picture!", lastPicture);
-
-//                 PostNotification(NOTIFICATION_REFRESH_INBOX);
-//                 PostNotification(NOTIFICATION_CLEAR_CAMERA_STUFF);
-//
-//                 [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OPEN_CHAT_VIEW object:chatView userInfo:@{@"view": chatView}];
-
-//                 self.buttonSend.userInteractionEnabled = YES;
-
-//                 _didSendPictures = YES;
-             }
-         }
-//         else
-//         {
-//             if (self.navigationController.visibleViewController == self && picture == self.savedPhotoObjects.lastObject && _countDownToPhotoRefresh == 0)
-//             {
-//                 [ProgressHUD showError:@"Network error."];
-//             }
-//         }
-     }];
 }
 
 #pragma mark - "TableView Stuff"
