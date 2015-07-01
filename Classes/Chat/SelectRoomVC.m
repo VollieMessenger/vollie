@@ -90,16 +90,21 @@
              [self.selectedRoom setValue:@(numberOfSets + 1) forKey:PF_CHATROOMS_ROOMNUMBER];
 //             NSLog(@"%@ set chatrooms roomnumber", [self.selectedRoom objectForKey:PF_SET_ROOMNUMBER]);
 
-             [self.selectedRoom saveInBackground];
+//             [self.selectedRoom saveInBackground];
 
              [self.selectedSet setValue:self.selectedRoom forKey:PF_SET_ROOM];
              [self.selectedSet setValue:[PFUser currentUser] forKey:PF_SET_USER];
-             [self.selectedSet saveInBackground];
+//             [self.selectedSet saveInBackground];
 //             NSLog(@"%@ is teh selected set", self.selectedSet);
 
-             [self createParseObjectsWithPhotosArray];
-             [self checkForTextAndSendIt];
-//             [self savePicturesinRoom:self.selectedRoom];
+             if (self.photosToSend.count)
+             {
+                 [self createParseObjectsWithPhotosArray];
+             }
+             else
+             {
+                 [self checkForTextAndSendIt];
+             }
          }
          else
          {
@@ -116,7 +121,6 @@
     {
         if ([imageOrFile isKindOfClass:[UIImage class]])
         {
-            self.counterForLastPhotoTaken--;
             UIImage *image = imageOrFile;
             PFFile *imageFile = [PFFile fileWithName:@"image.png"
                                                 data:UIImageJPEGRepresentation(image, .5)];
@@ -126,12 +130,9 @@
             [self.savedPhotoObjects addObject:picture];
             [self.savedImageFiles addObject:imageFile];
             [self saveParseObjectInBackgroundWith:picture];
-            [self lastPhotoCheckerAndSetterWith:picture];
-
         }
         else if ([imageOrFile isKindOfClass:[NSDictionary class]])
         {
-            self.counterForLastPhotoTaken--;
             NSDictionary *dic = imageOrFile;
             NSString *path = dic.allKeys.firstObject;
             UIImage *image = dic.allValues.firstObject;
@@ -145,14 +146,12 @@
             [self.savedImageFiles addObject:videoFile];
 
             [self saveParseObjectInBackgroundWith:video];
-            [self lastPhotoCheckerAndSetterWith:video];
         }
     }
 }
 
 -(void)checkForTextAndSendIt
 {
-    NSLog(self.textToSend);
     if (![self.textToSend isEqualToString:@""] && ![self.textToSend isEqualToString:@"Type Message Here..."])
     {
         PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
@@ -160,37 +159,19 @@
         object[PF_CHAT_ROOM] = self.selectedRoom;
         object[PF_CHAT_TEXT] = self.textToSend;
         object[PF_CHAT_SETID] = self.selectedSet;
+        self.selectedRoom[@"lastMessage"] = self.textToSend;
+        NSLog(@"%@", self.selectedRoom);
         [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
-        [self saveParseObjectInBackgroundWith:object];
-    }
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
-}
-
--(void)lastPhotoCheckerAndSetterWith:(PFObject*)object
-{
-    if (self.counterForLastPhotoTaken == 0)
-    {
-        [self.selectedSet setValue:object forKey:PF_SET_LASTPICTURE];
-        [self.selectedSet saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-        {
-            if (!error)
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if(!error)
             {
-                NSLog(@"updated last picture for set");
-                SendPushNotification(self.selectedRoom, @"New Picture!");
-                UpdateMessageCounter(self.selectedRoom, @"New Picture!", object);
+                NSLog(@"saved yo text boy");
+                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
             }
         }];
-        [self.selectedRoom setValue:object forKey:@"lastPicture"];
-        [self.selectedRoom saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-         {
-             if (!error)
-             {
-                 NSLog(@"updated last picture for set");
-             }
-         }];
     }
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
 }
+
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object
 {
@@ -198,7 +179,15 @@
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
-
+            self.counterForLastPhotoTaken --;
+            if(self.counterForLastPhotoTaken == 0)
+            {
+                [self.selectedSet setValue:object forKey:@"lastPicture"];
+                [self.selectedSet saveInBackground];
+                [self.selectedRoom setValue:object forKey:@"lastPicture"];
+                [self.selectedRoom saveInBackground];
+                [self checkForTextAndSendIt];
+            }
         }
     }];
 }
@@ -262,7 +251,6 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     return self.messages.count;
 }
 
