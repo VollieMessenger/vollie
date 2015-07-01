@@ -43,9 +43,9 @@ SecondDelegate>
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self basicSetUpAndInit];
     [self checkForPreviousVC];
-//    [self bringUpCameraView];
 
     self.arrayForScrollView = [NSMutableArray new];
     self.pageControl = [UIPageControl new];
@@ -54,6 +54,13 @@ SecondDelegate>
 -(void)viewDidAppear:(BOOL)animated
 {
     [self basicSetUpAndInit];
+    [self.navigationController setNavigationBarHidden: NO animated:YES];
+    self.navigationController.navigationBar.translucent = NO;
+    if(self.comingFromCamera == true)
+    {
+        [self.navigationItem setHidesBackButton:YES animated:NO];
+    }
+
 }
 
 -(void)basicSetUpAndInit
@@ -80,14 +87,6 @@ SecondDelegate>
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)onDismissButtonTapped:(id)sender
-{
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
-//    camera.comingFromNewVollie = true;
-//    camera.textFromLastVC = self.textView.text;
-//    [self.navigationController pushViewController:camera animated:YES];
 }
 
 #pragma mark "TextView Stuff"
@@ -186,7 +185,6 @@ SecondDelegate>
 }
 
 
-
 #pragma mark "CollectionView Stuff"
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -240,6 +238,15 @@ SecondDelegate>
         if (self.comingFromCamera == true)
         {
 
+            if([self.textDelegate respondsToSelector:@selector(newVollieDismissed:)])
+            {
+                [self.textDelegate newVollieDismissed:self.textView.text];
+            }
+
+            self.comingFromCamera = false;
+            [self.textView resignFirstResponder];
+//            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         else
         {

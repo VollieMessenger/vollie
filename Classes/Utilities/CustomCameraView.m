@@ -23,7 +23,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate>
+@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate>
 
 @property (nonatomic, strong) ALAssetsLibrary *library;
 @property AVCaptureSession *captureSession;
@@ -76,6 +76,8 @@
 
 @property BOOL firstCameraFlip;
 @property int camFlipCount;
+
+@property NSString *textFromNextVC;
 
 @end
 
@@ -1554,6 +1556,12 @@
     }
 }}
 
+-(void) newVollieDismissed:(NSString *)textForCam
+{
+    self.textFromNextVC = textForCam;
+    NSLog(self.textFromNextVC);
+}
+
 //NEXT BUTTON PRESSED
 - (IBAction)didPressNextButton:(UIButton *)button
 {
@@ -1613,8 +1621,15 @@
             NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
             vc.photosArray = self.arrayOfTakenPhotos;
             vc.comingFromCamera = true;
+            vc.textFromLastVC = self.textFromNextVC;
+            vc.textDelegate = self;
+//            self.navigationController.navigationBarHidden = 0;
+//            [self.navigationController setNavigationBarHidden: NO animated:YES];
             [self.navigationController pushViewController:vc animated:YES];
-            [self presentViewController:vc animated:YES completion:nil];
+//            self.navigationController.navigationBar.translucent = NO;
+
+//            [self presentViewController:vc animated:YES completion:nil];
+//            [self presentViewController:vc animated:YES completion:nil];
 //
             button.userInteractionEnabled = YES;
         }

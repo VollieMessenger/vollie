@@ -17,7 +17,7 @@
 #import "messages.h"
 
 
-@interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate>
+@interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
@@ -61,6 +61,7 @@
         // LOAD MESSAGES FROM INBOX INSTEAD.
         MessagesView *view = nav.viewControllers.firstObject;
         self.messages = view.messages;
+        NSLog(@"%li messages coming in", view.messages.count);
     }
 }
 
@@ -97,7 +98,7 @@
 //             NSLog(@"%@ is teh selected set", self.selectedSet);
 
              [self createParseObjectsWithPhotosArray];
-
+             [self checkForTextAndSendIt];
 //             [self savePicturesinRoom:self.selectedRoom];
          }
          else
@@ -147,11 +148,11 @@
             [self lastPhotoCheckerAndSetterWith:video];
         }
     }
-    [self checkForTextAndSendIt];
 }
 
 -(void)checkForTextAndSendIt
 {
+    NSLog(self.textToSend);
     if (![self.textToSend isEqualToString:@""] && ![self.textToSend isEqualToString:@"Type Message Here..."])
     {
         PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
@@ -162,6 +163,7 @@
         [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
         [self saveParseObjectInBackgroundWith:object];
     }
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
 }
 
 -(void)lastPhotoCheckerAndSetterWith:(PFObject*)object
@@ -187,6 +189,7 @@
              }
          }];
     }
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
 }
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object
