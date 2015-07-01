@@ -197,7 +197,17 @@ SecondDelegate>
     cell.imageView.layer.masksToBounds = YES;
     if(self.photosArray.count > 0 && indexPath.item < self.photosArray.count)
     {
-        cell.imageView.image = self.photosArray[indexPath.item];
+        id imageOrFile = self.photosArray[indexPath.item];
+        if ([imageOrFile isKindOfClass:[UIImage class]])
+        {
+            cell.imageView.image = self.photosArray[indexPath.item];
+        }
+        else if ([imageOrFile isKindOfClass:[NSDictionary class]])
+        {
+            NSDictionary *dic = imageOrFile;
+            UIImage *image = dic.allValues.firstObject;
+            cell.imageView.image = image;
+        }
     }
     else
     {
@@ -227,7 +237,14 @@ SecondDelegate>
     if (indexPath.item + 1 > self.photosArray.count)
     {
         NSLog(@"%li", self.photosArray.count);
-        [self bringUpCameraView];
+        if (self.comingFromCamera == true)
+        {
+
+        }
+        else
+        {
+            [self bringUpCameraView];
+        }
     }
     else
     {

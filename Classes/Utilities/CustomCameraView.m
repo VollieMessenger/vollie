@@ -1602,18 +1602,19 @@
         }
         else
         {
-            SelectChatroomView *selectView = [SelectChatroomView new];
-            self.delegate = selectView;
-            [[UIApplication sharedApplication] setStatusBarHidden:0];
-            [delegate sendBackPictures:_arrayOfTakenPhotos withBool:YES andComment:@""];
-            [self.navigationController pushViewController:selectView animated:0];
+//            SelectChatroomView *selectView = [SelectChatroomView new];
+//            self.delegate = selectView;
+//            [[UIApplication sharedApplication] setStatusBarHidden:0];
+//            [delegate sendBackPictures:_arrayOfTakenPhotos withBool:YES andComment:@""];
+//            [self.navigationController pushViewController:selectView animated:0];
 
-//
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-//            vc.photosArray = self.arrayOfTakenPhotos;
-//            [self.navigationController pushViewController:vc animated:YES];
-//            [self presentViewController:vc animated:YES completion:nil];
+
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+            vc.photosArray = self.arrayOfTakenPhotos;
+            vc.comingFromCamera = true;
+            [self.navigationController pushViewController:vc animated:YES];
+            [self presentViewController:vc animated:YES completion:nil];
 //
             button.userInteractionEnabled = YES;
         }

@@ -22,5 +22,6 @@
 @property NSString *textFromLastVC;
 @property NSMutableArray *photosArray;
 @property MasterScrollView *scrollView;
+@property BOOL *comingFromCamera;
 
 @end
