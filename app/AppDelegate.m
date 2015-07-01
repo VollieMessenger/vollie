@@ -136,7 +136,7 @@
     favorites.scrollView = scrollView;
 
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//    RoomSettingsVC *testView = (RoomSettingsVC *)[storyboard instantiateViewControllerWithIdentifier:@"Test2ViewController"];
+//    RoomSettingsVC *testView = (RoomSettingsVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
 //    testView.scrollView = scrollView;
 
 

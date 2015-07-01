@@ -13,7 +13,8 @@
 #import "ProgressHUD.h"
 #import "utilities.h"
 #import "AppDelegate.h"
-//#import "messages.h"
+#import "pushnotification.h"
+#import "messages.h"
 
 
 @interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate>
@@ -41,9 +42,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    NSLog(@"%li photos", self.photosToSend.count);
-//    NSLog(@"%@ is the text i'm gonna send", self.textToSend);
 
     self.tableView.backgroundColor = [UIColor clearColor];
     self.title = @"Send to...";
@@ -66,6 +64,7 @@
     }
 }
 
+#pragma mark "ParseStuff"
 -(void)beginSendingVolliePackage
 {
     [self.selectedRoom fetchInBackgroundWithBlock:^(PFObject *object, NSError *error)
@@ -175,6 +174,8 @@
             if (!error)
             {
                 NSLog(@"updated last picture for set");
+                SendPushNotification(self.selectedRoom, @"New Picture!");
+                UpdateMessageCounter(self.selectedRoom, @"New Picture!", object);
             }
         }];
         [self.selectedRoom setValue:object forKey:@"lastPicture"];
@@ -270,78 +271,5 @@
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
     self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
 }
-
-
-/*
- PFObject *message = [self.messages objectAtIndex:indexPath.row];
-
- NSString *comment = [message valueForKey:PF_MESSAGES_LASTMESSAGE];
- if ([comment isEqualToString:@""]) {
- comment = @"No comments available";
- }
- cell.labelLastMessage.text = comment;
-
- UIColor *green = [UIColor volleyFamousGreen];
- cell.labelDescription.textColor = green;
- //    cell.imageUser.layer.borderColor = [UIColor volleyBorderGrey].CGColor;
-
- if (message == self.selectedMessage)
- {
- cell.imageUser.layer.borderColor = [UIColor whiteColor].CGColor;
- cell.labelInitials.backgroundColor = [UIColor volleyFamousGreen];
- cell.backgroundColor = [UIColor volleyFamousOrange];
- cell.labelDescription.textColor = [UIColor whiteColor];
- cell.labelLastMessage.textColor = [UIColor whiteColor];
- }
- else
- {
- cell.backgroundColor = [UIColor whiteColor];
- cell.labelDescription.textColor = [UIColor blackColor];
- cell.labelLastMessage.textColor = [UIColor lightGrayColor];
- //        cell.imageUser.layer.borderColor = [UIColor volleyBorderGrey].CGColor;
- }
-
- if (message[PF_MESSAGES_NICKNAME])
- {
- cell.labelDescription.text = message[PF_MESSAGES_NICKNAME];
- }
- else
- {
- NSString *description = message[PF_MESSAGES_DESCRIPTION];
-
- if (description.length)
- {
- cell.labelDescription.text = description;
- }
- }
-
- PFObject *picture = [message valueForKey:PF_MESSAGES_LASTPICTURE];
-
- if (picture)
- {
- PFFile *file = [picture valueForKey:PF_PICTURES_THUMBNAIL];
- cell.imageUser.file = file;
- [cell.imageUser loadInBackground];
-
- PFUser *user = [message valueForKey:PF_MESSAGES_LASTPICTUREUSER];
- NSString *name = [user valueForKey:PF_USER_FULLNAME];
- NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
- [array removeObject:@" "];
-
- if (array.count == 2)
- {
- NSString *first = array.firstObject;
- NSString *last = array.lastObject;
- first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
- last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
- name = [first stringByAppendingString:last];
- cell.labelInitials.text = name;
- cell.labelInitials.hidden = NO;
- }
- }
-
- return cell;
-
- */
 
 @end

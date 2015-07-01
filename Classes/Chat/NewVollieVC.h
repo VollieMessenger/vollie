@@ -7,10 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MasterScrollView.h"
+
+@protocol NewVollieDelegate <NSObject>
+-(void) newVollieDismissed:(NSString *)textForCam;
+@end
+
 
 @interface NewVollieVC : UIViewController
 
+@property (nonatomic, assign) id<NewVollieDelegate> textDelegate;
+
+
 @property NSString *textFromLastVC;
 @property NSMutableArray *photosArray;
+@property MasterScrollView *scrollView;
 
 @end

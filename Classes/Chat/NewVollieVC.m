@@ -38,11 +38,14 @@ SecondDelegate>
 
 @implementation NewVollieVC
 
+@synthesize textDelegate;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self basicSetUpAndInit];
     [self checkForPreviousVC];
+//    [self bringUpCameraView];
 
     self.arrayForScrollView = [NSMutableArray new];
     self.pageControl = [UIPageControl new];
@@ -143,9 +146,18 @@ SecondDelegate>
     }
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    
+}
+
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
 {
     //custom delegation method
+    self.textView.delegate = self;
+    [self.textView becomeFirstResponder];
     self.photosArray = photosForFirst;
     [self.collectionView reloadData];
 }
