@@ -630,11 +630,11 @@
                                     </mask>
                                     <mask key="constraints">
                                         <exclude reference="pBh-f0-PA3"/>
+                                        <exclude reference="Eu3-ta-2iF"/>
+                                        <exclude reference="V6N-Kg-WhR"/>
                                         <exclude reference="7pt-C0-r7n"/>
                                         <exclude reference="U5R-uw-Agb"/>
                                         <exclude reference="kkh-Fq-rm2"/>
-                                        <exclude reference="Eu3-ta-2iF"/>
-                                        <exclude reference="V6N-Kg-WhR"/>
                                         <exclude reference="CsQ-7E-Ksz"/>
                                         <exclude reference="GG4-6c-u1J"/>
                                     </mask>
@@ -648,11 +648,11 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="pBh-f0-PA3"/>
+                                        <include reference="Eu3-ta-2iF"/>
+                                        <include reference="V6N-Kg-WhR"/>
                                         <include reference="7pt-C0-r7n"/>
                                         <include reference="U5R-uw-Agb"/>
                                         <include reference="kkh-Fq-rm2"/>
-                                        <include reference="Eu3-ta-2iF"/>
-                                        <include reference="V6N-Kg-WhR"/>
                                         <include reference="CsQ-7E-Ksz"/>
                                         <include reference="GG4-6c-u1J"/>
                                     </mask>
@@ -676,13 +676,13 @@
                                 <exclude reference="H1W-7k-TeF"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="eCp-PP-mn6"/>
                                 <exclude reference="5tt-af-m9J"/>
                                 <exclude reference="AGS-x8-Rxb"/>
                                 <exclude reference="XTC-pt-s7m"/>
                                 <exclude reference="JA9-r9-mhz"/>
                                 <exclude reference="qxb-y9-Z92"/>
                                 <exclude reference="u73-Qf-t85"/>
-                                <exclude reference="eCp-PP-mn6"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -692,13 +692,13 @@
                                 <include reference="H1W-7k-TeF"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="eCp-PP-mn6"/>
                                 <include reference="5tt-af-m9J"/>
                                 <include reference="AGS-x8-Rxb"/>
                                 <include reference="XTC-pt-s7m"/>
                                 <include reference="JA9-r9-mhz"/>
                                 <include reference="qxb-y9-Z92"/>
                                 <include reference="u73-Qf-t85"/>
-                                <include reference="eCp-PP-mn6"/>
                             </mask>
                         </variation>
                     </view>

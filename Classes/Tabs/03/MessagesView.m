@@ -52,6 +52,8 @@
 
 #import "InviteCell.h"
 
+#import "NewVollieVC.h"
+
 @interface MessagesView () <UIInputViewAudioFeedback>
 
 {
@@ -177,9 +179,15 @@
     }
     else
     {
-        CreateChatroomView *chat = [CreateChatroomView new];
-        chat.isTherePicturesToSend = NO;
-        [self showViewController:chat sender:0];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+//        [self presentViewController:vc animated:YES completion:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+
+//        CreateChatroomView *chat = [CreateChatroomView new];
+//        chat.isTherePicturesToSend = NO;
+//        [self showViewController:chat sender:0];
+
     }
 }
 

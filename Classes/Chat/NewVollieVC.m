@@ -129,6 +129,8 @@ SecondDelegate>
         SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
         selectRoomVC.photosToSend = self.photosArray;
         selectRoomVC.textToSend = self.textView.text;
+        [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
+
         [self.navigationController pushViewController:selectRoomVC animated:YES];
     }
     return YES;
@@ -148,7 +150,6 @@ SecondDelegate>
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
     
 }
 
@@ -238,10 +239,10 @@ SecondDelegate>
         if (self.comingFromCamera == true)
         {
 
-            if([self.textDelegate respondsToSelector:@selector(newVollieDismissed:)])
-            {
-                [self.textDelegate newVollieDismissed:self.textView.text andPhotos:self.photosArray];
-            }
+//            if([self.textDelegate respondsToSelector:@selector(newVollieDismissed:)])
+//            {
+            [self.textDelegate newVollieDismissed:self.textView.text andPhotos:self.photosArray];
+//            }
 
             self.comingFromCamera = false;
             [self.textView resignFirstResponder];

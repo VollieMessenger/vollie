@@ -99,10 +99,17 @@
 
 -(void) clearCameraStuff
 {
-    [self.arrayOfTakenPhotos removeAllObjects];
-    [self moveImageUpToLatestBlank:0];
-    [self unhideButtons];
-    [self performSelector:@selector(popRoot) withObject:self afterDelay:1.0f];
+    if(self.photosFromNewVC.count)
+    {
+        //do NOTHING
+    }
+    else
+    {
+        [self.arrayOfTakenPhotos removeAllObjects];
+        [self moveImageUpToLatestBlank:0];
+        [self unhideButtons];
+        [self performSelector:@selector(popRoot) withObject:self afterDelay:1.0f];
+    }
 }
 
 -(void) popRoot
@@ -250,17 +257,21 @@
     [super viewWillAppear:1];
 #warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.
 
-    if(self.photosFromNewVC.count)
-    {
-        self.arrayOfTakenPhotos = self.photosFromNewVC;
-    }
-    else
-    {
-        self.arrayOfTakenPhotos = [NSMutableArray new];
+//    if(self.photosFromNewVC.count)
+//    {
+//        NSLog(@"%li in photosfromNewVC in if statement", self.photosFromNewVC.count);
+//        [self clearCameraStuff];
+//        NSLog(@"%li in photosfromNewVC after clear camera", self.photosFromNewVC.count);
+//        self.arrayOfTakenPhotos = self.photosFromNewVC;
+//    }
+//    else
+//    {
+//        self.arrayOfTakenPhotos = [NSMutableArray new];
         [self clearCameraStuff];
-    }
+//    }
 
     self.navigationController.navigationBarHidden = 1;
+    NSLog(@"%li in photosfromNewVC after if statement", self.photosFromNewVC.count);
 
     //Only way to check which camera is up and what screen is present.
     if (self.scrollView.contentOffset.x == 0)
@@ -1581,6 +1592,7 @@
     self.textFromNextVC = textForCam;
     self.photosFromNewVC = photosArray;
     NSLog(self.textFromNextVC);
+    NSLog(@"%li in photo array", photosArray.count);
 }
 
 //NEXT BUTTON PRESSED
