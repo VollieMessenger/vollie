@@ -216,6 +216,12 @@
     [scrollView addSubview:_navCamera.view];
 }
 
+
+-(void)moveCameraToScrollview
+{
+
+}
+
 - (void)didSendMail:(NSNotification *)notification
 {
     NSDictionary *dict = notification.userInfo;

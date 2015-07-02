@@ -162,6 +162,26 @@ SecondDelegate>
     [self.collectionView reloadData];
 }
 
+-(void)movieCameraToBeginning
+{
+//    UIViewController 
+
+    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+    if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
+    {
+        CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+        [cam setPopUp];
+        cam.delegate = self;
+        cam.comingFromNewVollie = NO;
+        cam.textFromLastVC = nil;
+        cam.photosFromNewVC = nil;
+        cam.myDelegate = self;
+
+//        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
+    }
+
+}
+
 -(void)bringUpCameraView
 {
     NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];

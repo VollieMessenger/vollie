@@ -1622,7 +1622,7 @@
 
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:NO completion:nil];
         }
         else if (self.isPoppingUp)
         {
@@ -1631,7 +1631,7 @@
             self.cancelButton.hidden = YES;
             self.rightButton.hidden = NO;
 
-            [delegate sendBackPictures:self.arrayOfTakenPhotos withBool:YES andComment:@""];
+//            [delegate sendBackPictures:self.arrayOfTakenPhotos withBool:YES andComment:@""];
 
             button.userInteractionEnabled = YES;
 
