@@ -10,7 +10,7 @@
 #import "MasterScrollView.h"
 
 @protocol NewVollieDelegate <NSObject>
--(void) newVollieDismissed:(NSString *)textForCam;
+-(void) newVollieDismissed:(NSString *)textForCam andPhotos:(NSMutableArray*)photosArray;
 @end
 
 

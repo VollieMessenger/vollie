@@ -250,15 +250,15 @@
     [super viewWillAppear:1];
 #warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.
 
-//    if(self.photosFromNewVC.count)
-//    {
-//        self.arrayOfTakenPhotos = self.photosFromNewVC;
-//    }
-//    else
-//    {
-//        self.arrayOfTakenPhotos = [NSMutableArray new];
-//        [self clearCameraStuff];
-//    }
+    if(self.photosFromNewVC.count)
+    {
+        self.arrayOfTakenPhotos = self.photosFromNewVC;
+    }
+    else
+    {
+        self.arrayOfTakenPhotos = [NSMutableArray new];
+        [self clearCameraStuff];
+    }
 
     self.navigationController.navigationBarHidden = 1;
 
@@ -1576,9 +1576,10 @@
     }
 }}
 
--(void) newVollieDismissed:(NSString *)textForCam
+-(void) newVollieDismissed:(NSString *)textForCam andPhotos:(NSMutableArray*)photosArray
 {
     self.textFromNextVC = textForCam;
+    self.photosFromNewVC = photosArray;
     NSLog(self.textFromNextVC);
 }
 

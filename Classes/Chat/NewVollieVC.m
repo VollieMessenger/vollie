@@ -240,7 +240,7 @@ SecondDelegate>
 
             if([self.textDelegate respondsToSelector:@selector(newVollieDismissed:)])
             {
-                [self.textDelegate newVollieDismissed:self.textView.text];
+                [self.textDelegate newVollieDismissed:self.textView.text andPhotos:self.photosArray];
             }
 
             self.comingFromCamera = false;
