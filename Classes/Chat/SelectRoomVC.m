@@ -87,14 +87,8 @@
              }
 
              [self.selectedRoom setValue:@(numberOfSets + 1) forKey:PF_CHATROOMS_ROOMNUMBER];
-//             NSLog(@"%@ set chatrooms roomnumber", [self.selectedRoom objectForKey:PF_SET_ROOMNUMBER]);
-
-//             [self.selectedRoom saveInBackground];
-
              [self.selectedSet setValue:self.selectedRoom forKey:PF_SET_ROOM];
              [self.selectedSet setValue:[PFUser currentUser] forKey:PF_SET_USER];
-//             [self.selectedSet saveInBackground];
-//             NSLog(@"%@ is teh selected set", self.selectedSet);
 
              if (self.photosToSend.count)
              {
@@ -171,6 +165,7 @@
     else
     {
         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OPEN_CHAT_VIEW object:chatView userInfo:@{@"view": chatView}];
     }
 }
 
@@ -187,6 +182,8 @@
                 [self.selectedSet saveInBackground];
                 [self.selectedRoom setValue:object forKey:@"lastPicture"];
                 [self.selectedRoom saveInBackground];
+                SendPushNotification(self.selectedRoom, @"New Picture!");
+//                UpdateMessageCounter(self.selectedRoom, @"New Picture!", lastPicture);
                 [self checkForTextAndSendIt];
             }
         }
