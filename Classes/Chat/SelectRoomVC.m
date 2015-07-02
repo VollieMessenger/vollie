@@ -16,7 +16,6 @@
 #import "pushnotification.h"
 #import "messages.h"
 
-
 @interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -144,7 +143,6 @@
 
             [self.savedPhotoObjects addObject:video];
             [self.savedImageFiles addObject:videoFile];
-
             [self saveParseObjectInBackgroundWith:video];
         }
     }
@@ -170,8 +168,11 @@
             }
         }];
     }
+    else
+    {
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+    }
 }
-
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object
 {
@@ -236,7 +237,6 @@
         PFFile *file = [picture valueForKey:PF_PICTURES_THUMBNAIL];
         cell.imageView.file = file;
         [cell.imageView loadInBackground];
-
     }
     return cell;
 }

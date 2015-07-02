@@ -250,6 +250,16 @@
     [super viewWillAppear:1];
 #warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.
 
+//    if(self.photosFromNewVC.count)
+//    {
+//        self.arrayOfTakenPhotos = self.photosFromNewVC;
+//    }
+//    else
+//    {
+//        self.arrayOfTakenPhotos = [NSMutableArray new];
+//        [self clearCameraStuff];
+//    }
+
     self.navigationController.navigationBarHidden = 1;
 
     //Only way to check which camera is up and what screen is present.
@@ -300,6 +310,16 @@
             _didViewJustLoad = NO;
 //            self.scrollView.scrollEnabled = NO;
         }
+
+//    if(self.photosFromNewVC.count)
+//    {
+//        self.arrayOfTakenPhotos = self.photosFromNewVC;
+//    }
+//    else
+//    {
+//        self.arrayOfTakenPhotos = [NSMutableArray new];
+//        [self clearCameraStuff];
+//    }
 
     self.takePictureButton.hidden = self.arrayOfTakenPhotos.count < 5 ? NO : YES;
 }
