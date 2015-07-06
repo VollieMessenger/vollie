@@ -139,7 +139,6 @@
 //    RoomSettingsVC *testView = (RoomSettingsVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
 //    testView.scrollView = scrollView;
 
-
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
     [scrollView setContentOffset:CGPointMake(vc.view.frame.size.width, 0) animated:0];
 
