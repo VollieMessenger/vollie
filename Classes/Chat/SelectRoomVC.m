@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "pushnotification.h"
 #import "messages.h"
-#import "StreetLegal.h"
+#import "ParseVolliePackage.h"
 
 @interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
 
@@ -94,7 +94,7 @@
              if (self.photosToSend.count)
              {
 //                 [self createParseObjectsWithPhotosArray];
-                 StreetLegal *volliePackage = [StreetLegal new];
+                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
                  [volliePackage sendPhotosWithPhotosArray:self.photosToSend
                                                 andText:self.textToSend
                                                 andRoom:self.selectedRoom
@@ -105,7 +105,7 @@
              }
              else
              {
-                 StreetLegal *volliePackage = [StreetLegal new];
+                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
                  [volliePackage checkForTextAndSendItWithText:self.textToSend
                                                       andRoom:self.selectedRoom
                                                        andSet:self.selectedSet];
@@ -118,106 +118,6 @@
              [ProgressHUD showError:@"Network Error"];
          }
      }];
-}
-
-//-(void)createParseObjectsWithPhotosArray
-//{
-//    self.counterForLastPhotoTaken = (int)self.photosToSend.count;
-//
-//    for (id imageOrFile in self.photosToSend)
-//    {
-//        if ([imageOrFile isKindOfClass:[UIImage class]])
-//        {
-//            UIImage *image = imageOrFile;
-//            PFFile *imageFile = [PFFile fileWithName:@"image.png"
-//                                                data:UIImageJPEGRepresentation(image, .5)];
-//            PFObject *picture = [self basicParseObjectSetupWith:imageOrFile and:image];
-//            [picture setObject:imageFile forKey:PF_PICTURES_PICTURE];
-//
-//            [self.savedPhotoObjects addObject:picture];
-//            [self.savedImageFiles addObject:imageFile];
-//            [self saveParseObjectInBackgroundWith:picture];
-//        }
-//        else if ([imageOrFile isKindOfClass:[NSDictionary class]])
-//        {
-//            NSDictionary *dic = imageOrFile;
-//            NSString *path = dic.allKeys.firstObject;
-//            UIImage *image = dic.allValues.firstObject;
-//            PFFile *videoFile = [PFFile fileWithName:@"video.mov" contentsAtPath:path];
-//            PFObject *video = [self basicParseObjectSetupWith:imageOrFile and:image];
-//            [video setValue:@YES forKey:PF_PICTURES_IS_VIDEO];
-//
-//            [video setValue:[NSDate dateWithTimeIntervalSinceNow:[self.photosToSend indexOfObject:dic]]forKey:PF_PICTURES_UPDATEDACTION];
-//
-//            [self.savedPhotoObjects addObject:video];
-//            [self.savedImageFiles addObject:videoFile];
-//            [self saveParseObjectInBackgroundWith:video];
-//        }
-//    }
-//}
-
-//-(void)checkForTextAndSendIt
-//{
-//    if (![self.textToSend isEqualToString:@""] && ![self.textToSend isEqualToString:@"Type Message Here..."])
-//    {
-//        PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
-//        object[PF_CHAT_USER] = [PFUser currentUser];
-//        object[PF_CHAT_ROOM] = self.selectedRoom;
-//        object[PF_CHAT_TEXT] = self.textToSend;
-//        object[PF_CHAT_SETID] = self.selectedSet;
-//        self.selectedRoom[@"lastMessage"] = self.textToSend;
-//        NSLog(@"%@", self.selectedRoom);
-//        [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
-//        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if(!error)
-//            {
-//                NSLog(@"saved yo text boy");
-//                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
-//            }
-//        }];
-//    }
-//    else
-//    {
-//        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
-////        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OPEN_CHAT_VIEW object:chatView userInfo:@{@"view": chatView}];
-//    }
-//}
-
-//-(void)saveParseObjectInBackgroundWith:(PFObject*)object
-//{
-////    NSLog(@"I'M SAVING THIS: %@", object);
-//    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//        if (!error)
-//        {
-//            self.counterForLastPhotoTaken --;
-//            if(self.counterForLastPhotoTaken == 0)
-//            {
-//                [self.selectedSet setValue:object forKey:@"lastPicture"];
-//                [self.selectedSet saveInBackground];
-//                [self.selectedRoom setValue:object forKey:@"lastPicture"];
-//                [self.selectedRoom saveInBackground];
-//                SendPushNotification(self.selectedRoom, @"New Picture!");
-////                UpdateMessageCounter(self.selectedRoom, @"New Picture!", lastPicture);
-//                [self checkForTextAndSendIt];
-//            }
-//        }
-//    }];
-//}
-
--(PFObject*)basicParseObjectSetupWith:(id)imageOrFile and:(UIImage *)image
-{
-    PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
-    [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
-    [object setValue:@YES forKey:PF_CHAT_ISUPLOADED];
-    [object setValue:[NSDate dateWithTimeIntervalSinceNow:[self.photosToSend indexOfObject:object]]forKey:PF_PICTURES_UPDATEDACTION];
-    [object setValue:self.selectedSet forKey:PF_PICTURES_SETID];
-    [object setValue:self.selectedRoom forKey:PF_PICTURES_CHATROOM];
-    UIImage *thumbnail = ResizeImage(image, image.size.width, image.size.height);
-    PFFile *file = [PFFile fileWithName:@"thumbnail.png" data:UIImageJPEGRepresentation(thumbnail, .2)];
-    [object setValue:[NSDate dateWithTimeIntervalSinceNow:[self.photosToSend indexOfObject:image]]forKey:PF_PICTURES_UPDATEDACTION];
-    [object setObject:file forKey:PF_PICTURES_THUMBNAIL];
-
-    return object;
 }
 
 #pragma mark - "TableView Stuff"

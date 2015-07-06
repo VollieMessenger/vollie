@@ -13,7 +13,7 @@
 		274988791B31DDBD00560873 /* CardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274988771B31DDBD00560873 /* CardVC.xib */; };
 		2749887C1B31E71400560873 /* CardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887B1B31E71400560873 /* CardCellView.m */; };
 		2749887F1B31F98200560873 /* CellForCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887E1B31F98200560873 /* CellForCard.m */; };
-		27617D981B4ADF590026C2EB /* StreetLegal.m in Sources */ = {isa = PBXBuildFile; fileRef = 27617D971B4ADF590026C2EB /* StreetLegal.m */; };
+		27617D981B4ADF590026C2EB /* ParseVolliePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27617D971B4ADF590026C2EB /* ParseVolliePackage.m */; };
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
@@ -189,8 +189,8 @@
 		2749887B1B31E71400560873 /* CardCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CardCellView.m; path = ../Tabs/02/CardCellView.m; sourceTree = "<group>"; usesTabs = 0; };
 		2749887D1B31F98200560873 /* CellForCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellForCard.h; sourceTree = "<group>"; };
 		2749887E1B31F98200560873 /* CellForCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellForCard.m; sourceTree = "<group>"; };
-		27617D961B4ADF590026C2EB /* StreetLegal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreetLegal.h; sourceTree = "<group>"; };
-		27617D971B4ADF590026C2EB /* StreetLegal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreetLegal.m; sourceTree = "<group>"; };
+		27617D961B4ADF590026C2EB /* ParseVolliePackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseVolliePackage.h; sourceTree = "<group>"; };
+		27617D971B4ADF590026C2EB /* ParseVolliePackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseVolliePackage.m; sourceTree = "<group>"; };
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
 		2762FF601B289A530070AD59 /* MomentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsVC.h; sourceTree = "<group>"; };
 		2762FF611B289A530070AD59 /* MomentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsVC.m; sourceTree = "<group>"; };
@@ -520,8 +520,8 @@
 			children = (
 				270D7EF61B3DE1DA00FE28E9 /* PopUpScrollView.h */,
 				270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */,
-				27617D961B4ADF590026C2EB /* StreetLegal.h */,
-				27617D971B4ADF590026C2EB /* StreetLegal.m */,
+				27617D961B4ADF590026C2EB /* ParseVolliePackage.h */,
+				27617D971B4ADF590026C2EB /* ParseVolliePackage.m */,
 			);
 			name = MomentsObjects;
 			sourceTree = "<group>";
@@ -1391,7 +1391,7 @@
 				296DD5D31A1F52F400AB9F8C /* JSQMessagesCellTextView.m in Sources */,
 				296DD5D61A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				296DD5DC1A1F52F400AB9F8C /* JSQMessagesLabel.m in Sources */,
-				27617D981B4ADF590026C2EB /* StreetLegal.m in Sources */,
+				27617D981B4ADF590026C2EB /* ParseVolliePackage.m in Sources */,
 				296DD5C11A1F52F400AB9F8C /* JSQMessagesKeyboardController.m in Sources */,
 				296DD5D41A1F52F400AB9F8C /* JSQMessagesCollectionView.m in Sources */,
 				296DD5DD1A1F52F400AB9F8C /* JSQMessagesLoadEarlierHeaderView.m in Sources */,

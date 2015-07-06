@@ -17,7 +17,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "KLCPopup.h"
 #import "PopUpScrollView.h"
-#import "StreetLegal.h"
+#import "ParseVolliePackage.h"
 
 @interface NewVollieVC ()
 <UITextViewDelegate,
@@ -56,7 +56,7 @@ SecondDelegate>
         [testArray addObject:string];
     }
 
-    StreetLegal *test = [StreetLegal new];
+    ParseVolliePackage *test = [ParseVolliePackage new];
     [test logSomethingWithAnArray:testArray];
 }
 

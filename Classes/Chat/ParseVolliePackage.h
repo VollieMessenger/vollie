@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@interface StreetLegal : NSObject
+@interface ParseVolliePackage : NSObject
 
 -(void)logSomething;
 

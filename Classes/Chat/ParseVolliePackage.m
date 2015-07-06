@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 KZ. All rights reserved.
 //
 
-#import "StreetLegal.h"
+#import "ParseVolliePackage.h"
 #import "AppConstant.h"
 #import "AppDelegate.h"
 #import "utilities.h"
 #import "pushnotification.h"
 
-@implementation StreetLegal
+@implementation ParseVolliePackage
 
 -(void)logSomething
 {
