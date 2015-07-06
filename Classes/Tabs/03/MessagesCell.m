@@ -27,6 +27,8 @@
 
 -(void) format
 {
+        self.labelDescription.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
+        self.labelLastMessage.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
         self.labelNumberOfPeople.text = @"";
         imageUser.layer.cornerRadius = 10;
         imageUser.layer.masksToBounds = YES;

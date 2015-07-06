@@ -497,7 +497,8 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, self.view.frame.size.width, 22)];
     label.textColor = [UIColor lightGrayColor];
     label.textAlignment = NSTextAlignmentLeft;
-    label.font = [UIFont fontWithName:@"Helvetica Bold" size:15];
+//    label.font = [UIFont fontWithName:@"Helvetica Bold" size:15];
+    label.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:15.0];
     label.backgroundColor = [UIColor whiteColor];
     //    label.backgroundColor = [UIColor volleyFlatPeach];
     //    if (section == 0) {
