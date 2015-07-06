@@ -18,8 +18,6 @@
 #import "KLCPopup.h"
 #import "PopUpScrollView.h"
 
-
-
 @interface NewVollieVC ()
 <UITextViewDelegate,
 UICollectionViewDataSource,
@@ -60,7 +58,7 @@ SecondDelegate>
     {
         [self.navigationItem setHidesBackButton:YES animated:NO];
     }
-
+//    NSLog(@"%li photos when newVollie appeared", self.photosArray.count);
 }
 
 -(void)basicSetUpAndInit
@@ -162,37 +160,18 @@ SecondDelegate>
     [self.collectionView reloadData];
 }
 
--(void)movieCameraToBeginning
-{
-//    UIViewController 
-
-    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
-    if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
-    {
-        CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-        [cam setPopUp];
-        cam.delegate = self;
-        cam.comingFromNewVollie = NO;
-        cam.textFromLastVC = nil;
-        cam.photosFromNewVC = nil;
-        cam.myDelegate = self;
-
-//        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
-    }
-
-}
-
 -(void)bringUpCameraView
 {
     NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
     if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-        [cam setPopUp];
+//        [cam setPopUp];
         cam.delegate = self;
         cam.comingFromNewVollie = YES;
         cam.textFromLastVC = self.textView.text;
         cam.photosFromNewVC = self.photosArray;
+        NSLog(@"%li photos before popping up camera", self.photosArray.count);
         cam.myDelegate = self;
 
         [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
@@ -253,12 +232,12 @@ SecondDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"%li", self.photosArray.count);
     if (indexPath.item + 1 > self.photosArray.count)
     {
         NSLog(@"%li", self.photosArray.count);
         if (self.comingFromCamera == true)
         {
-
 //            if([self.textDelegate respondsToSelector:@selector(newVollieDismissed:)])
 //            {
             [self.textDelegate newVollieDismissed:self.textView.text andPhotos:self.photosArray];

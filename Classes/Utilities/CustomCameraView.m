@@ -1643,27 +1643,13 @@
         }
         else
         {
-//            SelectChatroomView *selectView = [SelectChatroomView new];
-//            self.delegate = selectView;
-//            [[UIApplication sharedApplication] setStatusBarHidden:0];
-//            [delegate sendBackPictures:_arrayOfTakenPhotos withBool:YES andComment:@""];
-//            [self.navigationController pushViewController:selectView animated:0];
-
-
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
             NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
             vc.photosArray = self.arrayOfTakenPhotos;
             vc.comingFromCamera = true;
             vc.textFromLastVC = self.textFromNextVC;
             vc.textDelegate = self;
-//            self.navigationController.navigationBarHidden = 0;
-//            [self.navigationController setNavigationBarHidden: NO animated:YES];
             [self.navigationController pushViewController:vc animated:YES];
-//            self.navigationController.navigationBar.translucent = NO;
-
-//            [self presentViewController:vc animated:YES completion:nil];
-//            [self presentViewController:vc animated:YES completion:nil];
-//
             button.userInteractionEnabled = YES;
         }
     }
