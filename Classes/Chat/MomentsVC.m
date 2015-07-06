@@ -248,5 +248,15 @@
 //    [self presentViewController:vc animated:YES completion:nil];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+//newVollieToGroup
+    if([[segue identifier] isEqualToString:@"newVollieToGroup"])
+    {
+        NSLog(@"New Vollie is going to Room");
+    }
+    NewVollieVC *vc = [segue destinationViewController];
+    vc.whichRoom = self.room;
+}
 
 @end

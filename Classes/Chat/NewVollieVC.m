@@ -46,6 +46,11 @@ SecondDelegate>
     [self basicSetUpAndInit];
     [self checkForPreviousVC];
 
+    if (self.whichRoom)
+    {
+        NSLog(@"i have a room assignment!!");
+    }
+
     self.arrayForScrollView = [NSMutableArray new];
     self.pageControl = [UIPageControl new];
 
@@ -55,8 +60,6 @@ SecondDelegate>
         NSString *string = [NSString stringWithFormat:@"i ate %i tacos", i];
         [testArray addObject:string];
     }
-
-    ParseVolliePackage *test = [ParseVolliePackage new];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -133,13 +136,23 @@ SecondDelegate>
     //this code makes "done" or "return" button resign first responder
     if ([text isEqualToString:@"\n"])
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-        SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
-        selectRoomVC.photosToSend = self.photosArray;
-        selectRoomVC.textToSend = self.textView.text;
-        [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
+        if (self.whichRoom)
+        {
+            PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
+            ParseVolliePackage *package = [ParseVolliePackage new];
+            [package sendPhotosWithPhotosArray:self.photosArray andText:self.textView.text andRoom:self.whichRoom andSet:set];
+             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        }
+        else
+        {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+            SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
+            selectRoomVC.photosToSend = self.photosArray;
+            selectRoomVC.textToSend = self.textView.text;
+            [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
 
-        [self.navigationController pushViewController:selectRoomVC animated:YES];
+            [self.navigationController pushViewController:selectRoomVC animated:YES];
+        }
     }
     return YES;
 }
@@ -154,12 +167,11 @@ SecondDelegate>
 //        [self.textView resignFirstResponder];
     }
 }
-
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-}
+//
+//-(void)viewDidDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//}
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
 {

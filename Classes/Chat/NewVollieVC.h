@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MasterScrollView.h"
+#import <Parse/Parse.h>
 
 @protocol NewVollieDelegate <NSObject>
 -(void) newVollieDismissed:(NSString *)textForCam andPhotos:(NSMutableArray*)photosArray;
@@ -23,5 +24,6 @@
 @property NSMutableArray *photosArray;
 @property MasterScrollView *scrollView;
 @property BOOL comingFromCamera;
+@property PFObject *whichRoom;
 
 @end

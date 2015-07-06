@@ -42,7 +42,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new Vollie..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4N-0V-gJs">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Vollie to this Room..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z4N-0V-gJs">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="276" id="FLi-zc-Cdj"/>
@@ -142,7 +142,7 @@
                                 </variation>
                                 <connections>
                                     <action selector="onNewVollieButtonTapped:" destination="UPo-ZF-5z1" eventType="touchUpInside" id="bBM-9R-aBf"/>
-                                    <segue destination="BAF-W2-gmz" kind="show" id="DcF-6q-EO5"/>
+                                    <segue destination="BAF-W2-gmz" kind="show" identifier="newVollieToGroup" id="DcF-6q-EO5"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1038,6 +1038,6 @@
         <image name="wideV" width="312" height="155"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Xja-BF-OzT"/>
+        <segue reference="DcF-6q-EO5"/>
     </inferredMetricsTieBreakers>
 </document>
