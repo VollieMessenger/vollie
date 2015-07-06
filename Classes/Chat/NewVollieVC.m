@@ -17,6 +17,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "KLCPopup.h"
 #import "PopUpScrollView.h"
+#import "StreetLegal.h"
 
 @interface NewVollieVC ()
 <UITextViewDelegate,
@@ -47,6 +48,16 @@ SecondDelegate>
 
     self.arrayForScrollView = [NSMutableArray new];
     self.pageControl = [UIPageControl new];
+
+    NSMutableArray *testArray = [NSMutableArray new];
+    for (int i = 0; i < 10; i++)
+    {
+        NSString *string = [NSString stringWithFormat:@"i ate %i tacos", i];
+        [testArray addObject:string];
+    }
+
+    StreetLegal *test = [StreetLegal new];
+    [test logSomethingWithAnArray:testArray];
 }
 
 -(void)viewDidAppear:(BOOL)animated
