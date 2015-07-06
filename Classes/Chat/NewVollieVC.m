@@ -139,6 +139,8 @@ SecondDelegate>
         if (self.whichRoom)
         {
             PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
+            [set setValue:self.whichRoom forKey:PF_SET_ROOM];
+            [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
             ParseVolliePackage *package = [ParseVolliePackage new];
             [package sendPhotosWithPhotosArray:self.photosArray andText:self.textView.text andRoom:self.whichRoom andSet:set];
              [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
