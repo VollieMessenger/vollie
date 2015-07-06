@@ -7,11 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface StreetLegal : NSObject
 
 -(void)logSomething;
 
 -(void)logSomethingWithAnArray:(NSMutableArray*)array;
+
+-(void)sendPhotosWithPhotosArray:(NSMutableArray*)photosArray andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID;
+
+-(void)checkForTextAndSendItWithText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID;
+
+@property int countDownForLastPhoto;
+@property NSMutableArray *savedPhotoObjects;
+@property NSMutableArray *savedImageFiles;
+
 
 @end
