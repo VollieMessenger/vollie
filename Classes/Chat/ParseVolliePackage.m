@@ -11,21 +11,9 @@
 #import "AppDelegate.h"
 #import "utilities.h"
 #import "pushnotification.h"
+#import "ProgressHUD.h"
 
 @implementation ParseVolliePackage
-
--(void)logSomething
-{
-    NSLog(@"LOGGIN LIKE A BEAVER");
-}
-
--(void)logSomethingWithAnArray:(NSMutableArray*)array
-{
-    for (NSString *string in array)
-    {
-//        NSLog(string);
-    }
-}
 
 -(void)sendPhotosWithPhotosArray:(NSMutableArray*)photosArray andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 {
@@ -101,10 +89,10 @@
             self.countDownForLastPhoto --;
             if(self.countDownForLastPhoto == 0)
             {
-//                [self.selectedSet setValue:object forKey:@"lastPicture"];
-//                [self.selectedSet saveInBackground];
-//                [self.selectedRoom setValue:object forKey:@"lastPicture"];
-//                [self.selectedRoom saveInBackground];
+                [setID setValue:object forKey:@"lastPicture"];
+                [setID saveInBackground];
+                [roomNumber setValue:object forKey:@"lastPicture"];
+                [roomNumber saveInBackground];
                 SendPushNotification(roomNumber, @"New Picture!");
 //                UpdateMessageCounter(roomNumber, @"New Picture!", lastPicture);
                 [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
@@ -129,18 +117,20 @@
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if(!error)
             {
-                NSLog(@"saved yo text boy");
-//                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+
             }
         }];
     }
     else
     {
-//        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
-        //        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OPEN_CHAT_VIEW object:chatView userInfo:@{@"view": chatView}];
-        NSLog(@"didn't save anything");
+        [ProgressHUD showError:@"Failed to Send!"];
+        [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
     }
 }
 
+-(void)hideProgressHUD
+{
+    [ProgressHUD dismiss];
+}
 
 @end

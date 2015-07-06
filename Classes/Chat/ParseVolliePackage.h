@@ -11,10 +11,6 @@
 
 @interface ParseVolliePackage : NSObject
 
--(void)logSomething;
-
--(void)logSomethingWithAnArray:(NSMutableArray*)array;
-
 -(void)sendPhotosWithPhotosArray:(NSMutableArray*)photosArray andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID;
 
 -(void)checkForTextAndSendItWithText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID;

@@ -57,7 +57,6 @@ SecondDelegate>
     }
 
     ParseVolliePackage *test = [ParseVolliePackage new];
-    [test logSomethingWithAnArray:testArray];
 }
 
 -(void)viewDidAppear:(BOOL)animated
