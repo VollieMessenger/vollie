@@ -35,7 +35,7 @@
                                                         andRoom:roomNumber];
             [picture setObject:imageFile forKey:PF_PICTURES_PICTURE];
 
-            NSLog(@"%@", picture);
+//            NSLog(@"%@", picture);
 
             [self.savedPhotoObjects addObject:picture];
             [self.savedImageFiles addObject:imageFile];
@@ -65,6 +65,7 @@
 
 -(PFObject*)basicParseObjectSetupWith:(id)imageOrFile and:(UIImage *)image andArray:(NSMutableArray*)photosArray andSet:(PFObject*)setID andRoom:(PFObject*)room
 {
+    NSLog(@"basic parse setup");
     PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
     [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
     [object setValue:@YES forKey:PF_CHAT_ISUPLOADED];
@@ -81,7 +82,7 @@
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 {
-    //    NSLog(@"I'M SAVING THIS: %@", object);
+    NSLog(@"yo i'm about to save this shit");
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
@@ -89,9 +90,11 @@
             self.countDownForLastPhoto --;
             if(self.countDownForLastPhoto == 0)
             {
+                NSLog(@"last photo:");
                 [setID setValue:object forKey:@"lastPicture"];
                 [setID saveInBackground];
                 [roomNumber setValue:object forKey:@"lastPicture"];
+                NSLog(@"Room: %@", roomNumber);
                 [roomNumber saveInBackground];
                 SendPushNotification(roomNumber, @"New Picture!");
 //                UpdateMessageCounter(roomNumber, @"New Picture!", lastPicture);
@@ -104,6 +107,7 @@
 -(void)checkForTextAndSendItWithText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 
 {
+    NSLog(@"yo i'm checking text");
     if (![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
     {
         PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
@@ -117,7 +121,7 @@
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if(!error)
             {
-
+                NSLog(@"yo i saved your text boi");
             }
         }];
     }
