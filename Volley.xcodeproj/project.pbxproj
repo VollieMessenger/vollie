@@ -23,6 +23,7 @@
 		27C3C1291B3B2EBC00F555FD /* SelectRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3C1281B3B2EBC00F555FD /* SelectRoomVC.m */; };
 		27C3C12F1B3B3A0900F555FD /* ChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3C12E1B3B3A0900F555FD /* ChatRoomCell.m */; };
 		27DB352D1B4C631200A765A2 /* ManageChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB352C1B4C631200A765A2 /* ManageChatVC.m */; };
+		27DB35301B4C7E4800A765A2 /* MembersViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB352F1B4C7E4800A765A2 /* MembersViewVC.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
 		29271A5919F284B1009C308B /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3319F284B1009C308B /* NavigationController.m */; };
 		29271A5A19F284B1009C308B /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3619F284B1009C308B /* ChatView.m */; };
@@ -208,6 +209,8 @@
 		27C3C12E1B3B3A0900F555FD /* ChatRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomCell.m; sourceTree = "<group>"; };
 		27DB352B1B4C631200A765A2 /* ManageChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageChatVC.h; sourceTree = "<group>"; };
 		27DB352C1B4C631200A765A2 /* ManageChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageChatVC.m; sourceTree = "<group>"; };
+		27DB352E1B4C7E4800A765A2 /* MembersViewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersViewVC.h; sourceTree = "<group>"; };
+		27DB352F1B4C7E4800A765A2 /* MembersViewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersViewVC.m; sourceTree = "<group>"; };
 		292719D119F284AC009C308B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		29271A3219F284B1009C308B /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 			children = (
 				27DB352B1B4C631200A765A2 /* ManageChatVC.h */,
 				27DB352C1B4C631200A765A2 /* ManageChatVC.m */,
+				27DB352E1B4C7E4800A765A2 /* MembersViewVC.h */,
+				27DB352F1B4C7E4800A765A2 /* MembersViewVC.m */,
 			);
 			name = "ManageChat VC";
 			sourceTree = "<group>";
@@ -1318,6 +1323,7 @@
 				C21DD6E91A71D73B0009BC6A /* JCNotificationBannerPresenterSmokeStyle.m in Sources */,
 				296DD5BC1A1F52F400AB9F8C /* NSString+JSQMessages.m in Sources */,
 				296DD5C21A1F52F400AB9F8C /* JSQMessagesViewController.m in Sources */,
+				27DB35301B4C7E4800A765A2 /* MembersViewVC.m in Sources */,
 				27DB352D1B4C631200A765A2 /* ManageChatVC.m in Sources */,
 				29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */,
 				C2832CBA1A704A6100CDF19D /* IQToolbar.m in Sources */,

@@ -94,8 +94,9 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     ManageChatVC *manageChatVC = (ManageChatVC *)[storyboard instantiateViewControllerWithIdentifier:@"ManageChatVC"];
+    manageChatVC.messageButReallyRoom = self.messageItComesFrom;
+    manageChatVC.room = self.room;
     [self.navigationController pushViewController:manageChatVC animated:YES];
-//        testView.scrollView = scrollView;
 }
 
 -(void)viewDidAppear:(BOOL)animated

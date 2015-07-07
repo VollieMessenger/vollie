@@ -1,5 +1,5 @@
 //
-//  ManageChatVC.h
+//  MembersViewVC.h
 //  Volley
 //
 //  Created by Kyle on 7/7/15.
@@ -9,10 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
+@interface MembersViewVC : UIViewController
 
-@interface ManageChatVC : UIViewController
-
-@property PFObject *messageButReallyRoom;
 @property PFObject *room;
+@property PFObject *messageButReallyRoom;
 
 @end
