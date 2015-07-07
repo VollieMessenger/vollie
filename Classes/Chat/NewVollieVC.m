@@ -48,6 +48,7 @@ SecondDelegate>
 
     self.arrayForScrollView = [NSMutableArray new];
     self.pageControl = [UIPageControl new];
+    self.photosArray = [NSMutableArray new];
 
     NSMutableArray *testArray = [NSMutableArray new];
     for (int i = 0; i < 10; i++)
@@ -167,7 +168,12 @@ SecondDelegate>
     //custom delegation method
     self.textView.delegate = self;
     [self.textView becomeFirstResponder];
-    self.photosArray = photosForFirst;
+    for (UIImage * pic in photosForFirst) {
+        if ([self.photosArray containsObject:pic]) {
+            [self.photosArray removeObject:pic];
+        }
+    }
+    [self.photosArray addObjectsFromArray:photosForFirst];
     [self.collectionView reloadData];
 }
 

@@ -757,7 +757,7 @@
         return cell;
     }
     else
-    {
+        {
         JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
 //        JSQMessage *message = setComments[indexPath.item];
         cell.textView.textColor = [UIColor whiteColor];
