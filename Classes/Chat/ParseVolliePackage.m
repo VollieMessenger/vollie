@@ -12,6 +12,7 @@
 #import "utilities.h"
 #import "pushnotification.h"
 #import "ProgressHUD.h"
+#import "messages.h"
 
 @implementation ParseVolliePackage
 
@@ -65,7 +66,7 @@
 
 -(PFObject*)basicParseObjectSetupWith:(id)imageOrFile and:(UIImage *)image andArray:(NSMutableArray*)photosArray andSet:(PFObject*)setID andRoom:(PFObject*)room
 {
-    NSLog(@"basic parse setup");
+//    NSLog(@"basic parse setup");
     PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
     [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
     [object setValue:@YES forKey:PF_CHAT_ISUPLOADED];
@@ -82,7 +83,6 @@
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 {
-    NSLog(@"yo i'm about to save this shit");
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
@@ -90,14 +90,14 @@
             self.countDownForLastPhoto --;
             if(self.countDownForLastPhoto == 0)
             {
-                NSLog(@"last photo:");
+//                NSLog(@"last photo:");
                 [setID setValue:object forKey:@"lastPicture"];
                 [setID saveInBackground];
                 [roomNumber setValue:object forKey:@"lastPicture"];
-                NSLog(@"Room: %@", roomNumber);
+//                NSLog(@"Room: %@", roomNumber);
                 [roomNumber saveInBackground];
                 SendPushNotification(roomNumber, @"New Picture!");
-//                UpdateMessageCounter(roomNumber, @"New Picture!", lastPicture);
+                UpdateMessageCounter(roomNumber, @"New Picture!", object);
                 [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
             }
         }
@@ -107,7 +107,7 @@
 -(void)checkForTextAndSendItWithText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 
 {
-    NSLog(@"yo i'm checking text");
+//    NSLog(@"yo i'm checking text");
     if (![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
     {
         PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
