@@ -1342,6 +1342,7 @@
 //            cardViewController = [[CardVC alloc] initWith:room name:cell.labelDescription.text];
             cardViewController.name = cell.labelDescription.text;
             cardViewController.room = room;
+            cardViewController.messageItComesFrom = message;
             [self.navigationController pushViewController:cardViewController animated:YES];
 
         }

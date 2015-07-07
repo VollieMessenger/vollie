@@ -437,7 +437,8 @@
                                                             <exclude reference="ygq-Kj-LGz"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="248" y="15" width="64" height="64"/>
                                                         <mask key="constraints">
                                                             <include reference="p38-x5-BY4"/>
                                                             <include reference="ygq-Kj-LGz"/>
@@ -457,7 +458,8 @@
                                                             <exclude reference="rKd-ia-m26"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="17" y="48" width="223" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="rKd-ia-m26"/>
                                                         </mask>
@@ -476,7 +478,8 @@
                                                             <exclude reference="sT4-eG-j7F"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="17" y="25" width="223" height="21"/>
                                                         <mask key="constraints">
                                                             <include reference="sT4-eG-j7F"/>
                                                         </mask>

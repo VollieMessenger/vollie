@@ -192,12 +192,32 @@
 {
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
-         if(error == nil);
-         for (PFObject *object in [objects reverseObjectEnumerator])
+         if(!error)
          {
-             [self checkForObjectIdWith:object];
+             [self clearPushNotesCounter];
+             for (PFObject *object in [objects reverseObjectEnumerator])
+             {
+                 [self checkForObjectIdWith:object];
+             }
+         }
+         else
+         {
+             NSLog(@"%@",error);
          }
      }];
+}
+
+-(void)clearPushNotesCounter
+{
+    NSNumber *number = [self.messageItComesFrom valueForKey:PF_MESSAGES_COUNTER];
+    if (number)
+    {
+        NSLog(@"%i at first", (int)number);
+        if ([number intValue] > 0)
+        {
+            ClearMessageCounter(self.messageItComesFrom);
+        }
+    }
 }
 
 -(void)checkForObjectIdWith:(PFObject *)object

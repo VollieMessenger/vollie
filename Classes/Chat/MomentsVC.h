@@ -18,5 +18,7 @@
 
 @property PFObject *room;
 @property NSString *name;
+@property PFObject *messageItComesFrom;
+
 
 @end
