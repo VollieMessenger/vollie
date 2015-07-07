@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		270D0D9A1B3C5EFC0070F2F1 /* RoomSettingsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D0D991B3C5EFC0070F2F1 /* RoomSettingsVC.m */; };
 		270D7EF81B3DE1DA00FE28E9 /* PopUpScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */; };
 		274988781B31DDBD00560873 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 274988761B31DDBD00560873 /* CardVC.m */; };
 		274988791B31DDBD00560873 /* CardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274988771B31DDBD00560873 /* CardVC.xib */; };
@@ -23,6 +22,7 @@
 		27C3C1241B3B1A6B00F555FD /* NewVollieVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3C1231B3B1A6B00F555FD /* NewVollieVC.m */; };
 		27C3C1291B3B2EBC00F555FD /* SelectRoomVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3C1281B3B2EBC00F555FD /* SelectRoomVC.m */; };
 		27C3C12F1B3B3A0900F555FD /* ChatRoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C3C12E1B3B3A0900F555FD /* ChatRoomCell.m */; };
+		27DB352D1B4C631200A765A2 /* ManageChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27DB352C1B4C631200A765A2 /* ManageChatVC.m */; };
 		29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */; };
 		29271A5919F284B1009C308B /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3319F284B1009C308B /* NavigationController.m */; };
 		29271A5A19F284B1009C308B /* ChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29271A3619F284B1009C308B /* ChatView.m */; };
@@ -178,8 +178,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		270D0D981B3C5EFC0070F2F1 /* RoomSettingsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomSettingsVC.h; sourceTree = "<group>"; };
-		270D0D991B3C5EFC0070F2F1 /* RoomSettingsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomSettingsVC.m; sourceTree = "<group>"; };
 		270D7EF61B3DE1DA00FE28E9 /* PopUpScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpScrollView.h; path = Classes/Application/PopUpScrollView.h; sourceTree = SOURCE_ROOT; };
 		270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopUpScrollView.m; path = Classes/Application/PopUpScrollView.m; sourceTree = SOURCE_ROOT; };
 		274988751B31DDBD00560873 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
@@ -208,6 +206,8 @@
 		27C3C1281B3B2EBC00F555FD /* SelectRoomVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectRoomVC.m; sourceTree = "<group>"; };
 		27C3C12D1B3B3A0900F555FD /* ChatRoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomCell.h; sourceTree = "<group>"; };
 		27C3C12E1B3B3A0900F555FD /* ChatRoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomCell.m; sourceTree = "<group>"; };
+		27DB352B1B4C631200A765A2 /* ManageChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManageChatVC.h; sourceTree = "<group>"; };
+		27DB352C1B4C631200A765A2 /* ManageChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManageChatVC.m; sourceTree = "<group>"; };
 		292719D119F284AC009C308B /* JSQSystemSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQSystemSoundPlayer.h; sourceTree = "<group>"; };
 		292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		29271A3219F284B1009C308B /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
@@ -515,7 +515,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		270D7EF51B3DDD0200FE28E9 /* MomentsObjects */ = {
+		270D7EF51B3DDD0200FE28E9 /* Modal Objects */ = {
 			isa = PBXGroup;
 			children = (
 				270D7EF61B3DE1DA00FE28E9 /* PopUpScrollView.h */,
@@ -523,22 +523,22 @@
 				27617D961B4ADF590026C2EB /* ParseVolliePackage.h */,
 				27617D971B4ADF590026C2EB /* ParseVolliePackage.m */,
 			);
-			name = MomentsObjects;
+			name = "Modal Objects";
 			sourceTree = "<group>";
 		};
-		27C3C1261B3B2E7000F555FD /* MomentsVCs */ = {
+		27C3C1261B3B2E7000F555FD /* Moments Version */ = {
 			isa = PBXGroup;
 			children = (
-				270D0D981B3C5EFC0070F2F1 /* RoomSettingsVC.h */,
-				270D0D991B3C5EFC0070F2F1 /* RoomSettingsVC.m */,
-				27C3C12C1B3B39F000F555FD /* Select Chat */,
-				27C3C12B1B3B39D500F555FD /* New Vollie View */,
-				27C3C12A1B3B344800F555FD /* Moments View */,
+				27DB352A1B4C616200A765A2 /* ManageChat VC */,
+				27C3C12A1B3B344800F555FD /* Moments VC */,
+				270D7EF51B3DDD0200FE28E9 /* Modal Objects */,
+				27C3C12C1B3B39F000F555FD /* Select Chat VC */,
+				27C3C12B1B3B39D500F555FD /* New Vollie VC */,
 			);
-			name = MomentsVCs;
+			name = "Moments Version";
 			sourceTree = "<group>";
 		};
-		27C3C12A1B3B344800F555FD /* Moments View */ = {
+		27C3C12A1B3B344800F555FD /* Moments VC */ = {
 			isa = PBXGroup;
 			children = (
 				2762FF601B289A530070AD59 /* MomentsVC.h */,
@@ -550,10 +550,10 @@
 				2749887D1B31F98200560873 /* CellForCard.h */,
 				2749887E1B31F98200560873 /* CellForCard.m */,
 			);
-			name = "Moments View";
+			name = "Moments VC";
 			sourceTree = "<group>";
 		};
-		27C3C12B1B3B39D500F555FD /* New Vollie View */ = {
+		27C3C12B1B3B39D500F555FD /* New Vollie VC */ = {
 			isa = PBXGroup;
 			children = (
 				27C3C1221B3B1A6B00F555FD /* NewVollieVC.h */,
@@ -561,10 +561,10 @@
 				27AC594F1B39E0B800633EAB /* NewVolliePicCell.h */,
 				27AC59501B39E0B800633EAB /* NewVolliePicCell.m */,
 			);
-			name = "New Vollie View";
+			name = "New Vollie VC";
 			sourceTree = "<group>";
 		};
-		27C3C12C1B3B39F000F555FD /* Select Chat */ = {
+		27C3C12C1B3B39F000F555FD /* Select Chat VC */ = {
 			isa = PBXGroup;
 			children = (
 				27C3C1271B3B2EBC00F555FD /* SelectRoomVC.h */,
@@ -572,7 +572,16 @@
 				27C3C12D1B3B3A0900F555FD /* ChatRoomCell.h */,
 				27C3C12E1B3B3A0900F555FD /* ChatRoomCell.m */,
 			);
-			name = "Select Chat";
+			name = "Select Chat VC";
+			sourceTree = "<group>";
+		};
+		27DB352A1B4C616200A765A2 /* ManageChat VC */ = {
+			isa = PBXGroup;
+			children = (
+				27DB352B1B4C631200A765A2 /* ManageChatVC.h */,
+				27DB352C1B4C631200A765A2 /* ManageChatVC.m */,
+			);
+			name = "ManageChat VC";
 			sourceTree = "<group>";
 		};
 		2927192F19F284AC009C308B /* Vendors */ = {
@@ -633,8 +642,7 @@
 		29271A3419F284B1009C308B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				270D7EF51B3DDD0200FE28E9 /* MomentsObjects */,
-				27C3C1261B3B2E7000F555FD /* MomentsVCs */,
+				27C3C1261B3B2E7000F555FD /* Moments Version */,
 				29271A3B19F284B1009C308B /* 1 */,
 				279D7C971B2F38AC0090C1AD /* ChatColView.h */,
 				279D7C981B2F38AC0090C1AD /* ChatColView.m */,
@@ -1310,6 +1318,7 @@
 				C21DD6E91A71D73B0009BC6A /* JCNotificationBannerPresenterSmokeStyle.m in Sources */,
 				296DD5BC1A1F52F400AB9F8C /* NSString+JSQMessages.m in Sources */,
 				296DD5C21A1F52F400AB9F8C /* JSQMessagesViewController.m in Sources */,
+				27DB352D1B4C631200A765A2 /* ManageChatVC.m in Sources */,
 				29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */,
 				C2832CBA1A704A6100CDF19D /* IQToolbar.m in Sources */,
 				C21DD6EC1A71D73B0009BC6A /* JCNotificationBannerViewIOS7Style.m in Sources */,
@@ -1371,7 +1380,6 @@
 				C2BD53EA1A31077D006D721E /* CustomChatView.m in Sources */,
 				C21DD6EA1A71D73B0009BC6A /* JCNotificationBannerView.m in Sources */,
 				C27374971A2FFF4800C4B22A /* CustomCameraView.m in Sources */,
-				270D0D9A1B3C5EFC0070F2F1 /* RoomSettingsVC.m in Sources */,
 				296DD5C61A1F52F400AB9F8C /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				296DD5D01A1F52F400AB9F8C /* JSQMessagesBubbleImage.m in Sources */,
 				29271A6B19F284B1009C308B /* utilities.m in Sources */,

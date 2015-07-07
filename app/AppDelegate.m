@@ -41,8 +41,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "RoomSettingsVC.h"
-
 #import "JCNotificationCenter.h"
 #import "JCNotificationBannerPresenterSmokeStyle.h"
 #import "JCNotificationBannerPresenterIOS7Style.h"

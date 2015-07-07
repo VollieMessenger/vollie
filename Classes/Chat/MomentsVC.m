@@ -28,6 +28,7 @@
 #import "CellForCard.h"
 #import "ChatColView.h"
 #import "NewVollieVC.h"
+#import "ManageChatVC.h"
 
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -63,9 +64,7 @@
     [super viewDidLoad];
 
     self.isLoading = NO;
-    self.title = self.name;
-    self.tableView.backgroundColor = [UIColor clearColor];
-//    self.testLabel.text = ;
+    [self basicSetUpForUI];
 
     self.messages = [NSMutableArray new];
     self.colorForSetID = [NSMutableDictionary new];
@@ -74,14 +73,29 @@
     self.objectIdsArray = [NSMutableArray new];
     self.vollieVCcardArray = [NSMutableArray new];
 
+    [self loadMessages];
+}
+
+-(void)basicSetUpForUI
+{
+    self.title = self.name;
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // gets rid of line ^^
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
     self.vollieIconImageView.layer.cornerRadius = 10;
     self.vollieIconImageView.layer.masksToBounds = YES;
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(goToManageChatVC)];
+    barButton.image = [UIImage imageNamed:ASSETS_TYPING];
+    self.navigationItem.rightBarButtonItem = barButton;
+}
 
-    [self loadMessages];
+-(void)goToManageChatVC
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    ManageChatVC *manageChatVC = (ManageChatVC *)[storyboard instantiateViewControllerWithIdentifier:@"ManageChatVC"];
+    [self.navigationController pushViewController:manageChatVC animated:YES];
+//        testView.scrollView = scrollView;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -259,13 +273,6 @@
             [self scrollToBottomAndReload];
         }
     }
-}
-- (IBAction)onNewVollieButtonTapped:(id)sender
-{
-//    NSLog(@"you tapped me");
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//    NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
