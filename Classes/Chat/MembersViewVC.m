@@ -27,11 +27,16 @@
     self.arrayOfNames = [NSMutableArray new];
 }
 
+-(void)setUpUserInterface
+{
+    self.tableView.backgroundColor = [UIColor clearColor];
+}
+
 -(void)loadMembers
 {
     PFRelation *users = [self.room relationForKey:PF_CHATROOMS_USERS];
     PFQuery *query = [users query];
-//    [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+    //    [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error)
         {
@@ -50,16 +55,7 @@
             }
             [self.tableView reloadData];
         }
-        else
-        {
-
-        }
     }];
-}
-
--(void)setUpUserInterface
-{
-    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
 #pragma mark - TableView Stuff

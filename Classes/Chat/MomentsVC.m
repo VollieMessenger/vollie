@@ -170,11 +170,11 @@
 
 -(void)loadMessages
 {
-    if (self.isLoading == NO)
-    {
-        self.isLoading = YES;
+//    if (self.isLoading == NO)
+//    {
+//        self.isLoading = YES;
         [self createQuery];
-    }
+//    }
 }
 
 -(void)createQuery
@@ -227,7 +227,6 @@
     NSNumber *number = [self.messageItComesFrom valueForKey:PF_MESSAGES_COUNTER];
     if (number)
     {
-        NSLog(@"%i at first", (int)number);
         if ([number intValue] > 0)
         {
             ClearMessageCounter(self.messageItComesFrom);

@@ -10,8 +10,10 @@
 #import "ProgressHUD.h"
 #import "AppConstant.h"
 #import "ManageChatVC.h"
+#import "utilities.h"
 
-@interface ManageChatVC ()
+@interface ManageChatVC () <UITextFieldDelegate>
+
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *peopleButton;
 @property (strong, nonatomic) IBOutlet UIButton *silenceButton;
@@ -25,17 +27,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%@", self.room);
     [self setUpUserInterface];
     [self setUpTextForLabelsAndButtons];
 }
 
 -(void)setUpTextForLabelsAndButtons
 {
+    self.textField.delegate = self;
     if (self.messageButReallyRoom[@"nickname"])
     {
         self.textField.placeholder = self.messageButReallyRoom[@"nickname"];
     }
+
     NSArray *peopleArray = self.room[@"userObjects"];
     NSString *peopleString = [NSString stringWithFormat:@"%li People in Chat", peopleArray.count];
     [self.peopleButton setTitle:peopleString forState:UIControlStateNormal];
@@ -44,6 +47,7 @@
 -(void)setUpUserInterface
 {
     //add borders and stuff here
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 #pragma mark - Navigation
@@ -94,6 +98,39 @@
 - (IBAction)onCancelButtonTapped:(id)sender
 {
     //code to dismiss and save changes
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self saveNickname];
+    return YES;
+}
+
+- (void) saveNickname
+{
+    PFObject *message = self.messageButReallyRoom;
+    if (self.textField.isFirstResponder) {
+        if (self.textField.hasText)
+        {
+            [message setValue:self.textField.text forKey:PF_MESSAGES_NICKNAME];
+        }
+        else
+        {
+            [message removeObjectForKey:PF_MESSAGES_NICKNAME];
+        }
+        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded)
+            {
+                PostNotification(NOTIFICATION_REFRESH_INBOX);
+                [ProgressHUD showSuccess:@"Saved Nickname"];
+                [self.textField resignFirstResponder];
+            }
+            else
+            {
+                [ProgressHUD showError:@"Network Error"];
+            }
+        }];
+    }
 }
 
 #pragma mark - AlertView Actions
