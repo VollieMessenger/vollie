@@ -48,7 +48,7 @@ SecondDelegate>
 
     self.arrayForScrollView = [NSMutableArray new];
     self.pageControl = [UIPageControl new];
-    self.photosArray = [NSMutableArray new];
+    if (!self.photosArray) self.photosArray = [NSMutableArray new];
 
     NSMutableArray *testArray = [NSMutableArray new];
     for (int i = 0; i < 10; i++)
