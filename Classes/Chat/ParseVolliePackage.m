@@ -93,9 +93,25 @@
 //                NSLog(@"last photo:");
                 [setID setValue:object forKey:@"lastPicture"];
                 [setID saveInBackground];
+//                [setID saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//                {
+//                    if(error)
+//                    {
+//
+//                    }
+//                }];
+
                 [roomNumber setValue:object forKey:@"lastPicture"];
 //                NSLog(@"Room: %@", roomNumber);
                 [roomNumber saveInBackground];
+//                [roomNumber saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//                {
+//                    if (error)
+//                    {
+//
+//                    }
+//                }];
+
                 SendPushNotification(roomNumber, @"New Picture!");
                 UpdateMessageCounter(roomNumber, @"New Picture!", object);
                 [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];

@@ -168,7 +168,6 @@ SecondDelegate>
     {
         self.textView.textColor = [UIColor lightGrayColor];
         self.textView.text = @"Type Message Here...";
-//        [self.textView resignFirstResponder];
     }
 }
 //
