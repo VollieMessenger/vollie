@@ -519,15 +519,12 @@
         case 0:
             self.x1.hidden = YES;
             self.savedButton1.hidden = YES;
-
             //Would not return the dictionaries, have to use button for index of items.
             [self.arrayOfTakenPhotos removeObjectAtIndex:0];
             self.savedButton1.imageView.image = nil;
             [self moveImageUpToLatestBlank:self.x1];
             break;
-
         case 1:
-
             self.x2.hidden = YES;
             self.savedButton2.hidden = YES;
             [self.arrayOfTakenPhotos removeObjectAtIndex:1];
@@ -1653,6 +1650,8 @@
             button.userInteractionEnabled = YES;
         }
     }
+    self.arrayOfTakenPhotos = [NSMutableArray new];
+    [self blankOutButtons];
 }
 
 - (void)setFlashMode:(AVCaptureFlashMode)flashMode forDevice:(AVCaptureDevice *)device
@@ -2358,6 +2357,21 @@
         default:
             break;
     }
+}
+
+-(void)blankOutButtons{
+    self.savedButton1.hidden = YES;
+    self.savedButton2.hidden = YES;
+    self.savedButton3.hidden = YES;
+    self.savedButton4.hidden = YES;
+    self.savedButton5.hidden = YES;
+    self.x1.hidden = YES;
+    self.x2.hidden = YES;
+    self.x3.hidden = YES;
+    self.x4.hidden = YES;
+    self.x5.hidden = YES;
+    self.nextButton.hidden = YES;
+    self.counterButton.hidden = YES;
 }
 
 //NOT USED YET.....
