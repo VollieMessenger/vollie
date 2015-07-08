@@ -9,6 +9,7 @@
 #import "ManageChatVC.h"
 #import "ProgressHUD.h"
 #import "AppConstant.h"
+#import "AppDelegate.h"
 #import "ManageChatVC.h"
 #import "utilities.h"
 
@@ -200,7 +201,8 @@
                                    [ProgressHUD showSuccess:@"Deleted All Content"];
                                    //Refresh inbox, popchatview.
 //                                   [self actionDimiss];
-                                    [self.navigationController popToRootViewControllerAnimated:1];
+                                   PostNotification(NOTIFICATION_REFRESH_INBOX);
+                                   [self.navigationController popToRootViewControllerAnimated:1];
 
                                }
                            }];
