@@ -23,5 +23,6 @@
 @property NSMutableArray *photosArray;
 @property MasterScrollView *scrollView;
 @property BOOL comingFromCamera;
+@property BOOL showingCamera;
 
 @end

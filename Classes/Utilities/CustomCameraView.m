@@ -300,7 +300,6 @@
     [super viewDidAppear:animated];
 
     [self runCamera];
-    
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.rightButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.switchCameraButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -1650,8 +1649,6 @@
             button.userInteractionEnabled = YES;
         }
     }
-    self.arrayOfTakenPhotos = [NSMutableArray new];
-    [self blankOutButtons];
 }
 
 - (void)setFlashMode:(AVCaptureFlashMode)flashMode forDevice:(AVCaptureDevice *)device
@@ -2360,6 +2357,7 @@
 }
 
 -(void)blankOutButtons{
+    self.arrayOfTakenPhotos = [NSMutableArray new];
     self.savedButton1.hidden = YES;
     self.savedButton2.hidden = YES;
     self.savedButton3.hidden = YES;
@@ -2375,8 +2373,7 @@
 }
 
 //NOT USED YET.....
-- (void) loadImagesSaved
-{
+- (void)loadImagesSaved{
     if (_arrayOfTakenPhotos.count > 0)
     {
 //        self.isReturningFromBackButton = NO;

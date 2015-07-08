@@ -66,6 +66,7 @@ SecondDelegate>
     [self basicSetUpAndInit];
     [self.navigationController setNavigationBarHidden: NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
+    self.showingCamera = NO;
     if(self.comingFromCamera == true)
     {
         [self.navigationItem setHidesBackButton:YES animated:NO];
@@ -142,6 +143,7 @@ SecondDelegate>
         [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
 
         [self.navigationController pushViewController:selectRoomVC animated:YES];
+        [self.cameraView blankOutButtons];
     }
     return YES;
 }
@@ -160,7 +162,9 @@ SecondDelegate>
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+    if (!self.showingCamera)[cam blankOutButtons];
 }
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
@@ -183,8 +187,12 @@ SecondDelegate>
     if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-//        [cam setPopUp];
         cam.delegate = self;
+        if (self.photosArray.count >= 1){
+//            cam.arrayOfTakenPhotos = self.photosArray;
+            [cam loadImagesSaved];
+            self.showingCamera = YES;
+        }
         cam.comingFromNewVollie = YES;
         cam.textFromLastVC = self.textView.text;
         cam.photosFromNewVC = self.photosArray;
@@ -261,6 +269,7 @@ SecondDelegate>
 //            }
 
             self.comingFromCamera = false;
+            self.showingCamera = YES;
             [self.textView resignFirstResponder];
 //            [self dismissViewControllerAnimated:YES completion:nil];
             [self.navigationController popViewControllerAnimated:YES];
