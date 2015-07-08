@@ -2450,6 +2450,21 @@
     return newImage;
 }
 
-
+-(void)blankOutButtons
+{
+    self.arrayOfTakenPhotos = [NSMutableArray new];
+    self.savedButton1.hidden = YES;
+    self.savedButton2.hidden = YES;
+    self.savedButton3.hidden = YES;
+    self.savedButton4.hidden = YES;
+    self.savedButton5.hidden = YES;
+    self.x1.hidden = YES;
+    self.x2.hidden = YES;
+    self.x3.hidden = YES;
+    self.x4.hidden = YES;
+    self.x5.hidden = YES;
+    self.nextButton.hidden = YES;
+    self.counterButton.hidden = YES;
+}
 
 @end

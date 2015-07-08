@@ -54,17 +54,14 @@ SecondDelegate>
     self.arrayForScrollView = [NSMutableArray new];
     self.pageControl = [UIPageControl new];
 
-    NSMutableArray *testArray = [NSMutableArray new];
-    for (int i = 0; i < 10; i++)
-    {
-        NSString *string = [NSString stringWithFormat:@"i ate %i tacos", i];
-        [testArray addObject:string];
-    }
+    if (!self.photosArray) self.photosArray = [NSMutableArray new];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [self basicSetUpAndInit];
+    self.showingCamera = NO;
+
     [self.navigationController setNavigationBarHidden: NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
     if(self.comingFromCamera == true)
@@ -156,6 +153,7 @@ SecondDelegate>
             [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
 
             [self.navigationController pushViewController:selectRoomVC animated:YES];
+            [self.cameraView blankOutButtons];
         }
     }
     return YES;
@@ -170,18 +168,28 @@ SecondDelegate>
         self.textView.text = @"Type Message Here...";
     }
 }
-//
-//-(void)viewDidDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+    if (!self.showingCamera)[cam blankOutButtons];
+
+}
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
 {
     //custom delegation method
+//    self.photosArray = photosForFirst;
     self.textView.delegate = self;
     [self.textView becomeFirstResponder];
-    self.photosArray = photosForFirst;
+    for (UIImage * pic in photosForFirst) {
+        if ([self.photosArray containsObject:pic]) {
+            [self.photosArray removeObject:pic];
+        }
+    }
+    [self.photosArray addObjectsFromArray:photosForFirst];
     [self.collectionView reloadData];
 }
 
@@ -191,8 +199,12 @@ SecondDelegate>
     if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-//        [cam setPopUp];
         cam.delegate = self;
+        if (self.photosArray.count >= 1){
+            //            cam.arrayOfTakenPhotos = self.photosArray;
+            [cam loadImagesSaved];
+            self.showingCamera = YES;
+        }
         cam.comingFromNewVollie = YES;
         cam.textFromLastVC = self.textView.text;
         cam.photosFromNewVC = self.photosArray;
@@ -269,6 +281,7 @@ SecondDelegate>
 //            }
 
             self.comingFromCamera = false;
+            self.showingCamera = YES;
             [self.textView resignFirstResponder];
 //            [self dismissViewControllerAnimated:YES completion:nil];
             [self.navigationController popViewControllerAnimated:YES];

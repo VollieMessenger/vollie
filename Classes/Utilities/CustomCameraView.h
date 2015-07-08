@@ -61,5 +61,7 @@
 
 -(void) moveImageUpToLatestBlank:(UIButton *)sender;
 -(void) freezeCamera;
+-(void)blankOutButtons;
+-(void)loadImagesSaved;
 
 @end
