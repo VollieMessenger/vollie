@@ -62,23 +62,7 @@
 #pragma mark - Buttons
 - (IBAction)onSilenceButtonTapped:(id)sender
 {
-    [self.messageButReallyRoom fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
-            if (!object[PF_MESSAGES_USER_DONOTDISTURB])
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Show Push Notifications?" message:nil delegate:self
-                                                      cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
-                alert.tag = 69;
-                [alert show];
-            } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Silence Push Notifications?" message:nil delegate:self
-                                                      cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
-                alert.tag = 69;
-                [alert show];
-
-            }
-        } else [ProgressHUD showError:@"Network Error"];
-    }];
+    [self silenceOrUnsilence];
 }
 
 - (IBAction)onLeaveButtonTapped:(id)sender
@@ -97,7 +81,8 @@
 
 - (IBAction)onCancelButtonTapped:(id)sender
 {
-    //code to dismiss and save changes
+     [self.navigationController popToRootViewControllerAnimated:1];
+    [self saveNickname];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -106,40 +91,13 @@
     return YES;
 }
 
-- (void) saveNickname
-{
-    PFObject *message = self.messageButReallyRoom;
-    if (self.textField.isFirstResponder) {
-        if (self.textField.hasText)
-        {
-            [message setValue:self.textField.text forKey:PF_MESSAGES_NICKNAME];
-        }
-        else
-        {
-            [message removeObjectForKey:PF_MESSAGES_NICKNAME];
-        }
-        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded)
-            {
-                PostNotification(NOTIFICATION_REFRESH_INBOX);
-                [ProgressHUD showSuccess:@"Saved Nickname"];
-                [self.textField resignFirstResponder];
-            }
-            else
-            {
-                [ProgressHUD showError:@"Network Error"];
-            }
-        }];
-    }
-}
-
 #pragma mark - AlertView Actions
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 
     if (buttonIndex != alertView.cancelButtonIndex && alertView.tag == 23)
     {
-//        [self leaveChatroom];
+        [self leaveChatroom];
     }
 //
     if (buttonIndex != alertView.cancelButtonIndex && alertView.tag == 222)
@@ -171,6 +129,135 @@
             }
         }];
     }
+}
+
+#pragma mark "Complicated Methods"
+
+- (void) leaveChatroom
+{
+    //Just delete my stuff, and get me out of here.
+    [ProgressHUD show:@"Leaving..." Interaction:0];
+
+    PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
+    [query whereKey:PF_CHAT_ROOM equalTo:self.room];
+    [query whereKey:PF_CHAT_USER equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             for (PFObject *object in objects)
+             {
+                 [object deleteInBackground];
+             }
+
+             PFQuery *query2 = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
+             [query2 whereKey:PF_CHAT_ROOM equalTo:self.room];
+             [query2 whereKey:PF_CHAT_USER equalTo:[PFUser currentUser]];
+
+             [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+              {
+                  if (!error)
+                  {
+                      if (objects.count != 1) NSLog(@"DUPLICATE MESSAGE FOR SOME REASON");
+
+                      for (PFObject *object in objects)
+                      {
+                          [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                           {
+                               if (succeeded)
+                               {
+                                   //REMOVE USER FROM PFRELATION
+                                   PFRelation *userss = [self.room relationForKey:PF_CHATROOMS_USERS];
+                                   [userss removeObject:[PFUser currentUser]];
+                                   [[_room valueForKey:PF_CHATROOMS_USEROBJECTS] removeObject:[PFUser currentUser].objectId];
+
+                                   [[userss query] countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+                                       if (!error) {
+                                           if (number == 0) {
+
+                                               [self.room deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                                   if (succeeded)
+                                                   {
+                                                       PostNotification(NOTIFICATION_ENABLESCROLLVIEW);
+                                                   }
+                                               }];
+
+                                           }
+                                           else
+                                           {
+
+                                               [self.room saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                                   if (succeeded) {
+                                                       PostNotification(NOTIFICATION_ENABLESCROLLVIEW);
+                                                   }
+
+                                               }];
+                                           }
+                                       }
+                                   }];
+
+                                   PostNotification(NOTIFICATION_LEAVE_CHATROOM);
+                                   [ProgressHUD showSuccess:@"Deleted All Content"];
+                                   //Refresh inbox, popchatview.
+//                                   [self actionDimiss];
+                                    [self.navigationController popToRootViewControllerAnimated:1];
+
+                               }
+                           }];
+                      }
+                  }}];
+         } else {
+             [ProgressHUD showError:@"Network Error"];
+         }
+     }];
+}
+
+- (void) saveNickname
+{
+    PFObject *message = self.messageButReallyRoom;
+    if (self.textField.isFirstResponder) {
+        if (self.textField.hasText)
+        {
+            [message setValue:self.textField.text forKey:PF_MESSAGES_NICKNAME];
+        }
+        else
+        {
+            [message removeObjectForKey:PF_MESSAGES_NICKNAME];
+        }
+        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded)
+            {
+                PostNotification(NOTIFICATION_REFRESH_INBOX);
+                [ProgressHUD showSuccess:@"Saved Nickname"];
+                [self.textField resignFirstResponder];
+            }
+            else
+            {
+                [ProgressHUD showError:@"Network Error"];
+            }
+        }];
+    }
+}
+
+-(void)silenceOrUnsilence
+{
+    [self.messageButReallyRoom fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        if (!error) {
+            if (!object[PF_MESSAGES_USER_DONOTDISTURB])
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Show Push Notifications?" message:nil delegate:self
+                                                      cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+                alert.tag = 69;
+                [alert show];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Silence Push Notifications?" message:nil delegate:self
+                                                      cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+                alert.tag = 69;
+                [alert show];
+
+            }
+        } else [ProgressHUD showError:@"Network Error"];
+    }];
 }
 
 
