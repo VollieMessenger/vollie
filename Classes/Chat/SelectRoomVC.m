@@ -20,6 +20,7 @@
 @interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIButton *sendButton;
 
 @property NSMutableArray *messages;
 @property NSMutableArray *savedPhotoObjects;
@@ -53,6 +54,13 @@
     self.cellsArray = [NSMutableArray new];
     [self loadData];
     self.counterForLastPhotoTaken = (int)self.photosToSend.count;
+
+    self.sendButton.hidden = YES;
+    self.sendButton.backgroundColor = [UIColor volleyFamousOrange];
+    [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.sendButton.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
+
+        //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
 }
 
 - (void)loadData
@@ -174,7 +182,17 @@
     {
         cell.selectedImageView.backgroundColor = [UIColor clearColor];
     }
-    
+
+//    self.sendButton.hidden = NO;
+
+    if (self.sendButton.isHidden) {
+        self.sendButton.hidden = NO;
+        self.sendButton.alpha = 0;
+        [UIView animateWithDuration:.3f animations:^{
+            self.sendButton.alpha = 1;
+        }];
+    }
+
     ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
