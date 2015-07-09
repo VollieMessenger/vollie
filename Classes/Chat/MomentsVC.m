@@ -142,14 +142,18 @@
         switch (data.photosArray.count)
         {
             case 1:
-                return 130;
+                return 160;
                 break;
             case 2:
-                return 220;
+                return 260;
             case 3:
-                return 330;
+                return 350;
+            case 4:
+                return 450;
+            case 5:
+                return 530;
             default:
-                return 125;
+                return 160;
                 break;
         }
     }

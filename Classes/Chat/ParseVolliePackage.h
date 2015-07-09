@@ -18,6 +18,7 @@
 @property int countDownForLastPhoto;
 @property NSMutableArray *savedPhotoObjects;
 @property NSMutableArray *savedImageFiles;
+@property PFObject *lastPicFromPackage;
 
 
 @end

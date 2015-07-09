@@ -60,7 +60,6 @@
 
     PFObject *room = message[PF_MESSAGES_ROOM];
 
-
     if (message[PF_MESSAGES_NICKNAME])
     {
         labelDescription.text = message[PF_MESSAGES_NICKNAME];

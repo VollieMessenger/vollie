@@ -101,6 +101,8 @@
                 [roomNumber setValue:object forKey:@"lastPicture"];
                 [roomNumber saveInBackground];
 
+                self.lastPicFromPackage = object;
+
                 if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
                 {
                     [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
@@ -163,7 +165,14 @@
 -(void)showSuccessNotificationWithString:(NSString *)string andObject:(PFObject*)object andRoomNumber:(PFObject*)roomNumber
 {
     SendPushNotification(roomNumber, string);
-    UpdateMessageCounter(roomNumber, string, object);
+    if (self.lastPicFromPackage)
+    {
+        UpdateMessageCounter(roomNumber, string, self.lastPicFromPackage);
+    }
+    else
+    {
+        UpdateMessageCounter(roomNumber, string, object);
+    }
     [ProgressHUD showSuccess:@"Sent Vollie!"];
     [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
 }

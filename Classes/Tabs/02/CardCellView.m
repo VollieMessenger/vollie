@@ -600,11 +600,12 @@
         JSQMessage *message = setComments[indexPath.item];
          if ([message.senderId isEqualToString:self.senderId])
          {
-         cell.textView.textColor = [UIColor whiteColor];
+             cell.textView.textColor = [UIColor whiteColor];
+//             cell.cellTopLabel.hidden = YES;
          }
          else
          {
-         cell.textView.textColor = [UIColor blackColor];
+             cell.textView.textColor = [UIColor blackColor];
          }
 //        cell.textView.textColor = [UIColor whiteColor];
 //        [cell sizeToFit];
