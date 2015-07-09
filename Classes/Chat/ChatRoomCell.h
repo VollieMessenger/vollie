@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *lastTextLabel;
 @property (strong, nonatomic) IBOutlet UILabel *roomNameLabel;
 //@property (strong, nonatomic) IBOutlet UIImageView *lastImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *selectedImageView;
 
 @end

@@ -25,6 +25,7 @@
 @property NSMutableArray *savedPhotoObjects;
 @property NSMutableArray *savedImageFiles;
 @property NSMutableArray *objectsForParse;
+@property NSMutableArray *cellsArray;
 
 @property PFObject *selectedRoom;
 @property PFObject *selectedSet;
@@ -49,6 +50,7 @@
     self.savedPhotoObjects = [NSMutableArray new];
     self.savedImageFiles = [NSMutableArray new];
     self.objectsForParse = [NSMutableArray new];
+    self.cellsArray = [NSMutableArray new];
     [self loadData];
     self.counterForLastPhotoTaken = (int)self.photosToSend.count;
 }
@@ -128,6 +130,8 @@
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
 
+    [self.cellsArray addObject:cell];
+
     if (room[PF_MESSAGES_NICKNAME])
     {
         cell.roomNameLabel.text = room[PF_MESSAGES_NICKNAME];
@@ -166,9 +170,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    for (ChatRoomCell *cell in self.cellsArray)
+    {
+        cell.selectedImageView.backgroundColor = [UIColor clearColor];
+    }
+    
     ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor volleyFamousOrange];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
+
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
     self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
 }
