@@ -66,17 +66,22 @@
 
 -(PFObject*)basicParseObjectSetupWith:(id)imageOrFile and:(UIImage *)image andArray:(NSMutableArray*)photosArray andSet:(PFObject*)setID andRoom:(PFObject*)room
 {
-//    NSLog(@"basic parse setup");
+    UIImage *thumbnail = ResizeImage(image, image.size.width, image.size.height);
+    PFFile *file = [PFFile fileWithName:@"thumbnail.png" data:UIImageJPEGRepresentation(thumbnail, .2)];
+
     PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
     [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
     [object setValue:@YES forKey:PF_CHAT_ISUPLOADED];
-    [object setValue:[NSDate dateWithTimeIntervalSinceNow:[photosArray indexOfObject:object]]forKey:PF_PICTURES_UPDATEDACTION];
-    [object setValue:setID forKey:PF_PICTURES_SETID];
-    [object setValue:room forKey:PF_PICTURES_CHATROOM];
-    UIImage *thumbnail = ResizeImage(image, image.size.width, image.size.height);
-    PFFile *file = [PFFile fileWithName:@"thumbnail.png" data:UIImageJPEGRepresentation(thumbnail, .2)];
-    [object setValue:[NSDate dateWithTimeIntervalSinceNow:[photosArray indexOfObject:image]]forKey:PF_PICTURES_UPDATEDACTION];
-    [object setObject:file forKey:PF_PICTURES_THUMBNAIL];
+    [object setValue:[NSDate dateWithTimeIntervalSinceNow:[photosArray indexOfObject:object]]
+              forKey:PF_PICTURES_UPDATEDACTION];
+    [object setValue:setID
+              forKey:PF_PICTURES_SETID];
+    [object setValue:room
+              forKey:PF_PICTURES_CHATROOM];
+    [object setValue:[NSDate dateWithTimeIntervalSinceNow:[photosArray indexOfObject:image]]
+              forKey:PF_PICTURES_UPDATEDACTION];
+    [object setObject:file
+               forKey:PF_PICTURES_THUMBNAIL];
 
     return object;
 }
@@ -90,27 +95,11 @@
             self.countDownForLastPhoto --;
             if(self.countDownForLastPhoto == 0)
             {
-//                NSLog(@"last photo:");
                 [setID setValue:object forKey:@"lastPicture"];
                 [setID saveInBackground];
-//                [setID saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-//                {
-//                    if(error)
-//                    {
-//
-//                    }
-//                }];
 
                 [roomNumber setValue:object forKey:@"lastPicture"];
-//                NSLog(@"Room: %@", roomNumber);
                 [roomNumber saveInBackground];
-//                [roomNumber saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-//                {
-//                    if (error)
-//                    {
-//
-//                    }
-//                }];
 
                 if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
                 {
@@ -118,10 +107,15 @@
                 }
                 else
                 {
-                    SendPushNotification(roomNumber, @"New Picture!");
-                    UpdateMessageCounter(roomNumber, @"New Picture!", object);
+                    [self showSuccessNotificationWithString:@"New Picture!"
+                                                  andObject:object
+                                              andRoomNumber:roomNumber];
                 }
             }
+        }
+        else
+        {
+            [self showErrorNotification];
         }
     }];
 }
@@ -144,22 +138,34 @@
         {
             if(!error)
             {
-//                NSString
-                SendPushNotification(roomNumber, text);
-                UpdateMessageCounter(roomNumber, text, object);
+                [self showSuccessNotificationWithString:text
+                                              andObject:object
+                                          andRoomNumber:roomNumber];
+            }
+            else
+            {
+                [self showErrorNotification];
             }
         }];
-//    }
-//    else
-//    {
-        [ProgressHUD showError:@"Failed to Send!"];
-        [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
-//    }
 }
 
 -(void)hideProgressHUD
 {
     [ProgressHUD dismiss];
+}
+
+-(void)showErrorNotification
+{
+    [ProgressHUD showError:@"Failed to Send!"];
+    [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
+}
+
+-(void)showSuccessNotificationWithString:(NSString *)string andObject:(PFObject*)object andRoomNumber:(PFObject*)roomNumber
+{
+    SendPushNotification(roomNumber, string);
+    UpdateMessageCounter(roomNumber, string, object);
+    [ProgressHUD showSuccess:@"Sent Vollie!"];
+    [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
 }
 
 @end

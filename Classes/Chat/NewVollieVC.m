@@ -143,7 +143,19 @@ SecondDelegate>
 //            [set saveInBackground];
 
             ParseVolliePackage *package = [ParseVolliePackage new];
-            [package sendPhotosWithPhotosArray:self.photosArray andText:self.textView.text andRoom:self.whichRoom andSet:set];
+            if (self.photosArray.count)
+            {
+                [package sendPhotosWithPhotosArray:self.photosArray
+                                           andText:self.textView.text
+                                           andRoom:self.whichRoom
+                                            andSet:set];
+            }
+            else
+            {
+                [package checkForTextAndSendItWithText:self.textView.text
+                                               andRoom:self.whichRoom
+                                                andSet:set];
+            }
              [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
         }
         else
