@@ -114,7 +114,7 @@
 
     bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:backgroundColor_];
-    incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:backgroundColor_];
+    incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor volleyBorderGrey]];
 
 //    self.inputToolbar.contentView.textView.backgroundColor = backgroundColor_;
 //    self.inputToolbar.contentView.textView.textColor = [UIColor whiteColor];
@@ -596,8 +596,20 @@
     else
     {
         JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-        //        JSQMessage *message = setComments[indexPath.item];
-        cell.textView.textColor = [UIColor whiteColor];
+        JSQMessage *message = setComments[indexPath.item];
+         if ([message.senderId isEqualToString:self.senderId])
+         {
+         cell.textView.textColor = [UIColor whiteColor];
+         }
+         else
+         {
+         cell.textView.textColor = [UIColor blackColor];
+         }
+//        cell.textView.textColor = [UIColor whiteColor];
+//        [cell sizeToFit];
+//        cell.textView.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:15.0];
+//        [cell sizeToFit];
+//        [cell sizeThatFits:17.0];
         cell.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];
         return cell;
     }

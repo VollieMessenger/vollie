@@ -159,10 +159,12 @@
     JSQMessagesCollectionViewLayoutAttributes *customAttributes = (JSQMessagesCollectionViewLayoutAttributes *)layoutAttributes;
 
 
-    if (self.textView.font != customAttributes.messageBubbleFont) {
+    if (self.textView.font != customAttributes.messageBubbleFont)
+    {
         self.textView.font = customAttributes.messageBubbleFont;
     }
-    
+//    self.textView.font = [UIFont fontWithName:@"ArialBoundedMTBold" size:15.0];
+
     if (!UIEdgeInsetsEqualToEdgeInsets(self.textView.textContainerInset, customAttributes.textViewTextContainerInsets)) {
         self.textView.textContainerInset = customAttributes.textViewTextContainerInsets;
     }

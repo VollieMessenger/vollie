@@ -43,6 +43,7 @@
 {
     NSParameterAssert(messageBubbleFont != nil);
     _messageBubbleFont = messageBubbleFont;
+//    self.messageBubbleFont = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
 }
 
 - (void)setMessageBubbleContainerViewWidth:(CGFloat)messageBubbleContainerViewWidth
