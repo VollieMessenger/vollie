@@ -112,9 +112,15 @@
 //                    }
 //                }];
 
-                SendPushNotification(roomNumber, @"New Picture!");
-                UpdateMessageCounter(roomNumber, @"New Picture!", object);
-                [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
+                if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
+                {
+                    [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
+                }
+                else
+                {
+                    SendPushNotification(roomNumber, @"New Picture!");
+                    UpdateMessageCounter(roomNumber, @"New Picture!", object);
+                }
             }
         }
     }];
@@ -124,8 +130,8 @@
 
 {
 //    NSLog(@"yo i'm checking text");
-    if (![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
-    {
+//    if (![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
+//    {
         PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
         object[PF_CHAT_USER] = [PFUser currentUser];
         object[PF_CHAT_ROOM] = roomNumber;
@@ -134,18 +140,21 @@
         roomNumber[@"lastMessage"] = text;
 
         [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
-        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
             if(!error)
             {
-                NSLog(@"yo i saved your text boi");
+//                NSString
+                SendPushNotification(roomNumber, text);
+                UpdateMessageCounter(roomNumber, text, object);
             }
         }];
-    }
-    else
-    {
+//    }
+//    else
+//    {
         [ProgressHUD showError:@"Failed to Send!"];
         [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
-    }
+//    }
 }
 
 -(void)hideProgressHUD
