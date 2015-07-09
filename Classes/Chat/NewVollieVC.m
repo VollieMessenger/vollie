@@ -60,10 +60,12 @@ SecondDelegate>
 -(void)viewDidAppear:(BOOL)animated
 {
     [self basicSetUpAndInit];
+
     self.showingCamera = NO;
 
     [self.navigationController setNavigationBarHidden: NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
+
     if(self.comingFromCamera == true)
     {
         [self.navigationItem setHidesBackButton:YES animated:NO];
@@ -175,7 +177,6 @@ SecondDelegate>
     NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
     CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
     if (!self.showingCamera)[cam blankOutButtons];
-
 }
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
