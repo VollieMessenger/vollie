@@ -136,7 +136,28 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    VollieCardData *data = self.vollieCardDataArray[indexPath.item];
+    if (data.photosArray.count)
+    {
+        switch (data.photosArray.count)
+        {
+            case 1:
+                return 130;
+                break;
+            case 2:
+                return 220;
+            case 3:
+                return 330;
+            default:
+                return 125;
+                break;
+        }
+    }
+    else
+    {
+        return 115;
+    }
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

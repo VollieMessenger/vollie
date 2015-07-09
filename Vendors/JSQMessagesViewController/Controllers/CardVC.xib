@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardVC">
@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tp0-pL-mD2">
+                <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tp0-pL-mD2">
                     <rect key="frame" x="218" y="0.0" width="100" height="524"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
@@ -72,13 +72,13 @@
                     <exclude reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="6eN-vD-EzA"/>
-                    <exclude reference="Bgg-vE-mng"/>
-                    <exclude reference="OUD-0O-bZJ"/>
                     <exclude reference="0iQ-99-B7R"/>
                     <exclude reference="AXu-8z-UfG"/>
                     <exclude reference="Dhc-IS-h1x"/>
                     <exclude reference="TWp-QS-4L6"/>
+                    <exclude reference="6eN-vD-EzA"/>
+                    <exclude reference="Bgg-vE-mng"/>
+                    <exclude reference="OUD-0O-bZJ"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -87,13 +87,13 @@
                     <include reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="6eN-vD-EzA"/>
-                    <include reference="Bgg-vE-mng"/>
-                    <include reference="OUD-0O-bZJ"/>
                     <include reference="0iQ-99-B7R"/>
                     <include reference="AXu-8z-UfG"/>
                     <include reference="Dhc-IS-h1x"/>
                     <include reference="TWp-QS-4L6"/>
+                    <include reference="6eN-vD-EzA"/>
+                    <include reference="Bgg-vE-mng"/>
+                    <include reference="OUD-0O-bZJ"/>
                 </mask>
             </variation>
         </view>

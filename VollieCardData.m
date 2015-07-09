@@ -71,6 +71,11 @@
 
 -(void)createCardVCwithSetID:(NSString*)setID andPictures:(NSMutableArray*)picsArray andComments:(NSMutableArray *)commentsArray
 {
+//    if (!picsArray.count)
+//    {
+//        UIImage *image = [UIImage imageNamed:@"Vollie-icon"];
+//        [picsArray addObject:image];
+//    }
     CardCellView *vc = [[CardCellView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen] andPictures:picsArray andComments:commentsArray];
     self.viewController = vc;
     //    chatt.senderId = [self.senderId copy];
