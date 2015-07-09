@@ -586,6 +586,7 @@
                 last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
                 name = [first stringByAppendingString:last];
                 cell.label.text = name;
+                cell.label.hidden = true;
             }
 
             cell.imageView.layer.borderColor = backgroundColor_.CGColor;
@@ -608,6 +609,9 @@
 //        cell.textView.textColor = [UIColor whiteColor];
 //        [cell sizeToFit];
 //        cell.textView.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:15.0];
+        cell.textView.font = [UIFont fontWithName:@"HelveticaNeue" size:15.0];
+
+//        HelveticaNeue
 //        [cell sizeToFit];
 //        [cell sizeThatFits:17.0];
         cell.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];

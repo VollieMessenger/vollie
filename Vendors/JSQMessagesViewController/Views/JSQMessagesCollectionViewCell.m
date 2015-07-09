@@ -231,7 +231,9 @@
     self.textView.textColor = backgroundColor;
     self.avatarImageView.backgroundColor = backgroundColor;
     
-    self.messageBubbleContainerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//    self.messageBubbleContainerView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.messageBubbleContainerView.backgroundColor = [UIColor clearColor];
+
     self.avatarContainerView.backgroundColor = backgroundColor;
 }
 
@@ -264,7 +266,8 @@
 
 - (void)setMediaView:(UIView *)mediaView
 {
-    if ([_mediaView isEqual:mediaView]) {
+    if ([_mediaView isEqual:mediaView])
+    {
         return;
     }
     

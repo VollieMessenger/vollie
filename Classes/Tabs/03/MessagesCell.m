@@ -33,7 +33,8 @@
         imageUser.layer.cornerRadius = 10;
         imageUser.layer.masksToBounds = YES;
         labelInitials.layer.borderWidth = 1;
-    
+//    self.labelInitials.hidden = true;
+
    //  self.selectionStyle = UITableViewCellSelectionStyleNone;
 
    //    self.imageUser.image = [UIImage imageNamed:@"Blank V"];

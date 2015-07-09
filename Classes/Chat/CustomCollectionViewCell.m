@@ -16,7 +16,7 @@
 
 - (void) format
 {
-    self.imageView.layer.borderWidth = 2;
+//    self.imageView.layer.borderWidth = 2;
     self.imageView.layer.masksToBounds = YES;
     self.imageView.layer.cornerRadius = 10;
 #warning RASTERIZING

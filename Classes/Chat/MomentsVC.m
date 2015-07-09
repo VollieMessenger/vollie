@@ -134,6 +134,11 @@
     return self.vollieCardDataArray.count;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
@@ -149,7 +154,7 @@
     vc.view.frame = cell.cardOutline.bounds;
     cell.cardOutline.layer.cornerRadius = 10;
     cell.cardOutline.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
-    cell.cardOutline.layer.borderWidth = 2;
+    cell.cardOutline.layer.borderWidth = 1;
     cell.cardOutline.layer.masksToBounds = YES;
 //    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
 //    NSLog(@"%f is VC height", vc.card.bounds.size.height);
