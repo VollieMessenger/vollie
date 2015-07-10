@@ -29,6 +29,7 @@
 #import "ChatColView.h"
 #import "NewVollieVC.h"
 #import "ManageChatVC.h"
+#import "OnePicCell.h"
 
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -167,6 +168,16 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
+
+    if (card.photosArray.count == 1)
+    {
+        OnePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCell"];
+        [cell fillPicsWithVollieCardData:card];
+        [cell formatCell];
+        return cell;
+    }
+    else
+    {
     CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
     cell.cardOutline.backgroundColor = [UIColor clearColor];
     cell.backgroundColor = [UIColor clearColor];
@@ -187,6 +198,7 @@
     [cell.cardOutline addSubview:vc.view];
     [vc didMoveToParentViewController:self];
     return cell;
+    }
 }
 
 -(void)scrollToBottomAndReload

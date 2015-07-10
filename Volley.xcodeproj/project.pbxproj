@@ -15,6 +15,7 @@
 		27617D981B4ADF590026C2EB /* ParseVolliePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27617D971B4ADF590026C2EB /* ParseVolliePackage.m */; };
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
+		276998BD1B501AF7009FA3E1 /* OnePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 276998BC1B501AF7009FA3E1 /* OnePicCell.m */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
 		279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7CAB1B2F77FF0090C1AD /* TestViewController.m */; };
 		27AC59511B39E0B800633EAB /* NewVolliePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC59501B39E0B800633EAB /* NewVolliePicCell.m */; };
@@ -193,6 +194,8 @@
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
 		2762FF601B289A530070AD59 /* MomentsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsVC.h; sourceTree = "<group>"; };
 		2762FF611B289A530070AD59 /* MomentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsVC.m; sourceTree = "<group>"; };
+		276998BB1B501AF7009FA3E1 /* OnePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePicCell.h; sourceTree = "<group>"; };
+		276998BC1B501AF7009FA3E1 /* OnePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePicCell.m; sourceTree = "<group>"; };
 		279D7C971B2F38AC0090C1AD /* ChatColView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatColView.h; sourceTree = "<group>"; };
 		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
 		279D7CAA1B2F77FF0090C1AD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../Tabs/02/TestViewController.h; sourceTree = "<group>"; };
@@ -529,6 +532,15 @@
 			name = "Modal Objects";
 			sourceTree = "<group>";
 		};
+		276998BA1B501AE0009FA3E1 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				276998BB1B501AF7009FA3E1 /* OnePicCell.h */,
+				276998BC1B501AF7009FA3E1 /* OnePicCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		27C3C1261B3B2E7000F555FD /* Moments Version */ = {
 			isa = PBXGroup;
 			children = (
@@ -544,6 +556,7 @@
 		27C3C12A1B3B344800F555FD /* Moments VC */ = {
 			isa = PBXGroup;
 			children = (
+				276998BA1B501AE0009FA3E1 /* Cells */,
 				2762FF601B289A530070AD59 /* MomentsVC.h */,
 				2762FF611B289A530070AD59 /* MomentsVC.m */,
 				27C300F01B2B2FDB00EB9723 /* VollieCardData.h */,
@@ -1329,6 +1342,7 @@
 				C2832CBA1A704A6100CDF19D /* IQToolbar.m in Sources */,
 				C21DD6EC1A71D73B0009BC6A /* JCNotificationBannerViewIOS7Style.m in Sources */,
 				C2CA16EC1A85116500DD25AC /* MessagesCellDot.m in Sources */,
+				276998BD1B501AF7009FA3E1 /* OnePicCell.m in Sources */,
 				296DD5C71A1F52F400AB9F8C /* JSQMessagesTimestampFormatter.m in Sources */,
 				C21DD6ED1A71D73B0009BC6A /* JCNotificationBannerViewIOSStyle.m in Sources */,
 				C2F314AF1A79CF7400675959 /* NSDate+TimeAgo.m in Sources */,
