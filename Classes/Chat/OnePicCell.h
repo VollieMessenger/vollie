@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet JSQMessagesCollectionView *messagesView;
 @property (strong, nonatomic) IBOutlet PFImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIView *cardView;
+@property (strong, nonatomic) IBOutlet UIView *viewForConvoVC;
 
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData;
 -(void)formatCell;

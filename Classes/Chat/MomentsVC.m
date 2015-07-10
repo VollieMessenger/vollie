@@ -168,12 +168,20 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
+    CardCellView *vc = card.viewController;
+    vc.room = self.room;
+    vc.view.backgroundColor =[UIColor whiteColor];
+    [self.vollieVCcardArray addObject:vc];
 
     if (card.photosArray.count == 1)
     {
         OnePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCell"];
         [cell fillPicsWithVollieCardData:card];
         [cell formatCell];
+        vc.view.frame = cell.viewForConvoVC.bounds;
+        [self addChildViewController:vc];
+        [cell.viewForConvoVC addSubview:vc.view];
+        [vc didMoveToParentViewController:self];
         return cell;
     }
     else
@@ -181,10 +189,10 @@
     CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
     cell.cardOutline.backgroundColor = [UIColor clearColor];
     cell.backgroundColor = [UIColor clearColor];
-    CardCellView *vc = card.viewController;
-    vc.room = self.room;
-    vc.view.backgroundColor =[UIColor whiteColor];
-    [self.vollieVCcardArray addObject:vc];
+//    CardCellView *vc = card.viewController;
+//    vc.room = self.room;
+//    vc.view.backgroundColor =[UIColor whiteColor];
+//    [self.vollieVCcardArray addObject:vc];
 
 //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
     vc.view.frame = cell.cardOutline.bounds;

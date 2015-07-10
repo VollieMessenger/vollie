@@ -121,29 +121,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esw-Yz-eD1">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                     <subviews>
-                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v1k-Cw-IgB" customClass="JSQMessagesCollectionView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bx4-mW-Vhb">
-                                                                <size key="itemSize" width="50" height="50"/>
-                                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                            </collectionViewFlowLayout>
-                                                            <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Tnv-el-YKt">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    </view>
-                                                                </collectionViewCell>
-                                                            </cells>
-                                                            <variation key="widthClass=compact" fixedFrame="YES">
-                                                                <rect key="frame" x="0.0" y="6" width="290" height="91"/>
-                                                            </variation>
-                                                        </collectionView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-hQ-RoQ" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
@@ -163,30 +140,46 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TR-VJ-FMv" userLabel="viewForConvoVC">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="jd7-hQ-RoQ" secondAttribute="trailing" id="3e6-eQ-Zfk"/>
+                                                        <constraint firstItem="7TR-VJ-FMv" firstAttribute="leading" secondItem="esw-Yz-eD1" secondAttribute="leading" id="MxF-3q-6pa"/>
+                                                        <constraint firstItem="7TR-VJ-FMv" firstAttribute="top" secondItem="esw-Yz-eD1" secondAttribute="top" id="Rlo-bC-UnG"/>
                                                         <constraint firstAttribute="centerY" secondItem="jd7-hQ-RoQ" secondAttribute="centerY" id="WgZ-mI-Mbe"/>
+                                                        <constraint firstAttribute="bottom" secondItem="7TR-VJ-FMv" secondAttribute="bottom" id="X7o-qN-UfE"/>
+                                                        <constraint firstItem="jd7-hQ-RoQ" firstAttribute="leading" secondItem="7TR-VJ-FMv" secondAttribute="trailing" id="vv5-8B-bYW"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="subviews">
-                                                            <exclude reference="v1k-Cw-IgB"/>
                                                             <exclude reference="jd7-hQ-RoQ"/>
+                                                            <exclude reference="7TR-VJ-FMv"/>
                                                         </mask>
                                                         <mask key="constraints">
+                                                            <exclude reference="MxF-3q-6pa"/>
+                                                            <exclude reference="Rlo-bC-UnG"/>
+                                                            <exclude reference="X7o-qN-UfE"/>
                                                             <exclude reference="3e6-eQ-Zfk"/>
                                                             <exclude reference="WgZ-mI-Mbe"/>
+                                                            <exclude reference="vv5-8B-bYW"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="subviews">
-                                                            <include reference="v1k-Cw-IgB"/>
                                                             <include reference="jd7-hQ-RoQ"/>
+                                                            <include reference="7TR-VJ-FMv"/>
                                                         </mask>
                                                         <mask key="constraints">
+                                                            <include reference="MxF-3q-6pa"/>
+                                                            <include reference="Rlo-bC-UnG"/>
+                                                            <include reference="X7o-qN-UfE"/>
                                                             <include reference="3e6-eQ-Zfk"/>
                                                             <include reference="WgZ-mI-Mbe"/>
+                                                            <include reference="vv5-8B-bYW"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -223,7 +216,7 @@
                                         <connections>
                                             <outlet property="cardView" destination="esw-Yz-eD1" id="Gce-NJ-h2V"/>
                                             <outlet property="imageView" destination="jd7-hQ-RoQ" id="9IK-xf-0so"/>
-                                            <outlet property="messagesView" destination="v1k-Cw-IgB" id="OXJ-6z-TgX"/>
+                                            <outlet property="viewForConvoVC" destination="7TR-VJ-FMv" id="tGu-YJ-cN6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -547,7 +540,8 @@
                                                             <exclude reference="ygq-Kj-LGz"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="248" y="15" width="64" height="64"/>
                                                         <mask key="constraints">
                                                             <include reference="p38-x5-BY4"/>
                                                             <include reference="ygq-Kj-LGz"/>
