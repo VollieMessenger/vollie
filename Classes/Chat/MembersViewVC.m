@@ -24,12 +24,15 @@
     [super viewDidLoad];
     [self setUpUserInterface];
     [self loadMembers];
+    self.title = @"People in Chat";
     self.arrayOfNames = [NSMutableArray new];
 }
 
 -(void)setUpUserInterface
 {
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorColor = [UIColor clearColor];
+
 }
 
 -(void)loadMembers

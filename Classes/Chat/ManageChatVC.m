@@ -18,6 +18,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *peopleButton;
 @property (strong, nonatomic) IBOutlet UIButton *silenceButton;
+@property (strong, nonatomic) IBOutlet UIButton *flagButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) IBOutlet UIButton *leaveButton;
 
 @property NSString *labelString;
 
@@ -35,6 +38,8 @@
 -(void)setUpTextForLabelsAndButtons
 {
     self.textField.delegate = self;
+    [self.textField setReturnKeyType:UIReturnKeyDone];
+
     if (self.messageButReallyRoom[@"nickname"])
     {
         self.textField.placeholder = self.messageButReallyRoom[@"nickname"];
@@ -47,8 +52,28 @@
 
 -(void)setUpUserInterface
 {
-    //add borders and stuff here
+    self.title = @"Manage Chat";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self changeButtonAppearanceWith:self.peopleButton];
+    [self changeButtonAppearanceWith:self.cancelButton];
+    [self changeButtonAppearanceWith:self.flagButton];
+    [self changeButtonAppearanceWith:self.silenceButton];
+    [self changeButtonAppearanceWith:self.leaveButton];
+}
+
+-(void)changeButtonAppearanceWith:(UIButton*)button
+{
+//    button.titleLabel.font = [UIFont fontWithName:@"ArielRoundedMTBold" size:24];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    button.layer.cornerRadius = 10;
+    button.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
+    button.layer.borderWidth = 1;
+//    button.layer.masksToBounds = YES;
+    button.backgroundColor = [UIColor whiteColor];
+    if (button == self.cancelButton)
+    {
+        button.backgroundColor = [UIColor colorWithRed:.850 green:.850 blue:.850 alpha:1];
+    }
 }
 
 #pragma mark - Navigation
@@ -83,6 +108,7 @@
 - (IBAction)onCancelButtonTapped:(id)sender
 {
      [self.navigationController popToRootViewControllerAnimated:1];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     [self saveNickname];
 }
 

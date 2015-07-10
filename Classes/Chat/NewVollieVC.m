@@ -46,11 +46,6 @@ SecondDelegate>
     [self basicSetUpAndInit];
     [self checkForPreviousVC];
 
-    if (self.whichRoom)
-    {
-        NSLog(@"i have a room assignment!!");
-    }
-
     self.arrayForScrollView = [NSMutableArray new];
     self.pageControl = [UIPageControl new];
 
@@ -76,6 +71,7 @@ SecondDelegate>
 -(void)basicSetUpAndInit
 {
     self.textView.delegate = self;
+    self.title = @"Create Vollie";
     [self.textView becomeFirstResponder];
     [self.textView setReturnKeyType:UIReturnKeySend];
     self.collectionView.backgroundColor = [UIColor clearColor];
