@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardChatVC">
+            <connections>
+                <outlet property="collectionView" destination="BVy-FF-78C" id="Pau-rZ-KkP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="c82-7p-WJI"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BVy-FF-78C" customClass="JSQMessagesCollectionView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wHN-MG-KJP">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="U8N-0a-Hgl"/>
+                        <outlet property="delegate" destination="-1" id="Lez-f4-u8a"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="BVy-FF-78C" secondAttribute="trailing" id="0lB-Sm-inX"/>
+                <constraint firstItem="BVy-FF-78C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="a4Y-u4-9zb"/>
+                <constraint firstAttribute="bottom" secondItem="BVy-FF-78C" secondAttribute="bottom" id="rio-qk-nYp"/>
+                <constraint firstItem="BVy-FF-78C" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tJd-k8-Iqo"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="BVy-FF-78C"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="0lB-Sm-inX"/>
+                    <exclude reference="a4Y-u4-9zb"/>
+                    <exclude reference="rio-qk-nYp"/>
+                    <exclude reference="tJd-k8-Iqo"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="BVy-FF-78C"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="0lB-Sm-inX"/>
+                    <include reference="a4Y-u4-9zb"/>
+                    <include reference="rio-qk-nYp"/>
+                    <include reference="tJd-k8-Iqo"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

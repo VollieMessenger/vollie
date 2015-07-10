@@ -16,6 +16,9 @@
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
 		276998BD1B501AF7009FA3E1 /* OnePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 276998BC1B501AF7009FA3E1 /* OnePicCell.m */; };
+		276998C41B503754009FA3E1 /* CardChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 276998C21B503754009FA3E1 /* CardChatVC.m */; };
+		276998C51B503754009FA3E1 /* CardChatVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 276998C31B503754009FA3E1 /* CardChatVC.xib */; };
+		276998C81B503AE3009FA3E1 /* ChatForCellVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 276998C71B503AE3009FA3E1 /* ChatForCellVC.m */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
 		279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7CAB1B2F77FF0090C1AD /* TestViewController.m */; };
 		27AC59511B39E0B800633EAB /* NewVolliePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC59501B39E0B800633EAB /* NewVolliePicCell.m */; };
@@ -196,6 +199,11 @@
 		2762FF611B289A530070AD59 /* MomentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsVC.m; sourceTree = "<group>"; };
 		276998BB1B501AF7009FA3E1 /* OnePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePicCell.h; sourceTree = "<group>"; };
 		276998BC1B501AF7009FA3E1 /* OnePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePicCell.m; sourceTree = "<group>"; };
+		276998C11B503754009FA3E1 /* CardChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardChatVC.h; sourceTree = "<group>"; };
+		276998C21B503754009FA3E1 /* CardChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardChatVC.m; sourceTree = "<group>"; };
+		276998C31B503754009FA3E1 /* CardChatVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardChatVC.xib; sourceTree = "<group>"; };
+		276998C61B503AE3009FA3E1 /* ChatForCellVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatForCellVC.h; sourceTree = "<group>"; };
+		276998C71B503AE3009FA3E1 /* ChatForCellVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatForCellVC.m; sourceTree = "<group>"; };
 		279D7C971B2F38AC0090C1AD /* ChatColView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatColView.h; sourceTree = "<group>"; };
 		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
 		279D7CAA1B2F77FF0090C1AD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../Tabs/02/TestViewController.h; sourceTree = "<group>"; };
@@ -537,6 +545,8 @@
 			children = (
 				276998BB1B501AF7009FA3E1 /* OnePicCell.h */,
 				276998BC1B501AF7009FA3E1 /* OnePicCell.m */,
+				276998C61B503AE3009FA3E1 /* ChatForCellVC.h */,
+				276998C71B503AE3009FA3E1 /* ChatForCellVC.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -846,6 +856,9 @@
 				274988751B31DDBD00560873 /* CardVC.h */,
 				274988761B31DDBD00560873 /* CardVC.m */,
 				274988771B31DDBD00560873 /* CardVC.xib */,
+				276998C11B503754009FA3E1 /* CardChatVC.h */,
+				276998C21B503754009FA3E1 /* CardChatVC.m */,
+				276998C31B503754009FA3E1 /* CardChatVC.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1296,6 +1309,7 @@
 				2930F94119E96C73000F7799 /* tab_private@2x.png in Resources */,
 				C2CA16ED1A85116500DD25AC /* MessagesCellDot.xib in Resources */,
 				C2CDFB0A1A42912E0078DE43 /* Default-568h@2x.png in Resources */,
+				276998C51B503754009FA3E1 /* CardChatVC.xib in Resources */,
 				29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */,
 				29271A5F19F284B1009C308B /* MessagesCell.xib in Resources */,
 				29271A6719F284B1009C308B /* RegisterView.xib in Resources */,
@@ -1351,6 +1365,7 @@
 				296DD5BB1A1F52F400AB9F8C /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
 				29271A5C19F284B1009C308B /* CreateChatroomView.m in Sources */,
 				29271A6619F284B1009C308B /* RegisterView.m in Sources */,
+				276998C81B503AE3009FA3E1 /* ChatForCellVC.m in Sources */,
 				C2CDFB081A426A560078DE43 /* CustomCollectionViewCell.m in Sources */,
 				C21DD6E61A71D73B0009BC6A /* JCNotificationBannerPresenter.m in Sources */,
 				29271A5A19F284B1009C308B /* ChatView.m in Sources */,
@@ -1383,6 +1398,7 @@
 				29EB240E19E9292500D7AA97 /* AppDelegate.m in Sources */,
 				C2832CBB1A704A6100CDF19D /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				296DD5E01A1F52F400AB9F8C /* JSQMessagesToolbarContentView.m in Sources */,
+				276998C41B503754009FA3E1 /* CardChatVC.m in Sources */,
 				C2BEC9B11A7FE1B300F4B41A /* CreateChatroomView2.m in Sources */,
 				27C3C1291B3B2EBC00F555FD /* SelectRoomVC.m in Sources */,
 				29271A6419F284B1009C308B /* LoginView.m in Sources */,
