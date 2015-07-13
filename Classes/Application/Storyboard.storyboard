@@ -121,7 +121,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esw-Yz-eD1">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-hQ-RoQ" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-hQ-RoQ" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="90" id="rHS-ji-teR"/>
@@ -160,12 +160,12 @@
                                                             <exclude reference="be2-KR-ED0"/>
                                                         </mask>
                                                         <mask key="constraints">
+                                                            <exclude reference="qHm-PS-U7U"/>
+                                                            <exclude reference="xkg-2n-Ka7"/>
                                                             <exclude reference="RJb-Xm-dd8"/>
                                                             <exclude reference="Ugu-mY-lxK"/>
                                                             <exclude reference="jxk-Bx-DNd"/>
                                                             <exclude reference="quP-Bj-7vD"/>
-                                                            <exclude reference="qHm-PS-U7U"/>
-                                                            <exclude reference="xkg-2n-Ka7"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
@@ -174,12 +174,12 @@
                                                             <include reference="be2-KR-ED0"/>
                                                         </mask>
                                                         <mask key="constraints">
+                                                            <include reference="qHm-PS-U7U"/>
+                                                            <include reference="xkg-2n-Ka7"/>
                                                             <include reference="RJb-Xm-dd8"/>
                                                             <include reference="Ugu-mY-lxK"/>
                                                             <include reference="jxk-Bx-DNd"/>
                                                             <include reference="quP-Bj-7vD"/>
-                                                            <include reference="qHm-PS-U7U"/>
-                                                            <include reference="xkg-2n-Ka7"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -540,7 +540,8 @@
                                                             <exclude reference="ygq-Kj-LGz"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="248" y="15" width="64" height="64"/>
                                                         <mask key="constraints">
                                                             <include reference="p38-x5-BY4"/>
                                                             <include reference="ygq-Kj-LGz"/>

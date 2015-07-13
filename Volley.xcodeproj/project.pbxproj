@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		270D7EF81B3DE1DA00FE28E9 /* PopUpScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */; };
+		272170811B543AF00050A9D0 /* ThreePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2721707F1B543AF00050A9D0 /* ThreePicCell.m */; };
+		272170821B543AF00050A9D0 /* ThreePicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 272170801B543AF00050A9D0 /* ThreePicCell.xib */; };
+		272170861B543F240050A9D0 /* FourPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 272170841B543F240050A9D0 /* FourPicCell.m */; };
+		272170871B543F240050A9D0 /* FourPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 272170851B543F240050A9D0 /* FourPicCell.xib */; };
+		2721708B1B5443ED0050A9D0 /* FivePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 272170891B5443ED0050A9D0 /* FivePicCell.m */; };
+		2721708C1B5443ED0050A9D0 /* FivePicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2721708A1B5443ED0050A9D0 /* FivePicCell.xib */; };
 		274988781B31DDBD00560873 /* CardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 274988761B31DDBD00560873 /* CardVC.m */; };
 		274988791B31DDBD00560873 /* CardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274988771B31DDBD00560873 /* CardVC.xib */; };
 		2749887C1B31E71400560873 /* CardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887B1B31E71400560873 /* CardCellView.m */; };
@@ -184,6 +190,15 @@
 /* Begin PBXFileReference section */
 		270D7EF61B3DE1DA00FE28E9 /* PopUpScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpScrollView.h; path = Classes/Application/PopUpScrollView.h; sourceTree = SOURCE_ROOT; };
 		270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopUpScrollView.m; path = Classes/Application/PopUpScrollView.m; sourceTree = SOURCE_ROOT; };
+		2721707E1B543AF00050A9D0 /* ThreePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreePicCell.h; sourceTree = "<group>"; };
+		2721707F1B543AF00050A9D0 /* ThreePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreePicCell.m; sourceTree = "<group>"; };
+		272170801B543AF00050A9D0 /* ThreePicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreePicCell.xib; sourceTree = "<group>"; };
+		272170831B543F240050A9D0 /* FourPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourPicCell.h; sourceTree = "<group>"; };
+		272170841B543F240050A9D0 /* FourPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourPicCell.m; sourceTree = "<group>"; };
+		272170851B543F240050A9D0 /* FourPicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FourPicCell.xib; sourceTree = "<group>"; };
+		272170881B5443ED0050A9D0 /* FivePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FivePicCell.h; sourceTree = "<group>"; };
+		272170891B5443ED0050A9D0 /* FivePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FivePicCell.m; sourceTree = "<group>"; };
+		2721708A1B5443ED0050A9D0 /* FivePicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FivePicCell.xib; sourceTree = "<group>"; };
 		274988751B31DDBD00560873 /* CardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardVC.h; sourceTree = "<group>"; };
 		274988761B31DDBD00560873 /* CardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardVC.m; sourceTree = "<group>"; };
 		274988771B31DDBD00560873 /* CardVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CardVC.xib; sourceTree = "<group>"; };
@@ -545,6 +560,15 @@
 				27903E931B542ADE004F06F5 /* TwoPicCell.h */,
 				27903E941B542ADE004F06F5 /* TwoPicCell.m */,
 				27903E951B542ADE004F06F5 /* TwoPicCell.xib */,
+				2721707E1B543AF00050A9D0 /* ThreePicCell.h */,
+				2721707F1B543AF00050A9D0 /* ThreePicCell.m */,
+				272170801B543AF00050A9D0 /* ThreePicCell.xib */,
+				272170831B543F240050A9D0 /* FourPicCell.h */,
+				272170841B543F240050A9D0 /* FourPicCell.m */,
+				272170851B543F240050A9D0 /* FourPicCell.xib */,
+				272170881B5443ED0050A9D0 /* FivePicCell.h */,
+				272170891B5443ED0050A9D0 /* FivePicCell.m */,
+				2721708A1B5443ED0050A9D0 /* FivePicCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1294,6 +1318,7 @@
 				C2CA16E31A8286EA00DD25AC /* SelectChatroomView.xib in Resources */,
 				296DD5E81A1F557900AB9F8C /* ProgressHUD.bundle in Resources */,
 				C2F314B01A79CF7400675959 /* NSDateTimeAgo.bundle in Resources */,
+				272170821B543AF00050A9D0 /* ThreePicCell.xib in Resources */,
 				2930F93D19E96C73000F7799 /* blank_avatar@2x.png in Resources */,
 				296DD5E31A1F52F400AB9F8C /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				9CFEFAF41B1E1A3F005B1BF6 /* InviteCell.xib in Resources */,
@@ -1304,12 +1329,14 @@
 				2930F94219E96C73000F7799 /* tab_profile@2x.png in Resources */,
 				2930F94119E96C73000F7799 /* tab_private@2x.png in Resources */,
 				C2CA16ED1A85116500DD25AC /* MessagesCellDot.xib in Resources */,
+				2721708C1B5443ED0050A9D0 /* FivePicCell.xib in Resources */,
 				C2CDFB0A1A42912E0078DE43 /* Default-568h@2x.png in Resources */,
 				29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */,
 				29271A5F19F284B1009C308B /* MessagesCell.xib in Resources */,
 				29271A6719F284B1009C308B /* RegisterView.xib in Resources */,
 				29271A5D19F284B1009C308B /* CreateChatroomView.xib in Resources */,
 				C2CA16E81A82A1FE00DD25AC /* AlbumView.xib in Resources */,
+				272170871B543F240050A9D0 /* FourPicCell.xib in Resources */,
 				296DD5E11A1F52F400AB9F8C /* JSQMessagesToolbarContentView.xib in Resources */,
 				C2CA16E11A82860E00DD25AC /* DidFavoriteView.xib in Resources */,
 				2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */,
@@ -1364,6 +1391,7 @@
 				C21DD6E61A71D73B0009BC6A /* JCNotificationBannerPresenter.m in Sources */,
 				29271A5A19F284B1009C308B /* ChatView.m in Sources */,
 				296DD5D81A1F52F400AB9F8C /* JSQMessagesCollectionViewCellOutgoing.m in Sources */,
+				2721708B1B5443ED0050A9D0 /* FivePicCell.m in Sources */,
 				C21DD6EF1A71D73B0009BC6A /* JCNotificationCenter.m in Sources */,
 				C2832CB81A704A6100CDF19D /* IQBarButtonItem.m in Sources */,
 				29271A5B19F284B1009C308B /* ChatroomUsersView.m in Sources */,
@@ -1395,6 +1423,7 @@
 				C2BEC9B11A7FE1B300F4B41A /* CreateChatroomView2.m in Sources */,
 				27C3C1291B3B2EBC00F555FD /* SelectRoomVC.m in Sources */,
 				29271A6419F284B1009C308B /* LoginView.m in Sources */,
+				272170811B543AF00050A9D0 /* ThreePicCell.m in Sources */,
 				296DD5C81A1F52F400AB9F8C /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				C2832CB91A704A6100CDF19D /* IQTitleBarButtonItem.m in Sources */,
 				C2832CB41A704A6100CDF19D /* IQKeyboardManager.m in Sources */,
@@ -1444,6 +1473,7 @@
 				29271A5E19F284B1009C308B /* MessagesCell.m in Sources */,
 				C27189381A3243BA00F52320 /* KLCPopup.m in Sources */,
 				C2832CB31A704A6100CDF19D /* IQUIWindow+Hierarchy.m in Sources */,
+				272170861B543F240050A9D0 /* FourPicCell.m in Sources */,
 				296DD5C41A1F52F400AB9F8C /* JSQMessagesAvatarImageFactory.m in Sources */,
 				296DD5CD1A1F52F400AB9F8C /* JSQMediaItem.m in Sources */,
 				296DD5CB1A1F52F400AB9F8C /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,

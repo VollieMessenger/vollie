@@ -1,17 +1,17 @@
 //
-//  TwoPicCell.m
+//  ThreePicCell.m
 //  Volley
 //
 //  Created by Kyle on 7/13/15.
 //  Copyright (c) 2015 KZ. All rights reserved.
 //
 
-#import "TwoPicCell.h"
+#import "ThreePicCell.h"
 
-@implementation TwoPicCell
-
+@implementation ThreePicCell
 @synthesize imageViewOne;
 @synthesize imageViewTwo;
+@synthesize imageViewThree;
 
 - (void)awakeFromNib {
     // Initialization code
@@ -32,7 +32,7 @@
     self.cardView.layer.borderWidth = 1;
     self.cardView.layer.masksToBounds = YES;
 
-    self.imageViewArray = [[NSMutableArray alloc] initWithObjects:self.imageViewOne, self.imageViewTwo, nil];
+    self.imageViewArray = [[NSMutableArray alloc] initWithObjects:self.imageViewOne, self.imageViewTwo, self.imageViewThree, nil];
 
     for (PFImageView *imageview in self.imageViewArray)
     {
@@ -47,8 +47,8 @@
     int i = 0;
     for (PFObject *photo in vollieCardData.photosArray)
     {
-//        PFObject *photo = vollieCardData.photosArray.firstObject;
-//        NSLog(@"%@", photo);
+        //        PFObject *photo = vollieCardData.photosArray.firstObject;
+        //        NSLog(@"%@", photo);
         PFFile *thumbnail = [photo objectForKey:@"thumbnail"];
         [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
          {
@@ -61,6 +61,5 @@
         i++;
     }
 }
-
 
 @end

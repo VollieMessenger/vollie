@@ -31,6 +31,9 @@
 #import "ManageChatVC.h"
 #import "OnePicCell.h"
 #import "TwoPicCell.h"
+#import "ThreePicCell.h"
+#import "FourPicCell.h"
+#import "FivePicCell.h"
 
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -151,11 +154,11 @@
             case 3:
                 return 350;
             case 4:
-                return 450;
+                return 470;
             case 5:
                 return 530;
             default:
-                return 160;
+                return 200;
                 break;
         }
     }
@@ -186,6 +189,33 @@
     {
         [self.tableView registerNib:[UINib nibWithNibName:@"TwoPicCell" bundle:0] forCellReuseIdentifier:@"TwoPicCell"];
         TwoPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TwoPicCell"];
+        [cell fillPicsWithVollieCardData:card];
+        [cell formatCell];
+        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+        return cell;
+    }
+    if (card.photosArray.count == 3)
+    {
+        [self.tableView registerNib:[UINib nibWithNibName:@"ThreePicCell" bundle:0] forCellReuseIdentifier:@"ThreePicCell"];
+        ThreePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreePicCell"];
+        [cell fillPicsWithVollieCardData:card];
+        [cell formatCell];
+        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+        return cell;
+    }
+    if (card.photosArray.count == 4)
+    {
+        [self.tableView registerNib:[UINib nibWithNibName:@"FourPicCell" bundle:0] forCellReuseIdentifier:@"FourPicCell"];
+        FourPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FourPicCell"];
+        [cell fillPicsWithVollieCardData:card];
+        [cell formatCell];
+        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+        return cell;
+    }
+    if (card.photosArray.count == 5)
+    {
+        [self.tableView registerNib:[UINib nibWithNibName:@"FivePicCell" bundle:0] forCellReuseIdentifier:@"FivePicCell"];
+        FivePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicCell"];
         [cell fillPicsWithVollieCardData:card];
         [cell formatCell];
         [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];

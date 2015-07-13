@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThreePicCell" rowHeight="374" id="KGk-i7-Jjw" customClass="ThreePicCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="374"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z8f-6x-Eh8">
+                        <rect key="frame" x="8" y="8" width="304" height="357"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIn-Io-hHR" userLabel="imageHolderView">
+                                <rect key="frame" x="206" y="29" width="90" height="300"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aYr-ns-moB" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="105" width="90" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="AZM-1V-lmc"/>
+                                            <constraint firstAttribute="width" constant="90" id="WNW-aI-oqH"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Z2-SF-8ji" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="5" width="90" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="J3y-os-Dhi"/>
+                                            <constraint firstAttribute="width" constant="90" id="oha-zg-wYC"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iIc-wV-Y8W" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="205" width="90" height="90"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="jPj-7Z-hlB"/>
+                                            <constraint firstAttribute="width" constant="90" id="yaA-Ki-qR2"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="WRl-VP-Wmr"/>
+                                    <constraint firstAttribute="centerX" secondItem="iIc-wV-Y8W" secondAttribute="centerX" id="gDY-uz-32T"/>
+                                    <constraint firstAttribute="centerX" secondItem="aYr-ns-moB" secondAttribute="centerX" id="ghK-UF-Smb"/>
+                                    <constraint firstAttribute="centerY" secondItem="aYr-ns-moB" secondAttribute="centerY" id="rGP-sb-Zr6"/>
+                                    <constraint firstItem="iIc-wV-Y8W" firstAttribute="top" secondItem="aYr-ns-moB" secondAttribute="bottom" constant="10" id="snX-HR-TtF"/>
+                                    <constraint firstAttribute="width" constant="90" id="wZV-tH-4Fb"/>
+                                    <constraint firstAttribute="centerX" secondItem="5Z2-SF-8ji" secondAttribute="centerX" id="xXf-eF-Pkb"/>
+                                    <constraint firstItem="aYr-ns-moB" firstAttribute="top" secondItem="5Z2-SF-8ji" secondAttribute="bottom" constant="10" id="ybC-rY-agh"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03p-0x-tbQ">
+                                <rect key="frame" x="0.0" y="0.0" width="203" height="357"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="RIn-Io-hHR" secondAttribute="trailing" constant="8" id="9Sh-va-dyf"/>
+                            <constraint firstItem="03p-0x-tbQ" firstAttribute="leading" secondItem="Z8f-6x-Eh8" secondAttribute="leading" id="Bnh-rC-nId"/>
+                            <constraint firstItem="03p-0x-tbQ" firstAttribute="top" secondItem="Z8f-6x-Eh8" secondAttribute="top" id="HeV-F2-Ne9"/>
+                            <constraint firstAttribute="centerY" secondItem="RIn-Io-hHR" secondAttribute="centerY" id="KfV-ec-py6"/>
+                            <constraint firstAttribute="bottom" secondItem="03p-0x-tbQ" secondAttribute="bottom" id="awz-G3-D9U"/>
+                            <constraint firstItem="RIn-Io-hHR" firstAttribute="leading" secondItem="03p-0x-tbQ" secondAttribute="trailing" constant="3" id="eSd-Hg-6bm"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Z8f-6x-Eh8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="EzO-IW-HAU"/>
+                    <constraint firstItem="Z8f-6x-Eh8" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="I8U-IB-bQS"/>
+                    <constraint firstItem="Z8f-6x-Eh8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="e40-1h-gxi"/>
+                    <constraint firstItem="Z8f-6x-Eh8" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="xJa-7G-hW2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cardView" destination="Z8f-6x-Eh8" id="i1w-3n-4TV"/>
+                <outlet property="imageViewOne" destination="5Z2-SF-8ji" id="5Ba-TC-Gh0"/>
+                <outlet property="imageViewThree" destination="iIc-wV-Y8W" id="nsQ-Ut-s7e"/>
+                <outlet property="imageViewTwo" destination="aYr-ns-moB" id="H2K-ej-ZNF"/>
+                <outlet property="viewForChatVC" destination="03p-0x-tbQ" id="0yg-Ei-bXS"/>
+            </connections>
+            <point key="canvasLocation" x="190" y="391"/>
+        </tableViewCell>
+    </objects>
+</document>
