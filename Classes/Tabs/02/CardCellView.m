@@ -77,6 +77,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.collectionViewPictures.hidden = YES;
 //    [self scrollToBottomAnimated:YES];
 
     //Change send button to orange

@@ -112,7 +112,7 @@
                                             <outlet property="cardOutline" destination="gFY-Bv-GSu" id="OaJ-OE-CvX"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OnePicCell" rowHeight="120" id="Niw-4X-xHe" customClass="OnePicCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OnePicCell" rowHeight="120" id="Niw-4X-xHe" customClass="OnePicCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Niw-4X-xHe" id="baq-40-G92">
