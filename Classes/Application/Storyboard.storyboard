@@ -140,17 +140,30 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="be2-KR-ED0">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="jd7-hQ-RoQ" secondAttribute="trailing" id="3e6-eQ-Zfk"/>
+                                                        <constraint firstAttribute="trailing" secondItem="be2-KR-ED0" secondAttribute="trailing" constant="89" id="GWz-Nz-Bpx"/>
                                                         <constraint firstAttribute="centerY" secondItem="jd7-hQ-RoQ" secondAttribute="centerY" id="WgZ-mI-Mbe"/>
+                                                        <constraint firstItem="be2-KR-ED0" firstAttribute="top" secondItem="esw-Yz-eD1" secondAttribute="top" constant="7" id="uFR-eV-mz2"/>
+                                                        <constraint firstAttribute="bottom" secondItem="be2-KR-ED0" secondAttribute="bottom" constant="6" id="xxu-kI-7Yq"/>
+                                                        <constraint firstItem="be2-KR-ED0" firstAttribute="leading" secondItem="esw-Yz-eD1" secondAttribute="leading" id="yVY-pJ-Ahg"/>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="subviews">
                                                             <exclude reference="jd7-hQ-RoQ"/>
+                                                            <exclude reference="be2-KR-ED0"/>
                                                         </mask>
                                                         <mask key="constraints">
+                                                            <exclude reference="GWz-Nz-Bpx"/>
+                                                            <exclude reference="uFR-eV-mz2"/>
+                                                            <exclude reference="xxu-kI-7Yq"/>
+                                                            <exclude reference="yVY-pJ-Ahg"/>
                                                             <exclude reference="3e6-eQ-Zfk"/>
                                                             <exclude reference="WgZ-mI-Mbe"/>
                                                         </mask>
@@ -158,8 +171,13 @@
                                                     <variation key="widthClass=compact">
                                                         <mask key="subviews">
                                                             <include reference="jd7-hQ-RoQ"/>
+                                                            <include reference="be2-KR-ED0"/>
                                                         </mask>
                                                         <mask key="constraints">
+                                                            <include reference="GWz-Nz-Bpx"/>
+                                                            <include reference="uFR-eV-mz2"/>
+                                                            <include reference="xxu-kI-7Yq"/>
+                                                            <include reference="yVY-pJ-Ahg"/>
                                                             <include reference="3e6-eQ-Zfk"/>
                                                             <include reference="WgZ-mI-Mbe"/>
                                                         </mask>
@@ -198,6 +216,7 @@
                                         <connections>
                                             <outlet property="cardView" destination="esw-Yz-eD1" id="Gce-NJ-h2V"/>
                                             <outlet property="imageView" destination="jd7-hQ-RoQ" id="9IK-xf-0so"/>
+                                            <outlet property="viewForChatVC" destination="be2-KR-ED0" id="6Sm-1x-Vsv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

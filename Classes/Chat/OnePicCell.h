@@ -16,12 +16,12 @@
 
 
 @interface OnePicCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet JSQMessagesCollectionView *messagesView;
 @property (strong, nonatomic) IBOutlet PFImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIView *cardView;
 
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData;
 -(void)formatCell;
+@property (strong, nonatomic) IBOutlet UIView *viewForChatVC;
 
 
 @end
