@@ -181,9 +181,6 @@
 
         vc.view.frame = cell.viewForChatVC.bounds;
 //        cell.viewForChatVC.layer.cornerRadius = 10;
-        cell.viewForChatVC.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
-        cell.viewForChatVC.layer.borderWidth = 1;
-        cell.viewForChatVC.layer.masksToBounds = YES;
         [self addChildViewController:vc];
         [cell.viewForChatVC addSubview:vc.view];
         [vc didMoveToParentViewController:self];

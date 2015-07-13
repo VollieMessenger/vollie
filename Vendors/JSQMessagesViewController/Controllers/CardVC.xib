@@ -17,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tp0-pL-mD2">
+                <collectionView multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tp0-pL-mD2">
                     <rect key="frame" x="218" y="0.0" width="100" height="524"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
@@ -58,12 +58,12 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="zEK-TV-z20" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="10G-jK-9Cj"/>
-                <constraint firstAttribute="bottom" secondItem="zEK-TV-z20" secondAttribute="bottom" id="3Hm-I1-CBs"/>
-                <constraint firstItem="tp0-pL-mD2" firstAttribute="leading" secondItem="zEK-TV-z20" secondAttribute="trailing" id="FIP-si-KZG"/>
-                <constraint firstItem="zEK-TV-z20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="MUI-lU-xTe"/>
+                <constraint firstItem="zEK-TV-z20" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5b4-17-Z6R"/>
+                <constraint firstAttribute="trailing" secondItem="zEK-TV-z20" secondAttribute="trailing" id="OEH-3y-8pS"/>
                 <constraint firstAttribute="trailing" secondItem="tp0-pL-mD2" secondAttribute="trailing" constant="8" id="PVO-xi-nN6"/>
+                <constraint firstItem="zEK-TV-z20" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V32-vX-0Gu"/>
                 <constraint firstAttribute="bottom" secondItem="tp0-pL-mD2" secondAttribute="bottom" constant="34" id="X4D-MV-Xhc"/>
+                <constraint firstAttribute="bottom" secondItem="zEK-TV-z20" secondAttribute="bottom" id="lzh-EP-e00"/>
                 <constraint firstItem="tp0-pL-mD2" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="34" id="tgd-Sv-8jf"/>
             </constraints>
             <variation key="default">
@@ -72,10 +72,10 @@
                     <exclude reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="10G-jK-9Cj"/>
-                    <exclude reference="3Hm-I1-CBs"/>
-                    <exclude reference="MUI-lU-xTe"/>
-                    <exclude reference="FIP-si-KZG"/>
+                    <exclude reference="5b4-17-Z6R"/>
+                    <exclude reference="OEH-3y-8pS"/>
+                    <exclude reference="V32-vX-0Gu"/>
+                    <exclude reference="lzh-EP-e00"/>
                     <exclude reference="PVO-xi-nN6"/>
                     <exclude reference="X4D-MV-Xhc"/>
                     <exclude reference="tgd-Sv-8jf"/>
@@ -87,10 +87,10 @@
                     <include reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="10G-jK-9Cj"/>
-                    <include reference="3Hm-I1-CBs"/>
-                    <include reference="MUI-lU-xTe"/>
-                    <include reference="FIP-si-KZG"/>
+                    <include reference="5b4-17-Z6R"/>
+                    <include reference="OEH-3y-8pS"/>
+                    <include reference="V32-vX-0Gu"/>
+                    <include reference="lzh-EP-e00"/>
                     <include reference="PVO-xi-nN6"/>
                     <include reference="X4D-MV-Xhc"/>
                     <include reference="tgd-Sv-8jf"/>
