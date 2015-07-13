@@ -121,29 +121,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esw-Yz-eD1">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                     <subviews>
-                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="v1k-Cw-IgB" customClass="JSQMessagesCollectionView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Bx4-mW-Vhb">
-                                                                <size key="itemSize" width="50" height="50"/>
-                                                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                                            </collectionViewFlowLayout>
-                                                            <cells>
-                                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Tnv-el-YKt">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                    <autoresizingMask key="autoresizingMask"/>
-                                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                                        <autoresizingMask key="autoresizingMask"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                    </view>
-                                                                </collectionViewCell>
-                                                            </cells>
-                                                            <variation key="widthClass=compact" fixedFrame="YES">
-                                                                <rect key="frame" x="0.0" y="6" width="290" height="91"/>
-                                                            </variation>
-                                                        </collectionView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-hQ-RoQ" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
@@ -171,7 +148,6 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="subviews">
-                                                            <exclude reference="v1k-Cw-IgB"/>
                                                             <exclude reference="jd7-hQ-RoQ"/>
                                                         </mask>
                                                         <mask key="constraints">
@@ -181,7 +157,6 @@
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="subviews">
-                                                            <include reference="v1k-Cw-IgB"/>
                                                             <include reference="jd7-hQ-RoQ"/>
                                                         </mask>
                                                         <mask key="constraints">
@@ -223,7 +198,6 @@
                                         <connections>
                                             <outlet property="cardView" destination="esw-Yz-eD1" id="Gce-NJ-h2V"/>
                                             <outlet property="imageView" destination="jd7-hQ-RoQ" id="9IK-xf-0so"/>
-                                            <outlet property="messagesView" destination="v1k-Cw-IgB" id="OXJ-6z-TgX"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
