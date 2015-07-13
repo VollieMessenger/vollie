@@ -30,6 +30,7 @@
 #import "NewVollieVC.h"
 #import "ManageChatVC.h"
 #import "OnePicCell.h"
+#import "TwoPicCell.h"
 
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -168,23 +169,26 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
+    CardCellView *vc = card.viewController;
+    vc.room = self.room;
+    vc.view.backgroundColor = [UIColor whiteColor];
+    [self.vollieVCcardArray addObject:vc];
 
     if (card.photosArray.count == 1)
     {
         OnePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCell"];
         [cell fillPicsWithVollieCardData:card];
         [cell formatCell];
-        CardCellView *vc = card.viewController;
-        vc.room = self.room;
-        vc.view.backgroundColor = [UIColor whiteColor];
-        [self.vollieVCcardArray addObject:vc];
-
-        vc.view.frame = cell.viewForChatVC.bounds;
-//        cell.viewForChatVC.layer.cornerRadius = 10;
-        [self addChildViewController:vc];
-        [cell.viewForChatVC addSubview:vc.view];
-        [vc didMoveToParentViewController:self];
-
+        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+        return cell;
+    }
+    if (card.photosArray.count == 2)
+    {
+        [self.tableView registerNib:[UINib nibWithNibName:@"TwoPicCell" bundle:0] forCellReuseIdentifier:@"TwoPicCell"];
+        TwoPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TwoPicCell"];
+        [cell fillPicsWithVollieCardData:card];
+        [cell formatCell];
+        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
         return cell;
     }
     else
@@ -217,6 +221,15 @@
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+-(void)fillUIView:(UIView*)view withCardVC:(CardCellView *)vc
+{
+    vc.view.frame = view.bounds;
+    //        cell.viewForChatVC.layer.cornerRadius = 10;
+    [self addChildViewController:vc];
+    [view addSubview:vc.view];
+    [vc didMoveToParentViewController:self];
 }
 
 #pragma mark - ParseLoad

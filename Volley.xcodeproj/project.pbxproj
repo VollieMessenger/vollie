@@ -16,6 +16,8 @@
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
 		276998BD1B501AF7009FA3E1 /* OnePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 276998BC1B501AF7009FA3E1 /* OnePicCell.m */; };
+		27903E961B542ADE004F06F5 /* TwoPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27903E941B542ADE004F06F5 /* TwoPicCell.m */; };
+		27903E971B542ADE004F06F5 /* TwoPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27903E951B542ADE004F06F5 /* TwoPicCell.xib */; };
 		279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7C981B2F38AC0090C1AD /* ChatColView.m */; };
 		279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 279D7CAB1B2F77FF0090C1AD /* TestViewController.m */; };
 		27AC59511B39E0B800633EAB /* NewVolliePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27AC59501B39E0B800633EAB /* NewVolliePicCell.m */; };
@@ -196,6 +198,9 @@
 		2762FF611B289A530070AD59 /* MomentsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsVC.m; sourceTree = "<group>"; };
 		276998BB1B501AF7009FA3E1 /* OnePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePicCell.h; sourceTree = "<group>"; };
 		276998BC1B501AF7009FA3E1 /* OnePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePicCell.m; sourceTree = "<group>"; };
+		27903E931B542ADE004F06F5 /* TwoPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoPicCell.h; sourceTree = "<group>"; };
+		27903E941B542ADE004F06F5 /* TwoPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoPicCell.m; sourceTree = "<group>"; };
+		27903E951B542ADE004F06F5 /* TwoPicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoPicCell.xib; sourceTree = "<group>"; };
 		279D7C971B2F38AC0090C1AD /* ChatColView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatColView.h; sourceTree = "<group>"; };
 		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
 		279D7CAA1B2F77FF0090C1AD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../Tabs/02/TestViewController.h; sourceTree = "<group>"; };
@@ -537,6 +542,9 @@
 			children = (
 				276998BB1B501AF7009FA3E1 /* OnePicCell.h */,
 				276998BC1B501AF7009FA3E1 /* OnePicCell.m */,
+				27903E931B542ADE004F06F5 /* TwoPicCell.h */,
+				27903E941B542ADE004F06F5 /* TwoPicCell.m */,
+				27903E951B542ADE004F06F5 /* TwoPicCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1274,6 +1282,7 @@
 				C27032711A380FFE008CBF7F /* Launch Screen.xib in Resources */,
 				29271A6119F284B1009C308B /* MessagesView.xib in Resources */,
 				C2832C8F1A6F0ADE00CDF19D /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				27903E971B542ADE004F06F5 /* TwoPicCell.xib in Resources */,
 				296DD5D91A1F52F400AB9F8C /* JSQMessagesCollectionViewCellOutgoing2.xib in Resources */,
 				C2832CBC1A704A6100CDF19D /* IQKeyboardManager.bundle in Resources */,
 				2930F94019E96C73000F7799 /* tab_messages@2x.png in Resources */,
@@ -1401,6 +1410,7 @@
 				C21DD6EA1A71D73B0009BC6A /* JCNotificationBannerView.m in Sources */,
 				C27374971A2FFF4800C4B22A /* CustomCameraView.m in Sources */,
 				296DD5C61A1F52F400AB9F8C /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
+				27903E961B542ADE004F06F5 /* TwoPicCell.m in Sources */,
 				296DD5D01A1F52F400AB9F8C /* JSQMessagesBubbleImage.m in Sources */,
 				29271A6B19F284B1009C308B /* utilities.m in Sources */,
 				29271A6019F284B1009C308B /* MessagesView.m in Sources */,
