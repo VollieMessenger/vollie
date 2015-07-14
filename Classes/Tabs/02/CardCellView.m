@@ -702,7 +702,7 @@
 {
     NSArray* reversed = [[setComments reverseObjectEnumerator] allObjects];
 
-    JSQMessage *message = [reversed objectAtIndex:indexPath.item];
+    JSQMessage *message = [setComments objectAtIndex:indexPath.item];
 
     /**
      *  iOS7-style sender name labels
