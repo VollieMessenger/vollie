@@ -78,6 +78,9 @@
 {
     [super viewDidLoad];
     self.collectionViewPictures.hidden = YES;
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.view.layer.backgroundColor = [UIColor clearColor].CGColor;
+//    self.view.layer.backgroundColor = [UIColor purpleColor].CGColor;
 //    [self scrollToBottomAnimated:YES];
 
     //Change send button to orange
@@ -719,6 +722,7 @@
     /**
      *  Don't specify attributes to use the defaults.
      */
+    
     NSMutableArray *array = [NSMutableArray arrayWithArray:[message.senderDisplayName componentsSeparatedByString:@" "]];
     [array removeObject:@" "];
     NSString *senderName = [NSString new];
