@@ -180,7 +180,8 @@
 {
     for (ChatRoomCell *cell in self.cellsArray)
     {
-        cell.selectedImageView.backgroundColor = [UIColor clearColor];
+//        cell.selectedImageView.backgroundColor = [UIColor clearColor];
+        cell.selectedImageView.image = nil;
     }
 
 //    self.sendButton.hidden = NO;
@@ -195,7 +196,8 @@
 
     ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
+//    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
+    cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
 
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
     self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];

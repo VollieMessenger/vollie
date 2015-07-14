@@ -300,7 +300,14 @@
     [super viewDidAppear:animated];
 
     [self runCamera];
-    
+
+    if (self.comingFromNewVollie == true)
+    {
+        self.rightButton.hidden = true;
+        self.cancelButton.hidden = false;
+        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    }
+
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.rightButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.switchCameraButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -594,7 +601,7 @@
 
     [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
-    [self dismissViewControllerAnimated:1 completion:0];
+    [self dismissViewControllerAnimated:0 completion:0];
 
     self.didPickImageFromAlbum = NO;
 }

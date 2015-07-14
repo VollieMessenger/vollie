@@ -142,7 +142,50 @@
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="be2-KR-ED0">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="KRE-Pw-xlh">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="35" id="RQ4-fj-WoE"/>
+                                                                        <constraint firstAttribute="width" constant="35" id="ew2-Pg-MFR"/>
+                                                                    </constraints>
+                                                                    <variation key="default">
+                                                                        <mask key="constraints">
+                                                                            <exclude reference="RQ4-fj-WoE"/>
+                                                                            <exclude reference="ew2-Pg-MFR"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                    <variation key="widthClass=compact">
+                                                                        <mask key="constraints">
+                                                                            <include reference="RQ4-fj-WoE"/>
+                                                                            <include reference="ew2-Pg-MFR"/>
+                                                                        </mask>
+                                                                    </variation>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstItem="KRE-Pw-xlh" firstAttribute="leading" secondItem="be2-KR-ED0" secondAttribute="leading" constant="-4" id="eYq-6g-1Jb"/>
+                                                                <constraint firstItem="KRE-Pw-xlh" firstAttribute="top" secondItem="be2-KR-ED0" secondAttribute="top" constant="-4" id="pGk-xH-Oeu"/>
+                                                            </constraints>
+                                                            <variation key="default">
+                                                                <mask key="subviews">
+                                                                    <exclude reference="KRE-Pw-xlh"/>
+                                                                </mask>
+                                                                <mask key="constraints">
+                                                                    <exclude reference="eYq-6g-1Jb"/>
+                                                                    <exclude reference="pGk-xH-Oeu"/>
+                                                                </mask>
+                                                            </variation>
+                                                            <variation key="widthClass=compact">
+                                                                <mask key="subviews">
+                                                                    <include reference="KRE-Pw-xlh"/>
+                                                                </mask>
+                                                                <mask key="constraints">
+                                                                    <include reference="eYq-6g-1Jb"/>
+                                                                    <include reference="pGk-xH-Oeu"/>
+                                                                </mask>
+                                                            </variation>
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -867,13 +910,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="ykN-VB-1xY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="fastForward" id="FzU-gS-5Ek">
-                            <connections>
-                                <action selector="onSendButtonPushed:" destination="V8p-ac-hE8" id="uW3-ft-U6r"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="ykN-VB-1xY"/>
                     <connections>
                         <outlet property="sendButton" destination="IKR-lx-FDQ" id="mgG-t5-2wU"/>
                         <outlet property="tableView" destination="IZv-cz-gJI" id="5WZ-uw-18I"/>
@@ -1575,6 +1612,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="1readMesseageIcon" width="100" height="100"/>
         <image name="Vollie-icon" width="205" height="205"/>
         <image name="greyBackGround2" width="816" height="1183"/>
         <image name="next-button-charcoal" width="139" height="150"/>

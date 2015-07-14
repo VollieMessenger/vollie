@@ -342,10 +342,13 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
         if (self.inputToolbar.contentView.textView.isFirstResponder) animated = 1;
 
-        if (items && !isContentTooSmall) {
-            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:(items - 1) inSection:0]
-                                        atScrollPosition:UICollectionViewScrollPositionTop
-                                                animated:animated];
+        if (items && !isContentTooSmall)
+        {
+//            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:(items - 1) inSection:0]
+//                                        atScrollPosition:UICollectionViewScrollPositionTop
+//                                                animated:animated];
+            CGPoint bottomOffset = CGPointMake(0, self.collectionView.contentSize.height - self.collectionView.bounds.size.height);
+            [self.collectionView setContentOffset:bottomOffset animated:NO];
         }
 
         if (pics && !isContentTooSmall2) {
