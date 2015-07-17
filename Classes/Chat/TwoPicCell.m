@@ -32,8 +32,6 @@
     self.cardView.layer.borderWidth = 1;
     self.cardView.layer.masksToBounds = YES;
 
-    self.viewForChatVC.backgroundColor = [UIColor purpleColor];
-
     self.imageViewArray = [[NSMutableArray alloc] initWithObjects:self.imageViewOne, self.imageViewTwo, nil];
 
     for (PFImageView *imageview in self.imageViewArray)

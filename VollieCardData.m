@@ -76,8 +76,9 @@
 //        UIImage *image = [UIImage imageNamed:@"Vollie-icon"];
 //        [picsArray addObject:image];
 //    }
-    CardCellView *vc = [[CardCellView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen] andPictures:picsArray andComments:commentsArray];
-    self.viewController = vc;
+//    CardCellView *vc = [[CardCellView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen] andPictures:picsArray andComments:commentsArray];
+    NewJSQTestVCViewController *viewControl = [[NewJSQTestVCViewController alloc] initWithSetId:setID andMessages:commentsArray];
+    self.viewController = viewControl;
     //    chatt.senderId = [self.senderId copy];
     //    chatt.senderDisplayName = [self.senderDisplayName copy];
 //    vc.room = self.room;

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270291871B584CFF000228F7 /* TestJSQ_VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 270291851B584CFF000228F7 /* TestJSQ_VC.m */; };
+		270291881B584CFF000228F7 /* TestJSQ_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 270291861B584CFF000228F7 /* TestJSQ_VC.xib */; };
+		2702918B1B58504F000228F7 /* NewJSQTestVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2702918A1B58504F000228F7 /* NewJSQTestVCViewController.m */; };
 		270D7EF81B3DE1DA00FE28E9 /* PopUpScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */; };
 		272170811B543AF00050A9D0 /* ThreePicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2721707F1B543AF00050A9D0 /* ThreePicCell.m */; };
 		272170821B543AF00050A9D0 /* ThreePicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 272170801B543AF00050A9D0 /* ThreePicCell.xib */; };
@@ -188,6 +191,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		270291841B584CFF000228F7 /* TestJSQ_VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestJSQ_VC.h; sourceTree = "<group>"; };
+		270291851B584CFF000228F7 /* TestJSQ_VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestJSQ_VC.m; sourceTree = "<group>"; };
+		270291861B584CFF000228F7 /* TestJSQ_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestJSQ_VC.xib; sourceTree = "<group>"; };
+		270291891B58504F000228F7 /* NewJSQTestVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewJSQTestVCViewController.h; sourceTree = "<group>"; };
+		2702918A1B58504F000228F7 /* NewJSQTestVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewJSQTestVCViewController.m; sourceTree = "<group>"; };
 		270D7EF61B3DE1DA00FE28E9 /* PopUpScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopUpScrollView.h; path = Classes/Application/PopUpScrollView.h; sourceTree = SOURCE_ROOT; };
 		270D7EF71B3DE1DA00FE28E9 /* PopUpScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopUpScrollView.m; path = Classes/Application/PopUpScrollView.m; sourceTree = SOURCE_ROOT; };
 		2721707E1B543AF00050A9D0 /* ThreePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreePicCell.h; sourceTree = "<group>"; };
@@ -597,6 +605,8 @@
 				2749887B1B31E71400560873 /* CardCellView.m */,
 				2749887D1B31F98200560873 /* CellForCard.h */,
 				2749887E1B31F98200560873 /* CellForCard.m */,
+				270291891B58504F000228F7 /* NewJSQTestVCViewController.h */,
+				2702918A1B58504F000228F7 /* NewJSQTestVCViewController.m */,
 			);
 			name = "Moments VC";
 			sourceTree = "<group>";
@@ -878,6 +888,9 @@
 				274988751B31DDBD00560873 /* CardVC.h */,
 				274988761B31DDBD00560873 /* CardVC.m */,
 				274988771B31DDBD00560873 /* CardVC.xib */,
+				270291841B584CFF000228F7 /* TestJSQ_VC.h */,
+				270291851B584CFF000228F7 /* TestJSQ_VC.m */,
+				270291861B584CFF000228F7 /* TestJSQ_VC.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1323,6 +1336,7 @@
 				296DD5E31A1F52F400AB9F8C /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				9CFEFAF41B1E1A3F005B1BF6 /* InviteCell.xib in Resources */,
 				296DD5D71A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming2.xib in Resources */,
+				270291881B584CFF000228F7 /* TestJSQ_VC.xib in Resources */,
 				274988791B31DDBD00560873 /* CardVC.xib in Resources */,
 				296DD5BA1A1F52F400AB9F8C /* JSQMessages.strings in Resources */,
 				C2832C8E1A6F0ADE00CDF19D /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
@@ -1424,7 +1438,9 @@
 				27C3C1291B3B2EBC00F555FD /* SelectRoomVC.m in Sources */,
 				29271A6419F284B1009C308B /* LoginView.m in Sources */,
 				272170811B543AF00050A9D0 /* ThreePicCell.m in Sources */,
+				2702918B1B58504F000228F7 /* NewJSQTestVCViewController.m in Sources */,
 				296DD5C81A1F52F400AB9F8C /* JSQMessagesToolbarButtonFactory.m in Sources */,
+				270291871B584CFF000228F7 /* TestJSQ_VC.m in Sources */,
 				C2832CB91A704A6100CDF19D /* IQTitleBarButtonItem.m in Sources */,
 				C2832CB41A704A6100CDF19D /* IQKeyboardManager.m in Sources */,
 				29271A6819F284B1009C308B /* WelcomeView.m in Sources */,

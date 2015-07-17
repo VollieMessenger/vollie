@@ -34,6 +34,7 @@
 #import "ThreePicCell.h"
 #import "FourPicCell.h"
 #import "FivePicCell.h"
+#import "NewJSQTestVCViewController.h"
 
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -172,7 +173,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
-    CardCellView *vc = card.viewController;
+//    CardCellView *vc = card.viewController;
+    NewJSQTestVCViewController *vc = card.viewController;
     vc.room = self.room;
     vc.view.backgroundColor = [UIColor whiteColor];
     [self.vollieVCcardArray addObject:vc];
@@ -242,6 +244,7 @@
     [self addChildViewController:vc];
     [cell.cardOutline addSubview:vc.view];
     [vc didMoveToParentViewController:self];
+    [cell updateConstraints];
     return cell;
     }
 }
@@ -253,12 +256,13 @@
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
--(void)fillUIView:(UIView*)view withCardVC:(CardCellView *)vc
+-(void)fillUIView:(UIView*)view withCardVC:(NewJSQTestVCViewController *)vc
 {
     vc.view.frame = view.bounds;
     //        cell.viewForChatVC.layer.cornerRadius = 10;
     [self addChildViewController:vc];
     [view addSubview:vc.view];
+    [vc updateViewConstraints];
     [vc didMoveToParentViewController:self];
 }
 
