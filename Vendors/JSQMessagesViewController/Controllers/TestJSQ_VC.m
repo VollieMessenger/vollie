@@ -602,14 +602,14 @@ JSQMessagesKeyboardControllerDelegate>
                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (collectionView == self.collectionView)
-    {
+//    if (collectionView == self.collectionView)
+//    {
         return [collectionViewLayout sizeForItemAtIndexPath:indexPath];
-    }
-    else
-    {
-        return CGSizeMake(80, 80);
-    }
+//    }
+//    else
+//    {
+//        return CGSizeMake(80, 80);
+//    }
 
 //    return [collectionViewLayout sizeForItemAtIndexPath:indexPath];
 //    return [collectionViewLayout sizeForItemAtIndexPath:0];
@@ -767,8 +767,8 @@ JSQMessagesKeyboardControllerDelegate>
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == kJSQMessagesKeyValueObservingContext) {
-
+    if (context == kJSQMessagesKeyValueObservingContext)
+    {
         if (object == self.inputToolbar.contentView.textView
             && [keyPath isEqualToString:NSStringFromSelector(@selector(contentSize))]) {
 
@@ -779,7 +779,8 @@ JSQMessagesKeyboardControllerDelegate>
 
             [self jsq_adjustInputToolbarForComposerTextViewContentSizeChange:dy];
             [self jsq_updateCollectionViewInsets];
-            if (self.automaticallyScrollsToMostRecentMessage) {
+            if (self.automaticallyScrollsToMostRecentMessage)
+            {
                 [self scrollToBottomAnimated:NO];
             }
         }
@@ -897,7 +898,7 @@ JSQMessagesKeyboardControllerDelegate>
 
 - (void)jsq_adjustInputToolbarHeightConstraintByDelta:(CGFloat)dy
 {
-    CGFloat proposedHeight = self.toolbarHeightConstraint.constant + dy;
+//    CGFloat proposedHeight = self.toolbarHeightConstraint.constant + dy;
 
 //    CGFloat finalHeight = MAX(proposedHeight, self.inputToolbar.preferredDefaultHeight);
 
@@ -971,7 +972,8 @@ JSQMessagesKeyboardControllerDelegate>
 
 - (void)jsq_removeObservers
 {
-    if (!_jsq_isObserving) {
+    if (!_jsq_isObserving)
+    {
         return;
     }
 
@@ -1030,4 +1032,5 @@ JSQMessagesKeyboardControllerDelegate>
         }
     }
 }
+
 @end

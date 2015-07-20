@@ -27,8 +27,6 @@
 //@property NSString *senderDisplayName;
 //@property NSString *senderId;
 
-
-
 @end
 
 @implementation NewJSQTestVCViewController
@@ -92,6 +90,11 @@
     self.outgoingBubbleImageData = [self.bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor volleyFamousGreen]];
     self.incomingBubbleImageData = [self.bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor volleyBorderGrey]];
 
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self.collectionView reloadData];
 }
 
 
@@ -162,7 +165,8 @@
     if (indexPath.item - 1 > -1) {
         JSQMessage *previousMessage = [self.messages objectAtIndex:indexPath.item - 1];
 
-        if (abs([message.date timeIntervalSinceDate:previousMessage.date]) > 60 * 60) {
+        if (abs([message.date timeIntervalSinceDate:previousMessage.date]) > 60 * 60)
+        {
             return [[JSQMessagesTimestampFormatter new] attributedTimestampForDate:message.date];
         }
     } else
@@ -174,7 +178,7 @@
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray* reversed = [[self.messages reverseObjectEnumerator] allObjects];
+//    NSArray* reversed = [[self.messages reverseObjectEnumerator] allObjects];
 
     JSQMessage *message = [self.messages objectAtIndex:indexPath.item];
 
