@@ -44,7 +44,8 @@
         self.setIDforCardCheck = setId;
         self.messages = [NSMutableArray arrayWithArray:messages];
     }
-    self.view.layer.backgroundColor = [UIColor orangeColor].CGColor;
+//    self.view.layer.backgroundColor = [UIColor orangeColor].CGColor;
+//    self.collectionView.backgroundColor = [UIColor orangeColor];
     return self;
 }
 

@@ -57,7 +57,6 @@
 @property NSMutableArray *vollieCardDataArray;
 @property NSMutableArray *objectIdsArray;
 @property NSMutableArray *vollieVCcardArray;
-@property (strong, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
 
 @property int isLoadingEarlierCount;
 
@@ -107,8 +106,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self loadMessages];
-    [self.tableView reloadData];
+//    [self loadMessages];
+//    [self.tableView reloadData];
 }
 
 //-(void)
@@ -265,7 +264,7 @@
 {
     vc.view.frame = view.bounds;
     //        cell.viewForChatVC.layer.cornerRadius = 10;
-    [self addChildViewController:vc];
+//    [self addChildViewController:vc];
     [view addSubview:vc.view];
     [vc updateViewConstraints];
     [vc didMoveToParentViewController:self];
@@ -382,11 +381,7 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//newVollieToGroup
-    if([[segue identifier] isEqualToString:@"newVollieToGroup"])
-    {
-        NSLog(@"New Vollie is going to Room");
-    }
+    //this only runs when hitting "new vollie".
     NewVollieVC *vc = [segue destinationViewController];
     vc.whichRoom = self.room;
 }
