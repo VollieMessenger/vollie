@@ -173,8 +173,8 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
-//    CardCellView *vc = card.viewController;
-    NewJSQTestVCViewController *vc = card.viewController;
+    CardCellView *vc = card.viewController;
+//    NewJSQTestVCViewController *vc = card.viewController;
     vc.room = self.room;
     vc.view.backgroundColor = [UIColor whiteColor];
     [self.vollieVCcardArray addObject:vc];
@@ -228,9 +228,9 @@
     CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
     cell.cardOutline.backgroundColor = [UIColor clearColor];
     cell.backgroundColor = [UIColor clearColor];
-    CardCellView *vc = card.viewController;
-    vc.room = self.room;
-    vc.view.backgroundColor =[UIColor whiteColor];
+//    CardCellView *vc = card.viewController;
+//    vc.room = self.room;
+//    vc.view.backgroundColor =[UIColor whiteColor];
     [self.vollieVCcardArray addObject:vc];
 
 //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
@@ -256,7 +256,8 @@
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
--(void)fillUIView:(UIView*)view withCardVC:(NewJSQTestVCViewController *)vc
+-(void)fillUIView:(UIView*)view withCardVC:(CardCellView *)vc
+//-(void)fillUIView:(UIView*)view withCardVC:(NewJSQTestVCViewController *)vc
 {
     vc.view.frame = view.bounds;
     //        cell.viewForChatVC.layer.cornerRadius = 10;

@@ -35,8 +35,8 @@
 @property NSString *set;
 @property NSMutableArray *photosArray;
 @property NSMutableArray *messagesArray;
-//@property CardCellView *viewController;
-@property NewJSQTestVCViewController *viewController;
+@property CardCellView *viewController;
+//@property NewJSQTestVCViewController *viewController;
 @property NSDate *dateUpdated;
 
 -(instancetype)initWithPFObject:(PFObject *)object;

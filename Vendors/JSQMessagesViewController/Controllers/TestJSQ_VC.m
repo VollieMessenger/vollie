@@ -601,9 +601,17 @@ JSQMessagesKeyboardControllerDelegate>
 - (CGSize)collectionView:(JSQMessagesCollectionView *)collectionView
                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if (collectionView == self.collectionView)
+    {
+        return [collectionViewLayout sizeForItemAtIndexPath:indexPath];
+    }
+    else
+    {
+        return CGSizeMake(80, 80);
+    }
 
-
-    return [collectionViewLayout sizeForItemAtIndexPath:indexPath];
+//    return [collectionViewLayout sizeForItemAtIndexPath:indexPath];
 //    return [collectionViewLayout sizeForItemAtIndexPath:0];
 //    return 80.0;
 }
