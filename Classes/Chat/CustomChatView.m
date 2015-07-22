@@ -115,7 +115,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    self.collectionViewPictures.backgroundColor = [UIColor clearColor];
     //Change send button to orange
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[[UIColor volleyFamousOrange] jsq_colorByDarkeningColorWithValue:0.1f] forState:UIControlStateHighlighted];
@@ -735,24 +737,26 @@
                 }];
 
             cell.backgroundColor = [UIColor clearColor];
+            cell.label.hidden = YES;
+            // ^^ hides label for customCollectionViewCell
 
-            NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+//            NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+//
+//            NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
+//            [array removeObject:@" "];
 
-            NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
-            [array removeObject:@" "];
-
-            if (array.count == 2)
-            {
-                NSString *first = array.firstObject;
-                NSString *last = array.lastObject;
-                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
-                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
-                name = [first stringByAppendingString:last];
-                cell.label.text = name;
-            }
+//            if (array.count == 2)
+//            {
+//                NSString *first = array.firstObject;
+//                NSString *last = array.lastObject;
+//                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
+//                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
+//                name = [first stringByAppendingString:last];
+//                cell.label.text = name;
+//            }
 
             cell.imageView.layer.borderColor = backgroundColor_.CGColor;
-            cell.label.backgroundColor = backgroundColor_;
+//            cell.label.backgroundColor = backgroundColor_;
         }
         return cell;
     }
