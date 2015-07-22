@@ -371,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKk-Ae-Ezb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1471.5" y="274"/>
+            <point key="canvasLocation" x="1321.5" y="274"/>
         </scene>
         <!--New VollieVC-->
         <scene sceneID="gCw-hI-Bzq">
@@ -1196,7 +1196,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j4Y-S5-T7e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="553.5" y="274"/>
+            <point key="canvasLocation" x="280.5" y="274"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sFe-xr-9VW">
@@ -1215,6 +1215,81 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O1P-JF-iFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1471.5" y="1034"/>
+        </scene>
+        <!--FullChatVC-->
+        <scene sceneID="o77-Fm-5zy">
+            <objects>
+                <viewController restorationIdentifier="FullChatVC" storyboardIdentifier="FullChatVC" title="FullChatVC" id="VD4-ml-CU2" customClass="FullChatVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6hS-p7-Meu"/>
+                        <viewControllerLayoutGuide type="bottom" id="DM7-Ny-ehI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VhS-ED-Qu9">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="EHB-U5-bvH">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="X0d-jC-LDX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="VD4-ml-CU2" id="FBZ-iW-MaK"/>
+                                    <outlet property="delegate" destination="VD4-ml-CU2" id="oYo-ya-L5k"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="X0d-jC-LDX" secondAttribute="trailing" constant="-16" id="HWw-Ec-tUx"/>
+                            <constraint firstItem="DM7-Ny-ehI" firstAttribute="top" secondItem="EHB-U5-bvH" secondAttribute="bottom" id="JKa-8z-8al"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EHB-U5-bvH" secondAttribute="trailing" constant="-16" id="bey-sH-J0m"/>
+                            <constraint firstItem="EHB-U5-bvH" firstAttribute="top" secondItem="VhS-ED-Qu9" secondAttribute="topMargin" id="kLd-TD-pcS"/>
+                            <constraint firstItem="EHB-U5-bvH" firstAttribute="leading" secondItem="VhS-ED-Qu9" secondAttribute="leadingMargin" constant="-16" id="r8h-Zs-chg"/>
+                            <constraint firstItem="DM7-Ny-ehI" firstAttribute="top" secondItem="X0d-jC-LDX" secondAttribute="bottom" id="tNW-Ri-jUs"/>
+                            <constraint firstItem="X0d-jC-LDX" firstAttribute="leading" secondItem="VhS-ED-Qu9" secondAttribute="leadingMargin" constant="-16" id="uLK-58-gWv"/>
+                            <constraint firstItem="X0d-jC-LDX" firstAttribute="top" secondItem="VhS-ED-Qu9" secondAttribute="topMargin" id="zzi-wZ-Pnt"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="EHB-U5-bvH"/>
+                                <exclude reference="X0d-jC-LDX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="bey-sH-J0m"/>
+                                <exclude reference="kLd-TD-pcS"/>
+                                <exclude reference="r8h-Zs-chg"/>
+                                <exclude reference="HWw-Ec-tUx"/>
+                                <exclude reference="uLK-58-gWv"/>
+                                <exclude reference="zzi-wZ-Pnt"/>
+                                <exclude reference="JKa-8z-8al"/>
+                                <exclude reference="tNW-Ri-jUs"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="EHB-U5-bvH"/>
+                                <include reference="X0d-jC-LDX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="bey-sH-J0m"/>
+                                <include reference="kLd-TD-pcS"/>
+                                <include reference="r8h-Zs-chg"/>
+                                <include reference="HWw-Ec-tUx"/>
+                                <include reference="uLK-58-gWv"/>
+                                <include reference="zzi-wZ-Pnt"/>
+                                <include reference="JKa-8z-8al"/>
+                                <include reference="tNW-Ri-jUs"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="X0d-jC-LDX" id="FM6-am-6mR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qUe-vq-ked" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2254.5" y="274"/>
         </scene>
         <!--Manage ChatVC-->
         <scene sceneID="29t-ot-tZ5">
@@ -1493,7 +1568,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42T-nb-aIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2667" y="274"/>
+            <point key="canvasLocation" x="3342" y="274"/>
         </scene>
         <!--Members ViewVC-->
         <scene sceneID="sBz-Cv-so6">
@@ -1578,7 +1653,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swz-9e-yZJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3663" y="274"/>
+            <point key="canvasLocation" x="4134" y="268"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kV4-kA-SFo">

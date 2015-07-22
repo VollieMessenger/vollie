@@ -442,10 +442,12 @@ JSQMessagesKeyboardControllerDelegate>
     BOOL isMediaMessage = [messageItem isMediaMessage];
 
     NSString *cellIdentifier = nil;
-    if (isMediaMessage) {
+    if (isMediaMessage)
+    {
         cellIdentifier = isOutgoingMessage ? self.outgoingMediaCellIdentifier : self.incomingMediaCellIdentifier;
     }
-    else {
+    else
+    {
         cellIdentifier = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
     }
 
@@ -455,7 +457,8 @@ JSQMessagesKeyboardControllerDelegate>
     if (!isMediaMessage) {
         cell.textView.text = [messageItem text];
 
-        if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
+        if ([UIDevice jsq_isCurrentDeviceBeforeiOS8])
+        {
             //  workaround for iOS 7 textView data detectors bug
             cell.textView.text = nil;
             cell.textView.attributedText = [[NSAttributedString alloc] initWithString:[messageItem text]
@@ -465,7 +468,8 @@ JSQMessagesKeyboardControllerDelegate>
         NSParameterAssert(cell.textView.text != nil);
 
         id<JSQMessageBubbleImageDataSource> bubbleImageDataSource = [collectionView.dataSource collectionView:collectionView messageBubbleImageDataForItemAtIndexPath:indexPath];
-        if (bubbleImageDataSource != nil) {
+        if (bubbleImageDataSource != nil)
+        {
             cell.messageBubbleImageView.image = [bubbleImageDataSource messageBubbleImage];
             cell.messageBubbleImageView.highlightedImage = [bubbleImageDataSource messageBubbleHighlightedImage];
         }
@@ -477,17 +481,20 @@ JSQMessagesKeyboardControllerDelegate>
     }
 
     BOOL needsAvatar = YES;
-    if (isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.outgoingAvatarViewSize, CGSizeZero)) {
+    if (isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.outgoingAvatarViewSize, CGSizeZero))
+    {
         needsAvatar = NO;
     }
-    else if (!isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.incomingAvatarViewSize, CGSizeZero)) {
+    else if (!isOutgoingMessage && CGSizeEqualToSize(collectionView.collectionViewLayout.incomingAvatarViewSize, CGSizeZero))
+    {
         needsAvatar = NO;
     }
 
     id<JSQMessageAvatarImageDataSource> avatarImageDataSource = nil;
     if (needsAvatar) {
         avatarImageDataSource = [collectionView.dataSource collectionView:collectionView avatarImageDataForItemAtIndexPath:indexPath];
-        if (avatarImageDataSource != nil) {
+        if (avatarImageDataSource != nil)
+        {
 
             UIImage *avatarImage = [avatarImageDataSource avatarImage];
             if (avatarImage == nil) {
@@ -507,10 +514,12 @@ JSQMessagesKeyboardControllerDelegate>
 
     CGFloat bubbleTopLabelInset = (avatarImageDataSource != nil) ? 60.0f : 15.0f;
 
-    if (isOutgoingMessage) {
+    if (isOutgoingMessage)
+    {
         cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, bubbleTopLabelInset);
     }
-    else {
+    else
+    {
         cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
     }
 
@@ -527,10 +536,12 @@ JSQMessagesKeyboardControllerDelegate>
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.showTypingIndicator && [kind isEqualToString:UICollectionElementKindSectionFooter]) {
+    if (self.showTypingIndicator && [kind isEqualToString:UICollectionElementKindSectionFooter])
+    {
         return [collectionView dequeueTypingIndicatorFooterViewForIndexPath:indexPath];
     }
-    else if (self.showLoadEarlierMessagesHeader && [kind isEqualToString:UICollectionElementKindSectionHeader]) {
+    else if (self.showLoadEarlierMessagesHeader && [kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
         return [collectionView dequeueLoadEarlierMessagesViewHeaderForIndexPath:indexPath];
     }
 
@@ -550,7 +561,8 @@ JSQMessagesKeyboardControllerDelegate>
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    if (!self.showLoadEarlierMessagesHeader) {
+    if (!self.showLoadEarlierMessagesHeader)
+    {
         return CGSizeZero;
     }
 
@@ -563,7 +575,8 @@ JSQMessagesKeyboardControllerDelegate>
 {
     //  disable menu for media messages
     id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
-    if ([messageItem isMediaMessage]) {
+    if ([messageItem isMediaMessage])
+    {
         return NO;
     }
 
@@ -581,7 +594,8 @@ JSQMessagesKeyboardControllerDelegate>
 
 - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
 {
-    if (action == @selector(copy:)) {
+    if (action == @selector(copy:))
+    {
         return YES;
     }
 
@@ -590,7 +604,8 @@ JSQMessagesKeyboardControllerDelegate>
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
 {
-    if (action == @selector(copy:)) {
+    if (action == @selector(copy:))
+    {
         id<JSQMessageData> messageData = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
         [[UIPasteboard generalPasteboard] setString:[messageData text]];
     }

@@ -227,7 +227,8 @@
     [self showDetailViewController:nav sender:self];
 }
 
-- (void)didPressAccessoryButton:(UIButton *)sender {
+- (void)didPressAccessoryButton:(UIButton *)sender
+{
     
 }
 
@@ -235,8 +236,8 @@
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor
 {
     self = [super init];
-    if (self) {
-
+    if (self)
+    {
         if ([[UIColor stringFromColor:backgroundColor] isEqualToString:@"0 0 0 0"])
         {
             backgroundColor_ = [UIColor volleyBubbleGreen];
@@ -262,7 +263,8 @@
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         if ([[UIColor stringFromColor:backgroundColor] isEqualToString:@"0 0 0 0"]) {
             backgroundColor_ = [UIColor volleyBubbleGreen];
         } else {
@@ -276,9 +278,8 @@
         self.setIDforCardCheck = setId;
 
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
-        NSLog(@"%li in pictures array", setPicturesObjects.count);
+//        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
-
 
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
@@ -369,10 +370,12 @@
         }
         else
         {
-            if ([query hasCachedResult] && (self.navigationController.visibleViewController == self)) {
+            if ([query hasCachedResult] && (self.navigationController.visibleViewController == self))
+            {
                     [ProgressHUD showError:@"Network error."];
-                }
+
             }
+        }
     }];
 }
 
@@ -898,13 +901,16 @@
      *  Show a timestamp for every 3rd message
      */
 
-    if (indexPath.item - 1 > -1) {
+    if (indexPath.item - 1 > -1)
+    {
         JSQMessage *message = [setComments objectAtIndex:indexPath.item];
         JSQMessage *previousMessage = [setComments objectAtIndex:indexPath.item - 1];
-        if (abs([message.date timeIntervalSinceDate:previousMessage.date]) > 60 * 60) {
+        if (abs([message.date timeIntervalSinceDate:previousMessage.date]) > 60 * 60)
+        {
             return kJSQMessagesCollectionViewCellLabelHeightDefault;
         }
-    } else {
+    } else
+    {
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
 

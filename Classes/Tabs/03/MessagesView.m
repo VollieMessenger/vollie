@@ -83,8 +83,6 @@
     
     NSString *selectedRoom;
 
-    PFObject *commentObject; //comment send by delegate
-
     PFObject *albumToDelete;
 
     PFObject *messageToRenameDelete;

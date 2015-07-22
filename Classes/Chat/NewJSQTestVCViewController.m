@@ -42,15 +42,13 @@
         self.setIDforCardCheck = setId;
         self.messages = [NSMutableArray arrayWithArray:messages];
     }
-//    self.view.layer.backgroundColor = [UIColor orangeColor].CGColor;
-//    self.collectionView.backgroundColor = [UIColor orangeColor];
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.collectionView.backgroundColor = [UIColor orangeColor];
+//    self.collectionView.backgroundColor = [UIColor orangeColor];
     self.view.layer.backgroundColor = [UIColor clearColor].CGColor;
     //    self.view.layer.backgroundColor = [UIColor purpleColor].CGColor;
     //    [self scrollToBottomAnimated:YES];
@@ -68,7 +66,7 @@
         self.senderDisplayName = [[PFUser currentUser][PF_USER_FULLNAME] copy];
     }
 
-    NSLog(@"i have %li messages", self.messages.count);
+//    NSLog(@"i have %li messages", self.messages.count);
 
     self.automaticallyScrollsToMostRecentMessage = 1;
     self.showLoadEarlierMessagesHeader = 0;
@@ -87,7 +85,7 @@
 
 
     self.bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
-    self.outgoingBubbleImageData = [self.bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor volleyFamousGreen]];
+    self.outgoingBubbleImageData = [self.bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor blueColor]];
     self.incomingBubbleImageData = [self.bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor volleyBorderGrey]];
 
 }

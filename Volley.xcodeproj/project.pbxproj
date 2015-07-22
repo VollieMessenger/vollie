@@ -21,6 +21,7 @@
 		274988791B31DDBD00560873 /* CardVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 274988771B31DDBD00560873 /* CardVC.xib */; };
 		2749887C1B31E71400560873 /* CardCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887B1B31E71400560873 /* CardCellView.m */; };
 		2749887F1B31F98200560873 /* CellForCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 2749887E1B31F98200560873 /* CellForCard.m */; };
+		27616AC41B5D86C200FD15B9 /* FullChatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 27616AC31B5D86C200FD15B9 /* FullChatVC.m */; };
 		27617D981B4ADF590026C2EB /* ParseVolliePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 27617D971B4ADF590026C2EB /* ParseVolliePackage.m */; };
 		2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */; };
 		2762FF621B289A530070AD59 /* MomentsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762FF611B289A530070AD59 /* MomentsVC.m */; };
@@ -214,6 +215,8 @@
 		2749887B1B31E71400560873 /* CardCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = CardCellView.m; path = ../Tabs/02/CardCellView.m; sourceTree = "<group>"; usesTabs = 0; };
 		2749887D1B31F98200560873 /* CellForCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellForCard.h; sourceTree = "<group>"; };
 		2749887E1B31F98200560873 /* CellForCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellForCard.m; sourceTree = "<group>"; };
+		27616AC21B5D86C200FD15B9 /* FullChatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullChatVC.h; sourceTree = "<group>"; };
+		27616AC31B5D86C200FD15B9 /* FullChatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullChatVC.m; sourceTree = "<group>"; };
 		27617D961B4ADF590026C2EB /* ParseVolliePackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseVolliePackage.h; sourceTree = "<group>"; };
 		27617D971B4ADF590026C2EB /* ParseVolliePackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseVolliePackage.m; sourceTree = "<group>"; };
 		2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Storyboard.storyboard; path = Application/Storyboard.storyboard; sourceTree = "<group>"; };
@@ -584,6 +587,8 @@
 		27C3C1261B3B2E7000F555FD /* Moments Version */ = {
 			isa = PBXGroup;
 			children = (
+				27616AC21B5D86C200FD15B9 /* FullChatVC.h */,
+				27616AC31B5D86C200FD15B9 /* FullChatVC.m */,
 				27DB352A1B4C616200A765A2 /* ManageChat VC */,
 				27C3C12A1B3B344800F555FD /* Moments VC */,
 				270D7EF51B3DDD0200FE28E9 /* Modal Objects */,
@@ -1426,6 +1431,7 @@
 				279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */,
 				29271A5919F284B1009C308B /* NavigationController.m in Sources */,
 				C21DD6E81A71D73B0009BC6A /* JCNotificationBannerPresenterIOSStyle.m in Sources */,
+				27616AC41B5D86C200FD15B9 /* FullChatVC.m in Sources */,
 				29271A6A19F284B1009C308B /* messages.m in Sources */,
 				C2F314AB1A79895700675959 /* MasterLoginRegisterView.m in Sources */,
 				C27032731A38CFD3008CBF7F /* AppConstant.m in Sources */,
