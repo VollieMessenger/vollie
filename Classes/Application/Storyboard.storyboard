@@ -133,7 +133,8 @@
                                                                     <exclude reference="vbl-rc-GJU"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact">
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="209" y="7" width="90" height="90"/>
                                                                 <mask key="constraints">
                                                                     <include reference="rHS-ji-teR"/>
                                                                     <include reference="vbl-rc-GJU"/>
@@ -177,7 +178,8 @@
                                                                     <exclude reference="pGk-xH-Oeu"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact">
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="-5" y="7" width="215" height="90"/>
                                                                 <mask key="subviews">
                                                                     <include reference="KRE-Pw-xlh"/>
                                                                 </mask>
@@ -211,7 +213,8 @@
                                                             <exclude reference="quP-Bj-7vD"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="304" height="103"/>
                                                         <mask key="subviews">
                                                             <include reference="jd7-hQ-RoQ"/>
                                                             <include reference="be2-KR-ED0"/>
@@ -1349,32 +1352,31 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cG-wz-1uw">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="9fx-em-U85"/>
-                                    <constraint firstAttribute="height" constant="26" id="ULq-iA-31r"/>
+                                    <constraint firstAttribute="width" constant="26" id="Dkb-40-r6c"/>
+                                    <constraint firstAttribute="height" constant="26" id="R4z-wl-J1S"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="next-button-charcoal">
+                                <state key="normal" title="Button" image="double-orange-arrows">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="9fx-em-U85"/>
-                                        <exclude reference="ULq-iA-31r"/>
+                                        <exclude reference="Dkb-40-r6c"/>
+                                        <exclude reference="R4z-wl-J1S"/>
                                     </mask>
                                 </variation>
-                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="358" y="117" width="26" height="26"/>
+                                <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="9fx-em-U85"/>
-                                        <include reference="ULq-iA-31r"/>
+                                        <include reference="Dkb-40-r6c"/>
+                                        <include reference="R4z-wl-J1S"/>
                                     </mask>
                                 </variation>
                                 <connections>
                                     <segue destination="G1l-G5-yQ6" kind="show" id="a4t-b7-EBm"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rename Chat" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NSH-3R-WFp">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rename Chat" minimumFontSize="19" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="NSH-3R-WFp">
                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
@@ -1389,17 +1391,18 @@
                             <constraint firstAttribute="trailingMargin" secondItem="1Oe-a9-etH" secondAttribute="trailing" constant="-16" id="Chi-kZ-7BZ"/>
                             <constraint firstItem="YPY-qn-moP" firstAttribute="top" secondItem="a12-Z1-JIu" secondAttribute="bottom" constant="95" id="Csd-CS-v4I"/>
                             <constraint firstItem="7Zv-xg-dMX" firstAttribute="top" secondItem="rGY-qw-q1T" secondAttribute="topMargin" id="DTM-z6-iCA"/>
-                            <constraint firstItem="5cG-wz-1uw" firstAttribute="trailing" secondItem="rGY-qw-q1T" secondAttribute="trailingMargin" id="MG6-aZ-h1h"/>
                             <constraint firstItem="mEQ-EP-Cm3" firstAttribute="leading" secondItem="rGY-qw-q1T" secondAttribute="leadingMargin" constant="-16" id="PRg-Rl-GBy"/>
                             <constraint firstItem="eQd-iG-wWm" firstAttribute="leading" secondItem="rGY-qw-q1T" secondAttribute="leadingMargin" constant="-16" id="QdA-ug-RNQ"/>
                             <constraint firstItem="1Oe-a9-etH" firstAttribute="leading" secondItem="rGY-qw-q1T" secondAttribute="leadingMargin" constant="-16" id="T5G-my-9Sh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YPY-qn-moP" secondAttribute="trailing" constant="-16" id="W5w-N4-EsO"/>
+                            <constraint firstItem="5cG-wz-1uw" firstAttribute="trailing" secondItem="rGY-qw-q1T" secondAttribute="trailingMargin" id="XAD-Gw-w65"/>
                             <constraint firstItem="4ZP-W9-CVF" firstAttribute="leading" secondItem="rGY-qw-q1T" secondAttribute="leadingMargin" constant="-16" id="Zi5-db-8AZ"/>
                             <constraint firstItem="7Zv-xg-dMX" firstAttribute="leading" secondItem="rGY-qw-q1T" secondAttribute="leadingMargin" constant="-16" id="dAG-GC-dxf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mEQ-EP-Cm3" secondAttribute="trailing" constant="-16" id="eX5-jL-Osd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4ZP-W9-CVF" secondAttribute="trailing" constant="-16" id="erc-Jl-oHn"/>
                             <constraint firstItem="YPY-qn-moP" firstAttribute="top" secondItem="NSH-3R-WFp" secondAttribute="bottom" constant="20" id="gVx-jg-Zd6"/>
                             <constraint firstItem="mEQ-EP-Cm3" firstAttribute="top" secondItem="4ZP-W9-CVF" secondAttribute="bottom" constant="18" id="jej-k9-Q1a"/>
+                            <constraint firstItem="5cG-wz-1uw" firstAttribute="top" secondItem="NSH-3R-WFp" secondAttribute="bottom" constant="37" id="kiP-8E-1Cq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Zv-xg-dMX" secondAttribute="trailing" constant="-16" id="lwk-cj-pAn"/>
                             <constraint firstItem="ycG-w5-rfB" firstAttribute="top" secondItem="eQd-iG-wWm" secondAttribute="bottom" constant="8" id="u3f-kA-3yE"/>
                             <constraint firstItem="NSH-3R-WFp" firstAttribute="leading" secondItem="rGY-qw-q1T" secondAttribute="leadingMargin" constant="-16" id="uEN-iF-nLH"/>
@@ -1432,7 +1435,8 @@
                                 <exclude reference="PRg-Rl-GBy"/>
                                 <exclude reference="eX5-jL-Osd"/>
                                 <exclude reference="jej-k9-Q1a"/>
-                                <exclude reference="MG6-aZ-h1h"/>
+                                <exclude reference="XAD-Gw-w65"/>
+                                <exclude reference="kiP-8E-1Cq"/>
                                 <exclude reference="0eE-z6-a15"/>
                                 <exclude reference="Chi-kZ-7BZ"/>
                                 <exclude reference="T5G-my-9Sh"/>
@@ -1470,7 +1474,8 @@
                                 <include reference="PRg-Rl-GBy"/>
                                 <include reference="eX5-jL-Osd"/>
                                 <include reference="jej-k9-Q1a"/>
-                                <include reference="MG6-aZ-h1h"/>
+                                <include reference="XAD-Gw-w65"/>
+                                <include reference="kiP-8E-1Cq"/>
                                 <include reference="0eE-z6-a15"/>
                                 <include reference="Chi-kZ-7BZ"/>
                                 <include reference="T5G-my-9Sh"/>
@@ -1602,8 +1607,8 @@
     <resources>
         <image name="1readMesseageIcon" width="100" height="100"/>
         <image name="Vollie-icon" width="205" height="205"/>
+        <image name="double-orange-arrows" width="139" height="150"/>
         <image name="greyBackGround2" width="816" height="1183"/>
-        <image name="next-button-charcoal" width="139" height="150"/>
         <image name="wideV" width="312" height="155"/>
     </resources>
     <inferredMetricsTieBreakers>

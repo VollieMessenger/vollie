@@ -42,7 +42,9 @@
 
     if (self.messageButReallyRoom[@"nickname"])
     {
-        self.textField.placeholder = self.messageButReallyRoom[@"nickname"];
+        NSString *string = [NSString stringWithFormat:@" %@", self.messageButReallyRoom[@"nickname"]];
+//        self.textField.placeholder = self.messageButReallyRoom[@"nickname"];
+        self.textField.placeholder = string;
     }
 
     NSArray *peopleArray = self.room[@"userObjects"];
@@ -63,17 +65,22 @@
 
 -(void)changeButtonAppearanceWith:(UIButton*)button
 {
-//    button.titleLabel.font = [UIFont fontWithName:@"ArielRoundedMTBold" size:24];
     [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    button.layer.cornerRadius = 10;
     button.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
     button.layer.borderWidth = 1;
-//    button.layer.masksToBounds = YES;
     button.backgroundColor = [UIColor whiteColor];
     if (button == self.cancelButton)
     {
-        button.backgroundColor = [UIColor colorWithRed:.850 green:.850 blue:.850 alpha:1];
+        button.backgroundColor = [UIColor volleyFamousOrange];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
+//
+//    if (button == self.peopleButton)
+//    {
+//        //        button.backgroundColor = [UIColor colorWithRed:.850 green:.850 blue:.850 alpha:1];
+////        button.backgroundColor = [UIColor volleyFamousOrange];
+//        [button setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
+//    }
 }
 
 #pragma mark - Navigation

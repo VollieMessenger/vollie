@@ -72,13 +72,13 @@
                     <exclude reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="PVO-xi-nN6"/>
+                    <exclude reference="X4D-MV-Xhc"/>
+                    <exclude reference="tgd-Sv-8jf"/>
                     <exclude reference="5b4-17-Z6R"/>
                     <exclude reference="OEH-3y-8pS"/>
                     <exclude reference="V32-vX-0Gu"/>
                     <exclude reference="lzh-EP-e00"/>
-                    <exclude reference="PVO-xi-nN6"/>
-                    <exclude reference="X4D-MV-Xhc"/>
-                    <exclude reference="tgd-Sv-8jf"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -87,13 +87,13 @@
                     <include reference="zEK-TV-z20"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="PVO-xi-nN6"/>
+                    <include reference="X4D-MV-Xhc"/>
+                    <include reference="tgd-Sv-8jf"/>
                     <include reference="5b4-17-Z6R"/>
                     <include reference="OEH-3y-8pS"/>
                     <include reference="V32-vX-0Gu"/>
                     <include reference="lzh-EP-e00"/>
-                    <include reference="PVO-xi-nN6"/>
-                    <include reference="X4D-MV-Xhc"/>
-                    <include reference="tgd-Sv-8jf"/>
                 </mask>
             </variation>
         </view>
