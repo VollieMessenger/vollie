@@ -518,10 +518,14 @@
             [dateFormate setDateFormat:@"MMMM dd"];
             NSString *dateString = [dateFormate stringFromDate:date];
             dateString = [@"  " stringByAppendingString:dateString];
-            if ([date isEqualToDate:[self dateAtBeginningOfDayForDate:[NSDate date]]]) {
+            if ([date isEqualToDate:[self dateAtBeginningOfDayForDate:[NSDate date]]])
+            {
                 label.text = @"   Today";
-            } else {
+            }
+            else
+            {
                 label.text = dateString;
+//                label.text = @"wtf?";
             }
         }
     }

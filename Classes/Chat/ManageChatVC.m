@@ -114,8 +114,10 @@
 
 - (IBAction)onCancelButtonTapped:(id)sender
 {
-     [self.navigationController popToRootViewControllerAnimated:1];
+//     [self.navigationController popToRootViewControllerAnimated:1];
 //    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+
     [self saveNickname];
 }
 
