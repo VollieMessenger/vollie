@@ -63,6 +63,8 @@
 {
     [super viewDidAppear:1];
 //    [self scrollToBottomAnimated:YES];
+    [self.collectionView reloadData];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -70,6 +72,8 @@
     [super viewWillAppear:1];
 //    [self isSetFavorited];
     [self finishReceivingMessage:0];
+    [self.collectionView reloadData];
+
 //    [self scrollToBottomAnimated:YES];
 
 }
@@ -78,7 +82,7 @@
 {
     [super viewDidLoad];
     self.collectionViewPictures.hidden = YES;
-    self.collectionView.backgroundColor = [UIColor clearColor];
+//    self.collectionView.backgroundColor = [UIColor orangeColor];
     self.view.layer.backgroundColor = [UIColor clearColor].CGColor;
 //    self.view.layer.backgroundColor = [UIColor purpleColor].CGColor;
 //    [self scrollToBottomAnimated:YES];
