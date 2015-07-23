@@ -114,7 +114,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    VollieCardData *card = self.vollieCardDataArray[indexPath.row];
+    VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
 
     CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen]     andPictures:card.photosArray andComments:card.messagesArray];
 //    chatt.senderId = [self.senderId copy];
@@ -136,113 +136,140 @@
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.vollieCardDataArray.count;
+//    return self.vollieCardDataArray.count;
+    return self.vollieCardDataArray.count * 2 - 1;
+//     return [[self.cards valueForKeyPath:@"cards"] count] * 2 - 1
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    VollieCardData *data = self.vollieCardDataArray[indexPath.item];
-    if (data.photosArray.count)
+    if (indexPath.item % 2 == 1)
     {
-        switch (data.photosArray.count)
-        {
-            case 1:
-                return 160;
-                break;
-            case 2:
-                return 260;
-            case 3:
-                return 350;
-            case 4:
-                return 470;
-            case 5:
-                return 530;
-            default:
-                return 200;
-                break;
-        }
+        return 15;
+        //this is the spacerCell
     }
     else
     {
-        return 115;
+        VollieCardData *data = self.vollieCardDataArray[(indexPath.item/2)];
+        if (data.photosArray.count)
+        {
+            switch (data.photosArray.count)
+            {
+                case 1:
+                    return 160;
+                    break;
+                case 2:
+                    return 260;
+                case 3:
+                    return 350;
+                case 4:
+                    return 470;
+                case 5:
+                    return 530;
+                default:
+                    return 200;
+                    break;
+            }
+        }
+        else
+        {
+            return 115;
+        }
     }
-
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    VollieCardData *card = [self.vollieCardDataArray objectAtIndex:indexPath.row];
-    CardCellView *vc = card.viewController;
-    vc.room = self.room;
-    vc.view.backgroundColor = [UIColor whiteColor];
-    [self.vollieVCcardArray addObject:vc];
+    if (indexPath.row % 2 == 1)
+    {
+        UITableViewCell * spacerCell = [tableView dequeueReusableCellWithIdentifier:@"fakeCellID"];
 
-    if (card.photosArray.count == 1)
-    {
-        OnePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCell"];
-        [cell fillPicsWithVollieCardData:card];
-        [cell formatCell];
-        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-        return cell;
-    }
-    if (card.photosArray.count == 2)
-    {
-        [self.tableView registerNib:[UINib nibWithNibName:@"TwoPicCell" bundle:0] forCellReuseIdentifier:@"TwoPicCell"];
-        TwoPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TwoPicCell"];
-        [cell fillPicsWithVollieCardData:card];
-        [cell formatCell];
-        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-        return cell;
-    }
-    if (card.photosArray.count == 3)
-    {
-        [self.tableView registerNib:[UINib nibWithNibName:@"ThreePicCell" bundle:0] forCellReuseIdentifier:@"ThreePicCell"];
-        ThreePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreePicCell"];
-        [cell fillPicsWithVollieCardData:card];
-        [cell formatCell];
-        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-        return cell;
-    }
-    if (card.photosArray.count == 4)
-    {
-        [self.tableView registerNib:[UINib nibWithNibName:@"FourPicCell" bundle:0] forCellReuseIdentifier:@"FourPicCell"];
-        FourPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FourPicCell"];
-        [cell fillPicsWithVollieCardData:card];
-        [cell formatCell];
-        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-        return cell;
-    }
-    if (card.photosArray.count == 5)
-    {
-        [self.tableView registerNib:[UINib nibWithNibName:@"FivePicCell" bundle:0] forCellReuseIdentifier:@"FivePicCell"];
-        FivePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicCell"];
-        [cell fillPicsWithVollieCardData:card];
-        [cell formatCell];
-        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-        return cell;
+        if (spacerCell == nil)
+        {
+            //this is our spacer cell
+            spacerCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                           reuseIdentifier:@"fakeCellID"];
+            spacerCell.backgroundColor = [UIColor clearColor];
+            [spacerCell.contentView setAlpha:0];
+            [spacerCell setUserInteractionEnabled:NO];
+        }
+        return spacerCell;
     }
     else
     {
-    CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-    cell.cardOutline.backgroundColor = [UIColor clearColor];
-    cell.backgroundColor = [UIColor clearColor];
-    CardCellView *vc = card.viewController;
-    vc.room = self.room;
-    vc.view.backgroundColor =[UIColor whiteColor];
-    [self.vollieVCcardArray addObject:vc];
+        VollieCardData *card = [self.vollieCardDataArray objectAtIndex:(indexPath.row/2)];
+        CardCellView *vc = card.viewController;
+        vc.room = self.room;
+        vc.view.backgroundColor = [UIColor whiteColor];
+        [self.vollieVCcardArray addObject:vc];
 
-//    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
-    vc.view.frame = cell.cardOutline.bounds;
-    cell.cardOutline.layer.cornerRadius = 10;
-    cell.cardOutline.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
-    cell.cardOutline.layer.borderWidth = 1;
-    cell.cardOutline.layer.masksToBounds = YES;
-//    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
-//    NSLog(@"%f is VC height", vc.card.bounds.size.height);
-    [self addChildViewController:vc];
-    [cell.cardOutline addSubview:vc.view];
-    [vc didMoveToParentViewController:self];
-    return cell;
+        if (card.photosArray.count == 1)
+        {
+            OnePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCell"];
+            [cell fillPicsWithVollieCardData:card];
+            [cell formatCell];
+            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+            return cell;
+        }
+        if (card.photosArray.count == 2)
+        {
+            [self.tableView registerNib:[UINib nibWithNibName:@"TwoPicCell" bundle:0] forCellReuseIdentifier:@"TwoPicCell"];
+            TwoPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TwoPicCell"];
+            [cell fillPicsWithVollieCardData:card];
+            [cell formatCell];
+            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+            return cell;
+        }
+        if (card.photosArray.count == 3)
+        {
+            [self.tableView registerNib:[UINib nibWithNibName:@"ThreePicCell" bundle:0] forCellReuseIdentifier:@"ThreePicCell"];
+            ThreePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreePicCell"];
+            [cell fillPicsWithVollieCardData:card];
+            [cell formatCell];
+            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+            return cell;
+        }
+        if (card.photosArray.count == 4)
+        {
+            [self.tableView registerNib:[UINib nibWithNibName:@"FourPicCell" bundle:0] forCellReuseIdentifier:@"FourPicCell"];
+            FourPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FourPicCell"];
+            [cell fillPicsWithVollieCardData:card];
+            [cell formatCell];
+            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+            return cell;
+        }
+        if (card.photosArray.count == 5)
+        {
+            [self.tableView registerNib:[UINib nibWithNibName:@"FivePicCell" bundle:0] forCellReuseIdentifier:@"FivePicCell"];
+            FivePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicCell"];
+            [cell fillPicsWithVollieCardData:card];
+            [cell formatCell];
+            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+            return cell;
+        }
+        else
+        {
+        CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+        cell.cardOutline.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor clearColor];
+        CardCellView *vc = card.viewController;
+        vc.room = self.room;
+        vc.view.backgroundColor =[UIColor whiteColor];
+        [self.vollieVCcardArray addObject:vc];
+
+    //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
+        vc.view.frame = cell.cardOutline.bounds;
+        cell.cardOutline.layer.cornerRadius = 10;
+        cell.cardOutline.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
+        cell.cardOutline.layer.borderWidth = 1;
+        cell.cardOutline.layer.masksToBounds = YES;
+    //    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
+    //    NSLog(@"%f is VC height", vc.card.bounds.size.height);
+        [self addChildViewController:vc];
+        [cell.cardOutline addSubview:vc.view];
+        [vc didMoveToParentViewController:self];
+        return cell;
+        }
     }
 }
 
