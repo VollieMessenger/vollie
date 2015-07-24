@@ -39,7 +39,7 @@
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData
 {
     PFObject *photo = vollieCardData.photosArray.firstObject;
-    NSLog(@"%@", photo);
+//    NSLog(@"%@", photo);
     PFFile *thumbnail = [photo objectForKey:@"thumbnail"];
     [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
     {

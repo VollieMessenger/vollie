@@ -200,6 +200,22 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     //needs to send user to new vollie page
+    NSLog(@" YEAH YEAH YEAH YEAH");
+    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
+//    [self perfor]
+}
+
+-(void)goToCardViewWithMessage
+{
+    PFObject *message = [messages objectAtIndex:0];
+    PFObject *room = [message objectForKey:PF_MESSAGES_ROOM];
+    selectedRoom = room.objectId;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+    ////    cardViewController.name = cell.labelDescription.text;
+    cardViewController.room = room;
+    cardViewController.messageItComesFrom = message;
+    [self.navigationController pushViewController:cardViewController animated:YES];
 }
 
 
@@ -430,6 +446,7 @@
                                             withAnimation:UIStatusBarAnimationFade];
 //    [self loadFavorites];
 
+//    [self loadInbox];
     didViewJustLoad = NO;
 }
 
@@ -1304,6 +1321,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:1];
+    NSLog(@"%li", indexPath.row);
 
     if (!self.isArchive)
     { //NOT ARCHIVE

@@ -403,7 +403,7 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     [self loadMessages];
-    NSLog(@"i loaded stuff");
+//    NSLog(@"i loaded stuff");
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -411,7 +411,7 @@
 //newVollieToGroup
     if([[segue identifier] isEqualToString:@"newVollieToGroup"])
     {
-        NSLog(@"New Vollie is going to Room");
+//        NSLog(@"New Vollie is going to Room");
     }
     NewVollieVC *vc = [segue destinationViewController];
     vc.whichRoom = self.room;

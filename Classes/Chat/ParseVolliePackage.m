@@ -121,7 +121,7 @@
             }
             else
             {
-                NSLog(@"%i more pics to send", self.countDownForLastPhoto);
+//                NSLog(@"%i more pics to send", self.countDownForLastPhoto);
             }
         }
         else
