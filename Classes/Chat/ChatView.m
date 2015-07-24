@@ -147,7 +147,8 @@
 
 
 //NOt used
--(void) refresh2 {
+-(void) refresh2
+{
     _isLoadingEarlierCount++;
     [self loadChat];
 }
