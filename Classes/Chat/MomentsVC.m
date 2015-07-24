@@ -106,7 +106,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self loadMessages];
+    [self performSelector:@selector(loadMessages) withObject:self afterDelay:1.0f];
+//    [self loadMessages];
 }
 
 #pragma mark - TableView

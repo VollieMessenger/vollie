@@ -152,7 +152,7 @@ SecondDelegate>
                                                andRoom:self.whichRoom
                                                 andSet:set];
             }
-             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
         }
         else
         {
