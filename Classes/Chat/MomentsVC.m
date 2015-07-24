@@ -34,8 +34,9 @@
 #import "ThreePicCell.h"
 #import "FourPicCell.h"
 #import "FivePicCell.h"
+#import "ParseVolliePackage.h"
 
-@interface MomentsVC () <UITableViewDataSource, UITableViewDelegate>
+@interface MomentsVC () <UITableViewDataSource, UITableViewDelegate, RefreshMessagesDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *vollieIconImageView;
@@ -106,8 +107,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self performSelector:@selector(loadMessages) withObject:self afterDelay:1.0f];
-//    [self loadMessages];
+//    [self performSelector:@selector(loadMessages) withObject:self afterDelay:1.0f];
+    [self loadMessages];
 }
 
 #pragma mark - TableView
@@ -399,6 +400,12 @@
     }
 }
 
+-(void)reloadAfterMessageSuccessfullySent
+{
+    [self loadMessages];
+    NSLog(@"i loaded stuff");
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
 //newVollieToGroup
@@ -408,6 +415,9 @@
     }
     NewVollieVC *vc = [segue destinationViewController];
     vc.whichRoom = self.room;
+    ParseVolliePackage *package = [ParseVolliePackage new];
+    package.refreshDelegate = self;
+    vc.package = package;
 }
 
 @end

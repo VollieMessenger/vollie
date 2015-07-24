@@ -16,6 +16,9 @@
 
 @implementation ParseVolliePackage
 
+@synthesize refreshDelegate;
+
+
 -(void)sendPhotosWithPhotosArray:(NSMutableArray*)photosArray andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 {
     self.savedImageFiles = [NSMutableArray new];
@@ -112,6 +115,8 @@
                     [self showSuccessNotificationWithString:@"New Picture!"
                                                   andObject:object
                                               andRoomNumber:roomNumber];
+
+
                 }
             }
             else
@@ -178,6 +183,7 @@
         UpdateMessageCounter(roomNumber, string, object);
     }
     [ProgressHUD showSuccess:@"Sent Vollie!"];
+    [self.refreshDelegate reloadAfterMessageSuccessfullySent];
     [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
 }
 

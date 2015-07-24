@@ -9,16 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "MasterScrollView.h"
 #import <Parse/Parse.h>
+#import "ParseVolliePackage.h"
 
 @protocol NewVollieDelegate <NSObject>
 -(void) newVollieDismissed:(NSString *)textForCam andPhotos:(NSMutableArray*)photosArray;
 @end
 
-
 @interface NewVollieVC : UIViewController
 
 @property (nonatomic, assign) id<NewVollieDelegate> textDelegate;
-
 
 @property NSString *textFromLastVC;
 @property NSMutableArray *photosArray;
@@ -26,5 +25,6 @@
 @property BOOL comingFromCamera;
 @property BOOL showingCamera;
 @property PFObject *whichRoom;
+@property ParseVolliePackage *package;
 
 @end

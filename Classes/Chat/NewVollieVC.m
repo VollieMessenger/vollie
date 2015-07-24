@@ -38,6 +38,7 @@ SecondDelegate>
 @implementation NewVollieVC
 
 @synthesize textDelegate;
+//@synthesize refreshDelegate;
 
 - (void)viewDidLoad
 {
@@ -138,17 +139,18 @@ SecondDelegate>
             [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
 //            [set saveInBackground];
 
-            ParseVolliePackage *package = [ParseVolliePackage new];
+//            ParseVolliePackage *package = [ParseVolliePackage new];
+//            self.package;
             if (self.photosArray.count)
             {
-                [package sendPhotosWithPhotosArray:self.photosArray
+                [self.package sendPhotosWithPhotosArray:self.photosArray
                                            andText:self.textView.text
                                            andRoom:self.whichRoom
                                             andSet:set];
             }
             else
             {
-                [package checkForTextAndSendItWithText:self.textView.text
+                [self.package checkForTextAndSendItWithText:self.textView.text
                                                andRoom:self.whichRoom
                                                 andSet:set];
             }
