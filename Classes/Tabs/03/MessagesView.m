@@ -54,7 +54,9 @@
 
 #import "NewVollieVC.h"
 
-@interface MessagesView () <UIInputViewAudioFeedback>
+#import "ParseVolliePackage.h"
+
+@interface MessagesView () <UIInputViewAudioFeedback, RefreshMessagesDelegate>
 
 {
     UITapGestureRecognizer *tap;
@@ -181,7 +183,11 @@
     {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
         NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-//        [self presentViewController:vc animated:YES completion:nil];
+
+        ParseVolliePackage *package = [ParseVolliePackage new];
+        package.refreshDelegate = self;
+        vc.package = package;
+
         [self.navigationController pushViewController:vc animated:YES];
 
 //        CreateChatroomView *chat = [CreateChatroomView new];
@@ -190,6 +196,12 @@
 
     }
 }
+
+-(void)reloadAfterMessageSuccessfullySent
+{
+    //needs to send user to new vollie page
+}
+
 
 #pragma mark - NOTIFICATION
 

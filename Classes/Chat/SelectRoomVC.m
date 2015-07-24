@@ -15,7 +15,7 @@
 #import "AppDelegate.h"
 #import "pushnotification.h"
 #import "messages.h"
-#import "ParseVolliePackage.h"
+//#import "ParseVolliePackage.h"
 
 @interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
 
@@ -104,8 +104,9 @@
              if (self.photosToSend.count)
              {
 //                 [self createParseObjectsWithPhotosArray];
-                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
-                 [volliePackage sendPhotosWithPhotosArray:self.photosToSend
+//                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
+
+                 [self.package sendPhotosWithPhotosArray:self.photosToSend
                                                 andText:self.textToSend
                                                 andRoom:self.selectedRoom
                                                  andSet:self.selectedSet];
@@ -114,8 +115,8 @@
              }
              else
              {
-                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
-                 [volliePackage checkForTextAndSendItWithText:self.textToSend
+//                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
+                 [self.package checkForTextAndSendItWithText:self.textToSend
                                                       andRoom:self.selectedRoom
                                                        andSet:self.selectedSet];
 

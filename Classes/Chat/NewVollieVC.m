@@ -162,6 +162,7 @@ SecondDelegate>
             SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
             selectRoomVC.photosToSend = self.photosArray;
             selectRoomVC.textToSend = self.textView.text;
+            selectRoomVC.package = self.package;
             [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
 
             [self.navigationController pushViewController:selectRoomVC animated:YES];
