@@ -64,7 +64,7 @@ SecondDelegate>
 
     if(self.comingFromCamera == true)
     {
-        [self.navigationItem setHidesBackButton:YES animated:NO];
+//        [self.navigationItem setHidesBackButton:YES animated:NO];
     }
 //    NSLog(@"%li photos when newVollie appeared", self.photosArray.count);
 }
