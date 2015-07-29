@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -430,7 +430,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nHi-30-Eg7">
@@ -561,13 +561,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="XL7-r5-0HU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="XL7-r5-0HU">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="816" height="1183"/>
                                 </variation>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IZv-cz-gJI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IZv-cz-gJI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -721,10 +721,10 @@
                                     <outlet property="delegate" destination="V8p-ac-hE8" id="cBN-uY-H57"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.29999999999999966" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1W-7k-TeF" userLabel="ButtonView">
+                            <view alpha="0.29999999999999966" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H1W-7k-TeF" userLabel="ButtonView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wideV" translatesAutoresizingMaskIntoConstraints="NO" id="Az5-ES-QgZ">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="wideV" translatesAutoresizingMaskIntoConstraints="NO" id="Az5-ES-QgZ">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="5QT-FG-Zyk"/>
@@ -740,7 +740,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="IH8-e8-jfT">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="IH8-e8-jfT">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="7h3-SN-HeD"/>
@@ -759,7 +759,7 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create New Vollie" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogy-MC-gcT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Create New Vollie" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogy-MC-gcT">
                                         <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="146" id="AJO-km-AF6"/>
@@ -781,7 +781,7 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U64-yY-k5b">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U64-yY-k5b">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <state key="normal">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -789,6 +789,9 @@
                                         <variation key="widthClass=compact" fixedFrame="YES">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="64"/>
                                         </variation>
+                                        <connections>
+                                            <action selector="createRoom:" destination="V8p-ac-hE8" eventType="touchUpInside" id="ba7-Ye-JGz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -803,21 +806,15 @@
                                     <constraint firstAttribute="height" constant="64" id="pBh-f0-PA3"/>
                                 </constraints>
                                 <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="Az5-ES-QgZ"/>
-                                        <exclude reference="IH8-e8-jfT"/>
-                                        <exclude reference="ogy-MC-gcT"/>
-                                        <exclude reference="U64-yY-k5b"/>
-                                    </mask>
                                     <mask key="constraints">
                                         <exclude reference="pBh-f0-PA3"/>
-                                        <exclude reference="Eu3-ta-2iF"/>
-                                        <exclude reference="V6N-Kg-WhR"/>
                                         <exclude reference="7pt-C0-r7n"/>
                                         <exclude reference="U5R-uw-Agb"/>
                                         <exclude reference="kkh-Fq-rm2"/>
                                         <exclude reference="CsQ-7E-Ksz"/>
                                         <exclude reference="GG4-6c-u1J"/>
+                                        <exclude reference="Eu3-ta-2iF"/>
+                                        <exclude reference="V6N-Kg-WhR"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
@@ -829,17 +826,17 @@
                                     </mask>
                                     <mask key="constraints">
                                         <include reference="pBh-f0-PA3"/>
-                                        <include reference="Eu3-ta-2iF"/>
-                                        <include reference="V6N-Kg-WhR"/>
                                         <include reference="7pt-C0-r7n"/>
                                         <include reference="U5R-uw-Agb"/>
                                         <include reference="kkh-Fq-rm2"/>
                                         <include reference="CsQ-7E-Ksz"/>
                                         <include reference="GG4-6c-u1J"/>
+                                        <include reference="Eu3-ta-2iF"/>
+                                        <include reference="V6N-Kg-WhR"/>
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKR-lx-FDQ">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKR-lx-FDQ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="2LQ-W7-enJ"/>
@@ -876,23 +873,17 @@
                             <constraint firstItem="IZv-cz-gJI" firstAttribute="leading" secondItem="FaW-tA-Pg4" secondAttribute="leadingMargin" constant="-16" id="kwy-6E-gFm"/>
                         </constraints>
                         <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="XL7-r5-0HU"/>
-                                <exclude reference="IZv-cz-gJI"/>
-                                <exclude reference="H1W-7k-TeF"/>
-                                <exclude reference="IKR-lx-FDQ"/>
-                            </mask>
                             <mask key="constraints">
-                                <exclude reference="MhL-2C-3iy"/>
-                                <exclude reference="16j-fX-AuA"/>
-                                <exclude reference="6xw-eV-O9d"/>
-                                <exclude reference="XHB-Cq-3QE"/>
                                 <exclude reference="5tt-af-m9J"/>
                                 <exclude reference="AGS-x8-Rxb"/>
                                 <exclude reference="XTC-pt-s7m"/>
                                 <exclude reference="7Zk-eP-OEs"/>
                                 <exclude reference="h2A-eh-enr"/>
                                 <exclude reference="kwy-6E-gFm"/>
+                                <exclude reference="16j-fX-AuA"/>
+                                <exclude reference="6xw-eV-O9d"/>
+                                <exclude reference="XHB-Cq-3QE"/>
+                                <exclude reference="MhL-2C-3iy"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -903,16 +894,16 @@
                                 <include reference="IKR-lx-FDQ"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="MhL-2C-3iy"/>
-                                <include reference="16j-fX-AuA"/>
-                                <include reference="6xw-eV-O9d"/>
-                                <include reference="XHB-Cq-3QE"/>
                                 <include reference="5tt-af-m9J"/>
                                 <include reference="AGS-x8-Rxb"/>
                                 <include reference="XTC-pt-s7m"/>
                                 <include reference="7Zk-eP-OEs"/>
                                 <include reference="h2A-eh-enr"/>
                                 <include reference="kwy-6E-gFm"/>
+                                <include reference="16j-fX-AuA"/>
+                                <include reference="6xw-eV-O9d"/>
+                                <include reference="XHB-Cq-3QE"/>
+                                <include reference="MhL-2C-3iy"/>
                             </mask>
                         </variation>
                     </view>
