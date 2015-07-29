@@ -59,6 +59,8 @@
 @property NSMutableArray *vollieVCcardArray;
 @property (strong, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
 
+@property NSArray *sortedCardsArray;
+
 @property int isLoadingEarlierCount;
 
 @end
@@ -78,6 +80,7 @@
     self.vollieCardDataArray = [NSMutableArray new];
     self.objectIdsArray = [NSMutableArray new];
     self.vollieVCcardArray = [NSMutableArray new];
+    self.sortedCardsArray = [NSArray new];
 
     [self loadMessages];
 }
@@ -117,6 +120,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
+//    VollieCardData *card = self.sortedCardsArray[(indexPath.row/2)];
 
     CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen]     andPictures:card.photosArray andComments:card.messagesArray];
 //    chatt.senderId = [self.senderId copy];
@@ -139,7 +143,9 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 //    return self.vollieCardDataArray.count;
+
     return self.vollieCardDataArray.count * 2 - 1;
+//    return self.sortedCardsArray.count * 2 - 1;
 //     return [[self.cards valueForKeyPath:@"cards"] count] * 2 - 1
 }
 
@@ -153,6 +159,8 @@
     else
     {
         VollieCardData *data = self.vollieCardDataArray[(indexPath.item/2)];
+//        VollieCardData *data = self.sortedCardsArray[(indexPath.item/2)];
+
         if (data.photosArray.count)
         {
             switch (data.photosArray.count)
@@ -200,6 +208,7 @@
     else
     {
         VollieCardData *card = [self.vollieCardDataArray objectAtIndex:(indexPath.row/2)];
+//        VollieCardData *card = [self.sortedCardsArray objectAtIndex:(indexPath.row/2)];
         CardCellView *vc = card.viewController;
         vc.room = self.room;
         vc.view.backgroundColor = [UIColor whiteColor];
@@ -277,6 +286,9 @@
 
 -(void)scrollToBottomAndReload
 {
+
+
+
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -319,6 +331,7 @@
 //        {
 //            [query whereKey:PF_CHAT_CREATEDAT greaterThan:message_last.date];
 //        }
+
 //        else
 //        {
 //            [query whereKey:PF_CHAT_CREATEDAT greaterThan:picture_last.createdAt];
@@ -381,10 +394,20 @@
         {
             //find the correct vollie card
             for (VollieCardData *card in self.vollieCardDataArray)
-            {
+            {   //THIS can be refactored to containsObject...
                 if ([card.set isEqualToString:set.objectId])
                 {
                     [card modifyCardWith:object];
+                    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"numberFromDateToSortWith" ascending:YES];
+                    NSArray *sortedCards = [self.vollieCardDataArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+                    self.sortedCardsArray = sortedCards;
+
+                    if (self.sortedCardsArray.count == self.vollieCardDataArray.count)
+                    {
+                        //test to see if it is the right count after the sort
+                    }
+                    self.vollieCardDataArray = [NSMutableArray arrayWithArray:self.sortedCardsArray];
+
                     [self scrollToBottomAndReload];
                 }
             }
