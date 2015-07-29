@@ -2,6 +2,7 @@
 
 #import <UIKit/UIKit.h>
 #import "JSQMessagesInputToolbar.h"
+#import "ParseVolliePackage.h"
 #import <Parse/Parse.h>
 
 @protocol CreateChatroomDelegate <NSObject>
@@ -15,6 +16,10 @@
 @property (nonatomic,assign) id delegate;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property NSString * sendingMessage;
+@property NSMutableArray * photos;
+@property ParseVolliePackage *package;
 
 @property BOOL invite;
 
