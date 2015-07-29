@@ -116,6 +116,8 @@
     [super viewWillDisappear:animated];
 
     [self closeSearch:0];
+    [self setNavigationBarColor];
+
 
     if (!_isNotGoingBack && !_isTherePicturesToSend)
     {
@@ -124,6 +126,7 @@
     else
     {
         _isNotGoingBack = NO;
+        [self setNavigationBarColor];
     }
 
     [self togglePhoneNumbersCountIndicator];
@@ -135,7 +138,7 @@
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
 
-    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+//    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
 
@@ -315,7 +318,9 @@
 {
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
+
     self.navigationController.navigationBar.titleTextAttributes =  @{
                                                                      NSForegroundColorAttributeName: [UIColor whiteColor],
                                                                      NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
@@ -611,7 +616,9 @@
                                             andRoom:chatroom
                                              andSet:set];
     }
-    
+
+     [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
 
     
