@@ -120,6 +120,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
+
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    NSLog(@"date is %@",[formatter stringFromDate:card.dateUpdated]);
 //    VollieCardData *card = self.sortedCardsArray[(indexPath.row/2)];
 
     CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen]     andPictures:card.photosArray andComments:card.messagesArray];

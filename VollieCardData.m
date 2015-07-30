@@ -57,17 +57,17 @@
     else
     {// IS A COMMENT
         [self addMessageToOurArrayWith:object];
-        if (object.createdAt > self.dateUpdated)
-        {
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-//            NSDate *todaysDate;
-            NSLog(@"Initialized date is %@",[formatter stringFromDate:self.dateUpdated]);
-            self.dateUpdated = object.createdAt;
-            NSLog(@"changed date is %@",[formatter stringFromDate:self.dateUpdated]);
-            self.numberFromDateToSortWith = [NSNumber numberWithDouble:[self.dateUpdated timeIntervalSinceReferenceDate]];
-            NSLog(@"%@", self.numberFromDateToSortWith);
-        }
+//        if (object.createdAt > self.dateUpdated)
+//        {
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//            [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+////            NSDate *todaysDate;
+//            NSLog(@"Initialized date is %@",[formatter stringFromDate:self.dateUpdated]);
+//            self.dateUpdated = object.createdAt;
+//            NSLog(@"changed date is %@",[formatter stringFromDate:self.dateUpdated]);
+//            self.numberFromDateToSortWith = [NSNumber numberWithDouble:[object.createdAt timeIntervalSinceReferenceDate]];
+//            NSLog(@"%@", self.numberFromDateToSortWith);
+//        }
     }
 }
 
@@ -85,6 +85,8 @@
                                                           text:object[PF_CHAT_TEXT]];
 
     [self.messagesArray addObject:message];
+    self.dateUpdated = date;
+    self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
     [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];
 }
 
