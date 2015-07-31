@@ -819,7 +819,11 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 //    NSLog(@"%f",self.inputToolbar.frame.size.height);
     heightFromBottom = MAX(0.0f, heightFromBottom);
     
-    [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
+    if (self.inputToolbar.contentView.textView.isFirstResponder) {
+        [self jsq_setToolbarBottomLayoutGuideConstant:heightFromBottom];
+    } else {
+        [self jsq_setToolbarBottomLayoutGuideConstant:0];
+    }
 }
 
 - (void)jsq_setToolbarBottomLayoutGuideConstant:(CGFloat)constant
