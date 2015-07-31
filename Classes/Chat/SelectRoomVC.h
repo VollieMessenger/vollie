@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ParseVolliePackage.h"
 
 @interface SelectRoomVC : UIViewController
 
 @property NSMutableArray *photosToSend;
 @property NSString *textToSend;
+@property ParseVolliePackage *package;
 
 @end

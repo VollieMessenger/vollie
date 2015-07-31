@@ -15,7 +15,8 @@
 #import "AppDelegate.h"
 #import "pushnotification.h"
 #import "messages.h"
-#import "ParseVolliePackage.h"
+#import "CreateChatroomView.h"
+//#import "ParseVolliePackage.h"
 
 @interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
 
@@ -60,7 +61,7 @@
     [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.sendButton.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
 
-        //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
+//    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
 }
 
 - (void)loadData
@@ -104,8 +105,9 @@
              if (self.photosToSend.count)
              {
 //                 [self createParseObjectsWithPhotosArray];
-                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
-                 [volliePackage sendPhotosWithPhotosArray:self.photosToSend
+//                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
+
+                 [self.package sendPhotosWithPhotosArray:self.photosToSend
                                                 andText:self.textToSend
                                                 andRoom:self.selectedRoom
                                                  andSet:self.selectedSet];
@@ -114,8 +116,8 @@
              }
              else
              {
-                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
-                 [volliePackage checkForTextAndSendItWithText:self.textToSend
+//                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
+                 [self.package checkForTextAndSendItWithText:self.textToSend
                                                       andRoom:self.selectedRoom
                                                        andSet:self.selectedSet];
 
@@ -201,6 +203,16 @@
 
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
     self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
+}
+
+- (IBAction)createRoom:(id)sender {
+    CreateChatroomView * view = [[CreateChatroomView alloc]init];
+    view.title = @"ahhhhh";
+    view.isTherePicturesToSend = self.savedPhotoObjects.count;
+    view.invite = NO;
+    view.sendingMessage = self.textToSend;
+    view.package = self.package;
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 @end

@@ -23,6 +23,8 @@
 
 #import "pushnotification.h"
 
+#import "MomentsVC.h"
+
 @interface CreateChatroomView () <CreateChatroom2Delegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 {
     NSMutableArray *users;
@@ -90,7 +92,7 @@
 - (IBAction)didPressSendButton:(UIButton *)sender
 {
     self.buttonSend.userInteractionEnabled = NO;
-    [self sendWithTextMessage];
+    [self preSendCheck];
 }
 
 - (void)actionContacts
@@ -114,6 +116,8 @@
     [super viewWillDisappear:animated];
 
     [self closeSearch:0];
+    [self setNavigationBarColor];
+
 
     if (!_isNotGoingBack && !_isTherePicturesToSend)
     {
@@ -122,6 +126,7 @@
     else
     {
         _isNotGoingBack = NO;
+        [self setNavigationBarColor];
     }
 
     [self togglePhoneNumbersCountIndicator];
@@ -133,7 +138,7 @@
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
 
-    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+//    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
 
@@ -259,7 +264,9 @@
                 }
             } else {
             }
+            return;
         }];
+        [self sendWithTextMessage];
 
     } else {// No phone numbers
 
@@ -311,7 +318,9 @@
 {
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
+
     self.navigationController.navigationBar.titleTextAttributes =  @{
                                                                      NSForegroundColorAttributeName: [UIColor whiteColor],
                                                                      NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
@@ -397,12 +406,12 @@
         NSMutableArray *arrayOfUserIds = [NSMutableArray new];
 
         //Create list of names in chatroom.
-       __block NSString *stringOfNames = @"";
-       __block NSString *stringWithoutUser = @"";
+        __block NSString *stringOfNames = @"";
+        __block NSString *stringWithoutUser = @"";
         __block int count = (int)_arrayOfSelectedUsers.count;
-
         for (PFUser *user  in _arrayOfSelectedUsers)
         {
+            
 #warning MAY BE TOO SLOW WITHOUT BLOCK
         [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error)
             {
@@ -567,13 +576,13 @@
     return [set1 isEqualToSet:set2];
 }
 
-- (IBAction)actionSaveAndOpen:(PFObject *)chatroom  andText:(NSString *)text andComment:(NSString *)comment
+- (IBAction)actionSaveAndOpen:(PFObject *)chatroom andText:(NSString *)text andComment:(NSString *)comment
 {
     //Save the photos, dismiss the view, open the chatview, slideRight in background, refresh when all is saved and done.x
     if (chatroom)
     {
         PostNotification(NOTIFICATION_REFRESH_INBOX);
-        [self openChatroomWithRoom:chatroom title:text comment:0];
+        [self openChatroomWithRoom:chatroom title:text comment:self.sendingMessage];
     }
     else
     {
@@ -582,26 +591,104 @@
     }
 }
 
-- (void) openChatroomWithRoom:(PFObject *)chatroom title:(NSString *)title comment:(NSString *)comment
+-(void)openChatroomWithRoom:(PFObject *)chatroom title:(NSString *)title comment:(NSString *)comment
 {
+    NSLog(@"sending message %@",self.sendingMessage);
     [ProgressHUD dismiss];
-    ChatView *chatView = [[ChatView alloc] initWith:chatroom name:title];
-    chatView.isNewChatroomWithPhotos = YES;
-    if (_arrayofSelectedPhoneNumbers.count) chatView.isSendingTextMessage = YES;
-    chatView.message_ = nil;
-    PostNotification(NOTIFICATION_REFRESH_INBOX);
-    [self setNavigationBarColor];
-
-    [self.navigationController popViewControllerAnimated:0];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OPEN_CHAT_VIEW object:chatView userInfo:@{@"view": chatView}];
-
-    self.buttonSend.userInteractionEnabled = YES;
-
-    if (!_isTherePicturesToSend && self.arrayofSelectedPhoneNumbers.count)
+    
+    PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
+    [set setValue:chatroom forKey:PF_SET_ROOM];
+    [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
+    //            [set saveInBackground];
+    
+    //            ParseVolliePackage *package = [ParseVolliePackage new];
+    //            self.package;
+    if (self.photos.count)
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APP_MAIL_SEND object:self userInfo:@{@"string": peopleWaiting, @"people": _arrayofSelectedPhoneNumbers}];
+        [self.package sendPhotosWithPhotosArray:self.photos
+                                        andText:self.sendingMessage
+                                        andRoom:chatroom
+                                         andSet:set];
     }
+    else
+    {
+        [self.package checkForTextAndSendItWithText:self.sendingMessage
+                                            andRoom:chatroom
+                                             andSet:set];
+    }
+
+     [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+//    [self.navigationController.navigationBar setTintColor:<#(UIColor *)#>]
+
+     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+
+    
+//    [chatroom fetchInBackgroundWithBlock:^(PFObject *object, NSError *error)
+//     {
+//         if (!error)
+//         {
+//             ParseVolliePackage * package;
+//             //             [ProgressHUD show:@"Sending..." Interaction:NO];
+//             int numberOfSets = [[object valueForKey:PF_CHATROOMS_ROOMNUMBER] intValue];
+//             //             NSLog(@"%i is the number of sets", numberOfSets);
+//             PFObject * selectedSet = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
+//             if (numberOfSets == 0)
+//             {
+//                 [selectedSet setValue:@(0) forKey:PF_SET_ROOMNUMBER];
+//                 //i mean when would this happen? If we're creatin a new room? meh....
+//             }
+//             else
+//             {
+//                 [selectedSet setValue:@(numberOfSets) forKey:PF_SET_ROOMNUMBER];
+//                 //                 NSLog(@"%@ set roomnumber", [self.selectedSet objectForKey:PF_SET_ROOMNUMBER]);
+//             }
+//             
+//             [chatroom setValue:@(numberOfSets + 1) forKey:PF_CHATROOMS_ROOMNUMBER];
+//             [selectedSet setValue:chatroom forKey:PF_SET_ROOM];
+//             [selectedSet setValue:[PFUser currentUser] forKey:PF_SET_USER];
+//             
+//             if (self.photos.count)
+//             {
+//                 //                 [self createParseObjectsWithPhotosArray];
+//                 //                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
+//                 
+//                 [package sendPhotosWithPhotosArray:self.photos
+//                                                 andText:self.sendingMessage
+//                                                 andRoom:chatroom
+//                                                  andSet:selectedSet];
+//                 
+//                 [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+//             }
+//             else
+//             {
+//                 //                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
+//                 [package checkForTextAndSendItWithText:self.sendingMessage
+//                                                     andRoom:chatroom
+//                                                      andSet:selectedSet];
+//                 
+//                 [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+//             }
+//         }
+//         else
+//         {
+//             [ProgressHUD showError:@"Network Error"];
+//         }
+//     }];
+//    MomentsVC *chatView = [[MomentsVC alloc] init];
+//    chatView.room = chatroom;
+//    PostNotification(NOTIFICATION_REFRESH_INBOX);
+//    [self setNavigationBarColor];
+//
+//    [self.navigationController popViewControllerAnimated:0];
+//
+//    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OPEN_CHAT_VIEW object:chatView userInfo:@{@"view": chatView}];
+//
+//    self.buttonSend.userInteractionEnabled = YES;
+//
+//    if (!_isTherePicturesToSend && self.arrayofSelectedPhoneNumbers.count)
+//    {
+//        [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_APP_MAIL_SEND object:self userInfo:@{@"string": peopleWaiting, @"people": _arrayofSelectedPhoneNumbers}];
+//    }
 }
 
 
@@ -744,8 +831,6 @@
     
     sortedKeys = [[lettersForWords allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     
-    NSLog(@"%@",lettersForWords);
-    
     [self.tableView reloadData];
 }
 
@@ -810,14 +895,11 @@
     {
         NSString *key = [sortedKeys objectAtIndex:indexPath.section];
         NSArray *arrayOfNamesForLetter = self.invite ? [[[lettersForWords objectForKey:key] allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)] : [lettersForWords objectForKey:key];
-        NSLog(@"cell names %@",arrayOfNamesForLetter);
         if (arrayOfNamesForLetter.count) {
             selectedUser = arrayOfNamesForLetter[indexPath.row];
             if (self.invite) inviteUser = arrayOfNamesForLetter[indexPath.row];
         }
     }
-    
-    NSLog(@"cell names %@",inviteUser);
     
     cell.textLabel.text = self.invite ? inviteUser : selectedUser[PF_USER_FULLNAME];
 
@@ -873,6 +955,7 @@
         NSArray *arrayOfNamesForLetter;
         if (self.invite) {
             phoneNumbers = [lettersForWords objectForKey:key];
+            NSLog(@"%@",phoneNumbers);
         } else {
             arrayOfNamesForLetter = [lettersForWords objectForKey:key];;
         }
@@ -880,7 +963,6 @@
         if (arrayOfNamesForLetter.count||phoneNumbers.count)
         {
             if (self.invite) {
-                NSLog(@"%@",cell.textLabel.text);
                 selectedUser = phoneNumbers[cell.textLabel.text];
             } else {
                 selectedUser = arrayOfNamesForLetter[indexPath.row];

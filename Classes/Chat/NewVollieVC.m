@@ -38,6 +38,7 @@ SecondDelegate>
 @implementation NewVollieVC
 
 @synthesize textDelegate;
+//@synthesize refreshDelegate;
 
 - (void)viewDidLoad
 {
@@ -63,7 +64,7 @@ SecondDelegate>
 
     if(self.comingFromCamera == true)
     {
-        [self.navigationItem setHidesBackButton:YES animated:NO];
+//        [self.navigationItem setHidesBackButton:YES animated:NO];
     }
 //    NSLog(@"%li photos when newVollie appeared", self.photosArray.count);
 }
@@ -138,21 +139,22 @@ SecondDelegate>
             [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
 //            [set saveInBackground];
 
-            ParseVolliePackage *package = [ParseVolliePackage new];
+//            ParseVolliePackage *package = [ParseVolliePackage new];
+//            self.package;
             if (self.photosArray.count)
             {
-                [package sendPhotosWithPhotosArray:self.photosArray
+                [self.package sendPhotosWithPhotosArray:self.photosArray
                                            andText:self.textView.text
                                            andRoom:self.whichRoom
                                             andSet:set];
             }
             else
             {
-                [package checkForTextAndSendItWithText:self.textView.text
+                [self.package checkForTextAndSendItWithText:self.textView.text
                                                andRoom:self.whichRoom
                                                 andSet:set];
             }
-             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
         }
         else
         {
@@ -160,6 +162,7 @@ SecondDelegate>
             SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
             selectRoomVC.photosToSend = self.photosArray;
             selectRoomVC.textToSend = self.textView.text;
+            selectRoomVC.package = self.package;
             [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
 
             [self.navigationController pushViewController:selectRoomVC animated:YES];

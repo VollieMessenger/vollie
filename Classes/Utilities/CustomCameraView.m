@@ -20,10 +20,11 @@
 #import "AppDelegate.h"
 #import "SelectChatroomView.h"
 #import "NewVollieVC.h"
+#import "ParseVolliePackage.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate>
+@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate, RefreshMessagesDelegate>
 
 @property (nonatomic, strong) ALAssetsLibrary *library;
 @property AVCaptureSession *captureSession;
@@ -1656,10 +1657,18 @@
             vc.comingFromCamera = true;
             vc.textFromLastVC = self.textFromNextVC;
             vc.textDelegate = self;
-            [self.navigationController pushViewController:vc animated:YES];
+            ParseVolliePackage *package = [ParseVolliePackage new];
+            package.refreshDelegate = self;
+            vc.package = package;
+            [self.navigationController pushViewController:vc animated:NO];
             button.userInteractionEnabled = YES;
         }
     }
+}
+
+-(void)reloadAfterMessageSuccessfullySent
+{
+    NSLog(@"hey! it works here now too!");
 }
 
 - (void)setFlashMode:(AVCaptureFlashMode)flashMode forDevice:(AVCaptureDevice *)device

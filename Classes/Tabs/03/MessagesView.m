@@ -54,7 +54,9 @@
 
 #import "NewVollieVC.h"
 
-@interface MessagesView () <UIInputViewAudioFeedback>
+#import "ParseVolliePackage.h"
+
+@interface MessagesView () <UIInputViewAudioFeedback, RefreshMessagesDelegate>
 
 {
     UITapGestureRecognizer *tap;
@@ -181,7 +183,11 @@
     {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
         NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-//        [self presentViewController:vc animated:YES completion:nil];
+
+        ParseVolliePackage *package = [ParseVolliePackage new];
+        package.refreshDelegate = self;
+        vc.package = package;
+
         [self.navigationController pushViewController:vc animated:YES];
 
 //        CreateChatroomView *chat = [CreateChatroomView new];
@@ -190,6 +196,28 @@
 
     }
 }
+
+-(void)reloadAfterMessageSuccessfullySent
+{
+    //needs to send user to new vollie page
+    NSLog(@" YEAH YEAH YEAH YEAH");
+    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
+//    [self perfor]
+}
+
+-(void)goToCardViewWithMessage
+{
+    PFObject *message = [messages objectAtIndex:0];
+    PFObject *room = [message objectForKey:PF_MESSAGES_ROOM];
+    selectedRoom = room.objectId;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+    ////    cardViewController.name = cell.labelDescription.text;
+    cardViewController.room = room;
+    cardViewController.messageItComesFrom = message;
+    [self.navigationController pushViewController:cardViewController animated:YES];
+}
+
 
 #pragma mark - NOTIFICATION
 
@@ -416,8 +444,14 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO
                                             withAnimation:UIStatusBarAnimationFade];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
+//    self.navigationController.navigationBar set
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+
+
 //    [self loadFavorites];
 
+//    [self loadInbox];
     didViewJustLoad = NO;
 }
 
@@ -1292,6 +1326,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:1];
+    NSLog(@"%li", indexPath.row);
 
     if (!self.isArchive)
     { //NOT ARCHIVE

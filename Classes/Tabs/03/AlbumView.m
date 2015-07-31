@@ -90,7 +90,6 @@
     }
 }
 
-
 - (void)loadAlbumFavorites
 // LOAD MESSAGES FROM INBOX INSTEAD.
 {

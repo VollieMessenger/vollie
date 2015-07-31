@@ -36,6 +36,7 @@
 @property NSMutableArray *messagesArray;
 @property CardCellView *viewController;
 @property NSDate *dateUpdated;
+@property NSNumber *numberFromDateToSortWith;
 
 -(instancetype)initWithPFObject:(PFObject *)object;
 
