@@ -36,6 +36,9 @@
 #import "FivePicCell.h"
 #import "ParseVolliePackage.h"
 
+//for testing the fav cells
+#import "FivePicsFavCell.h"
+
 @interface MomentsVC () <UITableViewDataSource, UITableViewDelegate, RefreshMessagesDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
@@ -180,7 +183,8 @@
                 case 4:
                     return 470;
                 case 5:
-                    return 530;
+//                    return 530;
+                    return 200;
                 default:
                     return 200;
                     break;
@@ -256,11 +260,14 @@
         }
         if (card.photosArray.count == 5)
         {
-            [self.tableView registerNib:[UINib nibWithNibName:@"FivePicCell" bundle:0] forCellReuseIdentifier:@"FivePicCell"];
-            FivePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicCell"];
-            [cell fillPicsWithVollieCardData:card];
+            [self.tableView registerNib:[UINib nibWithNibName:@"FivePicsFavCell" bundle:0] forCellReuseIdentifier:@"FivePicsFavCell"];
+//            FivePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicCell"];
+            FivePicsFavCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicsFavCell"];
             [cell formatCell];
-            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+            [cell fillPicsWithVollieCardData:card];
+//            [cell fillPicsWithVollieCardData:card];
+//            [cell formatCell];
+//            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
             return cell;
         }
         else

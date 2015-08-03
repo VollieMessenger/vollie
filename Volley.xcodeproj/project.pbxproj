@@ -109,6 +109,8 @@
 		29EB240B19E9292500D7AA97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240A19E9292500D7AA97 /* main.m */; };
 		29EB240E19E9292500D7AA97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240D19E9292500D7AA97 /* AppDelegate.m */; };
 		29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EB241719E9292500D7AA97 /* LaunchScreen.xib */; };
+		329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9D221B700F340025D3EC /* FivePicsFavCell.m */; };
+		329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329F9D231B700F340025D3EC /* FivePicsFavCell.xib */; };
 		9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */; };
 		9CFEFAF41B1E1A3F005B1BF6 /* InviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF21B1E1A3F005B1BF6 /* InviteCell.xib */; };
 		C20BECA41A5E5520004C5A80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20BECA31A5E5520004C5A80 /* Images.xcassets */; };
@@ -386,6 +388,9 @@
 		29EB240D19E9292500D7AA97 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		29EB241819E9292500D7AA97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		29EB254F19E92ACD00D7AA97 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
+		329F9D211B700F340025D3EC /* FivePicsFavCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FivePicsFavCell.h; sourceTree = "<group>"; };
+		329F9D221B700F340025D3EC /* FivePicsFavCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FivePicsFavCell.m; sourceTree = "<group>"; };
+		329F9D231B700F340025D3EC /* FivePicsFavCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FivePicsFavCell.xib; sourceTree = "<group>"; };
 		9CFEFAF01B1E1A3F005B1BF6 /* InviteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteCell.h; sourceTree = "<group>"; };
 		9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteCell.m; sourceTree = "<group>"; };
 		9CFEFAF21B1E1A3F005B1BF6 /* InviteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteCell.xib; sourceTree = "<group>"; };
@@ -555,20 +560,8 @@
 		276998BA1B501AE0009FA3E1 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				276998BB1B501AF7009FA3E1 /* OnePicCell.h */,
-				276998BC1B501AF7009FA3E1 /* OnePicCell.m */,
-				27903E931B542ADE004F06F5 /* TwoPicCell.h */,
-				27903E941B542ADE004F06F5 /* TwoPicCell.m */,
-				27903E951B542ADE004F06F5 /* TwoPicCell.xib */,
-				2721707E1B543AF00050A9D0 /* ThreePicCell.h */,
-				2721707F1B543AF00050A9D0 /* ThreePicCell.m */,
-				272170801B543AF00050A9D0 /* ThreePicCell.xib */,
-				272170831B543F240050A9D0 /* FourPicCell.h */,
-				272170841B543F240050A9D0 /* FourPicCell.m */,
-				272170851B543F240050A9D0 /* FourPicCell.xib */,
-				272170881B5443ED0050A9D0 /* FivePicCell.h */,
-				272170891B5443ED0050A9D0 /* FivePicCell.m */,
-				2721708A1B5443ED0050A9D0 /* FivePicCell.xib */,
+				329F9D1F1B700E620025D3EC /* SetViewCells */,
+				329F9D201B700E7B0025D3EC /* CardViewCells */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1072,6 +1065,37 @@
 			path = Frameworks;
 			sourceTree = "<group>";
 		};
+		329F9D1F1B700E620025D3EC /* SetViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				329F9D211B700F340025D3EC /* FivePicsFavCell.h */,
+				329F9D221B700F340025D3EC /* FivePicsFavCell.m */,
+				329F9D231B700F340025D3EC /* FivePicsFavCell.xib */,
+			);
+			name = SetViewCells;
+			sourceTree = "<group>";
+		};
+		329F9D201B700E7B0025D3EC /* CardViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				276998BB1B501AF7009FA3E1 /* OnePicCell.h */,
+				276998BC1B501AF7009FA3E1 /* OnePicCell.m */,
+				27903E931B542ADE004F06F5 /* TwoPicCell.h */,
+				27903E941B542ADE004F06F5 /* TwoPicCell.m */,
+				27903E951B542ADE004F06F5 /* TwoPicCell.xib */,
+				2721707E1B543AF00050A9D0 /* ThreePicCell.h */,
+				2721707F1B543AF00050A9D0 /* ThreePicCell.m */,
+				272170801B543AF00050A9D0 /* ThreePicCell.xib */,
+				272170831B543F240050A9D0 /* FourPicCell.h */,
+				272170841B543F240050A9D0 /* FourPicCell.m */,
+				272170851B543F240050A9D0 /* FourPicCell.xib */,
+				272170881B5443ED0050A9D0 /* FivePicCell.h */,
+				272170891B5443ED0050A9D0 /* FivePicCell.m */,
+				2721708A1B5443ED0050A9D0 /* FivePicCell.xib */,
+			);
+			name = CardViewCells;
+			sourceTree = "<group>";
+		};
 		C20F556B1A6832A800CCD435 /* NSDate-TimeAgo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1325,6 +1349,7 @@
 				296DD5D71A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming2.xib in Resources */,
 				274988791B31DDBD00560873 /* CardVC.xib in Resources */,
 				296DD5BA1A1F52F400AB9F8C /* JSQMessages.strings in Resources */,
+				329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */,
 				C2832C8E1A6F0ADE00CDF19D /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				2930F94219E96C73000F7799 /* tab_profile@2x.png in Resources */,
 				2930F94119E96C73000F7799 /* tab_private@2x.png in Resources */,
@@ -1459,6 +1484,7 @@
 				296DD5D61A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				296DD5DC1A1F52F400AB9F8C /* JSQMessagesLabel.m in Sources */,
 				27617D981B4ADF590026C2EB /* ParseVolliePackage.m in Sources */,
+				329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */,
 				296DD5C11A1F52F400AB9F8C /* JSQMessagesKeyboardController.m in Sources */,
 				296DD5D41A1F52F400AB9F8C /* JSQMessagesCollectionView.m in Sources */,
 				296DD5DD1A1F52F400AB9F8C /* JSQMessagesLoadEarlierHeaderView.m in Sources */,

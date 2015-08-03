@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="FivePicsFavCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="FivePicsFavCell" rowHeight="225" id="KGk-i7-Jjw" customClass="FivePicsFavCell">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="227"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-BI-mVG" customClass="PFImageView">
+                        <rect key="frame" x="219" y="8" width="99" height="105"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="NrR-Lb-ywQ" customClass="PFImageView">
+                        <rect key="frame" x="318" y="8" width="85" height="105"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="laD-35-3h8" customClass="PFImageView">
+                        <rect key="frame" x="318" y="113" width="85" height="105"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Mr-th-arT" customClass="PFImageView">
+                        <rect key="frame" x="8" y="8" width="211" height="210.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="0Mr-th-arT" secondAttribute="height" multiplier="211:210" id="bFu-gr-O3X"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="LWX-DM-bav" customClass="PFImageView">
+                        <rect key="frame" x="219" y="113" width="99" height="105"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="NrR-Lb-ywQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="0ZK-4f-Qvm"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="laD-35-3h8" secondAttribute="bottom" constant="0.5" id="3bF-IC-6mf"/>
+                    <constraint firstItem="LWX-DM-bav" firstAttribute="top" secondItem="Usl-BI-mVG" secondAttribute="bottom" id="6MI-Zt-Xze"/>
+                    <constraint firstItem="NrR-Lb-ywQ" firstAttribute="height" secondItem="laD-35-3h8" secondAttribute="height" id="APf-hF-VBt"/>
+                    <constraint firstItem="laD-35-3h8" firstAttribute="leading" secondItem="LWX-DM-bav" secondAttribute="trailing" id="Aw9-hr-mKq"/>
+                    <constraint firstItem="Usl-BI-mVG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="E9f-SC-IlA"/>
+                    <constraint firstItem="laD-35-3h8" firstAttribute="top" secondItem="NrR-Lb-ywQ" secondAttribute="bottom" id="EoC-T6-ApD"/>
+                    <constraint firstItem="LWX-DM-bav" firstAttribute="leading" secondItem="0Mr-th-arT" secondAttribute="trailing" id="HBb-Ct-Bam"/>
+                    <constraint firstItem="Usl-BI-mVG" firstAttribute="leading" secondItem="0Mr-th-arT" secondAttribute="trailing" id="Mp6-ch-bfv"/>
+                    <constraint firstItem="laD-35-3h8" firstAttribute="width" secondItem="LWX-DM-bav" secondAttribute="width" id="XYq-23-0KO"/>
+                    <constraint firstItem="0Mr-th-arT" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ZyF-As-fEN"/>
+                    <constraint firstItem="laD-35-3h8" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="bUD-As-wfb"/>
+                    <constraint firstItem="LWX-DM-bav" firstAttribute="top" secondItem="Usl-BI-mVG" secondAttribute="bottom" id="dTj-op-zDv"/>
+                    <constraint firstItem="0Mr-th-arT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="eX0-Fi-PaJ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="LWX-DM-bav" secondAttribute="bottom" constant="0.5" id="hck-Gf-iff"/>
+                    <constraint firstItem="NrR-Lb-ywQ" firstAttribute="leading" secondItem="Usl-BI-mVG" secondAttribute="trailing" id="jPl-cH-9Ok"/>
+                    <constraint firstItem="Usl-BI-mVG" firstAttribute="width" secondItem="NrR-Lb-ywQ" secondAttribute="width" id="mU6-xf-uJe"/>
+                    <constraint firstItem="0Mr-th-arT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="nXQ-zH-wJO"/>
+                    <constraint firstItem="laD-35-3h8" firstAttribute="top" secondItem="NrR-Lb-ywQ" secondAttribute="bottom" id="oh2-fX-RYM"/>
+                    <constraint firstItem="laD-35-3h8" firstAttribute="leading" secondItem="LWX-DM-bav" secondAttribute="trailing" id="rVt-F5-gqD"/>
+                    <constraint firstItem="NrR-Lb-ywQ" firstAttribute="leading" secondItem="Usl-BI-mVG" secondAttribute="trailing" id="w1g-q6-DUr"/>
+                    <constraint firstItem="Usl-BI-mVG" firstAttribute="height" secondItem="LWX-DM-bav" secondAttribute="height" id="ysq-bx-Lny"/>
+                    <constraint firstItem="NrR-Lb-ywQ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="znJ-U1-zoR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imageViewFive" destination="laD-35-3h8" id="7JL-kv-q22"/>
+                <outlet property="imageViewFour" destination="LWX-DM-bav" id="Ye8-uk-MKB"/>
+                <outlet property="imageViewOne" destination="0Mr-th-arT" id="qTd-CK-qvO"/>
+                <outlet property="imageViewThree" destination="NrR-Lb-ywQ" id="uGB-Fn-uJs"/>
+                <outlet property="imageViewTwo" destination="Usl-BI-mVG" id="AgI-Pl-KQa"/>
+            </connections>
+            <point key="canvasLocation" x="315.5" y="395.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Vollie-icon" width="205" height="205"/>
+    </resources>
+</document>
