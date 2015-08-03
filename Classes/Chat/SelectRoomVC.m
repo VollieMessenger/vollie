@@ -37,6 +37,7 @@
 @property BOOL isThePicturesReadyToSend;
 
 @property int counterForLastPhotoTaken;
+@property (weak, nonatomic) IBOutlet UIImageView *vollieIconOnNewButton;
 
 @end
 
@@ -60,6 +61,9 @@
     self.sendButton.backgroundColor = [UIColor volleyFamousOrange];
     [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.sendButton.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
+    
+    self.vollieIconOnNewButton.layer.cornerRadius = 10;
+    self.vollieIconOnNewButton.layer.masksToBounds = YES;
 
 //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
 }
@@ -139,6 +143,12 @@
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
+//    cell.selectedImageView.backgroundColor = [UIColor colorWithWhite:0.702 alpha:1.000];
+//    cell.selectedImageView.layer.cornerRadius = 10;
+//    cell.selectedImageView.layer.masksToBounds = YES;
+    cell.selectedImageView.image = [UIImage imageNamed:@"check-mark-unselected-gray"];
+//    cell.selectedImageView.layer.borderColor = [UIColor volleyFamousOrange].CGColor;
+//    cell.selectedImageView.layer.borderWidth = 1;
 
     [self.cellsArray addObject:cell];
 
@@ -160,6 +170,8 @@
     {
         PFFile *file = [picture valueForKey:PF_PICTURES_THUMBNAIL];
         cell.imageView.file = file;
+        cell.imageView.layer.cornerRadius = 10;
+        cell.imageView.layer.masksToBounds = YES;
         [cell.imageView loadInBackground];
     }
     return cell;
@@ -183,7 +195,7 @@
     for (ChatRoomCell *cell in self.cellsArray)
     {
 //        cell.selectedImageView.backgroundColor = [UIColor clearColor];
-        cell.selectedImageView.image = nil;
+        cell.selectedImageView.image = [UIImage imageNamed:@"check-mark-unselected-gray"];
     }
 
 //    self.sendButton.hidden = NO;

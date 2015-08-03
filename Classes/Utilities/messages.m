@@ -13,7 +13,8 @@ NSString* CreateMessageItem(PFObject *room, NSArray *arrayOfUsers)
     //This entire thing pretty much is a chat room. Not a message. We definitely need to change names.
     NSString *returnString = [NSString new];
 
-    for (PFUser *user in arrayOfUsers) { // WHOLE METHOD
+    for (PFUser *user in arrayOfUsers)
+    { // WHOLE METHOD
 
         NSMutableArray *copyOfUsers = [NSMutableArray arrayWithArray:arrayOfUsers];
         NSString *string = [NSString new];
@@ -24,9 +25,20 @@ NSString* CreateMessageItem(PFObject *room, NSArray *arrayOfUsers)
         {
             NSString *name = [user valueForKey:PF_USER_FULLNAME];
 //            NSString *phoneNumber = [user valueForKey:PF_USER_USERNAME];
+
+             NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
+//             [array removeObject:@" "];
+             NSString *first = array.firstObject;
+//             first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
+//             last = [last stringByPaddingToLength:1 withString:nam startingAtIndex:0];
+//             nam = [first stringByAppendingString:last];
+
+            
+            
+            
             if (name.length && name)
             {
-        string = [string stringByAppendingString:[NSString stringWithFormat:@"%@, ", name]];
+                string = [string stringByAppendingString:[NSString stringWithFormat:@"%@, ", first]];
             } else {
                 x++;
             }
