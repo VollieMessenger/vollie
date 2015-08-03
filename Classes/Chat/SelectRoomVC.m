@@ -38,6 +38,8 @@
 
 @property int counterForLastPhotoTaken;
 @property (weak, nonatomic) IBOutlet UIImageView *vollieIconOnNewButton;
+@property (weak, nonatomic) IBOutlet UILabel *sendVollieButtonText;
+@property (weak, nonatomic) IBOutlet UIImageView *sendArrows;
 
 @end
 
@@ -48,6 +50,14 @@
     [super viewDidLoad];
 
     self.tableView.backgroundColor = [UIColor clearColor];
+    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
+    self.navigationController.navigationBar.titleTextAttributes =  @{
+                                                                     NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
+                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+                                                                     NSShadowAttributeName:[NSShadow new]
+                                                                     };
+//    self.navigationController.navigationBar set
     self.title = @"Send to...";
     self.messages = [NSMutableArray new];
     self.savedPhotoObjects = [NSMutableArray new];
@@ -61,6 +71,8 @@
     self.sendButton.backgroundColor = [UIColor volleyFamousOrange];
     [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.sendButton.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
+    self.sendArrows.hidden = YES;
+    self.sendVollieButtonText.hidden = YES;
     
     self.vollieIconOnNewButton.layer.cornerRadius = 10;
     self.vollieIconOnNewButton.layer.masksToBounds = YES;
@@ -78,6 +90,12 @@
         self.messages = view.messages;
         NSLog(@"%li messages coming in", view.messages.count);
     }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
 }
 
 #pragma mark "ParseStuff"
@@ -146,7 +164,7 @@
 //    cell.selectedImageView.backgroundColor = [UIColor colorWithWhite:0.702 alpha:1.000];
 //    cell.selectedImageView.layer.cornerRadius = 10;
 //    cell.selectedImageView.layer.masksToBounds = YES;
-    cell.selectedImageView.image = [UIImage imageNamed:@"check-mark-unselected-gray"];
+    cell.selectedImageView.image = [UIImage imageNamed:@"checkmark-unselected-gray"];
 //    cell.selectedImageView.layer.borderColor = [UIColor volleyFamousOrange].CGColor;
 //    cell.selectedImageView.layer.borderWidth = 1;
 
@@ -195,12 +213,15 @@
     for (ChatRoomCell *cell in self.cellsArray)
     {
 //        cell.selectedImageView.backgroundColor = [UIColor clearColor];
-        cell.selectedImageView.image = [UIImage imageNamed:@"check-mark-unselected-gray"];
+        cell.selectedImageView.image = [UIImage imageNamed:@"checkmark-unselected-gray"];
     }
 
 //    self.sendButton.hidden = NO;
 
-    if (self.sendButton.isHidden) {
+    if (self.sendButton.isHidden)
+    {
+        self.sendArrows.hidden = NO;
+        self.sendVollieButtonText.hidden = NO;
         self.sendButton.hidden = NO;
         self.sendButton.alpha = 0;
         [UIView animateWithDuration:.3f animations:^{

@@ -138,7 +138,7 @@
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
 
-//    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
 
@@ -151,11 +151,6 @@
     [super viewDidLoad];
     [self.tableView setRowHeight:55];
     _searchCloseButton.hidden = YES;
-
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                             style:UIBarButtonItemStyleBordered target:self action:@selector(actionContacts)];
-    item.image = [UIImage imageNamed:ASSETS_NEW_PEOPLE];
-    self.navigationItem.rightBarButtonItem = item;
 
     UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     [_searchTextField setLeftViewMode:UITextFieldViewModeAlways];

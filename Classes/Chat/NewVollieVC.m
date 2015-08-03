@@ -17,6 +17,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import "KLCPopup.h"
 #import "PopUpScrollView.h"
+#import "UIColor+JSQMessages.h"
 #import "ParseVolliePackage.h"
 
 @interface NewVollieVC ()
@@ -76,6 +77,13 @@ SecondDelegate>
     [self.textView becomeFirstResponder];
     [self.textView setReturnKeyType:UIReturnKeySend];
     self.collectionView.backgroundColor = [UIColor clearColor];
+    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
+    self.navigationController.navigationBar.titleTextAttributes =  @{
+                                                                     NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
+                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+                                                                     NSShadowAttributeName:[NSShadow new]
+                                                                     };
 }
 
 -(void)checkForPreviousVC
@@ -281,10 +289,10 @@ SecondDelegate>
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%li", self.photosArray.count);
-    if (indexPath.item + 1 > self.photosArray.count)
-    {
-        NSLog(@"%li", self.photosArray.count);
+//    NSLog(@"%li", self.photosArray.count);
+//    if (indexPath.item + 1 > self.photosArray.count)
+//    {
+//        NSLog(@"%li", self.photosArray.count);
         if (self.comingFromCamera == true)
         {
 //            if([self.textDelegate respondsToSelector:@selector(newVollieDismissed:)])
@@ -302,11 +310,11 @@ SecondDelegate>
         {
             [self bringUpCameraView];
         }
-    }
-    else
-    {
-        [self setUpPhotoScrollViewWithIndexPathItem:indexPath.item];
-    }
+//    }
+//    else
+//    {
+//        [self setUpPhotoScrollViewWithIndexPathItem:indexPath.item];
+//    }
 }
 
 @end
