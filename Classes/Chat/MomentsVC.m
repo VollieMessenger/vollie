@@ -171,7 +171,7 @@
             switch (data.photosArray.count)
             {
                 case 1:
-                    return 160;
+                    return 260;
                     break;
                 case 2:
                     return 260;

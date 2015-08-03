@@ -94,7 +94,7 @@
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error)
         {
-            NSLog(@"saved a pic or video");
+            NSLog(@"began uploading a pic or video");
             self.countDownForLastPhoto --;
             if(self.countDownForLastPhoto == 0)
             {
