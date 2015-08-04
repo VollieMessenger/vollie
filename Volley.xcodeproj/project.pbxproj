@@ -110,6 +110,8 @@
 		29EB240E19E9292500D7AA97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240D19E9292500D7AA97 /* AppDelegate.m */; };
 		29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EB241719E9292500D7AA97 /* LaunchScreen.xib */; };
 		324843F11B714E00009810D3 /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
+		324843F41B715606009810D3 /* RoomObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F31B715606009810D3 /* RoomObject.m */; };
+		324843F71B715E58009810D3 /* RoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F61B715E58009810D3 /* RoomCell.m */; };
 		329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9D221B700F340025D3EC /* FivePicsFavCell.m */; };
 		329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329F9D231B700F340025D3EC /* FivePicsFavCell.xib */; };
 		9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */; };
@@ -391,6 +393,10 @@
 		29EB254F19E92ACD00D7AA97 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
 		324843EF1B714E00009810D3 /* MainInboxVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainInboxVC.h; sourceTree = "<group>"; };
 		324843F01B714E00009810D3 /* MainInboxVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainInboxVC.m; sourceTree = "<group>"; };
+		324843F21B715606009810D3 /* RoomObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomObject.h; sourceTree = "<group>"; };
+		324843F31B715606009810D3 /* RoomObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomObject.m; sourceTree = "<group>"; };
+		324843F51B715E58009810D3 /* RoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomCell.h; sourceTree = "<group>"; };
+		324843F61B715E58009810D3 /* RoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomCell.m; sourceTree = "<group>"; };
 		329F9D211B700F340025D3EC /* FivePicsFavCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FivePicsFavCell.h; sourceTree = "<group>"; };
 		329F9D221B700F340025D3EC /* FivePicsFavCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FivePicsFavCell.m; sourceTree = "<group>"; };
 		329F9D231B700F340025D3EC /* FivePicsFavCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FivePicsFavCell.xib; sourceTree = "<group>"; };
@@ -1074,6 +1080,10 @@
 			children = (
 				324843EF1B714E00009810D3 /* MainInboxVC.h */,
 				324843F01B714E00009810D3 /* MainInboxVC.m */,
+				324843F21B715606009810D3 /* RoomObject.h */,
+				324843F31B715606009810D3 /* RoomObject.m */,
+				324843F51B715E58009810D3 /* RoomCell.h */,
+				324843F61B715E58009810D3 /* RoomCell.m */,
 			);
 			name = MainInboxVC;
 			sourceTree = "<group>";
@@ -1411,6 +1421,7 @@
 				296DD5BC1A1F52F400AB9F8C /* NSString+JSQMessages.m in Sources */,
 				296DD5C21A1F52F400AB9F8C /* JSQMessagesViewController.m in Sources */,
 				27DB35301B4C7E4800A765A2 /* MembersViewVC.m in Sources */,
+				324843F71B715E58009810D3 /* RoomCell.m in Sources */,
 				27DB352D1B4C631200A765A2 /* ManageChatVC.m in Sources */,
 				29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */,
 				C2832CBA1A704A6100CDF19D /* IQToolbar.m in Sources */,
@@ -1513,6 +1524,7 @@
 				29271A5E19F284B1009C308B /* MessagesCell.m in Sources */,
 				C27189381A3243BA00F52320 /* KLCPopup.m in Sources */,
 				C2832CB31A704A6100CDF19D /* IQUIWindow+Hierarchy.m in Sources */,
+				324843F41B715606009810D3 /* RoomObject.m in Sources */,
 				272170861B543F240050A9D0 /* FourPicCell.m in Sources */,
 				296DD5C41A1F52F400AB9F8C /* JSQMessagesAvatarImageFactory.m in Sources */,
 				296DD5CD1A1F52F400AB9F8C /* JSQMediaItem.m in Sources */,

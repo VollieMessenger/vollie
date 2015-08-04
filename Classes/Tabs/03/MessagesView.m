@@ -977,7 +977,9 @@
             cell3.invite.textColor = [UIColor whiteColor];
             
             return cell3;
-        } else {
+        }
+        else
+        {
             cell = [tableView dequeueReusableCellWithIdentifier:@"MessagesCell" forIndexPath:indexPath];
             if (!cell) cell = [[MessagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MessagesCell"];
             [cell format];

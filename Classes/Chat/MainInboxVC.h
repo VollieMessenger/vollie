@@ -12,5 +12,6 @@
 @interface MainInboxVC : UIViewController
 
 @property (strong, nonatomic) MasterScrollView *scrollView;
+@property NSMutableArray *messages;
 
 @end
