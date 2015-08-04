@@ -15,12 +15,20 @@
 #import "RoomCell.h"
 #import "MomentsVC.h"
 #import "MasterLoginRegisterView.h"
+#import "ParseVolliePackage.h"
+#import "NewVollieVC.h"
 
 
-@interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource>
 
+@interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate>
+
+//visual properties
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+//random properties
+@property BOOL isCurrentlyLoadingMessages;
+
+//refresh control
 @property  UIRefreshControl *refreshControl;
 @property UIView *refreshLoadingView;
 @property UIView *refreshColorView;
@@ -31,18 +39,11 @@
 @property BOOL isRefreshingUp;
 @property BOOL isRefreshingDown;
 
+//arrays
 @property NSMutableArray *messagesObjectIds;
 @property NSMutableArray *savedDates;
 @property NSMutableDictionary *savedMessagesForDate;
 
-
-
-
-
-
-
-
-@property BOOL isCurrentlyLoadingMessages;
 
 @end
 
@@ -54,17 +55,22 @@
     [self setUpUserInterface];
     [self basicSetUpAfterLoad];
     [self refreshMessages];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [self setNavBarColor];
+    self.scrollView.scrollEnabled = YES;
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [self refreshMessages];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.scrollView.scrollEnabled = NO;
 }
 
 #pragma mark "User Interface and Interaction"
@@ -75,6 +81,8 @@
     [self setupRefreshControl];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMessages) name:NOTIFICATION_USER_LOGGED_OUT object:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMessages) name:NOTIFICATION_USER_LOGGED_IN object:0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableScrollview:) name:NOTIFICATION_ENABLESCROLLVIEW object:0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableScrollView:) name:NOTIFICATION_DISABLESCROLLVIEW object:0];
 }
 
 -(void)setUpUserInterface
@@ -103,11 +111,6 @@
 {
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
-//    self.navigationController.navigationBar.titleTextAttributes =  @{
-//                                                                     NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
-//                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
-//                                                                     NSShadowAttributeName:[NSShadow new]
-//                                                                     };
 }
 
 -(void) swipeRightToFavorites:(UIBarButtonItem *)button
@@ -120,6 +123,17 @@
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
+- (IBAction)onNewMessageButtonTapped:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+    
+    ParseVolliePackage *package = [ParseVolliePackage new];
+    package.refreshDelegate = self;
+    vc.package = package;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
 #pragma mark "Parse Stuff"
 
 -(void)loadInbox
@@ -259,6 +273,40 @@
     }
 }
 
+-(void)reloadAfterMessageSuccessfullySent
+{
+    //needs to send user to new vollie page
+    NSLog(@" YEAH YEAH YEAH YEAH");
+    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
+    //    [self perfor]
+}
+
+-(void)goToCardViewWithMessage
+{
+    PFObject *message = [self.messages objectAtIndex:0];
+    PFObject *room = [message objectForKey:PF_MESSAGES_ROOM];
+//    selectedRoom = room.objectId;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+    ////    cardViewController.name = cell.labelDescription.text;
+    cardViewController.room = room;
+    cardViewController.messageItComesFrom = message;
+    [self.navigationController pushViewController:cardViewController animated:YES];
+}
+
+- (void)enableScrollview:(NSNotification *)notification
+{
+    self.scrollView.scrollEnabled = YES;
+}
+
+- (void)disableScrollView:(NSNotification *)notification
+{
+    self.scrollView.scrollEnabled = NO;
+}
+
+
+
+#pragma mark "Refresh Control"
 - (void)setupRefreshControl
 {
     // Programmatically inserting a UIRefreshControl
@@ -336,6 +384,8 @@
 }
 
 
+
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // Get the current size of the refresh controller
@@ -347,27 +397,25 @@
     // Half the width of the table
     CGFloat midX = self.tableView.frame.size.width / 2.0;
     
-    
-    
     dispatch_async(dispatch_get_main_queue(), ^
-       {
-           if (pullDistance > 60.0f && !_isRefreshingUp)
-           {
-               self.isRefreshingUp = YES;
-               [UIView animateWithDuration:.3f animations:^{
+{
+   if (pullDistance > 60.0f && !_isRefreshingUp)
+   {
+       self.isRefreshingUp = YES;
+       [UIView animateWithDuration:.3f animations:^{
 //                               self.labelNoMessages.hidden = YES;
-                   self.tableView.backgroundColor = [UIColor volleyFlatOrange];
-               }];
-           }
-           else if (pullDistance < 60.0f && !_isRefreshingDown)
-           {
-               _isRefreshingDown = YES;
-               [UIView animateWithDuration:.2f animations:^{
-                   self.tableView.backgroundColor = [UIColor whiteColor];
+           self.tableView.backgroundColor = [UIColor volleyFlatOrange];
+       }];
+   }
+   else if (pullDistance < 60.0f && !_isRefreshingDown)
+   {
+       _isRefreshingDown = YES;
+       [UIView animateWithDuration:.2f animations:^{
+           self.tableView.backgroundColor = [UIColor whiteColor];
 //                               self.labelNoMessages.hidden = NO;
-               }];
-           }
-       });
+       }];
+   }
+});
     
     if (pullDistance  < 5 && _isRefreshingUp == YES && _isRefreshingDown == YES)
     {

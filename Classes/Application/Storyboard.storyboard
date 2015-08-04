@@ -1103,23 +1103,6 @@
                     <view key="view" contentMode="scaleToFill" id="wm3-bw-H4N">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yf2-Jt-KVJ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="VNF-YJ-KuA"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="VNF-YJ-KuA"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="VNF-YJ-KuA"/>
-                                    </mask>
-                                </variation>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="S1p-sL-fnj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1273,6 +1256,81 @@
                                     <outlet property="delegate" destination="fMY-X3-CnX" id="ecA-2W-IqK"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yf2-Jt-KVJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send New Vollie" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aso-T2-arH">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                        <color key="textColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="8" y="17" width="341" height="21"/>
+                                        </variation>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Compose" translatesAutoresizingMaskIntoConstraints="NO" id="f4B-CD-sUK">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="RqH-fy-cc4"/>
+                                            <constraint firstAttribute="width" constant="35" id="qR0-eN-B8t"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="RqH-fy-cc4"/>
+                                                <exclude reference="qR0-eN-B8t"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="RqH-fy-cc4"/>
+                                                <include reference="qR0-eN-B8t"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8F9-dE-I6l">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="widthClass=compact" fixedFrame="YES">
+                                            <rect key="frame" x="0.0" y="1" width="400" height="55"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="onNewMessageButtonTapped:" destination="fMY-X3-CnX" eventType="touchUpInside" id="39t-li-B3T"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="0.22" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="f4B-CD-sUK" secondAttribute="centerY" id="Tao-tt-Z8t"/>
+                                    <constraint firstAttribute="height" constant="55" id="VNF-YJ-KuA"/>
+                                    <constraint firstAttribute="trailing" secondItem="f4B-CD-sUK" secondAttribute="trailing" constant="8" id="csl-1B-aTr"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="aso-T2-arH"/>
+                                        <exclude reference="f4B-CD-sUK"/>
+                                        <exclude reference="8F9-dE-I6l"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="VNF-YJ-KuA"/>
+                                        <exclude reference="Tao-tt-Z8t"/>
+                                        <exclude reference="csl-1B-aTr"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="aso-T2-arH"/>
+                                        <include reference="f4B-CD-sUK"/>
+                                        <include reference="8F9-dE-I6l"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="VNF-YJ-KuA"/>
+                                        <include reference="Tao-tt-Z8t"/>
+                                        <include reference="csl-1B-aTr"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1286,8 +1344,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="yf2-Jt-KVJ"/>
                                 <exclude reference="S1p-sL-fnj"/>
+                                <exclude reference="yf2-Jt-KVJ"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="EDr-Xi-YnX"/>
@@ -1301,8 +1359,8 @@
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="yf2-Jt-KVJ"/>
                                 <include reference="S1p-sL-fnj"/>
+                                <include reference="yf2-Jt-KVJ"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="EDr-Xi-YnX"/>
@@ -2007,6 +2065,7 @@
     </scenes>
     <resources>
         <image name="1readMesseageIcon" width="100" height="100"/>
+        <image name="Compose" width="30" height="30"/>
         <image name="Send Picture 2" width="512" height="512"/>
         <image name="Vollie-icon" width="205" height="205"/>
         <image name="double-orange-arrows" width="139" height="150"/>
