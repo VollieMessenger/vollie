@@ -13,12 +13,23 @@
 #import "NSDate+TimeAgo.h"
 #import "ProgressHUD.h"
 #import "RoomCell.h"
+#import "MomentsVC.h"
+#import "MasterLoginRegisterView.h"
+
 
 @interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property  UIRefreshControl *refreshControl;
+@property UIView *refreshLoadingView;
+@property UIView *refreshColorView;
+@property UIImageView *compassSpinner;
+@property UIImageView *compassBackground;
+@property BOOL isRefreshIconsOverlap;
+@property BOOL isRefreshAnimating;
+@property BOOL isRefreshingUp;
+@property BOOL isRefreshingDown;
 
 @property NSMutableArray *messagesObjectIds;
 @property NSMutableArray *savedDates;
@@ -41,14 +52,29 @@
 {
     [super viewDidLoad];
     [self setUpUserInterface];
-    [self loadInbox];
+    [self basicSetUpAfterLoad];
+    [self refreshMessages];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self setNavBarColor];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self refreshMessages];
 }
 
 #pragma mark "User Interface and Interaction"
 
--(void)basicSetUpOfProperties
+-(void)basicSetUpAfterLoad
 {
     self.isCurrentlyLoadingMessages = false;
+    [self setupRefreshControl];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMessages) name:NOTIFICATION_USER_LOGGED_OUT object:0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMessages) name:NOTIFICATION_USER_LOGGED_IN object:0];
 }
 
 -(void)setUpUserInterface
@@ -69,6 +95,19 @@
     UIBarButtonItem *cameraButton =[[UIBarButtonItem alloc] initWithTitle:@"Cam" style:UIBarButtonItemStyleBordered target:self action:@selector(swipeLeftToCamera:)];
     cameraButton.image = [UIImage imageNamed:ASSETS_NEW_CAMERA];
     self.navigationItem.leftBarButtonItem = cameraButton;
+    [self setNavBarColor];
+    
+}
+
+-(void)setNavBarColor
+{
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
+//    self.navigationController.navigationBar.titleTextAttributes =  @{
+//                                                                     NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
+//                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+//                                                                     NSShadowAttributeName:[NSShadow new]
+//                                                                     };
 }
 
 -(void) swipeRightToFavorites:(UIBarButtonItem *)button
@@ -117,20 +156,20 @@
                          else
                          {
                              [self.messages addObject:message];
-                             NSDate *date = [message valueForKey:PF_MESSAGES_UPDATEDACTION];
-                             date = [self dateAtBeginningOfDayForDate:date];
-
-                             if (![self.savedDates containsObject:date])
-                             {
-                                 [self.savedDates addObject:date];
-                                 NSMutableArray *array = [NSMutableArray arrayWithObject:message];
-                                 NSDictionary *dict = [NSDictionary dictionaryWithObject:array forKey:date];
-                                 [self.savedMessagesForDate addEntriesFromDictionary:dict];
-                             }
-                             else
-                             {
-                                 [(NSMutableArray *)[self.savedMessagesForDate objectForKey:date] addObject:message];
-                             }
+//                             NSDate *date = [message valueForKey:PF_MESSAGES_UPDATEDACTION];
+//                             date = [self dateAtBeginningOfDayForDate:date];
+//
+//                             if (![self.savedDates containsObject:date])
+//                             {
+//                                 [self.savedDates addObject:date];
+//                                 NSMutableArray *array = [NSMutableArray arrayWithObject:message];
+//                                 NSDictionary *dict = [NSDictionary dictionaryWithObject:array forKey:date];
+//                                 [self.savedMessagesForDate addEntriesFromDictionary:dict];
+//                             }
+//                             else
+//                             {
+//                                 [(NSMutableArray *)[self.savedMessagesForDate objectForKey:date] addObject:message];
+//                             }
                          }
                      }
                  }
@@ -145,12 +184,12 @@
                  {
                      if (self.navigationController.visibleViewController == self)
                      {
-//                         [self.refreshControl endRefreshing];
+                         [self.refreshControl endRefreshing];
                          [ProgressHUD showError:@"Network error."];
                      }
                  }
              }
-//             [_refreshControl endRefreshing];
+             [self.refreshControl endRefreshing];
          }];
         
     }
@@ -163,61 +202,256 @@
     self.savedDates = [NSMutableArray new];
     self.savedMessagesForDate = [NSMutableDictionary new];
     self.messagesObjectIds = [NSMutableArray new];
-//    colorsForRoom = [NSMutableDictionary new];
-//    arrayOfAvailableColors = [NSMutableArray arrayWithArray: [AppConstant arrayOfColors]];
 }
-
-
 
 #pragma mark "TableView Stuff"
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    RoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
-//    if(!cell)
-//    {
-//        cell = [[MessagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
-//   
-//    }
-//    [cell format];
-//    cell.textLabel.text = @"test";
-    
-    PFObject *message = self.messages[indexPath.row];
-    
-    
-    return cell;
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.messages.count;
 }
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
+    PFObject *room = self.messages[indexPath.row];
+    [cell formatCellWith:room];
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:1];
+    RoomCell *cell = (RoomCell*)[tableView cellForRowAtIndexPath:indexPath];
+    
+    PFObject *room = self.messages[indexPath.row];
+    PFObject *customChatRoom = [room objectForKey:PF_MESSAGES_ROOM];
+    
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+    
+    cardViewController.name = cell.chatRoomLabel.text;
+    cardViewController.room = customChatRoom;
+    cardViewController.messageItComesFrom = room;
+    [self.navigationController pushViewController:cardViewController animated:YES];
+}
+
 
 #pragma mark "Crazy Other Methods"
 
-- (NSDate *)dateAtBeginningOfDayForDate:(NSDate *)inputDate
+- (void)refreshMessages
 {
-    //Convert to my time zone
-    NSTimeZone *tz = [NSTimeZone defaultTimeZone];
-    NSInteger seconds = [tz secondsFromGMTForDate:inputDate];
-    NSDate *date = [NSDate dateWithTimeInterval: seconds sinceDate:inputDate];
-    // Use the user's current calendar and time zone
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-    [calendar setTimeZone:timeZone];
-    
-    // Selectively convert the date components (year, month, day) of the input date
-    NSDateComponents *dateComps = [calendar components:NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date];
-    
-    // Set the time components manually
-    [dateComps setHour:0];
-    [dateComps setMinute:0];
-    [dateComps setSecond:0];
-    // Convert back
-    NSDate *beginningOfDay = [calendar dateFromComponents:dateComps];
-    return beginningOfDay;
+    if ([[[PFUser currentUser] valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
+    {
+        [self loadInbox];
+    }
+    else
+    {
+        //Error when app starts and no user logged in, when user registers, the inbox is gone. Might user super VC to present this MasterView.
+        
+        // [[(AppDelegate *)[[UIApplication sharedApplication] delegate] vc] showDetailViewController:[MasterLoginRegisterView new] sender:self];
+        
+        [self.navigationController showDetailViewController:[MasterLoginRegisterView new] sender:self];
+        [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
+        [self clearMessageArrays];
+    }
 }
+
+- (void)setupRefreshControl
+{
+    // Programmatically inserting a UIRefreshControl
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    // Setup the loading view, which will hold the moving graphics
+    self.refreshLoadingView = [[UIView alloc] initWithFrame:self.refreshControl.bounds];
+    self.refreshLoadingView.backgroundColor = [UIColor clearColor];
+    
+    // Setup the color view, which will display the rainbowed background
+    self.refreshColorView = [[UIView alloc] initWithFrame:self.refreshControl.bounds];
+    self.refreshColorView.backgroundColor = [UIColor clearColor];
+    self.refreshColorView.alpha = .8;
+    
+    // Create the graphic image views
+    self.compassBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:ASSETS_NEW_BLANKV]];
+    self.compassSpinner = [[UIImageView alloc] initWithImage:[UIImage imageNamed:ASSETS_NEW_BLANKV]];
+    
+    // Add the graphics to the loading view
+    [self.refreshLoadingView addSubview:self.compassBackground];
+    [self.refreshLoadingView addSubview:self.compassSpinner];
+    
+    // Clip so the graphics don't stick out
+    self.refreshLoadingView.clipsToBounds = YES;
+    
+    // Hide the original spinner icon
+    self.refreshControl.tintColor = [UIColor clearColor];
+    
+    // Add the loading and colors views to our refresh control
+    [self.refreshControl addSubview:self.refreshColorView];
+    [self.refreshControl addSubview:self.refreshLoadingView];
+    
+    // Initalize flags
+    self.isRefreshIconsOverlap = NO;
+    self.isRefreshAnimating = NO;
+    
+    // When activated, invoke our refresh function
+    [self.refreshControl addTarget:self action:@selector(refreshMessages) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:_refreshControl];
+}
+
+- (void)animateRefreshView
+{
+    // Background color to loop through for our color view
+    //    NSArray *colorArray = @[[UIColor redColor],[UIColor blueColor],[UIColor purpleColor],[UIColor cyanColor],[UIColor orangeColor],[UIColor magentaColor]];
+    
+    NSArray *colorArray = [UIColor arrayOfColorsCore];
+    static int colorIndex = 0;
+    
+    //    colorArray = [AppConstant arrayOfColors];
+    
+    // Flag that we are animating
+    self.isRefreshAnimating = YES;
+    //    self.labelNoMessages.hidden = YES;
+    
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         // Rotate the spinner by M_PI_2 = PI/2 = 90 degrees
+                         [self.compassSpinner setTransform:CGAffineTransformRotate(self.compassSpinner.transform, M_PI * 2)];
+                         
+                         // Change the background color
+                         self.refreshColorView.backgroundColor = [colorArray objectAtIndex:colorIndex];
+                         colorIndex = (colorIndex + 1) % colorArray.count;
+                     }
+                     completion:^(BOOL finished) {
+                         // If still refreshing, keep spinning, else reset
+                         if (self.refreshControl.isRefreshing) {
+                             [self animateRefreshView];
+                         }else{
+                             [self resetAnimation];
+                         }
+                     }];
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // Get the current size of the refresh controller
+    CGRect refreshBounds = self.refreshControl.bounds;
+    
+    // Distance the table has been pulled >= 0
+    CGFloat pullDistance = MAX(0.0, -self.refreshControl.frame.origin.y);
+    
+    // Half the width of the table
+    CGFloat midX = self.tableView.frame.size.width / 2.0;
+    
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^
+       {
+           if (pullDistance > 60.0f && !_isRefreshingUp)
+           {
+               self.isRefreshingUp = YES;
+               [UIView animateWithDuration:.3f animations:^{
+//                               self.labelNoMessages.hidden = YES;
+                   self.tableView.backgroundColor = [UIColor volleyFlatOrange];
+               }];
+           }
+           else if (pullDistance < 60.0f && !_isRefreshingDown)
+           {
+               _isRefreshingDown = YES;
+               [UIView animateWithDuration:.2f animations:^{
+                   self.tableView.backgroundColor = [UIColor whiteColor];
+//                               self.labelNoMessages.hidden = NO;
+               }];
+           }
+       });
+    
+    if (pullDistance  < 5 && _isRefreshingUp == YES && _isRefreshingDown == YES)
+    {
+        _isRefreshingDown = NO;
+        _isRefreshingUp = NO;
+    }
+    
+    
+    // Calculate the width and height of our graphics
+    CGFloat compassHeight = self.compassBackground.bounds.size.height;
+    CGFloat compassHeightHalf = compassHeight / 2.0;
+    
+    CGFloat compassWidth = self.compassBackground.bounds.size.width;
+    CGFloat compassWidthHalf = compassWidth / 2.0;
+    
+    CGFloat spinnerHeight = self.compassSpinner.bounds.size.height;
+    CGFloat spinnerHeightHalf = spinnerHeight / 2.0;
+    
+    CGFloat spinnerWidth = self.compassSpinner.bounds.size.width;
+    CGFloat spinnerWidthHalf = spinnerWidth / 2.0;
+    
+    // Calculate the pull ratio, between 0.0-1.0
+    CGFloat pullRatio = MIN( MAX(pullDistance, 0.0), 100.0) / 100.0;
+    
+    // Set the Y coord of the graphics, based on pull distance
+    CGFloat compassY = pullDistance / 2.0 - compassHeightHalf;
+    CGFloat spinnerY = pullDistance / 2.0 - spinnerHeightHalf;
+    
+    // Calculate the X coord of the graphics, adjust based on pull ratio
+    CGFloat compassX = (midX + compassWidthHalf) - (compassWidth * pullRatio);
+    CGFloat spinnerX = (midX - spinnerWidth - spinnerWidthHalf) + (spinnerWidth * pullRatio);
+    
+    // When the compass and spinner overlap, keep them together
+    if (fabsf(compassX - spinnerX) < 1.0)
+    {
+        self.isRefreshIconsOverlap = YES;
+    }
+    
+    // If the graphics have overlapped or we are refreshing, keep them together
+    //Changed to && from ||
+    if (self.isRefreshIconsOverlap || self.refreshControl.isRefreshing)
+    {
+        compassX = midX - compassWidthHalf;
+        spinnerX = midX - spinnerWidthHalf;
+    }
+    
+    // Set the graphic's frames
+    CGRect compassFrame = self.compassBackground.frame;
+    compassFrame.origin.x = compassX;
+    compassFrame.origin.y = compassY;
+    
+    CGRect spinnerFrame = self.compassSpinner.frame;
+    spinnerFrame.origin.x = spinnerX;
+    spinnerFrame.origin.y = spinnerY;
+    
+    self.compassBackground.frame = compassFrame;
+    self.compassSpinner.frame = spinnerFrame;
+    
+    // Set the encompassing view's frames
+    refreshBounds.size.height = pullDistance;
+    
+    self.refreshColorView.frame = refreshBounds;
+    self.refreshLoadingView.frame = refreshBounds;
+    
+    // If we're refreshing and the animation is not playing, then play the animation
+    if (self.refreshControl.isRefreshing && !self.isRefreshAnimating)
+    {
+        [self animateRefreshView];
+        self.isRefreshIconsOverlap = NO;
+    }
+    
+}
+
+
+- (void)resetAnimation
+{
+    // Reset our flags and background color
+    self.isRefreshAnimating = NO;
+    self.isRefreshIconsOverlap = NO;
+    self.refreshColorView.backgroundColor = [UIColor clearColor];
+    //    self.labelNoMessages.hidden = NO;
+}
+
+
 
 
 @end

@@ -7,8 +7,78 @@
 //
 
 #import "RoomCell.h"
+#import "AppConstant.h"
+#import "NSDate+TimeAgo.h"
 
 @implementation RoomCell
+@synthesize imageView;
+
+-(void)formatCellWith:(PFObject *)room
+{
+    self.imageView.layer.cornerRadius = 10;
+    self.imageView.layer.masksToBounds = YES;
+    
+    self.room = room;
+    
+    [self fillInTextFields];
+    [self checkUnreadStatus];
+    [self fillInPicture];
+}
+
+-(void)fillInTextFields
+{
+//    PFObject *info = room[PF_MESSAGES_ROOM];
+    
+    
+    //fills in text labels
+    if (self.room[PF_MESSAGES_NICKNAME])
+    {
+        self.chatRoomLabel.text = self.room[PF_MESSAGES_NICKNAME];
+    }
+    else
+    {
+        NSString *description = self.room[PF_MESSAGES_DESCRIPTION];
+        if (description.length)
+        {
+            self.chatRoomLabel.text = description;
+        }
+    }
+    self.lastMessageLabel.text = self.room[PF_MESSAGES_LASTMESSAGE];
+}
+
+-(void)checkUnreadStatus
+{
+    //unread messages dot
+    int counter = [self.room[PF_MESSAGES_COUNTER] intValue];
+    if (counter > 0)
+    {
+        self.unreadStatusDot.image = [UIImage imageNamed:ASSETS_UNREAD];
+    }
+    else
+    {
+        self.unreadStatusDot.image = [UIImage imageNamed:ASSETS_READ];
+    }
+}
+
+-(void)fillInPicture
+{
+    PFObject *pictureObject = [self.room valueForKey:PF_MESSAGES_LASTPICTURE];
+    if (pictureObject)
+    {
+        PFFile *file = [pictureObject valueForKey:PF_PICTURES_THUMBNAIL];
+        //                [cell.imageUser loadInBackground];
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error)
+            {
+                self.imageView.image = [UIImage imageWithData:data];
+            }
+            else
+            {
+                NSLog(@"tehre was an error getting the picture");
+            }
+        }];
+    }
+}
 
 - (void)awakeFromNib {
     // Initialization code

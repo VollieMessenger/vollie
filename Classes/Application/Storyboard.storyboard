@@ -1130,7 +1130,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JVX-Kp-t9r" id="xkw-nq-GRs">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mXM-la-1d5">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mXM-la-1d5">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="15" id="biI-cn-eyr"/>
@@ -1168,7 +1168,7 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jNj-UE-Yo6">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="jNj-UE-Yo6" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="bKH-vI-MGP"/>
@@ -1260,6 +1260,12 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chatRoomLabel" destination="Nrx-Bi-qzv" id="Rvp-03-Qtr"/>
+                                            <outlet property="imageView" destination="jNj-UE-Yo6" id="qQc-Te-ywZ"/>
+                                            <outlet property="lastMessageLabel" destination="yQd-vG-hy5" id="Zel-ip-lNu"/>
+                                            <outlet property="unreadStatusDot" destination="mXM-la-1d5" id="1Rw-1f-ez8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

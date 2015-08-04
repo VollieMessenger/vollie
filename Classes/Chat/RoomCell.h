@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface RoomCell : UITableViewCell
+
+-(void)formatCellWith:(PFObject*)room;
+
+@property (weak, nonatomic) IBOutlet UIImageView *unreadStatusDot;
+@property (weak, nonatomic) IBOutlet UILabel *chatRoomLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastMessageLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *imageView;
+@property PFObject *room;
 
 @end
