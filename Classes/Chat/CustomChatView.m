@@ -935,13 +935,16 @@
      *  iOS7-style sender name labels
      */
     JSQMessage *currentMessage = [setComments objectAtIndex:indexPath.item];
-    if ([[currentMessage senderId] isEqualToString:self.senderId]) {
+    if ([[currentMessage senderId] isEqualToString:self.senderId])
+    {
         return 0.0f;
     }
 
-    if (indexPath.item - 1 > 0) {
+    if (indexPath.item - 1 > 0)
+    {
         JSQMessage *previousMessage = [setComments objectAtIndex:indexPath.item - 1];
-        if ([[previousMessage senderId] isEqualToString:[currentMessage senderId]]) {
+        if ([[previousMessage senderId] isEqualToString:[currentMessage senderId]])
+        {
             return 0.0f;
         }
     }
@@ -1030,6 +1033,10 @@
             [self.moviePlayer play];
             [longPressImageView addSubview:self.moviePlayer.view];
             return;
+        }
+        else
+        {
+            //
         }
         
         if (file)
