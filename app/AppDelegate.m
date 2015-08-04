@@ -27,6 +27,8 @@
 
 #import "NavigationController.h"
 
+#import "MainInboxVC.h"
+
 #import "WelcomeView.h"
 
 #import "RegisterView.h"
@@ -133,14 +135,15 @@
     //not sure why we need to say this one is true. flipped it to false and saw no change
     favorites.scrollView = scrollView;
 
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//    RoomSettingsVC *testView = (RoomSettingsVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-//    testView.scrollView = scrollView;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    MainInboxVC *mainInbox = (MainInboxVC *)[storyboard instantiateViewControllerWithIdentifier:@"MainInboxVC"];
+    mainInbox.scrollView = scrollView;
 
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
     [scrollView setContentOffset:CGPointMake(vc.view.frame.size.width, 0) animated:0];
 
-    self.navInbox = [[NavigationController alloc] initWithRootViewController:messages];
+//    self.navInbox = [[NavigationController alloc] initWithRootViewController:messages];
+    self.navInbox = [[NavigationController alloc] initWithRootViewController:mainInbox];
 
     self.navFavorites = [[NavigationController alloc] initWithRootViewController:favorites];
 
