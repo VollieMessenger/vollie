@@ -112,6 +112,8 @@
 		324843F11B714E00009810D3 /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
 		324843F41B715606009810D3 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F31B715606009810D3 /* Chat.m */; };
 		324843F71B715E58009810D3 /* RoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F61B715E58009810D3 /* RoomCell.m */; };
+		32771FBC1B73FB65007726E9 /* WeekHighlightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */; };
+		32771FC01B7417AA007726E9 /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBF1B7417AA007726E9 /* WeekCell.m */; };
 		329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9D221B700F340025D3EC /* FivePicsFavCell.m */; };
 		329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329F9D231B700F340025D3EC /* FivePicsFavCell.xib */; };
 		9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */; };
@@ -397,6 +399,10 @@
 		324843F31B715606009810D3 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		324843F51B715E58009810D3 /* RoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomCell.h; sourceTree = "<group>"; };
 		324843F61B715E58009810D3 /* RoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomCell.m; sourceTree = "<group>"; };
+		32771FBA1B73FB65007726E9 /* WeekHighlightsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekHighlightsVC.h; sourceTree = "<group>"; };
+		32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekHighlightsVC.m; sourceTree = "<group>"; };
+		32771FBE1B7417AA007726E9 /* WeekCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCell.h; sourceTree = "<group>"; };
+		32771FBF1B7417AA007726E9 /* WeekCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCell.m; sourceTree = "<group>"; };
 		329F9D211B700F340025D3EC /* FivePicsFavCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FivePicsFavCell.h; sourceTree = "<group>"; };
 		329F9D221B700F340025D3EC /* FivePicsFavCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FivePicsFavCell.m; sourceTree = "<group>"; };
 		329F9D231B700F340025D3EC /* FivePicsFavCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FivePicsFavCell.xib; sourceTree = "<group>"; };
@@ -578,6 +584,7 @@
 		27C3C1261B3B2E7000F555FD /* Moments Version */ = {
 			isa = PBXGroup;
 			children = (
+				32771FBD1B73FB69007726E9 /* Week Highlights VC */,
 				324843EE1B714DE1009810D3 /* MainInboxVC */,
 				27DB352A1B4C616200A765A2 /* ManageChat VC */,
 				27C3C12A1B3B344800F555FD /* Moments VC */,
@@ -1088,6 +1095,17 @@
 			name = MainInboxVC;
 			sourceTree = "<group>";
 		};
+		32771FBD1B73FB69007726E9 /* Week Highlights VC */ = {
+			isa = PBXGroup;
+			children = (
+				32771FBA1B73FB65007726E9 /* WeekHighlightsVC.h */,
+				32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */,
+				32771FBE1B7417AA007726E9 /* WeekCell.h */,
+				32771FBF1B7417AA007726E9 /* WeekCell.m */,
+			);
+			name = "Week Highlights VC";
+			sourceTree = "<group>";
+		};
 		329F9D1F1B700E620025D3EC /* SetViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1459,6 +1477,7 @@
 				296DD5C51A1F52F400AB9F8C /* JSQMessagesBubbleImageFactory.m in Sources */,
 				296DD5C91A1F52F400AB9F8C /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				279D7CAC1B2F77FF0090C1AD /* TestViewController.m in Sources */,
+				32771FBC1B73FB65007726E9 /* WeekHighlightsVC.m in Sources */,
 				29271A5919F284B1009C308B /* NavigationController.m in Sources */,
 				C21DD6E81A71D73B0009BC6A /* JCNotificationBannerPresenterIOSStyle.m in Sources */,
 				29271A6A19F284B1009C308B /* messages.m in Sources */,
@@ -1485,6 +1504,7 @@
 				C2832CB21A704A6100CDF19D /* IQUIView+Hierarchy.m in Sources */,
 				296DD5DA1A1F52F400AB9F8C /* JSQMessagesComposerTextView.m in Sources */,
 				296DD5CC1A1F52F400AB9F8C /* JSQLocationMediaItem.m in Sources */,
+				32771FC01B7417AA007726E9 /* WeekCell.m in Sources */,
 				C2BD53EA1A31077D006D721E /* CustomChatView.m in Sources */,
 				C21DD6EA1A71D73B0009BC6A /* JCNotificationBannerView.m in Sources */,
 				C27374971A2FFF4800C4B22A /* CustomCameraView.m in Sources */,

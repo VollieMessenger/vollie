@@ -22,13 +22,13 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="LWX-DM-bav" customClass="PFImageView">
                         <rect key="frame" x="220" y="109" width="99" height="104"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Mr-th-arT" customClass="PFImageView">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="0Mr-th-arT" customClass="PFImageView">
                         <rect key="frame" x="8" y="8" width="206" height="205.5"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="0Mr-th-arT" secondAttribute="height" multiplier="206:205" id="ge6-fa-0py"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-BI-mVG" customClass="PFImageView">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-BI-mVG" customClass="PFImageView">
                         <rect key="frame" x="220" y="8" width="99" height="95"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="double-orange-arrows" translatesAutoresizingMaskIntoConstraints="NO" id="Ap7-rp-6mx">

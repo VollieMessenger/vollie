@@ -30,7 +30,6 @@
         imageview.layer.masksToBounds = YES;
         imageview.layer.cornerRadius = 10;
     }
-    
 }
 
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData

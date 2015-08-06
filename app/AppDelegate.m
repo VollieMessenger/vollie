@@ -29,6 +29,8 @@
 
 #import "MainInboxVC.h"
 
+#import "WeekHighlightsVC.h"
+
 #import "WelcomeView.h"
 
 #import "RegisterView.h"
@@ -138,6 +140,8 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     MainInboxVC *mainInbox = (MainInboxVC *)[storyboard instantiateViewControllerWithIdentifier:@"MainInboxVC"];
     mainInbox.scrollView = scrollView;
+    WeekHighlightsVC *weekHighlights = (WeekHighlightsVC *)[storyboard instantiateViewControllerWithIdentifier:@"WeekHighlightsVC"];
+    weekHighlights.scrollView = scrollView;
 
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
     [scrollView setContentOffset:CGPointMake(vc.view.frame.size.width, 0) animated:0];
@@ -145,7 +149,9 @@
 //    self.navInbox = [[NavigationController alloc] initWithRootViewController:messages];
     self.navInbox = [[NavigationController alloc] initWithRootViewController:mainInbox];
 
-    self.navFavorites = [[NavigationController alloc] initWithRootViewController:favorites];
+//    self.navFavorites = [[NavigationController alloc] initWithRootViewController:favorites];
+    self.navFavorites = [[NavigationController alloc] initWithRootViewController:weekHighlights];
+
 
     self.navCamera = [[NavigationController alloc] initWithRootViewController:camera];
 

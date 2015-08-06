@@ -183,9 +183,9 @@
                 case 4:
                     return 470;
                 case 5:
-//                    return 530;
+                    return 530;
 //                    return 200; // this wax good for when i didn't have arrows
-                    return 175;
+//                    return 175;
                 default:
                     return 200;
                     break;
@@ -261,14 +261,14 @@
         }
         if (card.photosArray.count == 5)
         {
-            [self.tableView registerNib:[UINib nibWithNibName:@"FivePicsFavCell" bundle:0] forCellReuseIdentifier:@"FivePicsFavCell"];
-//            FivePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicCell"];
-            FivePicsFavCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicsFavCell"];
+            [self.tableView registerNib:[UINib nibWithNibName:@"FivePicCell" bundle:0] forCellReuseIdentifier:@"FivePicCell"];
+            FivePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicCell"];
+//            FivePicsFavCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicsFavCell"];
             [cell formatCell];
             [cell fillPicsWithVollieCardData:card];
 //            [cell fillPicsWithVollieCardData:card];
 //            [cell formatCell];
-//            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
             return cell;
         }
         else

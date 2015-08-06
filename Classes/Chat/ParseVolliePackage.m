@@ -57,6 +57,7 @@
                                                        andSet:setID
                                                       andRoom:roomNumber];
             [video setValue:@YES forKey:PF_PICTURES_IS_VIDEO];
+            [video setObject:videoFile forKey:PF_PICTURES_PICTURE];
 
             [video setValue:[NSDate dateWithTimeIntervalSinceNow:[photosArray indexOfObject:dic]]forKey:PF_PICTURES_UPDATEDACTION];
 
