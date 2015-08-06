@@ -445,7 +445,7 @@
 
             if (!file)
             {
-                [picture fetch];
+                [picture fetchInBackground];
                 file = [picture valueForKey:PF_PICTURES_PICTURE];
             }
 
@@ -460,6 +460,7 @@
                     [[file getData] writeToFile:outputPath atomically:1];
                 }
                 MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
+                [moviePlayer prepareToPlay];
 
                 moviePlayer.view.frame = rect;
                 [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
@@ -493,7 +494,6 @@
                 //              moviePlayer.repeatMode = MPMovieRepeatModeNone;
                 moviePlayer.repeatMode = MPMovieRepeatModeOne;
 
-                [moviePlayer prepareToPlay];
                 if ([setPicturesObjects indexOfObject:picture] != indexPath.row)
                 {
                     [moviePlayer setShouldAutoplay:false];
@@ -601,12 +601,6 @@
                  }];
             }
         }//end for loop
-        NSObject *object = self.arrayOfScrollView[indexPath.row];
-        if ([object isKindOfClass:[MPMoviePlayerController class]])
-        {
-            MPMoviePlayerController *mp = [self.arrayOfScrollView objectAtIndex:indexPath.row];
-            [mp play];
-        }
     }
 }
 
