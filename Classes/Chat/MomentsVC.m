@@ -184,7 +184,8 @@
                     return 470;
                 case 5:
 //                    return 530;
-                    return 200;
+//                    return 200; // this wax good for when i didn't have arrows
+                    return 175;
                 default:
                     return 200;
                     break;

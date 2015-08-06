@@ -40,9 +40,9 @@
 @property BOOL isRefreshingDown;
 
 //arrays
-@property NSMutableArray *messagesObjectIds;
-@property NSMutableArray *savedDates;
-@property NSMutableDictionary *savedMessagesForDate;
+//@property NSMutableArray *messagesObjectIds;
+//@property NSMutableArray *savedDates;
+//@property NSMutableDictionary *savedMessagesForDate;
 
 
 @end
@@ -147,7 +147,7 @@
         [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
         //      [query includeKey:PF_MESSAGES_LASTUSER];
         [query includeKey:PF_MESSAGES_ROOM];
-        [query includeKey:PF_MESSAGES_USER];
+        [query includeKey:PF_MESSAGES_USER]; // doesn't need to be here
         [query includeKey:PF_MESSAGES_LASTPICTURE];
         [query includeKey:PF_MESSAGES_LASTPICTUREUSER];
         [query whereKey:PF_MESSAGES_HIDE_UNTIL_NEXT equalTo:@NO];
@@ -160,16 +160,15 @@
                  [self clearMessageArrays];
                  for (PFObject *message in objects)
                  {
-                     if (![self.messagesObjectIds containsObject:message.objectId])
+                     if ([[message valueForKey:PF_MESSAGES_LASTMESSAGE] isEqualToString:@""] && ![message valueForKey:PF_MESSAGES_LASTPICTURE])
                      {
-                         if ([[message valueForKey:PF_MESSAGES_LASTMESSAGE] isEqualToString:@""] && ![message valueForKey:PF_MESSAGES_LASTPICTURE])
-                         {
-                             //this hides messages that have neither a message or picture yet
-                             //i'd like to make this cleaner and actually delete it off of parse, but this works for now
-                         }
-                         else
-                         {
-                             [self.messages addObject:message];
+                         //this hides messages that have neither a message or picture yet
+                         //i'd like to make this cleaner and actually delete it off of parse, but this works for now
+                     }
+                     else
+                     {
+                         [self.messages addObject:message];
+                         
 //                             NSDate *date = [message valueForKey:PF_MESSAGES_UPDATEDACTION];
 //                             date = [self dateAtBeginningOfDayForDate:date];
 //
@@ -184,7 +183,6 @@
 //                             {
 //                                 [(NSMutableArray *)[self.savedMessagesForDate objectForKey:date] addObject:message];
 //                             }
-                         }
                      }
                  }
                  [self.tableView reloadData];
@@ -213,9 +211,9 @@
 {
     //let's see if we really need this
     self.messages = [NSMutableArray new];
-    self.savedDates = [NSMutableArray new];
-    self.savedMessagesForDate = [NSMutableDictionary new];
-    self.messagesObjectIds = [NSMutableArray new];
+//    self.savedDates = [NSMutableArray new];
+//    self.savedMessagesForDate = [NSMutableDictionary new];
+//    self.messagesObjectIds = [NSMutableArray new];
 }
 
 #pragma mark "TableView Stuff"
@@ -242,10 +240,8 @@
     PFObject *room = self.messages[indexPath.row];
     PFObject *customChatRoom = [room objectForKey:PF_MESSAGES_ROOM];
     
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
-    
     cardViewController.name = cell.chatRoomLabel.text;
     cardViewController.room = customChatRoom;
     cardViewController.messageItComesFrom = room;
@@ -488,7 +484,6 @@
     }
     
 }
-
 
 - (void)resetAnimation
 {

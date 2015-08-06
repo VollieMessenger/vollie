@@ -71,7 +71,7 @@
 {
     UIImage *thumbnail = ResizeImage(image, image.size.width, image.size.height);
     PFFile *file = [PFFile fileWithName:@"thumbnail.png" data:UIImageJPEGRepresentation(thumbnail, .2)];
-
+    //we could make a second "bigger" thumbnail in case it's the main photo
     PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
     [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
     [object setValue:@YES forKey:PF_CHAT_ISUPLOADED];
@@ -85,7 +85,7 @@
               forKey:PF_PICTURES_UPDATEDACTION];
     [object setObject:file
                forKey:PF_PICTURES_THUMBNAIL];
-
+    
     return object;
 }
 
