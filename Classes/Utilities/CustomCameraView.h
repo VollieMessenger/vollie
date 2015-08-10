@@ -21,7 +21,7 @@
 {
 //    id                              myDelegate;
 }
-@property (nonatomic, assign) id<SecondDelegate>    myDelegate;
+@property (nonatomic, assign) id<SecondDelegate>myDelegate;
 @property(nonatomic,assign)id delegate;
 
 -(id)initWithPopUp:(BOOL)popup;

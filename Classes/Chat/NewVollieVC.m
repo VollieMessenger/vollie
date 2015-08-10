@@ -182,13 +182,18 @@ SecondDelegate>
     }
 }
 
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
-    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-    if (!self.showingCamera)[cam blankOutButtons];
+-(void)viewWillDisappear:(BOOL)animated{
+    CustomCameraView * cam = self.navigationController.viewControllers.firstObject;
+    cam.photosFromNewVC = self.photosArray;
 }
+
+//-(void)viewDidDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+//    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+//    if (!self.showingCamera)[cam blankOutButtons];
+//}
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
 {
