@@ -167,6 +167,7 @@ SecondDelegate>
 
             [self.navigationController pushViewController:selectRoomVC animated:YES];
             [self.cameraView blankOutButtons];
+            [self.cameraView unhideButtons];
         }
     }
     return YES;
@@ -211,6 +212,7 @@ SecondDelegate>
     if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+        self.cameraView = cam;
         cam.delegate = self;
         if (self.photosArray.count >= 1){
             //            cam.arrayOfTakenPhotos = self.photosArray;

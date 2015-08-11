@@ -287,10 +287,8 @@
 
 - (void)setPopUp
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:self.isPoppingUp withAnimation:UIStatusBarAnimationSlide];
 
-    _isPoppingUp = YES;
-    
     self.cancelButton.hidden = !_isPoppingUp;
     self.leftButton.hidden = YES;
     self.rightButton.hidden = _isPoppingUp;
@@ -1635,7 +1633,6 @@
         else if (self.isPoppingUp)
         {
             self.isPoppingUp = NO;
-
             self.cancelButton.hidden = YES;
             self.rightButton.hidden = NO;
 

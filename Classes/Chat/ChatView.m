@@ -119,6 +119,7 @@
         if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
         {
             CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+            cam.isPoppingUp = YES;
             [cam setPopUp];
             cam.delegate = self;
             [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:0 completion:0];
