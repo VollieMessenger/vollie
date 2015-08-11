@@ -123,6 +123,9 @@
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[[UIColor volleyFamousOrange] jsq_colorByDarkeningColorWithValue:0.1f] forState:UIControlStateHighlighted];
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
 
+    self.edgesForExtendedLayout = UIRectEdgeTop;
+    //what i just put in ^^
+    
     self.doubleTapBlocker = false;
 
     if (!self.senderId || self.senderDisplayName)

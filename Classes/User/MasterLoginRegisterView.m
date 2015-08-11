@@ -39,11 +39,11 @@
     [self.view addSubview:scrollView];
     //we already say this stuff in the app delegate
     //commenting it out just in case
-//    scrollView.bounces = NO;
-//    scrollView.pagingEnabled = 1;
-//    scrollView.directionalLockEnabled = YES;
-//    scrollView.showsHorizontalScrollIndicator = 0;
-//    scrollView.scrollEnabled = 1;
+    scrollView.bounces = NO;
+    scrollView.pagingEnabled = 1;
+    scrollView.directionalLockEnabled = YES;
+    scrollView.showsHorizontalScrollIndicator = 0;
+    scrollView.scrollEnabled = 1;
 
     WelcomeView *welcome = [WelcomeView new];
     welcome.scrollView = scrollView;

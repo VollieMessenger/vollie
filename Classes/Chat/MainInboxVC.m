@@ -24,6 +24,8 @@
 
 //visual properties
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewInButton;
+@property (weak, nonatomic) IBOutlet UIImageView *imageViewInButtonRight;
 
 //random properties
 @property BOOL isCurrentlyLoadingMessages;
@@ -104,6 +106,12 @@
     cameraButton.image = [UIImage imageNamed:ASSETS_NEW_CAMERA];
     self.navigationItem.leftBarButtonItem = cameraButton;
     [self setNavBarColor];
+    
+    self.imageViewInButton.layer.cornerRadius = 10;
+    self.imageViewInButton.layer.masksToBounds = YES;
+    self.imageViewInButtonRight.layer.cornerRadius = 10;
+    self.imageViewInButtonRight.layer.masksToBounds = YES;
+    self.imageViewInButtonRight.hidden = YES;
     
 }
 

@@ -19,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"Highlights";
 
 }
 
@@ -26,8 +27,6 @@
 {
     self.tableView.backgroundColor = [UIColor clearColor];
 }
-
-
 
 
 #pragma mark "TableView Stuff"

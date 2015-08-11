@@ -103,7 +103,12 @@
                 [setID saveInBackground];
 
                 [roomNumber setValue:object forKey:@"lastPicture"];
+//                [roomNumber saveInBackground];
+//                NSArray *testArray = [[NSArray alloc] initWithObjects:@"test", nil];
+//                [roomNumber setValue:testArray forKey:@"arrayOfUnreadSets"];
+                [roomNumber addObject:@"test2" forKey:@"arrayOfUnreadSets"];
                 [roomNumber saveInBackground];
+
 
                 self.lastPicFromPackage = object;
 
