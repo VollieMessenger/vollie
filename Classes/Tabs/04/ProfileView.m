@@ -84,10 +84,10 @@
 
 	self.title = @"Settings";
 
-   UIBarButtonItem *close =  [[UIBarButtonItem alloc] initWithTitle:@"Close " style:UIBarButtonItemStyleDone target:self
-                                    action:@selector(actionDismiss)];
-//    close.image = [UIImage imageNamed:ASSETS_CLOSE];
-    self.navigationItem.rightBarButtonItem = close;
+//   UIBarButtonItem *close =  [[UIBarButtonItem alloc] initWithTitle:@"Close " style:UIBarButtonItemStyleDone target:self
+//                                    action:@selector(actionDismiss)];
+////    close.image = [UIImage imageNamed:ASSETS_CLOSE];
+//    self.navigationItem.rightBarButtonItem = close;
 
 	[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)]];
     self.tableView.separatorInset = UIEdgeInsetsZero;

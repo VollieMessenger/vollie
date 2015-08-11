@@ -232,6 +232,8 @@ SecondDelegate>
         cam.myDelegate = self;
 
         [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
+        
+//        [self presentViewController:cam animated:YES completion:nil];
     }
 }
 
@@ -246,7 +248,10 @@ SecondDelegate>
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+
     NewVolliePicCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    //because cells are re-used we have to declare it visible by default.
+    cell.hidden = false;
     cell.backgroundColor = [UIColor clearColor];
     cell.imageView.layer.cornerRadius = 10;
     cell.imageView.layer.masksToBounds = YES;
@@ -266,7 +271,15 @@ SecondDelegate>
     }
     else
     {
-        cell.imageView.image = [UIImage imageNamed:@"Vollie-icon"];
+        if (indexPath.item > 4)
+        {
+            cell.hidden = true;
+            //adds buffer cells so collectionview will stick for iphone 4 and 5 users
+        }
+        else
+        {
+            cell.imageView.image = [UIImage imageNamed:@"Vollie-icon"];
+        }
     }
     return cell;
 }
@@ -279,7 +292,7 @@ SecondDelegate>
     }
     else if (self.photosArray.count == 5)
     {
-        return 5;
+        return 7;
     }
     else
     {

@@ -577,7 +577,8 @@
 {
 //    [self stopCaptureSession];
 
-    if (self.picker) {
+    if (self.picker)
+    {
         [self.picker dismissViewControllerAnimated:1 completion:0];
     }
 
@@ -1669,6 +1670,8 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     NSLog(@"hey! it works here now too!");
+    [self didSlideRight:self];
+//    [self performSelector:@selector(didSlideRight:) withObject:self afterDelay:1.0f];
 }
 
 - (void)setFlashMode:(AVCaptureFlashMode)flashMode forDevice:(AVCaptureDevice *)device

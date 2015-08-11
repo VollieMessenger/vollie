@@ -109,9 +109,9 @@
 		29EB240B19E9292500D7AA97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240A19E9292500D7AA97 /* main.m */; };
 		29EB240E19E9292500D7AA97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240D19E9292500D7AA97 /* AppDelegate.m */; };
 		29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EB241719E9292500D7AA97 /* LaunchScreen.xib */; };
-		324843F11B714E00009810D3 /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
 		324843F41B715606009810D3 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F31B715606009810D3 /* Chat.m */; };
 		324843F71B715E58009810D3 /* RoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F61B715E58009810D3 /* RoomCell.m */; };
+		3272F9311B7A9BED0013FD9C /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
 		32771FBC1B73FB65007726E9 /* WeekHighlightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */; };
 		32771FC01B7417AA007726E9 /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBF1B7417AA007726E9 /* WeekCell.m */; };
 		329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9D221B700F340025D3EC /* FivePicsFavCell.m */; };
@@ -1491,7 +1491,6 @@
 				C2BEC9B11A7FE1B300F4B41A /* CreateChatroomView2.m in Sources */,
 				27C3C1291B3B2EBC00F555FD /* SelectRoomVC.m in Sources */,
 				29271A6419F284B1009C308B /* LoginView.m in Sources */,
-				324843F11B714E00009810D3 /* MainInboxVC.m in Sources */,
 				272170811B543AF00050A9D0 /* ThreePicCell.m in Sources */,
 				296DD5C81A1F52F400AB9F8C /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				C2832CB91A704A6100CDF19D /* IQTitleBarButtonItem.m in Sources */,
@@ -1526,6 +1525,7 @@
 				27C3C1241B3B1A6B00F555FD /* NewVollieVC.m in Sources */,
 				296DD5CA1A1F52F400AB9F8C /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				296DD5D31A1F52F400AB9F8C /* JSQMessagesCellTextView.m in Sources */,
+				3272F9311B7A9BED0013FD9C /* MainInboxVC.m in Sources */,
 				296DD5D61A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				296DD5DC1A1F52F400AB9F8C /* JSQMessagesLabel.m in Sources */,
 				27617D981B4ADF590026C2EB /* ParseVolliePackage.m in Sources */,

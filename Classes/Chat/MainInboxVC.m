@@ -17,6 +17,7 @@
 #import "MasterLoginRegisterView.h"
 #import "ParseVolliePackage.h"
 #import "NewVollieVC.h"
+#import "ProfileView.h"
 
 
 
@@ -99,8 +100,8 @@
     self.title = @"";
     self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc] initWithTitle:@"Fav"
-                                                             style:UIBarButtonItemStyleBordered target:self action:@selector(swipeRightToFavorites:)];
-    favoritesButton.image = [UIImage imageNamed:ASSETS_STAR_ON];
+                                                             style:UIBarButtonItemStyleBordered target:self action:@selector(goToSettingsVC:)];
+    favoritesButton.image = [UIImage imageNamed:@"settings"];
     self.navigationItem.rightBarButtonItem = favoritesButton;
     UIBarButtonItem *cameraButton =[[UIBarButtonItem alloc] initWithTitle:@"Cam" style:UIBarButtonItemStyleBordered target:self action:@selector(swipeLeftToCamera:)];
     cameraButton.image = [UIImage imageNamed:ASSETS_NEW_CAMERA];
@@ -113,12 +114,18 @@
     self.imageViewInButtonRight.layer.masksToBounds = YES;
     self.imageViewInButtonRight.hidden = YES;
     
+    
 }
 
 -(void)setNavBarColor
 {
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
+    self.navigationController.navigationBar.titleTextAttributes =  @{
+                                                                     NSForegroundColorAttributeName: [UIColor whiteColor],
+                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+                                                                     NSShadowAttributeName:[NSShadow new]
+                                                                     };
 }
 
 -(void) swipeRightToFavorites:(UIBarButtonItem *)button
@@ -308,6 +315,14 @@
     self.scrollView.scrollEnabled = NO;
 }
 
+-(void)goToSettingsVC:(id)id
+{
+//    NavigationController *nav = [[NavigationController alloc] initWithRootViewController: [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped]];
+    
+    ProfileView *vc = [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:vc animated:YES];
+//    [self showDetailViewController:nav sender:self];
+}
 
 
 #pragma mark "Refresh Control"
