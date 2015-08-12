@@ -184,21 +184,6 @@
                      else
                      {
                          [self.messages addObject:message];
-                         
-//                             NSDate *date = [message valueForKey:PF_MESSAGES_UPDATEDACTION];
-//                             date = [self dateAtBeginningOfDayForDate:date];
-//
-//                             if (![self.savedDates containsObject:date])
-//                             {
-//                                 [self.savedDates addObject:date];
-//                                 NSMutableArray *array = [NSMutableArray arrayWithObject:message];
-//                                 NSDictionary *dict = [NSDictionary dictionaryWithObject:array forKey:date];
-//                                 [self.savedMessagesForDate addEntriesFromDictionary:dict];
-//                             }
-//                             else
-//                             {
-//                                 [(NSMutableArray *)[self.savedMessagesForDate objectForKey:date] addObject:message];
-//                             }
                      }
                  }
                  [self.tableView reloadData];

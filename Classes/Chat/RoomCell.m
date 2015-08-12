@@ -44,6 +44,9 @@
         }
     }
     self.lastMessageLabel.text = self.room[PF_MESSAGES_LASTMESSAGE];
+    NSDate *date = self.room[PF_MESSAGES_UPDATEDACTION];
+    NSString *ago = [date dateTimeUntilNow];
+    self.dateLabel.text = ago;
 }
 
 -(void)checkUnreadStatus

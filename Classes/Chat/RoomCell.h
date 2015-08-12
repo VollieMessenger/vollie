@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *unreadStatusDot;
 @property (weak, nonatomic) IBOutlet UILabel *chatRoomLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastMessageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *imageView;
 @property PFObject *room;
 
