@@ -336,7 +336,7 @@
 //    [self showDetailViewController:nav sender:self];
 }
 
--(void)testMethod
+-(void)goToMostRecentChatRoom
 {
 //    NSLog(@"test success");
     [self refreshMessages];

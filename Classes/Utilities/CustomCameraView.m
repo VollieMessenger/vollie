@@ -1670,15 +1670,12 @@
 
 -(void)reloadAfterMessageSuccessfullySent
 {
-    NSLog(@"reload method called in camera");
+//    NSLog(@"reload method called in camera");
     self.scrollView.didJustFinishSendingVollie = YES;
     [self didSlideRight:self];
     NavigationController *navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
     MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
-    [inbox testMethod];
-//    main *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-//    if (!self.showingCamera)[cam blankOutButtons];
-//    [self performSelector:@selector(didSlideRight:) withObject:self afterDelay:1.0f];
+    [inbox goToMostRecentChatRoom];
 }
 
 - (void)setFlashMode:(AVCaptureFlashMode)flashMode forDevice:(AVCaptureDevice *)device
