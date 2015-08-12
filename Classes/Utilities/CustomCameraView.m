@@ -1624,6 +1624,10 @@
                 [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
                 self.comingFromNewVollie = false;
             }
+            
+            self.cancelButton.hidden = YES;
+            self.rightButton.hidden = NO;
+            
             PostNotification(NOTIFICATION_CAMERA_POPUP);
 
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
