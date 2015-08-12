@@ -129,6 +129,7 @@
 
     CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
     camera.scrollView = scrollView;
+//    camera.pushToCardDelegate = self;
 
     MessagesView *messages = [[MessagesView alloc] initWithArchive:NO];
     messages.scrollView = scrollView;

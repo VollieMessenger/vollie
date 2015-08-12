@@ -17,11 +17,16 @@
 -(void) secondViewControllerDismissed:(NSMutableArray *)photosForFirst;
 @end
 
+@protocol PushToCardDelegate <NSObject>
+-(void) pushToCard;
+@end
+
 @interface CustomCameraView : UIViewController
 {
 //    id                              myDelegate;
 }
 @property (nonatomic, assign) id<SecondDelegate>    myDelegate;
+@property (nonatomic, assign) id<PushToCardDelegate> pushToCardDelegate;
 @property(nonatomic,assign)id delegate;
 
 -(id)initWithPopUp:(BOOL)popup;

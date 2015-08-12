@@ -21,6 +21,7 @@
 #import "SelectChatroomView.h"
 #import "NewVollieVC.h"
 #import "ParseVolliePackage.h"
+#import "MainInboxVC.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -1669,8 +1670,14 @@
 
 -(void)reloadAfterMessageSuccessfullySent
 {
-    NSLog(@"hey! it works here now too!");
+    NSLog(@"reload method called in camera");
+    self.scrollView.didJustFinishSendingVollie = YES;
     [self didSlideRight:self];
+    NavigationController *navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+    MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
+    [inbox testMethod];
+//    main *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+//    if (!self.showingCamera)[cam blankOutButtons];
 //    [self performSelector:@selector(didSlideRight:) withObject:self afterDelay:1.0f];
 }
 

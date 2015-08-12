@@ -283,7 +283,7 @@
         self.setIDforCardCheck = setId;
 
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
-        NSLog(@"%li in pictures array", setPicturesObjects.count);
+//        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
 
 

@@ -20,4 +20,6 @@
 
 - (BOOL) checkIfCurrentChatIsEqualToRoom:(NSString *)roomId didComeFromBackground:(BOOL)isBack;
 
+@property BOOL didJustFinishSendingVollie;
+
 @end

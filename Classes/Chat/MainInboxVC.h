@@ -14,4 +14,6 @@
 @property (strong, nonatomic) MasterScrollView *scrollView;
 @property NSMutableArray *messages;
 
+-(void)testMethod;
+
 @end

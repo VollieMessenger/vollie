@@ -15,13 +15,14 @@
 #import "RoomCell.h"
 #import "MomentsVC.h"
 #import "MasterLoginRegisterView.h"
+#import "CustomCameraView.h"
 #import "ParseVolliePackage.h"
 #import "NewVollieVC.h"
 #import "ProfileView.h"
 
 
 
-@interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate>
+@interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate>
 
 //visual properties
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -290,10 +291,15 @@
     }
 }
 
+-(void)pushToCard
+{
+    [self reloadAfterMessageSuccessfullySent];
+}
+
 -(void)reloadAfterMessageSuccessfullySent
 {
     //needs to send user to new vollie page
-    NSLog(@" YEAH YEAH YEAH YEAH");
+    NSLog(@"About to Push to Card 0");
     [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
     //    [self perfor]
 }
@@ -328,6 +334,13 @@
     ProfileView *vc = [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:vc animated:YES];
 //    [self showDetailViewController:nav sender:self];
+}
+
+-(void)testMethod
+{
+//    NSLog(@"test success");
+    [self refreshMessages];
+    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
 }
 
 

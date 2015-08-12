@@ -228,7 +228,7 @@ SecondDelegate>
         cam.comingFromNewVollie = YES;
         cam.textFromLastVC = self.textView.text;
         cam.photosFromNewVC = self.photosArray;
-        NSLog(@"%li photos before popping up camera", self.photosArray.count);
+//        NSLog(@"%li photos before popping up camera", self.photosArray.count);
         cam.myDelegate = self;
 
         [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];

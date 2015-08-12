@@ -32,6 +32,7 @@
         self.pagingEnabled = YES;
         self.directionalLockEnabled = YES;
         self.showsHorizontalScrollIndicator = NO;
+        self.didJustFinishSendingVollie = NO;
     }
     return self;
 }
@@ -161,6 +162,10 @@
     else
     {
         [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
+        if (self.didJustFinishSendingVollie)
+        {
+            NSLog(@"was just programatically sent to inbox");
+        }
     }
 }
 
