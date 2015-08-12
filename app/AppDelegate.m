@@ -32,7 +32,7 @@
 #import "RegisterView.h"
 
 #import "LoginView.h"
-
+#import "MomentsVC.h"
 #import "ChatView.h"
 
 #import "MasterScrollView.h"
@@ -345,7 +345,10 @@
             }
             else
             {
-                ChatView *chat = [[ChatView alloc] initWith:room name:[room valueForKey:PF_CHATROOMS_NAME]];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+                MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+                ////    cardViewController.name = cell.labelDescription.text;
+                cardViewController.room = room;
 
                 if (application.applicationState == UIApplicationStateActive && !didJustOpenFromBackground)
                 {
@@ -375,7 +378,7 @@
                     //Dismiss Modal Views
                     PostNotification(NOTIFICATION_CLICKED_PUSH);
 
-                    [scrollView openView:chat];
+                    [scrollView openView:cardViewController];
                     }];
 
                     }
@@ -383,7 +386,7 @@
                 }
                 else
                 {
-                    [scrollView openView:chat];
+                    [scrollView openView:cardViewController];
                 }
         }
 
