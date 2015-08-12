@@ -439,7 +439,7 @@
     [super viewDidLoad];
 
     self.navigationController.navigationBarHidden = 0;
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.messages = [NSMutableArray new];

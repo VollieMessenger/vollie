@@ -263,6 +263,12 @@
     [self.navigationController pushViewController:cardViewController animated:YES];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+    //Required for edit actions
+}
+
 
 #pragma mark "Crazy Other Methods"
 
