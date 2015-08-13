@@ -28,7 +28,7 @@ SecondDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
-@property CustomCameraView *cameraView;
+//@property CustomCameraView *cameraView;
 @property NSMutableArray *arrayForScrollView;
 @property UIPageControl *pageControl;
 @property PFImageView *popUpImageView;
@@ -174,7 +174,7 @@ SecondDelegate>
             [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
 
             [self.navigationController pushViewController:selectRoomVC animated:YES];
-            [self.cameraView blankOutButtons];
+//            [self.cameraView blankOutButtons];
         }
     }
     return YES;

@@ -183,8 +183,8 @@
 {
     if (!_isFavoritesSets)
     {
-        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-        self.navigationItem.rightBarButtonItem = favorites;
+//        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+//        self.navigationItem.rightBarButtonItem = favorites;
 
         //IF HAS BEEN FAVORITED.
         PFQuery *query = [PFQuery queryWithClassName:PF_FAVORITES_CLASS_NAME];
