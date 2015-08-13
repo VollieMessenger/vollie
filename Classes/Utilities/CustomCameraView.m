@@ -288,9 +288,9 @@
 
 - (void)setPopUp
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:self.isPoppingUp withAnimation:UIStatusBarAnimationSlide];
 
-    _isPoppingUp = YES;
+    self.isPoppingUp = YES;
     
     self.cancelButton.hidden = !_isPoppingUp;
     self.leftButton.hidden = YES;
@@ -1628,6 +1628,10 @@
                 [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
                 self.comingFromNewVollie = false;
             }
+            
+            self.cancelButton.hidden = YES;
+            self.rightButton.hidden = NO;
+            
             PostNotification(NOTIFICATION_CAMERA_POPUP);
 
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
@@ -1654,7 +1658,9 @@
         else
         {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+            NewVollieVC *vc = [NewVollieVC new];
+            vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+//            vc = [NewVollieVC new];
             vc.photosArray = self.arrayOfTakenPhotos;
             vc.comingFromCamera = true;
             vc.textFromLastVC = self.textFromNextVC;

@@ -66,6 +66,10 @@ SecondDelegate>
     if(self.comingFromCamera == true)
     {
 //        [self.navigationItem setHidesBackButton:YES animated:NO];
+//        NSLog(@"i came from the camera land");
+//        [self checkForPreviousVC];
+        self.textView.text = @"";
+#warning need to fix to make it say type message here        
     }
 //    NSLog(@"%li photos when newVollie appeared", self.photosArray.count);
 }
@@ -175,6 +179,7 @@ SecondDelegate>
 
             [self.navigationController pushViewController:selectRoomVC animated:YES];
             [self.cameraView blankOutButtons];
+            [self.cameraView unhideButtons];
         }
     }
     return YES;
@@ -193,9 +198,18 @@ SecondDelegate>
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
-    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-    if (!self.showingCamera)[cam blankOutButtons];
+//    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+//    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+//    if (!self.showingCamera)[cam blankOutButtons];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    if (self.comingFromCamera)
+    {
+        CustomCameraView *cam = self.navigationController.viewControllers.firstObject;
+        cam.photosFromNewVC = self.photosArray;
+    }
 }
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
@@ -220,6 +234,7 @@ SecondDelegate>
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
         cam.delegate = self;
+        self.cameraView = cam;
         if (self.photosArray.count >= 1){
             //            cam.arrayOfTakenPhotos = self.photosArray;
             [cam loadImagesSaved];
