@@ -125,26 +125,6 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esw-Yz-eD1">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-hQ-RoQ" customClass="PFImageView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="90" id="rHS-ji-teR"/>
-                                                                <constraint firstAttribute="height" constant="90" id="vbl-rc-GJU"/>
-                                                            </constraints>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="rHS-ji-teR"/>
-                                                                    <exclude reference="vbl-rc-GJU"/>
-                                                                </mask>
-                                                            </variation>
-                                                            <variation key="widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="209" y="7" width="90" height="90"/>
-                                                                <mask key="constraints">
-                                                                    <include reference="rHS-ji-teR"/>
-                                                                    <include reference="vbl-rc-GJU"/>
-                                                                </mask>
-                                                            </variation>
-                                                        </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="be2-KR-ED0">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                             <subviews>
@@ -182,8 +162,7 @@
                                                                     <exclude reference="pGk-xH-Oeu"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="-5" y="7" width="215" height="90"/>
+                                                            <variation key="widthClass=compact">
                                                                 <mask key="subviews">
                                                                     <include reference="KRE-Pw-xlh"/>
                                                                 </mask>
@@ -193,6 +172,25 @@
                                                                 </mask>
                                                             </variation>
                                                         </view>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-hQ-RoQ" customClass="PFImageView">
+                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="90" id="rHS-ji-teR"/>
+                                                                <constraint firstAttribute="height" constant="90" id="vbl-rc-GJU"/>
+                                                            </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="rHS-ji-teR"/>
+                                                                    <exclude reference="vbl-rc-GJU"/>
+                                                                </mask>
+                                                            </variation>
+                                                            <variation key="widthClass=compact">
+                                                                <mask key="constraints">
+                                                                    <include reference="rHS-ji-teR"/>
+                                                                    <include reference="vbl-rc-GJU"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -201,12 +199,14 @@
                                                         <constraint firstItem="be2-KR-ED0" firstAttribute="leading" secondItem="esw-Yz-eD1" secondAttribute="leading" constant="-5" id="jxk-Bx-DNd"/>
                                                         <constraint firstAttribute="centerY" secondItem="jd7-hQ-RoQ" secondAttribute="centerY" id="qHm-PS-U7U"/>
                                                         <constraint firstAttribute="bottom" secondItem="be2-KR-ED0" secondAttribute="bottom" constant="6" id="quP-Bj-7vD"/>
-                                                        <constraint firstAttribute="trailing" secondItem="jd7-hQ-RoQ" secondAttribute="trailing" constant="5" id="xkg-2n-Ka7"/>
+                                                        <constraint firstAttribute="trailing" secondItem="jd7-hQ-RoQ" secondAttribute="trailing" constant="5" id="xkg-2n-Ka7">
+                                                            <variation key="widthClass=compact" constant="8"/>
+                                                        </constraint>
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="subviews">
-                                                            <exclude reference="jd7-hQ-RoQ"/>
                                                             <exclude reference="be2-KR-ED0"/>
+                                                            <exclude reference="jd7-hQ-RoQ"/>
                                                         </mask>
                                                         <mask key="constraints">
                                                             <exclude reference="qHm-PS-U7U"/>
@@ -217,11 +217,10 @@
                                                             <exclude reference="quP-Bj-7vD"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="8" width="304" height="103"/>
+                                                    <variation key="widthClass=compact">
                                                         <mask key="subviews">
-                                                            <include reference="jd7-hQ-RoQ"/>
                                                             <include reference="be2-KR-ED0"/>
+                                                            <include reference="jd7-hQ-RoQ"/>
                                                         </mask>
                                                         <mask key="constraints">
                                                             <include reference="qHm-PS-U7U"/>

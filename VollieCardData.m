@@ -51,6 +51,10 @@
             [self.photosArray addObject:object];
             self.dateUpdated = object.createdAt;
             PFObject *set = object[PF_CHAT_SETID];
+            NSDate *date = object[PF_PICTURES_UPDATEDACTION];
+            self.dateUpdated = date;
+            self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
+
             [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];
         }
     }
@@ -69,6 +73,11 @@
 //            NSLog(@"%@", self.numberFromDateToSortWith);
 //        }
     }
+}
+
+-(void)setDateForVollieCardData
+{
+    //do this later
 }
 
 -(void)addMessageToOurArrayWith:(PFObject*)object

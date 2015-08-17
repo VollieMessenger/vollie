@@ -160,10 +160,17 @@
 //    incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
 
 
-    self.inputToolbar.contentView.textView.backgroundColor = backgroundColor_;
-    self.inputToolbar.contentView.textView.textColor = [UIColor whiteColor];
-    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
+//    self.inputToolbar.contentView.textView.backgroundColor = backgroundColor_;
+//    self.inputToolbar.contentView.textView.textColor = [UIColor whiteColor];
+//    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
 
+
+    self.inputToolbar.contentView.textView.backgroundColor = [UIColor whiteColor];
+    self.inputToolbar.contentView.textView.textColor = [UIColor blackColor];
+    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithWhite:0.600 alpha:1.000];
+    self.inputToolbar.contentView.backgroundColor = [UIColor whiteColor];
+    self.inputToolbar.contentView.textView.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.inputToolbar.contentView.textView.font = 
     self.inputToolbar.contentView.leftBarButtonItem = nil;
 
     [self finishReceivingMessage:0];
@@ -198,13 +205,13 @@
              {
                  if (objects.count > 0)
                  {
-                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR6"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-                     self.navigationItem.rightBarButtonItem = favorites;
+//                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR6"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+//                     self.navigationItem.rightBarButtonItem = favorites;
                  }
                  else
                  {
-                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-                     self.navigationItem.rightBarButtonItem = favorites;
+//                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+//                     self.navigationItem.rightBarButtonItem = favorites;
                  }
              }
          }];
