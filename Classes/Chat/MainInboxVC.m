@@ -19,7 +19,8 @@
 #import "ParseVolliePackage.h"
 #import "NewVollieVC.h"
 #import "ProfileView.h"
-
+#import "InviteContactsCell.h"
+#import "CreateChatroomView.h"
 
 
 @interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate>
@@ -222,31 +223,59 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.messages.count;
+    if (self.messages.count)
+    {
+        return self.messages.count + 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    RoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
-    PFObject *room = self.messages[indexPath.row];
-    [cell formatCellWith:room];
-    return cell;
+    if (indexPath.row < self.messages.count)
+    {
+        RoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
+        PFObject *room = self.messages[indexPath.row];
+        [cell formatCellWith:room];
+        return cell;
+    }
+    else
+    {
+        [self.tableView registerNib:[UINib nibWithNibName:@"InviteContactsCell" bundle:0] forCellReuseIdentifier:@"InviteContactsCell"];
+        InviteContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteContactsCell"];
+        return cell;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:1];
-    RoomCell *cell = (RoomCell*)[tableView cellForRowAtIndexPath:indexPath];
-    
-    PFObject *room = self.messages[indexPath.row];
-    PFObject *customChatRoom = [room objectForKey:PF_MESSAGES_ROOM];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
-    cardViewController.name = cell.chatRoomLabel.text;
-    cardViewController.room = customChatRoom;
-    cardViewController.messageItComesFrom = room;
-    [self.navigationController pushViewController:cardViewController animated:YES];
+    if (indexPath.row < self.messages.count)
+    {
+        RoomCell *cell = (RoomCell*)[tableView cellForRowAtIndexPath:indexPath];
+        
+        PFObject *room = self.messages[indexPath.row];
+        PFObject *customChatRoom = [room objectForKey:PF_MESSAGES_ROOM];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+        cardViewController.name = cell.chatRoomLabel.text;
+        cardViewController.room = customChatRoom;
+        cardViewController.messageItComesFrom = room;
+        [self.navigationController pushViewController:cardViewController animated:YES];
+    }
+    else
+    {
+        CreateChatroomView * view = [[CreateChatroomView alloc]init];
+        view.title = @"ahhhhh";
+        view.isTherePicturesToSend = NO;
+        view.invite = YES;
+        [self.navigationController pushViewController:view animated:YES];
+        return;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

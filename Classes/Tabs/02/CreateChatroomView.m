@@ -84,15 +84,19 @@
 - (void)sendBackArrayOfPhoneNumbers:(NSMutableArray *)array andDidPressSend:(BOOL)send andText:(NSString *)text
 {
     _arrayofSelectedPhoneNumbers = array;
-    if (send) {
+    if (send)
+    {
         [self sendWithTextMessage];
     }
 }
 
 - (IBAction)didPressSendButton:(UIButton *)sender
 {
-    self.buttonSend.userInteractionEnabled = NO;
-    [self preSendCheck];
+//commented out these two lines and added the sendWithTextMessage
+    
+//    self.buttonSend.userInteractionEnabled = NO;
+//    [self preSendCheck];
+    [self sendWithTextMessage];
 }
 
 - (void)actionContacts
@@ -967,7 +971,8 @@
 
     if (cell.accessoryView == nil && cell.accessoryType == UITableViewCellAccessoryNone)
     {
-        if (self.invite && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]]) {
+        if (self.invite && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
+        {
             [self.arrayOfSelectedUsers removeObjectAtIndex:0];
         }
         if (_arrayOfSelectedUsers.count > 100) [ProgressHUD showError:@"100 People Only"];
@@ -980,13 +985,16 @@
             cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
-    }else{
+    }
+    else
+    {
         [self.arrayOfSelectedUsers removeObject:selectedUser];
         cell.accessoryView = nil;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    if (self.arrayOfSelectedUsers.count == 1 && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]]){
+    if (self.arrayOfSelectedUsers.count == 1 && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
+    {
         self.buttonSend.hidden = YES;
         self.buttonSend.alpha = 1;
         self.buttonSendArrow.hidden = YES;

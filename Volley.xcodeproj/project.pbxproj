@@ -116,6 +116,8 @@
 		32771FC01B7417AA007726E9 /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBF1B7417AA007726E9 /* WeekCell.m */; };
 		329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9D221B700F340025D3EC /* FivePicsFavCell.m */; };
 		329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329F9D231B700F340025D3EC /* FivePicsFavCell.xib */; };
+		32F748071B82367400870840 /* InviteContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F748051B82367400870840 /* InviteContactsCell.m */; };
+		32F748081B82367400870840 /* InviteContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F748061B82367400870840 /* InviteContactsCell.xib */; };
 		9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */; };
 		9CFEFAF41B1E1A3F005B1BF6 /* InviteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF21B1E1A3F005B1BF6 /* InviteCell.xib */; };
 		C20BECA41A5E5520004C5A80 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C20BECA31A5E5520004C5A80 /* Images.xcassets */; };
@@ -406,6 +408,9 @@
 		329F9D211B700F340025D3EC /* FivePicsFavCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FivePicsFavCell.h; sourceTree = "<group>"; };
 		329F9D221B700F340025D3EC /* FivePicsFavCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FivePicsFavCell.m; sourceTree = "<group>"; };
 		329F9D231B700F340025D3EC /* FivePicsFavCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FivePicsFavCell.xib; sourceTree = "<group>"; };
+		32F748041B82367400870840 /* InviteContactsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteContactsCell.h; sourceTree = "<group>"; };
+		32F748051B82367400870840 /* InviteContactsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteContactsCell.m; sourceTree = "<group>"; };
+		32F748061B82367400870840 /* InviteContactsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteContactsCell.xib; sourceTree = "<group>"; };
 		9CFEFAF01B1E1A3F005B1BF6 /* InviteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteCell.h; sourceTree = "<group>"; };
 		9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteCell.m; sourceTree = "<group>"; };
 		9CFEFAF21B1E1A3F005B1BF6 /* InviteCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteCell.xib; sourceTree = "<group>"; };
@@ -1091,6 +1096,9 @@
 				324843F31B715606009810D3 /* Chat.m */,
 				324843F51B715E58009810D3 /* RoomCell.h */,
 				324843F61B715E58009810D3 /* RoomCell.m */,
+				32F748041B82367400870840 /* InviteContactsCell.h */,
+				32F748051B82367400870840 /* InviteContactsCell.m */,
+				32F748061B82367400870840 /* InviteContactsCell.xib */,
 			);
 			name = MainInboxVC;
 			sourceTree = "<group>";
@@ -1395,6 +1403,7 @@
 				2930F94219E96C73000F7799 /* tab_profile@2x.png in Resources */,
 				2930F94119E96C73000F7799 /* tab_private@2x.png in Resources */,
 				C2CA16ED1A85116500DD25AC /* MessagesCellDot.xib in Resources */,
+				32F748081B82367400870840 /* InviteContactsCell.xib in Resources */,
 				2721708C1B5443ED0050A9D0 /* FivePicCell.xib in Resources */,
 				C2CDFB0A1A42912E0078DE43 /* Default-568h@2x.png in Resources */,
 				29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */,
@@ -1441,6 +1450,7 @@
 				27DB35301B4C7E4800A765A2 /* MembersViewVC.m in Sources */,
 				324843F71B715E58009810D3 /* RoomCell.m in Sources */,
 				27DB352D1B4C631200A765A2 /* ManageChatVC.m in Sources */,
+				32F748071B82367400870840 /* InviteContactsCell.m in Sources */,
 				29271A2D19F284AC009C308B /* JSQSystemSoundPlayer.m in Sources */,
 				C2832CBA1A704A6100CDF19D /* IQToolbar.m in Sources */,
 				C21DD6EC1A71D73B0009BC6A /* JCNotificationBannerViewIOS7Style.m in Sources */,
