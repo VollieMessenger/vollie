@@ -17,6 +17,9 @@
 //    self.buttonView.backgroundColor = [UIColor blackColor];
     self.buttonView.backgroundColor = [UIColor volleyFamousGreen];
     self.buttonView.layer.cornerRadius = 10;
+    self.buttonView.layer.masksToBounds = YES;
+    self.buttonView.layer.borderColor = [UIColor colorWithWhite:0.902 alpha:1.000].CGColor;
+    self.buttonView.layer.borderWidth = 1;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
