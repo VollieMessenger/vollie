@@ -540,6 +540,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    
     PostNotification(NOTIFICATION_REFRESH_CUSTOMCHAT);
 }
 

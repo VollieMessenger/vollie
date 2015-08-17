@@ -447,13 +447,15 @@
 
     [self loadAlbumFavorites];
 
+    
     /*
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
-                                   initWithTitle: @"Back"
+                                   initWithTitle: @"Cancel"
                                    style: UIBarButtonItemStyleBordered
                                    target: nil action: nil];
     [self.navigationItem setBackBarButtonItem: backButton];
      */
+     
 
     self.didViewJustLoad = YES;
 

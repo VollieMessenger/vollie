@@ -1671,6 +1671,7 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
 //    NSLog(@"reload method called in camera");
+//    self.textFromNextVC = nil;
     self.scrollView.didJustFinishSendingVollie = YES;
     [self didSlideRight:self];
     NavigationController *navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];

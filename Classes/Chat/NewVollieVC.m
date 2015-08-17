@@ -60,6 +60,7 @@ SecondDelegate>
 
     self.showingCamera = NO;
 
+    //do we need these?
     [self.navigationController setNavigationBarHidden: NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
 
@@ -220,7 +221,8 @@ SecondDelegate>
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
         cam.delegate = self;
-        if (self.photosArray.count >= 1){
+        if (self.photosArray.count >= 1)
+        {
             //            cam.arrayOfTakenPhotos = self.photosArray;
             [cam loadImagesSaved];
             self.showingCamera = YES;
@@ -328,6 +330,11 @@ SecondDelegate>
 //    {
 //        [self setUpPhotoScrollViewWithIndexPathItem:indexPath.item];
 //    }
+}
+
+-(BOOL)prefersStatusBarHidden
+{
+    return NO;
 }
 
 @end
