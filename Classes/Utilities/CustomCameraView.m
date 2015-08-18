@@ -288,7 +288,7 @@
 
 - (void)setPopUp
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
     _isPoppingUp = YES;
     
@@ -307,7 +307,7 @@
     {
         self.rightButton.hidden = true;
         self.cancelButton.hidden = false;
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
 
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -375,6 +375,8 @@
     {
         [self.captureSession stopRunning];
     }
+    self.comingFromNewVollie = NO;
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
 }
 
 - (void)unhideButtons
@@ -752,7 +754,7 @@
         [self setButtonsWithImage:image withVideo:false AndURL:0];
 
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
@@ -761,7 +763,7 @@
 {
     [picker dismissViewControllerAnimated:1 completion:^{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
@@ -951,6 +953,14 @@
             [session addOutput:_movieFileOutput];
         }
         
+        AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+        NSError *error2 = nil;
+        AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+        if (audioInput)
+        { 
+            [self.captureSession addInput:audioInput];
+        }
+        
         [session setSessionPreset:AVCaptureSessionPreset1280x720];
 
         // Assign session to an ivar.
@@ -1077,24 +1087,26 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
+            NSLog(@"1");
             AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
             NSError *error2 = nil;
-            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-            if (audioInput)
-            {
-                [self.captureSession addInput:audioInput];
-            }
-
+//            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+//            if (audioInput)
+//            {
+//                NSLog(@"2");
+//                [self.captureSession addInput:audioInput];
+//            }
+            NSLog(@"3");
             _isCapturingVideo = YES;
-
+            
             self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
-
+            NSLog(@"3");
 
             for (UIButton *button in self.savedButtons)
             {
                 button.userInteractionEnabled = NO;
             }
-
+            NSLog(@"4");
             self.videoView = [UIView new];
             self.animationFrame = [UIView new];
             self.videoView.layer.masksToBounds = 1;
@@ -1105,7 +1117,7 @@
             self.videoView.layer.shouldRasterize = 1;
             self.videoView.layer.borderWidth = 0;
             self.videoView.layer.borderColor = [UIColor whiteColor].CGColor;
-            
+            NSLog(@"5");
             switch (self.arrayOfTakenPhotos.count)
             {
                 case 0:
@@ -1127,17 +1139,18 @@
                 default:
                     break;
             }
+            NSLog(@"6");
             self.animationFrame.layer.masksToBounds = YES;
             self.animationFrame.layer.cornerRadius = 10;
             self.animationFrame.layer.borderWidth = 3;
             self.animationFrame.layer.borderColor = [UIColor whiteColor].CGColor;
             [self.view addSubview:self.videoView];
             [self.view addSubview:self.animationFrame];
-
+            NSLog(@"7");
             self.startDate = [NSDate date];
-
+            NSLog(@"8");
             [self.takePictureButton setImage:[UIImage imageNamed:@"record-1"] forState:UIControlStateNormal];
-
+            NSLog(@"9");
             [self captureVideoNow];
             return;
         }
@@ -2011,7 +2024,7 @@
 //KLCPopup
 - (void)didTap:(UITapGestureRecognizer *)tap
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.pop dismiss:1];
 
     for (MPMoviePlayerController *object in self.arrayOfScrollview)
