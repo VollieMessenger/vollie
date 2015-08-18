@@ -16,16 +16,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-Up-Yfc">
-                        <rect key="frame" x="0.0" y="11" width="361" height="86.5"/>
+                        <rect key="frame" x="0.0" y="17" width="361" height="75"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image-header-newmessage" translatesAutoresizingMaskIntoConstraints="NO" id="8iB-Wi-NQe">
-                                <rect key="frame" x="0.0" y="0.0" width="361" height="86.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="361" height="75"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Contacts to Vollie" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkW-5a-zRJ">
-                                <rect key="frame" x="83" y="33" width="194" height="21"/>
+                                <rect key="frame" x="83" y="27" width="194" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="194" id="6tr-gr-gR4"/>
-                                    <constraint firstAttribute="height" constant="21" id="Agp-c6-ycT"/>
+                                    <constraint firstAttribute="height" constant="21" id="KHs-8c-LQE"/>
+                                    <constraint firstAttribute="width" constant="194" id="kOK-ka-jIa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <color key="textColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,20 +34,20 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0023610639554918489" blue="0.34628179448171992" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="8iB-Wi-NQe" firstAttribute="leading" secondItem="WDa-Up-Yfc" secondAttribute="leading" id="07B-Bq-LnP"/>
-                            <constraint firstAttribute="centerY" secondItem="qkW-5a-zRJ" secondAttribute="centerY" id="0gT-r4-rrq"/>
-                            <constraint firstAttribute="centerX" secondItem="qkW-5a-zRJ" secondAttribute="centerX" id="0o5-Sg-3qx"/>
-                            <constraint firstItem="8iB-Wi-NQe" firstAttribute="top" secondItem="WDa-Up-Yfc" secondAttribute="top" id="Mre-U4-GXK"/>
-                            <constraint firstAttribute="trailing" secondItem="8iB-Wi-NQe" secondAttribute="trailing" id="Orq-Np-y3i"/>
-                            <constraint firstAttribute="bottom" secondItem="8iB-Wi-NQe" secondAttribute="bottom" id="YzR-io-G9l"/>
+                            <constraint firstItem="8iB-Wi-NQe" firstAttribute="top" secondItem="WDa-Up-Yfc" secondAttribute="top" id="4hw-4f-8sz"/>
+                            <constraint firstAttribute="trailing" secondItem="8iB-Wi-NQe" secondAttribute="trailing" id="Imy-n8-Z7u"/>
+                            <constraint firstAttribute="centerY" secondItem="qkW-5a-zRJ" secondAttribute="centerY" id="M3y-tM-st6"/>
+                            <constraint firstAttribute="bottom" secondItem="8iB-Wi-NQe" secondAttribute="bottom" id="Ptv-Wb-Z03"/>
+                            <constraint firstItem="8iB-Wi-NQe" firstAttribute="leading" secondItem="WDa-Up-Yfc" secondAttribute="leading" id="bSu-Ub-weV"/>
+                            <constraint firstAttribute="centerX" secondItem="qkW-5a-zRJ" secondAttribute="centerX" id="dDr-Xb-eEg"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="WDa-Up-Yfc" secondAttribute="bottom" constant="3" id="3gs-5e-nC6"/>
-                    <constraint firstItem="WDa-Up-Yfc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Y61-i4-yTb"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="WDa-Up-Yfc" secondAttribute="trailing" constant="-8" id="jQl-XX-PyN"/>
-                    <constraint firstItem="WDa-Up-Yfc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="kzI-Oi-w0N"/>
+                    <constraint firstItem="WDa-Up-Yfc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="3yy-0K-vfg"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WDa-Up-Yfc" secondAttribute="trailing" constant="-8" id="VWf-wl-tSQ"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="WDa-Up-Yfc" secondAttribute="bottom" constant="8.5" id="Xbx-zc-InX"/>
+                    <constraint firstItem="WDa-Up-Yfc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="g02-dz-0Zb"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -97,7 +97,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.vollieIconImageView.layer.cornerRadius = 10;
     self.vollieIconImageView.layer.masksToBounds = YES;
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(goToManageChatVC)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(goToManageChatVC)];
     barButton.image = [UIImage imageNamed:ASSETS_TYPING];
     self.navigationItem.rightBarButtonItem = barButton;
 }
@@ -369,6 +369,7 @@
          else
          {
              NSLog(@"%@",error);
+             [ProgressHUD showError:@"network connection error"];
          }
      }];
 }

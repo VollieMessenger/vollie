@@ -375,6 +375,8 @@
     {
         [self.captureSession stopRunning];
     }
+    
+    self.comingFromNewVollie = false;
 }
 
 - (void)unhideButtons

@@ -23,7 +23,7 @@
         self.dateUpdated = object.createdAt;
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-        NSDate *todaysDate;
+//        NSDate *todaysDate;
 //        NSLog(@"Initialized date is %@",[formatter stringFromDate:self.dateUpdated]);
 
 
@@ -35,6 +35,12 @@
         [self checkIfIsPictureOrMessageWith:object];
     }
     return self;
+}
+
+-(void)setDateUpdatedWithObject:(PFObject*)object
+{
+    NSDate *date = object.createdAt;
+    self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
 }
 
 -(void)modifyCardWith:(PFObject *)object
@@ -49,7 +55,7 @@
         if ([object valueForKey:PF_CHAT_ISUPLOADED])
         {
             [self.photosArray addObject:object];
-            self.dateUpdated = object.createdAt;
+//            self.dateUpdated = object.createdAt;
             PFObject *set = object[PF_CHAT_SETID];
             NSDate *date = object[PF_PICTURES_UPDATEDACTION];
             self.dateUpdated = date;
@@ -77,6 +83,7 @@
 
 -(void)setDateForVollieCardData
 {
+    //kyle note: refactor this later
     //do this later
 }
 

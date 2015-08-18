@@ -175,9 +175,10 @@
         [PFUser logOut];
         fieldName.text = @"";
         ParsePushUserResign();
-        [self dismissViewControllerAnimated:1 completion:^{
-            PostNotification(NOTIFICATION_USER_LOGGED_OUT);
-        }];
+//        [self dismissViewControllerAnimated:1 completion:^{
+//            PostNotification(NOTIFICATION_USER_LOGGED_OUT);
+//        }];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
 
