@@ -1134,7 +1134,7 @@
  //Required for edit actions
  }
  */
- 
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;

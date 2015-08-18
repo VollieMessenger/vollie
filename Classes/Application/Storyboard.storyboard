@@ -127,49 +127,9 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="be2-KR-ED0">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="KRE-Pw-xlh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="35" id="RQ4-fj-WoE"/>
-                                                                        <constraint firstAttribute="width" constant="35" id="ew2-Pg-MFR"/>
-                                                                    </constraints>
-                                                                    <variation key="default">
-                                                                        <mask key="constraints">
-                                                                            <exclude reference="RQ4-fj-WoE"/>
-                                                                            <exclude reference="ew2-Pg-MFR"/>
-                                                                        </mask>
-                                                                    </variation>
-                                                                    <variation key="widthClass=compact">
-                                                                        <mask key="constraints">
-                                                                            <include reference="RQ4-fj-WoE"/>
-                                                                            <include reference="ew2-Pg-MFR"/>
-                                                                        </mask>
-                                                                    </variation>
-                                                                </imageView>
-                                                            </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstItem="KRE-Pw-xlh" firstAttribute="leading" secondItem="be2-KR-ED0" secondAttribute="leading" constant="-4" id="eYq-6g-1Jb"/>
-                                                                <constraint firstItem="KRE-Pw-xlh" firstAttribute="top" secondItem="be2-KR-ED0" secondAttribute="top" constant="-4" id="pGk-xH-Oeu"/>
-                                                            </constraints>
-                                                            <variation key="default">
-                                                                <mask key="subviews">
-                                                                    <exclude reference="KRE-Pw-xlh"/>
-                                                                </mask>
-                                                                <mask key="constraints">
-                                                                    <exclude reference="eYq-6g-1Jb"/>
-                                                                    <exclude reference="pGk-xH-Oeu"/>
-                                                                </mask>
-                                                            </variation>
-                                                            <variation key="widthClass=compact">
-                                                                <mask key="subviews">
-                                                                    <include reference="KRE-Pw-xlh"/>
-                                                                </mask>
-                                                                <mask key="constraints">
-                                                                    <include reference="eYq-6g-1Jb"/>
-                                                                    <include reference="pGk-xH-Oeu"/>
-                                                                </mask>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="-5" y="7" width="215" height="90.5"/>
                                                             </variation>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-hQ-RoQ" customClass="PFImageView">
@@ -184,7 +144,8 @@
                                                                     <exclude reference="vbl-rc-GJU"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact">
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="206" y="7" width="90" height="90"/>
                                                                 <mask key="constraints">
                                                                     <include reference="rHS-ji-teR"/>
                                                                     <include reference="vbl-rc-GJU"/>
@@ -217,7 +178,8 @@
                                                             <exclude reference="quP-Bj-7vD"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="8" width="304" height="103.5"/>
                                                         <mask key="subviews">
                                                             <include reference="be2-KR-ED0"/>
                                                             <include reference="jd7-hQ-RoQ"/>
@@ -1101,7 +1063,7 @@
                         <viewControllerLayoutGuide type="bottom" id="o55-gj-VvU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="wm3-bw-H4N">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yf2-Jt-KVJ">
@@ -2155,24 +2117,6 @@
             </objects>
             <point key="canvasLocation" x="553.5" y="274"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="sFe-xr-9VW">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="54s-pu-3PP" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cjj-NT-YNB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BAF-W2-gmz" kind="relationship" relationship="rootViewController" id="Xja-BF-OzT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="O1P-JF-iFs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1471.5" y="1034"/>
-        </scene>
         <!--Manage ChatVC-->
         <scene sceneID="29t-ot-tZ5">
             <objects>
@@ -2569,7 +2513,6 @@
         <image name="white-vollie-v" width="290" height="158"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DcF-6q-EO5"/>
         <segue reference="a4t-b7-EBm"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -105,6 +105,10 @@
     {
         //do NOTHING
     }
+    else if(self.picker)
+    {
+        
+    }
     else
     {
         [self.arrayOfTakenPhotos removeAllObjects];
@@ -269,6 +273,15 @@
 //    else
 //    {
 //        self.arrayOfTakenPhotos = [NSMutableArray new];
+    
+    if (!self.picker)
+    {
+        
+    }
+    else
+    {
+        
+    }
         [self clearCameraStuff];
 //    }
 
@@ -326,10 +339,12 @@
         {
 //            [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
         }
-        } else {
-            _didViewJustLoad = NO;
+    }
+    else
+    {
+        _didViewJustLoad = NO;
 //            self.scrollView.scrollEnabled = NO;
-        }
+    }
 
 //    if(self.photosFromNewVC.count)
 //    {
@@ -376,7 +391,10 @@
         [self.captureSession stopRunning];
     }
     
-    self.comingFromNewVollie = false;
+    if (!self.picker)
+    {
+        self.comingFromNewVollie = false;
+    }
 }
 
 - (void)unhideButtons
@@ -671,11 +689,12 @@
 {
     NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
 
-    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+//    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
 
     AVAsset *movie = [AVAsset assetWithURL:videoURL];
     CMTime movieLength = movie.duration;
-    if (movie) {
+    if (movie)
+    {
         if (CMTimeCompare(movieLength, CMTimeMake(10.5, 1)) == -1)
         {
             AVURLAsset *asset1 = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
@@ -1504,7 +1523,7 @@
     {
         if (!isVideoTag && !videoURL)
         {
-        [self.arrayOfTakenPhotos addObject:image];
+            [self.arrayOfTakenPhotos addObject:image];
         }
         else
         {

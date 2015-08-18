@@ -23,7 +23,7 @@
 #import "CreateChatroomView.h"
 
 
-@interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate>
+@interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 //visual properties
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -43,6 +43,13 @@
 @property BOOL isRefreshAnimating;
 @property BOOL isRefreshingUp;
 @property BOOL isRefreshingDown;
+
+//for the touch and hold to rename and delete
+@property PFObject *messageToRenameDelete;
+@property UILongPressGestureRecognizer *longPress;
+@property UITapGestureRecognizer *tap;
+
+
 
 //arrays
 //@property NSMutableArray *messagesObjectIds;
@@ -116,7 +123,8 @@
     self.imageViewInButtonRight.layer.masksToBounds = YES;
     self.imageViewInButtonRight.hidden = YES;
     
-    
+    self.longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+    [self.view addGestureRecognizer:self.longPress];
 }
 
 -(void)setNavBarColor
@@ -279,12 +287,127 @@
     }
 }
 
+
+#pragma mark "Longtouch to edit/delete"
+- (void)longPress:(UILongPressGestureRecognizer *)longPressss
+{
+    CGPoint point = [longPressss locationInView:self.tableView];
+    
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[self.tableView indexPathForRowAtPoint:point]];
+    if (cell)
+    {
+        //do we need if?
+        [self.tableView setEditing:1 animated:1];
+        self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTap:)];
+        self.tap.delegate = self;
+        [self.tableView addGestureRecognizer:self.tap];
+    }
+}
+
+- (void)didTap:(UITapGestureRecognizer *)tapppppp
+{
+    CGPoint point = [tapppppp locationInView:self.tableView];
+    
+    if (point.x > 50 && self.tap)
+    {
+        [self.tableView setEditing:0 animated:1];
+        [self.tableView removeGestureRecognizer:self.tap];
+        self.tap = nil;
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    //This is called ALWAYS because of longPress???
+    CGPoint point = [touch locationInView:self.view];
+    
+    if (self.tableView.editing)
+    {
+        if (point.x < 50)
+        {
+            //Let the button work
+            return NO;
+        }
+        else
+        {
+            return YES;
+        }
+    }
+    else
+    {
+        return NO;
+    }
+}
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
-    //Required for edit actions
 }
 
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+    {
+        [self.tableView setEditing:0 animated:1];
+        PFObject *message = [self.messages objectAtIndex:indexPath.row];
+        [message setValue:@YES forKey:PF_MESSAGES_HIDE_UNTIL_NEXT];
+        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error)
+            {
+                //Remove all traces of messages
+                [self.messages removeObject:message];
+                
+                //Animation
+                [self.tableView beginUpdates];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView endUpdates];
+            }
+        }];
+    }];
+    button.backgroundColor = [UIColor redColor];
+    
+    UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Rename" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
+    {
+        [self.tableView setEditing:0 animated:1];
+        self.messageToRenameDelete = [self.messages objectAtIndex:indexPath.row];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Rename..." message:0 delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rename", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        if (self.messageToRenameDelete[PF_MESSAGES_NICKNAME])
+        {
+            [alert textFieldAtIndex:0].text = [self.messageToRenameDelete valueForKey:PF_ALBUMS_NICKNAME];
+        }
+        [alert show];
+        
+    }];
+    
+    button2.backgroundColor = [UIColor colorWithRed:.75f green:.75f blue:.75f alpha:1]; //arbitrary color
+    return @[button, button2]; //array with all the buttons you want. 1,2,3, etc...
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex != alertView.cancelButtonIndex && [alertView textFieldAtIndex:0].hasText)
+    {
+        NSLog(@"you clicked rename");
+//        NSString *string = [alertView textFieldAtIndex:0].text;
+        [self.messageToRenameDelete setValue:[alertView textFieldAtIndex:0].text forKey:PF_MESSAGES_NICKNAME];
+        [self.messageToRenameDelete saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
+            if (succeeded)
+            {
+                [self.tableView setEditing:0 animated:1];
+                [self.tableView reloadData];
+                [ProgressHUD showSuccess:@"Renamed"];
+            }
+            else
+            {
+                [ProgressHUD showError:@"Connectivity Issues"];
+            }
+        }];
+
+    }
+}
 
 #pragma mark "Crazy Other Methods"
 
@@ -297,9 +420,6 @@
     else
     {
         //Error when app starts and no user logged in, when user registers, the inbox is gone. Might user super VC to present this MasterView.
-        
-        // [[(AppDelegate *)[[UIApplication sharedApplication] delegate] vc] showDetailViewController:[MasterLoginRegisterView new] sender:self];
-        
         [self.navigationController showDetailViewController:[MasterLoginRegisterView new] sender:self];
         [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
         [self clearMessageArrays];
@@ -357,7 +477,6 @@
     [self refreshMessages];
     [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
 }
-
 
 #pragma mark "Refresh Control"
 - (void)setupRefreshControl
@@ -428,9 +547,12 @@
                      }
                      completion:^(BOOL finished) {
                          // If still refreshing, keep spinning, else reset
-                         if (self.refreshControl.isRefreshing) {
+                         if (self.refreshControl.isRefreshing)
+                         {
                              [self animateRefreshView];
-                         }else{
+                         }
+                         else
+                         {
                              [self resetAnimation];
                          }
                      }];

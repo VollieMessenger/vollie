@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -57,20 +57,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03p-0x-tbQ">
                                 <rect key="frame" x="0.0" y="0.0" width="203" height="357"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Vot-kI-Dwo">
-                                        <rect key="frame" x="-4" y="-4" width="35" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="n5p-II-nwt"/>
-                                            <constraint firstAttribute="width" constant="35" id="rtr-95-9BF"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="Vot-kI-Dwo" firstAttribute="leading" secondItem="03p-0x-tbQ" secondAttribute="leading" constant="-4" id="NrP-0D-mue"/>
-                                    <constraint firstItem="Vot-kI-Dwo" firstAttribute="top" secondItem="03p-0x-tbQ" secondAttribute="top" constant="-4" id="qQy-Tc-3K9"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -101,7 +88,4 @@
             <point key="canvasLocation" x="190" y="391"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="1readMesseageIcon" width="100" height="100"/>
-    </resources>
 </document>
