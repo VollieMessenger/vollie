@@ -458,7 +458,7 @@
 {
     PFObject *message = [self.messages objectAtIndex:0];
     PFObject *room = [message objectForKey:PF_MESSAGES_ROOM];
-    RoomCell *cell = (RoomCell*)[self.tableView cellForRowAtIndexPath:0];
+//    RoomCell *cell = (RoomCell*)[self.tableView cellForRowAtIndexPath:0];
 
 //    NSString *nameString = cell.room
 //    selectedRoom = room.objectId;
@@ -466,7 +466,8 @@
     MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
     ////    cardViewController.name = cell.labelDescription.text;
     cardViewController.room = room;
-    cardViewController.name = cell.chatRoomLabel.text;
+//    cardViewController.name = cell.chatRoomLabel.text;
+//    NSLog(@"%@", cell.chatRoomLabel.text);
     cardViewController.messageItComesFrom = message;
     [self.navigationController pushViewController:cardViewController animated:YES];
 }

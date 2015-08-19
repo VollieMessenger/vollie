@@ -90,6 +90,7 @@
 
 -(void)basicSetUpForUI
 {
+    
     self.title = self.name;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
