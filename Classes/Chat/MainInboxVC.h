@@ -15,5 +15,6 @@
 @property NSMutableArray *messages;
 
 -(void)goToMostRecentChatRoom;
+-(void)loadInbox;
 
 @end

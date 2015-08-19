@@ -141,16 +141,24 @@
     self.buttonSendArrow.frame = CGRectMake(self.view.frame.size.width/2 - 12, self.view.frame.size.height - 30, 25, 25);
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
-
+    
     [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
-
     self.navigationController.navigationBar.titleTextAttributes =  @{
                                                                      NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
                                                                      NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
                                                                      NSShadowAttributeName:[NSShadow new]
                                                                      };
+
+//    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
+
+//    self.navigationController.navigationBar.titleTextAttributes =  @{
+//                                                                     NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
+//                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+//                                                                     NSShadowAttributeName:[NSShadow new]
+//                                                                     };
 
     [super viewDidLoad];
     [self.tableView setRowHeight:55];
@@ -277,7 +285,6 @@
 {
     //    NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"http://%@:%@@https://api.parse.com/1/users", @"", @""]];
     NSURL *url = [NSURL URLWithString:@"https://api.parse.com/1/users"];
-#warning WHAT DOES THIS STRING LOOK LIKE.
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setURL:url];
     [request setHTTPMethod:@"POST"];
@@ -315,16 +322,16 @@
 
 -(void) setNavigationBarColor
 {
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
-//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
-
-    self.navigationController.navigationBar.titleTextAttributes =  @{
-                                                                     NSForegroundColorAttributeName: [UIColor whiteColor],
-                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
-                                                                     NSShadowAttributeName:[NSShadow new]
-                                                                     };
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
+////    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
+//
+//    self.navigationController.navigationBar.titleTextAttributes =  @{
+//                                                                     NSForegroundColorAttributeName: [UIColor whiteColor],
+//                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+//                                                                     NSShadowAttributeName:[NSShadow new]
+//                                                                     };
 }
 
 - (void)sendWithTextMessage
@@ -616,7 +623,7 @@
                                              andSet:set];
     }
 
-     [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+//     [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
 //    [self.navigationController.navigationBar setTintColor:<#(UIColor *)#>]
 
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];

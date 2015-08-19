@@ -1622,8 +1622,8 @@
 {
     self.textFromNextVC = textForCam;
     self.photosFromNewVC = photosArray;
-    NSLog(self.textFromNextVC);
-    NSLog(@"%li in photo array", photosArray.count);
+//    NSLog(self.textFromNextVC);
+    NSLog(@"%li in photo array when New Vollie VC dismissed. Text from NewVollieVC is %@", photosArray.count, self.textFromNextVC);
 }
 
 //NEXT BUTTON PRESSED
@@ -1693,11 +1693,14 @@
 {
 //    NSLog(@"reload method called in camera");
 //    self.textFromNextVC = nil;
-    self.scrollView.didJustFinishSendingVollie = YES;
-    [self didSlideRight:self];
     NavigationController *navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
     MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
-    [inbox goToMostRecentChatRoom];
+    [inbox loadInbox];
+    self.scrollView.didJustFinishSendingVollie = YES;
+    [self didSlideRight:self];
+    [inbox performSelector:@selector(goToMostRecentChatRoom) withObject:self afterDelay:1.0f];
+
+//    [inbox goToMostRecentChatRoom];
 }
 
 - (void)setFlashMode:(AVCaptureFlashMode)flashMode forDevice:(AVCaptureDevice *)device

@@ -434,6 +434,7 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     //needs to send user to new vollie page
+    [self loadInbox];
     NSLog(@"About to Push to Card 0");
     [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
     //    [self perfor]
