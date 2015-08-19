@@ -689,7 +689,7 @@
 {
     NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
 
-//    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
 
     AVAsset *movie = [AVAsset assetWithURL:videoURL];
     CMTime movieLength = movie.duration;
@@ -935,13 +935,13 @@
         [session addOutput:output];
     }
     
-    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-    NSError *error2 = nil;
-    AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-    if (audioInput)
-    {
-        [session addInput:audioInput];
-    }
+//    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+//    NSError *error2 = nil;
+//    AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+//    if (audioInput)
+//    {
+//        [session addInput:audioInput];
+//    }
 
     // Configure your output.
     dispatch_queue_t queue = dispatch_queue_create("myQueue", NULL);
@@ -1106,6 +1106,14 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
+            
+            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+            NSError *error2 = nil;
+            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+            if (audioInput)
+            {
+                [self.captureSession addInput:audioInput];
+            }
 
             _isCapturingVideo = YES;
             
