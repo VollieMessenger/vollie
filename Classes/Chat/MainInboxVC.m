@@ -429,6 +429,7 @@
 
 -(void)pushToCard
 {
+    self.scrollView.scrollEnabled = NO;
     [self reloadAfterMessageSuccessfullySent];
 }
 
@@ -456,6 +457,7 @@
 
 -(void)goToCardViewWithMessage
 {
+//    self.scrollView.scrollEnabled = YES;
     PFObject *message = [self.messages objectAtIndex:0];
     PFObject *room = [message objectForKey:PF_MESSAGES_ROOM];
 //    RoomCell *cell = (RoomCell*)[self.tableView cellForRowAtIndexPath:0];
@@ -469,6 +471,7 @@
 //    cardViewController.name = cell.chatRoomLabel.text;
 //    NSLog(@"%@", cell.chatRoomLabel.text);
     cardViewController.messageItComesFrom = message;
+    self.scrollView.scrollEnabled = YES;
     [self.navigationController pushViewController:cardViewController animated:YES];
 }
 
@@ -494,6 +497,7 @@
 -(void)goToMostRecentChatRoom
 {
 //    NSLog(@"test success");
+    self.scrollView.scrollEnabled = NO;
     [self refreshMessages];
     [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
 }
