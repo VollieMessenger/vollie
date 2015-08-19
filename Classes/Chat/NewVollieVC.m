@@ -63,12 +63,23 @@ SecondDelegate>
     //do we need these?
     [self.navigationController setNavigationBarHidden: NO animated:YES];
     self.navigationController.navigationBar.translucent = NO;
+//    [self performSelector:@selector(changeToBlackStatusBar) withObject:self afterDelay:0.1f];
+
 
     if(self.comingFromCamera == true)
     {
-//        [self.navigationItem setHidesBackButton:YES animated:NO];
+        [self performSelector:@selector(changeToBlackStatusBar) withObject:self afterDelay:0.1f];
+    }
+    else
+    {
+        [self changeToBlackStatusBar];
     }
 //    NSLog(@"%li photos when newVollie appeared", self.photosArray.count);
+}
+
+-(void)changeToBlackStatusBar
+{
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 -(void)basicSetUpAndInit

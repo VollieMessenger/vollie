@@ -212,6 +212,7 @@
                      }
                  }
              }
+             [self.tableView reloadData];
              [self.refreshControl endRefreshing];
          }];
         
@@ -434,21 +435,38 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     //needs to send user to new vollie page
-    [self loadInbox];
+    [self refreshMessages];
     NSLog(@"About to Push to Card 0");
-    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
+    if (!self.isCurrentlyLoadingMessages)
+    {
+        [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
+    }
+    else
+    {
+        [self performSelector:@selector(delayedGoToCardWithMessage) withObject:self afterDelay:1.0f];
+        [self.tableView reloadData];
+    }
     //    [self perfor]
+}
+
+-(void)delayedGoToCardWithMessage
+{
+    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
 }
 
 -(void)goToCardViewWithMessage
 {
     PFObject *message = [self.messages objectAtIndex:0];
     PFObject *room = [message objectForKey:PF_MESSAGES_ROOM];
+    RoomCell *cell = (RoomCell*)[self.tableView cellForRowAtIndexPath:0];
+
+//    NSString *nameString = cell.room
 //    selectedRoom = room.objectId;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
     ////    cardViewController.name = cell.labelDescription.text;
     cardViewController.room = room;
+    cardViewController.name = cell.chatRoomLabel.text;
     cardViewController.messageItComesFrom = message;
     [self.navigationController pushViewController:cardViewController animated:YES];
 }
