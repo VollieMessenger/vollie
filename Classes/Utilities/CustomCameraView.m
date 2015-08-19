@@ -301,7 +301,7 @@
 
 - (void)setPopUp
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
     _isPoppingUp = YES;
     
@@ -320,7 +320,7 @@
     {
         self.rightButton.hidden = true;
         self.cancelButton.hidden = false;
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
 
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -773,7 +773,7 @@
         [self setButtonsWithImage:image withVideo:false AndURL:0];
 
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
@@ -782,7 +782,7 @@
 {
     [picker dismissViewControllerAnimated:1 completion:^{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
@@ -933,6 +933,14 @@
     if ([session canAddOutput:output])
     {
         [session addOutput:output];
+    }
+    
+    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+    NSError *error2 = nil;
+    AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+    if (audioInput)
+    {
+        [session addInput:audioInput];
     }
 
     // Configure your output.
@@ -1098,18 +1106,10 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
-            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-            NSError *error2 = nil;
-            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-            if (audioInput)
-            {
-                [self.captureSession addInput:audioInput];
-            }
 
             _isCapturingVideo = YES;
-
+            
             self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
-
 
             for (UIButton *button in self.savedButtons)
             {
@@ -1126,7 +1126,7 @@
             self.videoView.layer.shouldRasterize = 1;
             self.videoView.layer.borderWidth = 0;
             self.videoView.layer.borderColor = [UIColor whiteColor].CGColor;
-            
+
             switch (self.arrayOfTakenPhotos.count)
             {
                 case 0:
@@ -1148,6 +1148,7 @@
                 default:
                     break;
             }
+
             self.animationFrame.layer.masksToBounds = YES;
             self.animationFrame.layer.cornerRadius = 10;
             self.animationFrame.layer.borderWidth = 3;
@@ -2035,7 +2036,7 @@
 //KLCPopup
 - (void)didTap:(UITapGestureRecognizer *)tap
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.pop dismiss:1];
 
     for (MPMoviePlayerController *object in self.arrayOfScrollview)

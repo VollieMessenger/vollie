@@ -19,10 +19,13 @@
 #import "utilities.h"
 #import "AppDelegate.h"
 #import "SelectChatroomView.h"
+#import "NewVollieVC.h"
+#import "ParseVolliePackage.h"
+#import "MainInboxVC.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate>
+@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate, RefreshMessagesDelegate>
 
 @property (nonatomic, strong) ALAssetsLibrary *library;
 @property AVCaptureSession *captureSession;
@@ -33,6 +36,9 @@
 @property AVCaptureFocusMode *focusmode;
 @property UIImagePickerController *picker;
 @property UIPageControl *pageControl;
+
+//https://developer.apple.com/library/ios/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/ConfiguringanAudioSession/ConfiguringanAudioSession.html
+// bug for audio, maybe read
 
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 @property (weak, nonatomic) IBOutlet UIButton *nextButton;
@@ -70,11 +76,10 @@
 @property UIView *videoView;
 @property CGRect newImagePosition;
 
-<<<<<<< HEAD
-=======
 @property BOOL firstCameraFlip;
->>>>>>> silenceBug
 @property int camFlipCount;
+
+@property NSString *textFromNextVC;
 
 @end
 
@@ -82,6 +87,7 @@
 @implementation CustomCameraView
 
 @synthesize delegate;
+@synthesize myDelegate;
 
 - (id)initWithPopUp:(BOOL)popup
 {
@@ -95,10 +101,21 @@
 
 -(void) clearCameraStuff
 {
-    [self.arrayOfTakenPhotos removeAllObjects];
-    [self moveImageUpToLatestBlank:0];
-    [self unhideButtons];
-    [self performSelector:@selector(popRoot) withObject:self afterDelay:1.0f];
+    if(self.photosFromNewVC.count)
+    {
+        //do NOTHING
+    }
+    else if(self.picker)
+    {
+        
+    }
+    else
+    {
+        [self.arrayOfTakenPhotos removeAllObjects];
+        [self moveImageUpToLatestBlank:0];
+        [self unhideButtons];
+        [self performSelector:@selector(popRoot) withObject:self afterDelay:1.0f];
+    }
 }
 
 -(void) popRoot
@@ -110,7 +127,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self runCamera];
+
+//    [self runCamera];
+    [self deallocSession];
 
     self.firstCameraFlip = true;
     self.camFlipCount = 0;
@@ -163,10 +182,18 @@
     _refreshControl = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
     [_refreshControl beginRefreshing];
 
-    [self removeBackgroundsAndHideObjects];
+//    [self removeBackgroundsAndHideObjects];
 
     [self moveImageUpToLatestBlank:0];
-    self.arrayOfTakenPhotos = [NSMutableArray new];
+    if (self.photosFromNewVC.count)
+    {
+        self.arrayOfTakenPhotos = self.photosFromNewVC;
+        [self loadImagesSaved];
+    }
+    else
+    {
+        self.arrayOfTakenPhotos = [NSMutableArray new];
+    }
 
     for (UIButton *button in self.savedButtons)
     {
@@ -201,7 +228,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissPopup) name:NOTIFICATION_CAMERA_POPUP object:0];
     }
      */
-    
+//    [self dismissPopup];
+
 }
 
 - (void)removeInputs
@@ -235,7 +263,30 @@
     [super viewWillAppear:1];
 #warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.
 
+//    if(self.photosFromNewVC.count)
+//    {
+//        NSLog(@"%li in photosfromNewVC in if statement", self.photosFromNewVC.count);
+//        [self clearCameraStuff];
+//        NSLog(@"%li in photosfromNewVC after clear camera", self.photosFromNewVC.count);
+//        self.arrayOfTakenPhotos = self.photosFromNewVC;
+//    }
+//    else
+//    {
+//        self.arrayOfTakenPhotos = [NSMutableArray new];
+    
+    if (!self.picker)
+    {
+        
+    }
+    else
+    {
+        
+    }
+        [self clearCameraStuff];
+//    }
+
     self.navigationController.navigationBarHidden = 1;
+    NSLog(@"%li in photosfromNewVC after if statement", self.photosFromNewVC.count);
 
     //Only way to check which camera is up and what screen is present.
     if (self.scrollView.contentOffset.x == 0)
@@ -250,7 +301,7 @@
 
 - (void)setPopUp
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
     _isPoppingUp = YES;
     
@@ -262,6 +313,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    [self runCamera];
+
+    if (self.comingFromNewVollie == true)
+    {
+        self.rightButton.hidden = true;
+        self.cancelButton.hidden = false;
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
 
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.rightButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -279,10 +339,22 @@
         {
 //            [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
         }
-        } else {
-            _didViewJustLoad = NO;
+    }
+    else
+    {
+        _didViewJustLoad = NO;
 //            self.scrollView.scrollEnabled = NO;
-        }
+    }
+
+//    if(self.photosFromNewVC.count)
+//    {
+//        self.arrayOfTakenPhotos = self.photosFromNewVC;
+//    }
+//    else
+//    {
+//        self.arrayOfTakenPhotos = [NSMutableArray new];
+//        [self clearCameraStuff];
+//    }
 
     self.takePictureButton.hidden = self.arrayOfTakenPhotos.count < 5 ? NO : YES;
 }
@@ -311,6 +383,23 @@
         self.scrollView.scrollEnabled = NO;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
+
+    [self stopCaptureSession];
+    
+    if (self.captureSession.isRunning)
+    {
+        [self.captureSession stopRunning];
+    }
+<<<<<<< HEAD
+    
+    if (!self.picker)
+    {
+        self.comingFromNewVollie = false;
+    }
+=======
+    self.comingFromNewVollie = NO;
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+>>>>>>> 88f5eb8edf4d71657a576864456730f36f9b795e
 }
 
 - (void)unhideButtons
@@ -326,6 +415,7 @@
 #warning NOT USED DISABLE PLEASE
 - (IBAction)dragOut: (id)sender withEvent: (UIEvent *) event
 {
+
 }
 /*
  return;
@@ -488,7 +578,7 @@
         case 3:
             self.x4.hidden = YES;
             self.savedButton4.hidden = YES;
-            [self.arrayOfTakenPhotos removeObjectAtIndex:3];
+            [self.arrayOfTakenPhotos removeObjectAtIndex:3];  //kyle note this is where it crashes
             self.savedButton4.imageView.image = nil;
             [self moveImageUpToLatestBlank:self.x4];
             break;
@@ -507,11 +597,14 @@
     }
 }
 
+
+
 - (IBAction)onCloseCameraPressed:(UIButton *)sender
 {
 //    [self stopCaptureSession];
 
-    if (self.picker) {
+    if (self.picker)
+    {
         [self.picker dismissViewControllerAnimated:1 completion:0];
     }
 
@@ -541,6 +634,10 @@
     self.didPickImageFromAlbum = NO;
 }
 
+-(void)freezeCamera
+{
+    NSLog(@"frozen!");
+}
 
 
 -(IBAction)didSlideRight:(id)sender
@@ -597,11 +694,12 @@
 {
     NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
 
-    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+//    NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
 
     AVAsset *movie = [AVAsset assetWithURL:videoURL];
     CMTime movieLength = movie.duration;
-    if (movie) {
+    if (movie)
+    {
         if (CMTimeCompare(movieLength, CMTimeMake(10.5, 1)) == -1)
         {
             AVURLAsset *asset1 = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
@@ -680,7 +778,7 @@
         [self setButtonsWithImage:image withVideo:false AndURL:0];
 
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
@@ -689,7 +787,7 @@
 {
     [picker dismissViewControllerAnimated:1 completion:^{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
@@ -707,12 +805,18 @@
                                                       contentMode:PHImageContentModeDefault
                                                           options:PHImageRequestOptionsVersionCurrent
                                                     resultHandler:^(UIImage *result, NSDictionary *info) {
-                                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                                            [[self cameraRollButton] setImage:result forState:UIControlStateNormal];
-                                                        });
-                                                    }];
+                                                        dispatch_async(dispatch_get_main_queue(),
+               ^{
+                    //kyle note
+                    CGSize smallerPhoto =CGSizeMake(200, 200);
+                    UIImage *squareImage = [self squareImageWithImage:result scaledToSize:smallerPhoto];
+                    [[self cameraRollButton] setImage:squareImage forState:UIControlStateNormal];
+                });
+            }];
         }
-    } else {
+    }
+    else
+    {
         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
         // Enumerate just the photos and videos group by using ALAssetsGroupSavedPhotos.
         [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop)
@@ -742,6 +846,46 @@
     self.cameraRollButton.layer.borderWidth = 3;
 }
 
+- (UIImage *)squareImageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    double ratio;
+    double delta;
+    CGPoint offset;
+
+    //make a new square size, that is the resized imaged width
+    CGSize sz = CGSizeMake(newSize.width, newSize.width);
+
+    //figure out if the picture is landscape or portrait, then
+    //calculate scale factor and offset
+    if (image.size.width > image.size.height) {
+        ratio = newSize.width / image.size.width;
+        delta = (ratio*image.size.width - ratio*image.size.height);
+        offset = CGPointMake(delta/2, 0);
+    } else {
+        ratio = newSize.width / image.size.height;
+        delta = (ratio*image.size.height - ratio*image.size.width);
+        offset = CGPointMake(0, delta/2);
+    }
+
+    //make the final clipping rect based on the calculated values
+    CGRect clipRect = CGRectMake(-offset.x, -offset.y,
+                                 (ratio * image.size.width) + delta,
+                                 (ratio * image.size.height) + delta);
+
+
+    //start a new context, with scale factor 0.0 so retina displays get
+    //high quality image
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        UIGraphicsBeginImageContextWithOptions(sz, YES, 0.0);
+    } else {
+        UIGraphicsBeginImageContext(sz);
+    }
+    UIRectClip(clipRect);
+    [image drawInRect:clipRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return newImage;
+}
 
 #pragma mark - CAMERA
 
@@ -788,19 +932,20 @@
 
 
     //ADD AUDIO INPUT
-    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-    NSError *error2 = nil;
-    AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-    if (audioInput)
-    {
-        [session addInput:audioInput];
-    }
 
     // Create a VideoDataOutput and add it to the session
     AVCaptureVideoDataOutput *output = [[AVCaptureVideoDataOutput alloc] init];
     if ([session canAddOutput:output])
     {
         [session addOutput:output];
+    }
+    
+    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+    NSError *error2 = nil;
+    AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+    if (audioInput)
+    {
+        [session addInput:audioInput];
     }
 
     // Configure your output.
@@ -893,55 +1038,72 @@
 
 -(void) didTapForFocusAndExposurePoint:(UITapGestureRecognizer *)point
 {
-    if (point.state == UIGestureRecognizerStateEnded)
-    {
-        CGPoint save = [point locationInView:self.view];
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
-        view.layer.borderWidth = 3;
-        view.layer.cornerRadius = 10;
-        view.layer.borderColor = [UIColor whiteColor].CGColor;
-        view.center = save;
-        view.alpha = 0;
-        [UIView animateWithDuration:0.3f animations:^{
-            [self.view addSubview:view];
-            view.alpha = 1;
-            view.alpha = 0;
-        } completion:^(BOOL finished) {
-            [view removeFromSuperview];
-        }];
-
-        NSString *save2 = NSStringFromCGPoint(save);
-        save = CGPointMake(save.y/self.view.frame.size.height, (1 -save.x/self.view.frame.size.width));
-        save2 = NSStringFromCGPoint(save);
-
-        if ([self.device lockForConfiguration:0]) {
-            if (point) {
-                [self.device setFocusPointOfInterest:save];
-                [self.device setExposurePointOfInterest:save];
-            }
-            [self.device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-            [self.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-            [self.device unlockForConfiguration];
-        }
-    }
+    //currently not working and not important for current build. users do not
+    //expect to have exposure settings
+//    if (point.state == UIGestureRecognizerStateEnded)
+//    {
+//        CGPoint save = [point locationInView:self.view];
+//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+//        view.layer.borderWidth = 3;
+//        view.layer.cornerRadius = 10;
+//        view.layer.borderColor = [UIColor whiteColor].CGColor;
+//        view.center = save;
+//        view.alpha = 0;
+//        [UIView animateWithDuration:0.3f animations:^{
+//            [self.view addSubview:view];
+//            view.alpha = 1;
+//            view.alpha = 0;
+//        } completion:^(BOOL finished) {
+//            [view removeFromSuperview];
+//        }];
+//
+//        NSString *save2 = NSStringFromCGPoint(save);
+//        save = CGPointMake(save.y/self.view.frame.size.height, (1 -save.x/self.view.frame.size.width));
+//        save2 = NSStringFromCGPoint(save);
+//
+//        if ([self.device lockForConfiguration:0]) {
+//            if (point) {
+//                [self.device setFocusPointOfInterest:save];
+//                [self.device setExposurePointOfInterest:save];
+//            }
+//            [self.device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+//            [self.device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+//            [self.device unlockForConfiguration];
+//        }
+//    }
 }
+
+//- (IBAction)handleDrag:(UIButton *)sender forEvent:(UIEvent *)event
+//{
+//    CGPoint point = [[[event allTouches] anyObject] locationInView:self.view];
+//    point.y = sender.center.y; //Always stick to the same y value
+//
+//    sender.center = point;
+//}
 
 -(void)didLongPressFocusAndExposure:(UILongPressGestureRecognizer *)point
 {
     if (point.state == UIGestureRecognizerStateBegan)
     {
         CGPoint save = [point locationInView:self.view];
-        
-        for (UIButton * button in self.savedButtons) {
-            if (!button.hidden){
-                if (CGRectContainsPoint(button.frame, save)) {
-                    button.hidden = YES;
-                    self.x1.hidden = YES;
-                    self.x2.hidden = YES;
-                    self.x3.hidden = YES;
-                    self.x4.hidden = YES;
-                    self.x5.hidden = YES;
-                    [self createViewForImagePositionChange:button atPoint:save];
+//        CGPoint tempPoint = CGPointMake(save.x, self.x1.center.y);
+//        save = tempPoint;
+        if(self.arrayOfTakenPhotos.count > 1)
+        {
+        for (UIButton * button in self.savedButtons)
+            {
+                if (!button.hidden)
+                {
+                    if (CGRectContainsPoint(button.frame, save))
+                    {
+                        button.hidden = YES;
+                        self.x1.hidden = YES;
+                        self.x2.hidden = YES;
+                        self.x3.hidden = YES;
+                        self.x4.hidden = YES;
+                        self.x5.hidden = YES;
+                        [self createViewForImagePositionChange:button atPoint:save];
+                    }
                 }
             }
         }
@@ -949,12 +1111,13 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
-            _isCapturingVideo = YES;
 
+            _isCapturingVideo = YES;
+            
             self.progressTimer = [NSTimer scheduledTimerWithTimeInterval:.1 target:self selector:@selector(updateUI:) userInfo:nil repeats:YES];
 
-
-            for (UIButton *button in self.savedButtons) {
+            for (UIButton *button in self.savedButtons)
+            {
                 button.userInteractionEnabled = NO;
             }
 
@@ -968,8 +1131,9 @@
             self.videoView.layer.shouldRasterize = 1;
             self.videoView.layer.borderWidth = 0;
             self.videoView.layer.borderColor = [UIColor whiteColor].CGColor;
-            
-            switch (self.arrayOfTakenPhotos.count) {
+
+            switch (self.arrayOfTakenPhotos.count)
+            {
                 case 0:
                     [self.animationFrame setFrame:self.savedButton1.frame];
                     break;
@@ -989,6 +1153,7 @@
                 default:
                     break;
             }
+
             self.animationFrame.layer.masksToBounds = YES;
             self.animationFrame.layer.cornerRadius = 10;
             self.animationFrame.layer.borderWidth = 3;
@@ -1002,38 +1167,6 @@
 
             [self captureVideoNow];
             return;
-        }
-
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-        view.layer.borderWidth = 5;
-        view.layer.cornerRadius = 10;
-        view.layer.borderColor = [UIColor whiteColor].CGColor;
-        view.center = save;
-        view.alpha = 0;
-        [UIView animateWithDuration:0.9f animations:^{
-            [self.view addSubview:view];
-            view.alpha = 0;
-            view.alpha = 1;
-            view.backgroundColor = [UIColor lightTextColor];
-        } completion:^(BOOL finished) {
-            [view removeFromSuperview];
-        }];
-
-        NSString *save2 = {NSStringFromCGPoint(save)};
-
-        save = CGPointMake(save.y/self.view.frame.size.height, (1 -save.x/self.view.frame.size.width));
-        save2 = NSStringFromCGPoint(save);
-
-        if ([self.device lockForConfiguration:0])
-        {
-            if (point)
-            {
-                [self.device setFocusPointOfInterest:save];
-                [self.device setExposurePointOfInterest:save];
-            }
-            [self.device setExposureMode:AVCaptureExposureModeLocked];
-            [self.device setFocusMode:AVCaptureFocusModeLocked];
-            [self.device unlockForConfiguration];
         }
     }
     else if (point.state ==UIGestureRecognizerStateEnded)
@@ -1052,11 +1185,19 @@
 
             [self captureStopVideoNow];
             [self.progressTimer invalidate];
+            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+            for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
+                if (input.device==audioCaptureDevice) {
+                    [self.captureSession removeInput:input];
+                }
+            }
         }
         
         if (self.movingImagePosition) {
-            for (UIButton *button in self.savedButtons) {
-                if (CGRectEqualToRect(button.frame, self.newImagePosition)) {
+            for (UIButton *button in self.savedButtons)
+            {
+                if (CGRectEqualToRect(button.frame, self.newImagePosition))
+                {
                     [UIView animateWithDuration:.4 animations:^{
                         [self.movingImage setFrame:self.newImagePosition];
                     } completion:^(BOOL finished) {
@@ -1069,9 +1210,14 @@
             }
         }
         
-    } else if(point.state == UIGestureRecognizerStateChanged) {
-        if (self.movingImagePosition) {
-            [self.movingImage setCenter:[point locationInView:self.view]];
+    } else if(point.state == UIGestureRecognizerStateChanged)
+    {
+        if (self.movingImagePosition)
+        {
+            CGPoint save = [point locationInView:self.view];
+            CGPoint temp = CGPointMake(self.x3.center.x, self.x1.center.y);
+            CGPoint new = CGPointMake(temp.x, save.y);
+            [self.movingImage setCenter:new];
             [self insertImageInSlot];
         }
     }
@@ -1097,18 +1243,16 @@
     {
         //Indicate that some changes will be made to the session
         [self.captureSession beginConfiguration];
-        self.camFlipCount++;
+//        self.camFlipCount++;
         AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
-        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
-        NSLog(@"1 %@", currentCameraInput);
-        NSLog(@"2 %@", audioInput);
+//        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
+//        NSLog(@"1 %@", currentCameraInput);
+//        NSLog(@"2 %@", audioInput);
 
-        if (self.camFlipCount >= 3)
-        {
-            currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
-        }
-<<<<<<< HEAD
-=======
+//        if (self.camFlipCount >= 3)
+//        {
+//            currentCameraInput = [self.captureSession.inputs objectAtIndex:1];
+//        }
 //        for (AVCaptureInput* input in self.captureSession.inputs)
 //        {
 //            i++;
@@ -1124,7 +1268,6 @@
 //        NSLog(@"now removing %@", currentCameraInput);
         //TODO Fix how it's selfie mode twice in a row
 //        [self cameraWithPosition:AVCaptureDevicePositionBack];
->>>>>>> silenceBug
 
         //Get new input
         AVCaptureDevice *newCamera = nil;
@@ -1132,16 +1275,13 @@
         {
             newCamera = [self cameraWithPosition:AVCaptureDevicePositionFront];
             [self.captureSession removeInput:currentCameraInput];
-            NSLog(@"%@ was removed", currentCameraInput);
-            NSLog(@"Camera Flip %i", self.camFlipCount);
         }
         else
         {
             newCamera = [self cameraWithPosition:AVCaptureDevicePositionBack];
-            AVCaptureInput *tempInput = [self.captureSession.inputs objectAtIndex:1];
-            [self.captureSession removeInput:tempInput];
-            NSLog(@"%@ was removed", tempInput);
-            NSLog(@"Camera Flip %i", self.camFlipCount);
+//            AVCaptureInput *tempInput = [self.captureSession.inputs objectAtIndex:1];
+//            [self.captureSession removeInput:tempInput];
+            [self.captureSession removeInput:currentCameraInput];
         }
 
         //Add input to session
@@ -1389,7 +1529,7 @@
     {
         if (!isVideoTag && !videoURL)
         {
-        [self.arrayOfTakenPhotos addObject:image];
+            [self.arrayOfTakenPhotos addObject:image];
         }
         else
         {
@@ -1484,6 +1624,14 @@
     }
 }}
 
+-(void) newVollieDismissed:(NSString *)textForCam andPhotos:(NSMutableArray*)photosArray
+{
+    self.textFromNextVC = textForCam;
+    self.photosFromNewVC = photosArray;
+//    NSLog(self.textFromNextVC);
+    NSLog(@"%li in photo array when New Vollie VC dismissed. Text from NewVollieVC is %@", photosArray.count, self.textFromNextVC);
+}
+
 //NEXT BUTTON PRESSED
 - (IBAction)didPressNextButton:(UIButton *)button
 {
@@ -1492,7 +1640,7 @@
         button.transform = CGAffineTransformMakeScale(1,1);
     }];
 
-    button.userInteractionEnabled = NO;
+//    button.userInteractionEnabled = NO;
     if (_arrayOfTakenPhotos.count == 0)
     {
         [ProgressHUD showError:@"No Pictures Taken"];
@@ -1500,14 +1648,27 @@
     }
     else
     {
-        if (self.isPoppingUp)
+        if(self.comingFromNewVollie == true)
+        {
+            if([self.myDelegate respondsToSelector:@selector(secondViewControllerDismissed:)])
+            {
+                [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
+                self.comingFromNewVollie = false;
+            }
+            PostNotification(NOTIFICATION_CAMERA_POPUP);
+
+            [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
+
+            [self dismissViewControllerAnimated:NO completion:nil];
+        }
+        else if (self.isPoppingUp)
         {
             self.isPoppingUp = NO;
 
             self.cancelButton.hidden = YES;
             self.rightButton.hidden = NO;
 
-            [delegate sendBackPictures:self.arrayOfTakenPhotos withBool:YES andComment:@""];
+//            [delegate sendBackPictures:self.arrayOfTakenPhotos withBool:YES andComment:@""];
 
             button.userInteractionEnabled = YES;
 
@@ -1519,15 +1680,33 @@
         }
         else
         {
-            SelectChatroomView *selectView = [SelectChatroomView new];
-            self.delegate = selectView;
-            [[UIApplication sharedApplication] setStatusBarHidden:0];
-            [delegate sendBackPictures:_arrayOfTakenPhotos withBool:YES andComment:@""];
-
-            [self.navigationController pushViewController:selectView animated:0];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+            NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
+            vc.photosArray = self.arrayOfTakenPhotos;
+            vc.comingFromCamera = true;
+            vc.textFromLastVC = self.textFromNextVC;
+            vc.textDelegate = self;
+            ParseVolliePackage *package = [ParseVolliePackage new];
+            package.refreshDelegate = self;
+            vc.package = package;
+            [self.navigationController pushViewController:vc animated:NO];
             button.userInteractionEnabled = YES;
         }
     }
+}
+
+-(void)reloadAfterMessageSuccessfullySent
+{
+//    NSLog(@"reload method called in camera");
+//    self.textFromNextVC = nil;
+    NavigationController *navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+    MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
+    [inbox loadInbox];
+    self.scrollView.didJustFinishSendingVollie = YES;
+    [self didSlideRight:self];
+    [inbox performSelector:@selector(goToMostRecentChatRoom) withObject:self afterDelay:1.0f];
+
+//    [inbox goToMostRecentChatRoom];
 }
 
 - (void)setFlashMode:(AVCaptureFlashMode)flashMode forDevice:(AVCaptureDevice *)device
@@ -1719,15 +1898,13 @@
         int index = (int)sender.tag;
 
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        //we already say this stuff in the app delegate
-        //commenting it out just in case
-//        scrollView.bounces = NO;
-//        scrollView.pagingEnabled = 1;
-//        scrollView.alwaysBounceHorizontal = 1;
-//        scrollView.delegate = self;
-//        scrollView.tag = 22;
-//        scrollView.directionalLockEnabled = YES;
-//        scrollView.showsHorizontalScrollIndicator = 0;
+        scrollView.bounces = YES;
+        scrollView.pagingEnabled = 1;
+        scrollView.alwaysBounceHorizontal = 1;
+        scrollView.delegate = self;
+        scrollView.tag = 22;
+        scrollView.directionalLockEnabled = YES;
+        scrollView.showsHorizontalScrollIndicator = 0;
 
 
         _arrayOfScrollview = [NSMutableArray arrayWithCapacity:self.arrayOfTakenPhotos.count];
@@ -1864,7 +2041,7 @@
 //KLCPopup
 - (void)didTap:(UITapGestureRecognizer *)tap
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.pop dismiss:1];
 
     for (MPMoviePlayerController *object in self.arrayOfScrollview)
@@ -2242,7 +2419,7 @@
 {
     if (_arrayOfTakenPhotos.count > 0)
     {
-        self.isReturningFromBackButton = NO;
+//        self.isReturningFromBackButton = NO;
 
         switch (self.arrayOfTakenPhotos.count) {
             case 1:
@@ -2325,6 +2502,23 @@
     UIGraphicsEndImageContext();
 
     return newImage;
+}
+
+-(void)blankOutButtons
+{
+    self.arrayOfTakenPhotos = [NSMutableArray new];
+    self.savedButton1.hidden = YES;
+    self.savedButton2.hidden = YES;
+    self.savedButton3.hidden = YES;
+    self.savedButton4.hidden = YES;
+    self.savedButton5.hidden = YES;
+    self.x1.hidden = YES;
+    self.x2.hidden = YES;
+    self.x3.hidden = YES;
+    self.x4.hidden = YES;
+    self.x5.hidden = YES;
+    self.nextButton.hidden = YES;
+    self.counterButton.hidden = YES;
 }
 
 @end
