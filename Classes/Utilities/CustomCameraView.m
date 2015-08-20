@@ -263,7 +263,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:1];
-#warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.
+#warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.\
+
+    
+    if(self.photosFromNewVC.count)
+    {
+        self.arrayOfTakenPhotos = self.photosFromNewVC;
+        NSLog(@"%li photos in viewWillAppear in camera", self.arrayOfTakenPhotos.count);
+        [self loadImagesSaved];
+    }
+    else
+    {
+        self.arrayOfTakenPhotos = [NSMutableArray new];
+        [self clearCameraStuff];
+    }
 
 //    if(self.photosFromNewVC.count)
 //    {
@@ -284,7 +297,7 @@
     {
         
     }
-        [self clearCameraStuff];
+//    [self clearCameraStuff];
 //    }
 
     self.navigationController.navigationBarHidden = 1;

@@ -213,16 +213,18 @@ SecondDelegate>
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
 {
     //custom delegation method
-//    self.photosArray = photosForFirst;
+    self.photosArray = photosForFirst;
     self.textView.delegate = self;
     [self.textView becomeFirstResponder];
-    for (UIImage * pic in photosForFirst) {
-        if ([self.photosArray containsObject:pic]) {
-            [self.photosArray removeObject:pic];
-        }
-    }
-    [self.photosArray addObjectsFromArray:photosForFirst];
     [self.collectionView reloadData];
+    
+//ask TJ why he did this?
+//    for (UIImage * pic in photosForFirst) {
+//        if ([self.photosArray containsObject:pic]) {
+//            [self.photosArray removeObject:pic];
+//        }
+//    }
+//    [self.photosArray addObjectsFromArray:photosForFirst];
 }
 
 -(void)bringUpCameraView
@@ -232,15 +234,15 @@ SecondDelegate>
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
         cam.delegate = self;
-        if (self.photosArray.count >= 1)
-        {
+//        if (self.photosArray.count >= 1)
+//        {
             //            cam.arrayOfTakenPhotos = self.photosArray;
-            [cam loadImagesSaved];
-            self.showingCamera = YES;
-        }
+        cam.photosFromNewVC = self.photosArray;
+//        [cam loadImagesSaved];
+        self.showingCamera = YES;
         cam.comingFromNewVollie = YES;
         cam.textFromLastVC = self.textView.text;
-        cam.photosFromNewVC = self.photosArray;
+//        cam.photosFromNewVC = self.photosArray;
 //        NSLog(@"%li photos before popping up camera", self.photosArray.count);
         cam.myDelegate = self;
 
