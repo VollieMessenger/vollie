@@ -272,7 +272,7 @@
         NSLog(@"%li photos in viewWillAppear in camera", self.arrayOfTakenPhotos.count);
         [self loadImagesSaved];
     }
-    else
+    else if(!self.picker)
     {
         self.arrayOfTakenPhotos = [NSMutableArray new];
         [self clearCameraStuff];
@@ -288,15 +288,6 @@
 //    else
 //    {
 //        self.arrayOfTakenPhotos = [NSMutableArray new];
-    
-    if (!self.picker)
-    {
-        
-    }
-    else
-    {
-        
-    }
 //    [self clearCameraStuff];
 //    }
 
@@ -1548,6 +1539,7 @@
         if (!isVideoTag && !videoURL)
         {
             [self.arrayOfTakenPhotos addObject:image];
+            NSLog(@"%li photos in camera", self.arrayOfTakenPhotos.count);
         }
         else
         {
