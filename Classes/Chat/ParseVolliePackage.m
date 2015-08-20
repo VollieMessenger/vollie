@@ -121,8 +121,6 @@
                     [self showSuccessNotificationWithString:@"New Picture!"
                                                   andObject:object
                                               andRoomNumber:roomNumber];
-
-
                 }
             }
             else

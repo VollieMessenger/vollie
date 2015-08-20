@@ -112,6 +112,8 @@
     else
     {
         [self.arrayOfTakenPhotos removeAllObjects];
+        NSLog(@"%@ in textForNextVC when the photos cleared", self.textFromNextVC);
+        self.textFromNextVC = @"Type Message Here...";
         [self moveImageUpToLatestBlank:0];
         [self unhideButtons];
         [self performSelector:@selector(popRoot) withObject:self afterDelay:1.0f];
@@ -1707,6 +1709,7 @@
     [inbox loadInbox];
     self.scrollView.didJustFinishSendingVollie = YES;
     [self didSlideRight:self];
+//    self.scrollView.scrollEnabled= false;
     [inbox performSelector:@selector(goToMostRecentChatRoom) withObject:self afterDelay:1.0f];
 
 //    [inbox goToMostRecentChatRoom];

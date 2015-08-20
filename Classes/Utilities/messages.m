@@ -80,7 +80,9 @@ NSString* CreateMessageItem(PFObject *room, NSArray *arrayOfUsers)
 				message[PF_MESSAGES_UPDATEDACTION] = [NSDate date];
 				[message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 				{
-                    if (error) {
+                    if (error)
+                    {
+                        
                     }
                 }];
 			}
@@ -93,8 +95,11 @@ NSString* CreateMessageItem(PFObject *room, NSArray *arrayOfUsers)
 void HideMessageItem(PFObject *message)
 {
     [message setValue:@YES forKey:PF_MESSAGES_HIDE_UNTIL_NEXT];
-    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
+    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
+        if (!error)
+        {
+            
         }
 	}];
 }
@@ -152,16 +157,16 @@ void UpdateMessageCounter(PFObject *room, NSString *lastMessage, PFObject *pictu
 
 void ClearMessageCounter(PFObject *message)
 {
-				message[PF_MESSAGES_COUNTER] = @0;
-				[message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-				{
-                    if (!error)
-                    {
-                        //Need to clear orange dot in inbox.
-                        PostNotification(NOTIFICATION_RELOAD_INBOX);
-                    }
-                    else
-                    {
-                    }
-				}];
+    message[PF_MESSAGES_COUNTER] = @0;
+    [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
+        if (!error)
+        {
+            //Need to clear orange dot in inbox.
+            PostNotification(NOTIFICATION_RELOAD_INBOX);
+        }
+        else
+        {
+        }
+    }];
 }

@@ -429,7 +429,7 @@
 
 -(void)pushToCard
 {
-    self.scrollView.scrollEnabled = NO;
+//    self.scrollView.scrollEnabled = NO;
     [self reloadAfterMessageSuccessfullySent];
 }
 
@@ -447,7 +447,6 @@
         [self performSelector:@selector(delayedGoToCardWithMessage) withObject:self afterDelay:1.0f];
         [self.tableView reloadData];
     }
-    //    [self perfor]
 }
 
 -(void)delayedGoToCardWithMessage
@@ -471,7 +470,7 @@
 //    cardViewController.name = cell.chatRoomLabel.text;
 //    NSLog(@"%@", cell.chatRoomLabel.text);
     cardViewController.messageItComesFrom = message;
-    self.scrollView.scrollEnabled = YES;
+//    self.scrollView.scrollEnabled = YES;
     [self.navigationController pushViewController:cardViewController animated:YES];
 }
 
