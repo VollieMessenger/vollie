@@ -291,9 +291,9 @@ SecondDelegate>
             cell.hidden = true;
             //adds buffer cells so collectionview will stick for iphone 4 and 5 users
         }
-        else
+        else if (indexPath.item == 0)
         {
-            cell.imageView.image = [UIImage imageNamed:@"Vollie-icon"];
+            cell.imageView.image = [UIImage imageNamed:@"packageimg3"];
         }
     }
     return cell;

@@ -395,7 +395,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nHi-30-Eg7">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="packageimg6" translatesAutoresizingMaskIntoConstraints="NO" id="nHi-30-Eg7">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 </imageView>
                                             </subviews>
@@ -2510,6 +2510,7 @@
         <image name="greyBackGround2" width="816" height="1183"/>
         <image name="icon3-newmessage" width="126" height="126"/>
         <image name="image-header-newmessage" width="420" height="151"/>
+        <image name="packageimg6" width="87" height="87"/>
         <image name="white-vollie-v" width="290" height="158"/>
     </resources>
     <inferredMetricsTieBreakers>
