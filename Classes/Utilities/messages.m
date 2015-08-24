@@ -19,7 +19,7 @@ NSString* CreateMessageItem(PFObject *room, NSArray *arrayOfUsers)
         NSMutableArray *copyOfUsers = [NSMutableArray arrayWithArray:arrayOfUsers];
         NSString *string = [NSString new];
         [copyOfUsers removeObject:user];
-
+ 
         int x = 0;
         for (PFUser *user in copyOfUsers)
         {
