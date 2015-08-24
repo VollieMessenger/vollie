@@ -99,9 +99,54 @@
             self.countDownForLastPhoto --;
             if(self.countDownForLastPhoto == 0)
             {
+                PFRelation *usersWhoHaventRead = [setID relationForKey:@"unreadUsers"];
                 [setID setValue:object forKey:@"lastPicture"];
                 [setID setValue:@0 forKey:@"numberOfResponses"];
                 [setID saveInBackground];
+                
+
+                PFRelation *users = [roomNumber relationForKey:PF_CHATROOMS_USERS];
+                PFQuery *query = [users query];
+                    [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                    if (!error)
+                    {
+                        for (PFUser *user in objects)
+                        {
+                            if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
+                            {
+                                [usersWhoHaventRead addObject:user];
+                            }
+                        }
+                    }
+                }];
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
 
                 [roomNumber setValue:object forKey:@"lastPicture"];
 //                [roomNumber saveInBackground];
@@ -188,7 +233,7 @@
         UpdateMessageCounter(roomNumber, string, object);
     }
     [ProgressHUD showSuccess:@"Sent Vollie!"];
-    [self.refreshDelegate reloadAfterMessageSuccessfullySent];
+    [self.refreshDelegate reloadAfterMessageSuccessfullySent]; //we just need to add the room to thsi?
     [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
 }
 
