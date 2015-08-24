@@ -157,6 +157,7 @@ SecondDelegate>
             PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
             [set setValue:self.whichRoom forKey:PF_SET_ROOM];
             [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
+//            [set setValue:@0 forKey:@"numberOfResponses"];
 //            [set saveInBackground];
 
 //            ParseVolliePackage *package = [ParseVolliePackage new];

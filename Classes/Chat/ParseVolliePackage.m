@@ -100,6 +100,7 @@
             if(self.countDownForLastPhoto == 0)
             {
                 [setID setValue:object forKey:@"lastPicture"];
+                [setID setValue:@0 forKey:@"numberOfResponses"];
                 [setID saveInBackground];
 
                 [roomNumber setValue:object forKey:@"lastPicture"];
