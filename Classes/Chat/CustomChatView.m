@@ -87,6 +87,7 @@
 
              //We must update the date for the set, so we know when it is last edited in favorites.
              PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
+             [set incrementKey:@"numberOfResponses" byAmount:@1];
              [set setValue:[NSDate date] forKey:PF_SET_UPDATED];
              [set saveEventually];
          }

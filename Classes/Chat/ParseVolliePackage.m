@@ -102,12 +102,11 @@
                 PFRelation *usersWhoHaventRead = [setID relationForKey:@"unreadUsers"];
                 [setID setValue:object forKey:@"lastPicture"];
                 [setID setValue:@0 forKey:@"numberOfResponses"];
-                [setID saveInBackground];
-                
-
                 PFRelation *users = [roomNumber relationForKey:PF_CHATROOMS_USERS];
                 PFQuery *query = [users query];
-                    [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+                
+                //get rid of this to test unread status:
+                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error)
                     {
@@ -120,32 +119,8 @@
                         }
                     }
                 }];
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+                [setID saveInBackground];
+
                 
 
                 [roomNumber setValue:object forKey:@"lastPicture"];

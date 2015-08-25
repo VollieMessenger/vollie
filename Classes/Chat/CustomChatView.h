@@ -21,4 +21,6 @@
 @property BOOL isFavoritesSets;
 @property PFObject *album;
 @property NSString *setIDforCardCheck;
+@property PFObject *setChat;
+
 @end
