@@ -25,7 +25,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate, RefreshMessagesDelegate>
+@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate, RefreshMessagesDelegate,masterScrollDelegate>
 
 @property (nonatomic, strong) ALAssetsLibrary *library;
 @property AVCaptureSession *captureSession;
@@ -77,6 +77,7 @@
 @property CGRect newImagePosition;
 
 @property BOOL firstCameraFlip;
+@property BOOL audioOn;
 @property int camFlipCount;
 
 @property NSString *textFromNextVC;
@@ -134,8 +135,9 @@
     [self deallocSession];
 
     self.firstCameraFlip = true;
+    self.audioOn = NO;
     self.camFlipCount = 0;
-
+    self.scrollView.secondarDelegate = self;
     self.captureVideoNowCounter = 0;
     self.takePictureButton.userInteractionEnabled = NO;
     self.switchCameraButton.userInteractionEnabled = NO;
@@ -326,10 +328,17 @@
 
     [self runCamera];
 
-    if (self.comingFromNewVollie == true)
+    if (self.comingFromNewVollie)
     {
 //        self.rightButton.hidden = true;
 //        self.cancelButton.hidden = false;
+        AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+        NSError *error2 = nil;
+        AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+        if (audioInput)
+        {
+            [self.captureSession addInput:audioInput];
+        }
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
 
@@ -406,6 +415,8 @@
     {
         self.comingFromNewVollie = false;
     }
+    self.audioOn = YES;
+    [self cameraView:0];
 }
 
 - (void)unhideButtons
@@ -895,6 +906,26 @@
 
 #pragma mark - CAMERA
 
+-(void)cameraView:(int)number{
+    if (number ==1&&!self.audioOn) {
+        AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+        NSError *error2 = nil;
+        AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+            if (audioInput){
+                [self.captureSession addInput:audioInput];
+            }
+            self.audioOn = YES;
+    } else if (number == 0&&self.audioOn){
+        AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+        for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
+            if (input.device==audioCaptureDevice) {
+                [self.captureSession removeInput:input];
+            }
+        }
+        self.audioOn = NO;
+    }
+}
+
 // Create and configure a capture session and start it running
 - (void)setupCaptureSessionAndStartRunning
 {
@@ -1117,14 +1148,6 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
-            
-            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-            NSError *error2 = nil;
-            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-            if (audioInput)
-            {
-                [self.captureSession addInput:audioInput];
-            }
 
             _isCapturingVideo = YES;
             
@@ -1199,12 +1222,12 @@
 
             [self captureStopVideoNow];
             [self.progressTimer invalidate];
-            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-            for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
-                if (input.device==audioCaptureDevice) {
-                    [self.captureSession removeInput:input];
-                }
-            }
+//            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+//            for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
+//                if (input.device==audioCaptureDevice) {
+//                    [self.captureSession removeInput:input];
+//                }
+//            }
         }
         
         if (self.movingImagePosition) {
@@ -2057,7 +2080,6 @@
 //KLCPopup
 - (void)didTap:(UITapGestureRecognizer *)tap
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.pop dismiss:1];
 
     for (MPMoviePlayerController *object in self.arrayOfScrollview)

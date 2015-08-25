@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #import "NavigationController.h"
+
+@protocol masterScrollDelegate <NSObject>
+
+-(void)cameraView:(int)number;
+
+@end
 
 @interface MasterScrollView : UIScrollView <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
@@ -21,5 +26,6 @@
 - (BOOL) checkIfCurrentChatIsEqualToRoom:(NSString *)roomId didComeFromBackground:(BOOL)isBack;
 
 @property BOOL didJustFinishSendingVollie;
+@property (strong, nonatomic) id<masterScrollDelegate> secondarDelegate;
 
 @end

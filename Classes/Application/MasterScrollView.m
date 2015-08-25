@@ -156,12 +156,15 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     lastContentOffset = scrollView.contentOffset.x;
+    NSLog(@"%f",lastContentOffset);
     if (lastContentOffset < self.bounds.size.width - 1) {
         [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+        [self.secondarDelegate cameraView:1];
     }
     else
     {
         [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
+        [self.secondarDelegate cameraView:0];
         if (self.didJustFinishSendingVollie)
         {
             NSLog(@"was just programatically sent to inbox");
