@@ -13,4 +13,6 @@
 
 @property MasterScrollView *scrollView;
 
+-(void)loadRoomsFromMainInbox;
+
 @end

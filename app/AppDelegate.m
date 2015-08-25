@@ -144,7 +144,7 @@
     WeekHighlightsVC *weekHighlights = (WeekHighlightsVC *)[storyboard instantiateViewControllerWithIdentifier:@"WeekHighlightsVC"];
 //    weekHighlights.scrollView = scrollView;
 
-    scrollView.contentSize = CGSizeMake(2 * vc.view.frame.size.width, vc.view.frame.size.height);
+    scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
     //in case we want to remove third view:
 //    scrollView.contentSize = CGSizeMake(2 * vc.view.frame.size.width, vc.view.frame.size.height);
 
@@ -154,7 +154,7 @@
     self.navInbox = [[NavigationController alloc] initWithRootViewController:mainInbox];
 
 //    self.navFavorites = [[NavigationController alloc] initWithRootViewController:favorites];
-//    self.navFavorites = [[NavigationController alloc] initWithRootViewController:weekHighlights];
+    self.navFavorites = [[NavigationController alloc] initWithRootViewController:weekHighlights];
 
 
     self.navCamera = [[NavigationController alloc] initWithRootViewController:camera];
@@ -169,17 +169,17 @@
 
     _navInbox.view.frame = CGRectMake(vc.view.frame.size.width, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
-//    _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
+    _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
 //    [_settingsVC didMoveToParentViewController:vc];
     [_navCamera didMoveToParentViewController:vc];
-//    [_navFavorites didMoveToParentViewController:vc];
+    [_navFavorites didMoveToParentViewController:vc];
     [_navInbox didMoveToParentViewController:vc];
 
 //    [scrollView addSubview:_settingsVC.view];
     [scrollView addSubview:_navCamera.view];
     [scrollView addSubview:_navInbox.view];
-//    [scrollView addSubview:_navFavorites.view];
+    [scrollView addSubview:_navFavorites.view];
 
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];

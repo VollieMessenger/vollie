@@ -8,6 +8,7 @@
 
 #import "MainInboxVC.h"
 #import "AppConstant.h"
+#import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "messages.h"
 #import "NSDate+TimeAgo.h"
@@ -21,6 +22,7 @@
 #import "ProfileView.h"
 #import "InviteContactsCell.h"
 #import "CreateChatroomView.h"
+#import "WeekHighlightsVC.h"
 
 
 @interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
@@ -32,6 +34,7 @@
 
 //random properties
 @property BOOL isCurrentlyLoadingMessages;
+@property BOOL firstTimeLoading;
 
 //refresh control
 @property  UIRefreshControl *refreshControl;
@@ -64,6 +67,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.firstTimeLoading = YES;
     [self setUpUserInterface];
     [self basicSetUpAfterLoad];
     [self refreshMessages];
@@ -166,6 +170,8 @@
 {
     if ([PFUser currentUser] && self.isCurrentlyLoadingMessages == NO)
     {
+        NavigationController *navFavorites = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
+        WeekHighlightsVC *vc = (WeekHighlightsVC*)navFavorites.viewControllers.firstObject;
         self.isCurrentlyLoadingMessages = YES;
         
         //should change this to RoomObject.h
@@ -198,8 +204,13 @@
                  }
                  [self.tableView reloadData];
                  self.isCurrentlyLoadingMessages = NO;
-//                 [self updateEmptyView];
-                 //do we need that^^
+                 if (self.firstTimeLoading)
+                 {
+                     NavigationController *navFavorites = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
+                     WeekHighlightsVC *vc = (WeekHighlightsVC*)navFavorites.viewControllers.firstObject;
+                     [vc loadRoomsFromMainInbox];
+                     self.firstTimeLoading = NO;
+                 }
              }
              else
              {
