@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "MainInboxVC.h"
 #import "NSDate+TimeAgo.h"
+#import "HighlightData.h"
 
 @interface WeekHighlightsVC () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -32,6 +33,7 @@
 //    self.rooms = [NSMutableArray new];
     self.sets = [NSMutableArray new];
     self.weeks = [NSMutableArray new];
+    self.hightlightsArray = [NSMutableArray new];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -79,7 +81,8 @@
             {
                 if ([set objectForKey:@"numberOfResponses"])
                 {
-                    [self.sets addObject:set];
+//                    NSLog(@"%i responses", [[set objectForKey:@"numberOfResponses"]intValue]);
+//                    [self.sets addObject:set];
                     [self createHighlightWithSet:set];
                     // do i organize here?
                 }
@@ -93,15 +96,36 @@
 -(void)createHighlightWithSet:(PFObject*)set
 {
     NSDate *now = [NSDate date];
-    NSDate *setDate = [set valueForKey:@"createdAt"];
+//    NSDate *setDate = [set valueForKey:@"createdAt"];
+    NSDate *setDate = set.createdAt;
     double deltaSeconds = fabs([setDate timeIntervalSinceDate:now]);
     double minutes = deltaSeconds / 60;
     double hours = minutes / 60;
     double days = hours / 24;
     double weeks = days / 7;
-    NSLog(@"%fl days since set was created", days);
+//    NSLog(@"%fl days since set was created", days);
     int weeksInt = (int)weeks;
-    NSLog(@"%i number of weeks", weeksInt);
+    NSNumber *weeksNumber = [NSNumber numberWithInt:weeksInt];
+    
+    if ([self.weeks containsObject:weeksNumber])
+    {
+        for (HighlightData *data in self.hightlightsArray)
+        {
+            if (data.howManyWeeksAgo == weeks)
+            {
+                [data modifyHighLightWithSet:set];
+                NSLog(@"modified something with week %i", weeksInt);
+            }
+        }
+    }
+    else
+    {
+        [self.weeks addObject:[NSNumber numberWithInt:weeksInt]];
+        HighlightData *data = [[HighlightData alloc] initWithPFObject:set andAmountOfWeeks:weeksInt];
+        [self.hightlightsArray addObject:data];
+        NSLog(@"i created a highlight object for week %i", weeksInt);
+        NSLog(@"%li highlights in the highlight array", self.hightlightsArray.count);
+    }
 }
 
 #pragma mark "TableView Stuff"

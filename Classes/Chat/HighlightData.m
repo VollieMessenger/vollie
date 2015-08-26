@@ -10,11 +10,16 @@
 
 @implementation HighlightData
 
--(instancetype)initWithPFObject:(PFObject *)set
+-(instancetype)initWithPFObject:(PFObject *)set andAmountOfWeeks:(int)weeks
 {
     self = [super self];
     if(self)
     {
+        self.howManyWeeksAgo = weeks;
+        self.weeksNumberToSortWith = [NSNumber numberWithInt:weeks];
+        Set *customSet = [Set new];
+        customSet.set = set;
+        customSet.numberOfResponses = [[set objectForKey:@"numberOfResponses"]intValue];
         [self.sets addObject:set];
     }
     return self;
@@ -22,6 +27,10 @@
 
 -(void)modifyHighLightWithSet:(PFObject *)set
 {
+    Set *customSet = [Set new];
+    customSet.set = set;
+    customSet.numberOfResponses = [[set objectForKey:@"numberOfResponses"]intValue];
+    [self.sets addObject:set];    
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"numberOfResponses" ascending:YES];
     NSArray *sortedSets = [self.sets sortedArrayUsingDescriptors:@[sortDescriptor]];
     self.sortedSets = sortedSets;

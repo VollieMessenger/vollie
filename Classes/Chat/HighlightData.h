@@ -8,15 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "Set.h"
 
 @interface HighlightData : NSObject
 
 @property int howManyWeeksAgo;
+@property NSNumber *weeksNumberToSortWith;
 @property NSMutableArray *sets;
 @property NSArray *sortedSets;
 @property NSMutableArray *topPics;
 
--(instancetype)initWithPFObject:(PFObject *)object;
+-(instancetype)initWithPFObject:(PFObject *)object andAmountOfWeeks:(int)weeks;
 
 -(void)modifyHighLightWithSet:(PFObject *)set;
 
