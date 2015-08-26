@@ -112,7 +112,6 @@
     }
     else
     {
-        [self.arrayOfTakenPhotos removeAllObjects];
         NSLog(@"%@ in textForNextVC when the photos cleared", self.textFromNextVC);
         self.textFromNextVC = @"Type Message Here...";
         [self moveImageUpToLatestBlank:0];
@@ -267,7 +266,9 @@
     [super viewWillAppear:1];
 #warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.\
 
-    
+    if (self.comingFromNewVollie) {
+        [self.arrayOfTakenPhotos removeAllObjects];
+    }
     if(self.photosFromNewVC.count)
     {
         self.arrayOfTakenPhotos = self.photosFromNewVC;
@@ -276,7 +277,6 @@
     }
     else if(!self.picker)
     {
-        self.arrayOfTakenPhotos = [NSMutableArray new];
         [self clearCameraStuff];
     }
 
@@ -409,6 +409,9 @@
     if (self.captureSession.isRunning)
     {
         [self.captureSession stopRunning];
+    }
+    if (self.comingFromNewVollie) {
+        [self.arrayOfTakenPhotos removeAllObjects];
     }
     
     if (!self.picker)
@@ -1691,6 +1694,7 @@
             if([self.myDelegate respondsToSelector:@selector(secondViewControllerDismissed:)])
             {
                 [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
+                [self.arrayOfTakenPhotos removeAllObjects]; 
                 self.comingFromNewVollie = false;
             }
             PostNotification(NOTIFICATION_CAMERA_POPUP);
@@ -2544,7 +2548,6 @@
 
 -(void)blankOutButtons
 {
-    self.arrayOfTakenPhotos = [NSMutableArray new];
     self.savedButton1.hidden = YES;
     self.savedButton2.hidden = YES;
     self.savedButton3.hidden = YES;

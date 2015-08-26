@@ -186,7 +186,6 @@ SecondDelegate>
             [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
 
             [self.navigationController pushViewController:selectRoomVC animated:YES];
-//            [self.cameraView blankOutButtons];
         }
     }
     return YES;
@@ -205,9 +204,9 @@ SecondDelegate>
 -(void)viewDidDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
-    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-    if (!self.showingCamera)[cam blankOutButtons];
+//    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+//    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+//    if (!self.showingCamera)[cam blankOutButtons];
 }
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
