@@ -1498,7 +1498,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nSO-E8-9O7" id="Wfo-ZB-7dJ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="WrN-i7-f4f" customClass="PFImageView">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="WrN-i7-f4f" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="WrN-i7-f4f" secondAttribute="height" multiplier="1:1" id="LjI-En-cb0"/>
@@ -1517,7 +1517,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEr-QE-47M">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="5T6-w1-gOw" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="5T6-w1-gOw" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="5T6-w1-gOw" secondAttribute="height" multiplier="1:1" id="7T1-cl-nEN"/>
@@ -1533,10 +1533,10 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Juo-al-OBb" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Juo-al-OBb" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="jWf-yr-WtK" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="jWf-yr-WtK" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="jWf-yr-WtK" secondAttribute="height" multiplier="1:1" id="y5G-St-EsC"/>
@@ -1552,7 +1552,7 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="vW6-Ea-bBH" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="vW6-Ea-bBH" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="vW6-Ea-bBH" secondAttribute="height" multiplier="1:1" id="zj5-BW-lCR"/>
