@@ -111,7 +111,8 @@
     {
         for (HighlightData *data in self.hightlightsArray)
         {
-            if (data.howManyWeeksAgo == weeks)
+//            NSLog(@"%i weeks ago compared to %i", data.howManyWeeksAgo, weeksInt);
+            if (data.howManyWeeksAgo == weeksInt)
             {
                 [data modifyHighLightWithSet:set];
                 NSLog(@"modified something with week %i", weeksInt);

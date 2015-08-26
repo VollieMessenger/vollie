@@ -15,6 +15,7 @@
     self = [super self];
     if(self)
     {
+        self.sets = [NSMutableArray new];
         self.howManyWeeksAgo = weeks;
         self.weeksNumberToSortWith = [NSNumber numberWithInt:weeks];
         Set *customSet = [Set new];
@@ -34,6 +35,7 @@
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"numberOfResponses" ascending:YES];
     NSArray *sortedSets = [self.sets sortedArrayUsingDescriptors:@[sortDescriptor]];
     self.sortedSets = sortedSets;
+    NSLog(@"Highlight %i has %li sets in it", self.howManyWeeksAgo, self.sortedSets.count);
 }
 
 @end
