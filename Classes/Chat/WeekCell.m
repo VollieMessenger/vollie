@@ -30,6 +30,27 @@
     }
 }
 
+-(void)fillPicsWithTop5PicsFromHighlight:(HighlightData*)highlight
+{
+    int i = 0;
+    for (PFObject *set in highlight.sortedSets)
+    {
+//        PFObject *actualSet = set.set;
+        PFObject *lastPicture = [set objectForKey:@"lastPicture"];
+        PFFile *thumbnail = [lastPicture objectForKey:@"thumbnail"];
+        [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+        {
+            if (!error)
+            {
+                PFImageView *imageView = self.imageViewArray[i];
+                imageView.image = [UIImage imageWithData:data];
+            }
+        }];
+        i++;
+    }
+}
+
+
 - (void)awakeFromNib {
     // Initialization code
 }

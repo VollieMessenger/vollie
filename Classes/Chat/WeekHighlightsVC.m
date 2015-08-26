@@ -88,7 +88,7 @@
                 }
                 //this is where if counter was zero i'd make it hide the alert
             }
-//            NSLog(@"%li sets are now in the Highlights View Controller", self.sets.count);
+            [self.tableView reloadData];
         }
     }];
 }
@@ -102,7 +102,9 @@
     double minutes = deltaSeconds / 60;
     double hours = minutes / 60;
     double days = hours / 24;
-    double weeks = days / 7;
+//    double weeks = days / 7;
+    
+    double weeks = deltaSeconds / (60 * 60 * 24 * 7);
 //    NSLog(@"%fl days since set was created", days);
     int weeksInt = (int)weeks;
     NSNumber *weeksNumber = [NSNumber numberWithInt:weeksInt];
@@ -115,7 +117,7 @@
             if (data.howManyWeeksAgo == weeksInt)
             {
                 [data modifyHighLightWithSet:set];
-                NSLog(@"modified something with week %i", weeksInt);
+//                NSLog(@"modified something with week %i", weeksInt);
             }
         }
     }
@@ -134,22 +136,16 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+    HighlightData *highlight = self.hightlightsArray[indexPath.row];
     cell.backgroundColor = [UIColor clearColor];
     [cell formatCell];
-    
-    
-    
-    
-    
-    
-    
-    
+    [cell fillPicsWithTop5PicsFromHighlight:highlight];
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.hightlightsArray.count;
 }
 
 

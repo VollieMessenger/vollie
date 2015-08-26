@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "HighlightData.h"
+#import "Set.h"
 
 @interface WeekCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet PFImageView *imageViewOneBig;
@@ -22,5 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *weekLabel;
 
 -(void)formatCell;
+
+-(void)fillPicsWithTop5PicsFromHighlight:(HighlightData*)highlight;
 
 @end
