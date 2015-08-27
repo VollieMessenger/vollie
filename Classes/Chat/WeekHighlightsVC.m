@@ -144,11 +144,11 @@
     {
         if (indexPath.row != 1)
         {
-            cell.weekLabel.text = [NSString stringWithFormat:@"%i weeks ago", highlight.howManyWeeksAgo];
+            cell.weekLabel.text = [NSString stringWithFormat:@"%i Weeks Ago", highlight.howManyWeeksAgo];
         }
         else
         {
-            cell.weekLabel.text = [NSString stringWithFormat:@"%i week ago", highlight.howManyWeeksAgo];
+            cell.weekLabel.text = [NSString stringWithFormat:@"%i Week Ago", highlight.howManyWeeksAgo];
         }
     }
     return cell;
