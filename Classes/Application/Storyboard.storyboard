@@ -1856,7 +1856,7 @@
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BtQ-Zb-jpX">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O67-FP-n84">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="96I-y0-XAb">
                                     <size key="itemSize" width="96" height="96"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1872,21 +1872,36 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-wB-Xzi" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <variation key="widthClass=compact" fixedFrame="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
-                                                    </variation>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottomMargin" secondItem="bx6-wB-Xzi" secondAttribute="bottom" constant="-8" id="2f0-gs-95L"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="bx6-wB-Xzi" secondAttribute="trailing" constant="-8" id="PcW-Md-dB7"/>
+                                            <constraint firstItem="bx6-wB-Xzi" firstAttribute="leading" secondItem="Vtq-wg-Pm5" secondAttribute="leadingMargin" constant="-8" id="Xee-GF-h7H"/>
+                                            <constraint firstItem="bx6-wB-Xzi" firstAttribute="top" secondItem="Vtq-wg-Pm5" secondAttribute="topMargin" constant="-8" id="dz0-jL-X83"/>
+                                        </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="bx6-wB-Xzi"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <exclude reference="2f0-gs-95L"/>
+                                                <exclude reference="PcW-Md-dB7"/>
+                                                <exclude reference="Xee-GF-h7H"/>
+                                                <exclude reference="dz0-jL-X83"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="bx6-wB-Xzi"/>
+                                            </mask>
+                                            <mask key="constraints">
+                                                <include reference="2f0-gs-95L"/>
+                                                <include reference="PcW-Md-dB7"/>
+                                                <include reference="Xee-GF-h7H"/>
+                                                <include reference="dz0-jL-X83"/>
                                             </mask>
                                         </variation>
                                         <connections>

@@ -11,7 +11,8 @@
 #import "Set.h"
 #import "ParseMedia.h"
 
-@interface AllWeekPhotosVC () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface AllWeekPhotosVC () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property NSMutableArray *picturesArray;
@@ -54,6 +55,13 @@
     return self.picturesArray.count;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView
+                  layout:(UICollectionViewLayout *)collectionViewLayout
+  sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake((self.collectionView.frame.size.width/3-10), self.collectionView.frame.size.width/3-10);
+}
+
 #pragma mark - "Parse Pull"
 
 -(void)loopForSets
@@ -66,12 +74,9 @@
 
 -(void)loadPicturesWithSet:(PFObject *)set
 {
-//    NSLog(@"i'm loading from a set");
     PFQuery *query = [PFQuery queryWithClassName:@"Chat"];
     [query whereKey:@"setId" equalTo:set];
     [query whereKey:@"isUploaded" equalTo:[NSNumber numberWithBool:YES]];
-//    [query includeKey:@"picture"];
-//    [query includeKey:@"thumbnail"];
     [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
@@ -81,7 +86,7 @@
              {
                  ParseMedia *object = [[ParseMedia alloc] initWithPFObject:messageObject];
                  [self.picturesArray addObject:object];
-                 NSLog(@"%li pictures in pictures array", self.picturesArray.count);
+//                 NSLog(@"%li pictures in pictures array", self.picturesArray.count);
              }
              [self.collectionView reloadData];
          }

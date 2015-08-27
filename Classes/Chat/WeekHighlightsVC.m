@@ -22,6 +22,7 @@
 @property NSMutableArray *sets;
 @property NSMutableArray *weeks;
 @property NSMutableArray *hightlightsArray;
+@property NSArray *sortedHighlightsArray;
 
 @end
 
@@ -51,7 +52,7 @@
 {
     AllWeekPhotosVC *vc = [segue destinationViewController];
     NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
-    HighlightData *highlight = self.hightlightsArray[indexpath.row];
+    HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
     vc.highlight = highlight;
 }
 
@@ -135,6 +136,12 @@
         [self.weeks addObject:[NSNumber numberWithInt:weeksInt]];
         HighlightData *data = [[HighlightData alloc] initWithPFObject:set andAmountOfWeeks:weeksInt];
         [self.hightlightsArray addObject:data];
+        NSSortDescriptor *sortDescriptor;
+        sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"weeksNumberToSortWith"
+                                                     ascending:YES];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        self.sortedHighlightsArray = [self.hightlightsArray sortedArrayUsingDescriptors:sortDescriptors];
+        
 //        NSLog(@"i created a highlight object for week %i", weeksInt);
 //        NSLog(@"%li highlights in the highlight array", self.hightlightsArray.count);
     }
@@ -145,11 +152,12 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-    HighlightData *highlight = self.hightlightsArray[indexPath.row];
+    HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
     cell.backgroundColor = [UIColor clearColor];
     [cell formatCell];
     [cell fillPicsWithTop5PicsFromHighlight:highlight];
-    if (indexPath.row != 0)
+//    if (indexPath.row != 0)
+    if (highlight.howManyWeeksAgo != 0)
     {
         if (indexPath.row != 1)
         {
@@ -165,7 +173,12 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.hightlightsArray.count;
+    return self.sortedHighlightsArray.count;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:1];
 }
 
 
