@@ -102,9 +102,9 @@
     double minutes = deltaSeconds / 60;
     double hours = minutes / 60;
     double days = hours / 24;
-//    double weeks = days / 7;
+    double weeks = days / 7;
     
-    double weeks = deltaSeconds / (60 * 60 * 24 * 7);
+//    double weeks = deltaSeconds / (60 * 60 * 24 * 7);
 //    NSLog(@"%fl days since set was created", days);
     int weeksInt = (int)weeks;
     NSNumber *weeksNumber = [NSNumber numberWithInt:weeksInt];
@@ -140,6 +140,10 @@
     cell.backgroundColor = [UIColor clearColor];
     [cell formatCell];
     [cell fillPicsWithTop5PicsFromHighlight:highlight];
+    if (indexPath.row != 0)
+    {
+        cell.weekLabel.text = [NSString stringWithFormat:@"%i weeks ago", highlight.howManyWeeksAgo];
+    }
     return cell;
 }
 

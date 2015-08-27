@@ -17,6 +17,7 @@
     {
         self.sets = [NSMutableArray new];
         self.howManyWeeksAgo = weeks;
+        NSLog(@"i was created with %i weeks", self.howManyWeeksAgo);
         self.weeksNumberToSortWith = [NSNumber numberWithInt:weeks];
         Set *customSet = [Set new];
         customSet.set = set;
