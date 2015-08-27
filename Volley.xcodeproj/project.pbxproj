@@ -230,10 +230,10 @@
 		27903E931B542ADE004F06F5 /* TwoPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoPicCell.h; sourceTree = "<group>"; };
 		27903E941B542ADE004F06F5 /* TwoPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoPicCell.m; sourceTree = "<group>"; };
 		27903E951B542ADE004F06F5 /* TwoPicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoPicCell.xib; sourceTree = "<group>"; };
-		279D7C971B2F38AC0090C1AD /* ChatColView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatColView.h; sourceTree = "<group>"; };
-		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatColView.m; sourceTree = "<group>"; };
-		279D7CAA1B2F77FF0090C1AD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestViewController.h; path = ../Tabs/02/TestViewController.h; sourceTree = "<group>"; };
-		279D7CAB1B2F77FF0090C1AD /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestViewController.m; path = ../Tabs/02/TestViewController.m; sourceTree = "<group>"; };
+		279D7C971B2F38AC0090C1AD /* ChatColView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatColView.h; path = ../../Chat/ChatColView.h; sourceTree = "<group>"; };
+		279D7C981B2F38AC0090C1AD /* ChatColView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatColView.m; path = ../../Chat/ChatColView.m; sourceTree = "<group>"; };
+		279D7CAA1B2F77FF0090C1AD /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		279D7CAB1B2F77FF0090C1AD /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		27AC594F1B39E0B800633EAB /* NewVolliePicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewVolliePicCell.h; sourceTree = "<group>"; };
 		27AC59501B39E0B800633EAB /* NewVolliePicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVolliePicCell.m; sourceTree = "<group>"; };
 		27C300F01B2B2FDB00EB9723 /* VollieCardData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VollieCardData.h; path = ../../VollieCardData.h; sourceTree = "<group>"; };
@@ -252,10 +252,10 @@
 		292719D219F284AC009C308B /* JSQSystemSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQSystemSoundPlayer.m; sourceTree = "<group>"; };
 		29271A3219F284B1009C308B /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		29271A3319F284B1009C308B /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
-		29271A3519F284B1009C308B /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatView.h; sourceTree = "<group>"; };
-		29271A3619F284B1009C308B /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatView.m; sourceTree = "<group>"; };
-		29271A3919F284B1009C308B /* ChatroomUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatroomUsersView.h; path = ../Tabs/01/ChatroomUsersView.h; sourceTree = "<group>"; };
-		29271A3A19F284B1009C308B /* ChatroomUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatroomUsersView.m; path = ../Tabs/01/ChatroomUsersView.m; sourceTree = "<group>"; };
+		29271A3519F284B1009C308B /* ChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatView.h; path = ../../Chat/ChatView.h; sourceTree = "<group>"; };
+		29271A3619F284B1009C308B /* ChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatView.m; path = ../../Chat/ChatView.m; sourceTree = "<group>"; };
+		29271A3919F284B1009C308B /* ChatroomUsersView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChatroomUsersView.h; path = ../01/ChatroomUsersView.h; sourceTree = "<group>"; };
+		29271A3A19F284B1009C308B /* ChatroomUsersView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChatroomUsersView.m; path = ../01/ChatroomUsersView.m; sourceTree = "<group>"; };
 		29271A3C19F284B1009C308B /* CreateChatroomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateChatroomView.h; sourceTree = "<group>"; };
 		29271A3D19F284B1009C308B /* CreateChatroomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateChatroomView.m; sourceTree = "<group>"; };
 		29271A3E19F284B1009C308B /* CreateChatroomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateChatroomView.xib; sourceTree = "<group>"; };
@@ -505,9 +505,9 @@
 		C2BEC9AE1A7FE1B300F4B41A /* CreateChatroomView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateChatroomView2.h; sourceTree = "<group>"; };
 		C2BEC9AF1A7FE1B300F4B41A /* CreateChatroomView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateChatroomView2.m; sourceTree = "<group>"; };
 		C2BEC9B01A7FE1B300F4B41A /* CreateChatroomView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateChatroomView2.xib; sourceTree = "<group>"; };
-		C2CA16DD1A82860E00DD25AC /* DidFavoriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DidFavoriteView.h; sourceTree = "<group>"; };
-		C2CA16DE1A82860E00DD25AC /* DidFavoriteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DidFavoriteView.m; sourceTree = "<group>"; };
-		C2CA16DF1A82860E00DD25AC /* DidFavoriteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DidFavoriteView.xib; sourceTree = "<group>"; };
+		C2CA16DD1A82860E00DD25AC /* DidFavoriteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DidFavoriteView.h; path = ../../Chat/DidFavoriteView.h; sourceTree = "<group>"; };
+		C2CA16DE1A82860E00DD25AC /* DidFavoriteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DidFavoriteView.m; path = ../../Chat/DidFavoriteView.m; sourceTree = "<group>"; };
+		C2CA16DF1A82860E00DD25AC /* DidFavoriteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DidFavoriteView.xib; path = ../../Chat/DidFavoriteView.xib; sourceTree = "<group>"; };
 		C2CA16E21A8286EA00DD25AC /* SelectChatroomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectChatroomView.xib; sourceTree = "<group>"; };
 		C2CA16E41A82A1FE00DD25AC /* AlbumView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumView.h; sourceTree = "<group>"; };
 		C2CA16E51A82A1FE00DD25AC /* AlbumView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumView.m; sourceTree = "<group>"; };
@@ -515,8 +515,8 @@
 		C2CA16E91A85116500DD25AC /* MessagesCellDot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesCellDot.h; sourceTree = "<group>"; };
 		C2CA16EA1A85116500DD25AC /* MessagesCellDot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesCellDot.m; sourceTree = "<group>"; };
 		C2CA16EB1A85116500DD25AC /* MessagesCellDot.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessagesCellDot.xib; sourceTree = "<group>"; };
-		C2CDFB061A426A550078DE43 /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionViewCell.h; sourceTree = "<group>"; };
-		C2CDFB071A426A560078DE43 /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionViewCell.m; sourceTree = "<group>"; };
+		C2CDFB061A426A550078DE43 /* CustomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomCollectionViewCell.h; path = ../../Chat/CustomCollectionViewCell.h; sourceTree = "<group>"; };
+		C2CDFB071A426A560078DE43 /* CustomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomCollectionViewCell.m; path = ../../Chat/CustomCollectionViewCell.m; sourceTree = "<group>"; };
 		C2CDFB091A42912D0078DE43 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C2D954CF1AA502D50018391B /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C2F313F71A77E8DF00675959 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -581,7 +581,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		270D7EF51B3DDD0200FE28E9 /* Modal Objects */ = {
+		270D7EF51B3DDD0200FE28E9 /* CustomObjects */ = {
 			isa = PBXGroup;
 			children = (
 				270D7EF61B3DE1DA00FE28E9 /* PopUpScrollView.h */,
@@ -589,7 +589,7 @@
 				27617D961B4ADF590026C2EB /* ParseVolliePackage.h */,
 				27617D971B4ADF590026C2EB /* ParseVolliePackage.m */,
 			);
-			name = "Modal Objects";
+			name = CustomObjects;
 			sourceTree = "<group>";
 		};
 		276998BA1B501AE0009FA3E1 /* Cells */ = {
@@ -604,29 +604,28 @@
 		27C3C1261B3B2E7000F555FD /* Moments Version */ = {
 			isa = PBXGroup;
 			children = (
+				32DA3D3D1B8FCD2700DDEFA2 /* AllWeekPhotosVC */,
 				32771FBD1B73FB69007726E9 /* Week Highlights VC */,
 				324843EE1B714DE1009810D3 /* MainInboxVC */,
 				27DB352A1B4C616200A765A2 /* ManageChat VC */,
 				27C3C12A1B3B344800F555FD /* Moments VC */,
-				270D7EF51B3DDD0200FE28E9 /* Modal Objects */,
+				32DA3D421B8FCDEC00DDEFA2 /* CustomChatView */,
+				32DA3D411B8FCDCF00DDEFA2 /* CameraVC */,
+				270D7EF51B3DDD0200FE28E9 /* CustomObjects */,
 				27C3C12C1B3B39F000F555FD /* Select Chat VC */,
 				27C3C12B1B3B39D500F555FD /* New Vollie VC */,
 			);
 			name = "Moments Version";
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		27C3C12A1B3B344800F555FD /* Moments VC */ = {
 			isa = PBXGroup;
 			children = (
-				276998BA1B501AE0009FA3E1 /* Cells */,
 				2762FF601B289A530070AD59 /* MomentsVC.h */,
 				2762FF611B289A530070AD59 /* MomentsVC.m */,
-				27C300F01B2B2FDB00EB9723 /* VollieCardData.h */,
-				27C300F11B2B2FDB00EB9723 /* VollieCardData.m */,
-				2749887A1B31E71400560873 /* CardCellView.h */,
-				2749887B1B31E71400560873 /* CardCellView.m */,
-				2749887D1B31F98200560873 /* CellForCard.h */,
-				2749887E1B31F98200560873 /* CellForCard.m */,
+				32DA3D401B8FCD8900DDEFA2 /* Card Data */,
+				276998BA1B501AE0009FA3E1 /* Cells */,
 			);
 			name = "Moments VC";
 			sourceTree = "<group>";
@@ -699,7 +698,9 @@
 			isa = PBXGroup;
 			children = (
 				2762FF5E1B289A2A0070AD59 /* Storyboard.storyboard */,
+				29EB240719E9292500D7AA97 /* app */,
 				29271A3119F284B1009C308B /* Application */,
+				27C3C1261B3B2E7000F555FD /* Moments Version */,
 				29271A3419F284B1009C308B /* Chat */,
 				29271A3719F284B1009C308B /* Tabs */,
 				29271A4A19F284B1009C308B /* 3 */,
@@ -722,23 +723,7 @@
 		29271A3419F284B1009C308B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				27C3C1261B3B2E7000F555FD /* Moments Version */,
 				29271A3B19F284B1009C308B /* 1 */,
-				279D7C971B2F38AC0090C1AD /* ChatColView.h */,
-				279D7C981B2F38AC0090C1AD /* ChatColView.m */,
-				279D7CAA1B2F77FF0090C1AD /* TestViewController.h */,
-				279D7CAB1B2F77FF0090C1AD /* TestViewController.m */,
-				29271A3519F284B1009C308B /* ChatView.h */,
-				29271A3619F284B1009C308B /* ChatView.m */,
-				C2BD53E71A31077D006D721E /* CustomChatView.h */,
-				C2BD53E81A31077D006D721E /* CustomChatView.m */,
-				C2CDFB061A426A550078DE43 /* CustomCollectionViewCell.h */,
-				C2CDFB071A426A560078DE43 /* CustomCollectionViewCell.m */,
-				29271A3919F284B1009C308B /* ChatroomUsersView.h */,
-				29271A3A19F284B1009C308B /* ChatroomUsersView.m */,
-				C2CA16DD1A82860E00DD25AC /* DidFavoriteView.h */,
-				C2CA16DE1A82860E00DD25AC /* DidFavoriteView.m */,
-				C2CA16DF1A82860E00DD25AC /* DidFavoriteView.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -755,9 +740,19 @@
 		29271A3B19F284B1009C308B /* 1 */ = {
 			isa = PBXGroup;
 			children = (
-				C27374951A2FFF4800C4B22A /* CustomCameraView.h */,
-				C27374961A2FFF4800C4B22A /* CustomCameraView.m */,
-				C27374931A2FFF1F00C4B22A /* CustomCameraView.xib */,
+				279D7C971B2F38AC0090C1AD /* ChatColView.h */,
+				279D7C981B2F38AC0090C1AD /* ChatColView.m */,
+				279D7CAA1B2F77FF0090C1AD /* TestViewController.h */,
+				279D7CAB1B2F77FF0090C1AD /* TestViewController.m */,
+				29271A3519F284B1009C308B /* ChatView.h */,
+				29271A3619F284B1009C308B /* ChatView.m */,
+				C2CDFB061A426A550078DE43 /* CustomCollectionViewCell.h */,
+				C2CDFB071A426A560078DE43 /* CustomCollectionViewCell.m */,
+				29271A3919F284B1009C308B /* ChatroomUsersView.h */,
+				29271A3A19F284B1009C308B /* ChatroomUsersView.m */,
+				C2CA16DD1A82860E00DD25AC /* DidFavoriteView.h */,
+				C2CA16DE1A82860E00DD25AC /* DidFavoriteView.m */,
+				C2CA16DF1A82860E00DD25AC /* DidFavoriteView.xib */,
 				C28223541A642D5D001E6BF1 /* SelectChatroomView.h */,
 				C28223551A642D5D001E6BF1 /* SelectChatroomView.m */,
 				C2CA16E21A8286EA00DD25AC /* SelectChatroomView.xib */,
@@ -1034,7 +1029,6 @@
 				2927192F19F284AC009C308B /* Vendors */,
 				29B8FE7319E92E4500E7A503 /* Resources */,
 				29EB243319E9297900D7AA97 /* Frameworks */,
-				29EB240719E9292500D7AA97 /* app */,
 				29EB240619E9292500D7AA97 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -1057,7 +1051,8 @@
 				29EB241719E9292500D7AA97 /* LaunchScreen.xib */,
 				29EB240819E9292500D7AA97 /* Supporting Files */,
 			);
-			path = app;
+			name = app;
+			path = ../app;
 			sourceTree = "<group>";
 		};
 		29EB240819E9292500D7AA97 /* Supporting Files */ = {
@@ -1107,13 +1102,7 @@
 			children = (
 				324843EF1B714E00009810D3 /* MainInboxVC.h */,
 				324843F01B714E00009810D3 /* MainInboxVC.m */,
-				324843F21B715606009810D3 /* Chat.h */,
-				324843F31B715606009810D3 /* Chat.m */,
-				324843F51B715E58009810D3 /* RoomCell.h */,
-				324843F61B715E58009810D3 /* RoomCell.m */,
-				32F748041B82367400870840 /* InviteContactsCell.h */,
-				32F748051B82367400870840 /* InviteContactsCell.m */,
-				32F748061B82367400870840 /* InviteContactsCell.xib */,
+				32DA3D3F1B8FCD5B00DDEFA2 /* MainInboxModal */,
 			);
 			name = MainInboxVC;
 			sourceTree = "<group>";
@@ -1124,12 +1113,6 @@
 				32771FBA1B73FB65007726E9 /* WeekHighlightsVC.h */,
 				32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */,
 				32DA3D321B8F927300DDEFA2 /* WeekHighlightsModal */,
-				32DA3D331B8F929900DDEFA2 /* AllWeekPhotosVC.h */,
-				32DA3D341B8F929900DDEFA2 /* AllWeekPhotosVC.m */,
-				32DA3D391B8FBD2600DDEFA2 /* ParseMedia.h */,
-				32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */,
-				32DA3D361B8F946700DDEFA2 /* PhotoCell.h */,
-				32DA3D371B8F946700DDEFA2 /* PhotoCell.m */,
 			);
 			name = "Week Highlights VC";
 			sourceTree = "<group>";
@@ -1176,6 +1159,74 @@
 				32C46D7F1B8E5C090044B329 /* Set.m */,
 			);
 			name = WeekHighlightsModal;
+			sourceTree = "<group>";
+		};
+		32DA3D3D1B8FCD2700DDEFA2 /* AllWeekPhotosVC */ = {
+			isa = PBXGroup;
+			children = (
+				32DA3D331B8F929900DDEFA2 /* AllWeekPhotosVC.h */,
+				32DA3D341B8F929900DDEFA2 /* AllWeekPhotosVC.m */,
+				32DA3D3E1B8FCD3700DDEFA2 /* AllWeekPhotos Modal */,
+			);
+			name = AllWeekPhotosVC;
+			sourceTree = "<group>";
+		};
+		32DA3D3E1B8FCD3700DDEFA2 /* AllWeekPhotos Modal */ = {
+			isa = PBXGroup;
+			children = (
+				32DA3D391B8FBD2600DDEFA2 /* ParseMedia.h */,
+				32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */,
+				32DA3D361B8F946700DDEFA2 /* PhotoCell.h */,
+				32DA3D371B8F946700DDEFA2 /* PhotoCell.m */,
+			);
+			name = "AllWeekPhotos Modal";
+			sourceTree = "<group>";
+		};
+		32DA3D3F1B8FCD5B00DDEFA2 /* MainInboxModal */ = {
+			isa = PBXGroup;
+			children = (
+				324843F21B715606009810D3 /* Chat.h */,
+				324843F31B715606009810D3 /* Chat.m */,
+				324843F51B715E58009810D3 /* RoomCell.h */,
+				324843F61B715E58009810D3 /* RoomCell.m */,
+				32F748041B82367400870840 /* InviteContactsCell.h */,
+				32F748051B82367400870840 /* InviteContactsCell.m */,
+				32F748061B82367400870840 /* InviteContactsCell.xib */,
+			);
+			name = MainInboxModal;
+			sourceTree = "<group>";
+		};
+		32DA3D401B8FCD8900DDEFA2 /* Card Data */ = {
+			isa = PBXGroup;
+			children = (
+				27C300F01B2B2FDB00EB9723 /* VollieCardData.h */,
+				27C300F11B2B2FDB00EB9723 /* VollieCardData.m */,
+				2749887A1B31E71400560873 /* CardCellView.h */,
+				2749887B1B31E71400560873 /* CardCellView.m */,
+				2749887D1B31F98200560873 /* CellForCard.h */,
+				2749887E1B31F98200560873 /* CellForCard.m */,
+			);
+			name = "Card Data";
+			sourceTree = "<group>";
+		};
+		32DA3D411B8FCDCF00DDEFA2 /* CameraVC */ = {
+			isa = PBXGroup;
+			children = (
+				C27374951A2FFF4800C4B22A /* CustomCameraView.h */,
+				C27374961A2FFF4800C4B22A /* CustomCameraView.m */,
+				C27374931A2FFF1F00C4B22A /* CustomCameraView.xib */,
+			);
+			name = CameraVC;
+			path = ../Tabs/02;
+			sourceTree = "<group>";
+		};
+		32DA3D421B8FCDEC00DDEFA2 /* CustomChatView */ = {
+			isa = PBXGroup;
+			children = (
+				C2BD53E71A31077D006D721E /* CustomChatView.h */,
+				C2BD53E81A31077D006D721E /* CustomChatView.m */,
+			);
+			name = CustomChatView;
 			sourceTree = "<group>";
 		};
 		C20F556B1A6832A800CCD435 /* NSDate-TimeAgo */ = {
