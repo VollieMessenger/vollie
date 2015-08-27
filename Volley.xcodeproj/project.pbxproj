@@ -118,6 +118,9 @@
 		329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329F9D231B700F340025D3EC /* FivePicsFavCell.xib */; };
 		32B172D61B8D031B00127129 /* HighlightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B172D51B8D031B00127129 /* HighlightData.m */; };
 		32C46D801B8E5C090044B329 /* Set.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C46D7F1B8E5C090044B329 /* Set.m */; };
+		32DA3D351B8F929900DDEFA2 /* AllWeekPhotosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D341B8F929900DDEFA2 /* AllWeekPhotosVC.m */; };
+		32DA3D381B8F946700DDEFA2 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D371B8F946700DDEFA2 /* PhotoCell.m */; };
+		32DA3D3B1B8FBD2600DDEFA2 /* ParseMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */; };
 		32F748071B82367400870840 /* InviteContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F748051B82367400870840 /* InviteContactsCell.m */; };
 		32F748081B82367400870840 /* InviteContactsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32F748061B82367400870840 /* InviteContactsCell.xib */; };
 		9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFEFAF11B1E1A3F005B1BF6 /* InviteCell.m */; };
@@ -414,6 +417,12 @@
 		32B172D51B8D031B00127129 /* HighlightData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighlightData.m; sourceTree = "<group>"; };
 		32C46D7E1B8E5C090044B329 /* Set.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Set.h; sourceTree = "<group>"; };
 		32C46D7F1B8E5C090044B329 /* Set.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Set.m; sourceTree = "<group>"; };
+		32DA3D331B8F929900DDEFA2 /* AllWeekPhotosVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllWeekPhotosVC.h; sourceTree = "<group>"; };
+		32DA3D341B8F929900DDEFA2 /* AllWeekPhotosVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllWeekPhotosVC.m; sourceTree = "<group>"; };
+		32DA3D361B8F946700DDEFA2 /* PhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoCell.h; sourceTree = "<group>"; };
+		32DA3D371B8F946700DDEFA2 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
+		32DA3D391B8FBD2600DDEFA2 /* ParseMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseMedia.h; sourceTree = "<group>"; };
+		32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseMedia.m; sourceTree = "<group>"; };
 		32F748041B82367400870840 /* InviteContactsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteContactsCell.h; sourceTree = "<group>"; };
 		32F748051B82367400870840 /* InviteContactsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteContactsCell.m; sourceTree = "<group>"; };
 		32F748061B82367400870840 /* InviteContactsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteContactsCell.xib; sourceTree = "<group>"; };
@@ -1114,12 +1123,13 @@
 			children = (
 				32771FBA1B73FB65007726E9 /* WeekHighlightsVC.h */,
 				32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */,
-				32771FBE1B7417AA007726E9 /* WeekCell.h */,
-				32771FBF1B7417AA007726E9 /* WeekCell.m */,
-				32B172D41B8D031B00127129 /* HighlightData.h */,
-				32B172D51B8D031B00127129 /* HighlightData.m */,
-				32C46D7E1B8E5C090044B329 /* Set.h */,
-				32C46D7F1B8E5C090044B329 /* Set.m */,
+				32DA3D321B8F927300DDEFA2 /* WeekHighlightsModal */,
+				32DA3D331B8F929900DDEFA2 /* AllWeekPhotosVC.h */,
+				32DA3D341B8F929900DDEFA2 /* AllWeekPhotosVC.m */,
+				32DA3D391B8FBD2600DDEFA2 /* ParseMedia.h */,
+				32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */,
+				32DA3D361B8F946700DDEFA2 /* PhotoCell.h */,
+				32DA3D371B8F946700DDEFA2 /* PhotoCell.m */,
 			);
 			name = "Week Highlights VC";
 			sourceTree = "<group>";
@@ -1153,6 +1163,19 @@
 				2721708A1B5443ED0050A9D0 /* FivePicCell.xib */,
 			);
 			name = CardViewCells;
+			sourceTree = "<group>";
+		};
+		32DA3D321B8F927300DDEFA2 /* WeekHighlightsModal */ = {
+			isa = PBXGroup;
+			children = (
+				32771FBE1B7417AA007726E9 /* WeekCell.h */,
+				32771FBF1B7417AA007726E9 /* WeekCell.m */,
+				32B172D41B8D031B00127129 /* HighlightData.h */,
+				32B172D51B8D031B00127129 /* HighlightData.m */,
+				32C46D7E1B8E5C090044B329 /* Set.h */,
+				32C46D7F1B8E5C090044B329 /* Set.m */,
+			);
+			name = WeekHighlightsModal;
 			sourceTree = "<group>";
 		};
 		C20F556B1A6832A800CCD435 /* NSDate-TimeAgo */ = {
@@ -1465,6 +1488,7 @@
 				C2832CBA1A704A6100CDF19D /* IQToolbar.m in Sources */,
 				C21DD6EC1A71D73B0009BC6A /* JCNotificationBannerViewIOS7Style.m in Sources */,
 				C2CA16EC1A85116500DD25AC /* MessagesCellDot.m in Sources */,
+				32DA3D381B8F946700DDEFA2 /* PhotoCell.m in Sources */,
 				276998BD1B501AF7009FA3E1 /* OnePicCell.m in Sources */,
 				296DD5C71A1F52F400AB9F8C /* JSQMessagesTimestampFormatter.m in Sources */,
 				C21DD6ED1A71D73B0009BC6A /* JCNotificationBannerViewIOSStyle.m in Sources */,
@@ -1483,6 +1507,7 @@
 				C2832CB81A704A6100CDF19D /* IQBarButtonItem.m in Sources */,
 				29271A5B19F284B1009C308B /* ChatroomUsersView.m in Sources */,
 				2762FF621B289A530070AD59 /* MomentsVC.m in Sources */,
+				32DA3D3B1B8FBD2600DDEFA2 /* ParseMedia.m in Sources */,
 				C2832CB51A704A6100CDF19D /* IQKeyboardReturnKeyHandler.m in Sources */,
 				C2832CB11A704A6100CDF19D /* IQNSArray+Sort.m in Sources */,
 				296DD5CE1A1F52F400AB9F8C /* JSQMessage.m in Sources */,
@@ -1541,6 +1566,7 @@
 				296DD5E91A1F557900AB9F8C /* ProgressHUD.m in Sources */,
 				C21DD6EE1A71D73B0009BC6A /* JCNotificationBannerWindow.m in Sources */,
 				29A2278A19F3B05000ACA237 /* pushnotification.m in Sources */,
+				32DA3D351B8F929900DDEFA2 /* AllWeekPhotosVC.m in Sources */,
 				296DD5DF1A1F52F400AB9F8C /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				C2F314A81A7940B700675959 /* MasterScrollView.m in Sources */,
 				2749887F1B31F98200560873 /* CellForCard.m in Sources */,

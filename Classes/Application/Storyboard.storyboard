@@ -1789,6 +1789,7 @@
                                             <outlet property="imageViewTwo" destination="5T6-w1-gOw" id="Psy-c0-JUI"/>
                                             <outlet property="topSpacerView" destination="XXH-qf-vRn" id="bng-KJ-RIr"/>
                                             <outlet property="weekLabel" destination="hfB-hc-USQ" id="0tZ-IU-LZF"/>
+                                            <segue destination="Xg1-nn-nqQ" kind="show" id="8y0-PR-l8l"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1838,6 +1839,119 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fdx-K2-JQT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2338.5" y="-535"/>
+        </scene>
+        <!--All Week PhotosVC-->
+        <scene sceneID="ggG-7x-zqJ">
+            <objects>
+                <viewController id="Xg1-nn-nqQ" customClass="AllWeekPhotosVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="S8b-i6-0kl"/>
+                        <viewControllerLayoutGuide type="bottom" id="PgS-tH-MRg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pcd-1K-5Hn">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="lIz-DL-WFc">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BtQ-Zb-jpX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O67-FP-n84">
+                                    <size key="itemSize" width="96" height="96"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellID" id="Vtq-wg-Pm5" customClass="PhotoCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-wB-Xzi" customClass="PFImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                                    </variation>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="bx6-wB-Xzi"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="subviews">
+                                                <include reference="bx6-wB-Xzi"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <outlet property="imageView" destination="bx6-wB-Xzi" id="CDF-JY-sP1"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Xg1-nn-nqQ" id="VpW-E4-hU6"/>
+                                    <outlet property="delegate" destination="Xg1-nn-nqQ" id="ERZ-0d-YML"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PgS-tH-MRg" firstAttribute="top" secondItem="BtQ-Zb-jpX" secondAttribute="bottom" id="3fZ-nI-CXc"/>
+                            <constraint firstItem="BtQ-Zb-jpX" firstAttribute="leading" secondItem="pcd-1K-5Hn" secondAttribute="leadingMargin" constant="-16" id="Dxm-zg-oQ9"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BtQ-Zb-jpX" secondAttribute="trailing" constant="-16" id="MiL-fP-8m0"/>
+                            <constraint firstItem="lIz-DL-WFc" firstAttribute="leading" secondItem="pcd-1K-5Hn" secondAttribute="leadingMargin" constant="-16" id="Xtm-wE-Tsg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lIz-DL-WFc" secondAttribute="trailing" constant="-16" id="fYy-4R-gYT"/>
+                            <constraint firstItem="BtQ-Zb-jpX" firstAttribute="top" secondItem="pcd-1K-5Hn" secondAttribute="topMargin" id="k2u-KN-f9e"/>
+                            <constraint firstItem="lIz-DL-WFc" firstAttribute="top" secondItem="pcd-1K-5Hn" secondAttribute="topMargin" id="l41-ie-9Hc"/>
+                            <constraint firstItem="PgS-tH-MRg" firstAttribute="top" secondItem="lIz-DL-WFc" secondAttribute="bottom" id="sLN-w1-D9r"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="lIz-DL-WFc"/>
+                                <exclude reference="BtQ-Zb-jpX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Xtm-wE-Tsg"/>
+                                <exclude reference="fYy-4R-gYT"/>
+                                <exclude reference="l41-ie-9Hc"/>
+                                <exclude reference="Dxm-zg-oQ9"/>
+                                <exclude reference="MiL-fP-8m0"/>
+                                <exclude reference="k2u-KN-f9e"/>
+                                <exclude reference="3fZ-nI-CXc"/>
+                                <exclude reference="sLN-w1-D9r"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="lIz-DL-WFc"/>
+                                <include reference="BtQ-Zb-jpX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Xtm-wE-Tsg"/>
+                                <include reference="fYy-4R-gYT"/>
+                                <include reference="l41-ie-9Hc"/>
+                                <include reference="Dxm-zg-oQ9"/>
+                                <include reference="MiL-fP-8m0"/>
+                                <include reference="k2u-KN-f9e"/>
+                                <include reference="3fZ-nI-CXc"/>
+                                <include reference="sLN-w1-D9r"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="collectionView" destination="BtQ-Zb-jpX" id="iYp-dW-NaS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7MC-oi-idW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3055.5" y="-535"/>
         </scene>
         <!--Room SettingsVC-->
         <scene sceneID="Lr1-2z-pzx">

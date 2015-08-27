@@ -13,6 +13,7 @@
 #import "MainInboxVC.h"
 #import "NSDate+TimeAgo.h"
 #import "HighlightData.h"
+#import "AllWeekPhotosVC.h"
 
 @interface WeekHighlightsVC () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -44,6 +45,14 @@
 -(void)basicSetUpOFUI
 {
     self.tableView.backgroundColor = [UIColor clearColor];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    AllWeekPhotosVC *vc = [segue destinationViewController];
+    NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
+    HighlightData *highlight = self.hightlightsArray[indexpath.row];
+    vc.highlight = highlight;
 }
 
 
@@ -126,8 +135,8 @@
         [self.weeks addObject:[NSNumber numberWithInt:weeksInt]];
         HighlightData *data = [[HighlightData alloc] initWithPFObject:set andAmountOfWeeks:weeksInt];
         [self.hightlightsArray addObject:data];
-        NSLog(@"i created a highlight object for week %i", weeksInt);
-        NSLog(@"%li highlights in the highlight array", self.hightlightsArray.count);
+//        NSLog(@"i created a highlight object for week %i", weeksInt);
+//        NSLog(@"%li highlights in the highlight array", self.hightlightsArray.count);
     }
 }
 
