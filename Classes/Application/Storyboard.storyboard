@@ -1849,6 +1849,7 @@
                         <viewControllerLayoutGuide type="bottom" id="PgS-tH-MRg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pcd-1K-5Hn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="lIz-DL-WFc">
@@ -1932,14 +1933,14 @@
                                 <exclude reference="BtQ-Zb-jpX"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="3fZ-nI-CXc"/>
+                                <exclude reference="sLN-w1-D9r"/>
                                 <exclude reference="Xtm-wE-Tsg"/>
                                 <exclude reference="fYy-4R-gYT"/>
                                 <exclude reference="l41-ie-9Hc"/>
                                 <exclude reference="Dxm-zg-oQ9"/>
                                 <exclude reference="MiL-fP-8m0"/>
                                 <exclude reference="k2u-KN-f9e"/>
-                                <exclude reference="3fZ-nI-CXc"/>
-                                <exclude reference="sLN-w1-D9r"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1948,14 +1949,14 @@
                                 <include reference="BtQ-Zb-jpX"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="3fZ-nI-CXc"/>
+                                <include reference="sLN-w1-D9r"/>
                                 <include reference="Xtm-wE-Tsg"/>
                                 <include reference="fYy-4R-gYT"/>
                                 <include reference="l41-ie-9Hc"/>
                                 <include reference="Dxm-zg-oQ9"/>
                                 <include reference="MiL-fP-8m0"/>
                                 <include reference="k2u-KN-f9e"/>
-                                <include reference="3fZ-nI-CXc"/>
-                                <include reference="sLN-w1-D9r"/>
                             </mask>
                         </variation>
                     </view>

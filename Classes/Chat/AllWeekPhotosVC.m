@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @property NSMutableArray *picturesArray;
+@property NSArray *sortedPicturesArray;
 
 @end
 
@@ -26,12 +27,13 @@
     [super viewDidLoad];
     [self basicSetUpAndInit];
     [self setUpUserInterface];
-    [self loopForSets];
+    [self beginParsePullWithSets];
 }
 
 -(void)basicSetUpAndInit
 {
     self.picturesArray = [NSMutableArray new];
+    self.sortedPicturesArray = [NSArray new];
 }
 
 -(void)setUpUserInterface
@@ -64,7 +66,7 @@
 
 #pragma mark - "Parse Pull"
 
--(void)loopForSets
+-(void)beginParsePullWithSets
 {
     for (PFObject *set in self.highlight.sets)
     {
@@ -86,7 +88,11 @@
              {
                  ParseMedia *object = [[ParseMedia alloc] initWithPFObject:messageObject];
                  [self.picturesArray addObject:object];
-//                 NSLog(@"%li pictures in pictures array", self.picturesArray.count);
+//                 NSSortDescriptor *sortDescriptor;
+//                 sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt"
+//                                                              ascending:YES];
+//                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//                 self.sortedPicturesArray = [self.picturesArray sortedArrayUsingDescriptors:sortDescriptors];
              }
              [self.collectionView reloadData];
          }
