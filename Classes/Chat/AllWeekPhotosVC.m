@@ -61,7 +61,9 @@
                   layout:(UICollectionViewLayout *)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake((self.collectionView.frame.size.width/3-10), self.collectionView.frame.size.width/3-10);
+//    return CGSizeMake((self.collectionView.frame.size.width/3-10), self.collectionView.frame.size.width/3-10);
+    return CGSizeMake((self.collectionView.frame.size.width/3-14), self.collectionView.frame.size.width/3-14);
+
 }
 
 #pragma mark - "Parse Pull"

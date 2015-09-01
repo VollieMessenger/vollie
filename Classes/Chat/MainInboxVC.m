@@ -113,8 +113,9 @@
     self.title = @"";
     self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc] initWithTitle:@"Fav"
-                                                             style:UIBarButtonItemStyleBordered target:self action:@selector(goToSettingsVC:)];
-    favoritesButton.image = [UIImage imageNamed:@"settings"];
+                                                             style:UIBarButtonItemStyleBordered target:self action:@selector(swipeRightToFavorites:)];
+//    favoritesButton.image = [UIImage imageNamed:@"settings"];
+    favoritesButton.image = [UIImage imageNamed:ASSETS_STAR_ON];
     self.navigationItem.rightBarButtonItem = favoritesButton;
     UIBarButtonItem *cameraButton =[[UIBarButtonItem alloc] initWithTitle:@"Cam" style:UIBarButtonItemStyleBordered target:self action:@selector(swipeLeftToCamera:)];
     cameraButton.image = [UIImage imageNamed:ASSETS_NEW_CAMERA];
@@ -170,8 +171,8 @@
 {
     if ([PFUser currentUser] && self.isCurrentlyLoadingMessages == NO)
     {
-        NavigationController *navFavorites = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
-        WeekHighlightsVC *vc = (WeekHighlightsVC*)navFavorites.viewControllers.firstObject;
+//        NavigationController *navFavorites = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
+//        WeekHighlightsVC *vc = (WeekHighlightsVC*)navFavorites.viewControllers.firstObject;
         self.isCurrentlyLoadingMessages = YES;
         
         //should change this to RoomObject.h
@@ -495,14 +496,14 @@
     self.scrollView.scrollEnabled = NO;
 }
 
--(void)goToSettingsVC:(id)id
-{
-//    NavigationController *nav = [[NavigationController alloc] initWithRootViewController: [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped]];
-    
-    ProfileView *vc = [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped];
-    [self.navigationController pushViewController:vc animated:YES];
-//    [self showDetailViewController:nav sender:self];
-}
+//-(void)goToSettingsVC:(id)id
+//{
+////    NavigationController *nav = [[NavigationController alloc] initWithRootViewController: [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped]];
+//    
+//    ProfileView *vc = [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped];
+//    [self.navigationController pushViewController:vc animated:YES];
+////    [self showDetailViewController:nav sender:self];
+//}
 
 -(void)goToMostRecentChatRoom
 {

@@ -1485,14 +1485,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="H85-uB-OiQ">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="816" height="1183"/>
                                 </variation>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="194" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MuA-Ni-ZKn">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="179" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MuA-Ni-ZKn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellid" rowHeight="194" id="nSO-E8-9O7" customClass="WeekCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellid" rowHeight="185" id="nSO-E8-9O7" customClass="WeekCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nSO-E8-9O7" id="Wfo-ZB-7dJ">
@@ -1508,7 +1508,8 @@
                                                             <exclude reference="LjI-En-cb0"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="8" y="28" width="160" height="160"/>
                                                         <mask key="constraints">
                                                             <include reference="LjI-En-cb0"/>
                                                         </mask>
@@ -1527,7 +1528,8 @@
                                                                     <exclude reference="7T1-cl-nEN"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact">
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                                                 <mask key="constraints">
                                                                     <include reference="7T1-cl-nEN"/>
                                                                 </mask>
@@ -1535,6 +1537,9 @@
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Juo-al-OBb" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="85" y="0.0" width="75" height="75"/>
+                                                            </variation>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="jWf-yr-WtK" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -1546,7 +1551,8 @@
                                                                     <exclude reference="y5G-St-EsC"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact">
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="85" y="85" width="75" height="75"/>
                                                                 <mask key="constraints">
                                                                     <include reference="y5G-St-EsC"/>
                                                                 </mask>
@@ -1562,7 +1568,8 @@
                                                                     <exclude reference="zj5-BW-lCR"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact">
+                                                            <variation key="widthClass=compact" misplaced="YES">
+                                                                <rect key="frame" x="0.0" y="85" width="75" height="75"/>
                                                                 <mask key="constraints">
                                                                     <include reference="zj5-BW-lCR"/>
                                                                 </mask>
@@ -1620,7 +1627,8 @@
                                                             <exclude reference="YAt-1q-ejl"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact">
+                                                    <variation key="widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="177" y="28" width="160" height="160"/>
                                                         <mask key="subviews">
                                                             <include reference="5T6-w1-gOw"/>
                                                             <include reference="Juo-al-OBb"/>
@@ -1708,7 +1716,7 @@
                                                         </mask>
                                                     </variation>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" alpha="0.29999999999999966" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="double-orange-arrows" translatesAutoresizingMaskIntoConstraints="NO" id="hbR-W9-F14">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small-charcoal-next" translatesAutoresizingMaskIntoConstraints="NO" id="hbR-W9-F14">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <variation key="widthClass=compact" misplaced="YES">
                                                         <rect key="frame" x="345" y="70" width="139" height="75"/>
@@ -1918,14 +1926,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PgS-tH-MRg" firstAttribute="top" secondItem="BtQ-Zb-jpX" secondAttribute="bottom" id="3fZ-nI-CXc"/>
-                            <constraint firstItem="BtQ-Zb-jpX" firstAttribute="leading" secondItem="pcd-1K-5Hn" secondAttribute="leadingMargin" constant="-16" id="Dxm-zg-oQ9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="BtQ-Zb-jpX" secondAttribute="trailing" constant="-16" id="MiL-fP-8m0"/>
+                            <constraint firstItem="BtQ-Zb-jpX" firstAttribute="top" secondItem="S8b-i6-0kl" secondAttribute="bottom" constant="13" id="SnD-qJ-Ztj"/>
+                            <constraint firstItem="PgS-tH-MRg" firstAttribute="top" secondItem="BtQ-Zb-jpX" secondAttribute="bottom" id="XdP-1H-YeG"/>
                             <constraint firstItem="lIz-DL-WFc" firstAttribute="leading" secondItem="pcd-1K-5Hn" secondAttribute="leadingMargin" constant="-16" id="Xtm-wE-Tsg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lIz-DL-WFc" secondAttribute="trailing" constant="-16" id="fYy-4R-gYT"/>
-                            <constraint firstItem="BtQ-Zb-jpX" firstAttribute="top" secondItem="pcd-1K-5Hn" secondAttribute="topMargin" id="k2u-KN-f9e"/>
                             <constraint firstItem="lIz-DL-WFc" firstAttribute="top" secondItem="pcd-1K-5Hn" secondAttribute="topMargin" id="l41-ie-9Hc"/>
+                            <constraint firstItem="BtQ-Zb-jpX" firstAttribute="leading" secondItem="pcd-1K-5Hn" secondAttribute="leadingMargin" constant="-2" id="rtR-jV-8mL"/>
                             <constraint firstItem="PgS-tH-MRg" firstAttribute="top" secondItem="lIz-DL-WFc" secondAttribute="bottom" id="sLN-w1-D9r"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BtQ-Zb-jpX" secondAttribute="trailing" constant="-3" id="yZ5-Ez-hGq"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -1933,14 +1941,14 @@
                                 <exclude reference="BtQ-Zb-jpX"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="3fZ-nI-CXc"/>
-                                <exclude reference="sLN-w1-D9r"/>
                                 <exclude reference="Xtm-wE-Tsg"/>
                                 <exclude reference="fYy-4R-gYT"/>
                                 <exclude reference="l41-ie-9Hc"/>
-                                <exclude reference="Dxm-zg-oQ9"/>
-                                <exclude reference="MiL-fP-8m0"/>
-                                <exclude reference="k2u-KN-f9e"/>
+                                <exclude reference="SnD-qJ-Ztj"/>
+                                <exclude reference="rtR-jV-8mL"/>
+                                <exclude reference="yZ5-Ez-hGq"/>
+                                <exclude reference="XdP-1H-YeG"/>
+                                <exclude reference="sLN-w1-D9r"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1949,14 +1957,14 @@
                                 <include reference="BtQ-Zb-jpX"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="3fZ-nI-CXc"/>
-                                <include reference="sLN-w1-D9r"/>
                                 <include reference="Xtm-wE-Tsg"/>
                                 <include reference="fYy-4R-gYT"/>
                                 <include reference="l41-ie-9Hc"/>
-                                <include reference="Dxm-zg-oQ9"/>
-                                <include reference="MiL-fP-8m0"/>
-                                <include reference="k2u-KN-f9e"/>
+                                <include reference="SnD-qJ-Ztj"/>
+                                <include reference="rtR-jV-8mL"/>
+                                <include reference="yZ5-Ez-hGq"/>
+                                <include reference="XdP-1H-YeG"/>
+                                <include reference="sLN-w1-D9r"/>
                             </mask>
                         </variation>
                     </view>
@@ -1967,7 +1975,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7MC-oi-idW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3055.5" y="-535"/>
+            <point key="canvasLocation" x="3055.5" y="-522"/>
         </scene>
         <!--Room SettingsVC-->
         <scene sceneID="Lr1-2z-pzx">
@@ -2641,6 +2649,7 @@
         <image name="icon3-newmessage" width="126" height="126"/>
         <image name="image-header-newmessage" width="420" height="151"/>
         <image name="packageimg6" width="87" height="87"/>
+        <image name="small-charcoal-next" width="75" height="76"/>
         <image name="white-vollie-v" width="290" height="158"/>
     </resources>
     <inferredMetricsTieBreakers>

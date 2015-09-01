@@ -14,6 +14,7 @@
 #import "NSDate+TimeAgo.h"
 #import "HighlightData.h"
 #import "AllWeekPhotosVC.h"
+#import "ProfileView.h"
 
 @interface WeekHighlightsVC () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -36,6 +37,8 @@
     self.sets = [NSMutableArray new];
     self.weeks = [NSMutableArray new];
     self.hightlightsArray = [NSMutableArray new];
+    
+    [self basicSetUpOFUI];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -46,6 +49,15 @@
 -(void)basicSetUpOFUI
 {
     self.tableView.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"settings"
+                                                                        style:UIBarButtonItemStyleBordered target:self action:@selector(goToSettingsVC)];
+    settingsButton.image = [UIImage imageNamed:@"settings"];
+    self.navigationItem.rightBarButtonItem = settingsButton;
+    UIBarButtonItem *inboxButton = [[UIBarButtonItem alloc] initWithTitle:@"inbox"
+                                                                       style:UIBarButtonItemStyleBordered target:self action:@selector(goBackToInboxVC)];
+    inboxButton.image = [UIImage imageNamed:ASSETS_INBOX_FLIP];
+    self.navigationItem.leftBarButtonItem = inboxButton;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -54,6 +66,20 @@
     NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
     HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
     vc.highlight = highlight;
+}
+
+-(void)goToSettingsVC
+{
+    ProfileView *vc = [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)goBackToInboxVC
+{
+    //why isn't this working!!!
+    
+//    [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
+    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 
@@ -146,6 +172,8 @@
 //        NSLog(@"%li highlights in the highlight array", self.hightlightsArray.count);
     }
 }
+
+
 
 #pragma mark "TableView Stuff"
 

@@ -11,7 +11,7 @@
 
 @interface WeekHighlightsVC : UIViewController
 
-@property MasterScrollView *scrollView;
+@property (strong, nonatomic) MasterScrollView *scrollView;
 
 -(void)loadRoomsFromMainInbox;
 

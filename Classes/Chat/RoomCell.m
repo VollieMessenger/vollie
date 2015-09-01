@@ -77,7 +77,7 @@
             }
             else
             {
-                NSLog(@"tehre was an error getting the picture");
+                NSLog(@"there was an error getting the picture");
             }
         }];
     }
