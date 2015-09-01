@@ -142,7 +142,7 @@
     NSParameterAssert(self.senderId != nil);
     NSParameterAssert(setId_ != nil);
     NSParameterAssert(self.senderDisplayName != nil);
-    NSParameterAssert(self.room != nil);
+//    NSParameterAssert(self.room != nil);
 
     [self.collectionViewPictures registerClass:[CustomCollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
 
@@ -245,6 +245,8 @@
 - (void)didPressAccessoryButton:(UIButton *)sender {
     
 }
+
+//- (id)initWithSet:
 
 //For archive loading or anyone who doesn't want to preload this stuff.
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor

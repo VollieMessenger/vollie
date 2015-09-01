@@ -10,6 +10,8 @@
 #import "PhotoCell.h"
 #import "Set.h"
 #import "ParseMedia.h"
+#import "CustomChatView.h"
+#import "UIColor+JSQMessages.h"
 
 @interface AllWeekPhotosVC () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -50,6 +52,15 @@
     PFFile *thumbnail = mediaObject.thumbNail;
     [cell fillImageViewWithParse:thumbnail];
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ParseMedia *mediaObject = self.picturesArray[indexPath.item];
+    PFObject *set = mediaObject.set;
+    NSString *setID = set.objectId;
+    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen]];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
