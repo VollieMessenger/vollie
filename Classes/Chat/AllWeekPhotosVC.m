@@ -58,8 +58,9 @@
 {
     ParseMedia *mediaObject = self.picturesArray[indexPath.item];
     PFObject *set = mediaObject.set;
-    NSString *setID = set.objectId;
-    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen]];
+//    NSString *setID = set.objectId;
+//    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen]];
+    CustomChatView *vc = [[CustomChatView alloc] initWithSet:set];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -17,6 +17,9 @@
 
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor;
 
+- (id)initWithSet:(PFObject*)set;
+
+
 @property PFObject *room;
 @property BOOL isFavoritesSets;
 @property PFObject *album;

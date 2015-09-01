@@ -246,7 +246,29 @@
     
 }
 
-//- (id)initWithSet:
+- (id)initWithSet:(PFObject*)set
+{
+    //kyle's new init method
+    self = [super init];
+    if (self)
+    {
+        backgroundColor_ = [UIColor volleyFamousOrange];
+        
+        if (!self.senderId || self.senderDisplayName)
+        {
+            self.senderId = [[PFUser currentUser].objectId copy];
+            self.senderDisplayName = [[PFUser currentUser][PF_USER_FULLNAME] copy];
+        }
+        NSString *setID = set.objectId;
+        setId_ = setID;
+        setComments = [NSMutableArray new];
+        setPicturesObjects = [NSMutableArray new];
+        objectIds = [NSMutableArray new];
+        
+        [self loadMessages];
+    }
+    return self;
+}
 
 //For archive loading or anyone who doesn't want to preload this stuff.
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor
