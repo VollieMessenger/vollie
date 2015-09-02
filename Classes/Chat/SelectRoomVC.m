@@ -241,6 +241,7 @@
 - (IBAction)createRoom:(id)sender {
     CreateChatroomView * view = [[CreateChatroomView alloc]init];
     view.title = @"ahhhhh";
+    view.photos = self.photosToSend;
     view.isTherePicturesToSend = self.savedPhotoObjects.count;
     view.invite = NO;
     view.sendingMessage = self.textToSend;

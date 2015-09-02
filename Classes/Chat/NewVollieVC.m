@@ -212,7 +212,8 @@ SecondDelegate>
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
 {
     //custom delegation method
-    self.photosArray = photosForFirst;
+    [self.photosArray removeAllObjects];
+    [self.photosArray addObjectsFromArray:photosForFirst];
     self.textView.delegate = self;
     [self.textView becomeFirstResponder];
     [self.collectionView reloadData];
