@@ -32,6 +32,8 @@
 @interface VollieCardData : NSObject
 
 @property NSString *set;
+@property PFObject *actualSet;
+@property BOOL unreadStatus;
 @property NSMutableArray *photosArray;
 @property NSMutableArray *messagesArray;
 @property CardCellView *viewController;

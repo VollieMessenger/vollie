@@ -106,7 +106,7 @@
                 PFQuery *query = [users query];
                 
                 //get rid of this to test unread status:
-                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+//                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error)
                     {

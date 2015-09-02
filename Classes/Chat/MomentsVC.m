@@ -131,7 +131,8 @@
 //    NSLog(@"date is %@",[formatter stringFromDate:card.dateUpdated]);
 //    VollieCardData *card = self.sortedCardsArray[(indexPath.row/2)];
 
-    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen]     andPictures:card.photosArray andComments:card.messagesArray];
+    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.actualSet];
+//    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen]     andPictures:card.photosArray andComments:card.messagesArray];
 //    chatt.senderId = [self.senderId copy];
 //    chatt.senderDisplayName = [self.senderDisplayName copy];
     chatt.room = self.room;
@@ -430,6 +431,7 @@
         else
         {
             VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object];
+            card.actualSet = set;
             [self.vollieCardDataArray addObject:card];
             [self.setsIDsArray addObject:set.objectId];
             //create vollie card

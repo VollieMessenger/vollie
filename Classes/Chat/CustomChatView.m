@@ -32,6 +32,9 @@
 @property MPMoviePlayerController *moviePlayer;
 @property BOOL doubleTapBlocker;
 @property VollieCardData *cardData;
+@property PFObject *set;
+@property NSMutableArray *arrayOfUnreadUsers;
+@property BOOL shouldUpdateUnreadUsers;
 @end
 
 @implementation CustomChatView
@@ -252,7 +255,7 @@
     self = [super init];
     if (self)
     {
-        backgroundColor_ = [UIColor volleyFamousOrange];
+        backgroundColor_ = [UIColor volleyFamousGreen];
         
         if (!self.senderId || self.senderDisplayName)
         {
@@ -261,9 +264,12 @@
         }
         NSString *setID = set.objectId;
         setId_ = setID;
+        self.set = set;
         setComments = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray new];
         objectIds = [NSMutableArray new];
+        self.arrayOfUnreadUsers = [NSMutableArray new];
+        self.shouldUpdateUnreadUsers = false;
         
         [self loadMessages];
     }
@@ -373,6 +379,7 @@
 //Archive Has to find all the goodies.
 -(void)loadMessages
 {
+    self.shouldUpdateUnreadUsers = false;
     PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
     [query whereKey:PF_CHAT_SETID equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];
     [query includeKey:PF_CHAT_USER];
@@ -393,7 +400,7 @@
                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
                     {
                         [setPicturesObjects addObject:object];
-                        NSLog(@"%li in pictureObjectsArray", setPicturesObjects.count);
+//                        NSLog(@"%li in pictureObjectsArray", setPicturesObjects.count);
                     }
                     else
                     {
@@ -413,7 +420,39 @@
                 }
             }
     }];
+    
+    PFRelation *unreadUsers = [self.set relationForKey:@"unreadUsers"];
+    [unreadUsers removeObject:[PFUser currentUser]];
+    [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
+        if (!error)
+        {
+            NSLog(@"saved set with updated relation");
+        }
+    }];
 }
+
+
+-(void)removeCurrentUserFromUnreadStatus
+{
+//    PFRelation *unreadUsers
+    
+//    PFRelation *usersWhoHaventRead = [self.set relationForKey:@"unreadUsers"];
+//    for (PFUser *user in self.arrayOfUnreadUsers)
+//    {
+//        NSLog(@"added %@ to the PFrelation to update", user.objectId);
+//        [usersWhoHaventRead addObject:user];
+//    }
+//    usersWhoHaventRead
+//    [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//    {
+//        if(!error)
+//        {
+//            NSLog(@"i saved");
+//        }
+//    }];
+}
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -734,6 +773,10 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    if (self.shouldUpdateUnreadUsers)
+    {
+        [self removeCurrentUserFromUnreadStatus];
+    }
     PostNotification(NOTIFICATION_REFRESH_CUSTOMCHAT);
 }
 

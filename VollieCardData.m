@@ -18,6 +18,7 @@
     if(self)
     {
 //        NSLog(@"%@", object);
+        self.actualSet = object;
         PFObject *set = [object objectForKey:@"setId"];
         self.set = set.objectId;
         self.dateUpdated = object.createdAt;
