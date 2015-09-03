@@ -49,10 +49,19 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bi0-hV-vC7" userLabel="viewForChatVC">
                                 <rect key="frame" x="8" y="8" width="198" height="284"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1unreadMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="N9V-Uu-nsu">
+                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="6Xz-hy-63J"/>
+                                    <constraint firstAttribute="width" constant="25" id="Esl-FA-m3F"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="OZu-wm-EJN" secondAttribute="trailing" constant="8" id="A6j-sU-mnz"/>
+                            <constraint firstItem="N9V-Uu-nsu" firstAttribute="top" secondItem="E0b-yg-zeQ" secondAttribute="top" id="Cz7-E2-ReP"/>
+                            <constraint firstItem="N9V-Uu-nsu" firstAttribute="leading" secondItem="E0b-yg-zeQ" secondAttribute="leading" id="MeH-QZ-orD"/>
                             <constraint firstItem="Bi0-hV-vC7" firstAttribute="leading" secondItem="E0b-yg-zeQ" secondAttribute="leading" constant="8" id="Tm0-F1-C43"/>
                             <constraint firstAttribute="centerY" secondItem="OZu-wm-EJN" secondAttribute="centerY" id="dwQ-n9-EaT"/>
                             <constraint firstItem="OZu-wm-EJN" firstAttribute="leading" secondItem="Bi0-hV-vC7" secondAttribute="trailing" id="vIg-jQ-wiN"/>
@@ -72,9 +81,13 @@
                 <outlet property="cardView" destination="E0b-yg-zeQ" id="tux-IC-rUA"/>
                 <outlet property="imageViewOne" destination="K7I-l6-Qgw" id="XDV-ny-aam"/>
                 <outlet property="imageViewTwo" destination="mNA-KR-Ybv" id="Rrg-l6-DIE"/>
+                <outlet property="notificationDot" destination="N9V-Uu-nsu" id="Ew1-tG-Vlo"/>
                 <outlet property="viewForChatVC" destination="Bi0-hV-vC7" id="TL0-lp-pp3"/>
             </connections>
             <point key="canvasLocation" x="190" y="362.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="1unreadMesseageIcon" width="100" height="100"/>
+    </resources>
 </document>

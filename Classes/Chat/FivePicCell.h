@@ -26,6 +26,8 @@
 -(void)formatCell;
 @property (strong, nonatomic) IBOutlet UIView *viewForChatVC;
 
+@property (weak, nonatomic) IBOutlet UIImageView *notificationDot;
+
 @property NSMutableArray *imageViewArray;
 
 

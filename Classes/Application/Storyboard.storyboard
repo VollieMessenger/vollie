@@ -152,14 +152,39 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1unreadMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="JTC-3U-Zwv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="25" id="HEL-dW-cj9"/>
+                                                                <constraint firstAttribute="width" constant="25" id="gTL-CC-uDG"/>
+                                                                <constraint firstAttribute="height" constant="25" id="qpL-Fi-X4t"/>
+                                                                <constraint firstAttribute="height" constant="25" id="rt9-9O-Mbx"/>
+                                                            </constraints>
+                                                            <variation key="default">
+                                                                <mask key="constraints">
+                                                                    <exclude reference="HEL-dW-cj9"/>
+                                                                    <exclude reference="rt9-9O-Mbx"/>
+                                                                </mask>
+                                                            </variation>
+                                                            <variation key="widthClass=compact">
+                                                                <mask key="constraints">
+                                                                    <include reference="HEL-dW-cj9"/>
+                                                                    <exclude reference="gTL-CC-uDG"/>
+                                                                    <exclude reference="qpL-Fi-X4t"/>
+                                                                    <include reference="rt9-9O-Mbx"/>
+                                                                </mask>
+                                                            </variation>
+                                                        </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstItem="be2-KR-ED0" firstAttribute="top" secondItem="esw-Yz-eD1" secondAttribute="top" constant="7" id="RJb-Xm-dd8"/>
                                                         <constraint firstAttribute="trailing" secondItem="be2-KR-ED0" secondAttribute="trailing" constant="94" id="Ugu-mY-lxK"/>
+                                                        <constraint firstItem="JTC-3U-Zwv" firstAttribute="leading" secondItem="esw-Yz-eD1" secondAttribute="leading" id="aRu-ID-U2m"/>
                                                         <constraint firstItem="be2-KR-ED0" firstAttribute="leading" secondItem="esw-Yz-eD1" secondAttribute="leading" constant="-5" id="jxk-Bx-DNd"/>
                                                         <constraint firstAttribute="centerY" secondItem="jd7-hQ-RoQ" secondAttribute="centerY" id="qHm-PS-U7U"/>
                                                         <constraint firstAttribute="bottom" secondItem="be2-KR-ED0" secondAttribute="bottom" constant="6" id="quP-Bj-7vD"/>
+                                                        <constraint firstItem="JTC-3U-Zwv" firstAttribute="top" secondItem="esw-Yz-eD1" secondAttribute="top" constant="7" id="ute-gs-hXB"/>
                                                         <constraint firstAttribute="trailing" secondItem="jd7-hQ-RoQ" secondAttribute="trailing" constant="5" id="xkg-2n-Ka7">
                                                             <variation key="widthClass=compact" constant="8"/>
                                                         </constraint>
@@ -168,14 +193,17 @@
                                                         <mask key="subviews">
                                                             <exclude reference="be2-KR-ED0"/>
                                                             <exclude reference="jd7-hQ-RoQ"/>
+                                                            <exclude reference="JTC-3U-Zwv"/>
                                                         </mask>
                                                         <mask key="constraints">
-                                                            <exclude reference="qHm-PS-U7U"/>
-                                                            <exclude reference="xkg-2n-Ka7"/>
+                                                            <exclude reference="aRu-ID-U2m"/>
+                                                            <exclude reference="ute-gs-hXB"/>
                                                             <exclude reference="RJb-Xm-dd8"/>
                                                             <exclude reference="Ugu-mY-lxK"/>
                                                             <exclude reference="jxk-Bx-DNd"/>
                                                             <exclude reference="quP-Bj-7vD"/>
+                                                            <exclude reference="qHm-PS-U7U"/>
+                                                            <exclude reference="xkg-2n-Ka7"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact" misplaced="YES">
@@ -183,14 +211,17 @@
                                                         <mask key="subviews">
                                                             <include reference="be2-KR-ED0"/>
                                                             <include reference="jd7-hQ-RoQ"/>
+                                                            <include reference="JTC-3U-Zwv"/>
                                                         </mask>
                                                         <mask key="constraints">
-                                                            <include reference="qHm-PS-U7U"/>
-                                                            <include reference="xkg-2n-Ka7"/>
+                                                            <include reference="aRu-ID-U2m"/>
+                                                            <include reference="ute-gs-hXB"/>
                                                             <include reference="RJb-Xm-dd8"/>
                                                             <include reference="Ugu-mY-lxK"/>
                                                             <include reference="jxk-Bx-DNd"/>
                                                             <include reference="quP-Bj-7vD"/>
+                                                            <include reference="qHm-PS-U7U"/>
+                                                            <include reference="xkg-2n-Ka7"/>
                                                         </mask>
                                                     </variation>
                                                 </view>
@@ -1508,8 +1539,7 @@
                                                             <exclude reference="LjI-En-cb0"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="8" y="28" width="160" height="160"/>
+                                                    <variation key="widthClass=compact">
                                                         <mask key="constraints">
                                                             <include reference="LjI-En-cb0"/>
                                                         </mask>
@@ -1528,8 +1558,7 @@
                                                                     <exclude reference="7T1-cl-nEN"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                                            <variation key="widthClass=compact">
                                                                 <mask key="constraints">
                                                                     <include reference="7T1-cl-nEN"/>
                                                                 </mask>
@@ -1537,9 +1566,6 @@
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Juo-al-OBb" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                            <variation key="widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="85" y="0.0" width="75" height="75"/>
-                                                            </variation>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="jWf-yr-WtK" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -1551,8 +1577,7 @@
                                                                     <exclude reference="y5G-St-EsC"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="85" y="85" width="75" height="75"/>
+                                                            <variation key="widthClass=compact">
                                                                 <mask key="constraints">
                                                                     <include reference="y5G-St-EsC"/>
                                                                 </mask>
@@ -1568,8 +1593,7 @@
                                                                     <exclude reference="zj5-BW-lCR"/>
                                                                 </mask>
                                                             </variation>
-                                                            <variation key="widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="0.0" y="85" width="75" height="75"/>
+                                                            <variation key="widthClass=compact">
                                                                 <mask key="constraints">
                                                                     <include reference="zj5-BW-lCR"/>
                                                                 </mask>
@@ -1627,8 +1651,7 @@
                                                             <exclude reference="YAt-1q-ejl"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="177" y="28" width="160" height="160"/>
+                                                    <variation key="widthClass=compact">
                                                         <mask key="subviews">
                                                             <include reference="5T6-w1-gOw"/>
                                                             <include reference="Juo-al-OBb"/>
@@ -1719,7 +1742,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small-charcoal-next" translatesAutoresizingMaskIntoConstraints="NO" id="hbR-W9-F14">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <variation key="widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="345" y="70" width="139" height="75"/>
+                                                        <rect key="frame" x="327" y="70" width="0.0" height="66"/>
                                                     </variation>
                                                 </imageView>
                                             </subviews>
@@ -1941,14 +1964,14 @@
                                 <exclude reference="BtQ-Zb-jpX"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="XdP-1H-YeG"/>
+                                <exclude reference="sLN-w1-D9r"/>
                                 <exclude reference="Xtm-wE-Tsg"/>
                                 <exclude reference="fYy-4R-gYT"/>
                                 <exclude reference="l41-ie-9Hc"/>
                                 <exclude reference="SnD-qJ-Ztj"/>
                                 <exclude reference="rtR-jV-8mL"/>
                                 <exclude reference="yZ5-Ez-hGq"/>
-                                <exclude reference="XdP-1H-YeG"/>
-                                <exclude reference="sLN-w1-D9r"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1957,14 +1980,14 @@
                                 <include reference="BtQ-Zb-jpX"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="XdP-1H-YeG"/>
+                                <include reference="sLN-w1-D9r"/>
                                 <include reference="Xtm-wE-Tsg"/>
                                 <include reference="fYy-4R-gYT"/>
                                 <include reference="l41-ie-9Hc"/>
                                 <include reference="SnD-qJ-Ztj"/>
                                 <include reference="rtR-jV-8mL"/>
                                 <include reference="yZ5-Ez-hGq"/>
-                                <include reference="XdP-1H-YeG"/>
-                                <include reference="sLN-w1-D9r"/>
                             </mask>
                         </variation>
                     </view>
@@ -2642,6 +2665,7 @@
     </scenes>
     <resources>
         <image name="1readMesseageIcon" width="100" height="100"/>
+        <image name="1unreadMesseageIcon" width="100" height="100"/>
         <image name="Send Picture 2" width="512" height="512"/>
         <image name="Vollie-icon" width="205" height="205"/>
         <image name="double-orange-arrows" width="139" height="150"/>

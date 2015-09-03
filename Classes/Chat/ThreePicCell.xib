@@ -59,15 +59,24 @@
                                 <rect key="frame" x="0.0" y="0.0" width="203" height="357"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1unreadMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dYl-gg-x7m">
+                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="9Jx-2E-n8S"/>
+                                    <constraint firstAttribute="width" constant="25" id="kWL-M4-DPh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="RIn-Io-hHR" secondAttribute="trailing" constant="8" id="9Sh-va-dyf"/>
                             <constraint firstItem="03p-0x-tbQ" firstAttribute="leading" secondItem="Z8f-6x-Eh8" secondAttribute="leading" id="Bnh-rC-nId"/>
+                            <constraint firstItem="dYl-gg-x7m" firstAttribute="top" secondItem="Z8f-6x-Eh8" secondAttribute="top" id="COP-j0-Fug"/>
                             <constraint firstItem="03p-0x-tbQ" firstAttribute="top" secondItem="Z8f-6x-Eh8" secondAttribute="top" id="HeV-F2-Ne9"/>
                             <constraint firstAttribute="centerY" secondItem="RIn-Io-hHR" secondAttribute="centerY" id="KfV-ec-py6"/>
                             <constraint firstAttribute="bottom" secondItem="03p-0x-tbQ" secondAttribute="bottom" id="awz-G3-D9U"/>
                             <constraint firstItem="RIn-Io-hHR" firstAttribute="leading" secondItem="03p-0x-tbQ" secondAttribute="trailing" constant="3" id="eSd-Hg-6bm"/>
+                            <constraint firstItem="dYl-gg-x7m" firstAttribute="leading" secondItem="Z8f-6x-Eh8" secondAttribute="leading" id="p80-1P-SEB"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -83,9 +92,13 @@
                 <outlet property="imageViewOne" destination="5Z2-SF-8ji" id="5Ba-TC-Gh0"/>
                 <outlet property="imageViewThree" destination="iIc-wV-Y8W" id="nsQ-Ut-s7e"/>
                 <outlet property="imageViewTwo" destination="aYr-ns-moB" id="H2K-ej-ZNF"/>
+                <outlet property="notificationDot" destination="dYl-gg-x7m" id="O0x-xM-ooh"/>
                 <outlet property="viewForChatVC" destination="03p-0x-tbQ" id="0yg-Ei-bXS"/>
             </connections>
             <point key="canvasLocation" x="190" y="391"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="1unreadMesseageIcon" width="100" height="100"/>
+    </resources>
 </document>
