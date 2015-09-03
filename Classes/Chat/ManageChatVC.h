@@ -9,10 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
+@protocol ManageChatDelegate <NSObject>
+-(void)titleChange:(NSString *)title;
+@end
 
 @interface ManageChatVC : UIViewController
 
 @property PFObject *messageButReallyRoom;
 @property PFObject *room;
+@property (nonatomic, assign) id<ManageChatDelegate> delegate;
 
 @end

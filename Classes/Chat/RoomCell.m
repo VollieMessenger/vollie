@@ -69,7 +69,6 @@
 -(void)fillInPicture
 {
     PFObject *pictureObject = [self.room valueForKey:PF_MESSAGES_LASTPICTURE];
-    NSLog(@"%@",self.room);
     if (pictureObject)
     {
         PFFile *file = [pictureObject valueForKey:PF_PICTURES_THUMBNAIL];

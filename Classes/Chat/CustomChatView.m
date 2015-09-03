@@ -293,7 +293,6 @@
 //        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
 
-
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
     }
