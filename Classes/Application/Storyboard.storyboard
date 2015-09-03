@@ -82,38 +82,70 @@
                                                         <rect key="frame" x="8" y="8" width="304" height="269"/>
                                                     </variation>
                                                 </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1unreadMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8PH-hR-3S5">
+                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="4dI-9f-f7c"/>
+                                                        <constraint firstAttribute="height" constant="25" id="NqV-bJ-eGO"/>
+                                                        <constraint firstAttribute="width" constant="25" id="lw7-fh-lXC"/>
+                                                        <constraint firstAttribute="width" constant="25" id="wzs-H3-BaU"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="4dI-9f-f7c"/>
+                                                            <exclude reference="lw7-fh-lXC"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <variation key="widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="4dI-9f-f7c"/>
+                                                            <exclude reference="NqV-bJ-eGO"/>
+                                                            <include reference="lw7-fh-lXC"/>
+                                                            <exclude reference="wzs-H3-BaU"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="8PH-hR-3S5" firstAttribute="leading" secondItem="BsN-SJ-vHp" secondAttribute="leadingMargin" id="4o5-c0-rMo"/>
                                                 <constraint firstItem="gFY-Bv-GSu" firstAttribute="leading" secondItem="BsN-SJ-vHp" secondAttribute="leadingMargin" id="EBc-jX-cqI"/>
                                                 <constraint firstItem="gFY-Bv-GSu" firstAttribute="bottom" secondItem="BsN-SJ-vHp" secondAttribute="bottomMargin" id="KUO-1q-LKI"/>
+                                                <constraint firstItem="8PH-hR-3S5" firstAttribute="top" secondItem="BsN-SJ-vHp" secondAttribute="topMargin" constant="4" id="Y26-rA-b61"/>
                                                 <constraint firstItem="gFY-Bv-GSu" firstAttribute="top" secondItem="BsN-SJ-vHp" secondAttribute="topMargin" id="agf-sR-8z4"/>
                                                 <constraint firstItem="gFY-Bv-GSu" firstAttribute="trailing" secondItem="BsN-SJ-vHp" secondAttribute="trailingMargin" id="hbO-3W-ppb"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="gFY-Bv-GSu"/>
+                                                    <exclude reference="8PH-hR-3S5"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="EBc-jX-cqI"/>
                                                     <exclude reference="KUO-1q-LKI"/>
                                                     <exclude reference="agf-sR-8z4"/>
                                                     <exclude reference="hbO-3W-ppb"/>
+                                                    <exclude reference="4o5-c0-rMo"/>
+                                                    <exclude reference="Y26-rA-b61"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="gFY-Bv-GSu"/>
+                                                    <include reference="8PH-hR-3S5"/>
                                                 </mask>
                                                 <mask key="constraints">
                                                     <include reference="EBc-jX-cqI"/>
                                                     <include reference="KUO-1q-LKI"/>
                                                     <include reference="agf-sR-8z4"/>
                                                     <include reference="hbO-3W-ppb"/>
+                                                    <include reference="4o5-c0-rMo"/>
+                                                    <include reference="Y26-rA-b61"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cardOutline" destination="gFY-Bv-GSu" id="OaJ-OE-CvX"/>
+                                            <outlet property="notificationDot" destination="8PH-hR-3S5" id="GyJ-Iy-eyd"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OnePicCell" rowHeight="120" id="Niw-4X-xHe" customClass="OnePicCell">
@@ -258,6 +290,7 @@
                                         <connections>
                                             <outlet property="cardView" destination="esw-Yz-eD1" id="Gce-NJ-h2V"/>
                                             <outlet property="imageView" destination="jd7-hQ-RoQ" id="9IK-xf-0so"/>
+                                            <outlet property="notificationDot" destination="JTC-3U-Zwv" id="QYd-zY-IzD"/>
                                             <outlet property="viewForChatVC" destination="be2-KR-ED0" id="6Sm-1x-Vsv"/>
                                         </connections>
                                     </tableViewCell>

@@ -10,5 +10,6 @@
 
 @interface CellForCard : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIView *cardOutline;
+@property (weak, nonatomic) IBOutlet UIImageView *notificationDot;
 
 @end
