@@ -17,6 +17,9 @@
 {
     self.imageView.layer.cornerRadius = 10;
     self.imageView.layer.masksToBounds = YES;
+    [self.imageView setImage:nil];
+    [self.chatRoomLabel setText:nil];
+    [self.lastMessageLabel setText:nil];
     
     self.room = room;
     
@@ -66,6 +69,7 @@
 -(void)fillInPicture
 {
     PFObject *pictureObject = [self.room valueForKey:PF_MESSAGES_LASTPICTURE];
+    NSLog(@"%@",self.room);
     if (pictureObject)
     {
         PFFile *file = [pictureObject valueForKey:PF_PICTURES_THUMBNAIL];
@@ -77,9 +81,11 @@
             }
             else
             {
-                NSLog(@"tehre was an error getting the picture");
+                NSLog(@"there was an error getting the picture");
             }
         }];
+    } else {
+        [self.imageView setImage:nil];
     }
 }
 
