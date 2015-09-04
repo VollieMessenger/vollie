@@ -26,17 +26,17 @@
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
         self.unreadStatus = false;
         
-        
-        PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
-        [setQuery getObjectInBackgroundWithId:self.set block:^(PFObject *fullSet, NSError *error)
-         {
-             if(!error)
-             {
-                 self.actualSet = fullSet;
-                 [self setUnreadDotWithSet:fullSet];
-                 //             NSLog(@"%@", fullSet);
-             }
-         }];
+//        
+//        PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
+//        [setQuery getObjectInBackgroundWithId:self.set block:^(PFObject *fullSet, NSError *error)
+//         {
+//             if(!error)
+//             {
+//                 self.actualSet = fullSet;
+//                 [self setUnreadDotWithSet:fullSet];
+//                 //             NSLog(@"%@", fullSet);
+//             }
+//         }];
         
 //        [self setUnreadDotWithSet:];
 //        NSDate *todaysDate;
@@ -61,23 +61,23 @@
 
 -(void)setUnreadDotWithSet:(PFObject*)set
 {
-    NSString *currentUserString = [PFUser currentUser].objectId;
+//    NSString *currentUserString = [PFUser currentUser].objectId;
     // we haven't brough in the set yet
     //if we do a findobjectinbasckgroundwithblock and try to do a query where relation doesn't include me
     
-    PFRelation *unreadUsers = [set relationForKey:@"unreadUsers"];
-    [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-    {
-        for (PFUser *user in objects)
-        {
-            if ([user.objectId isEqualToString:currentUserString])
-            {
-                NSLog(@"you're in this set");
-                self.unreadStatus = true;
-            }
-//            NSLog(@"%@", user.objectId);
-        }
-    }];
+//    PFRelation *unreadUsers = [set relationForKey:@"unreadUsers"];
+//    [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+//    {
+//        for (PFUser *user in objects)
+//        {
+//            if ([user.objectId isEqualToString:currentUserString])
+//            {
+//                NSLog(@"you're in this set");
+//                self.unreadStatus = true;
+//            }
+////            NSLog(@"%@", user.objectId);
+//        }
+//    }];
     
     
     

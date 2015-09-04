@@ -68,13 +68,6 @@
                                     <constraint firstAttribute="width" constant="90" id="yDd-LC-hN8"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Pl1-B4-K2R">
-                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" id="BkC-Kf-fbu"/>
-                                    <constraint firstAttribute="width" constant="25" id="Cjl-gf-qym"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -83,8 +76,6 @@
                             <constraint firstItem="33y-Wp-Emd" firstAttribute="leading" secondItem="dg9-a9-3Nb" secondAttribute="trailing" constant="3" id="KUc-J2-bTb"/>
                             <constraint firstAttribute="trailing" secondItem="33y-Wp-Emd" secondAttribute="trailing" constant="8" id="dfD-qn-U3d"/>
                             <constraint firstItem="dg9-a9-3Nb" firstAttribute="top" secondItem="LMR-57-PIQ" secondAttribute="top" id="eit-Vo-ecI"/>
-                            <constraint firstItem="Pl1-B4-K2R" firstAttribute="top" secondItem="LMR-57-PIQ" secondAttribute="top" id="hfy-EO-azA"/>
-                            <constraint firstItem="Pl1-B4-K2R" firstAttribute="leading" secondItem="LMR-57-PIQ" secondAttribute="leading" id="jqd-00-Q6i"/>
                             <constraint firstAttribute="centerY" secondItem="33y-Wp-Emd" secondAttribute="centerY" id="pUI-kg-JZs"/>
                         </constraints>
                     </view>
@@ -102,13 +93,9 @@
                 <outlet property="imageViewOne" destination="nHE-jR-jUv" id="QXJ-Nr-nFC"/>
                 <outlet property="imageViewThree" destination="sGe-wT-ikO" id="Me8-zc-Bt7"/>
                 <outlet property="imageViewTwo" destination="j2c-n3-QHP" id="Azx-sP-fdM"/>
-                <outlet property="notificationDot" destination="Pl1-B4-K2R" id="sxb-BG-pbJ"/>
                 <outlet property="viewForChatVC" destination="dg9-a9-3Nb" id="2ka-N4-Rrg"/>
             </connections>
             <point key="canvasLocation" x="190" y="447"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="1readMesseageIcon" width="100" height="100"/>
-    </resources>
 </document>

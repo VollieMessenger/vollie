@@ -35,6 +35,8 @@
 @property MPMoviePlayerController *moviePlayer;
 @property BOOL doubleTapBlocker;
 @property VollieCardData *cardData;
+@property NSString *setIdForUnreadCheck;
+@property PFObject *actualSet;
 
 @end
 
@@ -141,45 +143,9 @@
     //    [doubleTapFolderGesture setNumberOfTapsRequired:2];
     //    [doubleTapFolderGesture setNumberOfTouchesRequired:1];
     //    [self.view addGestureRecognizer:doubleTapFolderGesture];
+    [self fetchSetForUnreadCheck];
 }
 
-//- (void)isSetFavorited
-//{
-//    if (!_isFavoritesSets)
-//    {
-//        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//        self.navigationItem.rightBarButtonItem = favorites;
-//
-//        //IF HAS BEEN FAVORITED.
-//        PFQuery *query = [PFQuery queryWithClassName:PF_FAVORITES_CLASS_NAME];
-//#warning MAY ACCIDENTLY FIND ONE THAT IS NOT FAVORITED.
-//        [query whereKey:PF_FAVORITES_SET equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];
-//        [query whereKey:PF_FAVORITES_USER equalTo:[PFUser currentUser]];
-//
-//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-//         {
-//             if (!error)
-//             {
-//                 if (objects.count > 0)
-//                 {
-//                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR6"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//                     self.navigationItem.rightBarButtonItem = favorites;
-//                 }
-//                 else
-//                 {
-//                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//                     self.navigationItem.rightBarButtonItem = favorites;
-//                 }
-//             }
-//         }];
-//    }
-//    else
-//    {
-//        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR7"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//        self.navigationItem.rightBarButtonItem = favorites;
-//        
-//    }
-//}
 
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages
 {
@@ -196,6 +162,7 @@
         }
         setId_ = setId;
         self.setIDforCardCheck = setId;
+        self.setIdForUnreadCheck = setId;
 
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
         setComments = [NSMutableArray arrayWithArray:messages];
@@ -217,6 +184,40 @@
         }];
     }
 }
+
+-(void)fetchSetForUnreadCheck
+{
+    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
+    [setQuery getObjectInBackgroundWithId:self.setIdForUnreadCheck block:^(PFObject *fullSet, NSError *error)
+         {
+         if(!error)
+             {
+                 [self checkForUnreadUsersWithSet:fullSet];
+             }
+         }];
+}
+
+-(void)checkForUnreadUsersWithSet:(PFObject *)set
+{
+    PFRelation *unreadUsers = [set relationForKey:@"unreadUsers"];
+    [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (!error)
+         {
+             for (PFUser *user in objects)
+             {
+                 if ([user.objectId isEqualToString:[PFUser currentUser].objectId])
+                 {
+                     NSLog(@"you're in this set");
+                     self.unreadNotificationDot.image = [UIImage imageNamed:@"1unreadMesseageIcon"];
+                 }
+                 //            NSLog(@"%@", user.objectId);
+             }
+         }
+     }];
+
+}
+
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {

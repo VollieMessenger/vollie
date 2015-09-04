@@ -82,46 +82,18 @@
                                                         <rect key="frame" x="8" y="8" width="304" height="269"/>
                                                     </variation>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="8PH-hR-3S5">
-                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="4dI-9f-f7c"/>
-                                                        <constraint firstAttribute="height" constant="25" id="NqV-bJ-eGO"/>
-                                                        <constraint firstAttribute="width" constant="25" id="lw7-fh-lXC"/>
-                                                        <constraint firstAttribute="width" constant="25" id="wzs-H3-BaU"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="4dI-9f-f7c"/>
-                                                            <exclude reference="lw7-fh-lXC"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <variation key="widthClass=compact">
-                                                        <mask key="constraints">
-                                                            <include reference="4dI-9f-f7c"/>
-                                                            <exclude reference="NqV-bJ-eGO"/>
-                                                            <include reference="lw7-fh-lXC"/>
-                                                            <exclude reference="wzs-H3-BaU"/>
-                                                        </mask>
-                                                    </variation>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8PH-hR-3S5" firstAttribute="leading" secondItem="BsN-SJ-vHp" secondAttribute="leadingMargin" id="4o5-c0-rMo"/>
                                                 <constraint firstItem="gFY-Bv-GSu" firstAttribute="leading" secondItem="BsN-SJ-vHp" secondAttribute="leadingMargin" id="EBc-jX-cqI"/>
                                                 <constraint firstItem="gFY-Bv-GSu" firstAttribute="bottom" secondItem="BsN-SJ-vHp" secondAttribute="bottomMargin" id="KUO-1q-LKI"/>
-                                                <constraint firstItem="8PH-hR-3S5" firstAttribute="top" secondItem="BsN-SJ-vHp" secondAttribute="topMargin" constant="4" id="Y26-rA-b61"/>
                                                 <constraint firstItem="gFY-Bv-GSu" firstAttribute="top" secondItem="BsN-SJ-vHp" secondAttribute="topMargin" id="agf-sR-8z4"/>
                                                 <constraint firstItem="gFY-Bv-GSu" firstAttribute="trailing" secondItem="BsN-SJ-vHp" secondAttribute="trailingMargin" id="hbO-3W-ppb"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="gFY-Bv-GSu"/>
-                                                    <exclude reference="8PH-hR-3S5"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="4o5-c0-rMo"/>
-                                                    <exclude reference="Y26-rA-b61"/>
                                                     <exclude reference="EBc-jX-cqI"/>
                                                     <exclude reference="KUO-1q-LKI"/>
                                                     <exclude reference="agf-sR-8z4"/>
@@ -131,11 +103,8 @@
                                             <variation key="widthClass=compact">
                                                 <mask key="subviews">
                                                     <include reference="gFY-Bv-GSu"/>
-                                                    <include reference="8PH-hR-3S5"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="4o5-c0-rMo"/>
-                                                    <include reference="Y26-rA-b61"/>
                                                     <include reference="EBc-jX-cqI"/>
                                                     <include reference="KUO-1q-LKI"/>
                                                     <include reference="agf-sR-8z4"/>
@@ -145,7 +114,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cardOutline" destination="gFY-Bv-GSu" id="OaJ-OE-CvX"/>
-                                            <outlet property="notificationDot" destination="8PH-hR-3S5" id="GyJ-Iy-eyd"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OnePicCell" rowHeight="120" id="Niw-4X-xHe" customClass="OnePicCell">
@@ -159,54 +127,9 @@
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="be2-KR-ED0">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                                            <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="JTC-3U-Zwv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="25" id="1aD-c3-cJ2"/>
-                                                                        <constraint firstAttribute="width" constant="25" id="5UX-k4-QEF"/>
-                                                                        <constraint firstAttribute="width" constant="25" id="gTL-CC-uDG"/>
-                                                                        <constraint firstAttribute="height" constant="25" id="qpL-Fi-X4t"/>
-                                                                    </constraints>
-                                                                    <variation key="default">
-                                                                        <mask key="constraints">
-                                                                            <exclude reference="1aD-c3-cJ2"/>
-                                                                            <exclude reference="5UX-k4-QEF"/>
-                                                                        </mask>
-                                                                    </variation>
-                                                                    <variation key="widthClass=compact">
-                                                                        <mask key="constraints">
-                                                                            <include reference="1aD-c3-cJ2"/>
-                                                                            <include reference="5UX-k4-QEF"/>
-                                                                            <exclude reference="gTL-CC-uDG"/>
-                                                                            <exclude reference="qpL-Fi-X4t"/>
-                                                                        </mask>
-                                                                    </variation>
-                                                                </imageView>
-                                                            </subviews>
                                                             <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstItem="JTC-3U-Zwv" firstAttribute="top" secondItem="be2-KR-ED0" secondAttribute="top" id="CiT-6j-69d"/>
-                                                                <constraint firstItem="JTC-3U-Zwv" firstAttribute="leading" secondItem="be2-KR-ED0" secondAttribute="leading" constant="8" id="SGH-9n-DSN"/>
-                                                            </constraints>
-                                                            <variation key="default">
-                                                                <mask key="subviews">
-                                                                    <exclude reference="JTC-3U-Zwv"/>
-                                                                </mask>
-                                                                <mask key="constraints">
-                                                                    <exclude reference="CiT-6j-69d"/>
-                                                                    <exclude reference="SGH-9n-DSN"/>
-                                                                </mask>
-                                                            </variation>
                                                             <variation key="widthClass=compact" misplaced="YES">
                                                                 <rect key="frame" x="-5" y="7" width="215" height="90.5"/>
-                                                                <mask key="subviews">
-                                                                    <include reference="JTC-3U-Zwv"/>
-                                                                </mask>
-                                                                <mask key="constraints">
-                                                                    <include reference="CiT-6j-69d"/>
-                                                                    <include reference="SGH-9n-DSN"/>
-                                                                </mask>
                                                             </variation>
                                                         </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jd7-hQ-RoQ" customClass="PFImageView">
@@ -304,7 +227,6 @@
                                         <connections>
                                             <outlet property="cardView" destination="esw-Yz-eD1" id="Gce-NJ-h2V"/>
                                             <outlet property="imageView" destination="jd7-hQ-RoQ" id="9IK-xf-0so"/>
-                                            <outlet property="notificationDot" destination="JTC-3U-Zwv" id="QYd-zY-IzD"/>
                                             <outlet property="viewForChatVC" destination="be2-KR-ED0" id="6Sm-1x-Vsv"/>
                                         </connections>
                                     </tableViewCell>

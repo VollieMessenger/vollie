@@ -77,23 +77,14 @@
                                     <constraint firstAttribute="width" constant="90" id="yzg-WK-Q2h"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zBd-DG-P3J">
-                                <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="Sv1-OP-FFF"/>
-                                    <constraint firstAttribute="height" constant="25" id="fSZ-3y-2NH"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Kny-G8-SvY" firstAttribute="leading" secondItem="Hwt-lb-TVu" secondAttribute="trailing" constant="3" id="0wG-o2-nIu"/>
                             <constraint firstItem="Hwt-lb-TVu" firstAttribute="top" secondItem="FDD-YO-ryD" secondAttribute="top" id="Ivr-8D-n0j"/>
-                            <constraint firstItem="zBd-DG-P3J" firstAttribute="top" secondItem="FDD-YO-ryD" secondAttribute="top" id="NG0-bt-fQ0"/>
                             <constraint firstAttribute="centerY" secondItem="Kny-G8-SvY" secondAttribute="centerY" id="SAI-6z-aER"/>
                             <constraint firstItem="Hwt-lb-TVu" firstAttribute="leading" secondItem="FDD-YO-ryD" secondAttribute="leading" id="VVE-8v-dec"/>
                             <constraint firstAttribute="bottom" secondItem="Hwt-lb-TVu" secondAttribute="bottom" id="Xvo-E7-Y6D"/>
-                            <constraint firstItem="zBd-DG-P3J" firstAttribute="leading" secondItem="FDD-YO-ryD" secondAttribute="leading" id="gGE-c5-s27"/>
                             <constraint firstAttribute="trailing" secondItem="Kny-G8-SvY" secondAttribute="trailing" constant="8" id="jrJ-Bl-QcT"/>
                         </constraints>
                     </view>
@@ -112,13 +103,9 @@
                 <outlet property="imageViewOne" destination="h89-rT-a0c" id="Iit-TR-wSg"/>
                 <outlet property="imageViewThree" destination="3MP-V8-KtZ" id="uwn-lO-nY0"/>
                 <outlet property="imageViewTwo" destination="6YV-m1-kSu" id="4qW-g1-tng"/>
-                <outlet property="notificationDot" destination="zBd-DG-P3J" id="LqR-5b-Nhq"/>
                 <outlet property="viewForChatVC" destination="Hwt-lb-TVu" id="xF8-gE-DU9"/>
             </connections>
             <point key="canvasLocation" x="299" y="514.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="1readMesseageIcon" width="100" height="100"/>
-    </resources>
 </document>

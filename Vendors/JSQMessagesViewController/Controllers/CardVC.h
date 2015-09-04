@@ -15,6 +15,7 @@
 @interface CardVC : UIViewController <JSQMessagesCollectionViewDataSource,
 JSQMessagesCollectionViewDelegateFlowLayout,
 UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate >
+@property (weak, nonatomic) IBOutlet UIImageView *unreadNotificationDot;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewPictures;
 /**
