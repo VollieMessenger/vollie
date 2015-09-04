@@ -24,6 +24,8 @@
         self.dateUpdated = object.createdAt;
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+        
+        [self setUnreadDotWith];
 //        NSDate *todaysDate;
 //        NSLog(@"Initialized date is %@",[formatter stringFromDate:self.dateUpdated]);
 
@@ -42,6 +44,28 @@
 {
     NSDate *date = object.createdAt;
     self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
+}
+
+-(void)setUnreadDotWith
+{
+    
+    // we haven't brough in the set yet
+    //if we do a findobjectinbasckgroundwithblock and try to do a query where relation doesn't include me
+    
+    PFRelation *unreadUsers = [self.actualSet relationForKey:@"unreadUsers"];
+    [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+        for (PFUser *user in objects)
+        {
+            NSLog(@"%@", user.objectId);
+        }
+    }];
+//    [unreadUsers removeObject:[PFUser currentUser]];
+//    NSString *userId = [PFUser currentUser].objectId;
+//    for (PFUser *user in unreadUsers)
+//    {
+//        NSLog(@"%@", user.objectId);
+//    }
 }
 
 -(void)modifyCardWith:(PFObject *)object

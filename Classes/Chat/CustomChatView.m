@@ -265,11 +265,14 @@
         NSString *setID = set.objectId;
         setId_ = setID;
         self.set = set;
+//        self.room = [set objectForKey:@"room"];
+//        [self.room fetchIfNeeded];
         setComments = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray new];
         objectIds = [NSMutableArray new];
         self.arrayOfUnreadUsers = [NSMutableArray new];
         self.shouldUpdateUnreadUsers = false;
+        
         
         [self loadMessages];
     }
@@ -323,7 +326,6 @@
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
 //        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
-
 
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
@@ -428,8 +430,23 @@
         if (!error)
         {
             NSLog(@"saved set with updated relation");
+            NSLog(@"%@", self.set.objectId);
         }
     }];
+    
+    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
+    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
+    {
+        if(!error)
+        {
+            self.set = fullSet;
+            PFObject *room = [fullSet objectForKey:@"room"];
+            NSLog(@"room info is %@", room);
+            self.room = room;
+        }
+        
+    }];
+
 }
 
 
