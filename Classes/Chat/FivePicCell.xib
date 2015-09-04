@@ -77,7 +77,7 @@
                                     <constraint firstAttribute="width" constant="90" id="yzg-WK-Q2h"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1unreadMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zBd-DG-P3J">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zBd-DG-P3J">
                                 <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="Sv1-OP-FFF"/>
@@ -119,6 +119,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="1unreadMesseageIcon" width="100" height="100"/>
+        <image name="1readMesseageIcon" width="100" height="100"/>
     </resources>
 </document>

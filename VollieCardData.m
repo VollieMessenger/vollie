@@ -24,8 +24,21 @@
         self.dateUpdated = object.createdAt;
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+        self.unreadStatus = false;
         
-        [self setUnreadDotWith];
+        
+        PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
+        [setQuery getObjectInBackgroundWithId:self.set block:^(PFObject *fullSet, NSError *error)
+         {
+             if(!error)
+             {
+                 self.actualSet = fullSet;
+                 [self setUnreadDotWithSet:fullSet];
+                 //             NSLog(@"%@", fullSet);
+             }
+         }];
+        
+//        [self setUnreadDotWithSet:];
 //        NSDate *todaysDate;
 //        NSLog(@"Initialized date is %@",[formatter stringFromDate:self.dateUpdated]);
 
@@ -46,20 +59,39 @@
     self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
 }
 
--(void)setUnreadDotWith
+-(void)setUnreadDotWithSet:(PFObject*)set
 {
-    
+    NSString *currentUserString = [PFUser currentUser].objectId;
     // we haven't brough in the set yet
     //if we do a findobjectinbasckgroundwithblock and try to do a query where relation doesn't include me
     
-    PFRelation *unreadUsers = [self.actualSet relationForKey:@"unreadUsers"];
+    PFRelation *unreadUsers = [set relationForKey:@"unreadUsers"];
     [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
         for (PFUser *user in objects)
         {
-            NSLog(@"%@", user.objectId);
+            if ([user.objectId isEqualToString:currentUserString])
+            {
+                NSLog(@"you're in this set");
+                self.unreadStatus = true;
+            }
+//            NSLog(@"%@", user.objectId);
         }
     }];
+    
+    
+    
+//    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
+//    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
+//     {
+//         if(!error)
+//         {
+//             self.set = fullSet;
+//             PFObject *room = [fullSet objectForKey:@"room"];
+//             NSLog(@"room info is %@", room);
+//             self.room = room;
+//         }
+//     }];
 //    [unreadUsers removeObject:[PFUser currentUser]];
 //    NSString *userId = [PFUser currentUser].objectId;
 //    for (PFUser *user in unreadUsers)
@@ -133,18 +165,11 @@
 
 -(void)createCardVCwithSetID:(NSString*)setID andPictures:(NSMutableArray*)picsArray andComments:(NSMutableArray *)commentsArray
 {
-//    if (!picsArray.count)
-//    {
-//        UIImage *image = [UIImage imageNamed:@"Vollie-icon"];
-//        [picsArray addObject:image];
-//    }
     CardCellView *vc = [[CardCellView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen] andPictures:picsArray andComments:commentsArray];
     self.viewController = vc;
-    //    chatt.senderId = [self.senderId copy];
-    //    chatt.senderDisplayName = [self.senderDisplayName copy];
-//    vc.room = self.room;
-//    [self.vollieVCcardArray addObject:vc];
-//    [self.tableView reloadData];
+    
+
+    //
 }
 
 @end

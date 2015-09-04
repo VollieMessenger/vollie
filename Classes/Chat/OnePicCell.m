@@ -48,6 +48,17 @@
             self.imageView.image = [UIImage imageWithData:data];
         }
     }];
+    
+    if (vollieCardData.unreadStatus == true)
+    {
+//        self.notificationDot.image = [UIImage imageNamed:@"Camera Icon"];
+        self.notificationDot.backgroundColor = [UIColor orangeColor];
+        NSLog(@"should have changed to orange");
+    }
+    else
+    {
+//        NSLog(@"no unread messages");
+    }
 }
 
 @end

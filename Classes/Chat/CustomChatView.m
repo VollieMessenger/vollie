@@ -444,9 +444,7 @@
             NSLog(@"room info is %@", room);
             self.room = room;
         }
-        
     }];
-
 }
 
 
