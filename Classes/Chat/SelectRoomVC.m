@@ -145,6 +145,7 @@
 
                  [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
              }
+             PostNotification(@"photosSent");
          }
          else
          {

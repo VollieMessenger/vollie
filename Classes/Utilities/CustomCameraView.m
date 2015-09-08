@@ -910,6 +910,7 @@
 #pragma mark - CAMERA
 
 -(void)cameraView:(int)number{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearArray) name:@"photosSent" object:nil];
     if (number ==1&&!self.audioOn) {
         AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
         NSError *error2 = nil;
@@ -2565,6 +2566,11 @@
     self.x5.hidden = YES;
     self.nextButton.hidden = YES;
     self.counterButton.hidden = YES;
+}
+
+-(void)clearArray{
+    self.arrayOfTakenPhotos = nil;
+    [self blankOutButtons];
 }
 
 @end

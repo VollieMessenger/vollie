@@ -159,7 +159,9 @@
     NSLog(@"%f",lastContentOffset);
     if (lastContentOffset < self.bounds.size.width - 1) {
         [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
-        [self.secondarDelegate cameraView:1];
+        if (lastContentOffset == 0) {
+            [self.secondarDelegate cameraView:1];
+        }
     }
     else
     {
