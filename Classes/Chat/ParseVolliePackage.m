@@ -44,6 +44,7 @@
             [self.savedPhotoObjects addObject:picture];
             [self.savedImageFiles addObject:imageFile];
             [self saveParseObjectInBackgroundWith:picture andText:text andRoom:roomNumber andSet:setID];
+            PostNotification(@"photosSent");
         }
         else if ([imageOrFile isKindOfClass:[NSDictionary class]])
         {

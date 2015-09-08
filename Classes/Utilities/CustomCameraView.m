@@ -2569,7 +2569,7 @@
 }
 
 -(void)clearArray{
-    self.arrayOfTakenPhotos = nil;
+    [self.arrayOfTakenPhotos removeAllObjects];
     [self blankOutButtons];
 }
 
