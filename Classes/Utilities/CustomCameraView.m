@@ -173,9 +173,9 @@
 
     self.navigationController.navigationBarHidden = 1;
 
-    self.cancelButton.hidden = !_isPoppingUp;
+    self.cancelButton.hidden = !self.comingFromNewVollie;
     self.leftButton.hidden = YES;
-    self.rightButton.hidden = _isPoppingUp;
+    self.rightButton.hidden = self.comingFromNewVollie;
 
     self.cancelButton.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor blackColor];
@@ -291,6 +291,10 @@
 //    [self clearCameraStuff];
 //    }
 
+    self.cancelButton.hidden = !self.comingFromNewVollie;
+    self.leftButton.hidden = YES;
+    self.rightButton.hidden = self.comingFromNewVollie;
+    
     self.navigationController.navigationBarHidden = 1;
     NSLog(@"%li in photosfromNewVC after if statement", self.photosFromNewVC.count);
 
@@ -324,8 +328,8 @@
 
     if (self.comingFromNewVollie == true)
     {
-        self.rightButton.hidden = true;
-        self.cancelButton.hidden = false;
+//        self.rightButton.hidden = true;
+//        self.cancelButton.hidden = false;
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
 
@@ -387,6 +391,7 @@
     if (_isPoppingUp)
     {
         self.scrollView.scrollEnabled = NO;
+        self.cancelButton.hidden = YES;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
 
