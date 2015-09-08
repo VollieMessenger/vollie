@@ -20,5 +20,4 @@
 @property NSString *name;
 @property PFObject *messageItComesFrom;
 
-
 @end
