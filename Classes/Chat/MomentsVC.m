@@ -132,6 +132,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
+    card.viewController.unreadNotificationDot.image = [UIImage imageNamed:@"1readMesseageIcon"];
 
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
