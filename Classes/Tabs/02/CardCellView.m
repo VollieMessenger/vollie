@@ -64,6 +64,8 @@
     [super viewDidAppear:1];
 //    [self scrollToBottomAnimated:YES];
     [self.collectionView reloadData];
+    self.automaticallyScrollsToMostRecentMessage = YES;
+    [self scrollToBottomAnimated:YES];
 
 }
 
@@ -73,8 +75,6 @@
 //    [self isSetFavorited];
     [self finishReceivingMessage:0];
     [self.collectionView reloadData];
-
-//    [self scrollToBottomAnimated:YES];
 
 }
 

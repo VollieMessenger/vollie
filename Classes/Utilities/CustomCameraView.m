@@ -1284,7 +1284,12 @@
         //Indicate that some changes will be made to the session
         [self.captureSession beginConfiguration];
 //        self.camFlipCount++;
-        AVCaptureInput* currentCameraInput = [self.captureSession.inputs objectAtIndex:0];
+        AVCaptureInput* currentCameraInput;
+        for (AVCaptureDeviceInput * capture in self.captureSession.inputs) {
+            if (capture.device.position) {
+                currentCameraInput = capture;
+            }
+        }
 //        AVCaptureInput* audioInput = [self.captureSession.inputs objectAtIndex:1];
 //        NSLog(@"1 %@", currentCameraInput);
 //        NSLog(@"2 %@", audioInput);
