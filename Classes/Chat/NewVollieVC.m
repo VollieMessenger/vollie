@@ -19,6 +19,7 @@
 #import "PopUpScrollView.h"
 #import "UIColor+JSQMessages.h"
 #import "ParseVolliePackage.h"
+#import "ProgressHUD.h"
 
 @interface NewVollieVC ()
 <UITextViewDelegate,
@@ -152,45 +153,62 @@ SecondDelegate>
     //this code makes "done" or "return" button resign first responder
     if ([text isEqualToString:@"\n"])
     {
-        if (self.whichRoom)
+        if (self.photosArray.count)
         {
-            PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
-            [set setValue:self.whichRoom forKey:PF_SET_ROOM];
-            [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
-//            [set setValue:@0 forKey:@"numberOfResponses"];
-//            [set saveInBackground];
-
-//            ParseVolliePackage *package = [ParseVolliePackage new];
-//            self.package;
-            if (self.photosArray.count)
-            {
-                [self.package sendPhotosWithPhotosArray:self.photosArray
-                                           andText:self.textView.text
-                                           andRoom:self.whichRoom
-                                            andSet:set];
-            }
-            else
-            {
-                [self.package checkForTextAndSendItWithText:self.textView.text
-                                               andRoom:self.whichRoom
-                                                andSet:set];
-            }
-             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
+            [self continueSendingVollie];
+        }
+        else if (![self.textView.text isEqualToString:@"Type Message Here..."] && self.textView.text.length !=0)
+        {
+            [self continueSendingVollie];
         }
         else
         {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-            SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
-            selectRoomVC.photosToSend = self.photosArray;
-            selectRoomVC.textToSend = self.textView.text;
-            selectRoomVC.package = self.package;
-            [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
+            [ProgressHUD showError:@"No Pics or Text"];
+        }
+        return NO;
+    }
+    else
+    {
+        return YES;
+    }
+}
 
-            [self.navigationController pushViewController:selectRoomVC animated:YES];
-//            [self.cameraView blankOutButtons];
+-(void)continueSendingVollie
+{
+    if (self.whichRoom)
+    {
+        PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
+        [set setValue:self.whichRoom forKey:PF_SET_ROOM];
+        [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
+        if (self.photosArray.count)
+        {
+            [self.package sendPhotosWithPhotosArray:self.photosArray
+                                            andText:self.textView.text
+                                            andRoom:self.whichRoom
+                                             andSet:set];
+        }
+        else
+        {
+            
+            [self.package checkForTextAndSendItWithText:self.textView.text
+                                                andRoom:self.whichRoom
+                                                 andSet:set];
+            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1]
+                                                  animated:YES];
         }
     }
-    return YES;
+    else
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        SelectRoomVC *selectRoomVC = (SelectRoomVC *)[storyboard instantiateViewControllerWithIdentifier:@"SelectRoomVC"];
+        selectRoomVC.photosToSend = self.photosArray;
+        selectRoomVC.textToSend = self.textView.text;
+        selectRoomVC.package = self.package;
+        [self.textDelegate newVollieDismissed:self.textView.text andPhotos:nil];
+        
+        [self.navigationController pushViewController:selectRoomVC animated:YES];
+        //            [self.cameraView blankOutButtons];
+    }
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView
