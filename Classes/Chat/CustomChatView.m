@@ -90,9 +90,60 @@
 
              //We must update the date for the set, so we know when it is last edited in favorites.
              PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
+             PFRelation *usersWhoHaventRead = [set relationForKey:@"unreadUsers"];
+             [set setValue:object forKey:@"lastPicture"];
              [set incrementKey:@"numberOfResponses" byAmount:@1];
              [set setValue:[NSDate date] forKey:PF_SET_UPDATED];
-             [set saveEventually];
+             PFRelation *users = [self.room relationForKey:PF_CHATROOMS_USERS];
+             PFQuery *query = [users query];
+             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+             {
+                 if (!error)
+                 {
+                     for (PFUser *user in objects)
+                     {
+                         if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
+                         {
+                             [usersWhoHaventRead addObject:user];
+                             NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
+//                             NSLog(@"%li users are being added as unread users";
+                         }
+                     }
+                 }
+                 [set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                  {
+                      if (!error)
+                      {
+                          NSLog(@"updated set in background with block");
+                      }
+                  }];
+             }];
+//             [set saveEventually];
+
+             
+             
+             
+             
+//             
+//
+//             PFRelation *users = [roomNumber relationForKey:PF_CHATROOMS_USERS];
+//             PFQuery *query = [users query];
+//             
+//             //get rid of this to test unread status:
+//             //                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+//             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//                 if (!error)
+//                 {
+//                     for (PFUser *user in objects)
+//                     {
+//                         if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
+//                         {
+//                             [usersWhoHaventRead addObject:user];
+//                         }
+//                     }
+//                 }
+//             }];
+//             [setID saveInBackground];
          }
          else
          {
