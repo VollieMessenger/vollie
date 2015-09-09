@@ -12,6 +12,7 @@
 #import "ParseMedia.h"
 #import "CustomChatView.h"
 #import "UIColor+JSQMessages.h"
+#import "ProgressHUD.h"
 
 @interface AllWeekPhotosVC () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
@@ -82,10 +83,30 @@
 
 -(void)beginParsePullWithSets
 {
-    for (PFObject *set in self.highlight.sets)
+    self.collectionView.hidden = YES;
+//    [ProgressHUD show:@"Loading..."];
+    NSLog(@"%li", self.highlight.sets.count);
+    int setCount = (int)self.highlight.sets.count;
+    for (int i = 0; i < setCount; i++)
     {
+        PFObject *set = self.highlight.sets[i];
         [self loadPicturesWithSet:set];
+        if (i == setCount -1)
+        {
+//            [ProgressHUD showSuccess:@"Success"];
+            [self performSelector:@selector(delayedShowOfCells) withObject:@1 afterDelay:1.0];
+        }
     }
+//    for (PFObject *set in self.highlight.sets)
+//    {
+//        [self loadPicturesWithSet:set];
+//    }
+}
+
+-(void)delayedShowOfCells
+{
+//    [ProgressHUD dismiss];
+    self.collectionView.hidden = NO;
 }
 
 -(void)loadPicturesWithSet:(PFObject *)set
