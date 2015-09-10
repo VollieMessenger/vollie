@@ -39,7 +39,7 @@
 //for testing the fav cells
 #import "FivePicsFavCell.h"
 
-@interface MomentsVC () <UITableViewDataSource, UITableViewDelegate, RefreshMessagesDelegate>
+@interface MomentsVC () <UITableViewDataSource, UITableViewDelegate, RefreshMessagesDelegate, ManageChatDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *vollieIconImageView;
@@ -107,6 +107,7 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     ManageChatVC *manageChatVC = (ManageChatVC *)[storyboard instantiateViewControllerWithIdentifier:@"ManageChatVC"];
+    manageChatVC.delegate = self;
     manageChatVC.messageButReallyRoom = self.messageItComesFrom;
     manageChatVC.room = self.room;
     [self.navigationController pushViewController:manageChatVC animated:YES];
@@ -453,6 +454,11 @@
     ParseVolliePackage *package = [ParseVolliePackage new];
     package.refreshDelegate = self;
     vc.package = package;
+}
+
+-(void)titleChange:(NSString *)title{
+    self.title = title;
+    [self.view setNeedsDisplay];
 }
 
 @end

@@ -264,7 +264,7 @@
         [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded)
             {
-                PostNotification(NOTIFICATION_REFRESH_INBOX);
+                [self.delegate titleChange:self.textField.text];
                 [ProgressHUD showSuccess:@"Saved Nickname"];
                 [self.textField resignFirstResponder];
             }
