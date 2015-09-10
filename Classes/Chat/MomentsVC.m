@@ -112,6 +112,16 @@
     [self.navigationController pushViewController:manageChatVC animated:YES];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
+    self.navigationController.navigationBar.titleTextAttributes =  @{
+                                                                     NSForegroundColorAttributeName: [UIColor colorWithWhite:.98 alpha:1],
+                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+                                                                     NSShadowAttributeName:[NSShadow new]
+                                                                     };
+}
+
 -(void)viewDidAppear:(BOOL)animated
 {
 //    [self performSelector:@selector(loadMessages) withObject:self afterDelay:1.0f];

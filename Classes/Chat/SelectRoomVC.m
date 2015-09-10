@@ -94,8 +94,8 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
+    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
 }
 
 #pragma mark "ParseStuff"
