@@ -18,6 +18,7 @@
 //#import "CustomCameraView.h"
 #import "CreateChatroomView.h"
 #import "MasterScrollView.h"
+#import "MainInboxVC.h"
 //#import "ParseVolliePackage.h"
 
 @interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
@@ -31,6 +32,7 @@
 @property NSMutableArray *objectsForParse;
 @property NSMutableArray *cellsArray;
 
+@property PFObject *messagesRoom;
 @property PFObject *selectedRoom;
 @property PFObject *selectedSet;
 //@property PFObject *selectedMessage;
@@ -141,6 +143,19 @@
                  [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
                  self.scrollView = [(AppDelegate *)[[UIApplication sharedApplication] delegate] scrollView];
                  [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:NO];
+                 NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+                 // LOAD MESSAGES FROM INBOX INSTEAD.
+                 
+                 
+                 
+                 
+                 MainInboxVC *mainInbox = nav.viewControllers.firstObject;
+                 
+                 
+                 
+                 
+                 [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom];
+
 
 //                 self.scrollView
 
@@ -247,6 +262,7 @@
     cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
 
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
+    self.messagesRoom = room;
     self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
 }
 

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MasterScrollView.h"
+#import <Parse/Parse.h>
 
 @interface MainInboxVC : UIViewController
 
@@ -15,6 +16,7 @@
 @property NSMutableArray *messages;
 
 -(void)goToMostRecentChatRoom;
+-(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room;
 -(void)loadInbox;
 
 @end
