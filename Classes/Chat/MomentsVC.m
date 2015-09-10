@@ -119,7 +119,18 @@
     [self loadMessages];
     
     [self performSelector:@selector(delayedReloadTableView) withObject:self afterDelay:2.0f];
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
+    self.navigationController.navigationBar.titleTextAttributes =
+    @{
+        NSForegroundColorAttributeName: [UIColor colorWithWhite:.98 alpha:1],
+        NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+        NSShadowAttributeName:[NSShadow new]
+    };
 }
 
 -(void)delayedReloadTableView
