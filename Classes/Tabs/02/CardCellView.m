@@ -66,7 +66,7 @@
     [super viewDidAppear:1];
 //    [self scrollToBottomAnimated:YES];
     [self.collectionView reloadData];
-
+    [self fetchSetForUnreadCheck];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -204,6 +204,7 @@
      {
          if (!error)
          {
+             self.unreadNotificationDot.image = [UIImage imageNamed:@"1readMesseageIcon"];
              for (PFUser *user in objects)
              {
                  if ([user.objectId isEqualToString:[PFUser currentUser].objectId])

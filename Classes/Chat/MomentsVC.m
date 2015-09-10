@@ -348,19 +348,6 @@
     [query includeKey:PF_CHAT_SETID];
     [query orderByDescending:PF_PICTURES_UPDATEDACTION];
 
-//    if (message_last && picture_last)
-//    {
-//        if (message_last.date > picture_last.createdAt)
-//        {
-//            [query whereKey:PF_CHAT_CREATEDAT greaterThan:message_last.date];
-//        }
-
-//        else
-//        {
-//            [query whereKey:PF_CHAT_CREATEDAT greaterThan:picture_last.createdAt];
-//        }
-//    }
-
     [self getMessagesWithPFQuery:query];
 }
 
