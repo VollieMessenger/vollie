@@ -15,7 +15,9 @@
 #import "AppDelegate.h"
 #import "pushnotification.h"
 #import "messages.h"
+//#import "CustomCameraView.h"
 #import "CreateChatroomView.h"
+#import "MasterScrollView.h"
 //#import "ParseVolliePackage.h"
 
 @interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
@@ -32,6 +34,8 @@
 @property PFObject *selectedRoom;
 @property PFObject *selectedSet;
 //@property PFObject *selectedMessage;
+
+@property MasterScrollView *scrollView;
 
 @property int countDownToPhotoRefresh;
 @property BOOL isThePicturesReadyToSend;
@@ -88,7 +92,7 @@
         // LOAD MESSAGES FROM INBOX INSTEAD.
         MessagesView *view = nav.viewControllers.firstObject;
         self.messages = view.messages;
-        NSLog(@"%li messages coming in", view.messages.count);
+//        NSLog(@"%li messages coming in", view.messages.count);
     }
 }
 
@@ -134,7 +138,15 @@
                                                 andRoom:self.selectedRoom
                                                  andSet:self.selectedSet];
 
-                 [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+                 [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                 self.scrollView = [(AppDelegate *)[[UIApplication sharedApplication] delegate] scrollView];
+                 [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:NO];
+
+//                 self.scrollView
+
+//                 NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+//                 CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+//                 cam sc
              }
              else
              {
