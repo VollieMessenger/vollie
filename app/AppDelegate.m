@@ -39,6 +39,8 @@
 
 #import "ChatView.h"
 
+#import "MomentsVC.h"
+
 #import "MasterScrollView.h"
 
 #import "MasterLoginRegisterView.h"
@@ -198,10 +200,11 @@
             // Show photo view controller
             if (!error && [PFUser currentUser])
             {
-                NSString *names = [room valueForKey:PF_CHATROOMS_NAME];
-                ChatView *chat = [[ChatView alloc] initWith:object name:names];
-#warning SEND TO MESSAGES VIEW (NOT ARCHIVE);
-                [scrollView openView:chat];
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+                MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+                cardViewController.room = room;
+//#warning SEND TO MESSAGES VIEW (NOT ARCHIVE);
+                [scrollView openView:cardViewController];
             }
         }];
     }
@@ -358,8 +361,10 @@
             }
             else
             {
-                ChatView *chat = [[ChatView alloc] initWith:room name:[room valueForKey:PF_CHATROOMS_NAME]];
-
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+                MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+                cardViewController.room = room;
+                
                 if (application.applicationState == UIApplicationStateActive && !didJustOpenFromBackground)
                 {
                     NSString* title = @"NEW MESSAGE!";
@@ -388,7 +393,7 @@
                     //Dismiss Modal Views
                     PostNotification(NOTIFICATION_CLICKED_PUSH);
 
-                    [scrollView openView:chat];
+                    [scrollView openView:cardViewController];
                     }];
 
                     }
@@ -396,7 +401,7 @@
                 }
                 else
                 {
-                    [scrollView openView:chat];
+                    [scrollView openView:cardViewController];
                 }
         }
 
