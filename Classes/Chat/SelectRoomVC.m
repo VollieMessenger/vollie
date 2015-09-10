@@ -150,10 +150,6 @@
                  
                  
                  MainInboxVC *mainInbox = nav.viewControllers.firstObject;
-                 
-                 
-                 
-                 
                  [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom];
 
 

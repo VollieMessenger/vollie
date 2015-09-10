@@ -448,17 +448,17 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     //needs to send user to new vollie page
-    [self refreshMessages];
-    NSLog(@"About to Push to Card 0");
-    if (!self.isCurrentlyLoadingMessages)
-    {
-        [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
-    }
-    else
-    {
-        [self performSelector:@selector(delayedGoToCardWithMessage) withObject:self afterDelay:1.0f];
-        [self.tableView reloadData];
-    }
+//    [self refreshMessages];
+//    NSLog(@"About to Push to Card 0");
+//    if (!self.isCurrentlyLoadingMessages)
+//    {
+//        [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
+//    }
+//    else
+//    {
+//        [self performSelector:@selector(delayedGoToCardWithMessage) withObject:self afterDelay:1.0f];
+//        [self.tableView reloadData];
+//    }
 }
 
 -(void)delayedGoToCardWithMessage

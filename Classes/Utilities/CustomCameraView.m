@@ -1715,7 +1715,7 @@
     self.scrollView.didJustFinishSendingVollie = YES;
     [self didSlideRight:self];
 //    self.scrollView.scrollEnabled= false;
-    [inbox performSelector:@selector(goToMostRecentChatRoom) withObject:self afterDelay:1.0f];
+//    [inbox performSelector:@selector(goToMostRecentChatRoom) withObject:self afterDelay:1.0f];
 
 //    [inbox goToMostRecentChatRoom];
 }
