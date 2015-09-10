@@ -94,7 +94,7 @@
         if (i == setCount -1)
         {
 //            [ProgressHUD showSuccess:@"Success"];
-            [self performSelector:@selector(delayedShowOfCells) withObject:@1 afterDelay:1.0];
+            [self performSelector:@selector(delayedShowOfCells) withObject:@1 afterDelay:1.5];
         }
     }
 //    for (PFObject *set in self.highlight.sets)
