@@ -45,6 +45,10 @@
                 PFImageView *imageView = self.imageViewArray[i];
                 imageView.image = [UIImage imageWithData:data];
             }
+            else
+            {
+                NSLog(@"i had an error loading a picture");
+            }
         }];
         i++;
     }

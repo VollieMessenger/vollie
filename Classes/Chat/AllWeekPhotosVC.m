@@ -85,7 +85,7 @@
 {
     self.collectionView.hidden = YES;
 //    [ProgressHUD show:@"Loading..."];
-    NSLog(@"%li", self.highlight.sets.count);
+    NSLog(@"%li photos this week", self.highlight.sets.count);
     int setCount = (int)self.highlight.sets.count;
     for (int i = 0; i < setCount; i++)
     {
@@ -114,7 +114,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Chat"];
     [query whereKey:@"setId" equalTo:set];
     [query whereKey:@"isUploaded" equalTo:[NSNumber numberWithBool:YES]];
-    [query orderByDescending:@"createdAt"];
+//    [query orderByDescending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if(!error)

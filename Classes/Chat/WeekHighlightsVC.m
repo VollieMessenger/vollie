@@ -123,8 +123,8 @@
                     // do i organize here?
                 }
                 //this is where if counter was zero i'd make it hide the alert
+                [self.tableView reloadData];
             }
-            [self.tableView reloadData];
         }
     }];
 }
