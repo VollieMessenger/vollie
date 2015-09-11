@@ -403,7 +403,7 @@
         //Create chatroom object
         if (_isTherePicturesToSend)
         {
-        [ProgressHUD show:@"Sending..." Interaction:0];
+            [ProgressHUD show:@"Sending..." Interaction:0];
         }
 
         //New Chatroom
@@ -434,27 +434,27 @@
                     [arrayOfUserIds addObject:object.objectId];
                 }
 
-            NSString *fullName = [user objectForKey:PF_USER_FULLNAME];
-            NSString *phoneNumber = [user valueForKey:PF_USER_USERNAME];
+                NSString *fullName = [user objectForKey:PF_USER_FULLNAME];
+                NSString *phoneNumber = [user valueForKey:PF_USER_USERNAME];
 
-            if (fullName.length && fullName)
-            {
-                stringOfNames = [stringOfNames stringByAppendingString:[NSString stringWithFormat:@"%@, ", fullName]];
-
-                if (object != [PFUser currentUser])
+                if (fullName.length && fullName)
                 {
-                    stringWithoutUser = [stringWithoutUser stringByAppendingString:[NSString stringWithFormat:@"%@, ", fullName]];
-                }
-            }
-            else
-            {
-                stringOfNames = [stringOfNames stringByAppendingString:[NSString stringWithFormat:@"%@, ", phoneNumber]];
+                    stringOfNames = [stringOfNames stringByAppendingString:[NSString stringWithFormat:@"%@, ", fullName]];
 
-                if (object != [PFUser currentUser])
-                {
-                    stringWithoutUser = [@"*" stringByAppendingString:stringWithoutUser];
+                    if (object != [PFUser currentUser])
+                    {
+                        stringWithoutUser = [stringWithoutUser stringByAppendingString:[NSString stringWithFormat:@"%@, ", fullName]];
+                    }
                 }
-            }
+                else
+                {
+                    stringOfNames = [stringOfNames stringByAppendingString:[NSString stringWithFormat:@"%@, ", phoneNumber]];
+
+                    if (object != [PFUser currentUser])
+                    {
+                        stringWithoutUser = [@"*" stringByAppendingString:stringWithoutUser];
+                    }
+                }
                 count--;
                 if (count == 0)
                 {
@@ -517,7 +517,7 @@
 #warning UNHIDE ALL MESSAGES RELATED TO THIS CHATROOM
                          if (_isTherePicturesToSend)
                          {
-                             [delegate sendObjectsWithSelectedChatroom:chatroommm andText:stringWithoutUser andComment:0];
+                             [self.delegate sendObjectsWithSelectedChatroom:chatroommm andText:stringWithoutUser andComment:0];
                          }
                          else
                          {

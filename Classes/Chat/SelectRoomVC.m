@@ -266,6 +266,7 @@
     CreateChatroomView * view = [[CreateChatroomView alloc]init];
     view.title = @"ahhhhh";
     view.isTherePicturesToSend = self.savedPhotoObjects.count;
+    view.photos = self.photosToSend;
     view.invite = NO;
     view.sendingMessage = self.textToSend;
     view.package = self.package;

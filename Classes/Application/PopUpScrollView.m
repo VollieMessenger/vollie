@@ -11,9 +11,7 @@
 @implementation PopUpScrollView
 
 -(instancetype)initWithIndexPathItem:(NSInteger)indexPathItem andPhotosArray:(NSMutableArray*)photosArray
-{
-
-
+{ 
     return self;
 }
 
