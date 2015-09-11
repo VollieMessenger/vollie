@@ -472,8 +472,8 @@
 
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room
 {
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    self.cardViewVC = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
     self.cardViewVC.room = room;
     self.cardViewVC.messageItComesFrom = userChatRoom;
     [self.navigationController pushViewController:self.cardViewVC animated:NO];
