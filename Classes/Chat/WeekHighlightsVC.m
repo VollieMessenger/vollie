@@ -102,17 +102,24 @@
     }
 }
 
+-(void)delayedReloadOfView
+{
+    [self.tableView reloadData];
+}
+
 -(void)loadSetsFrom:(PFObject *)room
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Sets"];
     [query whereKey:@"room" equalTo:room];
     [query includeKey:@"lastPicture"];
     [query includeKey:@"createdAt"];
-    [query orderByDescending:@"createdAt"];
+//    [query includeKey:@"numberOfResponses"];
+    [query orderByDescending:@"numberOfResponses"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
         if(!error)
         {
+            [self performSelector:@selector(delayedReloadOfView) withObject:@1 afterDelay:5];
             for (PFObject *set in objects)
             {
                 if ([set objectForKey:@"numberOfResponses"])
@@ -123,7 +130,7 @@
                     // do i organize here?
                 }
                 //this is where if counter was zero i'd make it hide the alert
-                [self.tableView reloadData];
+//                [self.tableView reloadData];
             }
         }
     }];
@@ -153,6 +160,7 @@
             if (data.howManyWeeksAgo == weeksInt)
             {
                 [data modifyHighLightWithSet:set];
+//                [self.tableView reloadData];
 //                NSLog(@"modified something with week %i", weeksInt);
             }
         }
@@ -202,6 +210,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.sortedHighlightsArray.count;
+//    return 0;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

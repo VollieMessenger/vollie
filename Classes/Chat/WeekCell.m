@@ -33,24 +33,30 @@
 -(void)fillPicsWithTop5PicsFromHighlight:(HighlightData*)highlight
 {
     int i = 0;
-    for (PFObject *set in highlight.sortedSets)
+    for (Set *set in highlight.sortedSets)
     {
-//        PFObject *actualSet = set.set;
-        PFObject *lastPicture = [set objectForKey:@"lastPicture"];
-        PFFile *thumbnail = [lastPicture objectForKey:@"thumbnail"];
-        [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+        PFObject *actualSet = set.set;
+        if (i < 6)
         {
-            if (!error)
-            {
-                PFImageView *imageView = self.imageViewArray[i];
-                imageView.image = [UIImage imageWithData:data];
-            }
-            else
-            {
-                NSLog(@"i had an error loading a picture");
-            }
-        }];
-        i++;
+            NSLog(@"%i", set.numberOfResponses);
+            PFObject *lastPicture = [actualSet objectForKey:@"lastPicture"];
+            PFFile *thumbnail = [lastPicture objectForKey:@"thumbnail"];
+            [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+             {
+                 if (!error)
+                 {
+                     PFImageView *imageView = self.imageViewArray[i];
+                     imageView.image = [UIImage imageWithData:data];
+//                     NSLog(@"Picture %i has %@ responses", i, set.numberOfResponses);
+                 }
+                 else
+                 {
+                     NSLog(@"i had an error loading a picture");
+                 }
+             }];
+            i++;
+//            NSLog(@"%i", i);
+        }
     }
 }
 

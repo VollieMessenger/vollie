@@ -22,7 +22,8 @@
         Set *customSet = [Set new];
         customSet.set = set;
         customSet.numberOfResponses = [[set objectForKey:@"numberOfResponses"]intValue];
-        [self.sets addObject:set];
+        [self.sets addObject:customSet];
+//        NSLog(@"created a highlight with %i")
     }
     return self;
 }
@@ -32,11 +33,19 @@
     Set *customSet = [Set new];
     customSet.set = set;
     customSet.numberOfResponses = [[set objectForKey:@"numberOfResponses"]intValue];
-    [self.sets addObject:set];    
+    [self.sets addObject:customSet];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"numberOfResponses" ascending:YES];
     NSArray *sortedSets = [self.sets sortedArrayUsingDescriptors:@[sortDescriptor]];
     NSArray* reversedArray = [[sortedSets reverseObjectEnumerator] allObjects];
     self.sortedSets = reversedArray;
+    
+//    Set *highestSet = reversedArray.firstObject;
+//    NSLog(@"the highest response number for week %@ is %i", self.weeksNumberToSortWith, highestSet.numberOfResponses);
+    
+//    for (Set *setItem in self.sets)
+//    {
+//        NSLog(@"%i", setItem.numberOfResponses);
+//    }
 //    NSLog(@"Highlight %i has %li sets in it", self.howManyWeeksAgo, self.sortedSets.count);
 }
 
