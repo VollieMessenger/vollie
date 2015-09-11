@@ -89,7 +89,8 @@
     int setCount = (int)self.highlight.sets.count;
     for (int i = 0; i < setCount; i++)
     {
-        PFObject *set = self.highlight.sets[i];
+        Set *setObject = self.highlight.sets[i];
+        PFObject *set = setObject.set;
         [self loadPicturesWithSet:set];
         if (i == setCount -1)
         {

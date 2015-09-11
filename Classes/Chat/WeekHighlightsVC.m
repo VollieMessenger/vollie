@@ -113,6 +113,7 @@
     [query whereKey:@"room" equalTo:room];
     [query includeKey:@"lastPicture"];
     [query includeKey:@"createdAt"];
+//    [query whereKey:@"isUploaded" equalTo:@1];
 //    [query includeKey:@"numberOfResponses"];
     [query orderByDescending:@"numberOfResponses"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
@@ -210,7 +211,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.sortedHighlightsArray.count;
-//    return 0;
+//    return 1;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

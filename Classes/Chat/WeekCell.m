@@ -32,6 +32,24 @@
 
 -(void)fillPicsWithTop5PicsFromHighlight:(HighlightData*)highlight
 {
+//    Set *setOne = highlight.sortedSets[1];
+//    PFObject *actualSetOne = setOne.set;
+////    NSLog(@"%@", actualSetOne);
+//    PFObject *lastPicture = [actualSetOne objectForKey:@"lastPicture"];
+//    NSLog(@"%@", lastPicture);
+//    PFFile *thumbnail = [lastPicture objectForKey:@"thumbnail"];
+//    [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+//    {
+//        if(!error)
+//        {
+//            self.imageViewOneBig.image = [UIImage imageWithData:data];
+//            NSLog(@"i loaded the data");
+//        }
+//        else
+//        {
+//            
+//        }
+//    }];
     int i = 0;
     for (Set *set in highlight.sortedSets)
     {
