@@ -52,7 +52,7 @@
 @property UILongPressGestureRecognizer *longPress;
 @property UITapGestureRecognizer *tap;
 
-
+@property MomentsVC *cardViewVC;
 
 //arrays
 //@property NSMutableArray *messagesObjectIds;
@@ -105,6 +105,9 @@
 {
     UIImageView *imageViewVolley = [[UIImageView alloc] init];
     imageViewVolley.image = [UIImage imageNamed:@"volley"];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    self.cardViewVC = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
 
     self.navigationItem.titleView = imageViewVolley;
     self.navigationItem.titleView.alpha = 1;
@@ -459,6 +462,7 @@
 //        [self performSelector:@selector(delayedGoToCardWithMessage) withObject:self afterDelay:1.0f];
 //        [self.tableView reloadData];
 //    }
+    [self.cardViewVC reloadCardsAfterUpload];
 }
 
 -(void)delayedGoToCardWithMessage
@@ -468,11 +472,11 @@
 
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
-    cardViewController.room = room;
-    cardViewController.messageItComesFrom = userChatRoom;
-    [self.navigationController pushViewController:cardViewController animated:NO];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+//    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+    self.cardViewVC.room = room;
+    self.cardViewVC.messageItComesFrom = userChatRoom;
+    [self.navigationController pushViewController:self.cardViewVC animated:NO];
 
 }
 

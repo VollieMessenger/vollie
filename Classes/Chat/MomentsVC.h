@@ -20,4 +20,6 @@
 @property NSString *name;
 @property PFObject *messageItComesFrom;
 
+-(void)reloadCardsAfterUpload;
+
 @end

@@ -349,6 +349,12 @@
 //    }
 }
 
+-(void)reloadCardsAfterUpload
+{
+    NSLog(@"i'm going to try to reload the cards");
+    [self loadMessages];
+}
+
 -(void)createQuery
 {
 //    JSQMessage *message_last = [self.messages lastObject];
