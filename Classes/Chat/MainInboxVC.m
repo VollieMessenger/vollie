@@ -52,7 +52,7 @@
 @property UILongPressGestureRecognizer *longPress;
 @property UITapGestureRecognizer *tap;
 
-@property MomentsVC *cardViewVC;
+//@property MomentsVC *cardViewVC;
 
 //arrays
 //@property NSMutableArray *messagesObjectIds;

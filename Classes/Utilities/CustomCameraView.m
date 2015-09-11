@@ -1711,9 +1711,10 @@
 //    self.textFromNextVC = nil;
     NavigationController *navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
     MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
-    [inbox loadInbox];
-    self.scrollView.didJustFinishSendingVollie = YES;
-    [self didSlideRight:self];
+    [inbox.cardViewVC reloadCardsAfterUpload];
+//    [inbox loadInbox];
+//    self.scrollView.didJustFinishSendingVollie = YES;
+//    [self didSlideRight:self];
 //    self.scrollView.scrollEnabled= false;
 //    [inbox performSelector:@selector(goToMostRecentChatRoom) withObject:self afterDelay:1.0f];
 

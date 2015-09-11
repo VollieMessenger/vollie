@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "MasterScrollView.h"
 #import <Parse/Parse.h>
+#import "MomentsVC.h"
 
 @interface MainInboxVC : UIViewController
 
 @property (strong, nonatomic) MasterScrollView *scrollView;
 @property NSMutableArray *messages;
+@property MomentsVC *cardViewVC;
 
 -(void)goToMostRecentChatRoom;
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room;
