@@ -13,7 +13,7 @@
 
 @interface CreateChatroomView : UIViewController <UISearchBarDelegate, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
-@property (nonatomic,assign) id delegate;
+@property (nonatomic,assign) id<CreateChatroomDelegate> delegate;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
