@@ -10,7 +10,7 @@
 
 @implementation HighlightData
 
--(instancetype)initWithPFObject:(PFObject *)set andAmountOfWeeks:(int)weeks
+-(instancetype)initWithPFObject:(PFObject *)set andAmountOfWeeks:(int)weeks andUserChatroom:(PFObject *)chatroom
 {
     self = [super self];
     if(self)
@@ -22,16 +22,18 @@
         Set *customSet = [Set new];
         customSet.set = set;
         customSet.numberOfResponses = [[set objectForKey:@"numberOfResponses"]intValue];
+        customSet.userChatroom = chatroom;
         [self.sets addObject:customSet];
 //        NSLog(@"created a highlight with %i")
     }
     return self;
 }
 
--(void)modifyHighLightWithSet:(PFObject *)set
+-(void)modifyHighLightWithSet:(PFObject *)set andUserChatroom:(PFObject *)chatroom
 {
     Set *customSet = [Set new];
     customSet.set = set;
+    customSet.userChatroom = chatroom;
     customSet.numberOfResponses = [[set objectForKey:@"numberOfResponses"]intValue];
     [self.sets addObject:customSet];
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"numberOfResponses" ascending:YES];

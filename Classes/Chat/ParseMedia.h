@@ -12,6 +12,7 @@
 @interface ParseMedia : NSObject
 
 @property PFObject *set;
+@property PFObject *userChatroom;
 @property PFFile *mediaForCell;
 @property PFFile *thumbNail;
 

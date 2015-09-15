@@ -17,10 +17,11 @@
 
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor;
 
-- (id)initWithSet:(PFObject*)set;
+- (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom;
 
 
 @property PFObject *room;
+@property PFObject *userChatRoom;
 @property BOOL isFavoritesSets;
 @property PFObject *album;
 @property NSString *setIDforCardCheck;

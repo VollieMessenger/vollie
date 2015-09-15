@@ -13,5 +13,6 @@
 
 @property int numberOfResponses;
 @property PFObject *set;
+@property PFObject *userChatroom;
 
 @end

@@ -18,8 +18,9 @@
 @property NSArray *sortedSets;
 @property NSMutableArray *topPics;
 
--(instancetype)initWithPFObject:(PFObject *)object andAmountOfWeeks:(int)weeks;
+-(instancetype)initWithPFObject:(PFObject *)object andAmountOfWeeks:(int)weeks andUserChatroom:(PFObject *)chatroom;
 
--(void)modifyHighLightWithSet:(PFObject *)set;
+
+-(void)modifyHighLightWithSet:(PFObject *)set andUserChatroom:(PFObject *)chatroom;
 
 @end

@@ -56,7 +56,7 @@
         PFObject *actualSet = set.set;
         if (i < 6)
         {
-            NSLog(@"%i", set.numberOfResponses);
+//            NSLog(@"%i", set.numberOfResponses);
             PFObject *lastPicture = [actualSet objectForKey:@"lastPicture"];
             PFFile *thumbnail = [lastPicture objectForKey:@"thumbnail"];
             [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)

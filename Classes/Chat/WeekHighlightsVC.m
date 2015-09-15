@@ -97,8 +97,8 @@
         //i would like to have this be a regular for loop
         //and do a counter. An alert would come up saying "loading"
         // and when the counter hits zero the tableview reloads and the alert goes away
-        PFObject *room = [message objectForKey:@"room"];
-        [self loadSetsFrom:room];
+//        PFObject *room = [message objectForKey:@"room"];
+        [self loadSetsFrom:message];
     }
 }
 
@@ -107,8 +107,9 @@
     [self.tableView reloadData];
 }
 
--(void)loadSetsFrom:(PFObject *)room
+-(void)loadSetsFrom:(PFObject *)message
 {
+    PFObject *room = [message objectForKey:@"room"];
     PFQuery *query = [PFQuery queryWithClassName:@"Sets"];
     [query whereKey:@"room" equalTo:room];
     [query includeKey:@"lastPicture"];
@@ -120,14 +121,14 @@
     {
         if(!error)
         {
-            [self performSelector:@selector(delayedReloadOfView) withObject:@1 afterDelay:5];
+            [self performSelector:@selector(delayedReloadOfView) withObject:@1 afterDelay:2];
             for (PFObject *set in objects)
             {
                 if ([set objectForKey:@"numberOfResponses"])
                 {
 //                    NSLog(@"%i responses", [[set objectForKey:@"numberOfResponses"]intValue]);
 //                    [self.sets addObject:set];
-                    [self createHighlightWithSet:set];
+                    [self createHighlightWithSet:set andMessage:message];
                     // do i organize here?
                 }
                 //this is where if counter was zero i'd make it hide the alert
@@ -137,7 +138,7 @@
     }];
 }
 
--(void)createHighlightWithSet:(PFObject*)set
+-(void)createHighlightWithSet:(PFObject*)set andMessage:(PFObject*)message
 {
     NSDate *now = [NSDate date];
 //    NSDate *setDate = [set valueForKey:@"createdAt"];
@@ -160,7 +161,7 @@
 //            NSLog(@"%i weeks ago compared to %i", data.howManyWeeksAgo, weeksInt);
             if (data.howManyWeeksAgo == weeksInt)
             {
-                [data modifyHighLightWithSet:set];
+                [data modifyHighLightWithSet:set andUserChatroom:message];
 //                [self.tableView reloadData];
 //                NSLog(@"modified something with week %i", weeksInt);
             }
@@ -169,7 +170,8 @@
     else
     {
         [self.weeks addObject:[NSNumber numberWithInt:weeksInt]];
-        HighlightData *data = [[HighlightData alloc] initWithPFObject:set andAmountOfWeeks:weeksInt];
+        HighlightData *data = [[HighlightData alloc] initWithPFObject:set andAmountOfWeeks:weeksInt andUserChatroom:message];
+//        data.userChatroom = message;
         [self.hightlightsArray addObject:data];
         NSSortDescriptor *sortDescriptor;
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"weeksNumberToSortWith"

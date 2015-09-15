@@ -300,7 +300,8 @@
     
 }
 
-- (id)initWithSet:(PFObject*)set
+- (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom;
+
 {
     //kyle's new init method
     self = [super init];
@@ -316,6 +317,10 @@
         NSString *setID = set.objectId;
         setId_ = setID;
         self.set = set;
+        self.userChatRoom = userChatRoom;
+        NSString *roomNameString = [self.userChatRoom objectForKey:@"nickname"];
+        NSLog(@"%@ is chat room name", roomNameString);
+        self.title = roomNameString;
 //        self.room = [set objectForKey:@"room"];
 //        [self.room fetchIfNeeded];
         setComments = [NSMutableArray new];
@@ -323,7 +328,6 @@
         objectIds = [NSMutableArray new];
         self.arrayOfUnreadUsers = [NSMutableArray new];
         self.shouldUpdateUnreadUsers = false;
-        
         
         [self loadMessages];
     }
@@ -480,8 +484,8 @@
     {
         if (!error)
         {
-            NSLog(@"saved set with updated relation");
-            NSLog(@"%@", self.set.objectId);
+            NSLog(@"sent message to remove user from list of unread users");
+//            NSLog(@"%@", self.set.objectId);
         }
     }];
     
@@ -492,10 +496,12 @@
         {
             self.set = fullSet;
             PFObject *room = [fullSet objectForKey:@"room"];
-            NSLog(@"room info is %@", room);
+//            NSLog(@"room info is %@", room);
             self.room = room;
         }
     }];
+    
+    NSLog(@"%@ is user chatroom", self.userChatRoom);
 }
 
 

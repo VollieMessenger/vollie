@@ -59,9 +59,10 @@
 {
     ParseMedia *mediaObject = self.picturesArray[indexPath.item];
     PFObject *set = mediaObject.set;
+    PFObject *chatRoom = mediaObject.userChatroom;
 //    NSString *setID = set.objectId;
 //    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen]];
-    CustomChatView *vc = [[CustomChatView alloc] initWithSet:set];
+    CustomChatView *vc = [[CustomChatView alloc] initWithSet:set andUserChatRoom:chatRoom];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -91,7 +92,8 @@
     {
         Set *setObject = self.highlight.sets[i];
         PFObject *set = setObject.set;
-        [self loadPicturesWithSet:set];
+        PFObject *chatroom = setObject.userChatroom;
+        [self loadPicturesWithSet:set andChatRoom:chatroom];
         if (i == setCount -1)
         {
 //            [ProgressHUD showSuccess:@"Success"];
@@ -110,7 +112,7 @@
     self.collectionView.hidden = NO;
 }
 
--(void)loadPicturesWithSet:(PFObject *)set
+-(void)loadPicturesWithSet:(PFObject *)set andChatRoom:(PFObject*)chatRoom;
 {
     PFQuery *query = [PFQuery queryWithClassName:@"Chat"];
     [query whereKey:@"setId" equalTo:set];
@@ -123,6 +125,7 @@
              for (PFObject *messageObject in objects)
              {
                  ParseMedia *object = [[ParseMedia alloc] initWithPFObject:messageObject];
+                 object.userChatroom = chatRoom;
                  [self.picturesArray addObject:object];
 //                 NSSortDescriptor *sortDescriptor;
 //                 sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt"
