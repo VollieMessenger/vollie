@@ -35,6 +35,11 @@
     [self beginParsePullWithSets];
 }
 
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [ProgressHUD dismiss];
+}
+
 -(void)basicSetUpAndInit
 {
     self.picturesArray = [NSMutableArray new];

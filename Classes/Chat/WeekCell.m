@@ -77,6 +77,8 @@
             }
             else
             {
+//                PFImageView *imageView = self.imageViewArray[i-1];
+//                imageView.image = [UIImage imageNamed:@"Vollie-icon"];
                 NSLog(@"corrupted photo in highlights view");
             }
             i++;
