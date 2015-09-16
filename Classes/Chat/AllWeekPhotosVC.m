@@ -20,6 +20,7 @@
 
 @property NSMutableArray *picturesArray;
 @property NSArray *sortedPicturesArray;
+@property int masterSetCounter;
 
 @end
 
@@ -86,7 +87,11 @@
 {
     self.collectionView.hidden = YES;
 //    [ProgressHUD show:@"Loading..."];
+    [ProgressHUD show:@"Loading" Interaction:YES];
+//    [ProgressHUD showSuccess:@"Loading"];
     NSLog(@"%li photos this week", self.highlight.sets.count);
+    self.masterSetCounter = (int)self.highlight.sets.count;
+    NSLog(@"%i setcounter", self.masterSetCounter);
     int setCount = (int)self.highlight.sets.count;
     for (int i = 0; i < setCount; i++)
     {
@@ -97,12 +102,12 @@
         if (i == setCount -1)
         {
 //            [ProgressHUD showSuccess:@"Success"];
-            [self performSelector:@selector(delayedShowOfCells) withObject:@1 afterDelay:1.5];
+//            [self performSelector:@selector(delayedShowOfCells) withObject:@1 afterDelay:1.5];
         }
     }
 //    for (PFObject *set in self.highlight.sets)
 //    {
-//        [self loadPicturesWithSet:set];
+//        [self loadPicturesWithSet:<#(PFObject *)#> andChatRoom:<#(PFObject *)#>:set];
 //    }
 }
 
@@ -122,11 +127,18 @@
      {
          if(!error)
          {
+             self.masterSetCounter --;
              for (PFObject *messageObject in objects)
              {
                  ParseMedia *object = [[ParseMedia alloc] initWithPFObject:messageObject];
                  object.userChatroom = chatRoom;
                  [self.picturesArray addObject:object];
+                 if (self.masterSetCounter == 0)
+                 {
+//                     [ProgressHUD showSuccess:@"yay"];
+                     [ProgressHUD dismiss];
+                     self.collectionView.hidden = NO;
+                 }
 //                 NSSortDescriptor *sortDescriptor;
 //                 sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt"
 //                                                              ascending:YES];
