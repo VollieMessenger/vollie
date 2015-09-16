@@ -66,7 +66,8 @@
 -(void)fillInPicture
 {
     PFObject *pictureObject = [self.room valueForKey:PF_MESSAGES_LASTPICTURE];
-    if (pictureObject)
+//    if (pictureObject)
+    if ([pictureObject valueForKey:PF_PICTURES_THUMBNAIL])
     {
         PFFile *file = [pictureObject valueForKey:PF_PICTURES_THUMBNAIL];
         //                [cell.imageUser loadInBackground];
