@@ -111,21 +111,24 @@
                 PFQuery *query = [users query];
                 
                 //get rid of this to test unread status:
-//                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                     if (!error)
                     {
+                        NSLog(@"looking for users to send this Vollie to");
                         for (PFUser *user in objects)
                         {
                             if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
                             {
                                 [usersWhoHaventRead addObject:user];
+                                NSLog(@"adding %@ to the list of users", user.objectId);
                             }
                         }
                     }
                 }];
+                NSLog(@"about to save set to save in background");
                 [setID saveInBackground];
-
+                
                 
 
                 [roomNumber setValue:object forKey:@"lastPicture"];
@@ -134,6 +137,7 @@
 //                [roomNumber setValue:testArray forKey:@"arrayOfUnreadSets"];
                 [roomNumber addObject:@"test2" forKey:@"arrayOfUnreadSets"];
                 [roomNumber saveInBackground];
+                NSLog(@"about to save room to save in background");
 
 
                 self.lastPicFromPackage = object;

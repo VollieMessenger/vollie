@@ -209,7 +209,7 @@
              {
                  if ([user.objectId isEqualToString:[PFUser currentUser].objectId])
                  {
-                     NSLog(@"you're in this set");
+                     NSLog(@"There is an updated card in this room you haven't read");
                      self.unreadNotificationDot.image = [UIImage imageNamed:@"1unreadMesseageIcon"];
                  }
                  //            NSLog(@"%@", user.objectId);
