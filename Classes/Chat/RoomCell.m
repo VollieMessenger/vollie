@@ -82,6 +82,10 @@
             }
         }];
     }
+    else
+    {
+        self.imageView.image=[UIImage imageNamed:@"Vollie-icon"];
+    }
 }
 
 - (void)awakeFromNib {

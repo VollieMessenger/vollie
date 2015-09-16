@@ -199,7 +199,7 @@
 {
     WeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
     HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
-//    HighlightData *highlight = self.sortedHighlightsArray[2];
+//    HighlightData *highlight = self.sortedHighlightsArray[0];
 
     cell.backgroundColor = [UIColor clearColor];
     [cell formatCell];
@@ -222,7 +222,7 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.sortedHighlightsArray.count;
-//    return 3;
+//    return 1;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

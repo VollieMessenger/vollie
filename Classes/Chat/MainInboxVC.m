@@ -248,14 +248,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.messages.count)
-    {
+//    if (self.messages.count)
+//    {
         return self.messages.count + 1;
-    }
-    else
-    {
-        return 0;
-    }
+//    }
+//    else
+//    {
+//        return 0;
+//    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
