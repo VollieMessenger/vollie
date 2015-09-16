@@ -58,20 +58,27 @@
         {
 //            NSLog(@"%i", set.numberOfResponses);
             PFObject *lastPicture = [actualSet objectForKey:@"lastPicture"];
-            PFFile *thumbnail = [lastPicture objectForKey:@"thumbnail"];
-            [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
-             {
-                 if (!error)
+            if ([lastPicture objectForKey:@"thumbnail"])
+            {
+                PFFile *thumbnail = [lastPicture objectForKey:@"thumbnail"];
+                [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
                  {
-                     PFImageView *imageView = self.imageViewArray[i];
-                     imageView.image = [UIImage imageWithData:data];
-//                     NSLog(@"Picture %i has %@ responses", i, set.numberOfResponses);
-                 }
-                 else
-                 {
-                     NSLog(@"i had an error loading a picture");
-                 }
-             }];
+                     if (!error)
+                     {
+                         PFImageView *imageView = self.imageViewArray[i];
+                         imageView.image = [UIImage imageWithData:data];
+                         //                     NSLog(@"Picture %i has %@ responses", i, set.numberOfResponses);
+                     }
+                     else
+                     {
+                         NSLog(@"i had an error loading a picture");
+                     }
+                 }];
+            }
+            else
+            {
+                NSLog(@"corrupted photo in highlights view");
+            }
             i++;
 //            NSLog(@"%i", i);
         }

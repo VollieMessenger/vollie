@@ -21,6 +21,7 @@
 @property NSMutableArray *picturesArray;
 @property NSArray *sortedPicturesArray;
 @property int masterSetCounter;
+@property int masterSetCounterBefore;
 
 @end
 
@@ -87,10 +88,14 @@
 {
     self.collectionView.hidden = YES;
 //    [ProgressHUD show:@"Loading..."];
-    [ProgressHUD show:@"Loading" Interaction:YES];
+//    [ProgressHUD show:@"Loading" Interaction:YES];
+//    [ProgressHUD show:@"Loading..."];
 //    [ProgressHUD showSuccess:@"Loading"];
-    NSLog(@"%li photos this week", self.highlight.sets.count);
+//    NSLog(@"%li photos this week", self.highlight.sets.count);
+    NSString *progressHUDstring = [NSString stringWithFormat:@"Loading %li Pictures...", self.highlight.sets.count -1];
+    [ProgressHUD show:progressHUDstring];
     self.masterSetCounter = (int)self.highlight.sets.count;
+    self.masterSetCounterBefore = self.masterSetCounter;
     NSLog(@"%i setcounter", self.masterSetCounter);
     int setCount = (int)self.highlight.sets.count;
     for (int i = 0; i < setCount; i++)
@@ -128,27 +133,31 @@
          if(!error)
          {
              self.masterSetCounter --;
+             NSLog(@"%i photos left to download out of %i", self.masterSetCounter, self.masterSetCounterBefore);
+//             int
              for (PFObject *messageObject in objects)
              {
                  ParseMedia *object = [[ParseMedia alloc] initWithPFObject:messageObject];
                  object.userChatroom = chatRoom;
                  [self.picturesArray addObject:object];
-                 if (self.masterSetCounter == 0)
-                 {
-//                     [ProgressHUD showSuccess:@"yay"];
-                     [ProgressHUD dismiss];
-                     self.collectionView.hidden = NO;
-                 }
 //                 NSSortDescriptor *sortDescriptor;
 //                 sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt"
 //                                                              ascending:YES];
 //                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 //                 self.sortedPicturesArray = [self.picturesArray sortedArrayUsingDescriptors:sortDescriptors];
              }
+             if (self.masterSetCounter == 0)
+             {
+                 //                     [ProgressHUD showSuccess:@"yay"];
+                 NSLog(@"showing all pictures now");
+                 self.collectionView.hidden = NO;
+                 [ProgressHUD dismiss];
+             }
              [self.collectionView reloadData];
          }
          else
          {
+             NSLog(@"internet problems");
              [ProgressHUD showError:@"Network Too Slow"];
          }
      }];
