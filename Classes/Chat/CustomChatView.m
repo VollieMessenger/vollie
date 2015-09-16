@@ -21,6 +21,7 @@
 #import "pushnotification.h"
 #import "utilities.h"
 #import "VollieCardData.h"
+#import "ManageChatVC.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -156,6 +157,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:1];
+    [self removeCurrentUserFromUnreadUsers];
 //    setPicturesObjects = [NSMutableArray new];
 
 }
@@ -301,7 +303,6 @@
 }
 
 - (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom;
-
 {
     //kyle's new init method
     self = [super init];
@@ -319,10 +320,18 @@
         self.set = set;
         self.userChatRoom = userChatRoom;
         NSString *roomNameString = [self.userChatRoom objectForKey:@"nickname"];
-        NSLog(@"%@ is chat room name", roomNameString);
-        self.title = roomNameString;
-//        self.room = [set objectForKey:@"room"];
-//        [self.room fetchIfNeeded];
+        
+        if (roomNameString)
+        {
+            NSLog(@"%@ is chat room name", roomNameString);
+            self.title = roomNameString;
+            UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(goToManageChatVC)];
+            barButton.image = [UIImage imageNamed:ASSETS_TYPING];
+            self.navigationItem.rightBarButtonItem = barButton;
+        }
+        self.room = [userChatRoom objectForKey:@"room"];
+        NSLog(@"%@", self.room);
+//        [self.room fetchInBackground];
         setComments = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray new];
         objectIds = [NSMutableArray new];
@@ -332,6 +341,16 @@
         [self loadMessages];
     }
     return self;
+}
+
+-(void)goToManageChatVC
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    ManageChatVC *manageChatVC = (ManageChatVC *)[storyboard instantiateViewControllerWithIdentifier:@"ManageChatVC"];
+//    manageChatVC.delegate = self;
+    manageChatVC.messageButReallyRoom = self.userChatRoom;
+    manageChatVC.room = self.room;
+    [self.navigationController pushViewController:manageChatVC animated:YES];
 }
 
 //For archive loading or anyone who doesn't want to preload this stuff.
@@ -384,8 +403,24 @@
 
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
+        
+        [self removeCurrentUserFromUnreadUsers];
     }
     return self;
+}
+
+-(void)removeCurrentUserFromUnreadUsers
+{
+    PFRelation *unreadUsers = [self.set relationForKey:@"unreadUsers"];
+    [unreadUsers removeObject:[PFUser currentUser]];
+    [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         if (!error)
+         {
+             NSLog(@"sent message to remove user from list of unread users");
+             //            NSLog(@"%@", self.set.objectId);
+         }
+     }];
 }
 
 -(void)loadPicutresFilesInBackground
@@ -478,6 +513,7 @@
             }
     }];
     
+    
     PFRelation *unreadUsers = [self.set relationForKey:@"unreadUsers"];
     [unreadUsers removeObject:[PFUser currentUser]];
     [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
@@ -489,17 +525,17 @@
         }
     }];
     
-    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
-    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
-    {
-        if(!error)
-        {
-            self.set = fullSet;
-            PFObject *room = [fullSet objectForKey:@"room"];
-//            NSLog(@"room info is %@", room);
-            self.room = room;
-        }
-    }];
+//    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
+//    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
+//    {
+//        if(!error)
+//        {
+//            self.set = fullSet;
+////            PFObject *room = [fullSet objectForKey:@"room"];
+////            NSLog(@"room info is %@", room);
+////            self.room = room;
+//        }
+//    }];
     
     NSLog(@"%@ is user chatroom", self.userChatRoom);
 }

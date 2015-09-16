@@ -144,6 +144,7 @@
     MainInboxVC *mainInbox = (MainInboxVC *)[storyboard instantiateViewControllerWithIdentifier:@"MainInboxVC"];
     mainInbox.scrollView = scrollView;
     WeekHighlightsVC *weekHighlights = (WeekHighlightsVC *)[storyboard instantiateViewControllerWithIdentifier:@"WeekHighlightsVC"];
+    weekHighlights.scrollView = scrollView;
 //    weekHighlights.scrollView = scrollView;
 
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);

@@ -135,6 +135,10 @@
              }
              [self.collectionView reloadData];
          }
+         else
+         {
+             [ProgressHUD showError:@"Network Too Slow"];
+         }
      }];
 }
 

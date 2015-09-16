@@ -43,7 +43,14 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    
+    self.scrollView.scrollEnabled = YES;
+}
+
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    self.scrollView.scrollEnabled = NO;
 }
 
 -(void)basicSetUpOFUI
@@ -78,8 +85,8 @@
 {
     //why isn't this working!!!
     
-//    [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
-    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
+//    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 
@@ -191,7 +198,9 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     WeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-    HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
+//    HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
+    HighlightData *highlight = self.sortedHighlightsArray[2];
+
     cell.backgroundColor = [UIColor clearColor];
     [cell formatCell];
     [cell fillPicsWithTop5PicsFromHighlight:highlight];
@@ -212,8 +221,8 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.sortedHighlightsArray.count;
-//    return 1;
+//    return self.sortedHighlightsArray.count;
+    return 3;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
