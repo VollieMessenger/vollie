@@ -97,7 +97,8 @@
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 {
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
         if (!error)
         {
             NSLog(@"began uploading a pic or video");
