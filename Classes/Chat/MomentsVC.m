@@ -352,7 +352,7 @@
 
 -(void)reloadCardsAfterUpload
 {
-    NSLog(@"i'm going to try to reload the cards");
+//    NSLog(@"i'm going to try to reload the cards");
     [self loadMessages];
 }
 
@@ -372,6 +372,7 @@
 
 -(void)getMessagesWithPFQuery:(PFQuery *)query
 {
+    NSLog(@"Fetching messages and organizing into cards");
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if(!error)

@@ -127,19 +127,40 @@
                         }
                     }
                 }];
+                
                 NSLog(@"about to save set to save in background");
-                [setID saveInBackground];
+//                [setID saveInBackground];
+                [setID saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                {
+                    if(!error)
+                    {
+                        NSLog(@"saved Set in background");
+                    }
+                    else
+                    {
+                        NSLog(@"%@", error);
+                    }
+                }];
+//                setID saveinb
                 
                 
-
+                NSLog(@"about to save room to save in background");
                 [roomNumber setValue:object forKey:@"lastPicture"];
 //                [roomNumber saveInBackground];
-//                NSArray *testArray = [[NSArray alloc] initWithObjects:@"test", nil];
-//                [roomNumber setValue:testArray forKey:@"arrayOfUnreadSets"];
-                [roomNumber addObject:@"test2" forKey:@"arrayOfUnreadSets"];
-                [roomNumber saveInBackground];
+//                [roomNumber addObject:@"test2" forKey:@"arrayOfUnreadSets"];
+//                [roomNumber saveInBackground];
+                [roomNumber saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                {
+                    if(!error)
+                    {
+                        NSLog(@"saved room in background");
+                    }
+                    else
+                    {
+                        NSLog(@"%@", error);
+                    }
+                }];
                 NSLog(@"about to save room to save in background");
-
 
                 self.lastPicFromPackage = object;
 
@@ -179,11 +200,13 @@
         object[PF_CHAT_SETID] = setID;
         roomNumber[@"lastMessage"] = text;
 
+        NSLog(@"about to upload text");
         [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
         {
             if(!error)
             {
+                NSLog(@"uploaded text!");
                 [self showSuccessNotificationWithString:text
                                               andObject:object
                                           andRoomNumber:roomNumber];

@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>BFEBF31C-18B3-4846-B846-8E318DE9C229</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Volley</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>9E7C7FED9CA82E9CD8687F859032C1EB7611EC45</key>
 		<string>https://github.com/VollieMessenger/vollie.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Volley.xcodeproj/project.xcworkspace</string>
+	<string>Volley.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>9E7C7FED9CA82E9CD8687F859032C1EB7611EC45</key>
