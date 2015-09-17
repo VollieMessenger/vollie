@@ -25,7 +25,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate, RefreshMessagesDelegate>
+@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate, RefreshMessagesDelegate,scrollDelegate>
 
 @property (nonatomic, strong) ALAssetsLibrary *library;
 @property AVCaptureSession *captureSession;
@@ -77,6 +77,7 @@
 @property CGRect newImagePosition;
 
 @property BOOL firstCameraFlip;
+@property BOOL cameraShowing;
 @property int camFlipCount;
 
 @property NSString *textFromNextVC;
@@ -132,6 +133,7 @@
 
 //    [self runCamera];
     [self deallocSession];
+    self.scrollView.secondaryDelegate = self;
 
     self.firstCameraFlip = true;
     self.camFlipCount = 0;
@@ -321,11 +323,12 @@
     [super viewDidAppear:animated];
 
     [self runCamera];
-
-    if (self.comingFromNewVollie == true)
+    self.cameraShowing = NO;
+    if (self.comingFromNewVollie)
     {
         self.rightButton.hidden = true;
         self.cancelButton.hidden = false;
+        [self runAudio];
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
 
@@ -383,12 +386,17 @@
     [super viewDidDisappear:animated];
 
 //  [self stopCaptureSession];
+    
+    if (!self.cameraShowing) {
+        [self removeAudio];
+    }
 
     if (_isPoppingUp)
     {
         self.scrollView.scrollEnabled = NO;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     }
+    self.cameraShowing = NO;
 
     [self stopCaptureSession];
     
@@ -448,7 +456,7 @@
  //    [selected setFrame:CGRectMake(selected.center.x, selected.center.y, 50, 50)];
  */
 
--(void) runCamera
+-(void)runCamera
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
@@ -459,6 +467,34 @@
         else [self startRunningCaptureSession];
 
     } else if (self.didPickImageFromAlbum)   _didPickImageFromAlbum = NO;
+}
+
+-(void)runAudio{
+    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+    NSError *error2 = nil;
+    AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+    if (audioInput)
+    {
+        [self.captureSession addInput:audioInput];
+    }
+}
+
+-(void)removeAudio{
+    AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+    for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
+        if (input.device==audioCaptureDevice) {
+            [self.captureSession removeInput:input];
+        }
+    }
+}
+
+-(void)cameraOpened{
+    self.cameraShowing = !self.cameraShowing;
+    if (self.cameraShowing) {
+        [self runAudio];
+    } else {
+        [self removeAudio];
+    }
 }
 
 - (void)startRunningCaptureSession
@@ -1112,14 +1148,6 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
-            
-            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-            NSError *error2 = nil;
-            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-            if (audioInput)
-            {
-                [self.captureSession addInput:audioInput];
-            }
 
             _isCapturingVideo = YES;
             
@@ -1194,12 +1222,6 @@
 
             [self captureStopVideoNow];
             [self.progressTimer invalidate];
-            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-            for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
-                if (input.device==audioCaptureDevice) {
-                    [self.captureSession removeInput:input];
-                }
-            }
         }
         
         if (self.movingImagePosition) {

@@ -21,7 +21,7 @@
     CGFloat lastContentOffset;
 }
 
-- (id) init
+- (id)init
 {
     self = [super init];
     if (self)
@@ -166,6 +166,12 @@
         {
             NSLog(@"was just programatically sent to inbox");
         }
+    }
+    if (lastContentOffset == 0) {
+        [self.secondaryDelegate cameraOpened];
+    }
+    if (lastContentOffset == self.bounds.size.width) {
+        [self.secondaryDelegate cameraOpened];
     }
 }
 

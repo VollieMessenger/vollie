@@ -25,8 +25,8 @@
 {
 //    id                              myDelegate;
 }
-@property (nonatomic, assign) id<SecondDelegate>    myDelegate;
-@property (nonatomic, assign) id<PushToCardDelegate> pushToCardDelegate;
+@property (nonatomic, assign) id<SecondDelegate>myDelegate;
+@property (nonatomic, assign) id<PushToCardDelegate>pushToCardDelegate;
 @property(nonatomic,assign)id delegate;
 
 -(id)initWithPopUp:(BOOL)popup;
@@ -64,8 +64,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *x4;
 @property (weak, nonatomic) IBOutlet UIButton *x5;
 
--(void) moveImageUpToLatestBlank:(UIButton *)sender;
--(void) freezeCamera;
+-(void)moveImageUpToLatestBlank:(UIButton *)sender;
+-(void)freezeCamera;
 -(void)blankOutButtons;
 -(void)loadImagesSaved;
 
