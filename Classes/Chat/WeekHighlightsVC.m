@@ -216,13 +216,17 @@
             cell.weekLabel.text = [NSString stringWithFormat:@"%i Week Ago", highlight.howManyWeeksAgo];
         }
     }
+    else
+    {
+        cell.weekLabel.text = @"This Week";
+    }
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    return self.sortedHighlightsArray.count;
-    return 1;
+    return self.sortedHighlightsArray.count;
+//    return 1;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

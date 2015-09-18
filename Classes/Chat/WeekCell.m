@@ -80,12 +80,12 @@
             }
             else
             {
-//                PFImageView *imageView = self.imageViewArray[i-1];
+//                PFImageView *imageView = self.imageViewArray[i];
 //                imageView.image = [UIImage imageNamed:@"Vollie-icon"];
 //                NSLog(@"corrupted photo in highlights view");
             }
             i++;
-            NSLog(@"Picture %i has %i responses", i, set.numberOfResponses);
+//            NSLog(@"Picture %i has %i responses", i, set.numberOfResponses);
         }
     }
 }

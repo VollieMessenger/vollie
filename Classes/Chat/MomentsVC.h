@@ -19,6 +19,8 @@
 @property PFObject *room;
 @property NSString *name;
 @property PFObject *messageItComesFrom;
+@property PFObject *lastParseObject;
+@property BOOL shouldShowTempCard;
 
 -(void)reloadCardsAfterUpload;
 

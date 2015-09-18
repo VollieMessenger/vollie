@@ -465,10 +465,10 @@
     [self.cardViewVC reloadCardsAfterUpload];
 }
 
--(void)delayedGoToCardWithMessage
-{
-    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
-}
+//-(void)delayedGoToCardWithMessage
+//{
+//    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
+//}
 
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room
 {
@@ -476,8 +476,8 @@
     self.cardViewVC = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
     self.cardViewVC.room = room;
     self.cardViewVC.messageItComesFrom = userChatRoom;
+    self.cardViewVC.shouldShowTempCard = YES;
     [self.navigationController pushViewController:self.cardViewVC animated:NO];
-
 }
 
 -(void)goToCardViewWithMessage
