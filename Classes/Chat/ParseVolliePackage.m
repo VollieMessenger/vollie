@@ -99,9 +99,10 @@
 {
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
-        if (!error)
+        NSLog(@"begining to upload a media object");
+        if (succeeded)
         {
-            NSLog(@"began uploading a pic or video");
+            NSLog(@"uploaded media!");
             self.countDownForLastPhoto --;
             if(self.countDownForLastPhoto == 0)
             {
@@ -113,10 +114,11 @@
                 
                 //get rid of this to test unread status:
                 [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
-                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+                {
+                    NSLog(@"began looking for users");
                     if (!error)
                     {
-                        NSLog(@"looking for users to send this Vollie to");
                         for (PFUser *user in objects)
                         {
                             if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
@@ -128,7 +130,7 @@
                     }
                 }];
                 
-                NSLog(@"about to save set to save in background");
+                NSLog(@"about to have set save in background");
 //                [setID saveInBackground];
                 [setID saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                 {
@@ -144,9 +146,8 @@
 //                setID saveinb
                 
                 
-                NSLog(@"about to save room to save in background");
+                NSLog(@"about to have room save in background");
                 [roomNumber setValue:object forKey:@"lastPicture"];
-//                [roomNumber saveInBackground];
 //                [roomNumber addObject:@"test2" forKey:@"arrayOfUnreadSets"];
 //                [roomNumber saveInBackground];
                 [roomNumber saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
@@ -154,26 +155,45 @@
                     if(!error)
                     {
                         NSLog(@"saved room in background");
+                        if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
+                        {
+                            [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
+                            
+                            //temporarily putting this here:
+                            //                    [self showSuccessNotificationWithString:@"New Picture!"
+                            //                                                  andObject:object
+                            //                                              andRoomNumber:roomNumber];
+                        }
+                        else
+                        {
+                            [self showSuccessNotificationWithString:@"New Picture!"
+                                                          andObject:object
+                                                      andRoomNumber:roomNumber];
+                        }
                     }
                     else
                     {
                         NSLog(@"%@", error);
                     }
                 }];
-                NSLog(@"about to save room to save in background");
 
                 self.lastPicFromPackage = object;
-
-                if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
-                {
-                    [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
-                }
-                else
-                {
-                    [self showSuccessNotificationWithString:@"New Picture!"
-                                                  andObject:object
-                                              andRoomNumber:roomNumber];
-                }
+//
+//                if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
+//                {
+//                    [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
+//                    
+//                    //temporarily putting this here:
+////                    [self showSuccessNotificationWithString:@"New Picture!"
+////                                                  andObject:object
+////                                              andRoomNumber:roomNumber];
+//                }
+//                else
+//                {
+//                    [self showSuccessNotificationWithString:@"New Picture!"
+//                                                  andObject:object
+//                                              andRoomNumber:roomNumber];
+//                }
             }
             else
             {
@@ -190,6 +210,7 @@
 -(void)checkForTextAndSendItWithText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 
 {
+    NSLog(@"entered text method");
 //    NSLog(@"yo i'm checking text");
 //    if (![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
 //    {
@@ -200,16 +221,21 @@
         object[PF_CHAT_SETID] = setID;
         roomNumber[@"lastMessage"] = text;
 
-        NSLog(@"about to upload text");
         [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
+        NSLog(@"about to upload text");
+
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
         {
             if(!error)
             {
-                NSLog(@"uploaded text!");
+//                NSLog(@"uploaded text!");
                 [self showSuccessNotificationWithString:text
                                               andObject:object
                                           andRoomNumber:roomNumber];
+            }
+            if (succeeded)
+            {
+                NSLog(@"uploaded text");
             }
             else
             {

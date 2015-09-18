@@ -92,11 +92,12 @@
              //We must update the date for the set, so we know when it is last edited in favorites.
              PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
              PFRelation *usersWhoHaventRead = [set relationForKey:@"unreadUsers"];
-             [set setValue:object forKey:@"lastPicture"];
+//             [set setValue:object forKey:@"lastPicture"];
              [set incrementKey:@"numberOfResponses" byAmount:@1];
              [set setValue:[NSDate date] forKey:PF_SET_UPDATED];
              PFRelation *users = [self.room relationForKey:PF_CHATROOMS_USERS];
              PFQuery *query = [users query];
+             [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
              [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
              {
                  if (!error)
@@ -107,6 +108,9 @@
                          {
                              [usersWhoHaventRead addObject:user];
                              NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
+
+//                             [usersWhoHaventRead addObject:user];
+//                             NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
 //                             NSLog(@"%li users are being added as unread users";
                          }
                      }
@@ -471,6 +475,7 @@
 //Archive Has to find all the goodies.
 -(void)loadMessages
 {
+    NSLog(@"loading messages in custom chat view");
     self.shouldUpdateUnreadUsers = false;
     PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
     [query whereKey:PF_CHAT_SETID equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];

@@ -115,10 +115,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-//    [self performSelector:@selector(loadMessages) withObject:self afterDelay:1.0f];
     [self loadMessages];
-    
-    [self performSelector:@selector(delayedReloadTableView) withObject:self afterDelay:2.0f];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -131,11 +128,6 @@
         NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
         NSShadowAttributeName:[NSShadow new]
     };
-}
-
--(void)delayedReloadTableView
-{
-    [self.tableView reloadData];
 }
 
 #pragma mark - TableView

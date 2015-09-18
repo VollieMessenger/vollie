@@ -54,10 +54,12 @@
     for (Set *set in highlight.sortedSets)
     {
         PFObject *actualSet = set.set;
+//        NSLog(@"%@", actualSet);
         if (i < 6)
         {
 //            NSLog(@"%i", set.numberOfResponses);
             PFObject *lastPicture = [actualSet objectForKey:@"lastPicture"];
+//            NSLog(@"%@", lastPicture);
             if ([lastPicture objectForKey:@"thumbnail"])
             {
                 PFFile *thumbnail = [lastPicture objectForKey:@"thumbnail"];
@@ -67,7 +69,8 @@
                      {
                          PFImageView *imageView = self.imageViewArray[i];
                          imageView.image = [UIImage imageWithData:data];
-                         //                     NSLog(@"Picture %i has %@ responses", i, set.numberOfResponses);
+//                         NSLog(@"%@", lastPicture);
+//                              NSLog(@"Picture %i has %@ responses", i, set.numberOfResponses);
                      }
                      else
                      {
@@ -79,10 +82,10 @@
             {
 //                PFImageView *imageView = self.imageViewArray[i-1];
 //                imageView.image = [UIImage imageNamed:@"Vollie-icon"];
-                NSLog(@"corrupted photo in highlights view");
+//                NSLog(@"corrupted photo in highlights view");
             }
             i++;
-//            NSLog(@"%i", i);
+            NSLog(@"Picture %i has %i responses", i, set.numberOfResponses);
         }
     }
 }
