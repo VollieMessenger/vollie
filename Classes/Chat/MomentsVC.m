@@ -123,6 +123,7 @@
 {
     [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
     self.navigationController.navigationBar.titleTextAttributes =
     @{
         NSForegroundColorAttributeName: [UIColor colorWithWhite:.98 alpha:1],
