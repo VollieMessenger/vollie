@@ -5,6 +5,7 @@
 
 #import "CustomCameraView.h"
 #import <UIKit/UIKit.h>
+#import <AVKit/AVKit.h>
 #import "MessagesView.h"
 #import "MasterScrollView.h"
 
