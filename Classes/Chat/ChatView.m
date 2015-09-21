@@ -1193,7 +1193,7 @@
 
 -(void)sendCustomChatWithSet:(NSString *)setId andUserID:(NSString *)message
 {
-    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:setId andColor:selectedColor andPictures:arrayOfSetIdPicturesObjects andComments:arrayOfSetIdComments];
+    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:setId andColor:selectedColor andPictures:arrayOfSetIdPicturesObjects andComments:arrayOfSetIdComments andActualSet:nil];
     chatt.senderId = [self.senderId copy];
     chatt.senderDisplayName = [self.senderDisplayName copy];
     chatt.room = room_;

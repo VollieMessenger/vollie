@@ -385,7 +385,7 @@
     return self;
 }
 
-- (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages
+- (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages andActualSet:(PFObject *)actualSet
 {
     self = [super init];
     if (self) {
@@ -400,6 +400,19 @@
         }
         setId_ = setId;
         self.setIDforCardCheck = setId;
+        NSLog(@"%@ is the object ID", setId);
+        PFQuery *query = [PFQuery queryWithClassName:@"Sets"];
+        [query whereKey:@"objectId" equalTo:setId];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+        {
+            if (!error)
+            {
+                PFObject *set = objects.firstObject;
+                self.set = set;
+                [self removeCurrentUserFromUnreadUsers];
+            }
+        }];
+        
 
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
 //        NSLog(@"%li in pictures array", setPicturesObjects.count);
@@ -407,9 +420,7 @@
 
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
-        
-        [self removeCurrentUserFromUnreadUsers];
-    }
+        }
     return self;
 }
 
@@ -518,17 +529,7 @@
             }
     }];
     
-    
-    PFRelation *unreadUsers = [self.set relationForKey:@"unreadUsers"];
-    [unreadUsers removeObject:[PFUser currentUser]];
-    [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-    {
-        if (!error)
-        {
-            NSLog(@"sent message to remove user from list of unread users");
-//            NSLog(@"%@", self.set.objectId);
-        }
-    }];
+    [self removeCurrentUserFromUnreadUsers];
     
 //    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
 //    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
@@ -543,27 +544,6 @@
 //    }];
     
 //    NSLog(@"%@ is user chatroom", self.userChatRoom);
-}
-
-
--(void)removeCurrentUserFromUnreadStatus
-{
-//    PFRelation *unreadUsers
-    
-//    PFRelation *usersWhoHaventRead = [self.set relationForKey:@"unreadUsers"];
-//    for (PFUser *user in self.arrayOfUnreadUsers)
-//    {
-//        NSLog(@"added %@ to the PFrelation to update", user.objectId);
-//        [usersWhoHaventRead addObject:user];
-//    }
-//    usersWhoHaventRead
-//    [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-//    {
-//        if(!error)
-//        {
-//            NSLog(@"i saved");
-//        }
-//    }];
 }
 
 
@@ -888,7 +868,8 @@
     [super viewDidDisappear:animated];
     if (self.shouldUpdateUnreadUsers)
     {
-        [self removeCurrentUserFromUnreadStatus];
+//        [self removeCurrentUserFromUnreadStatus];
+//        [self removeCurrentUserFromUnreadUsers];
     }
     PostNotification(NOTIFICATION_REFRESH_CUSTOMCHAT);
 }

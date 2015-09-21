@@ -148,7 +148,7 @@
 //    VollieCardData *card = self.sortedCardsArray[(indexPath.row/2)];
 
 //    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.actualSet andUserChatRoom:self.room];
-    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray];
+    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
 //    chatt.senderId = [self.senderId copy];
 //    chatt.senderDisplayName = [self.senderDisplayName copy];
 //    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:chatRoom];

@@ -13,7 +13,7 @@
 
 @interface CustomChatView : JSQMessagesViewController <JSQMessagesCollectionViewDelegateFlowLayout, JSQMessagesCollectionViewDataSource, UITextViewDelegate, UIScrollViewDelegate>
 
--(id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages;
+-(id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages andActualSet:(PFObject *)actualSet;
 
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor;
 
