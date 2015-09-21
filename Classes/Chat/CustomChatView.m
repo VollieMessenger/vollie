@@ -334,7 +334,7 @@
             self.navigationItem.rightBarButtonItem = barButton;
         }
         self.room = [userChatRoom objectForKey:@"room"];
-        NSLog(@"%@", self.room);
+//        NSLog(@"%@", self.room);
 //        [self.room fetchInBackground];
         setComments = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray new];
@@ -542,7 +542,7 @@
 //        }
 //    }];
     
-    NSLog(@"%@ is user chatroom", self.userChatRoom);
+//    NSLog(@"%@ is user chatroom", self.userChatRoom);
 }
 
 

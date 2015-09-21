@@ -34,6 +34,7 @@
 #import "ThreePicCell.h"
 #import "FourPicCell.h"
 #import "FivePicCell.h"
+#import "LoadingCell.h"
 #import "ParseVolliePackage.h"
 
 //for testing the fav cells
@@ -136,6 +137,8 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
+    NSLog(@"Row: %li, %li", indexPath.row, self.vollieCardDataArray.count);
+
 
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -167,7 +170,15 @@
 {
 //    return self.vollieCardDataArray.count;
 
-    return self.vollieCardDataArray.count * 2 - 1;
+    if (self.shouldShowTempCard == NO)
+    {
+        return self.vollieCardDataArray.count * 2 - 1;
+    }
+    else
+    {
+//        return 1;
+        return  self.vollieCardDataArray.count * 2;
+    }
 //    return self.sortedCardsArray.count * 2 - 1;
 //     return [[self.cards valueForKeyPath:@"cards"] count] * 2 - 1
 }
@@ -230,6 +241,36 @@
         }
         return spacerCell;
     }
+    if (indexPath.row == self.vollieCardDataArray.count * 2)
+    {
+        UITableViewCell * spacerCell = [tableView dequeueReusableCellWithIdentifier:@"fakeCellID"];
+
+        if (spacerCell == nil)
+        {
+            //this is our spacer cell
+            spacerCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                reuseIdentifier:@"fakeCellID"];
+            spacerCell.backgroundColor = [UIColor blueColor];
+//            [spacerCell.contentView setAlpha:1];
+            [spacerCell setUserInteractionEnabled:NO];
+        }
+        return spacerCell;
+    }
+//    else if(indexPath.row == 0)
+//    {
+//        UITableViewCell * spacerCell = [tableView dequeueReusableCellWithIdentifier:@"fakeCellID"];
+//        
+//        if (spacerCell == nil)
+//        {
+//            //this is our spacer cell
+//            spacerCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+//                                                reuseIdentifier:@"fakeCellID"];
+//            spacerCell.backgroundColor = [UIColor blueColor];
+////            [spacerCell.contentView setAlpha:1];
+//            [spacerCell setUserInteractionEnabled:NO];
+//        }
+//        return spacerCell;
+//    }
     else
     {
         VollieCardData *card = [self.vollieCardDataArray objectAtIndex:(indexPath.row/2)];
