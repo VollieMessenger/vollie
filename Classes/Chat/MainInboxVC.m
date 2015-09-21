@@ -67,10 +67,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.firstTimeLoading = YES;
     [self setUpUserInterface];
     [self basicSetUpAfterLoad];
-    [self refreshMessages];
+//    [self refreshMessages];
 }
 
 -(void)viewWillAppear:(BOOL)animated

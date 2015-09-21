@@ -243,8 +243,8 @@
     }
     if (indexPath.row == self.vollieCardDataArray.count * 2)
     {
+        //this is going to be for temp card
         UITableViewCell * spacerCell = [tableView dequeueReusableCellWithIdentifier:@"fakeCellID"];
-
         if (spacerCell == nil)
         {
             //this is our spacer cell
