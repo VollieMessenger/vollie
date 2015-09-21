@@ -161,7 +161,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:1];
-    [self removeCurrentUserFromUnreadUsers];
+//    [self removeCurrentUserFromUnreadUsers];
+//    NSLog(@"%li", self.)
 //    setPicturesObjects = [NSMutableArray new];
 
 }
@@ -408,24 +409,24 @@
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
         
-        [self removeCurrentUserFromUnreadUsers];
+//        [self removeCurrentUserFromUnreadUsers];
     }
     return self;
 }
 
--(void)removeCurrentUserFromUnreadUsers
-{
-    PFRelation *unreadUsers = [self.set relationForKey:@"unreadUsers"];
-    [unreadUsers removeObject:[PFUser currentUser]];
-    [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-     {
-         if (!error)
-         {
-             NSLog(@"sent message to remove user from list of unread users");
-             //            NSLog(@"%@", self.set.objectId);
-         }
-     }];
-}
+//-(void)removeCurrentUserFromUnreadUsers
+//{
+//    PFRelation *unreadUsers = [self.set relationForKey:@"unreadUsers"];
+//    [unreadUsers removeObject:[PFUser currentUser]];
+//    [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//     {
+//         if (!error)
+//         {
+//             NSLog(@"sent message to remove user from list of unread users");
+//             //            NSLog(@"%@", self.set.objectId);
+//         }
+//     }];
+//}
 
 -(void)loadPicutresFilesInBackground
 {
@@ -507,6 +508,7 @@
                 }
             }
             [self addJSQMessage:comments];
+            NSLog(@"%li messages loaded", comments.count);
             [self finishReceivingMessage:0];
 
         }
@@ -544,28 +546,6 @@
     
 //    NSLog(@"%@ is user chatroom", self.userChatRoom);
 }
-
-
--(void)removeCurrentUserFromUnreadStatus
-{
-//    PFRelation *unreadUsers
-    
-//    PFRelation *usersWhoHaventRead = [self.set relationForKey:@"unreadUsers"];
-//    for (PFUser *user in self.arrayOfUnreadUsers)
-//    {
-//        NSLog(@"added %@ to the PFrelation to update", user.objectId);
-//        [usersWhoHaventRead addObject:user];
-//    }
-//    usersWhoHaventRead
-//    [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-//    {
-//        if(!error)
-//        {
-//            NSLog(@"i saved");
-//        }
-//    }];
-}
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -888,7 +868,6 @@
     [super viewDidDisappear:animated];
     if (self.shouldUpdateUnreadUsers)
     {
-        [self removeCurrentUserFromUnreadStatus];
     }
     PostNotification(NOTIFICATION_REFRESH_CUSTOMCHAT);
 }
