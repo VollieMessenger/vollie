@@ -27,6 +27,7 @@
     {
         imageview.layer.masksToBounds = YES;
         imageview.layer.cornerRadius = 10;
+        [imageview setImage:[UIImage imageNamed:@"Vollie-icon"]];
     }
 }
 
@@ -54,7 +55,6 @@
     for (Set *set in highlight.sortedSets)
     {
         PFObject *actualSet = set.set;
-//        NSLog(@"%@", actualSet);
         if (i < 6)
         {
 //            NSLog(@"%i", set.numberOfResponses);
@@ -69,7 +69,6 @@
                      {
                          PFImageView *imageView = self.imageViewArray[i];
                          imageView.image = [UIImage imageWithData:data];
-//                         NSLog(@"%@", lastPicture);
 //                              NSLog(@"Picture %i has %@ responses", i, set.numberOfResponses);
                      }
                      else
@@ -77,6 +76,7 @@
                          NSLog(@"i had an error loading a picture");
                      }
                  }];
+                i++;
             }
             else
             {
@@ -84,7 +84,6 @@
 //                imageView.image = [UIImage imageNamed:@"Vollie-icon"];
 //                NSLog(@"corrupted photo in highlights view");
             }
-            i++;
 //            NSLog(@"Picture %i has %i responses", i, set.numberOfResponses);
         }
     }
