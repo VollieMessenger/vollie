@@ -69,6 +69,7 @@
     [super viewDidLoad];
     [self setUpUserInterface];
     [self basicSetUpAfterLoad];
+    self.firstTimeLoading = YES;
 //    [self refreshMessages];
 }
 
