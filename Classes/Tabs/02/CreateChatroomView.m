@@ -25,6 +25,8 @@
 
 #import "MomentsVC.h"
 
+#import "MainInboxVC.h"
+
 @interface CreateChatroomView () <CreateChatroom2Delegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 {
     NSMutableArray *users;
@@ -627,6 +629,13 @@
 //    [self.navigationController.navigationBar setTintColor:<#(UIColor *)#>]
 
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+    
+//    NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+//    // LOAD MESSAGES FROM INBOX INSTEAD.
+//    MainInboxVC *mainInbox = nav.viewControllers.firstObject;
+//    [mainInbox loadInbox];
+//    [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom];
+
 
     
 //    [chatroom fetchInBackgroundWithBlock:^(PFObject *object, NSError *error)

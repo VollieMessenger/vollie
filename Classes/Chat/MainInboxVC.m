@@ -451,7 +451,9 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     //needs to send user to new vollie page
+    NSLog(@"refreshed messages");
 //    [self refreshMessages];
+    [self performSelector:@selector(loadInbox) withObject:nil afterDelay:1.0];
 //    NSLog(@"About to Push to Card 0");
 //    if (!self.isCurrentlyLoadingMessages)
 //    {
