@@ -491,7 +491,6 @@
 {
     PFQuery *query2 = [PFQuery queryWithClassName:PF_CHATROOMS_CLASS_NAME];
 
-
     [query2 whereKey:PF_CHATROOMS_USEROBJECTS containsAllObjectsInArray:arrayOfUserIds];
     
 #warning IF YOU LEAVE A CHATROOM, YOUR NAME IS NO LONGER ON THAT LIST, SO A NEW CHATROOM WITH THE SAME PEOPLE WILL BE FRESH.

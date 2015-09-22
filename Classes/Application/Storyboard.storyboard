@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -73,6 +73,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QeF-da-Jqq" id="BsN-SJ-vHp">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="285.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFY-Bv-GSu">
@@ -120,6 +121,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Niw-4X-xHe" id="baq-40-G92">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esw-Yz-eD1">
@@ -402,20 +404,20 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="nHi-30-Eg7" firstAttribute="top" secondItem="Lnp-Si-kNO" secondAttribute="topMargin" constant="-8" id="Y93-Tm-TAC"/>
-                                            <constraint firstItem="nHi-30-Eg7" firstAttribute="leading" secondItem="Lnp-Si-kNO" secondAttribute="leadingMargin" constant="-8" id="fSP-AK-UPm"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="nHi-30-Eg7" secondAttribute="trailing" constant="-8" id="qbf-a9-bfw"/>
-                                            <constraint firstAttribute="bottomMargin" secondItem="nHi-30-Eg7" secondAttribute="bottom" constant="-8" id="z6o-fW-mxR"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="nHi-30-Eg7" secondAttribute="bottom" constant="-8" id="BPV-7k-zb9"/>
+                                            <constraint firstItem="nHi-30-Eg7" firstAttribute="top" secondItem="Lnp-Si-kNO" secondAttribute="topMargin" constant="-8" id="JQk-cC-Ycw"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="nHi-30-Eg7" secondAttribute="trailing" constant="-8" id="fXw-8V-L5n"/>
+                                            <constraint firstItem="nHi-30-Eg7" firstAttribute="leading" secondItem="Lnp-Si-kNO" secondAttribute="leadingMargin" constant="-8" id="vuO-6t-rch"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="nHi-30-Eg7"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <exclude reference="Y93-Tm-TAC"/>
-                                                <exclude reference="fSP-AK-UPm"/>
-                                                <exclude reference="qbf-a9-bfw"/>
-                                                <exclude reference="z6o-fW-mxR"/>
+                                                <exclude reference="BPV-7k-zb9"/>
+                                                <exclude reference="JQk-cC-Ycw"/>
+                                                <exclude reference="fXw-8V-L5n"/>
+                                                <exclude reference="vuO-6t-rch"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
@@ -423,10 +425,10 @@
                                                 <include reference="nHi-30-Eg7"/>
                                             </mask>
                                             <mask key="constraints">
-                                                <include reference="Y93-Tm-TAC"/>
-                                                <include reference="fSP-AK-UPm"/>
-                                                <include reference="qbf-a9-bfw"/>
-                                                <include reference="z6o-fW-mxR"/>
+                                                <include reference="BPV-7k-zb9"/>
+                                                <include reference="JQk-cC-Ycw"/>
+                                                <include reference="fXw-8V-L5n"/>
+                                                <include reference="vuO-6t-rch"/>
                                             </mask>
                                         </variation>
                                         <connections>
@@ -822,14 +824,15 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IZv-cz-gJI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IZv-cz-gJI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="cell" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="cell" rowHeight="94" id="a5q-L1-OyW" customClass="ChatRoomCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a5q-L1-OyW" id="qya-6A-Moh">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="93.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="XFO-V8-w7b" customClass="PFImageView">
@@ -1228,6 +1231,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JVX-Kp-t9r" id="xkw-nq-GRs">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="87.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="mXM-la-1d5">
@@ -1496,6 +1500,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nSO-E8-9O7" id="Wfo-ZB-7dJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="184.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="WrN-i7-f4f" customClass="PFImageView">
@@ -2551,6 +2556,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vlb-eE-Uqd" id="kSe-Bj-98V">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
