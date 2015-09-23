@@ -97,6 +97,7 @@
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 {
+    
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         NSLog(@"begining to upload a media object");
@@ -203,6 +204,7 @@
         else
         {
             [self showErrorNotification];
+            NSLog(@"%@", error);
         }
     }];
 }
