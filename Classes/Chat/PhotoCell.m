@@ -20,6 +20,8 @@
          if (!error)
          {
              self.imageView.image = [UIImage imageWithData:data];
+         } else {
+             self.imageView.image = [UIImage imageNamed:@"Vollie-icon"];    
          }
      }];
 }
