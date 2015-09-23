@@ -131,21 +131,15 @@
 
     CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
     camera.scrollView = scrollView;
-//    camera.pushToCardDelegate = self;
 
     MessagesView *messages = [[MessagesView alloc] initWithArchive:NO];
     messages.scrollView = scrollView;
-
-    MessagesView *favorites = [[MessagesView alloc] initWithArchive:YES];
-    //not sure why we need to say this one is true. flipped it to false and saw no change
-    favorites.scrollView = scrollView;
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     MainInboxVC *mainInbox = (MainInboxVC *)[storyboard instantiateViewControllerWithIdentifier:@"MainInboxVC"];
     mainInbox.scrollView = scrollView;
     WeekHighlightsVC *weekHighlights = (WeekHighlightsVC *)[storyboard instantiateViewControllerWithIdentifier:@"WeekHighlightsVC"];
     weekHighlights.scrollView = scrollView;
-//    weekHighlights.scrollView = scrollView;
 
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
     //in case we want to remove third view:
@@ -153,33 +147,21 @@
 
     [scrollView setContentOffset:CGPointMake(vc.view.frame.size.width, 0) animated:0];
 
-//    self.navInbox = [[NavigationController alloc] initWithRootViewController:messages];
     self.navInbox = [[NavigationController alloc] initWithRootViewController:mainInbox];
-
-//    self.navFavorites = [[NavigationController alloc] initWithRootViewController:favorites];
     self.navFavorites = [[NavigationController alloc] initWithRootViewController:weekHighlights];
-
-
     self.navCamera = [[NavigationController alloc] initWithRootViewController:camera];
-
-//    self.settingsVC = [[NavigationController alloc] initWithRootViewController:testView];
-
     self.navFavorites.navigationBar.barTintColor = [UIColor volleyFamousOrange];
 
     _navCamera.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
-
-//    _settingsVC.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
     _navInbox.view.frame = CGRectMake(vc.view.frame.size.width, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
     _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
 
-//    [_settingsVC didMoveToParentViewController:vc];
     [_navCamera didMoveToParentViewController:vc];
     [_navFavorites didMoveToParentViewController:vc];
     [_navInbox didMoveToParentViewController:vc];
 
-//    [scrollView addSubview:_settingsVC.view];
     [scrollView addSubview:_navCamera.view];
     [scrollView addSubview:_navInbox.view];
     [scrollView addSubview:_navFavorites.view];
@@ -204,6 +186,7 @@
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
                 MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
                 cardViewController.room = room;
+//                cardViewController
 //#warning SEND TO MESSAGES VIEW (NOT ARCHIVE);
                 [scrollView openView:cardViewController];
             }

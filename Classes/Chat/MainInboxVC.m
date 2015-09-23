@@ -82,6 +82,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self refreshMessages];
+    NSLog(@"%@", self.scrollView);
 }
 
 -(void)viewWillDisappear:(BOOL)animated
