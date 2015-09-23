@@ -399,36 +399,21 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="packageimg6" translatesAutoresizingMaskIntoConstraints="NO" id="nHi-30-Eg7">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="69"/>
+                                                    </variation>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <constraints>
-                                            <constraint firstAttribute="bottomMargin" secondItem="nHi-30-Eg7" secondAttribute="bottom" constant="-8" id="BPV-7k-zb9"/>
-                                            <constraint firstItem="nHi-30-Eg7" firstAttribute="top" secondItem="Lnp-Si-kNO" secondAttribute="topMargin" constant="-8" id="JQk-cC-Ycw"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="nHi-30-Eg7" secondAttribute="trailing" constant="-8" id="fXw-8V-L5n"/>
-                                            <constraint firstItem="nHi-30-Eg7" firstAttribute="leading" secondItem="Lnp-Si-kNO" secondAttribute="leadingMargin" constant="-8" id="vuO-6t-rch"/>
-                                        </constraints>
                                         <variation key="default">
                                             <mask key="subviews">
                                                 <exclude reference="nHi-30-Eg7"/>
-                                            </mask>
-                                            <mask key="constraints">
-                                                <exclude reference="BPV-7k-zb9"/>
-                                                <exclude reference="JQk-cC-Ycw"/>
-                                                <exclude reference="fXw-8V-L5n"/>
-                                                <exclude reference="vuO-6t-rch"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact">
                                             <mask key="subviews">
                                                 <include reference="nHi-30-Eg7"/>
-                                            </mask>
-                                            <mask key="constraints">
-                                                <include reference="BPV-7k-zb9"/>
-                                                <include reference="JQk-cC-Ycw"/>
-                                                <include reference="fXw-8V-L5n"/>
-                                                <include reference="vuO-6t-rch"/>
                                             </mask>
                                         </variation>
                                         <connections>
