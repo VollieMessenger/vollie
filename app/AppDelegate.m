@@ -365,6 +365,7 @@
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
                 MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
                 cardViewController.room = room;
+                cardViewController.name = room[PF_CHATROOMS_NAME];
                 
                 if (application.applicationState == UIApplicationStateActive && !didJustOpenFromBackground)
                 {
