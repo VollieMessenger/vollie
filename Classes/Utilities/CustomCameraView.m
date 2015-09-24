@@ -272,7 +272,7 @@
         NSLog(@"%li photos in viewWillAppear in camera", self.arrayOfTakenPhotos.count);
         [self loadImagesSaved];
     }
-    else if(!self.picker)
+    else if(!self.picker && !self.sentToNewVollie)
     {
         self.arrayOfTakenPhotos = [NSMutableArray new];
         [self clearCameraStuff];
@@ -319,6 +319,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (!self.comingFromNewVollie) self.sentToNewVollie = NO;
 
     [self runCamera];
 
@@ -1690,6 +1692,7 @@
         }
         else
         {
+            self.sentToNewVollie = YES;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
             NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
             vc.photosArray = self.arrayOfTakenPhotos;

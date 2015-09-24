@@ -226,7 +226,7 @@ SecondDelegate>
     [super viewWillDisappear:animated];
     NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
     CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-    if (!self.showingCamera)[cam blankOutButtons];
+    if (!self.showingCamera && !cam.sentToNewVollie)[cam blankOutButtons];
 }
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst

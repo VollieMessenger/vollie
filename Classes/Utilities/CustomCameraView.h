@@ -40,6 +40,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *savedButtons;
 
 @property BOOL isReturningFromBackButton;
+@property BOOL sentToNewVollie;
 
 @property NSMutableArray *arrayOfTakenPhotos;
 @property NSMutableArray *arrayOfScrollview;
