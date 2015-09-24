@@ -140,7 +140,11 @@
 
 - (void)viewDidLoad
 {
-    self.buttonSendArrow.frame = CGRectMake(self.view.frame.size.width/2 - 12, self.view.frame.size.height - 30, 25, 25);
+//    self.buttonSendArrow.frame = CGRectMake(self.view.frame.size.width/2 - 12, self.view.frame.size.height - 30, 25, 25);
+    self.buttonSend.backgroundColor = [UIColor volleyFamousOrange];
+    [self.buttonSend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.buttonSend.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
+    self.buttonSend.hidden = YES;
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
     
@@ -953,7 +957,7 @@
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
             self.buttonSend.alpha = 1;
             self.buttonSendArrow.alpha = 1;
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -self.buttonSend.frame.size.height)];
+//            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -self.buttonSend.frame.size.height)];
         }];
     }
 

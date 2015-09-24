@@ -11,7 +11,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateChatroomView">
             <connections>
                 <outlet property="buttonSend" destination="koE-VD-6OE" id="7a3-nL-BdV"/>
-                <outlet property="buttonSendArrow" destination="S9e-Qw-TE6" id="X3O-zH-kjD"/>
                 <outlet property="searchCloseButton" destination="DuA-8v-Xcg" id="pUW-tz-gSP"/>
                 <outlet property="searchTextField" destination="y6S-Vz-BhK" id="gDe-EE-iVc"/>
                 <outlet property="tableView" destination="i5M-Pr-FkT" id="UhX-nO-glJ"/>
@@ -25,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="513"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                     <connections>
@@ -34,14 +33,14 @@
                     </connections>
                 </tableView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="koE-VD-6OE">
-                    <rect key="frame" x="-4" y="508" width="324" height="60"/>
-                    <color key="backgroundColor" red="0.96470588239999999" green="0.54901960780000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <rect key="frame" x="0.0" y="513" width="320" height="55"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="h5n-OS-hW2"/>
+                        <constraint firstAttribute="height" constant="55" id="Ls6-ko-KmD"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
                     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="SEND">
+                    <state key="normal" title="Send Vollie">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -49,34 +48,37 @@
                         <action selector="didPressSendButton:" destination="-1" eventType="touchUpInside" id="tyr-oa-mJU"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9e-Qw-TE6">
-                    <rect key="frame" x="178" y="525" width="25" height="25"/>
-                    <color key="backgroundColor" red="0.96470588239999999" green="0.54901960780000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Send Picture 2" translatesAutoresizingMaskIntoConstraints="NO" id="Csb-JN-MJE">
+                    <rect key="frame" x="267" y="518" width="45" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="25" id="xzK-Zt-YWJ"/>
-                        <constraint firstAttribute="width" constant="25" id="znQ-Wq-QCc"/>
+                        <constraint firstAttribute="width" constant="45" id="TXM-Yo-Ifu"/>
+                        <constraint firstAttribute="height" constant="45" id="kqC-4I-2rw"/>
                     </constraints>
-                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="SEND" image="Send Picture 2">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="didPressSendButton:" destination="-1" eventType="touchUpInside" id="xap-GW-9is"/>
-                    </connections>
-                </button>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Vollie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mU8-v2-TcC">
+                    <rect key="frame" x="8" y="530" width="99" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="99" id="O5w-7E-qph"/>
+                        <constraint firstAttribute="height" constant="21" id="y2u-tn-q8T"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="3Hl-hp-IQI"/>
-                <constraint firstItem="koE-VD-6OE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-4" id="7yA-eH-7iD"/>
-                <constraint firstItem="i5M-Pr-FkT" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" id="Gcz-kV-TrY"/>
-                <constraint firstItem="koE-VD-6OE" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="M3q-ct-toZ"/>
-                <constraint firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="V1c-P7-qGt"/>
-                <constraint firstItem="i5M-Pr-FkT" firstAttribute="trailing" secondItem="koE-VD-6OE" secondAttribute="trailing" id="p1K-KS-Fhy"/>
-                <constraint firstItem="S9e-Qw-TE6" firstAttribute="centerX" secondItem="koE-VD-6OE" secondAttribute="centerX" constant="32.5" id="qBf-CR-pOA"/>
-                <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="9Ze-8q-Mqo" secondAttribute="top" id="qob-T5-9ay"/>
-                <constraint firstAttribute="bottom" secondItem="S9e-Qw-TE6" secondAttribute="bottom" constant="18" id="yAi-cN-faS"/>
+                <constraint firstItem="koE-VD-6OE" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" id="3gr-0R-cHH"/>
+                <constraint firstItem="i5M-Pr-FkT" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" id="6KY-Zy-D2u"/>
+                <constraint firstItem="koE-VD-6OE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="ExB-RC-VhW"/>
+                <constraint firstAttribute="trailing" secondItem="koE-VD-6OE" secondAttribute="trailing" id="KLJ-to-EhH"/>
+                <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="WBV-vz-MJs"/>
+                <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="9Ze-8q-Mqo" secondAttribute="top" id="WQ7-X7-vf4"/>
+                <constraint firstAttribute="trailing" secondItem="Csb-JN-MJE" secondAttribute="trailing" constant="8" id="YTg-xP-Osx"/>
+                <constraint firstAttribute="bottom" secondItem="mU8-v2-TcC" secondAttribute="bottom" constant="17" id="axY-mj-1Do"/>
+                <constraint firstAttribute="bottom" secondItem="Csb-JN-MJE" secondAttribute="bottom" constant="5" id="r1w-Md-b1n"/>
+                <constraint firstItem="mU8-v2-TcC" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" constant="8" id="skx-Q0-9eI"/>
+                <constraint firstAttribute="bottom" secondItem="koE-VD-6OE" secondAttribute="bottom" id="so2-Sf-IZC"/>
             </constraints>
         </view>
         <view contentMode="scaleToFill" id="UKQ-Ks-fWp">
