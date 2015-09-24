@@ -27,6 +27,8 @@
     {
         imageview.layer.masksToBounds = YES;
         imageview.layer.cornerRadius = 10;
+        [imageview setImage:[UIImage imageNamed:@"Vollie-icon"]];
+
     }
 }
 
