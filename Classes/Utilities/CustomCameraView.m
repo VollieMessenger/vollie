@@ -25,7 +25,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate, RefreshMessagesDelegate>
+@interface CustomCameraView () <UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, AVCaptureFileOutputRecordingDelegate, UIScrollViewDelegate, NewVollieDelegate, RefreshMessagesDelegate,scrollDelegate>
 
 @property (nonatomic, strong) PHPhotoLibrary *library;
 @property AVCaptureSession *captureSession;
@@ -81,6 +81,8 @@
 
 @property NSString *textFromNextVC;
 
+@property BOOL cameraShowing;
+
 @end
 
 
@@ -132,6 +134,7 @@
 
 //    [self runCamera];
     [self deallocSession];
+    self.scrollView.secondaryDelegate = self;
 
     self.firstCameraFlip = true;
     self.camFlipCount = 0;
@@ -234,6 +237,31 @@
 
 }
 
+-(void)cameraOnOff:(BOOL)toggle{
+    NSLog(@"switch flip %d",toggle);
+    if (toggle) {
+        AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+        NSError *error2 = nil;
+        BOOL add = YES;
+        AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
+        for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
+            if (input.device==audioCaptureDevice) {
+                add = NO;
+            }
+        }
+        if (add && audioInput) {
+            [self.captureSession addInput:audioInput];
+        }
+    } else {
+        AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+        for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
+            if (input.device==audioCaptureDevice) {
+                [self.captureSession removeInput:input];
+            }
+        }
+    }
+}
+
 - (void)removeInputs
 {
     for (AVCaptureInput *input in self.captureSession.inputs)
@@ -327,6 +355,7 @@
         self.rightButton.hidden = true;
         self.cancelButton.hidden = false;
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+        [self cameraOnOff:YES];
     }
 
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -340,6 +369,7 @@
             [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
             self.scrollView.scrollEnabled = YES;
+            [self cameraOnOff:YES];
         }
         else
         {
@@ -388,6 +418,10 @@
     {
         self.scrollView.scrollEnabled = NO;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
+    
+    if (self.comingFromNewVollie) {
+        [self cameraOnOff:NO];
     }
 
     [self stopCaptureSession];
@@ -1112,14 +1146,6 @@
         if (CGRectContainsPoint(self.takePictureButton.frame, save))
         {
             self.takePictureButton.transform = CGAffineTransformMakeScale(1.4,1.4);
-            
-            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-            NSError *error2 = nil;
-            AVCaptureDeviceInput *audioInput = [AVCaptureDeviceInput deviceInputWithDevice:audioCaptureDevice error:&error2];
-            if (audioInput)
-            {
-                [self.captureSession addInput:audioInput];
-            }
 
             _isCapturingVideo = YES;
             
@@ -1194,12 +1220,6 @@
 
             [self captureStopVideoNow];
             [self.progressTimer invalidate];
-            AVCaptureDevice *audioCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
-            for (AVCaptureDeviceInput * input in self.captureSession.inputs) {
-                if (input.device==audioCaptureDevice) {
-                    [self.captureSession removeInput:input];
-                }
-            }
         }
         
         if (self.movingImagePosition) {
@@ -1649,6 +1669,8 @@
         button.transform = CGAffineTransformMakeScale(0.3,0.3);
         button.transform = CGAffineTransformMakeScale(1,1);
     }];
+    
+    [self cameraOnOff:NO];
 
 //    button.userInteractionEnabled = NO;
     if (_arrayOfTakenPhotos.count == 0)

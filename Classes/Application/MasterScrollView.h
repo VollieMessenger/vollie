@@ -12,7 +12,7 @@
 
 @protocol scrollDelegate <NSObject>
 
--(void)cameraOpened;
+-(void)cameraOnOff:(BOOL)toggle;
 
 @end
 

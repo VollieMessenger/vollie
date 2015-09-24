@@ -168,10 +168,10 @@
         }
     }
     if (lastContentOffset == 0) {
-        [self.secondaryDelegate cameraOpened];
+        [self.secondaryDelegate cameraOnOff:YES];
     }
     if (lastContentOffset == self.bounds.size.width) {
-        [self.secondaryDelegate cameraOpened];
+        [self.secondaryDelegate cameraOnOff:NO];
     }
 }
 
