@@ -185,7 +185,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [super viewWillAppear:animated];
 
     [self.view layoutIfNeeded];
-
+    
+    self.automaticallyScrollsToMostRecentMessage = YES;
+    
     [self.collectionView.collectionViewLayout invalidateLayout];
 
     if (self.automaticallyScrollsToMostRecentMessage)
@@ -201,6 +203,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 {
     [super viewDidAppear:animated];
 
+    [self scrollToBottomAnimated:NO];
+    
     self.collectionView.collectionViewLayout.springinessEnabled = NO;
     [self jsq_addObservers];
     [self jsq_addActionToInteractivePopGestureRecognizer:YES];
