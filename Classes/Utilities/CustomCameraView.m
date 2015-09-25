@@ -150,10 +150,10 @@
         [self.view addSubview:self.spinner];
     }
 
-    if (!self.scrollView)
-    {
-        self.scrollView = [(AppDelegate *)[[UIApplication sharedApplication] delegate] scrollView];
-    }
+//    if (!self.scrollView)
+//    {
+//        self.scrollView = [(AppDelegate *)[[UIApplication sharedApplication] delegate] scrollView];
+//    }
 
 //    self.nextButton.hidden = YES;
     self.counterButton.hidden = YES;
@@ -264,7 +264,8 @@
 {
     [super viewWillAppear:1];
 #warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.\
-
+    
+    NSLog(@"size of scrollview is %fl on camera view will appear", self.scrollView.contentSize.width);
     
     if(self.photosFromNewVC.count)
     {
@@ -381,6 +382,8 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
+    NSLog(@"size of scrollview is %fl when camera goes away", self.scrollView.contentSize.width);
+
 
 //  [self stopCaptureSession];
 

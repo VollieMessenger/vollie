@@ -252,6 +252,7 @@ SecondDelegate>
     if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+        NSLog(@"%fl is size of scroll when i hit bring up camera view", cam.scrollView.contentSize.width);
         cam.delegate = self;
 //        if (self.photosArray.count >= 1)
 //        {
