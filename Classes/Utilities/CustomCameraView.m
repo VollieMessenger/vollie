@@ -1931,6 +1931,8 @@
         [scrollView setContentOffset:CGPointMake((self.view.frame.size.width * index), 0) animated:0];
 
         int count = (int)self.arrayOfTakenPhotos.count;
+        
+        MPMoviePlayerController * selectedPlayer;
 
         for (id pictureOrDic in self.arrayOfTakenPhotos)
         {
@@ -1982,9 +1984,7 @@
                 {
                     [moviePlayer setShouldAutoplay:NO];
                 } else {
-                    [moviePlayer play];
-                    [moviePlayer stop];
-                    [moviePlayer play];
+                    selectedPlayer = moviePlayer;
                 }
 
                 [scrollView addSubview:moviePlayer.view];
@@ -2048,12 +2048,14 @@
             //Hid it in the KLCPopup code.
             }
         }
+        [selectedPlayer play];
+        [selectedPlayer stop];
+        [selectedPlayer play];
     } //end for loop
 }
 //KLCPopup
 - (void)didTap:(UITapGestureRecognizer *)tap
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.pop dismiss:1];
 
     for (MPMoviePlayerController *object in self.arrayOfScrollview)
