@@ -132,7 +132,7 @@
 
 //    [self runCamera];
     [self deallocSession];
-
+    NSLog(@"camera loaded");
     self.firstCameraFlip = true;
     self.camFlipCount = 0;
 
@@ -369,6 +369,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    NSLog(@"camera will disappear");
 
     if (!_isPoppingUp)
     {
