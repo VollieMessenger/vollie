@@ -1936,6 +1936,8 @@
 
         int count = (int)self.arrayOfTakenPhotos.count;
 
+        MPMoviePlayerController * selectedPlayer;
+
         for (id pictureOrDic in self.arrayOfTakenPhotos)
         {
             CGRect rect = CGRectMake(([self.arrayOfTakenPhotos indexOfObject:pictureOrDic] * self.view.bounds.size.width - 2) + 2, 0, self.view.frame.size.width, self.view.frame.size.height);
@@ -1986,9 +1988,10 @@
                 {
                     [moviePlayer setShouldAutoplay:NO];
                 } else {
-                    [moviePlayer play];
-                    [moviePlayer stop];
-                    [moviePlayer play];
+//                    [moviePlayer play];
+//                    [moviePlayer stop];
+//                    [moviePlayer play];
+                    selectedPlayer = moviePlayer;
                 }
 
                 [scrollView addSubview:moviePlayer.view];
@@ -2052,8 +2055,12 @@
             //Hid it in the KLCPopup code.
             }
         }
+        [selectedPlayer play];
+        [selectedPlayer stop];
+        [selectedPlayer play];
     } //end for loop
 }
+
 //KLCPopup
 - (void)didTap:(UITapGestureRecognizer *)tap
 {
