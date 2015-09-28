@@ -333,88 +333,88 @@
 //IF APPLICATION IS ACTIVE>
     NSLog(@"%@", userInfo); // ADD CHATROOM ID IN THIS TO CREATE NEW CHATROOM AND OPEN IT IN BACKGROUND.
 //        [PFPush handlePush:userInfo]; // SEND AN ALERT IN APP
+    
 
     NSString *alertText = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
 
     if ([userInfo objectForKey:@"r"])
     {
-    NSString *roomId = [userInfo objectForKey:@"r"];
-    PFObject *room = [PFObject objectWithoutDataWithClassName:PF_CHATROOMS_CLASS_NAME
+        NSString *roomId = [userInfo objectForKey:@"r"];
+        PFObject *room = [PFObject objectWithoutDataWithClassName:PF_CHATROOMS_CLASS_NAME
                                                             objectId:roomId];
+        
+        if ([scrollView checkIfCurrentChatIsEqualToRoom:roomId didComeFromBackground:didJustOpenFromBackground])
+        {
+            //SAME CHATROOOM
+            PostNotification(NOTIFICATION_REFRESH_CHATROOM);
+        } else {
+
+        PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
+        [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
+        //      [query includeKey:PF_MESSAGES_LASTUSER];
+        [query whereKey:PF_MESSAGES_ROOM equalTo:room];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+         {
+             if (!error && objects.count)
+             {
+                 PFObject *messageRoom = objects[0];
+                 PFObject *customChatRoom = [messageRoom objectForKey:PF_MESSAGES_ROOM];
+                 
+                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+                 MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+                 if ([messageRoom objectForKey:PF_ALBUMS_NICKNAME]) {
+                     cardViewController.name = [messageRoom objectForKey:PF_ALBUMS_NICKNAME];
+                 } else {
+                     cardViewController.name = [messageRoom objectForKey:PF_MESSAGES_DESCRIPTION];
+                 }
+                 cardViewController.room = customChatRoom;
+                 
+                 if (application.applicationState == UIApplicationStateActive && !didJustOpenFromBackground){
+                     NSString* title = @"NEW MESSAGE!";
+                     
+                     NSUserDefaults *userDefualts = [NSUserDefaults standardUserDefaults];
+                     
+                     if ([userDefualts boolForKey:PF_KEY_SHOULDVIBRATE]){
+                         [JSQSystemSoundPlayer jsq_playMessageReceivedAlert];
+                     }
+                     else
+                     {
+                         [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+                     }
+                     
+                     [JCNotificationCenter sharedCenter].presenter = [JCNotificationBannerPresenterIOS7Style new];
+                     
+                     if (scrollView.contentOffset.x)
+                     {
+                         NSLog(@"IN APP NOTIFICATION");
+                         
+                         [JCNotificationCenter enqueueNotificationWithTitle:title
+                                                                    message:alertText
+                                                                 tapHandler:^{
+                                                                     
+                                                                     //Dismiss Modal Views
+                                                                     PostNotification(NOTIFICATION_CLICKED_PUSH);
+                                                                     
+                                                                     [scrollView openView:cardViewController];
+                                                                 }];
+                     } else {
+                         [scrollView openView:cardViewController];
+                     }
+                     completionHandler(UIBackgroundFetchResultNewData);
+                 } else {
+                     completionHandler(UIBackgroundFetchResultNoData);
+                 }
+             }
+         }];
+        }
 
     //Need to download new message if it exists.
-    PostNotification(NOTIFICATION_REFRESH_INBOX);
+        PostNotification(NOTIFICATION_REFRESH_INBOX);
 
-    [room fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         // Show photo view controller
-        if (error)
-        {
-            NSLog(@"%@ Push Error", error.userInfo);
-            completionHandler(UIBackgroundFetchResultFailed);
-        }
         //Irrelevant but acceptable
-        else if ([PFUser currentUser])
-        {
-        if ([scrollView checkIfCurrentChatIsEqualToRoom:roomId didComeFromBackground:didJustOpenFromBackground])
-            {
-                //SAME CHATROOOM
-                PostNotification(NOTIFICATION_REFRESH_CHATROOM);
-            }
-            else
-            {
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-                MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
-                cardViewController.room = room;
-                cardViewController.name = room[PF_CHATROOMS_NAME];
-                
-                if (application.applicationState == UIApplicationStateActive && !didJustOpenFromBackground)
-                {
-                    NSString* title = @"NEW MESSAGE!";
-
-                    NSUserDefaults *userDefualts = [NSUserDefaults standardUserDefaults];
-
-                    if ([userDefualts boolForKey:PF_KEY_SHOULDVIBRATE])
-                    {
-                        [JSQSystemSoundPlayer jsq_playMessageReceivedAlert];
-                    }
-                    else
-                    {
-                        [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-                    }
-
-                    [JCNotificationCenter sharedCenter].presenter = [JCNotificationBannerPresenterIOS7Style new];
-
-                    if (scrollView.contentOffset.x)
-                    {
-                    NSLog(@"IN APP NOTIFICATION");
-
-                    [JCNotificationCenter enqueueNotificationWithTitle:title
-                                                               message:alertText
-                                                            tapHandler:^{
-
-                    //Dismiss Modal Views
-                    PostNotification(NOTIFICATION_CLICKED_PUSH);
-
-                    [scrollView openView:cardViewController];
-                    }];
-
-                    }
-
-                }
-                else
-                {
-                    [scrollView openView:cardViewController];
-                }
-        }
-
-            completionHandler(UIBackgroundFetchResultNewData);
-        }
-        else
-        {
-            completionHandler(UIBackgroundFetchResultNoData);
-        }
-    }];
     }
+    
 }
 
 @end
