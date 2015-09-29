@@ -159,6 +159,10 @@
     self.counterButton.hidden = YES;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearCameraStuff) name:NOTIFICATION_CLEAR_CAMERA_STUFF object:0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeText) name:NOTIFICATION_REFRESH_CHATROOM object:0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeText) name:@"clearText" object:0];
+    
+    self.messageText = @"";
 
     //Taking screenshots of videos
 
@@ -273,7 +277,7 @@
         NSLog(@"%li photos in viewWillAppear in camera", self.arrayOfTakenPhotos.count);
         [self loadImagesSaved];
     }
-    else if(!self.picker)
+    else if(!self.picker && !self.sentToNewVollie)
     {
         self.arrayOfTakenPhotos = [NSMutableArray new];
         [self clearCameraStuff];
@@ -320,6 +324,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    if (!self.comingFromNewVollie) self.sentToNewVollie = NO;
 
     [self runCamera];
 
@@ -1694,6 +1700,7 @@
         }
         else
         {
+            self.sentToNewVollie = YES;
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
             NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
             vc.photosArray = self.arrayOfTakenPhotos;
@@ -1703,6 +1710,9 @@
             ParseVolliePackage *package = [ParseVolliePackage new];
             package.refreshDelegate = self;
             vc.package = package;
+            if (self.messageText.length > 0){
+                vc.message = self.messageText;
+            }
             [self.navigationController pushViewController:vc animated:NO];
             button.userInteractionEnabled = YES;
         }
@@ -2542,6 +2552,10 @@
     self.x5.hidden = YES;
     self.nextButton.hidden = YES;
     self.counterButton.hidden = YES;
+}
+
+-(void)removeText{
+    self.messageText = @"";
 }
 
 @end

@@ -162,7 +162,7 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     NewVollieVC *vc = (NewVollieVC *)[storyboard instantiateViewControllerWithIdentifier:@"NewVollieVC"];
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearText" object:nil];
     ParseVolliePackage *package = [ParseVolliePackage new];
     package.refreshDelegate = self;
     vc.package = package;

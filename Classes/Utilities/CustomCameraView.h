@@ -40,6 +40,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *savedButtons;
 
 @property BOOL isReturningFromBackButton;
+@property BOOL sentToNewVollie;
 
 @property NSMutableArray *arrayOfTakenPhotos;
 @property NSMutableArray *arrayOfScrollview;
@@ -56,6 +57,7 @@
 //kyle's new VC properties:
 @property (atomic) BOOL comingFromNewVollie;
 @property NSString *textFromLastVC;
+@property NSString *messageText;
 @property NSMutableArray *photosFromNewVC;
 
 @property (weak, nonatomic) IBOutlet UIButton *x1;
