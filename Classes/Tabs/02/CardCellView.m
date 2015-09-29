@@ -819,116 +819,116 @@
 
 - (void)didLongPress:(UILongPressGestureRecognizer *)longPress
 {
-    bool isTouching;
-    CGPoint touch = [longPress locationInView:self.collectionViewPictures];
-
-    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-
-    spinner.frame = CGRectMake(self.view.frame.size.width/2 -50, self.view.frame.size.height/2 - 50, 100, 100);
-
-    NSIndexPath *indexPath = [self.collectionViewPictures indexPathForItemAtPoint:touch];
-
-//    if (self.inputToolbar.contentView.textView.isFirstResponder)
+//    bool isTouching;
+//    CGPoint touch = [longPress locationInView:self.collectionViewPictures];
+//
+//    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//
+//    spinner.frame = CGRectMake(self.view.frame.size.width/2 -50, self.view.frame.size.height/2 - 50, 100, 100);
+//
+//    NSIndexPath *indexPath = [self.collectionViewPictures indexPathForItemAtPoint:touch];
+//
+////    if (self.inputToolbar.contentView.textView.isFirstResponder)
+////    {
+////        [self.inputToolbar.contentView.textView resignFirstResponder];
+////    }
+//
+//    if (indexPath && longPress.state == UIGestureRecognizerStateBegan)
 //    {
-//        [self.inputToolbar.contentView.textView resignFirstResponder];
+//        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//        //User long pressed image
+//
+//        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
+//
+//        isTouching = YES;
+//
+//        longPressImageView = [[PFImageView alloc] initWithFrame:self.view.bounds];
+//
+//        longPressImageView.backgroundColor = [UIColor volleyFamousGreen];
+//
+//        PFObject *picture = [setPicturesObjects objectAtIndex:indexPath.item];
+//
+//        __block PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
+//
+//        if (!file)
+//        {
+//            [picture fetch];
+//            file = [picture valueForKey:PF_PICTURES_PICTURE];
+//        }
+//
+//        if ([[picture valueForKey:PF_PICTURES_IS_VIDEO]  isEqual: @YES])
+//        {
+//            NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
+//            NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
+//            NSFileManager *fileManager = [NSFileManager defaultManager];
+//
+//            if (![fileManager fileExistsAtPath:outputPath])
+//            {
+//                [[file getData] writeToFile:outputPath atomically:1];
+//            }
+//
+//            self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
+//            [self.moviePlayer.view setFrame:self.view.window.frame];
+//            self.moviePlayer.fullscreen = NO;
+//            [self.moviePlayer prepareToPlay];
+//            longPressImageView.backgroundColor = [UIColor blackColor];
+//
+//            [UIView animateWithDuration:1.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                longPressImageView.alpha = 0;
+//                longPressImageView.alpha = 1;
+//                [spinner startAnimating];
+//                [longPressImageView addSubview:spinner];
+//                [self.view.window addSubview:longPressImageView];
+//            } completion:0];
+//
+//            self.moviePlayer.controlStyle = MPMovieControlStyleNone;
+//            [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
+//            self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
+//            [self.moviePlayer play];
+//            [longPressImageView addSubview:self.moviePlayer.view];
+//            return;
+//        }
+//
+//        if (file)
+//        {
+//            [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//                if (!error) {
+//                    [spinner stopAnimating];
+//                    [longPressImageView setContentMode:UIViewContentModeScaleAspectFill];
+//                    longPressImageView.image = [UIImage imageWithData:data];
+//                }
+//            }];
+//
+//            longPressImageView.backgroundColor = [UIColor blackColor];
+//
+//            [UIView animateWithDuration:.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//                longPressImageView.alpha = 0;
+//                longPressImageView.alpha = 1;
+//                [spinner startAnimating];
+//                [longPressImageView addSubview:spinner];
+//                [self.view.window addSubview:longPressImageView];
+//            } completion:0];
+//
+//        }
 //    }
-
-    if (indexPath && longPress.state == UIGestureRecognizerStateBegan)
-    {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-        //User long pressed image
-
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
-
-        isTouching = YES;
-
-        longPressImageView = [[PFImageView alloc] initWithFrame:self.view.bounds];
-
-        longPressImageView.backgroundColor = [UIColor volleyFamousGreen];
-
-        PFObject *picture = [setPicturesObjects objectAtIndex:indexPath.item];
-
-        __block PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
-
-        if (!file)
-        {
-            [picture fetch];
-            file = [picture valueForKey:PF_PICTURES_PICTURE];
-        }
-
-        if ([[picture valueForKey:PF_PICTURES_IS_VIDEO]  isEqual: @YES])
-        {
-            NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
-            NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
-            NSFileManager *fileManager = [NSFileManager defaultManager];
-
-            if (![fileManager fileExistsAtPath:outputPath])
-            {
-                [[file getData] writeToFile:outputPath atomically:1];
-            }
-
-            self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
-            [self.moviePlayer.view setFrame:self.view.window.frame];
-            self.moviePlayer.fullscreen = NO;
-            [self.moviePlayer prepareToPlay];
-            longPressImageView.backgroundColor = [UIColor blackColor];
-
-            [UIView animateWithDuration:1.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                longPressImageView.alpha = 0;
-                longPressImageView.alpha = 1;
-                [spinner startAnimating];
-                [longPressImageView addSubview:spinner];
-                [self.view.window addSubview:longPressImageView];
-            } completion:0];
-
-            self.moviePlayer.controlStyle = MPMovieControlStyleNone;
-            [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
-            self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
-            [self.moviePlayer play];
-            [longPressImageView addSubview:self.moviePlayer.view];
-            return;
-        }
-
-        if (file)
-        {
-            [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                if (!error) {
-                    [spinner stopAnimating];
-                    [longPressImageView setContentMode:UIViewContentModeScaleAspectFill];
-                    longPressImageView.image = [UIImage imageWithData:data];
-                }
-            }];
-
-            longPressImageView.backgroundColor = [UIColor blackColor];
-
-            [UIView animateWithDuration:.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                longPressImageView.alpha = 0;
-                longPressImageView.alpha = 1;
-                [spinner startAnimating];
-                [longPressImageView addSubview:spinner];
-                [self.view.window addSubview:longPressImageView];
-            } completion:0];
-
-        }
-    }
-
-    if (longPress.state == UIGestureRecognizerStateEnded)
-    {
-        [[UIApplication sharedApplication] setStatusBarHidden:0];
-        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-
-        [self.moviePlayer pause];
-        [self.moviePlayer.view removeFromSuperview];
-        self.moviePlayer = nil;
-
-        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            longPressImageView.alpha = 1;
-            longPressImageView.alpha = 0;
-        }completion:^(BOOL finished){
-            [longPressImageView removeFromSuperview];
-        }];
-        isTouching = NO;
-    }
+//
+//    if (longPress.state == UIGestureRecognizerStateEnded)
+//    {
+//        [[UIApplication sharedApplication] setStatusBarHidden:0];
+//        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+//
+//        [self.moviePlayer pause];
+//        [self.moviePlayer.view removeFromSuperview];
+//        self.moviePlayer = nil;
+//
+//        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//            longPressImageView.alpha = 1;
+//            longPressImageView.alpha = 0;
+//        }completion:^(BOOL finished){
+//            [longPressImageView removeFromSuperview];
+//        }];
+//        isTouching = NO;
+//    }
 }
 
 @end

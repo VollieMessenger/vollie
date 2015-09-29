@@ -339,8 +339,9 @@
 
     //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
         vc.view.frame = cell.cardOutline.bounds;
-        cell.cardOutline.layer.cornerRadius = 10;
+//        cell.cardOutline.layer.cornerRadius = 10;
         cell.cardOutline.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
+
         cell.cardOutline.layer.borderWidth = 1;
         cell.cardOutline.layer.masksToBounds = YES;
     //    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
