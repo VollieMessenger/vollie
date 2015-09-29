@@ -402,6 +402,7 @@
                      }
                      completionHandler(UIBackgroundFetchResultNewData);
                  } else {
+                     [scrollView openView:cardViewController];
                      completionHandler(UIBackgroundFetchResultNoData);
                  }
              }
