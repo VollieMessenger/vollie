@@ -55,7 +55,7 @@
 
 -(void)basicSetUpOFUI
 {
-    self.tableView.backgroundColor = [UIColor clearColor];
+//    self.tableView.backgroundColor = [UIColor clearColor];
     
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"settings"
                                                                         style:UIBarButtonItemStyleBordered target:self action:@selector(goToSettingsVC)];
@@ -201,7 +201,7 @@
     HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
 //    HighlightData *highlight = self.sortedHighlightsArray[0];
 
-    cell.backgroundColor = [UIColor clearColor];
+//    cell.backgroundColor = [UIColor clearColor];
     [cell formatCell];
     [cell fillPicsWithTop5PicsFromHighlight:highlight];
 //    if (indexPath.row != 0)

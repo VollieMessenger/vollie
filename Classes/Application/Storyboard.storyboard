@@ -1211,6 +1211,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="S1p-sL-fnj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="cellID" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellID" rowHeight="88" id="JVX-Kp-t9r" customClass="RoomCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1471,8 +1472,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="H85-uB-OiQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H85-uB-OiQ">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="0.0" width="816" height="1183"/>
                                 </variation>
@@ -1480,6 +1482,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="179" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="MuA-Ni-ZKn">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="0.89000000000000001" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellid" rowHeight="185" id="nSO-E8-9O7" customClass="WeekCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1488,7 +1491,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="184.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="WrN-i7-f4f" customClass="PFImageView">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orange-vollie-logo" translatesAutoresizingMaskIntoConstraints="NO" id="WrN-i7-f4f" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="WrN-i7-f4f" secondAttribute="height" multiplier="1:1" id="LjI-En-cb0"/>
@@ -1507,7 +1510,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEr-QE-47M">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="5T6-w1-gOw" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orange-vollie-logo" translatesAutoresizingMaskIntoConstraints="NO" id="5T6-w1-gOw" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="5T6-w1-gOw" secondAttribute="height" multiplier="1:1" id="7T1-cl-nEN"/>
@@ -1523,10 +1526,10 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Juo-al-OBb" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orange-vollie-logo" translatesAutoresizingMaskIntoConstraints="NO" id="Juo-al-OBb" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="jWf-yr-WtK" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orange-vollie-logo" translatesAutoresizingMaskIntoConstraints="NO" id="jWf-yr-WtK" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="jWf-yr-WtK" secondAttribute="height" multiplier="1:1" id="y5G-St-EsC"/>
@@ -1542,7 +1545,7 @@
                                                                 </mask>
                                                             </variation>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie-icon" translatesAutoresizingMaskIntoConstraints="NO" id="vW6-Ea-bBH" customClass="PFImageView">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orange-vollie-logo" translatesAutoresizingMaskIntoConstraints="NO" id="vW6-Ea-bBH" customClass="PFImageView">
                                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="vW6-Ea-bBH" secondAttribute="height" multiplier="1:1" id="zj5-BW-lCR"/>
@@ -2613,6 +2616,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BZQ-R2-e96"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aNG-pF-bxb">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2e3-rp-0AM">
@@ -2681,6 +2685,7 @@
         <image name="greyBackGround2" width="816" height="1183"/>
         <image name="icon3-newmessage" width="126" height="126"/>
         <image name="image-header-newmessage" width="420" height="151"/>
+        <image name="orange-vollie-logo" width="616" height="616"/>
         <image name="packageimg6" width="87" height="87"/>
         <image name="small-charcoal-next" width="75" height="76"/>
         <image name="white-vollie-v" width="290" height="158"/>
