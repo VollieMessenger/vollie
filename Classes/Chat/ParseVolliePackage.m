@@ -270,6 +270,7 @@
     }
     [ProgressHUD showSuccess:@"Sent Vollie!"];
     PostNotification(NOTIFICATION_CLEAR_CAMERA_STUFF);
+    PostNotification(@"clearText");
     [self.refreshDelegate reloadAfterMessageSuccessfullySent]; //we just need to add the room to thsi?
     [self performSelector:@selector(hideProgressHUD) withObject:nil afterDelay:1.0];
 }

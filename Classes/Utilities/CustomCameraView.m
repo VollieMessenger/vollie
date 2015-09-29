@@ -161,6 +161,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearCameraStuff) name:NOTIFICATION_CLEAR_CAMERA_STUFF object:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeText) name:NOTIFICATION_REFRESH_CHATROOM object:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeText) name:@"clearText" object:0];
+    
     self.messageText = @"";
 
     //Taking screenshots of videos
@@ -1705,7 +1706,9 @@
             ParseVolliePackage *package = [ParseVolliePackage new];
             package.refreshDelegate = self;
             vc.package = package;
-            if (self.messageText.length > 0) vc.message = self.messageText;
+            if (self.messageText.length > 0){
+                vc.message = self.messageText;
+            }
             [self.navigationController pushViewController:vc animated:NO];
             button.userInteractionEnabled = YES;
         }
