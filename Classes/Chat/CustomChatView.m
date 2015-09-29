@@ -498,7 +498,7 @@
         if (!error)
         {
             NSMutableArray *comments = [NSMutableArray new];
-
+            NSLog(@"%li messages and pics", objects.count);
             for (PFObject *object in objects)
             {
                 if (![objectIds containsObject:object.objectId])

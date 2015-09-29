@@ -621,9 +621,6 @@
                      }];
 }
 
-
-
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // Get the current size of the refresh controller
@@ -735,8 +732,5 @@
     self.refreshColorView.backgroundColor = [UIColor clearColor];
     //    self.labelNoMessages.hidden = NO;
 }
-
-
-
 
 @end
