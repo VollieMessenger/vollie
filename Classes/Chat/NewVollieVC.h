@@ -20,6 +20,7 @@
 @property (nonatomic, assign) id<NewVollieDelegate> textDelegate;
 
 @property NSString *textFromLastVC;
+@property NSString *message;
 @property NSMutableArray *photosArray;
 @property MasterScrollView *scrollView;
 @property BOOL comingFromCamera;

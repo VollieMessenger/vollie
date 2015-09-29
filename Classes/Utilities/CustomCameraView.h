@@ -57,6 +57,7 @@
 //kyle's new VC properties:
 @property (atomic) BOOL comingFromNewVollie;
 @property NSString *textFromLastVC;
+@property NSString *messageText;
 @property NSMutableArray *photosFromNewVC;
 
 @property (weak, nonatomic) IBOutlet UIButton *x1;

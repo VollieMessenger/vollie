@@ -53,6 +53,13 @@ SecondDelegate>
     self.pageControl = [UIPageControl new];
 
     if (!self.photosArray) self.photosArray = [NSMutableArray new];
+    if (self.message) [self.textView setText:self.message];
+    if ([self.textView.text isEqualToString:@"Type Message Here..."])
+    {
+        [self.textView setTextColor:[UIColor lightGrayColor]];
+    } else {
+        [self.textView setTextColor:[UIColor blackColor]];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -227,6 +234,10 @@ SecondDelegate>
     NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
     CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
     if (!self.showingCamera && !cam.sentToNewVollie)[cam blankOutButtons];
+    
+    if (self.isMovingFromParentViewController) {
+        cam.messageText = self.textView.text;
+    }
 }
 
 - (void)secondViewControllerDismissed:(NSMutableArray *)photosForFirst
