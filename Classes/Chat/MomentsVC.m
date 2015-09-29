@@ -139,8 +139,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
     NSLog(@"Row: %li, %li", indexPath.row, self.vollieCardDataArray.count);
-
-
+    [card.viewController clearUnreadDot];
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];

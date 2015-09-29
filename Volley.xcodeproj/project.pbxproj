@@ -111,6 +111,7 @@
 		29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EB241719E9292500D7AA97 /* LaunchScreen.xib */; };
 		324843F41B715606009810D3 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F31B715606009810D3 /* Chat.m */; };
 		324843F71B715E58009810D3 /* RoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F61B715E58009810D3 /* RoomCell.m */; };
+		3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260CB771BBAF5A200EEAFF5 /* TestVC.m */; settings = {ASSET_TAGS = (); }; };
 		3272F9311B7A9BED0013FD9C /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
 		32771FBC1B73FB65007726E9 /* WeekHighlightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */; };
 		32771FC01B7417AA007726E9 /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBF1B7417AA007726E9 /* WeekCell.m */; };
@@ -408,6 +409,8 @@
 		324843F31B715606009810D3 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		324843F51B715E58009810D3 /* RoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomCell.h; sourceTree = "<group>"; };
 		324843F61B715E58009810D3 /* RoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomCell.m; sourceTree = "<group>"; };
+		3260CB761BBAF5A200EEAFF5 /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
+		3260CB771BBAF5A200EEAFF5 /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		32771FBA1B73FB65007726E9 /* WeekHighlightsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekHighlightsVC.h; sourceTree = "<group>"; };
 		32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekHighlightsVC.m; sourceTree = "<group>"; };
 		32771FBE1B7417AA007726E9 /* WeekCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCell.h; sourceTree = "<group>"; };
@@ -646,6 +649,8 @@
 				27C3C1231B3B1A6B00F555FD /* NewVollieVC.m */,
 				27AC594F1B39E0B800633EAB /* NewVolliePicCell.h */,
 				27AC59501B39E0B800633EAB /* NewVolliePicCell.m */,
+				3260CB761BBAF5A200EEAFF5 /* TestVC.h */,
+				3260CB771BBAF5A200EEAFF5 /* TestVC.m */,
 			);
 			name = "New Vollie VC";
 			sourceTree = "<group>";
@@ -1629,6 +1634,7 @@
 				29271A6B19F284B1009C308B /* utilities.m in Sources */,
 				29271A6019F284B1009C308B /* MessagesView.m in Sources */,
 				C21DD6E71A71D73B0009BC6A /* JCNotificationBannerPresenterIOS7Style.m in Sources */,
+				3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */,
 				296DD5DB1A1F52F400AB9F8C /* JSQMessagesInputToolbar.m in Sources */,
 				296DD5CF1A1F52F400AB9F8C /* JSQMessagesAvatarImage.m in Sources */,
 				296DD5C01A1F52F400AB9F8C /* UIView+JSQMessages.m in Sources */,

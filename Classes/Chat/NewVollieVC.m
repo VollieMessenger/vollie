@@ -20,6 +20,7 @@
 #import "UIColor+JSQMessages.h"
 #import "ParseVolliePackage.h"
 #import "ProgressHUD.h"
+#import "TestVC.h"
 
 @interface NewVollieVC ()
 <UITextViewDelegate,
@@ -233,7 +234,7 @@ SecondDelegate>
     [super viewWillDisappear:animated];
     NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
     CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
-    NSLog(@"%fl is size of scroll when New Vollie disappears", cam.scrollView.contentSize.width);
+//    NSLog(@"%fl is size of scroll when New Vollie disappears", cam.scrollView.contentSize.width);
     if (!self.showingCamera && !cam.sentToNewVollie)[cam blankOutButtons];
     
     if (self.isMovingFromParentViewController) {
@@ -265,7 +266,8 @@ SecondDelegate>
     {
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
 //        NSLog(@"%f)
-        NSLog(@"%fl is size of scroll when i hit bring up camera view", cam.scrollView.contentSize.width);
+//        NSLog(@"%fl is size of scroll when i hit bring up camera view", cam.scrollView.contentSize.width);
+        cam.scrollView.contentSize = CGSizeMake(3 * cam.view.frame.size.width, cam.view.frame.size.height);
         cam.delegate = self;
 //        if (self.photosArray.count >= 1)
 //        {
@@ -370,7 +372,11 @@ SecondDelegate>
         else
         {
             [self bringUpCameraView];
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+//            TestVC *test = (TestVC *)[storyboard instantiateViewControllerWithIdentifier:@"TestVC"];
+//            [self presentViewController:test animated:YES completion:nil];
         }
+
 //    }
 //    else
 //    {

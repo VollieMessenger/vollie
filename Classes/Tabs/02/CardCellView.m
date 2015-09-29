@@ -218,6 +218,13 @@
      }];
 }
 
+-(void)clearUnreadDot
+{
+    if (self.unreadNotificationDot.image == [UIImage imageNamed:@"1unreadMesseageIcon"])
+    {
+        self.unreadNotificationDot.image = [UIImage imageNamed:@"1readMesseageIcon"];
+    }
+}
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {

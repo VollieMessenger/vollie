@@ -17,6 +17,8 @@
 
 -(id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages;
 
+-(void)clearUnreadDot;
+
 //- (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor;
 
 @property PFObject *room;

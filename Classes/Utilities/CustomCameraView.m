@@ -269,7 +269,7 @@
     [super viewWillAppear:1];
 #warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.\
     
-    NSLog(@"size of scrollview is %fl on camera view will appear", self.scrollView.contentSize.width);
+//    NSLog(@"size of scrollview is %fl on camera view will appear", self.scrollView.contentSize.width);
     
     if(self.photosFromNewVC.count)
     {
@@ -324,6 +324,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    self.scrollView.contentSize = CGSizeMake(3 * self.view.frame.size.width, self.view.frame.size.height);
+    NSLog(@"reset size to %fl ", self.scrollView.contentSize.width);
     
     if (!self.comingFromNewVollie) self.sentToNewVollie = NO;
 
@@ -389,7 +392,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    NSLog(@"size of scrollview is %fl when camera goes away", self.scrollView.contentSize.width);
+//    NSLog(@"size of scrollview is %fl when camera goes away", self.scrollView.contentSize.width);
 
 
 //  [self stopCaptureSession];
