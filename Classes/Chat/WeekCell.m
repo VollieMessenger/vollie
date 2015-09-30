@@ -17,7 +17,7 @@
 
 -(void)formatCell
 {
-    self.backgroundColor = [UIColor clearColor];
+//    self.backgroundColor = [UIColor clearColor];
     self.fourPicUIView.backgroundColor = [UIColor clearColor];
     self.topSpacerView.backgroundColor = [UIColor clearColor];
     
@@ -27,7 +27,7 @@
     {
         imageview.layer.masksToBounds = YES;
         imageview.layer.cornerRadius = 10;
-        [imageview setImage:[UIImage imageNamed:@"Vollie-icon"]];
+        [imageview setImage:[UIImage imageNamed:@"orange-vollie-logo"]];
 
     }
 }

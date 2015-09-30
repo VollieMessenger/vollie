@@ -24,7 +24,6 @@
 #import "CreateChatroomView.h"
 #import "WeekHighlightsVC.h"
 
-
 @interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 //visual properties

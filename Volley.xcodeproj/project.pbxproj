@@ -109,6 +109,7 @@
 		29EB240B19E9292500D7AA97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240A19E9292500D7AA97 /* main.m */; };
 		29EB240E19E9292500D7AA97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29EB240D19E9292500D7AA97 /* AppDelegate.m */; };
 		29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29EB241719E9292500D7AA97 /* LaunchScreen.xib */; };
+		3224C2BB1BBBAACF00B69FC2 /* AFDropdownNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224C2BA1BBBAACF00B69FC2 /* AFDropdownNotification.m */; settings = {ASSET_TAGS = (); }; };
 		324843F41B715606009810D3 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F31B715606009810D3 /* Chat.m */; };
 		324843F71B715E58009810D3 /* RoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F61B715E58009810D3 /* RoomCell.m */; };
 		3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260CB771BBAF5A200EEAFF5 /* TestVC.m */; settings = {ASSET_TAGS = (); }; };
@@ -403,6 +404,8 @@
 		29EB240D19E9292500D7AA97 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		29EB241819E9292500D7AA97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		29EB254F19E92ACD00D7AA97 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
+		3224C2B91BBBAACF00B69FC2 /* AFDropdownNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFDropdownNotification.h; path = "../../../../Downloads/AFDropdownNotification-master-2/Classes/AFDropdownNotification.h"; sourceTree = "<group>"; };
+		3224C2BA1BBBAACF00B69FC2 /* AFDropdownNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFDropdownNotification.m; path = "../../../../Downloads/AFDropdownNotification-master-2/Classes/AFDropdownNotification.m"; sourceTree = "<group>"; };
 		324843EF1B714E00009810D3 /* MainInboxVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainInboxVC.h; sourceTree = "<group>"; };
 		324843F01B714E00009810D3 /* MainInboxVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainInboxVC.m; sourceTree = "<group>"; };
 		324843F21B715606009810D3 /* Chat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chat.h; sourceTree = "<group>"; };
@@ -680,6 +683,8 @@
 		2927192F19F284AC009C308B /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				3224C2B91BBBAACF00B69FC2 /* AFDropdownNotification.h */,
+				3224C2BA1BBBAACF00B69FC2 /* AFDropdownNotification.m */,
 				C2832C901A704A6100CDF19D /* IQKeyBoardManager */,
 				C21DD6CD1A71D73A0009BC6A /* JCNNotificationBanner */,
 				C20F556B1A6832A800CCD435 /* NSDate-TimeAgo */,
@@ -1659,6 +1664,7 @@
 				296DD5D11A1F52F400AB9F8C /* JSQPhotoMediaItem.m in Sources */,
 				C2832CB71A704A6100CDF19D /* IQTextView.m in Sources */,
 				29271A6219F284B1009C308B /* ProfileView.m in Sources */,
+				3224C2BB1BBBAACF00B69FC2 /* AFDropdownNotification.m in Sources */,
 				C2832CB61A704A6100CDF19D /* IQSegmentedNextPrevious.m in Sources */,
 				C285FA301A7AED3200DB007F /* VerifyTextView.m in Sources */,
 				29EB240B19E9292500D7AA97 /* main.m in Sources */,

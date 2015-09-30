@@ -435,7 +435,7 @@
      {
          if (!error)
          {
-             NSLog(@"sent message to remove user from list of unread users");
+             NSLog(@"sent request to remove user from list of unread users");
              //            NSLog(@"%@", self.set.objectId);
          }
      }];
@@ -446,7 +446,7 @@
     for (PFObject *picture in setPicturesObjects)
     {
         PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
-        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error){
         }];
     }
 }
@@ -497,7 +497,8 @@
     [query includeKey:PF_CHAT_SETID];
     [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
     [query orderByAscending:PF_PICTURES_UPDATEDACTION];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
         if (!error)
         {
             NSMutableArray *comments = [NSMutableArray new];

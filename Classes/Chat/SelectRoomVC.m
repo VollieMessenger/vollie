@@ -19,9 +19,11 @@
 #import "CreateChatroomView.h"
 #import "MasterScrollView.h"
 #import "MainInboxVC.h"
+#import "AFDropdownNotification.h"
+
 //#import "ParseVolliePackage.h"
 
-@interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate>
+@interface SelectRoomVC () <UITableViewDataSource, UITableViewDelegate, UINavigationBarDelegate, AFDropdownNotificationDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
@@ -46,6 +48,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *vollieIconOnNewButton;
 @property (weak, nonatomic) IBOutlet UILabel *sendVollieButtonText;
 @property (weak, nonatomic) IBOutlet UIImageView *sendArrows;
+
+@property (nonatomic, strong) AFDropdownNotification *notification;
 
 @end
 
@@ -82,6 +86,9 @@
     
     self.vollieIconOnNewButton.layer.cornerRadius = 10;
     self.vollieIconOnNewButton.layer.masksToBounds = YES;
+    
+    self.notification = [[AFDropdownNotification alloc] init];
+    self.notification.notificationDelegate = self;
 
 //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
 }
@@ -146,11 +153,16 @@
                  NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
                  // LOAD MESSAGES FROM INBOX INSTEAD.
                  
-                 
-                 
-                 
                  MainInboxVC *mainInbox = nav.viewControllers.firstObject;
                  [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom];
+                 self.notification.titleText = @"Sending Vollie";
+                 self.notification.subtitleText = @"This is where we explain it takes a while if you're sending up to 5 videos a time";
+//                 self.notification.image = [UIImage imageNamed:@"littleX"];
+//                 self.notification.topButtonText = @"Directions";
+//                 self.notification.bottomButtonText = @"Cancel";
+                 self.notification.dismissOnTap = YES;
+//                 [_notification presentInView:self.view withGravityAnimation:YES];
+//                 [ProgressHUD show:@"loading..." Interaction:NO];
 
 
 //                 self.scrollView

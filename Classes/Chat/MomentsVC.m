@@ -36,11 +36,13 @@
 #import "FivePicCell.h"
 #import "LoadingCell.h"
 #import "ParseVolliePackage.h"
+#import "AFDropdownNotification.h"
+
 
 //for testing the fav cells
 #import "FivePicsFavCell.h"
 
-@interface MomentsVC () <UITableViewDataSource, UITableViewDelegate, RefreshMessagesDelegate, ManageChatDelegate>
+@interface MomentsVC () <UITableViewDataSource, UITableViewDelegate, RefreshMessagesDelegate, ManageChatDelegate, AFDropdownNotificationDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UIImageView *vollieIconImageView;
@@ -62,6 +64,9 @@
 @property NSMutableArray *objectIdsArray;
 @property NSMutableArray *vollieVCcardArray;
 @property (strong, nonatomic) IBOutlet UICollectionView *messagesCollectionView;
+
+@property (nonatomic, strong) AFDropdownNotification *notification;
+
 
 @property NSArray *sortedCardsArray;
 
@@ -85,6 +90,9 @@
     self.objectIdsArray = [NSMutableArray new];
     self.vollieVCcardArray = [NSMutableArray new];
     self.sortedCardsArray = [NSArray new];
+    
+    AFDropdownNotification *notification = [[AFDropdownNotification alloc] init];
+    notification.notificationDelegate = self;
 
     [self loadMessages];
 }
@@ -339,8 +347,9 @@
 
     //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
         vc.view.frame = cell.cardOutline.bounds;
-        cell.cardOutline.layer.cornerRadius = 10;
+//        cell.cardOutline.layer.cornerRadius = 10;
         cell.cardOutline.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
+
         cell.cardOutline.layer.borderWidth = 1;
         cell.cardOutline.layer.masksToBounds = YES;
     //    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
@@ -491,6 +500,7 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     [self loadMessages];
+    [self.notification dismissWithGravityAnimation:YES];
 //    NSLog(@"i loaded stuff");
 }
 
