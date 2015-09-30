@@ -162,6 +162,8 @@
 {
     [super viewDidAppear:1];
     [self removeCurrentUserFromUnreadUsers];
+    [self.view setNeedsDisplay];
+
 //    setPicturesObjects = [NSMutableArray new];
 
 }
@@ -171,6 +173,7 @@
     [super viewWillAppear:1];
     [self isSetFavorited];
     [self finishReceivingMessage:0];
+    [self.view setNeedsDisplay];
 }
 
 - (void)viewDidLoad
