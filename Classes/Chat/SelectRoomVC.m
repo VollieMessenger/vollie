@@ -161,7 +161,7 @@
 //                 self.notification.topButtonText = @"Directions";
 //                 self.notification.bottomButtonText = @"Cancel";
                  self.notification.dismissOnTap = YES;
-//                 [_notification presentInView:self.view withGravityAnimation:YES];
+                 [_notification presentInView:self.view withGravityAnimation:YES];
 //                 [ProgressHUD show:@"loading..." Interaction:NO];
 
 
