@@ -162,7 +162,7 @@
 //                 self.notification.bottomButtonText = @"Cancel";
                  self.notification.dismissOnTap = YES;
 //                 [_notification presentInView:self.view withGravityAnimation:YES];
-                 [ProgressHUD show:@"loading..." Interaction:NO];
+//                 [ProgressHUD show:@"loading..." Interaction:NO];
 
 
 //                 self.scrollView
