@@ -144,20 +144,31 @@
              {
                  ParseMedia *object = [[ParseMedia alloc] initWithPFObject:messageObject];
                  object.userChatroom = chatRoom;
+                 object.createdAt = messageObject.createdAt;
                  [self.picturesArray addObject:object];
+//                 NSLog(@"%@", messageObject.createdAt);
 //                 NSSortDescriptor *sortDescriptor;
 //                 sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt"
 //                                                              ascending:YES];
 //                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 //                 self.sortedPicturesArray = [self.picturesArray sortedArrayUsingDescriptors:sortDescriptors];
+//                 NSLog(@"%li items in sorted array", self.sortedPicturesArray.count);
+
              }
              if (self.masterSetCounter == 0)
              {
                  //                     [ProgressHUD showSuccess:@"yay"];
+                 NSSortDescriptor *sortDescriptor;
+                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt"
+                                                               ascending:YES];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                self.sortedPicturesArray = [self.picturesArray sortedArrayUsingDescriptors:sortDescriptors];
+                 self.picturesArray = self.sortedPicturesArray;
+                
                  NSLog(@"showing all pictures now");
                  self.collectionView.hidden = NO;
                  [ProgressHUD dismiss];
-             }
+            }
              [self.collectionView reloadData];
          }
          else

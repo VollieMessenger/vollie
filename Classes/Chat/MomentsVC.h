@@ -14,6 +14,7 @@
 
 #import <Parse/Parse.h>
 
+
 @interface MomentsVC : UIViewController
 
 @property PFObject *room;
@@ -21,6 +22,7 @@
 @property PFObject *messageItComesFrom;
 @property PFObject *lastParseObject;
 @property BOOL shouldShowTempCard;
+
 
 -(void)reloadCardsAfterUpload;
 

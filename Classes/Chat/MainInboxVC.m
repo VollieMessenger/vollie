@@ -657,7 +657,6 @@
         _isRefreshingUp = NO;
     }
     
-    
     // Calculate the width and height of our graphics
     CGFloat compassHeight = self.compassBackground.bounds.size.height;
     CGFloat compassHeightHalf = compassHeight / 2.0;

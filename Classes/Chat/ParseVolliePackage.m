@@ -14,13 +14,13 @@
 #import "ProgressHUD.h"
 #import "messages.h"
 
-@implementation ParseVolliePackage
+@implementation ParseVolliePackage 
 
 @synthesize refreshDelegate;
 
 
 -(void)sendPhotosWithPhotosArray:(NSMutableArray*)photosArray andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
-{
+{    
     self.savedImageFiles = [NSMutableArray new];
     self.savedPhotoObjects = [NSMutableArray new];
     self.countDownForLastPhoto = (int)photosArray.count;
@@ -97,7 +97,6 @@
 
 -(void)saveParseObjectInBackgroundWith:(PFObject*)object andText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID
 {
-    
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         NSLog(@"begining to upload a media object");

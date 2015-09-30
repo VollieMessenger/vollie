@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "AFDropdownNotification.h"
+
 
 @protocol RefreshMessagesDelegate <NSObject>
 -(void)reloadAfterMessageSuccessfullySent;
@@ -25,6 +27,7 @@
 @property NSMutableArray *savedPhotoObjects;
 @property NSMutableArray *savedImageFiles;
 @property PFObject *lastPicFromPackage;
+@property AFDropdownNotification *topNotification;
 
 
 @end

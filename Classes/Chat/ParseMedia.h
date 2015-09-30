@@ -15,6 +15,7 @@
 @property PFObject *userChatroom;
 @property PFFile *mediaForCell;
 @property PFFile *thumbNail;
+@property NSDate *createdAt;
 
 -(instancetype)initWithPFObject:(PFObject *)object;
 

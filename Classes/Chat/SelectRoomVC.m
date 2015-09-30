@@ -19,7 +19,6 @@
 #import "CreateChatroomView.h"
 #import "MasterScrollView.h"
 #import "MainInboxVC.h"
-#import "AFDropdownNotification.h"
 
 //#import "ParseVolliePackage.h"
 
@@ -86,9 +85,6 @@
     
     self.vollieIconOnNewButton.layer.cornerRadius = 10;
     self.vollieIconOnNewButton.layer.masksToBounds = YES;
-    
-    self.notification = [[AFDropdownNotification alloc] init];
-    self.notification.notificationDelegate = self;
 
 //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
 }
@@ -155,15 +151,6 @@
                  
                  MainInboxVC *mainInbox = nav.viewControllers.firstObject;
                  [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom];
-                 self.notification.titleText = @"Sending Vollie";
-                 self.notification.subtitleText = @"This is where we explain it takes a while if you're sending up to 5 videos a time";
-//                 self.notification.image = [UIImage imageNamed:@"littleX"];
-//                 self.notification.topButtonText = @"Directions";
-//                 self.notification.bottomButtonText = @"Cancel";
-                 self.notification.dismissOnTap = YES;
-                 [_notification presentInView:self.view withGravityAnimation:YES];
-//                 [ProgressHUD show:@"loading..." Interaction:NO];
-
 
 //                 self.scrollView
 
@@ -177,6 +164,8 @@
                  [self.package checkForTextAndSendItWithText:self.textToSend
                                                       andRoom:self.selectedRoom
                                                        andSet:self.selectedSet];
+                 
+                 [self.package.topNotification presentInView:self.view withGravityAnimation:YES];
 
                  [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
              }

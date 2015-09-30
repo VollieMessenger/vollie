@@ -39,6 +39,7 @@
 #import "AFDropdownNotification.h"
 
 
+
 //for testing the fav cells
 #import "FivePicsFavCell.h"
 
@@ -90,16 +91,12 @@
     self.objectIdsArray = [NSMutableArray new];
     self.vollieVCcardArray = [NSMutableArray new];
     self.sortedCardsArray = [NSArray new];
-    
-    AFDropdownNotification *notification = [[AFDropdownNotification alloc] init];
-    notification.notificationDelegate = self;
 
     [self loadMessages];
 }
 
 -(void)basicSetUpForUI
 {
-    
     self.title = self.name;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -110,6 +107,22 @@
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(goToManageChatVC)];
     barButton.image = [UIImage imageNamed:ASSETS_TYPING];
     self.navigationItem.rightBarButtonItem = barButton;
+    
+    [self setUpTopNotification];
+}
+
+-(void)setUpTopNotification
+{
+    self.notification = [[AFDropdownNotification alloc] init];
+    self.notification.notificationDelegate = self;
+    self.notification.titleText = @"Sending Vollie";
+    self.notification.subtitleText = @"This is where we explain it takes a while if you're sending up to 5 videos a time";
+    self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
+    if (self.shouldShowTempCard)
+    {
+        [self.notification presentInView:self.view withGravityAnimation:NO];
+        self.shouldShowTempCard = NO;
+    }
 }
 
 -(void)goToManageChatVC
@@ -396,6 +409,7 @@
 {
 //    NSLog(@"i'm going to try to reload the cards");
     [self loadMessages];
+    [self.notification dismissWithGravityAnimation:NO];
 }
 
 -(void)createQuery
