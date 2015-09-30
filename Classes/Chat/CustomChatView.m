@@ -214,6 +214,8 @@
                                    style: UIBarButtonItemStyleBordered
                                    target: nil action: nil];
     [self.navigationItem setBackBarButtonItem: backButton];
+    
+    [self.collectionView setFrame:CGRectMake(0, 66, [UIScreen mainScreen].bounds.size.width - 101   , [UIScreen mainScreen].bounds.size.height - 100)];
 
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
