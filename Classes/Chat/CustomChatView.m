@@ -162,6 +162,7 @@
 {
     [super viewDidAppear:1];
     [self removeCurrentUserFromUnreadUsers];
+    [self.view setNeedsDisplay];
 //    setPicturesObjects = [NSMutableArray new];
 
 }
@@ -171,6 +172,7 @@
     [super viewWillAppear:1];
     [self isSetFavorited];
     [self finishReceivingMessage:0];
+    [self.view setNeedsDisplay];
 }
 
 - (void)viewDidLoad
@@ -183,6 +185,10 @@
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[[UIColor volleyFamousOrange] jsq_colorByDarkeningColorWithValue:0.1f] forState:UIControlStateHighlighted];
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    
+    NSLog(@"%f",self.collectionViewPictures.frame.size.width);
+    
+    [self.collectionView setFrame:CGRectMake(0, 66, [UIScreen mainScreen].bounds.size.width - 101   , [UIScreen mainScreen].bounds.size.height - 100)];
 
     self.edgesForExtendedLayout = UIRectEdgeTop;
     //what i just put in ^^
