@@ -160,7 +160,7 @@
                  //                     [ProgressHUD showSuccess:@"yay"];
                  NSSortDescriptor *sortDescriptor;
                 sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createdAt"
-                                                               ascending:YES];
+                                                               ascending:NO];
                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
                 self.sortedPicturesArray = [self.picturesArray sortedArrayUsingDescriptors:sortDescriptors];
                  self.picturesArray = self.sortedPicturesArray;
