@@ -497,7 +497,7 @@
     [query whereKey:PF_CHAT_SETID equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];
     [query includeKey:PF_CHAT_USER];
     [query includeKey:PF_CHAT_SETID];
-    [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+//    [query setCachePolicy:kPFCachePolicyCacheThe;p n
     [query orderByAscending:PF_PICTURES_UPDATEDACTION];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
@@ -519,6 +519,7 @@
                     else
                     {
                         [comments addObject:object];
+                        NSLog(@"%li messsages", comments.count);
                     }
 
                 }
