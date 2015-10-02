@@ -347,9 +347,9 @@
     {
         if (self.navigationController.visibleViewController == self && self.scrollView.contentOffset.x  < 2)
         {
-            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
-            self.scrollView.scrollEnabled = YES;
+//            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
+//            self.scrollView.scrollEnabled = YES;
         }
         else
         {
@@ -801,7 +801,7 @@
 {
     [picker dismissViewControllerAnimated:1 completion:^{
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
@@ -2077,7 +2077,7 @@
 //KLCPopup
 - (void)didTap:(UITapGestureRecognizer *)tap
 {
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
     [self.pop dismiss:1];
 
     for (MPMoviePlayerController *object in self.arrayOfScrollview)

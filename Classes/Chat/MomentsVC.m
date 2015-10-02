@@ -220,7 +220,7 @@
             switch (data.photosArray.count)
             {
                 case 1:
-                    return 260;
+                    return 220;
                     break;
                 case 2:
                     return 260;
@@ -239,7 +239,7 @@
         }
         else
         {
-            return 115;
+            return 200;
         }
     }
 }
