@@ -115,8 +115,8 @@
 {
     self.notification = [[AFDropdownNotification alloc] init];
     self.notification.notificationDelegate = self;
-    self.notification.titleText = @"Sending Vollie";
-    self.notification.subtitleText = @"This is where we explain it takes a while if you're sending up to 5 videos a time";
+    self.notification.titleText = @"Sending Vollie!";
+    self.notification.subtitleText = @"We are uploading your Vollie now. Your new Vollie will appear at the bottom of the thread!";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
     if (self.shouldShowTempCard)
     {

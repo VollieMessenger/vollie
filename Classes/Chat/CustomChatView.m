@@ -317,6 +317,7 @@
     self = [super init];
     if (self)
     {
+        NSLog(@"%@ is the chatroom", userChatRoom);
         backgroundColor_ = [UIColor volleyFamousGreen];
         
         if (!self.senderId || self.senderDisplayName)
@@ -338,6 +339,15 @@
             barButton.image = [UIImage imageNamed:ASSETS_TYPING];
             self.navigationItem.rightBarButtonItem = barButton;
         }
+        else
+        {
+            NSString *description = self.userChatRoom[PF_MESSAGES_DESCRIPTION];
+            if (description.length)
+            {
+                self.title = description;
+            }
+        }
+            
         self.room = [userChatRoom objectForKey:@"room"];
 //        NSLog(@"%@", self.room);
 //        [self.room fetchInBackground];

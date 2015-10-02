@@ -32,7 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Highlights";
+    self.title = @"Flashbacks";
 //    self.rooms = [NSMutableArray new];
     self.sets = [NSMutableArray new];
     self.weeks = [NSMutableArray new];

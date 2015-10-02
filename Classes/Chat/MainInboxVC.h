@@ -16,6 +16,7 @@
 @property (strong, nonatomic) MasterScrollView *scrollView;
 @property NSMutableArray *messages;
 @property MomentsVC *cardViewVC;
+@property BOOL shouldShowTempCard;
 
 -(void)goToMostRecentChatRoom;
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room;

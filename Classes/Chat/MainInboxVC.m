@@ -23,13 +23,17 @@
 #import "InviteContactsCell.h"
 #import "CreateChatroomView.h"
 #import "WeekHighlightsVC.h"
+#import "AFDropdownNotification.h"
 
-@interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>
+
+@interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, AFDropdownNotificationDelegate>
 
 //visual properties
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewInButton;
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewInButtonRight;
+@property (nonatomic, strong) AFDropdownNotification *notification;
+
 
 //random properties
 @property BOOL isCurrentlyLoadingMessages;
@@ -106,6 +110,9 @@
     UIImageView *imageViewVolley = [[UIImageView alloc] init];
     imageViewVolley.image = [UIImage imageNamed:@"volley"];
     
+    //get rid of this line
+//    self.shouldShowTempCard = YES;
+    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     self.cardViewVC = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
 
@@ -133,6 +140,8 @@
     
     self.longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     [self.view addGestureRecognizer:self.longPress];
+    
+    [self setUpTopNotification];
 }
 
 -(void)setNavBarColor
@@ -145,6 +154,20 @@
                                                                      NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
                                                                      NSShadowAttributeName:[NSShadow new]
                                                                      };
+}
+
+-(void)setUpTopNotification
+{
+    self.notification = [[AFDropdownNotification alloc] init];
+    self.notification.notificationDelegate = self;
+    self.notification.titleText = @"Sending Vollie!";
+    self.notification.subtitleText = @"We are uploading your Vollie now. Your new chatroom will show up soon! ";
+    self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
+    if (self.shouldShowTempCard)
+    {
+        [self.notification presentInView:self.view withGravityAnimation:NO];
+        self.shouldShowTempCard = NO;
+    }
 }
 
 -(void) swipeRightToFavorites:(UIBarButtonItem *)button
