@@ -73,6 +73,7 @@
     [self setUpUserInterface];
     [self basicSetUpAfterLoad];
     self.firstTimeLoading = YES;
+
 //    [self refreshMessages];
 }
 
@@ -85,6 +86,11 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self refreshMessages];
+    if (self.shouldShowTempCard)
+    {
+        [self setUpTopNotification];
+        self.shouldShowTempCard = NO;
+    }
 //    NSLog(@"%@", self.scrollView);
 }
 
@@ -140,8 +146,6 @@
     
     self.longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
     [self.view addGestureRecognizer:self.longPress];
-    
-    [self setUpTopNotification];
 }
 
 -(void)setNavBarColor
@@ -163,11 +167,8 @@
     self.notification.titleText = @"Sending Vollie!";
     self.notification.subtitleText = @"We are uploading your Vollie now. Your new chatroom will show up soon! ";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
-    if (self.shouldShowTempCard)
-    {
-        [self.notification presentInView:self.view withGravityAnimation:NO];
-        self.shouldShowTempCard = NO;
-    }
+    [self.notification presentInView:self.view withGravityAnimation:NO];
+    self.shouldShowTempCard = NO;
 }
 
 -(void) swipeRightToFavorites:(UIBarButtonItem *)button
@@ -486,6 +487,7 @@
 {
     //needs to send user to new vollie page
     NSLog(@"refreshed messages");
+    [self.notification dismissWithGravityAnimation:NO];
 //    [self refreshMessages];
     [self performSelector:@selector(loadInbox) withObject:nil afterDelay:1.0];
 //    NSLog(@"About to Push to Card 0");
