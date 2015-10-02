@@ -326,7 +326,7 @@
     [super viewDidAppear:animated];
     
     self.scrollView.contentSize = CGSizeMake(3 * self.view.frame.size.width, self.view.frame.size.height);
-    NSLog(@"reset size to %fl ", self.scrollView.contentSize.width);
+    NSLog(@"hard coded scrollview size to %fl ", self.scrollView.contentSize.width);
     
     if (!self.comingFromNewVollie) self.sentToNewVollie = NO;
 

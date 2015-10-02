@@ -245,6 +245,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    NSLog(@"%fl is size of chat view", self.view.layer.frame.size.height);
+    NSLog(@"%fl is collection view indentedness", self.collectionView.layer.frame.origin.y);
 
     self.collectionView.collectionViewLayout.springinessEnabled = NO;
     [self jsq_addObservers];
@@ -833,7 +836,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     [self.view layoutIfNeeded];
 
-    [self jsq_updateCollectionViewInsets];
+//    [self jsq_updateCollectionViewInsets];
+    
+//    self.navigationController.view.frame.size.height
 }
 
 - (void)jsq_updateKeyboardTriggerPoint
@@ -958,6 +963,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 {
     [self jsq_setCollectionViewInsetsTopValue:self.topLayoutGuide.length + self.topContentAdditionalInset
                                   bottomValue:CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(self.inputToolbar.frame)];
+//    [self jsq_setCollectionViewInsetsTopValue:self.navigationController.view.layer.frame.size.height
+//                                  bottomValue:CGRectGetMaxY(self.collectionView.frame) - CGRectGetMinY(self.inputToolbar.frame)];
 }
 
 - (void)jsq_setCollectionViewInsetsTopValue:(CGFloat)top bottomValue:(CGFloat)bottom

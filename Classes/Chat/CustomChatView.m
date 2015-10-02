@@ -405,7 +405,7 @@
         }
         setId_ = setId;
         self.setIDforCardCheck = setId;
-        NSLog(@"%@ is the object ID", setId);
+//        NSLog(@"%@ is the object ID", setId);
         PFQuery *query = [PFQuery queryWithClassName:@"Sets"];
         [query whereKey:@"objectId" equalTo:setId];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
@@ -437,8 +437,7 @@
      {
          if (!error)
          {
-             NSLog(@"sent request to remove user from list of unread users");
-             //            NSLog(@"%@", self.set.objectId);
+//             NSLog(@"sent request to remove user from list of unread users");
          }
      }];
 }
