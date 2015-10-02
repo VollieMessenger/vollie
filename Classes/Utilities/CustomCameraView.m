@@ -349,7 +349,7 @@
         {
 //            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
 //            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
-//            self.scrollView.scrollEnabled = YES;
+            self.scrollView.scrollEnabled = YES;
         }
         else
         {
