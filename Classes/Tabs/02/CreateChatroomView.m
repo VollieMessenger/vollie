@@ -27,6 +27,8 @@
 
 #import "MainInboxVC.h"
 
+#import "MasterScrollView.h"
+
 @interface CreateChatroomView () <CreateChatroom2Delegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 {
     NSMutableArray *users;
@@ -72,6 +74,8 @@
 @property BOOL isNotGoingBack;
 
 @property IBOutlet UIButton *buttonSendArrow;
+
+@property MasterScrollView *scrollView;
 
 @end
 
@@ -634,6 +638,8 @@
     NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
     // LOAD MESSAGES FROM INBOX INSTEAD.
     
+    self.scrollView = [(AppDelegate *)[[UIApplication sharedApplication] delegate] scrollView];
+    [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:NO];
     MainInboxVC *mainInbox = nav.viewControllers.firstObject;
     mainInbox.shouldShowTempCard = YES;
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
