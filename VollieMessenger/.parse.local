@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "VollieMessenger": {
+      "applicationId": "1RAToTZOshvcDzr2ahHAhPqTzabpc8WjLK9V2ymz"
+    },
+    "_default": {
+      "link": "VollieMessenger"
+    }
+  }
+}
