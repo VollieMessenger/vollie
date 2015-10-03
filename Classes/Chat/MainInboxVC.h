@@ -21,5 +21,7 @@
 -(void)goToMostRecentChatRoom;
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room;
 -(void)loadInbox;
+-(void)setUpTopNotification;
+-(void)hideTopNotification;
 
 @end

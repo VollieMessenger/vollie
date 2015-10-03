@@ -642,6 +642,8 @@
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:NO];
     MainInboxVC *mainInbox = nav.viewControllers.firstObject;
     mainInbox.shouldShowTempCard = YES;
+    
+    
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
     
 //    NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];

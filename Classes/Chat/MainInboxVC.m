@@ -171,6 +171,11 @@
     self.shouldShowTempCard = NO;
 }
 
+-(void)hideTopNotification
+{
+    [self.notification dismissWithGravityAnimation:NO];
+}
+
 -(void) swipeRightToFavorites:(UIBarButtonItem *)button
 {
     [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width * 2, 0) animated:1];
