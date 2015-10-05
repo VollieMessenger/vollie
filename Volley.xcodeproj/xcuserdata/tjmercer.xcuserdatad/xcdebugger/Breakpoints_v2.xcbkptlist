@@ -32,6 +32,13 @@
             startingLineNumber = "298"
             endingLineNumber = "298"
             landmarkName = "-sendBackPictures:withBool:andComment:"
+            timestampString = "464909735.699382"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1133"
+            endingLineNumber = "1133"
+            landmarkName = "-sendMessage:PictureSet:"
+>>>>>>> tj/notification-title
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,6 +71,14 @@
             startingLineNumber = "344"
             endingLineNumber = "344"
             landmarkName = "-application:didReceiveRemoteNotification:fetchCompletionHandler:"
+            filePath = "Classes/Chat/ChatView.m"
+            timestampString = "464909739.182103"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "-sendBackPictures:withBool:andComment:"
+>>>>>>> tj/notification-title
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -80,6 +95,14 @@
             startingLineNumber = "165"
             endingLineNumber = "165"
             landmarkName = "-onNewMessageButtonTapped:"
+            filePath = "Classes/Tabs/03/SelectChatroomView.m"
+            timestampString = "464909754.878173"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-savePicturesWithRoom:"
+>>>>>>> tj/notification-title
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -96,7 +119,13 @@
             startingLineNumber = "2547"
             endingLineNumber = "2547"
             landmarkName = "-removeText"
-            landmarkType = "5">
+            filePath = "Classes/Chat/ParseVolliePackage.m"
+            timestampString = "464909896.432429"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "-saveParseObjectInBackgroundWith:andText:andRoom:andSet:"
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -112,6 +141,14 @@
             startingLineNumber = "1710"
             endingLineNumber = "1710"
             landmarkName = "-didPressNextButton:"
+            filePath = "Classes/Chat/ParseVolliePackage.m"
+            timestampString = "465164871.601935"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "263"
+            endingLineNumber = "263"
+            landmarkName = "-showSuccessNotificationWithString:andObject:andRoomNumber:"
+>>>>>>> tj/notification-title
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -202,6 +202,7 @@
         }
         else
         {
+            NSLog(@"error error error %@",error);
             [self showErrorNotification];
             NSLog(@"%@", error);
         }
@@ -240,6 +241,7 @@
             }
             else
             {
+                NSLog(@"error error error %@",error);
                 [self showErrorNotification];
             }
         }];
