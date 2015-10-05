@@ -995,10 +995,6 @@
 
     if (cell.accessoryView == nil && cell.accessoryType == UITableViewCellAccessoryNone)
     {
-        if (self.invite && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
-        {
-            [self.arrayOfSelectedUsers removeObjectAtIndex:0];
-        }
         if (_arrayOfSelectedUsers.count > 100) [ProgressHUD showError:@"100 People Only"];
         else
         {
@@ -1030,6 +1026,7 @@
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         }];
     }
+    NSLog(@"%@",self.arrayOfSelectedUsers);
 }
 
 - (void)togglePhoneNumbersCountIndicator
