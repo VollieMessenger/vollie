@@ -360,18 +360,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="153" id="krz-Ms-OIH"/>
+                                    <constraint firstAttribute="height" constant="327" id="Thm-Y5-F9p"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="default">
                                     <mask key="constraints">
-                                        <exclude reference="krz-Ms-OIH"/>
+                                        <exclude reference="Thm-Y5-F9p"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="krz-Ms-OIH"/>
+                                        <include reference="Thm-Y5-F9p"/>
                                     </mask>
                                 </variation>
                             </textView>
@@ -440,13 +440,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Yhd-ba-yhU" firstAttribute="top" secondItem="Hoq-Wl-LUZ" secondAttribute="bottom" constant="8" id="7wV-Cs-GRq"/>
-                            <constraint firstItem="tXe-lP-mxS" firstAttribute="top" secondItem="Hoq-Wl-LUZ" secondAttribute="bottom" constant="8" id="Apu-aw-F88"/>
+                            <constraint firstItem="tXe-lP-mxS" firstAttribute="top" secondItem="Hoq-Wl-LUZ" secondAttribute="bottom" constant="8" id="Fcg-0l-DCj"/>
+                            <constraint firstItem="Yhd-ba-yhU" firstAttribute="leading" secondItem="tXe-lP-mxS" secondAttribute="trailing" id="MeP-Pf-lBn"/>
                             <constraint firstItem="sLS-t5-9nN" firstAttribute="top" secondItem="Hoq-Wl-LUZ" secondAttribute="bottom" id="aUO-RM-UnV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sLS-t5-9nN" secondAttribute="trailing" constant="-16" id="iD5-w5-JVw"/>
                             <constraint firstItem="V26-b3-8nV" firstAttribute="top" secondItem="sLS-t5-9nN" secondAttribute="bottom" id="ihq-Dm-Rfl"/>
-                            <constraint firstItem="Yhd-ba-yhU" firstAttribute="leading" secondItem="tXe-lP-mxS" secondAttribute="trailing" id="jEZ-9N-80c"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Yhd-ba-yhU" secondAttribute="trailing" constant="-16" id="lU3-cr-jDd"/>
-                            <constraint firstItem="tXe-lP-mxS" firstAttribute="leading" secondItem="MKy-RN-rFI" secondAttribute="leadingMargin" constant="-1" id="ykE-Fp-5xr"/>
+                            <constraint firstItem="tXe-lP-mxS" firstAttribute="leading" secondItem="MKy-RN-rFI" secondAttribute="leadingMargin" constant="-1" id="ryL-uC-vZe"/>
                             <constraint firstItem="sLS-t5-9nN" firstAttribute="leading" secondItem="MKy-RN-rFI" secondAttribute="leadingMargin" constant="-16" id="zEr-jU-avv"/>
                         </constraints>
                         <variation key="default">
@@ -456,15 +456,15 @@
                                 <exclude reference="Yhd-ba-yhU"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="ihq-Dm-Rfl"/>
                                 <exclude reference="aUO-RM-UnV"/>
                                 <exclude reference="iD5-w5-JVw"/>
                                 <exclude reference="zEr-jU-avv"/>
-                                <exclude reference="Apu-aw-F88"/>
-                                <exclude reference="ykE-Fp-5xr"/>
+                                <exclude reference="Fcg-0l-DCj"/>
+                                <exclude reference="ryL-uC-vZe"/>
                                 <exclude reference="7wV-Cs-GRq"/>
-                                <exclude reference="jEZ-9N-80c"/>
+                                <exclude reference="MeP-Pf-lBn"/>
                                 <exclude reference="lU3-cr-jDd"/>
+                                <exclude reference="ihq-Dm-Rfl"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -474,15 +474,15 @@
                                 <include reference="Yhd-ba-yhU"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="ihq-Dm-Rfl"/>
                                 <include reference="aUO-RM-UnV"/>
                                 <include reference="iD5-w5-JVw"/>
                                 <include reference="zEr-jU-avv"/>
-                                <include reference="Apu-aw-F88"/>
-                                <include reference="ykE-Fp-5xr"/>
+                                <include reference="Fcg-0l-DCj"/>
+                                <include reference="ryL-uC-vZe"/>
                                 <include reference="7wV-Cs-GRq"/>
-                                <include reference="jEZ-9N-80c"/>
+                                <include reference="MeP-Pf-lBn"/>
                                 <include reference="lU3-cr-jDd"/>
+                                <include reference="ihq-Dm-Rfl"/>
                             </mask>
                         </variation>
                     </view>
