@@ -62,7 +62,7 @@
 {
     if (alertView.tag == 66 && buttonIndex != alertView.cancelButtonIndex)
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://volleymessenger.com/terms-of-use/"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://volliemessenger.com/terms-of-use/"]];
     }
 }
 
@@ -231,7 +231,6 @@
         }
         else
         {
-#warning Delete user since phone number was invalid? Replaced by anonymouse
         [[PFUser currentUser] deleteInBackground];
         [ProgressHUD showError:[NSString stringWithFormat:@"Texting Number Invalid"] Interaction:1];
         }
@@ -276,7 +275,7 @@
                 PFObject *message = [PFObject objectWithClassName:PF_MESSAGES_CLASS_NAME];
                 message[PF_MESSAGES_USER] = [PFUser currentUser];
                 message[PF_MESSAGES_ROOM] = chatroom;
-                message[PF_MESSAGES_DESCRIPTION] = @"Volley Team";
+                message[PF_MESSAGES_DESCRIPTION] = @"Vollie Team";
                 message[PF_MESSAGES_HIDE_UNTIL_NEXT] = @NO;
                 message[PF_MESSAGES_LASTUSER] = user;
                 message[PF_MESSAGES_COUNTER] = @(3);
@@ -288,7 +287,7 @@
                 [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                  {}];
 
-                NSArray *arrayOfSetences1 = @[@"Welcome to Volley!", @"Have fun converstions without all of your photos getting in the way!"];
+                NSArray *arrayOfSetences1 = @[@"Welcome to Vollie!", @"Have fun converstions without all of your photos getting in the way!"];
 
 
                 NSArray *arrayOfPictures = [NSArray arrayWithObjects:[UIImage imageNamed:@"Chicago1"],[UIImage imageNamed:@"Chicago2"], nil];

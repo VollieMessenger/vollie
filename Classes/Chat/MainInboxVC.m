@@ -86,6 +86,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self refreshMessages];
+    [self setNavBarColor];
+
     if (self.shouldShowTempCard)
     {
         [self setUpTopNotification];

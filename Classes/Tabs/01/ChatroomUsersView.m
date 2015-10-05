@@ -523,12 +523,12 @@
 
             if([[[UIDevice currentDevice] systemVersion] floatValue]<8.0)
             {
-                UIAlertView* curr1=[[UIAlertView alloc] initWithTitle:@"Contacts not enabled." message:@"Settings -> Volley -> Contacts" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView* curr1=[[UIAlertView alloc] initWithTitle:@"Contacts not enabled." message:@"Settings -> Vollie -> Contacts" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [curr1 show];
             }
             else
             {
-                UIAlertView* curr2=[[UIAlertView alloc] initWithTitle:@"Contacts not enabled." message:@"Settings -> Volley -> Contacts" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
+                UIAlertView* curr2=[[UIAlertView alloc] initWithTitle:@"Contacts not enabled." message:@"Settings -> Vollie -> Contacts" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Settings", nil];
                 curr2.tag=121;
                 [curr2 show];
             }

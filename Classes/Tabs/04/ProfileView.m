@@ -197,7 +197,7 @@
 {
     UIViewController *tos = [[UIViewController alloc] init];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:tos.view.frame];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://volleymessenger.com/terms-of-use/"]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://volliemessenger.com/terms-of-use/"]]];
     webView.backgroundColor = [UIColor whiteColor];
     [tos.view addSubview:webView];
     tos.title = @"Terms Of Service";
@@ -208,7 +208,7 @@
 {
     UIViewController *pp = [[UIViewController alloc] init];
     UIWebView *webView = [[UIWebView alloc] initWithFrame:pp.view.frame];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://volleymessenger.com/privacy-policy/"]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://volliemessenger.com/privacy-policy/"]]];
     webView.backgroundColor = [UIColor whiteColor];
     [pp.view addSubview:webView];
     pp.title = @"Privacy Policy";

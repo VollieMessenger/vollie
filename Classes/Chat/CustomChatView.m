@@ -313,12 +313,13 @@
 
 - (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom;
 {
-    //kyle's new init method
+    //kyle's new init method from highlights
     self = [super init];
     if (self)
     {
         NSLog(@"%@ is the chatroom", userChatRoom);
-        backgroundColor_ = [UIColor volleyFamousGreen];
+        backgroundColor_ = [UIColor volleyFamousOrange];
+        backgroundColor_ = [UIColor colorWithRed:1.0  green:.70 blue:.5 alpha:1];
         
         if (!self.senderId || self.senderDisplayName)
         {
@@ -405,9 +406,14 @@
     self = [super init];
     if (self) {
         if ([[UIColor stringFromColor:backgroundColor] isEqualToString:@"0 0 0 0"]) {
-            backgroundColor_ = [UIColor volleyBubbleGreen];
+//            backgroundColor_ = [UIColor volleyBubbleGreen];
+//            backgroundColor_ = [UIColor colorWithRed:109/255.0f green:200/255.0f blue:192/255.0f alpha:1.0f];
+            backgroundColor_ = [UIColor colorWithRed:.45 green:.90 blue:.82 alpha:1];
+
         } else {
             backgroundColor_ = backgroundColor;
+            backgroundColor_ = [UIColor colorWithRed:.32 green:.78 blue:.75 alpha:1];
+
         }
         if (!self.senderId) {
             self.senderId = [PFUser currentUser].objectId;

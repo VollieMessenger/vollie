@@ -338,13 +338,17 @@
         self.cancelButton.hidden = false;
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
+    else
+    {
+        self.scrollView.scrollEnabled = YES;
+    }
     
     [self checkIfNewChatRoom];
 
     self.cancelButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.rightButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     self.switchCameraButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-
+    
     if (!_didViewJustLoad)
     {
         if (self.navigationController.visibleViewController == self && self.scrollView.contentOffset.x  < 2)
@@ -1732,6 +1736,8 @@
     MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
     [inbox hideTopNotification];
     [inbox loadInbox];
+    [inbox performSelector:@selector(loadInbox) withObject:self afterDelay:1.0f];
+
     [inbox.cardViewVC reloadCardsAfterUpload];
     
 //    [inbox loadInbox];

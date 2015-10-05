@@ -15,6 +15,7 @@
 #import "HighlightData.h"
 #import "AllWeekPhotosVC.h"
 #import "ProfileView.h"
+#import "ExplainationCell.h"
 
 @interface WeekHighlightsVC () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -197,35 +198,53 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    WeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-    HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
-//    HighlightData *highlight = self.sortedHighlightsArray[0];
-
-//    cell.backgroundColor = [UIColor clearColor];
-    [cell formatCell];
-    [cell fillPicsWithTop5PicsFromHighlight:highlight];
-//    if (indexPath.row != 0)
-    if (highlight.howManyWeeksAgo != 0)
+    if (indexPath.row < self.sortedHighlightsArray.count)
     {
-        if (indexPath.row != 1)
+        WeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+        HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
+        [cell formatCell];
+        [cell fillPicsWithTop5PicsFromHighlight:highlight];
+        if (highlight.howManyWeeksAgo != 0)
         {
-            cell.weekLabel.text = [NSString stringWithFormat:@"%i Weeks Ago", highlight.howManyWeeksAgo];
+            if (indexPath.row != 1)
+            {
+                cell.weekLabel.text = [NSString stringWithFormat:@"%i Weeks Ago", highlight.howManyWeeksAgo];
+            }
+            else
+            {
+                cell.weekLabel.text = [NSString stringWithFormat:@"%i Week Ago", highlight.howManyWeeksAgo];
+            }
         }
         else
         {
-            cell.weekLabel.text = [NSString stringWithFormat:@"%i Week Ago", highlight.howManyWeeksAgo];
+            cell.weekLabel.text = @"This Week";
         }
+        return cell;
     }
     else
     {
-        cell.weekLabel.text = @"This Week";
+        [self.tableView registerNib:[UINib nibWithNibName:@"ExplainationCell" bundle:0] forCellReuseIdentifier:@"ExplainationCell"];
+        ExplainationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExplainationCell"];
+//        ThreePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreePicCell"];
+        return cell;
     }
-    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == self.sortedHighlightsArray.count)
+    {
+        return 100;
+    }
+    else
+    {
+        return 187;
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.sortedHighlightsArray.count;
+    return self.sortedHighlightsArray.count + 1;
 //    return 1;
 }
 

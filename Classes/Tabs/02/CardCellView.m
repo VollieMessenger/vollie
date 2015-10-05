@@ -123,6 +123,7 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
 
     bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
+    backgroundColor_ = [UIColor colorWithRed:.32 green:.78 blue:.75 alpha:1];
     outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:backgroundColor_];
     incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor volleyBorderGrey]];
 

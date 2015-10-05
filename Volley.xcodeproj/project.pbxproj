@@ -112,6 +112,8 @@
 		3224C2BB1BBBAACF00B69FC2 /* AFDropdownNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224C2BA1BBBAACF00B69FC2 /* AFDropdownNotification.m */; settings = {ASSET_TAGS = (); }; };
 		324843F41B715606009810D3 /* Chat.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F31B715606009810D3 /* Chat.m */; };
 		324843F71B715E58009810D3 /* RoomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F61B715E58009810D3 /* RoomCell.m */; };
+		324C61871BC2FB720007068E /* ExplainationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C61851BC2FB720007068E /* ExplainationCell.m */; settings = {ASSET_TAGS = (); }; };
+		324C61881BC2FB720007068E /* ExplainationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324C61861BC2FB720007068E /* ExplainationCell.xib */; settings = {ASSET_TAGS = (); }; };
 		3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260CB771BBAF5A200EEAFF5 /* TestVC.m */; settings = {ASSET_TAGS = (); }; };
 		3272F9311B7A9BED0013FD9C /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
 		32771FBC1B73FB65007726E9 /* WeekHighlightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */; };
@@ -412,6 +414,9 @@
 		324843F31B715606009810D3 /* Chat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Chat.m; sourceTree = "<group>"; };
 		324843F51B715E58009810D3 /* RoomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomCell.h; sourceTree = "<group>"; };
 		324843F61B715E58009810D3 /* RoomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomCell.m; sourceTree = "<group>"; };
+		324C61841BC2FB720007068E /* ExplainationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplainationCell.h; sourceTree = "<group>"; };
+		324C61851BC2FB720007068E /* ExplainationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExplainationCell.m; sourceTree = "<group>"; };
+		324C61861BC2FB720007068E /* ExplainationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExplainationCell.xib; sourceTree = "<group>"; };
 		3260CB761BBAF5A200EEAFF5 /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
 		3260CB771BBAF5A200EEAFF5 /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		32771FBA1B73FB65007726E9 /* WeekHighlightsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekHighlightsVC.h; sourceTree = "<group>"; };
@@ -1183,6 +1188,9 @@
 				32B172D51B8D031B00127129 /* HighlightData.m */,
 				32C46D7E1B8E5C090044B329 /* Set.h */,
 				32C46D7F1B8E5C090044B329 /* Set.m */,
+				324C61841BC2FB720007068E /* ExplainationCell.h */,
+				324C61851BC2FB720007068E /* ExplainationCell.m */,
+				324C61861BC2FB720007068E /* ExplainationCell.xib */,
 			);
 			name = WeekHighlightsModal;
 			sourceTree = "<group>";
@@ -1483,6 +1491,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2930F93F19E96C73000F7799 /* tab_group@2x.png in Resources */,
+				324C61881BC2FB720007068E /* ExplainationCell.xib in Resources */,
 				2930F93E19E96C73000F7799 /* blank_profile@2x.png in Resources */,
 				C285FA311A7AED3200DB007F /* VerifyTextView.xib in Resources */,
 				C2BEC9B21A7FE1B300F4B41A /* CreateChatroomView2.xib in Resources */,
@@ -1670,6 +1679,7 @@
 				29EB240B19E9292500D7AA97 /* main.m in Sources */,
 				27C300F21B2B2FDB00EB9723 /* VollieCardData.m in Sources */,
 				27C3C12F1B3B3A0900F555FD /* ChatRoomCell.m in Sources */,
+				324C61871BC2FB720007068E /* ExplainationCell.m in Sources */,
 				29271A5E19F284B1009C308B /* MessagesCell.m in Sources */,
 				C27189381A3243BA00F52320 /* KLCPopup.m in Sources */,
 				C2832CB31A704A6100CDF19D /* IQUIWindow+Hierarchy.m in Sources */,
