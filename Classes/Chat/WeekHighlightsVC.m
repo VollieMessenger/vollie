@@ -131,7 +131,7 @@
             [self performSelector:@selector(delayedReloadOfView) withObject:@1 afterDelay:2];
             for (PFObject *set in objects)
             {
-                if ([set objectForKey:@"numberOfResponses"])
+                if ([set objectForKey:@"numberOfResponses"] && [set objectForKey:@"lastPicture"])
                 {
 //                    NSLog(@"%i responses", [[set objectForKey:@"numberOfResponses"]intValue]);
 //                    [self.sets addObject:set];
