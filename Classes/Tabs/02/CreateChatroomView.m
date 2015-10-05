@@ -1026,7 +1026,6 @@
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
         }];
     }
-    NSLog(@"%@",self.arrayOfSelectedUsers);
 }
 
 - (void)togglePhoneNumbersCountIndicator
