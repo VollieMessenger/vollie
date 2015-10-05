@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -32,7 +32,14 @@
                         <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
                     </connections>
                 </tableView>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="koE-VD-6OE">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Send Picture 2" translatesAutoresizingMaskIntoConstraints="NO" id="Csb-JN-MJE">
+                    <rect key="frame" x="267" y="518" width="45" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="45" id="TXM-Yo-Ifu"/>
+                        <constraint firstAttribute="height" constant="45" id="kqC-4I-2rw"/>
+                    </constraints>
+                </imageView>
+                <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="koE-VD-6OE">
                     <rect key="frame" x="0.0" y="513" width="320" height="55"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -48,23 +55,6 @@
                         <action selector="didPressSendButton:" destination="-1" eventType="touchUpInside" id="tyr-oa-mJU"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Send Picture 2" translatesAutoresizingMaskIntoConstraints="NO" id="Csb-JN-MJE">
-                    <rect key="frame" x="267" y="518" width="45" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="45" id="TXM-Yo-Ifu"/>
-                        <constraint firstAttribute="height" constant="45" id="kqC-4I-2rw"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Vollie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mU8-v2-TcC">
-                    <rect key="frame" x="8" y="530" width="99" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="99" id="O5w-7E-qph"/>
-                        <constraint firstAttribute="height" constant="21" id="y2u-tn-q8T"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -75,9 +65,7 @@
                 <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="WBV-vz-MJs"/>
                 <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="9Ze-8q-Mqo" secondAttribute="top" id="WQ7-X7-vf4"/>
                 <constraint firstAttribute="trailing" secondItem="Csb-JN-MJE" secondAttribute="trailing" constant="8" id="YTg-xP-Osx"/>
-                <constraint firstAttribute="bottom" secondItem="mU8-v2-TcC" secondAttribute="bottom" constant="17" id="axY-mj-1Do"/>
                 <constraint firstAttribute="bottom" secondItem="Csb-JN-MJE" secondAttribute="bottom" constant="5" id="r1w-Md-b1n"/>
-                <constraint firstItem="mU8-v2-TcC" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" constant="8" id="skx-Q0-9eI"/>
                 <constraint firstAttribute="bottom" secondItem="koE-VD-6OE" secondAttribute="bottom" id="so2-Sf-IZC"/>
             </constraints>
         </view>
