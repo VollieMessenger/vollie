@@ -16,17 +16,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Flashbacks will show your past photo conversations. Click on a week to see all of your photos." lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjl-c1-kJW">
-                        <rect key="frame" x="8" y="24" width="304" height="82.5"/>
-                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                        <rect key="frame" x="18" y="24" width="284" height="82.5"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
                         <color key="textColor" red="0.73686645049999999" green="0.73686645049999999" blue="0.73686645049999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="xjl-c1-kJW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="16" id="O7H-aK-Fr7"/>
-                    <constraint firstItem="xjl-c1-kJW" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="OZz-Ys-D0v"/>
-                    <constraint firstItem="xjl-c1-kJW" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="PZU-gw-4oj"/>
-                    <constraint firstItem="xjl-c1-kJW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="kfL-zT-4tC"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xjl-c1-kJW" secondAttribute="trailing" constant="10" id="PWD-uU-CIn"/>
+                    <constraint firstItem="xjl-c1-kJW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="Z7Y-wZ-b4Z"/>
+                    <constraint firstItem="xjl-c1-kJW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="16" id="cpE-bZ-Fu7"/>
+                    <constraint firstItem="xjl-c1-kJW" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="gPL-g8-EXb"/>
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="291" y="280.5"/>

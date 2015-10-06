@@ -456,6 +456,7 @@
                                 <exclude reference="Yhd-ba-yhU"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="ihq-Dm-Rfl"/>
                                 <exclude reference="aUO-RM-UnV"/>
                                 <exclude reference="iD5-w5-JVw"/>
                                 <exclude reference="zEr-jU-avv"/>
@@ -464,7 +465,6 @@
                                 <exclude reference="7wV-Cs-GRq"/>
                                 <exclude reference="MeP-Pf-lBn"/>
                                 <exclude reference="lU3-cr-jDd"/>
-                                <exclude reference="ihq-Dm-Rfl"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -474,6 +474,7 @@
                                 <include reference="Yhd-ba-yhU"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="ihq-Dm-Rfl"/>
                                 <include reference="aUO-RM-UnV"/>
                                 <include reference="iD5-w5-JVw"/>
                                 <include reference="zEr-jU-avv"/>
@@ -482,7 +483,6 @@
                                 <include reference="7wV-Cs-GRq"/>
                                 <include reference="MeP-Pf-lBn"/>
                                 <include reference="lU3-cr-jDd"/>
-                                <include reference="ihq-Dm-Rfl"/>
                             </mask>
                         </variation>
                     </view>
