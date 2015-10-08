@@ -491,6 +491,9 @@
 
         }
         [self loadInbox];
+        
+        //temporary: 
+        [self showInstructions];
     }
     else
     {
