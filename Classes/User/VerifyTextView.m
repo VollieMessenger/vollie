@@ -87,8 +87,10 @@
                     //LOGIN AGAIN IF ANOTHER USER, OTHERWISE SIGNUP.
                         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                         [userDefaults setBool:YES forKey:PF_USER_ISVERIFIED];
+                        [userDefaults setBool:YES forKey:@"shouldShowInstructions"];
                         [userDefaults synchronize];
 
+                    
                         ParsePushUserAssign();
                         [ProgressHUD showSuccess:@"Welcome!" Interaction:1];
 
@@ -142,6 +144,13 @@
              [[PFUser currentUser] saveInBackground];
 
              [ProgressHUD showSuccess:[NSString stringWithFormat:@"Welcome back \n %@!", [PFUser currentUser][PF_USER_FULLNAME]]];
+             
+             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+             [userDefaults setBool:YES forKey:@"shouldShowInstructions"];
+             [userDefaults synchronize];
+             
+             BOOL shouldShowInstructions = [userDefaults boolForKey:@"shouldShowInstructions"];
+             
 
              ParsePushUserAssign();
 

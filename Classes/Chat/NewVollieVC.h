@@ -26,6 +26,7 @@
 @property BOOL comingFromCamera;
 @property BOOL showingCamera;
 @property PFObject *whichRoom;
+@property PFObject *whichMessagesRoom;
 @property ParseVolliePackage *package;
 
 @end

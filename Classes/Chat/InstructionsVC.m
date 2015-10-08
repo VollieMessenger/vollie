@@ -44,7 +44,7 @@
     scrollView.bounces = NO;
     scrollView.pagingEnabled = 1;
     scrollView.directionalLockEnabled = YES;
-    scrollView.showsHorizontalScrollIndicator = 0;
+    scrollView.showsHorizontalScrollIndicator = 1;
     scrollView.scrollEnabled = 1;
     
     PageOne *pageOne = [PageOne new];

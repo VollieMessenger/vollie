@@ -472,23 +472,47 @@
 
 - (void)refreshMessages
 {
+    
     if ([[[PFUser currentUser] valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
     {
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-//        InstructionsVC *instructionsVC = (InstructionsVC *)[storyboard instantiateViewControllerWithIdentifier:@"InstructionsVC"];
-        InstructionsVC *instructionsVC = [InstructionsVC new];
-        [self.navigationController showDetailViewController:instructionsVC sender:self];
-//        [self presentViewController:instructionsVC animated:YES completion:nil];
-//        [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        BOOL shouldShowInstrcutions = [defaults boolForKey:@"shouldShowInstructions"];
+        NSInteger theHighScore = [defaults integerForKey:@"HighScore"];
+        NSLog(@"%i", (int)theHighScore);
+
+        if (!theHighScore)
+        {
+            NSLog(@"tried to show instructions");
+            [defaults setBool:NO forKey:@"shouldShowInstructions"];
+            [defaults setInteger:1 forKey:@"HighScore"];
+            [defaults synchronize];
+            
+            [self performSelector:@selector(showInstructions) withObject:nil afterDelay:1.0];
+
+        }
         [self loadInbox];
     }
     else
     {
-        //Error when app starts and no user logged in, when user registers, the inbox is gone. Might user super VC to present this MasterView.
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setBool:YES forKey:@"shouldShowInstructions"];
+//        [defaults setInteger:9001 forKey:@"HighScore"];
+//        [defaults synchronize];
+//        
+//        NSInteger testOfInt = [defaults integerForKey:@"HighScore"];
+//        NSLog(@"%i", (int)testOfInt);
+        
+//        BOOL shouldShowInstrcutions = [defaults boolForKey:@"shouldShowInstructions"];
         [self.navigationController showDetailViewController:[MasterLoginRegisterView new] sender:self];
         [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
         [self clearMessageArrays];
     }
+}
+
+-(void)showInstructions
+{
+    InstructionsVC *instructionsVC = [InstructionsVC new];
+    [self.navigationController showDetailViewController:instructionsVC sender:self];
 }
 
 -(void)pushToCard

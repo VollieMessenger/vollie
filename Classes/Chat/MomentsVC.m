@@ -526,6 +526,7 @@
     }
     NewVollieVC *vc = [segue destinationViewController];
     vc.whichRoom = self.room;
+    vc.whichMessagesRoom = self.messageItComesFrom;
     ParseVolliePackage *package = [ParseVolliePackage new];
     package.refreshDelegate = self;
     vc.package = package;
