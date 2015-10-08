@@ -59,7 +59,7 @@
 
 @property (strong, nonatomic) NSMutableArray *arrayofSelectedPhoneNumbers;
 
-@property UITapGestureRecognizer *tap;
+@property (strong, nonatomic) UITapGestureRecognizer *tap;
 
 @property NSMutableArray *numbers;
 
@@ -72,6 +72,7 @@
 @property (strong, nonatomic)  NSMutableDictionary *arrayOfNamesAndNumbers;
 
 @property BOOL isNotGoingBack;
+@property BOOL canSend;
 
 @property (weak, nonatomic) IBOutlet UIView *sendVollieView;
 
@@ -144,6 +145,7 @@
 - (void)viewDidLoad
 {
 //    self.buttonSendArrow.frame = CGRectMake(self.view.frame.size.width/2 - 12, self.view.frame.size.height - 30, 25, 25);
+    self.canSend = NO;
     self.sendVollieView.backgroundColor = [UIColor volleyFamousOrange];
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
@@ -215,7 +217,6 @@
         [textView resignFirstResponder];
         [textView deleteBackward];
         [textView scrollsToTop];
-        [self.view removeGestureRecognizer:tap];
     } else {
         [self searchUsers:textView.text];
     }
@@ -224,12 +225,10 @@
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
-    [self.view removeGestureRecognizer:tap];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self.view addGestureRecognizer:tap];
     return YES;
 }
 
@@ -952,15 +951,6 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    if (self.sendVollieView.frame.origin.y > [UIScreen mainScreen].bounds.size.height)
-    {
-        [UIView animateWithDuration:.3f animations:^{
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
-//            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
-        }];
-    }
-
     PFUser *selectedUser;
     if (_isSearching && _searchMessages.count)
     {
@@ -997,6 +987,8 @@
         else
         {
             [self.arrayOfSelectedUsers addObject:selectedUser];
+            self.canSend = YES;
+            [self resize];
             [self togglePhoneNumbersCountIndicator];
             UIImage *image = self.invite ? [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             cell.accessoryView = [[UIImageView alloc] initWithImage:image];
@@ -1009,20 +1001,16 @@
         [self.arrayOfSelectedUsers removeObject:selectedUser];
         cell.accessoryView = nil;
         cell.accessoryType = UITableViewCellAccessoryNone;
-        [UIView animateWithDuration:.3f animations:^{
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-//            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
-        }];
+        if (self.arrayOfSelectedUsers.count == 0) {
+            self.canSend = NO;
+            [self resize];
+        }
     }
     
     if (self.arrayOfSelectedUsers.count == 1 && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
     {
-        [UIView animateWithDuration:.3f animations:^{
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-//            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
-        }];
+        self.canSend = NO;
+        [self resize];
     }
 }
 
@@ -1074,9 +1062,9 @@
 {
     if (self.invite) {
         NSMutableDictionary *contacts = [NSMutableDictionary new];
-        for (NSString *name in [arrayOfNamesAndNumbers allKeys]) {
+        for (NSString *name in [self.namesAndNumbersConstant allKeys]) {
             if ([[name lowercaseString] containsString:search_lower]) {
-                [contacts setObject:arrayOfNamesAndNumbers[name] forKey:name];
+                [contacts setObject:self.namesAndNumbersConstant[name] forKey:name];
             }
         }
         arrayOfNamesAndNumbers = contacts;
@@ -1107,35 +1095,17 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:0.5
-                          delay:0
-         usingSpringWithDamping:500.0f
-          initialSpringVelocity:0.0f
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
-                     }
-                     completion:nil];
-    
     textField.text =@"";
     self.searchMessages = [NSMutableArray new];
     _isSearching = YES;
     _searchCloseButton.hidden = NO;
+    [self resize];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [UIView animateWithDuration:0.5
-                          delay:0
-         usingSpringWithDamping:500.0f
-          initialSpringVelocity:0.0f
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, self.sendVollieView.frame.size.width, 55)];
-                     }
-                     completion:nil];
-    
     _isSearching = NO;
+    [self resize];
     _searchCloseButton.hidden = YES;
     [textField resignFirstResponder];
     textField.text = @"";
@@ -1294,6 +1264,7 @@
             });
         }
     }
+    self.namesAndNumbersConstant = arrayOfNamesAndNumbers;
 }
 
 - (NSString *)formatPhoneNumberForCountry:(NSString *)phoneNumber
@@ -1383,5 +1354,47 @@
 }
 
 -(void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didPressLeftBarButton:(UIButton *)sender {}
+
+-(void)resize{
+    NSLog(@"RESIZE!!!!!");
+    if (self.canSend && self.isSearching){
+        NSLog(@"A");
+        [UIView animateWithDuration:0.52
+                              delay:0
+             usingSpringWithDamping:500.0f
+              initialSpringVelocity:0.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
+                         }
+                         completion:nil];
+    } else if (self.canSend){
+        NSLog(@"B");
+        [UIView animateWithDuration:0.52
+                              delay:0
+             usingSpringWithDamping:500.0f
+              initialSpringVelocity:0.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
+            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
+        }
+                         completion:nil];
+    } else {
+        NSLog(@"C");
+        [UIView animateWithDuration:0.52
+                              delay:0
+             usingSpringWithDamping:500.0f
+              initialSpringVelocity:0.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
+        }
+                         completion:nil];
+    }
+}
 
 @end
