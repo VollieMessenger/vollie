@@ -24,6 +24,7 @@
 #import "CreateChatroomView.h"
 #import "WeekHighlightsVC.h"
 #import "AFDropdownNotification.h"
+#import "InstructionsVC.h"
 
 
 @interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, AFDropdownNotificationDelegate>
@@ -473,6 +474,12 @@
 {
     if ([[[PFUser currentUser] valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
     {
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+//        InstructionsVC *instructionsVC = (InstructionsVC *)[storyboard instantiateViewControllerWithIdentifier:@"InstructionsVC"];
+        InstructionsVC *instructionsVC = [InstructionsVC new];
+        [self.navigationController showDetailViewController:instructionsVC sender:self];
+//        [self presentViewController:instructionsVC animated:YES completion:nil];
+//        [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
         [self loadInbox];
     }
     else
