@@ -1089,6 +1089,8 @@
         [self searchUsers:[textField.text lowercaseString]];
     } else {
         _isSearching = NO;
+        arrayOfNamesAndNumbers = [self.namesAndNumbersConstant mutableCopy];
+        [self inviteWordsFromLetters:arrayOfNamesAndNumbers];
         [_tableView reloadData];
     }
 }
@@ -1356,9 +1358,7 @@
 -(void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didPressLeftBarButton:(UIButton *)sender {}
 
 -(void)resize{
-    NSLog(@"RESIZE!!!!!");
     if (self.canSend && self.isSearching){
-        NSLog(@"A");
         [UIView animateWithDuration:0.52
                               delay:0
              usingSpringWithDamping:500.0f
@@ -1369,23 +1369,21 @@
                          }
                          completion:nil];
     } else if (self.canSend){
-        NSLog(@"B");
-        [UIView animateWithDuration:0.52
+        [UIView animateWithDuration:0.74
                               delay:0
              usingSpringWithDamping:500.0f
-              initialSpringVelocity:0.0f
+              initialSpringVelocity:0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
             [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
         }
                          completion:nil];
     } else {
-        NSLog(@"C");
-        [UIView animateWithDuration:0.52
+        [UIView animateWithDuration:0.42
                               delay:0
-             usingSpringWithDamping:500.0f
+             usingSpringWithDamping:50.0f
               initialSpringVelocity:0.0f
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
