@@ -69,11 +69,9 @@
 
 @property (strong, nonatomic)  NSMutableDictionary *arrayOfNamesAndNumbers;
 
-@property IBOutlet UIButton *buttonSend;
-
 @property BOOL isNotGoingBack;
 
-@property IBOutlet UIButton *buttonSendArrow;
+@property (weak, nonatomic) IBOutlet UIView *sendVollieView;
 
 @property MasterScrollView *scrollView;
 
@@ -96,7 +94,7 @@
     }
 }
 
-- (IBAction)didPressSendButton:(UIButton *)sender
+- (void)didPressSendButton
 {
 //commented out these two lines and added the sendWithTextMessage
     
@@ -144,13 +142,7 @@
 - (void)viewDidLoad
 {
 //    self.buttonSendArrow.frame = CGRectMake(self.view.frame.size.width/2 - 12, self.view.frame.size.height - 30, 25, 25);
-    self.buttonSend.backgroundColor = [UIColor volleyFamousOrange];
-    [self.buttonSend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.buttonSend.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
-    self.buttonSend.hidden = NO;
-    self.buttonSend.alpha = 0;
-    self.buttonSendArrow.hidden = NO;
-    self.buttonSendArrow.alpha = 0;
+    self.sendVollieView.backgroundColor = [UIColor volleyFamousOrange];
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
     
@@ -197,9 +189,6 @@
 
     self.searchBar.placeholder = @"Search...";
 
-
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-
     users = [[NSMutableArray alloc] init];
     usersObjectIds = [NSMutableArray new];
     _searchMessages = [NSMutableArray new];
@@ -207,16 +196,10 @@
     _arrayofSelectedPhoneNumbers = [NSMutableArray new];
     [_arrayOfSelectedUsers addObject:[PFUser currentUser]];
 
-    tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTap:)];
+    tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didPressSendButton)];
     tap.delegate = self;
+    [self.sendVollieView addGestureRecognizer:tap];
 }
-
-
-- (void) didTap:(UITapGestureRecognizer *)tap
-{
-
-}
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

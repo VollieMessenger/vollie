@@ -10,9 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateChatroomView">
             <connections>
-                <outlet property="buttonSend" destination="koE-VD-6OE" id="7a3-nL-BdV"/>
                 <outlet property="searchCloseButton" destination="DuA-8v-Xcg" id="pUW-tz-gSP"/>
                 <outlet property="searchTextField" destination="y6S-Vz-BhK" id="gDe-EE-iVc"/>
+                <outlet property="sendVollieView" destination="uvu-mp-bQM" id="KDa-s0-ufK"/>
                 <outlet property="tableView" destination="i5M-Pr-FkT" id="UhX-nO-glJ"/>
                 <outlet property="view" destination="9Ze-8q-Mqo" id="HDf-Ao-a7R"/>
                 <outlet property="viewHeader" destination="UKQ-Ks-fWp" id="2hs-ET-7qx"/>
@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="513"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                     <connections>
@@ -32,41 +32,52 @@
                         <outlet property="delegate" destination="-1" id="9aC-8N-iBw"/>
                     </connections>
                 </tableView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Send Picture 2" translatesAutoresizingMaskIntoConstraints="NO" id="Csb-JN-MJE">
-                    <rect key="frame" x="267" y="518" width="45" height="45"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uvu-mp-bQM">
+                    <rect key="frame" x="0.0" y="570" width="320" height="55"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Send Picture 2" translatesAutoresizingMaskIntoConstraints="NO" id="Csb-JN-MJE">
+                            <rect key="frame" x="265" y="0.0" width="55" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="55" id="NFc-qq-4oI"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ga8-3c-nGf">
+                            <rect key="frame" x="8" y="17" width="95" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="95" id="Hnj-Xg-S12"/>
+                            </constraints>
+                            <attributedString key="attributedText">
+                                <fragment content="Send Vollie">
+                                    <attributes>
+                                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <font key="NSFont" size="18" name="ArialRoundedMTBold"/>
+                                    </attributes>
+                                </fragment>
+                            </attributedString>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="45" id="TXM-Yo-Ifu"/>
-                        <constraint firstAttribute="height" constant="45" id="kqC-4I-2rw"/>
+                        <constraint firstAttribute="bottom" secondItem="Csb-JN-MJE" secondAttribute="bottom" id="95p-uL-Xfg"/>
+                        <constraint firstItem="ga8-3c-nGf" firstAttribute="leading" secondItem="uvu-mp-bQM" secondAttribute="leading" constant="8" id="Bad-aY-j6f"/>
+                        <constraint firstAttribute="bottom" secondItem="ga8-3c-nGf" secondAttribute="bottom" constant="17" id="PJK-30-S22"/>
+                        <constraint firstAttribute="height" constant="55" id="QLV-ub-OAJ"/>
+                        <constraint firstAttribute="trailing" secondItem="Csb-JN-MJE" secondAttribute="trailing" id="YDY-z8-Lbu"/>
+                        <constraint firstItem="Csb-JN-MJE" firstAttribute="top" secondItem="uvu-mp-bQM" secondAttribute="top" id="h5H-FK-iY7"/>
+                        <constraint firstItem="ga8-3c-nGf" firstAttribute="top" secondItem="uvu-mp-bQM" secondAttribute="top" constant="17" id="n7P-Yt-Ylk"/>
                     </constraints>
-                </imageView>
-                <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="koE-VD-6OE">
-                    <rect key="frame" x="0.0" y="513" width="320" height="55"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="55" id="Ls6-ko-KmD"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
-                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Send Vollie">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="didPressSendButton:" destination="-1" eventType="touchUpInside" id="tyr-oa-mJU"/>
-                    </connections>
-                </button>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="koE-VD-6OE" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" id="3gr-0R-cHH"/>
                 <constraint firstItem="i5M-Pr-FkT" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" id="6KY-Zy-D2u"/>
-                <constraint firstItem="koE-VD-6OE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="ExB-RC-VhW"/>
-                <constraint firstAttribute="trailing" secondItem="koE-VD-6OE" secondAttribute="trailing" id="KLJ-to-EhH"/>
+                <constraint firstAttribute="trailing" secondItem="uvu-mp-bQM" secondAttribute="trailing" id="AuU-h9-U3X"/>
                 <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="WBV-vz-MJs"/>
                 <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="9Ze-8q-Mqo" secondAttribute="top" id="WQ7-X7-vf4"/>
-                <constraint firstAttribute="trailing" secondItem="Csb-JN-MJE" secondAttribute="trailing" constant="8" id="YTg-xP-Osx"/>
-                <constraint firstAttribute="bottom" secondItem="Csb-JN-MJE" secondAttribute="bottom" constant="5" id="r1w-Md-b1n"/>
-                <constraint firstAttribute="bottom" secondItem="koE-VD-6OE" secondAttribute="bottom" id="so2-Sf-IZC"/>
+                <constraint firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="blW-wr-NF5"/>
+                <constraint firstItem="uvu-mp-bQM" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" id="qYg-lX-fuJ"/>
+                <constraint firstItem="uvu-mp-bQM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="2" id="taK-po-yNJ"/>
             </constraints>
         </view>
         <view contentMode="scaleToFill" id="UKQ-Ks-fWp">
