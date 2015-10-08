@@ -67,6 +67,8 @@
 
 @property BOOL isSearching;
 
+@property (strong, nonatomic) NSDictionary *namesAndNumbersConstant;
+
 @property (strong, nonatomic)  NSMutableDictionary *arrayOfNamesAndNumbers;
 
 @property BOOL isNotGoingBack;
@@ -346,7 +348,6 @@
     if (_arrayOfSelectedUsers.count < 2)
     {
         [ProgressHUD showError:@"Vollie User(s) Required"];
-        self.buttonSend.userInteractionEnabled = NO;
         return;
     }
     else if (_arrayofSelectedPhoneNumbers.count == 0)
@@ -586,14 +587,12 @@
     }
     else
     {
-        self.buttonSend.userInteractionEnabled = YES;
         [ProgressHUD showError:@"No Chatroom Selected"];
     }
 }
 
 -(void)openChatroomWithRoom:(PFObject *)chatroom title:(NSString *)title comment:(NSString *)comment
 {
-    NSLog(@"sending message %@",self.sendingMessage);
     [ProgressHUD dismiss];
     
     PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
@@ -953,17 +952,12 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    if (self.buttonSend.isHidden)
+    if (self.sendVollieView.frame.origin.y > [UIScreen mainScreen].bounds.size.height)
     {
-        self.buttonSend.hidden = NO;
-        self.buttonSend.alpha = 0;
-        self.buttonSendArrow.hidden = NO;
-        self.buttonSendArrow.alpha = 0;
         [UIView animateWithDuration:.3f animations:^{
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            self.buttonSend.alpha = 1;
-            self.buttonSendArrow.alpha = 1;
-//            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -self.buttonSend.frame.size.height)];
+            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
+//            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
         }];
     }
 
@@ -979,7 +973,6 @@
         NSArray *arrayOfNamesForLetter;
         if (self.invite) {
             phoneNumbers = [lettersForWords objectForKey:key];
-            NSLog(@"%@",phoneNumbers);
         } else {
             arrayOfNamesForLetter = [lettersForWords objectForKey:key];;
         }
@@ -1018,24 +1011,17 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         [UIView animateWithDuration:.3f animations:^{
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            self.buttonSend.alpha = 0;
-            self.buttonSendArrow.alpha = 0;
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+//            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
         }];
     }
     
     if (self.arrayOfSelectedUsers.count == 1 && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
     {
-        self.buttonSend.hidden = YES;
-        self.buttonSend.alpha = 1;
-        self.buttonSendArrow.hidden = YES;
-        self.buttonSendArrow.alpha = 1;
-        NSLog(@"%f",self.buttonSendArrow.frame.origin.y);
         [UIView animateWithDuration:.3f animations:^{
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            self.buttonSend.alpha = 0;
-            self.buttonSendArrow.alpha = 0;
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+//            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
         }];
     }
 }
@@ -1044,7 +1030,7 @@
 {
     [labelForContactsIndicator removeFromSuperview];
 
-    if (_arrayofSelectedPhoneNumbers.count && !self.buttonSend.isHidden)
+    if (_arrayofSelectedPhoneNumbers.count && !self.sendVollieView.frame.origin.y > [UIScreen mainScreen].bounds.size.height)
     {
         labelForContactsIndicator = [[UITextField alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 106), self.tableView.frame.size.width, 44)];
 
@@ -1127,8 +1113,7 @@
           initialSpringVelocity:0.0f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         [self.buttonSend setFrame:CGRectMake(self.buttonSend.frame.origin.x, 396, self.buttonSend.frame.size.width, self.buttonSend.frame.size.height)];
-                         [self.buttonSendArrow setFrame:CGRectMake(self.buttonSendArrow.frame.origin.x, 396, self.buttonSendArrow.frame.size.width, self.buttonSendArrow.frame.size.height)];
+                         [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
                      }
                      completion:nil];
     
@@ -1146,8 +1131,7 @@
           initialSpringVelocity:0.0f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         [self.buttonSend setFrame:CGRectMake(self.buttonSend.frame.origin.x, 612, self.buttonSend.frame.size.width, self.buttonSend.frame.size.height)];
-                         [self.buttonSendArrow setFrame:CGRectMake(self.buttonSendArrow.frame.origin.x, 612, self.buttonSendArrow.frame.size.width, self.buttonSendArrow.frame.size.height)];
+                         [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, self.sendVollieView.frame.size.width, 55)];
                      }
                      completion:nil];
     
