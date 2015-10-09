@@ -40,22 +40,6 @@
                         </mask>
                     </variation>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructions1-WelcomeToVollieIconAttached" translatesAutoresizingMaskIntoConstraints="NO" id="4Gu-OC-fUg">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="217" id="4dv-jF-DZG"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="4dv-jF-DZG"/>
-                        </mask>
-                    </variation>
-                    <variation key="widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="4dv-jF-DZG"/>
-                        </mask>
-                    </variation>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oj5-op-y2R">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                     <constraints>
@@ -79,10 +63,15 @@
                         <action selector="onRightButtonPushed:" destination="-1" eventType="touchUpInside" id="bgo-9t-cfJ"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newWelcome" translatesAutoresizingMaskIntoConstraints="NO" id="4Gu-OC-fUg">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="0.0" y="344" width="400" height="256"/>
+                    </variation>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="4Gu-OC-fUg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8Dj-kP-2Hy"/>
                 <constraint firstItem="ZoP-6T-azr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="B1n-dF-j74"/>
                 <constraint firstAttribute="bottom" secondItem="Oj5-op-y2R" secondAttribute="bottom" constant="8" id="IJc-Nh-qOX"/>
                 <constraint firstAttribute="trailing" secondItem="tJ7-GY-nEg" secondAttribute="trailing" id="SAZ-wy-MR5"/>
@@ -92,16 +81,14 @@
                     <variation key="widthClass=compact" constant="115"/>
                 </constraint>
                 <constraint firstItem="tJ7-GY-nEg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fGA-e0-u0K"/>
-                <constraint firstAttribute="bottom" secondItem="4Gu-OC-fUg" secondAttribute="bottom" constant="-8" id="qpY-g4-zHf"/>
                 <constraint firstItem="Oj5-op-y2R" firstAttribute="top" secondItem="tJ7-GY-nEg" secondAttribute="bottom" constant="119" id="vwg-c8-j1U"/>
-                <constraint firstAttribute="trailing" secondItem="4Gu-OC-fUg" secondAttribute="trailing" id="w1h-QM-pWF"/>
             </constraints>
             <variation key="default">
                 <mask key="subviews">
                     <exclude reference="tJ7-GY-nEg"/>
                     <exclude reference="ZoP-6T-azr"/>
-                    <exclude reference="4Gu-OC-fUg"/>
                     <exclude reference="Oj5-op-y2R"/>
+                    <exclude reference="4Gu-OC-fUg"/>
                 </mask>
                 <mask key="constraints">
                     <exclude reference="B1n-dF-j74"/>
@@ -109,9 +96,6 @@
                     <exclude reference="SAZ-wy-MR5"/>
                     <exclude reference="X1i-NY-gcw"/>
                     <exclude reference="fGA-e0-u0K"/>
-                    <exclude reference="8Dj-kP-2Hy"/>
-                    <exclude reference="qpY-g4-zHf"/>
-                    <exclude reference="w1h-QM-pWF"/>
                     <exclude reference="IJc-Nh-qOX"/>
                     <exclude reference="UpT-iz-0Zh"/>
                     <exclude reference="vwg-c8-j1U"/>
@@ -121,8 +105,8 @@
                 <mask key="subviews">
                     <include reference="tJ7-GY-nEg"/>
                     <include reference="ZoP-6T-azr"/>
-                    <include reference="4Gu-OC-fUg"/>
                     <include reference="Oj5-op-y2R"/>
+                    <include reference="4Gu-OC-fUg"/>
                 </mask>
                 <mask key="constraints">
                     <include reference="B1n-dF-j74"/>
@@ -130,9 +114,6 @@
                     <include reference="SAZ-wy-MR5"/>
                     <include reference="X1i-NY-gcw"/>
                     <include reference="fGA-e0-u0K"/>
-                    <include reference="8Dj-kP-2Hy"/>
-                    <include reference="qpY-g4-zHf"/>
-                    <include reference="w1h-QM-pWF"/>
                     <include reference="IJc-Nh-qOX"/>
                     <include reference="UpT-iz-0Zh"/>
                     <include reference="vwg-c8-j1U"/>
@@ -144,6 +125,6 @@
     <resources>
         <image name="Swiperight" width="457" height="168"/>
         <image name="homepage" width="485" height="461"/>
-        <image name="instructions1-WelcomeToVollieIconAttached" width="646" height="362"/>
+        <image name="newWelcome" width="767" height="362"/>
     </resources>
 </document>
