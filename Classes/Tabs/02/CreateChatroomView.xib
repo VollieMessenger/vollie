@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="searchCloseButton" destination="DuA-8v-Xcg" id="pUW-tz-gSP"/>
                 <outlet property="searchTextField" destination="y6S-Vz-BhK" id="gDe-EE-iVc"/>
+                <outlet property="sendMessage" destination="ga8-3c-nGf" id="aVa-oW-Y4z"/>
                 <outlet property="sendVollieView" destination="uvu-mp-bQM" id="KDa-s0-ufK"/>
                 <outlet property="tableView" destination="i5M-Pr-FkT" id="UhX-nO-glJ"/>
                 <outlet property="view" destination="9Ze-8q-Mqo" id="HDf-Ao-a7R"/>

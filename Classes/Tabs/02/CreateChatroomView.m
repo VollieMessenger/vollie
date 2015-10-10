@@ -47,6 +47,8 @@
 }
 @property (strong, nonatomic) IBOutlet UIView *viewHeader;
 
+@property (weak, nonatomic) IBOutlet UILabel *sendMessage;
+
 @property (strong, nonatomic) UISearchBar *searchBar;
 
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
@@ -120,6 +122,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self togglePhoneNumbersCountIndicator];
+    [self.sendMessage setText:self.invite ? @"Send Invite" : @"Send Vollie"];
+    NSLog(@"%@",self.sendMessage.text);
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -144,7 +148,6 @@
 
 - (void)viewDidLoad
 {
-//    self.buttonSendArrow.frame = CGRectMake(self.view.frame.size.width/2 - 12, self.view.frame.size.height - 30, 25, 25);
     self.canSend = NO;
     self.sendVollieView.backgroundColor = [UIColor volleyFamousOrange];
 
@@ -850,26 +853,26 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    if (_isSearching) return nil;
+//    if (_isSearching) return nil;
 //    return sortedKeys;
         return @[@"#",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    if (_isSearching) return 0;
+    if (_isSearching && !self.invite) return 0;
     return [sortedKeys indexOfObject:title];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-//    if (_isSearching) return 1;
+    if (_isSearching && !self.invite) return 1;
     return sortedKeys.count;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-//    if (_isSearching) return @"Searching...";
+    if (_isSearching && !self.invite) return @"Searching...";
     return [@"  " stringByAppendingString:[sortedKeys objectAtIndex:section]];
 }
 
@@ -881,14 +884,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 
 {
-//    if (_isSearching){
-//        return _searchMessages.count;
-//    } else {
+    if (_isSearching && !self.invite){
+        return _searchMessages.count;
+    } else {
         NSString *key = [sortedKeys objectAtIndex:section];
         NSArray *array = [lettersForWords objectForKey:key];
         return array.count;
 //        return 1;
-//    }
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1076,6 +1079,9 @@
                 [self.searchMessages addObject:user];
             }
         }
+        
+        [self wordsFromLetters:self.searchMessages];
+        
         [_tableView reloadData];
     }
 }
@@ -1089,8 +1095,12 @@
         [self searchUsers:[textField.text lowercaseString]];
     } else {
         _isSearching = NO;
-        arrayOfNamesAndNumbers = [self.namesAndNumbersConstant mutableCopy];
-        [self inviteWordsFromLetters:arrayOfNamesAndNumbers];
+        if (self.invite) {
+            arrayOfNamesAndNumbers = [self.namesAndNumbersConstant mutableCopy];
+            [self inviteWordsFromLetters:arrayOfNamesAndNumbers];
+        } else {
+            [self wordsFromLetters:users];
+        }
         [_tableView reloadData];
     }
 }
