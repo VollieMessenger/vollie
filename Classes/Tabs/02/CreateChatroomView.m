@@ -1358,6 +1358,7 @@
 -(void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didPressLeftBarButton:(UIButton *)sender {}
 
 -(void)resize{
+    int position = [UIScreen mainScreen].bounds.size.height - self.view.frame.size.height;
     if (self.canSend && self.isSearching){
         [UIView animateWithDuration:0.52
                               delay:0
@@ -1365,7 +1366,7 @@
               initialSpringVelocity:0.0f
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
-                             [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
+                             [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396-position, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
                          }
                          completion:nil];
     } else if (self.canSend){
@@ -1377,7 +1378,7 @@
                          animations:^{
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
-            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
+            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
         }
                          completion:nil];
     } else {
@@ -1389,7 +1390,7 @@
                          animations:^{
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
+            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
         }
                          completion:nil];
     }
