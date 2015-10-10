@@ -115,11 +115,12 @@
 {
     self.notification = [[AFDropdownNotification alloc] init];
     self.notification.notificationDelegate = self;
-    self.notification.titleText = @"Sending Vollie!";
+    self.notification.titleText = @"Sending Test!";
     self.notification.subtitleText = @"We are uploading your Vollie now. Your new Vollie will appear at the bottom of the thread!";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
     if (self.shouldShowTempCard)
     {
+        NSLog(@"showing notificaiton");
         [self.notification presentInView:self.view withGravityAnimation:NO];
         self.shouldShowTempCard = NO;
     }
@@ -512,9 +513,24 @@
 
 -(void)reloadAfterMessageSuccessfullySent
 {
+    
     [self loadMessages];
-    [self.notification dismissWithGravityAnimation:YES];
+    NSLog(@"dismissed notification!");
+//    self.notification.titleText = @"vollie uploaded!";
+//    self.notification.subtitleText = @"blah";
+//    [self.notification dismissWithGravityAnimation:YES];
+    
+    
 //    NSLog(@"i loaded stuff");
+//    [self performSelector:@selector(delayedHideNotification) withObject:nil afterDelay:2.0];
+
+}
+
+-(void)delayedHideNotification
+{
+    self.notification.titleText = @"vollie uploaded!";
+    self.notification.subtitleText = @"blah";
+//    [self.notification dismissWithGravityAnimation:YES];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

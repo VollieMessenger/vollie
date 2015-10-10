@@ -476,7 +476,10 @@
     if ([[[PFUser currentUser] valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        BOOL shouldShowInstrcutions = [defaults boolForKey:@"shouldShowInstructions"];
+//        BOOL shouldShowInstrcutions = [defaults boolForKey:@"shouldShowInstructions"];
+        //for some reason my bool wasn't working so i copied and pasted this code
+        //from my last app. So high score is just an int that isn't 0 saved in user defaults
+        
         NSInteger theHighScore = [defaults integerForKey:@"HighScore"];
         NSLog(@"%i", (int)theHighScore);
 
@@ -493,7 +496,7 @@
         [self loadInbox];
         
         //temporary: 
-        [self showInstructions];
+//        [self showInstructions];
     }
     else
     {
@@ -531,6 +534,8 @@
     [self.notification dismissWithGravityAnimation:NO];
 //    [self refreshMessages];
     [self performSelector:@selector(loadInbox) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(hideTopNotification) withObject:nil afterDelay:1.0];
+
 //    NSLog(@"About to Push to Card 0");
 //    if (!self.isCurrentlyLoadingMessages)
 //    {
