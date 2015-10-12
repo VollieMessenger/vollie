@@ -78,7 +78,6 @@
             startingLineNumber = "287"
             endingLineNumber = "287"
             landmarkName = "-sendBackPictures:withBool:andComment:"
->>>>>>> tj/notification-title
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -102,7 +101,6 @@
             startingLineNumber = "123"
             endingLineNumber = "123"
             landmarkName = "-savePicturesWithRoom:"
->>>>>>> tj/notification-title
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -112,6 +110,7 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
+=======
             filePath = "Classes/Utilities/CustomCameraView.m"
             timestampString = "465233118.81582"
             startingColumnNumber = "9223372036854775807"
@@ -126,6 +125,9 @@
             startingLineNumber = "160"
             endingLineNumber = "160"
             landmarkName = "-saveParseObjectInBackgroundWith:andText:andRoom:andSet:"
+=======
+            landmarkName = "-blankOutButtons"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -148,7 +150,6 @@
             startingLineNumber = "263"
             endingLineNumber = "263"
             landmarkName = "-showSuccessNotificationWithString:andObject:andRoomNumber:"
->>>>>>> tj/notification-title
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
