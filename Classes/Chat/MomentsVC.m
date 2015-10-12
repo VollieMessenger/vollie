@@ -518,19 +518,14 @@
     NSLog(@"dismissed notification!");
 //    self.notification.titleText = @"vollie uploaded!";
 //    self.notification.subtitleText = @"blah";
-//    [self.notification dismissWithGravityAnimation:YES];
-    
-    
-//    NSLog(@"i loaded stuff");
-//    [self performSelector:@selector(delayedHideNotification) withObject:nil afterDelay:2.0];
+    [self.notification dismissWithGravityAnimation:YES];
+    [self performSelector:@selector(delayedHideNotification) withObject:nil afterDelay:2.0];
 
 }
 
 -(void)delayedHideNotification
 {
-    self.notification.titleText = @"vollie uploaded!";
-    self.notification.subtitleText = @"blah";
-//    [self.notification dismissWithGravityAnimation:YES];
+    [self.notification dismissWithGravityAnimation:YES];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
