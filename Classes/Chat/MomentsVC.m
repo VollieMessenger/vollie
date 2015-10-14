@@ -37,6 +37,7 @@
 #import "LoadingCell.h"
 #import "ParseVolliePackage.h"
 #import "AFDropdownNotification.h"
+#import "FullWidthChatView.h"
 
 
 
@@ -184,7 +185,23 @@
     transition.timingFunction = UIViewAnimationCurveEaseInOut;
     transition.fillMode = kCAFillModeForwards;
     [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-    [self.navigationController pushViewController:chatt animated:1];
+    
+    
+    if (card.photosArray.count)
+    {
+        CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
+        //    chatt.senderId = [self.senderId copy];
+        //    chatt.senderDisplayName = [self.senderDisplayName copy];
+        //    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:chatRoom];
+        chatt.room = self.room;
+        [self.navigationController pushViewController:chatt animated:1];
+    }
+    else
+    {
+        FullWidthChatView *chatt = [[FullWidthChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
+        chatt.room = self.room;
+        [self.navigationController pushViewController:chatt animated:1];
+    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

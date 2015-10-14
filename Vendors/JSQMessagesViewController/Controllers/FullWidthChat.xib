@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FullWidthChat">
+            <connections>
+                <outlet property="collectionView" destination="uHe-jh-Se9" id="CJb-RZ-yq1"/>
+                <outlet property="inputToolbar" destination="6gd-Gg-2Da" id="M55-1W-3ZX"/>
+                <outlet property="toolbarBottomLayoutGuide" destination="L2i-vw-bbO" id="Ny0-7r-V8n"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gd-Gg-2Da" customClass="JSQMessagesInputToolbar">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="TAw-w8-oIr"/>
+                    </constraints>
+                    <items>
+                        <barButtonItem title="Item" id="XUa-sV-f4s"/>
+                    </items>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="TAw-w8-oIr"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="TAw-w8-oIr"/>
+                        </mask>
+                    </variation>
+                </toolbar>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="uHe-jh-Se9" customClass="JSQMessagesCollectionView">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uRY-yg-WRv" customClass="JSQMessagesCollectionViewFlowLayout">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="292-LO-1Yt"/>
+                        <outlet property="delegate" destination="-1" id="hdF-dz-KbO"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="6gd-Gg-2Da" secondAttribute="trailing" id="B3w-lR-BPj"/>
+                <constraint firstItem="uHe-jh-Se9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DhW-xO-wvx"/>
+                <constraint firstItem="6gd-Gg-2Da" firstAttribute="top" secondItem="uHe-jh-Se9" secondAttribute="bottom" id="DuN-06-VLM"/>
+                <constraint firstAttribute="bottom" secondItem="6gd-Gg-2Da" secondAttribute="bottom" id="L2i-vw-bbO"/>
+                <constraint firstAttribute="trailing" secondItem="uHe-jh-Se9" secondAttribute="trailing" id="aBk-SS-We6"/>
+                <constraint firstItem="uHe-jh-Se9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="chH-zl-dTC"/>
+                <constraint firstItem="6gd-Gg-2Da" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="i3h-qV-ity"/>
+            </constraints>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="6gd-Gg-2Da"/>
+                    <exclude reference="uHe-jh-Se9"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="DhW-xO-wvx"/>
+                    <exclude reference="aBk-SS-We6"/>
+                    <exclude reference="chH-zl-dTC"/>
+                    <exclude reference="B3w-lR-BPj"/>
+                    <exclude reference="DuN-06-VLM"/>
+                    <exclude reference="L2i-vw-bbO"/>
+                    <exclude reference="i3h-qV-ity"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="6gd-Gg-2Da"/>
+                    <include reference="uHe-jh-Se9"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="DhW-xO-wvx"/>
+                    <include reference="aBk-SS-We6"/>
+                    <include reference="chH-zl-dTC"/>
+                    <include reference="B3w-lR-BPj"/>
+                    <include reference="DuN-06-VLM"/>
+                    <include reference="L2i-vw-bbO"/>
+                    <include reference="i3h-qV-ity"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

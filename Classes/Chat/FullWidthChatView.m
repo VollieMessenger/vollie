@@ -1,12 +1,12 @@
 //
-//  CustomChatView.m
+//  FullWidthChatView.m
 //  Volley
 //
-//  Created by benjaminhallock@gmail.com on 12/4/14.
-//  Copyright (c) 2014 KZ. All rights reserved.
+//  Created by Kyle Bendelow on 10/13/15.
+//  Copyright © 2015 KZ. All rights reserved.
 //
 
-#import "CustomChatView.h"
+#import "FullWidthChatView.h"
 #import "AppConstant.h"
 #import "KLCPopup.h"
 #import <Parse/Parse.h>
@@ -25,7 +25,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomChatView ()
+@interface FullWidthChatView ()
 
 @property KLCPopup *popUp;
 @property NSMutableArray *arrayOfScrollView;
@@ -36,9 +36,10 @@
 @property PFObject *set;
 @property NSMutableArray *arrayOfUnreadUsers;
 @property BOOL shouldUpdateUnreadUsers;
+
 @end
 
-@implementation CustomChatView
+@implementation FullWidthChatView
 {
     UITapGestureRecognizer *tap;
     PFImageView *longPressImageView;
@@ -58,8 +59,6 @@
 
 @synthesize popUp;
 
-#pragma mark - SEND MESSAGE
-
 - (void)didPressSendButton:(UIButton *)button withMessageText:(NSString *)text senderId:(NSString *)senderId senderDisplayName:(NSString *)senderDisplayName date:(NSDate *)date
 {
     [self sendMessage:text];
@@ -74,81 +73,81 @@
     [object setValue:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_] forKey:PF_CHAT_SETID];
     [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
     [self finishSendingMessage];
-
+    
     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
      {
          if (!error && succeeded)
          {
              JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName setId:setId_ date:[NSDate date] text:text];
              [setComments addObject:message];
-
+             
              [self.collectionView reloadData];
              [self scrollToBottomAnimated:1];
-
+             
              [JSQSystemSoundPlayer jsq_playMessageSentSound];
              SendPushNotification(self.room, text);
              UpdateMessageCounter(self.room, text, nil);
-
+             
              //We must update the date for the set, so we know when it is last edited in favorites.
              PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
              PFRelation *usersWhoHaventRead = [set relationForKey:@"unreadUsers"];
-//             [set setValue:object forKey:@"lastPicture"];
+             //             [set setValue:object forKey:@"lastPicture"];
              [set incrementKey:@"numberOfResponses" byAmount:@1];
              [set setValue:[NSDate date] forKey:PF_SET_UPDATED];
              PFRelation *users = [self.room relationForKey:PF_CHATROOMS_USERS];
              PFQuery *query = [users query];
              [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
              [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-             {
-                 if (!error)
-                 {
-                     for (PFUser *user in objects)
-                     {
-                         if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
-                         {
-                             [usersWhoHaventRead addObject:user];
-                             NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
-
-//                             [usersWhoHaventRead addObject:user];
-//                             NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
-//                             NSLog(@"%li users are being added as unread users";
-                         }
-                     }
-                 }
-                 [set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+              {
+                  if (!error)
                   {
-                      if (!error)
+                      for (PFUser *user in objects)
                       {
-                          NSLog(@"updated set in background with block");
+                          if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
+                          {
+                              [usersWhoHaventRead addObject:user];
+                              NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
+                              
+                              //                             [usersWhoHaventRead addObject:user];
+                              //                             NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
+                              //                             NSLog(@"%li users are being added as unread users";
+                          }
                       }
-                  }];
-             }];
-//             [set saveEventually];
-
+                  }
+                  [set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                   {
+                       if (!error)
+                       {
+                           NSLog(@"updated set in background with block");
+                       }
+                   }];
+              }];
+             //             [set saveEventually];
              
              
              
              
-//             
-//
-//             PFRelation *users = [roomNumber relationForKey:PF_CHATROOMS_USERS];
-//             PFQuery *query = [users query];
-//             
-//             //get rid of this to test unread status:
-//             //                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
-//             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//                 if (!error)
-//                 {
-//                     for (PFUser *user in objects)
-//                     {
-//                         if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
-//                         {
-//                             [usersWhoHaventRead addObject:user];
-//                         }
-//                     }
-//                 }
-//             }];
-//             [setID saveInBackground];
+             
+             //
+             //
+             //             PFRelation *users = [roomNumber relationForKey:PF_CHATROOMS_USERS];
+             //             PFQuery *query = [users query];
+             //
+             //             //get rid of this to test unread status:
+             //             //                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+             //             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+             //                 if (!error)
+             //                 {
+             //                     for (PFUser *user in objects)
+             //                     {
+             //                         if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
+             //                         {
+             //                             [usersWhoHaventRead addObject:user];
+             //                         }
+             //                     }
+             //                 }
+             //             }];
+             //             [setID saveInBackground];
          }
          else
          {
@@ -163,9 +162,9 @@
     [super viewDidAppear:1];
     [self removeCurrentUserFromUnreadUsers];
     [self.view setNeedsDisplay];
-
-//    setPicturesObjects = [NSMutableArray new];
-
+    
+    //    setPicturesObjects = [NSMutableArray new];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -179,36 +178,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionViewPictures.backgroundColor = [UIColor clearColor];
     //Change send button to orange
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor volleyFamousOrange] forState:UIControlStateNormal];
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[[UIColor volleyFamousOrange] jsq_colorByDarkeningColorWithValue:0.1f] forState:UIControlStateHighlighted];
     //    [self.inputToolbar.contentView.rightBarButtonItem setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
-
+    
     self.edgesForExtendedLayout = UIRectEdgeTop;
     //what i just put in ^^
     
     self.doubleTapBlocker = false;
-
+    
     if (!self.senderId || self.senderDisplayName)
     {
         self.senderId = [[PFUser currentUser].objectId copy];
         self.senderDisplayName = [[PFUser currentUser][PF_USER_FULLNAME] copy];
     }
-
+    
     self.automaticallyScrollsToMostRecentMessage = 1;
     self.showLoadEarlierMessagesHeader = 0;
     self.collectionView.loadEarlierMessagesHeaderTextColor = [UIColor volleyFamousGreen];
-
+    
     NSParameterAssert(self.senderId != nil);
     NSParameterAssert(setId_ != nil);
     NSParameterAssert(self.senderDisplayName != nil);
-//    NSParameterAssert(self.room != nil);
-
+    //    NSParameterAssert(self.room != nil);
+    
     [self.collectionViewPictures registerClass:[CustomCollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
-
+    
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @""
                                    style: UIBarButtonItemStyleBordered
@@ -216,68 +215,68 @@
     [self.navigationItem setBackBarButtonItem: backButton];
     
 //    [self.collectionView setFrame:CGRectMake(0, 66, [UIScreen mainScreen].bounds.size.width - 101   , [UIScreen mainScreen].bounds.size.height - 100)];
-
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
-
+    
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
+    //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
+    
     bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:backgroundColor_];
     incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor volleyBorderGrey]];
-//    incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
-
-
-//    self.inputToolbar.contentView.textView.backgroundColor = backgroundColor_;
-//    self.inputToolbar.contentView.textView.textColor = [UIColor whiteColor];
-//    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
-
-
+    //    incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor whiteColor]];
+    
+    
+    //    self.inputToolbar.contentView.textView.backgroundColor = backgroundColor_;
+    //    self.inputToolbar.contentView.textView.textColor = [UIColor whiteColor];
+    //    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
+    
+    
     self.inputToolbar.contentView.textView.backgroundColor = [UIColor whiteColor];
     self.inputToolbar.contentView.textView.textColor = [UIColor blackColor];
     self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithWhite:0.600 alpha:1.000];
     self.inputToolbar.contentView.backgroundColor = [UIColor whiteColor];
     self.inputToolbar.contentView.textView.layer.borderColor = [UIColor whiteColor].CGColor;
-//    self.inputToolbar.contentView.textView.font = 
+    //    self.inputToolbar.contentView.textView.font =
     self.inputToolbar.contentView.leftBarButtonItem = nil;
-
+    
     [self finishReceivingMessage:0];
-
+    
     tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTap:)];
-
+    
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
     [self.view addGestureRecognizer:longPress];
-
-//    UITapGestureRecognizer *doubleTapFolderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
-//    [doubleTapFolderGesture setNumberOfTapsRequired:2];
-//    [doubleTapFolderGesture setNumberOfTouchesRequired:1];
-//    [self.view addGestureRecognizer:doubleTapFolderGesture];
+    
+    //    UITapGestureRecognizer *doubleTapFolderGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(processDoubleTap:)];
+    //    [doubleTapFolderGesture setNumberOfTapsRequired:2];
+    //    [doubleTapFolderGesture setNumberOfTouchesRequired:1];
+    //    [self.view addGestureRecognizer:doubleTapFolderGesture];
 }
 
 - (void)isSetFavorited
 {
     if (!_isFavoritesSets)
     {
-//        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//        self.navigationItem.rightBarButtonItem = favorites;
-
+        //        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+        //        self.navigationItem.rightBarButtonItem = favorites;
+        
         //IF HAS BEEN FAVORITED.
         PFQuery *query = [PFQuery queryWithClassName:PF_FAVORITES_CLASS_NAME];
 #warning MAY ACCIDENTLY FIND ONE THAT IS NOT FAVORITED.
         [query whereKey:PF_FAVORITES_SET equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];
         [query whereKey:PF_FAVORITES_USER equalTo:[PFUser currentUser]];
-
+        
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
              if (!error)
              {
                  if (objects.count > 0)
                  {
-//                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR6"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//                     self.navigationItem.rightBarButtonItem = favorites;
+                     //                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR6"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+                     //                     self.navigationItem.rightBarButtonItem = favorites;
                  }
                  else
                  {
-//                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//                     self.navigationItem.rightBarButtonItem = favorites;
+                     //                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+                     //                     self.navigationItem.rightBarButtonItem = favorites;
                  }
              }
          }];
@@ -286,29 +285,8 @@
     {
         UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR7"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
         self.navigationItem.rightBarButtonItem = favorites;
-
+        
     }
-}
-
--(void)actionStar
-{
-    DidFavoriteView *favoriteView = [DidFavoriteView new];
-    favoriteView.title = @"Save to...";
-
-    if (_isFavoritesSets)
-    {
-        favoriteView.title = @"Move to...";
-        favoriteView.isMovingAlbum = YES;
-    }
-
-    favoriteView.set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
-    favoriteView.album = self.album;
-    NavigationController *nav = [[NavigationController alloc] initWithRootViewController:favoriteView];
-    [self showDetailViewController:nav sender:self];
-}
-
-- (void)didPressAccessoryButton:(UIButton *)sender {
-    
 }
 
 - (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom;
@@ -348,10 +326,10 @@
                 self.title = description;
             }
         }
-            
+        
         self.room = [userChatRoom objectForKey:@"room"];
-//        NSLog(@"%@", self.room);
-//        [self.room fetchInBackground];
+        //        NSLog(@"%@", self.room);
+        //        [self.room fetchInBackground];
         setComments = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray new];
         objectIds = [NSMutableArray new];
@@ -367,35 +345,34 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     ManageChatVC *manageChatVC = (ManageChatVC *)[storyboard instantiateViewControllerWithIdentifier:@"ManageChatVC"];
-//    manageChatVC.delegate = self;
+    //    manageChatVC.delegate = self;
     manageChatVC.messageButReallyRoom = self.userChatRoom;
     manageChatVC.room = self.room;
     [self.navigationController pushViewController:manageChatVC animated:YES];
 }
 
-//For archive loading or anyone who doesn't want to preload this stuff.
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor
 {
     self = [super init];
     if (self) {
-
+        
         if ([[UIColor stringFromColor:backgroundColor] isEqualToString:@"0 0 0 0"])
         {
             backgroundColor_ = [UIColor volleyBubbleGreen];
         } else {
             backgroundColor_ = backgroundColor;
         }
-
+        
         if (!self.senderId || self.senderDisplayName) {
             self.senderId = [[PFUser currentUser].objectId copy];
             self.senderDisplayName = [[PFUser currentUser][PF_USER_FULLNAME] copy];
         }
-
+        
         setId_ = setId;
         setComments = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray new];
         objectIds = [NSMutableArray new];
-
+        
         [self loadMessages];
     }
     return self;
@@ -406,14 +383,14 @@
     self = [super init];
     if (self) {
         if ([[UIColor stringFromColor:backgroundColor] isEqualToString:@"0 0 0 0"]) {
-//            backgroundColor_ = [UIColor volleyBubbleGreen];
-//            backgroundColor_ = [UIColor colorWithRed:109/255.0f green:200/255.0f blue:192/255.0f alpha:1.0f];
+            //            backgroundColor_ = [UIColor volleyBubbleGreen];
+            //            backgroundColor_ = [UIColor colorWithRed:109/255.0f green:200/255.0f blue:192/255.0f alpha:1.0f];
             backgroundColor_ = [UIColor colorWithRed:.45 green:.90 blue:.82 alpha:1];
-
+            
         } else {
             backgroundColor_ = backgroundColor;
             backgroundColor_ = [UIColor colorWithRed:.32 green:.78 blue:.75 alpha:1];
-
+            
         }
         if (!self.senderId) {
             self.senderId = [PFUser currentUser].objectId;
@@ -421,27 +398,27 @@
         }
         setId_ = setId;
         self.setIDforCardCheck = setId;
-//        NSLog(@"%@ is the object ID", setId);
+        //        NSLog(@"%@ is the object ID", setId);
         PFQuery *query = [PFQuery queryWithClassName:@"Sets"];
         [query whereKey:@"objectId" equalTo:setId];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-        {
-            if (!error)
-            {
-                PFObject *set = objects.firstObject;
-                self.set = set;
-                [self removeCurrentUserFromUnreadUsers];
-            }
-        }];
+         {
+             if (!error)
+             {
+                 PFObject *set = objects.firstObject;
+                 self.set = set;
+                 [self removeCurrentUserFromUnreadUsers];
+             }
+         }];
         
-
+        
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
-//        NSLog(@"%li in pictures array", setPicturesObjects.count);
+        //        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
-
+        
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
-        }
+    }
     return self;
 }
 
@@ -453,7 +430,7 @@
      {
          if (!error)
          {
-//             NSLog(@"sent request to remove user from list of unread users");
+             //             NSLog(@"sent request to remove user from list of unread users");
          }
      }];
 }
@@ -480,21 +457,20 @@
     return YES;
 }
 
-//Used for clicking on a favorite and loading the Custom ChatView data.
 - (void)addJSQMessage:(NSArray *)objects
 {
     NSMutableArray *JSQMessages = [NSMutableArray new];
-
+    
     for (PFObject *object in objects)
     {
         PFUser *user = object[PF_CHAT_USER];
         PFObject *set = [object valueForKey:PF_CHAT_SETID];
         JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId senderDisplayName:user[PF_USER_FULLNAME] setId:set.objectId date:object[PF_PICTURES_UPDATEDACTION]  text:object[PF_CHAT_TEXT]];
-
+        
         [JSQMessages addObject:message];
         
         setComments = JSQMessages;
-
+        
         if (objects.count == JSQMessages.count)
         {
             [self finishReceivingMessage:1];
@@ -503,7 +479,6 @@
     [self.collectionView reloadData];
 }
 
-//Archive Has to find all the goodies.
 -(void)loadMessages
 {
     NSLog(@"loading messages in custom chat view");
@@ -512,62 +487,61 @@
     [query whereKey:PF_CHAT_SETID equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];
     [query includeKey:PF_CHAT_USER];
     [query includeKey:PF_CHAT_SETID];
-//    [query setCachePolicy:kPFCachePolicyCacheThe;p n
+    //    [query setCachePolicy:kPFCachePolicyCacheThe;p n
     [query orderByAscending:PF_PICTURES_UPDATEDACTION];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-    {
-        if (!error)
-        {
-            NSMutableArray *comments = [NSMutableArray new];
-            NSLog(@"%li messages and pics", objects.count);
-            for (PFObject *object in objects)
-            {
-                if (![objectIds containsObject:object.objectId])
-                {
-                    [objectIds addObject:object.objectId];
-
-                    if ([object valueForKey:PF_PICTURES_THUMBNAIL])
-                    {
-                        [setPicturesObjects addObject:object];
-//                        NSLog(@"%li in pictureObjectsArray", setPicturesObjects.count);
-                    }
-                    else
-                    {
-                        [comments addObject:object];
-                        NSLog(@"%li messsages", comments.count);
-                    }
-
-                }
-            }
-            [self addJSQMessage:comments];
-            [self finishReceivingMessage:0];
-
-        }
-        else
-        {
-            if ([query hasCachedResult] && (self.navigationController.visibleViewController == self)) {
-                    [ProgressHUD showError:@"Network error."];
-                }
-            }
-    }];
+     {
+         if (!error)
+         {
+             NSMutableArray *comments = [NSMutableArray new];
+             NSLog(@"%li messages and pics", objects.count);
+             for (PFObject *object in objects)
+             {
+                 if (![objectIds containsObject:object.objectId])
+                 {
+                     [objectIds addObject:object.objectId];
+                     
+                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
+                     {
+                         [setPicturesObjects addObject:object];
+                         //                        NSLog(@"%li in pictureObjectsArray", setPicturesObjects.count);
+                     }
+                     else
+                     {
+                         [comments addObject:object];
+                         NSLog(@"%li messsages", comments.count);
+                     }
+                     
+                 }
+             }
+             [self addJSQMessage:comments];
+             [self finishReceivingMessage:0];
+             
+         }
+         else
+         {
+             if ([query hasCachedResult] && (self.navigationController.visibleViewController == self)) {
+                 [ProgressHUD showError:@"Network error."];
+             }
+         }
+     }];
     
     [self removeCurrentUserFromUnreadUsers];
     
-//    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
-//    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
-//    {
-//        if(!error)
-//        {
-//            self.set = fullSet;
-////            PFObject *room = [fullSet objectForKey:@"room"];
-////            NSLog(@"room info is %@", room);
-////            self.room = room;
-//        }
-//    }];
+    //    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
+    //    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
+    //    {
+    //        if(!error)
+    //        {
+    //            self.set = fullSet;
+    ////            PFObject *room = [fullSet objectForKey:@"room"];
+    ////            NSLog(@"room info is %@", room);
+    ////            self.room = room;
+    //        }
+    //    }];
     
-//    NSLog(@"%@ is user chatroom", self.userChatRoom);
+    //    NSLog(@"%@ is user chatroom", self.userChatRoom);
 }
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -594,16 +568,16 @@
 -(void)tappedAvatarPicWithIndexPath:(NSIndexPath *)indexPath
 {
     [self performSelector:@selector(stopTheDTapBlocker) withObject:self afterDelay:.5];
-
+    
     if (setPicturesObjects.count && self.navigationController.visibleViewController == self && !self.inputToolbar.contentView.textView.isFirstResponder)
     {
-
+        
         self.arrayOfScrollView = [NSMutableArray arrayWithCapacity:setPicturesObjects.count];
-
+        
         for (int i = 0; i < setPicturesObjects.count; i++) {
             [self.arrayOfScrollView addObject:[NSString stringWithFormat:@"%d",i]];
         }
-
+        
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         scrollView.bounces = YES;
         scrollView.pagingEnabled = 1;
@@ -612,13 +586,13 @@
         scrollView.tag = 22;
         scrollView.directionalLockEnabled = YES;
         scrollView.showsHorizontalScrollIndicator = 0;
-
+        
         self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height - 20, scrollView.frame.size.width, 10)];
         [self.pageControl setNumberOfPages:setPicturesObjects.count];
         [self.pageControl setCurrentPage:indexPath.item];
-
+        
         scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * setPicturesObjects.count, self.view.bounds.size.width);
-
+        
         [scrollView setContentOffset:CGPointMake((self.view.frame.size.width * indexPath.row), 0) animated:0];
         int counter = 0;
         //Set the count.
@@ -627,51 +601,51 @@
         {
             counter += 1;
             CGRect rect = CGRectMake(([setPicturesObjects indexOfObject:picture] * self.view.bounds.size.width - 2) + 2, 0, self.view.frame.size.width, self.view.frame.size.height);
-
+            
             PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:rect];
-
+            
             PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
-
+            
             if (!file)
             {
                 [picture fetch];
                 file = [picture valueForKey:PF_PICTURES_PICTURE];
             }
-
+            
             if ([[picture valueForKey:PF_PICTURES_IS_VIDEO] isEqual:@YES])
             {
                 NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
                 NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
                 NSFileManager *fileManager = [NSFileManager defaultManager];
-
+                
                 if (![fileManager fileExistsAtPath:outputPath])
                 {
                     [[file getData] writeToFile:outputPath atomically:1];
                 }
                 MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
-
+                
                 moviePlayer.view.frame = rect;
                 [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
                 [moviePlayer setFullscreen:1];
                 [moviePlayer setMovieSourceType:MPMovieSourceTypeFile];
-
+                
                 UIButton *saveImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
-
+                
                 saveImageButton.imageView.hidden = YES;
-
+                
                 saveImageButton.tag = [setPicturesObjects indexOfObject:picture];
-
+                
                 [saveImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
-
+                
                 [saveImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
                 saveImageButton.backgroundColor = [UIColor volleyFamousGreen];
                 saveImageButton.layer.masksToBounds = 1;
                 saveImageButton.layer.cornerRadius = 5;
                 saveImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
                 saveImageButton.layer.borderWidth = 2;
-
+                
                 [moviePlayer.view addSubview:saveImageButton];
-
+                
                 moviePlayer.controlStyle = MPMovieControlStyleNone;
                 moviePlayer.view.layer.masksToBounds = YES;
                 moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
@@ -681,40 +655,40 @@
                 moviePlayer.view.layer.cornerRadius = 10;
                 //              moviePlayer.repeatMode = MPMovieRepeatModeNone;
                 moviePlayer.repeatMode = MPMovieRepeatModeOne;
-
+                
                 [moviePlayer prepareToPlay];
                 if ([setPicturesObjects indexOfObject:picture] != indexPath.row)
                 {
                     [moviePlayer setShouldAutoplay:false];
                 }
-
+                
                 [scrollView addSubview:moviePlayer.view];
                 [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:moviePlayer];
                 count--;
                 if (count == 0)
                 {
-//                    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
+                    //                    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
                     [[UIApplication sharedApplication] setStatusBarHidden:1];
-
+                    
                     [ProgressHUD dismiss];
-
+                    
                     self.popUp = [KLCPopup popupWithContentView:scrollView
                                                        showType:KLCPopupShowTypeSlideInFromLeft
                                                     dismissType:KLCPopupDismissTypeSlideOutToLeft
                                                        maskType:KLCPopupMaskTypeDimmed
                                        dismissOnBackgroundTouch:0
                                           dismissOnContentTouch:0];
-
+                    
                     [self.popUp addSubview:self.pageControl];
-
+                    
                     UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
                     [self.popUp addGestureRecognizer:tap2];
-
+                    
                     [self.popUp show];
                 }
-
+                
             } else if (file) {
-
+                
                 //Gets cache if available
                 [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
                  {
@@ -723,7 +697,7 @@
                          popUpImageView2.image = [UIImage imageWithData:data];
                          popUpImageView2.layer.masksToBounds = YES;
                          popUpImageView2.userInteractionEnabled = YES;
-
+                         
                          UIButton *saveImageButton2 = [[UIButton alloc] initWithFrame:CGRectMake(popUpImageView2.frame.size.width - 55, popUpImageView2.frame.size.height - 55, 40, 40)];
                          saveImageButton2.imageView.image = [UIImage imageWithData:data];
                          saveImageButton2.imageView.hidden = YES;
@@ -736,7 +710,7 @@
                          saveImageButton2.layer.borderColor = [UIColor whiteColor].CGColor;
                          saveImageButton2.layer.borderWidth = 2;
                          [popUpImageView2 addSubview:saveImageButton2];
-
+                         
                          UIButton *closeImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
                          closeImageButton.imageView.hidden = YES;
                          closeImageButton.tag = [setPicturesObjects indexOfObject:picture];
@@ -748,15 +722,15 @@
                          closeImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
                          closeImageButton.layer.borderWidth = 2;
                          [popUpImageView2 addSubview:closeImageButton];
-
+                         
                          popUpImageView2.layer.cornerRadius = 10;
                          popUpImageView2.layer.borderColor = [UIColor whiteColor].CGColor;
                          popUpImageView2.layer.borderWidth = 5;
-
+                         
                          UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
                          tap2.delegate = self;
                          [popUpImageView addGestureRecognizer:tap2];
-
+                         
                          [scrollView addSubview:popUpImageView2];
                          [self.arrayOfScrollView addObject:popUpImageView2];
                          [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:popUpImageView2];
@@ -764,16 +738,16 @@
                          if (count == 0)
                          {
                              [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
-
+                             
                              [ProgressHUD dismiss];
-
+                             
                              self.popUp = [KLCPopup popupWithContentView:scrollView
                                                                 showType:KLCPopupShowTypeSlideInFromLeft
                                                              dismissType:KLCPopupDismissTypeSlideOutToLeft
                                                                 maskType:KLCPopupMaskTypeDimmed
                                                 dismissOnBackgroundTouch:0
                                                    dismissOnContentTouch:0];
-
+                             
                              [self.popUp addSubview:self.pageControl];
                              
                              UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
@@ -799,31 +773,14 @@
     }
 }
 
-//- (void) processDoubleTap:(UITapGestureRecognizer *)sender
-//{
-//    if (sender.state == UIGestureRecognizerStateEnded)
-//    {
-//        CGPoint point = [sender locationInView:self.collectionView];
-//        NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-//        if (indexPath)
-//        {
-//            NSLog(@"Image was double tapped");
-//        }
-//        else
-//        {
-////            DoSomeOtherStuffHereThatIsntRelated;
-//        }
-//    }
-//}
-
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if (scrollView.tag == 22)
     {
         CGFloat index = scrollView.contentOffset.x / self.view.frame.size.width;
-
+        
         int xx = roundf(index);
-
+        
         for (MPMoviePlayerController *object in self.arrayOfScrollView)
         {
             if ([object isKindOfClass:[MPMoviePlayerController class]])
@@ -831,7 +788,7 @@
                 [object stop];
             }
         }
-
+        
         NSObject *object = [self.arrayOfScrollView objectAtIndex:xx];
         if ([object isKindOfClass:[MPMoviePlayerController class]])
         {
@@ -840,7 +797,7 @@
             [mp stop];
             [mp play];
         }
-
+        
         [self.pageControl setCurrentPage:xx];
     }
 }
@@ -851,14 +808,14 @@
     {
         [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationFade];
         [popUp dismiss:1];
-
+        
         for (MPMoviePlayerController *object in self.arrayOfScrollView) {
             if ([object isKindOfClass:[MPMoviePlayerController class]])
             {
                 [object stop];
             }
         }
-
+        
         if (self.popUp.isBeingDismissed) {
             self.popUp = nil;
             self.arrayOfScrollView = nil;
@@ -884,14 +841,13 @@
     return YES;
 }
 
-
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
     if (self.shouldUpdateUnreadUsers)
     {
-//        [self removeCurrentUserFromUnreadStatus];
-//        [self removeCurrentUserFromUnreadUsers];
+        //        [self removeCurrentUserFromUnreadStatus];
+        //        [self removeCurrentUserFromUnreadUsers];
     }
     PostNotification(NOTIFICATION_REFRESH_CUSTOMCHAT);
 }
@@ -911,7 +867,7 @@
             [ProgressHUD showSuccess:@"Saved to Camera Roll"];
         }
     }];
-
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -919,40 +875,40 @@
     if (collectionView == self.collectionViewPictures)
     {
         CustomCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-
+        
         if (setPicturesObjects.count > 0)
         {
             [cell format];
-
+            
             PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
-
+            
             [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    if (!error) {
-                        cell.imageView.image = [UIImage imageWithData:data];
-                    }
-                }];
-
+                if (!error) {
+                    cell.imageView.image = [UIImage imageWithData:data];
+                }
+            }];
+            
             cell.backgroundColor = [UIColor clearColor];
             cell.label.hidden = YES;
             // ^^ hides label for customCollectionViewCell
-
-//            NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
-//
-//            NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
-//            [array removeObject:@" "];
-
-//            if (array.count == 2)
-//            {
-//                NSString *first = array.firstObject;
-//                NSString *last = array.lastObject;
-//                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
-//                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
-//                name = [first stringByAppendingString:last];
-//                cell.label.text = name;
-//            }
-
+            
+            //            NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+            //
+            //            NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
+            //            [array removeObject:@" "];
+            
+            //            if (array.count == 2)
+            //            {
+            //                NSString *first = array.firstObject;
+            //                NSString *last = array.lastObject;
+            //                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
+            //                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
+            //                name = [first stringByAppendingString:last];
+            //                cell.label.text = name;
+            //            }
+            
             cell.imageView.layer.borderColor = backgroundColor_.CGColor;
-//            cell.label.backgroundColor = backgroundColor_;
+            //            cell.label.backgroundColor = backgroundColor_;
         }
         return cell;
     }
@@ -969,10 +925,10 @@
         {
             cell.textView.textColor = [UIColor blackColor];
         }
-//        cell.textView.textColor = [UIColor whiteColor];
+        //        cell.textView.textColor = [UIColor whiteColor];
         cell.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];
-//        cell.textView.layer.borderColor = [UIColor blackColor].CGColor;
-//        cell.textView.layer.borderWidth = 1;
+        //        cell.textView.layer.borderColor = [UIColor blackColor].CGColor;
+        //        cell.textView.layer.borderWidth = 1;
         return cell;
     }
 }
@@ -996,7 +952,7 @@
              messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     JSQMessage *message = setComments[indexPath.item];
-
+    
     if ([message.senderId isEqualToString:self.senderId])
     {
         return outgoingBubbleImageData;
@@ -1035,15 +991,15 @@
      *  Show a timestamp for every 3rd message
      */
     JSQMessage *message = [setComments objectAtIndex:indexPath.item];
-
+    
     NSTimeZone *tz = [NSTimeZone defaultTimeZone];
     NSInteger seconds = [tz secondsFromGMTForDate:message.date];
-//    NSDate *date = [NSDate dateWithTimeInterval: seconds sinceDate:message.date];
+    //    NSDate *date = [NSDate dateWithTimeInterval: seconds sinceDate:message.date];
     //NSAttributedString *string = [[NSAttributedString alloc] initWithString:[date dateTimeUntilNow]];
-
+    
     if (indexPath.item - 1 > -1) {
         JSQMessage *previousMessage = [setComments objectAtIndex:indexPath.item - 1];
-
+        
         if (abs([message.date timeIntervalSinceDate:previousMessage.date]) > 60 * 60) {
             return [[JSQMessagesTimestampFormatter new] attributedTimestampForDate:message.date];
         }
@@ -1057,7 +1013,7 @@
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
     JSQMessage *message = [setComments objectAtIndex:indexPath.item];
-
+    
     /**
      *  iOS7-style sender name labels
      */
@@ -1082,7 +1038,7 @@
         NSString *last = array.lastObject;
         senderName = [first stringByAppendingString:last];
     }
-
+    
     return [[NSAttributedString alloc] initWithString: senderName];
 }
 
@@ -1101,14 +1057,14 @@
     /**
      *  Each label in a cell has a `height` delegate method that corresponds to its text dataSource method
      */
-
+    
     /**
      *  This logic should be consistent with what you return from `attributedTextForCellTopLabelAtIndexPath:`
      *  The other label height delegate methods should follow similarly
      *
      *  Show a timestamp for every 3rd message
      */
-
+    
     if (indexPath.item - 1 > -1) {
         JSQMessage *message = [setComments objectAtIndex:indexPath.item];
         JSQMessage *previousMessage = [setComments objectAtIndex:indexPath.item - 1];
@@ -1118,7 +1074,7 @@
     } else {
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
-
+    
     return 0.1f;
 }
 
@@ -1133,7 +1089,7 @@
     {
         return 0.0f;
     }
-
+    
     if (indexPath.item - 1 > 0)
     {
         JSQMessage *previousMessage = [setComments objectAtIndex:indexPath.item - 1];
@@ -1142,7 +1098,7 @@
             return 0.0f;
         }
     }
-
+    
     return kJSQMessagesCollectionViewCellLabelHeightDefault;
 }
 
@@ -1167,7 +1123,7 @@
     spinner.frame = CGRectMake(self.view.frame.size.width/2 -50, self.view.frame.size.height/2 - 50, 100, 100);
     
     NSIndexPath *indexPath = [self.collectionViewPictures indexPathForItemAtPoint:touch];
-
+    
     if (self.inputToolbar.contentView.textView.isFirstResponder)
     {
         [self.inputToolbar.contentView.textView resignFirstResponder];
@@ -1206,13 +1162,13 @@
             {
                 [[file getData] writeToFile:outputPath atomically:1];
             }
-
+            
             self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
             [self.moviePlayer.view setFrame:self.view.window.frame];
             self.moviePlayer.fullscreen = NO;
             [self.moviePlayer prepareToPlay];
             longPressImageView.backgroundColor = [UIColor blackColor];
-
+            
             [UIView animateWithDuration:1.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 longPressImageView.alpha = 0;
                 longPressImageView.alpha = 1;
@@ -1220,7 +1176,7 @@
                 [longPressImageView addSubview:spinner];
                 [self.view.window addSubview:longPressImageView];
             } completion:0];
-
+            
             self.moviePlayer.controlStyle = MPMovieControlStyleNone;
             [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
             self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
@@ -1275,5 +1231,8 @@
         isTouching = NO;
     }
 }
+
+
+
 
 @end

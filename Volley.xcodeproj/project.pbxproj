@@ -119,6 +119,9 @@
 		32771FC01B7417AA007726E9 /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBF1B7417AA007726E9 /* WeekCell.m */; };
 		329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9D221B700F340025D3EC /* FivePicsFavCell.m */; };
 		329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329F9D231B700F340025D3EC /* FivePicsFavCell.xib */; };
+		32A76AC01BCD8795006DE6CC /* FullWidthChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A76ABE1BCD8795006DE6CC /* FullWidthChat.m */; settings = {ASSET_TAGS = (); }; };
+		32A76AC11BCD8795006DE6CC /* FullWidthChat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32A76ABF1BCD8795006DE6CC /* FullWidthChat.xib */; settings = {ASSET_TAGS = (); }; };
+		32A76AC41BCD9752006DE6CC /* FullWidthChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A76AC31BCD9752006DE6CC /* FullWidthChatView.m */; settings = {ASSET_TAGS = (); }; };
 		32AB987D1BACD40B003F3034 /* LoadingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AB987B1BACD40B003F3034 /* LoadingCell.m */; };
 		32AB987E1BACD40B003F3034 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32AB987C1BACD40B003F3034 /* LoadingCell.xib */; };
 		32B172D61B8D031B00127129 /* HighlightData.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B172D51B8D031B00127129 /* HighlightData.m */; };
@@ -424,6 +427,11 @@
 		329F9D211B700F340025D3EC /* FivePicsFavCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FivePicsFavCell.h; sourceTree = "<group>"; };
 		329F9D221B700F340025D3EC /* FivePicsFavCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FivePicsFavCell.m; sourceTree = "<group>"; };
 		329F9D231B700F340025D3EC /* FivePicsFavCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FivePicsFavCell.xib; sourceTree = "<group>"; };
+		32A76ABD1BCD8795006DE6CC /* FullWidthChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullWidthChat.h; sourceTree = "<group>"; };
+		32A76ABE1BCD8795006DE6CC /* FullWidthChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullWidthChat.m; sourceTree = "<group>"; };
+		32A76ABF1BCD8795006DE6CC /* FullWidthChat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullWidthChat.xib; sourceTree = "<group>"; };
+		32A76AC21BCD9752006DE6CC /* FullWidthChatView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullWidthChatView.h; sourceTree = "<group>"; };
+		32A76AC31BCD9752006DE6CC /* FullWidthChatView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullWidthChatView.m; sourceTree = "<group>"; };
 		32AB987A1BACD40B003F3034 /* LoadingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingCell.h; sourceTree = "<group>"; };
 		32AB987B1BACD40B003F3034 /* LoadingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingCell.m; sourceTree = "<group>"; };
 		32AB987C1BACD40B003F3034 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
@@ -927,6 +935,9 @@
 				274988751B31DDBD00560873 /* CardVC.h */,
 				274988761B31DDBD00560873 /* CardVC.m */,
 				274988771B31DDBD00560873 /* CardVC.xib */,
+				32A76ABD1BCD8795006DE6CC /* FullWidthChat.h */,
+				32A76ABE1BCD8795006DE6CC /* FullWidthChat.m */,
+				32A76ABF1BCD8795006DE6CC /* FullWidthChat.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1259,6 +1270,8 @@
 			children = (
 				C2BD53E71A31077D006D721E /* CustomChatView.h */,
 				C2BD53E81A31077D006D721E /* CustomChatView.m */,
+				32A76AC21BCD9752006DE6CC /* FullWidthChatView.h */,
+				32A76AC31BCD9752006DE6CC /* FullWidthChatView.m */,
 			);
 			name = CustomChatView;
 			sourceTree = "<group>";
@@ -1533,6 +1546,7 @@
 				C2CA16E81A82A1FE00DD25AC /* AlbumView.xib in Resources */,
 				272170871B543F240050A9D0 /* FourPicCell.xib in Resources */,
 				296DD5E11A1F52F400AB9F8C /* JSQMessagesToolbarContentView.xib in Resources */,
+				32A76AC11BCD8795006DE6CC /* FullWidthChat.xib in Resources */,
 				C2CA16E11A82860E00DD25AC /* DidFavoriteView.xib in Resources */,
 				2762FF5F1B289A2A0070AD59 /* Storyboard.storyboard in Resources */,
 				296DD5B91A1F52F400AB9F8C /* JSQMessagesAssets.bundle in Resources */,
@@ -1628,6 +1642,7 @@
 				29271A6419F284B1009C308B /* LoginView.m in Sources */,
 				32C46D801B8E5C090044B329 /* Set.m in Sources */,
 				272170811B543AF00050A9D0 /* ThreePicCell.m in Sources */,
+				32A76AC01BCD8795006DE6CC /* FullWidthChat.m in Sources */,
 				296DD5C81A1F52F400AB9F8C /* JSQMessagesToolbarButtonFactory.m in Sources */,
 				C2832CB91A704A6100CDF19D /* IQTitleBarButtonItem.m in Sources */,
 				C2832CB41A704A6100CDF19D /* IQKeyboardManager.m in Sources */,
@@ -1655,6 +1670,7 @@
 				296DD5C01A1F52F400AB9F8C /* UIView+JSQMessages.m in Sources */,
 				296DD5E91A1F557900AB9F8C /* ProgressHUD.m in Sources */,
 				C21DD6EE1A71D73B0009BC6A /* JCNotificationBannerWindow.m in Sources */,
+				32A76AC41BCD9752006DE6CC /* FullWidthChatView.m in Sources */,
 				29A2278A19F3B05000ACA237 /* pushnotification.m in Sources */,
 				32DA3D351B8F929900DDEFA2 /* AllWeekPhotosVC.m in Sources */,
 				296DD5DF1A1F52F400AB9F8C /* JSQMessagesMediaPlaceholderView.m in Sources */,
