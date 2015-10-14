@@ -215,7 +215,7 @@
                                    target: nil action: nil];
     [self.navigationItem setBackBarButtonItem: backButton];
     
-//    [self.collectionView setFrame:CGRectMake(0, 66, [UIScreen mainScreen].bounds.size.width - 101   , [UIScreen mainScreen].bounds.size.height - 100)];
+    [self.collectionView setFrame:CGRectMake(0, 66, [UIScreen mainScreen].bounds.size.width - 101   , [UIScreen mainScreen].bounds.size.height - 100)];
 
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
@@ -933,23 +933,21 @@
                 }];
 
             cell.backgroundColor = [UIColor clearColor];
-            cell.label.hidden = YES;
-            // ^^ hides label for customCollectionViewCell
 
-//            NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
-//
-//            NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
-//            [array removeObject:@" "];
-
-//            if (array.count == 2)
-//            {
-//                NSString *first = array.firstObject;
-//                NSString *last = array.lastObject;
-//                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
-//                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
-//                name = [first stringByAppendingString:last];
-//                cell.label.text = name;
-//            }
+            if (indexPath.item == 0)
+            {
+                cell.label.hidden = NO;
+                cell.label.backgroundColor = [UIColor volleyFamousGreen];
+                NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+                NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
+                [array removeObject:@" "];
+                NSString *first = array.firstObject;
+                NSString *last = array.lastObject;
+                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
+                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
+                name = [first stringByAppendingString:last];
+                cell.label.text = name;
+            }
 
             cell.imageView.layer.borderColor = backgroundColor_.CGColor;
 //            cell.label.backgroundColor = backgroundColor_;

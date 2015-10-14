@@ -67,6 +67,7 @@
 //    [self scrollToBottomAnimated:YES];
     [self.collectionView reloadData];
     [self fetchSetForUnreadCheck];
+    self.collectionView.hidden = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,6 +85,7 @@
 {
     [super viewDidLoad];
     self.collectionViewPictures.hidden = YES;
+    self.collectionView.hidden = YES;
 //    self.collectionView.backgroundColor = [UIColor orangeColor];
     self.view.layer.backgroundColor = [UIColor clearColor].CGColor;
 //    self.view.layer.backgroundColor = [UIColor purpleColor].CGColor;

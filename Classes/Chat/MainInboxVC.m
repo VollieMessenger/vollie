@@ -522,7 +522,11 @@
     self.cardViewVC.room = room;
     self.cardViewVC.messageItComesFrom = userChatRoom;
     self.cardViewVC.shouldShowTempCard = YES;
-    if ([userChatRoom objectForKey:@"description"])
+    if ([userChatRoom objectForKey:@"nickname"])
+    {
+        self.cardViewVC.name = [userChatRoom objectForKey:@"nickname"];
+    }
+    else
     {
         self.cardViewVC.name = [userChatRoom objectForKey:@"description"];
     }
