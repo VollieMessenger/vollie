@@ -2511,6 +2511,14 @@
                 [self.savedButton2 setImage:_arrayOfTakenPhotos[1] forState:UIControlStateNormal];
                 [self.savedButton3 setImage:_arrayOfTakenPhotos[2] forState:UIControlStateNormal];
                 [self.savedButton4 setImage:_arrayOfTakenPhotos[3] forState:UIControlStateNormal];
+                self.savedButton1.hidden = NO;
+                self.x1.hidden = NO;
+                self.savedButton2.hidden = NO;
+                self.x2.hidden = NO;
+                self.savedButton3.hidden = NO;
+                self.x3.hidden = NO;
+                self.savedButton4.hidden = NO;
+                self.x4.hidden = NO;
                 break;
                 
             case 5:
@@ -2519,6 +2527,16 @@
                 [self.savedButton3 setImage:_arrayOfTakenPhotos[2] forState:UIControlStateNormal];
                 [self.savedButton4 setImage:_arrayOfTakenPhotos[3] forState:UIControlStateNormal];
                 [self.savedButton5 setImage:_arrayOfTakenPhotos[4] forState:UIControlStateNormal];
+                self.savedButton1.hidden = NO;
+                self.x1.hidden = NO;
+                self.savedButton2.hidden = NO;
+                self.x2.hidden = NO;
+                self.savedButton3.hidden = NO;
+                self.x3.hidden = NO;
+                self.savedButton4.hidden = NO;
+                self.x4.hidden = NO;
+                self.savedButton5.hidden = NO;
+                self.x5.hidden = NO;
                 break;
                 
             default:
