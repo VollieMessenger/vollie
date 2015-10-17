@@ -67,13 +67,13 @@
                     <exclude reference="uHe-jh-Se9"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="DhW-xO-wvx"/>
-                    <exclude reference="aBk-SS-We6"/>
-                    <exclude reference="chH-zl-dTC"/>
                     <exclude reference="B3w-lR-BPj"/>
                     <exclude reference="DuN-06-VLM"/>
                     <exclude reference="L2i-vw-bbO"/>
                     <exclude reference="i3h-qV-ity"/>
+                    <exclude reference="DhW-xO-wvx"/>
+                    <exclude reference="aBk-SS-We6"/>
+                    <exclude reference="chH-zl-dTC"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -82,13 +82,13 @@
                     <include reference="uHe-jh-Se9"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="DhW-xO-wvx"/>
-                    <include reference="aBk-SS-We6"/>
-                    <include reference="chH-zl-dTC"/>
                     <include reference="B3w-lR-BPj"/>
                     <include reference="DuN-06-VLM"/>
                     <include reference="L2i-vw-bbO"/>
                     <include reference="i3h-qV-ity"/>
+                    <include reference="DhW-xO-wvx"/>
+                    <include reference="aBk-SS-We6"/>
+                    <include reference="chH-zl-dTC"/>
                 </mask>
             </variation>
         </view>

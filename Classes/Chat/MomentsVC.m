@@ -38,6 +38,7 @@
 #import "ParseVolliePackage.h"
 #import "AFDropdownNotification.h"
 #import "FullWidthChatView.h"
+#import "IndentFixContainer.h"
 
 
 
@@ -168,6 +169,10 @@
 //    VollieCardData *card = self.sortedCardsArray[(indexPath.row/2)];
 
 //    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.actualSet andUserChatRoom:self.room];
+    
+    
+    
+    
     CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
 //    chatt.senderId = [self.senderId copy];
 //    chatt.senderDisplayName = [self.senderDisplayName copy];
@@ -187,6 +192,12 @@
     [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
     
     
+//    IndentFixContainer *indentVC = [IndentFixContainer new];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    IndentFixContainer *indentVC = (IndentFixContainer *)[storyboard instantiateViewControllerWithIdentifier:@"IndentFixContainer"];
+    
+
+    
     if (card.photosArray.count)
     {
         CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
@@ -194,12 +205,14 @@
         //    chatt.senderDisplayName = [self.senderDisplayName copy];
         //    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:chatRoom];
         chatt.room = self.room;
-        [self.navigationController pushViewController:chatt animated:1];
+        indentVC.chatViewVC = chatt;
+        [self.navigationController pushViewController:indentVC animated:1];
     }
     else
     {
         FullWidthChatView *chatt = [[FullWidthChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
         chatt.room = self.room;
+//        indentVC.chatViewVC = chatt;
         [self.navigationController pushViewController:chatt animated:1];
     }
 }

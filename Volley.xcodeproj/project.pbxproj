@@ -129,6 +129,7 @@
 		32DA3D351B8F929900DDEFA2 /* AllWeekPhotosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D341B8F929900DDEFA2 /* AllWeekPhotosVC.m */; };
 		32DA3D381B8F946700DDEFA2 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D371B8F946700DDEFA2 /* PhotoCell.m */; };
 		32DA3D3B1B8FBD2600DDEFA2 /* ParseMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */; };
+		32DB9BBE1BD315C20032ABB8 /* IndentFixContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB9BBD1BD315C20032ABB8 /* IndentFixContainer.m */; settings = {ASSET_TAGS = (); }; };
 		32EBB9C71BB1E7EC00938704 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EBB9C61BB1E7EC00938704 /* Bolts.framework */; };
 		32EBB9C91BB1E7EE00938704 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EBB9C81BB1E7EE00938704 /* Parse.framework */; };
 		32EBB9CB1BB1E7F100938704 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EBB9CA1BB1E7F100938704 /* ParseUI.framework */; };
@@ -445,6 +446,8 @@
 		32DA3D371B8F946700DDEFA2 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		32DA3D391B8FBD2600DDEFA2 /* ParseMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseMedia.h; sourceTree = "<group>"; };
 		32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseMedia.m; sourceTree = "<group>"; };
+		32DB9BBC1BD315C20032ABB8 /* IndentFixContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentFixContainer.h; sourceTree = "<group>"; };
+		32DB9BBD1BD315C20032ABB8 /* IndentFixContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentFixContainer.m; sourceTree = "<group>"; };
 		32EBB9C61BB1E7EC00938704 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../Downloads/parse-library-1-2/Bolts.framework"; sourceTree = "<group>"; };
 		32EBB9C81BB1E7EE00938704 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../Downloads/parse-library-1-2/Parse.framework"; sourceTree = "<group>"; };
 		32EBB9CA1BB1E7F100938704 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../../../Downloads/parse-library-1-2/ParseUI.framework"; sourceTree = "<group>"; };
@@ -1272,6 +1275,8 @@
 				C2BD53E81A31077D006D721E /* CustomChatView.m */,
 				32A76AC21BCD9752006DE6CC /* FullWidthChatView.h */,
 				32A76AC31BCD9752006DE6CC /* FullWidthChatView.m */,
+				32DB9BBC1BD315C20032ABB8 /* IndentFixContainer.h */,
+				32DB9BBD1BD315C20032ABB8 /* IndentFixContainer.m */,
 			);
 			name = CustomChatView;
 			sourceTree = "<group>";
@@ -1676,6 +1681,7 @@
 				296DD5DF1A1F52F400AB9F8C /* JSQMessagesMediaPlaceholderView.m in Sources */,
 				C2F314A81A7940B700675959 /* MasterScrollView.m in Sources */,
 				2749887F1B31F98200560873 /* CellForCard.m in Sources */,
+				32DB9BBE1BD315C20032ABB8 /* IndentFixContainer.m in Sources */,
 				27C3C1241B3B1A6B00F555FD /* NewVollieVC.m in Sources */,
 				296DD5CA1A1F52F400AB9F8C /* JSQMessagesCollectionViewFlowLayoutInvalidationContext.m in Sources */,
 				296DD5D31A1F52F400AB9F8C /* JSQMessagesCellTextView.m in Sources */,
