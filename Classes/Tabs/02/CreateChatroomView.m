@@ -47,6 +47,8 @@
 }
 @property (strong, nonatomic) IBOutlet UIView *viewHeader;
 
+@property (weak, nonatomic) IBOutlet UILabel *sendMessage;
+
 @property (strong, nonatomic) UISearchBar *searchBar;
 
 @property (strong, nonatomic) IBOutlet UITextField *searchTextField;
@@ -59,7 +61,7 @@
 
 @property (strong, nonatomic) NSMutableArray *arrayofSelectedPhoneNumbers;
 
-@property UITapGestureRecognizer *tap;
+@property (strong, nonatomic) UITapGestureRecognizer *tap;
 
 @property NSMutableArray *numbers;
 
@@ -67,13 +69,14 @@
 
 @property BOOL isSearching;
 
+@property (strong, nonatomic) NSDictionary *namesAndNumbersConstant;
+
 @property (strong, nonatomic)  NSMutableDictionary *arrayOfNamesAndNumbers;
 
-@property IBOutlet UIButton *buttonSend;
-
 @property BOOL isNotGoingBack;
+@property BOOL canSend;
 
-@property IBOutlet UIButton *buttonSendArrow;
+@property (weak, nonatomic) IBOutlet UIView *sendVollieView;
 
 @property MasterScrollView *scrollView;
 
@@ -96,7 +99,7 @@
     }
 }
 
-- (IBAction)didPressSendButton:(UIButton *)sender
+- (void)didPressSendButton
 {
 //commented out these two lines and added the sendWithTextMessage
     
@@ -119,6 +122,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [self togglePhoneNumbersCountIndicator];
+    [self.sendMessage setText:self.invite ? @"Send Invite" : @"Send Vollie"];
+    NSLog(@"%@",self.sendMessage.text);
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -127,7 +132,6 @@
 
     [self closeSearch:0];
     [self setNavigationBarColor];
-
 
     if (!_isNotGoingBack && !_isTherePicturesToSend)
     {
@@ -144,11 +148,8 @@
 
 - (void)viewDidLoad
 {
-//    self.buttonSendArrow.frame = CGRectMake(self.view.frame.size.width/2 - 12, self.view.frame.size.height - 30, 25, 25);
-    self.buttonSend.backgroundColor = [UIColor volleyFamousOrange];
-    [self.buttonSend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.buttonSend.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
-    self.buttonSend.hidden = YES;
+    self.canSend = NO;
+    self.sendVollieView.backgroundColor = [UIColor volleyFamousOrange];
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
     
@@ -195,9 +196,6 @@
 
     self.searchBar.placeholder = @"Search...";
 
-
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-
     users = [[NSMutableArray alloc] init];
     usersObjectIds = [NSMutableArray new];
     _searchMessages = [NSMutableArray new];
@@ -205,16 +203,10 @@
     _arrayofSelectedPhoneNumbers = [NSMutableArray new];
     [_arrayOfSelectedUsers addObject:[PFUser currentUser]];
 
-    tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTap:)];
+    tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didPressSendButton)];
     tap.delegate = self;
+    [self.sendVollieView addGestureRecognizer:tap];
 }
-
-
-- (void) didTap:(UITapGestureRecognizer *)tap
-{
-
-}
-
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -228,7 +220,6 @@
         [textView resignFirstResponder];
         [textView deleteBackward];
         [textView scrollsToTop];
-        [self.view removeGestureRecognizer:tap];
     } else {
         [self searchUsers:textView.text];
     }
@@ -237,12 +228,10 @@
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
-    [self.view removeGestureRecognizer:tap];
 }
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    [self.view addGestureRecognizer:tap];
     return YES;
 }
 
@@ -361,7 +350,6 @@
     if (_arrayOfSelectedUsers.count < 2)
     {
         [ProgressHUD showError:@"Vollie User(s) Required"];
-        self.buttonSend.userInteractionEnabled = NO;
         return;
     }
     else if (_arrayofSelectedPhoneNumbers.count == 0)
@@ -601,14 +589,12 @@
     }
     else
     {
-        self.buttonSend.userInteractionEnabled = YES;
         [ProgressHUD showError:@"No Chatroom Selected"];
     }
 }
 
 -(void)openChatroomWithRoom:(PFObject *)chatroom title:(NSString *)title comment:(NSString *)comment
 {
-    NSLog(@"sending message %@",self.sendingMessage);
     [ProgressHUD dismiss];
     
     PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
@@ -642,6 +628,7 @@
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:NO];
     MainInboxVC *mainInbox = nav.viewControllers.firstObject;
     mainInbox.shouldShowTempCard = YES;
+    
     
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
     
@@ -866,26 +853,26 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    if (_isSearching) return nil;
+//    if (_isSearching) return nil;
 //    return sortedKeys;
         return @[@"#",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    if (_isSearching) return 0;
+    if (_isSearching && !self.invite) return 0;
     return [sortedKeys indexOfObject:title];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (_isSearching) return 1;
+    if (_isSearching && !self.invite) return 1;
     return sortedKeys.count;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (_isSearching) return @"Searching...";
+    if (_isSearching && !self.invite) return @"Searching...";
     return [@"  " stringByAppendingString:[sortedKeys objectAtIndex:section]];
 }
 
@@ -897,7 +884,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 
 {
-    if (_isSearching){
+    if (_isSearching && !self.invite){
         return _searchMessages.count;
     } else {
         NSString *key = [sortedKeys objectAtIndex:section];
@@ -911,7 +898,6 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-
 
     PFUser *selectedUser;
     NSString *inviteUser;
@@ -932,7 +918,11 @@
     }
     
     cell.textLabel.text = self.invite ? inviteUser : selectedUser[PF_USER_FULLNAME];
-
+    NSString *number;
+    if (self.arrayOfSelectedUsers.count) {
+        number = [self.arrayOfNamesAndNumbers objectForKey:inviteUser][0];
+    }
+    
     if ([_arrayOfSelectedUsers containsObject:selectedUser])
     {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -941,7 +931,12 @@
         cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
-    else
+    else if ([self.arrayOfSelectedUsers containsObject:number]){
+        UIImage *image = self.invite ? [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        cell.accessoryView = [[UIImageView alloc] initWithImage:image];
+        cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else
     {
         cell.accessoryView = nil;
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -959,20 +954,6 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    if (self.buttonSend.isHidden)
-    {
-        self.buttonSend.hidden = NO;
-        self.buttonSend.alpha = 0;
-        self.buttonSendArrow.hidden = NO;
-        self.buttonSendArrow.alpha = 0;
-        [UIView animateWithDuration:.3f animations:^{
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            self.buttonSend.alpha = 1;
-            self.buttonSendArrow.alpha = 1;
-//            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -self.buttonSend.frame.size.height)];
-        }];
-    }
-
     PFUser *selectedUser;
     if (_isSearching && _searchMessages.count)
     {
@@ -985,7 +966,6 @@
         NSArray *arrayOfNamesForLetter;
         if (self.invite) {
             phoneNumbers = [lettersForWords objectForKey:key];
-            NSLog(@"%@",phoneNumbers);
         } else {
             arrayOfNamesForLetter = [lettersForWords objectForKey:key];;
         }
@@ -1002,10 +982,16 @@
 
     if (cell.accessoryView == nil && cell.accessoryType == UITableViewCellAccessoryNone)
     {
+        if (self.invite && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
+        {
+            [self.arrayOfSelectedUsers removeObjectAtIndex:0];
+        }
         if (_arrayOfSelectedUsers.count > 100) [ProgressHUD showError:@"100 People Only"];
         else
         {
             [self.arrayOfSelectedUsers addObject:selectedUser];
+            self.canSend = YES;
+            [self resize];
             [self togglePhoneNumbersCountIndicator];
             UIImage *image = self.invite ? [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
             cell.accessoryView = [[UIImageView alloc] initWithImage:image];
@@ -1018,20 +1004,16 @@
         [self.arrayOfSelectedUsers removeObject:selectedUser];
         cell.accessoryView = nil;
         cell.accessoryType = UITableViewCellAccessoryNone;
+        if (self.arrayOfSelectedUsers.count == 0) {
+            self.canSend = NO;
+            [self resize];
+        }
     }
     
     if (self.arrayOfSelectedUsers.count == 1 && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
     {
-        self.buttonSend.hidden = YES;
-        self.buttonSend.alpha = 1;
-        self.buttonSendArrow.hidden = YES;
-        self.buttonSendArrow.alpha = 1;
-        [UIView animateWithDuration:.3f animations:^{
-            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            self.buttonSend.alpha = 0;
-            self.buttonSendArrow.alpha = 0;
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-        }];
+        self.canSend = NO;
+        [self resize];
     }
 }
 
@@ -1039,7 +1021,7 @@
 {
     [labelForContactsIndicator removeFromSuperview];
 
-    if (_arrayofSelectedPhoneNumbers.count && !self.buttonSend.isHidden)
+    if (_arrayofSelectedPhoneNumbers.count && !self.sendVollieView.frame.origin.y > [UIScreen mainScreen].bounds.size.height)
     {
         labelForContactsIndicator = [[UITextField alloc] initWithFrame:CGRectMake(0, (self.view.frame.size.height - 106), self.tableView.frame.size.width, 44)];
 
@@ -1081,13 +1063,27 @@
 
 - (void)searchUsers:(NSString *)search_lower
 {
-    for (PFUser *user in users) {
-        if ([[[user valueForKey:PF_USER_FULLNAME] lowercaseString] containsString:search_lower])
-        {
-            [self.searchMessages addObject:user];
+    if (self.invite) {
+        NSMutableDictionary *contacts = [NSMutableDictionary new];
+        for (NSString *name in [self.namesAndNumbersConstant allKeys]) {
+            if ([[name lowercaseString] containsString:search_lower]) {
+                [contacts setObject:self.namesAndNumbersConstant[name] forKey:name];
+            }
         }
+        arrayOfNamesAndNumbers = contacts;
+        [self inviteWordsFromLetters:arrayOfNamesAndNumbers];
+    } else {
+        for (PFUser *user in users) {
+            if ([[[user valueForKey:PF_USER_FULLNAME] lowercaseString] containsString:search_lower])
+            {
+                [self.searchMessages addObject:user];
+            }
+        }
+        
+        [self wordsFromLetters:self.searchMessages];
+        
+        [_tableView reloadData];
     }
-    [_tableView reloadData];
 }
 
 - (IBAction)textFieldDidChange:(UITextField *)textField
@@ -1099,6 +1095,12 @@
         [self searchUsers:[textField.text lowercaseString]];
     } else {
         _isSearching = NO;
+        if (self.invite) {
+            arrayOfNamesAndNumbers = [self.namesAndNumbersConstant mutableCopy];
+            [self inviteWordsFromLetters:arrayOfNamesAndNumbers];
+        } else {
+            [self wordsFromLetters:users];
+        }
         [_tableView reloadData];
     }
 }
@@ -1109,11 +1111,13 @@
     self.searchMessages = [NSMutableArray new];
     _isSearching = YES;
     _searchCloseButton.hidden = NO;
+    [self resize];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     _isSearching = NO;
+    [self resize];
     _searchCloseButton.hidden = YES;
     [textField resignFirstResponder];
     textField.text = @"";
@@ -1272,6 +1276,7 @@
             });
         }
     }
+    self.namesAndNumbersConstant = arrayOfNamesAndNumbers;
 }
 
 - (NSString *)formatPhoneNumberForCountry:(NSString *)phoneNumber
@@ -1361,5 +1366,44 @@
 }
 
 -(void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didPressLeftBarButton:(UIButton *)sender {}
+
+-(void)resize{
+    int position = [UIScreen mainScreen].bounds.size.height - self.view.frame.size.height;
+    if (self.canSend && self.isSearching){
+        [UIView animateWithDuration:0.52
+                              delay:0
+             usingSpringWithDamping:500.0f
+              initialSpringVelocity:0.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+                             [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396-position, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
+                         }
+                         completion:nil];
+    } else if (self.canSend){
+        [UIView animateWithDuration:0.74
+                              delay:0
+             usingSpringWithDamping:500.0f
+              initialSpringVelocity:0
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
+            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
+        }
+                         completion:nil];
+    } else {
+        [UIView animateWithDuration:0.42
+                              delay:0
+             usingSpringWithDamping:50.0f
+              initialSpringVelocity:0.0f
+                            options:UIViewAnimationOptionCurveLinear
+                         animations:^{
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
+        }
+                         completion:nil];
+    }
+}
 
 @end
