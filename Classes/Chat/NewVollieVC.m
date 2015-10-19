@@ -102,7 +102,7 @@ SecondDelegate>
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     self.navigationController.navigationBar.titleTextAttributes =  @{
                                                                      NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
-                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+                                                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0f],
                                                                      NSShadowAttributeName:[NSShadow new]
                                                                      };
 }
