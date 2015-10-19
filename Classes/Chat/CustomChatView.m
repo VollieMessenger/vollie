@@ -940,7 +940,7 @@
             if (indexPath.item == 0)
             {
                 cell.label.hidden = NO;
-                cell.label.backgroundColor = [UIColor volleyFamousGreen];
+                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
                 NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
                 NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
                 [array removeObject:@" "];
