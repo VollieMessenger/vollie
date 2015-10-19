@@ -281,7 +281,7 @@ SecondDelegate>
 //        NSLog(@"%li photos before popping up camera", self.photosArray.count);
         cam.myDelegate = self;
 
-        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
+        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:NO completion:0];
         
 //        [self presentViewController:cam animated:YES completion:nil];
     }
