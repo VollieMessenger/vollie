@@ -925,6 +925,7 @@
             [cell format];
 
             PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
+            NSLog(@"%li", indexPath.item);
 
             [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                     if (!error) {
@@ -934,6 +935,8 @@
 
             cell.backgroundColor = [UIColor clearColor];
 
+            cell.label.hidden = YES;
+            
             if (indexPath.item == 0)
             {
                 cell.label.hidden = NO;
