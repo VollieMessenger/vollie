@@ -50,24 +50,41 @@
         self.selectedBackgroundView = backgroundView;
 
         // set content view
-        CGRect frame  = CGRectMake(self.bounds.origin.x + 5, self.bounds.origin.y+ 5, self.bounds.size.width, self.bounds.size.height);
-        self.imageView = [[PFImageView alloc] initWithFrame:frame];
+//        CGRect frame  = CGRectMake(self.bounds.origin.x + 5, self.bounds.origin.y+ 5, self.bounds.size.width, self.bounds.size.height);
+//        self.imageView = [[PFImageView alloc] initWithFrame:frame];
+//        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//        self.imageView.clipsToBounds = YES;
+//        [self.contentView addSubview:self.imageView];
+//
+//        CGRect frame2 = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 28, 28);
+//        self.label = [[UILabel alloc] initWithFrame:frame2];
+//        self.label.layer.cornerRadius = self.bounds.size.width/3.5/2;
+//        self.label.layer.masksToBounds = 1;
+//        self.label.layer.borderColor = [[UIColor whiteColor]CGColor];
+//        self.label.layer.borderWidth = 1;
+//        self.label.textAlignment = NSTextAlignmentCenter;
+//        self.label.font = [UIFont fontWithName:@"Helvetica Bold" size:12];
+//        self.label.textColor = [UIColor whiteColor];
+//        [self insertSubview:self.label aboveSubview:self.imageView];
+        
+        CGRect picFrame  = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, self.bounds.size.height);
+        self.imageView = [[PFImageView alloc] initWithFrame:picFrame];
         self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         self.imageView.clipsToBounds = YES;
         [self.contentView addSubview:self.imageView];
+        
+        CGRect initialsFrame = CGRectMake(self.bounds.size.width - 27, self.bounds.origin.y, 28, 28);
+        self.label = [[UILabel alloc] initWithFrame:initialsFrame];
+//        self.label.layer.cornerRadius = self.bounds.size.width/3.5/2;
+        self.label.layer.cornerRadius = self.bounds.size.width/5/2;
 
-
-        CGRect frame2 = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 28, 28);
-        self.label = [[UILabel alloc] initWithFrame:frame2];
-        self.label.layer.cornerRadius = self.bounds.size.width/3.5/2;
         self.label.layer.masksToBounds = 1;
         self.label.layer.borderColor = [[UIColor whiteColor]CGColor];
         self.label.layer.borderWidth = 1;
         self.label.textAlignment = NSTextAlignmentCenter;
         self.label.font = [UIFont fontWithName:@"Helvetica Bold" size:12];
-        self.label.textColor = [UIColor whiteColor];
+        self.label.textColor = [UIColor darkGrayColor];
         [self insertSubview:self.label aboveSubview:self.imageView];
-
     }
     return self;
 }

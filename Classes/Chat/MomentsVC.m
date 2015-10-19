@@ -237,7 +237,7 @@
             switch (data.photosArray.count)
             {
                 case 1:
-                    return 220;
+                    return 260;
                     break;
                 case 2:
                     return 260;
@@ -425,7 +425,9 @@
 {
 //    NSLog(@"i'm going to try to reload the cards");
     [self loadMessages];
-    [self.notification dismissWithGravityAnimation:NO];
+    [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:0.8f];
+//    [self dismissTopNotification];
+//    [self.notification dismissWithGravityAnimation:NO];
 }
 
 -(void)createQuery
@@ -530,8 +532,13 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     [self loadMessages];
-    [self.notification dismissWithGravityAnimation:YES];
+    [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:.8f];
 //    NSLog(@"i loaded stuff");
+}
+
+-(void)dismissTopNotification
+{
+    [self.notification dismissWithGravityAnimation:YES];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

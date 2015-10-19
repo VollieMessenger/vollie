@@ -100,14 +100,27 @@
     MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
     NSMutableArray *messagesArray = [NSMutableArray new];
     messagesArray = inbox.messages;
-    for (PFObject *message in messagesArray)
+//    for (PFObject *message in messagesArray)
+//    {
+//        //i would like to have this be a regular for loop
+//        //and do a counter. An alert would come up saying "loading"
+//        // and when the counter hits zero the tableview reloads and the alert goes away
+////        PFObject *room = [message objectForKey:@"room"];
+//        [self loadSetsFrom:message];
+//    }
+//
+    for (int x = 0; x < messagesArray.count; x++)
     {
-        //i would like to have this be a regular for loop
-        //and do a counter. An alert would come up saying "loading"
-        // and when the counter hits zero the tableview reloads and the alert goes away
-//        PFObject *room = [message objectForKey:@"room"];
+        PFObject *message = messagesArray[x];
         [self loadSetsFrom:message];
+        
+        if (x == messagesArray.count - 1)
+        {
+            [self performSelector:@selector(delayedReloadOfView) withObject:@1 afterDelay:2];
+        }
     }
+//    self.
+    
 }
 
 -(void)delayedReloadOfView
@@ -129,7 +142,7 @@
     {
         if(!error)
         {
-            [self performSelector:@selector(delayedReloadOfView) withObject:@1 afterDelay:2];
+//            [self performSelector:@selector(delayedReloadOfView) withObject:@1 afterDelay:2];
             for (PFObject *set in objects)
             {
                 if ([set objectForKey:@"numberOfResponses"] && [set objectForKey:@"lastPicture"])

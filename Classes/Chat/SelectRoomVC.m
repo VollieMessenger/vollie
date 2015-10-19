@@ -165,9 +165,14 @@
                                                       andRoom:self.selectedRoom
                                                        andSet:self.selectedSet];
                  
-                 [self.package.topNotification presentInView:self.view withGravityAnimation:YES];
+//                 [self.package.topNotification presentInView:self.view withGravityAnimation:YES];
 
-                 [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+                 [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                 NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+                 // LOAD MESSAGES FROM INBOX INSTEAD.
+                 
+                 MainInboxVC *mainInbox = nav.viewControllers.firstObject;
+                 [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom];
              }
          }
          else

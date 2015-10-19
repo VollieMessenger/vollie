@@ -102,7 +102,7 @@ SecondDelegate>
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     self.navigationController.navigationBar.titleTextAttributes =  @{
                                                                      NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
-                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+                                                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0f],
                                                                      NSShadowAttributeName:[NSShadow new]
                                                                      };
 }
@@ -281,7 +281,7 @@ SecondDelegate>
 //        NSLog(@"%li photos before popping up camera", self.photosArray.count);
         cam.myDelegate = self;
 
-        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:YES completion:0];
+        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:NO completion:0];
         
 //        [self presentViewController:cam animated:YES completion:nil];
     }
