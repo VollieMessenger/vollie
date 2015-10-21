@@ -24,6 +24,7 @@
 #import "CreateChatroomView.h"
 #import "WeekHighlightsVC.h"
 #import "AFDropdownNotification.h"
+#import "InstructionsVC.h"
 
 
 @interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, AFDropdownNotificationDelegate>
@@ -470,17 +471,53 @@
 
 - (void)refreshMessages
 {
+    
     if ([[[PFUser currentUser] valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
     {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        BOOL shouldShowInstrcutions = [defaults boolForKey:@"shouldShowInstructions"];
+        //for some reason my bool wasn't working so i copied and pasted this code
+        //from my last app. So high score is just an int that isn't 0 saved in user defaults
+        
+        NSInteger theHighScore = [defaults integerForKey:@"HighScore"];
+        NSLog(@"%i", (int)theHighScore);
+
+        if (!theHighScore)
+        {
+            NSLog(@"tried to show instructions");
+            [defaults setBool:NO forKey:@"shouldShowInstructions"];
+            [defaults setInteger:1 forKey:@"HighScore"];
+            [defaults synchronize];
+            
+            [self performSelector:@selector(showInstructions) withObject:nil afterDelay:1.0];
+
+        }
         [self loadInbox];
+        
+        //temporary: 
+//        [self showInstructions];
     }
     else
     {
-        //Error when app starts and no user logged in, when user registers, the inbox is gone. Might user super VC to present this MasterView.
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setBool:YES forKey:@"shouldShowInstructions"];
+//        [defaults setInteger:9001 forKey:@"HighScore"];
+//        [defaults synchronize];
+//        
+//        NSInteger testOfInt = [defaults integerForKey:@"HighScore"];
+//        NSLog(@"%i", (int)testOfInt);
+        
+//        BOOL shouldShowInstrcutions = [defaults boolForKey:@"shouldShowInstructions"];
         [self.navigationController showDetailViewController:[MasterLoginRegisterView new] sender:self];
         [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
         [self clearMessageArrays];
     }
+}
+
+-(void)showInstructions
+{
+    InstructionsVC *instructionsVC = [InstructionsVC new];
+    [self.navigationController showDetailViewController:instructionsVC sender:self];
 }
 
 -(void)pushToCard
@@ -496,6 +533,8 @@
     [self.notification dismissWithGravityAnimation:NO];
 //    [self refreshMessages];
     [self performSelector:@selector(loadInbox) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(hideTopNotification) withObject:nil afterDelay:1.0];
+
 //    NSLog(@"About to Push to Card 0");
 //    if (!self.isCurrentlyLoadingMessages)
 //    {

@@ -20,6 +20,7 @@
 #import "UIColor+JSQMessages.h"
 #import "ParseVolliePackage.h"
 #import "ProgressHUD.h"
+#import "MainInboxVC.h"
 #import "TestVC.h"
 
 @interface NewVollieVC ()
@@ -202,8 +203,15 @@ SecondDelegate>
                                                 andRoom:self.whichRoom
                                                  andSet:set];
         }
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1]
-                                              animated:YES];
+//        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1]
+//                                              animated:YES];
+//        MomentsVC *cardVC = [self.navigationController.viewControllers objectAtIndex:1];
+//        cardVC.shouldShowTempCard = YES;
+//        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1]
+//                                                      animated:YES];
+         NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+         MainInboxVC *mainInbox = nav.viewControllers.firstObject;
+         [mainInbox newGoToCardViewWith:self.whichMessagesRoom and:self.whichRoom];
     }
     else
     {

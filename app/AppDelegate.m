@@ -202,7 +202,6 @@
 
 - (void)setCameraBack
 {
-#warning TOO SLOW?
     [self performSelector:@selector(setCameraBack2) withObject:self afterDelay:0.5f];
 }
 

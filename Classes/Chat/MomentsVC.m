@@ -116,11 +116,12 @@
 {
     self.notification = [[AFDropdownNotification alloc] init];
     self.notification.notificationDelegate = self;
-    self.notification.titleText = @"Sending Vollie!";
+    self.notification.titleText = @"Sending Test!";
     self.notification.subtitleText = @"We are uploading your Vollie now. Your new Vollie will appear at the bottom of the thread!";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
     if (self.shouldShowTempCard)
     {
+        NSLog(@"showing notificaiton");
         [self.notification presentInView:self.view withGravityAnimation:NO];
         self.shouldShowTempCard = NO;
     }
@@ -531,6 +532,7 @@
 
 -(void)reloadAfterMessageSuccessfullySent
 {
+    
     [self loadMessages];
     [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:.8f];
 //    NSLog(@"i loaded stuff");
@@ -550,6 +552,7 @@
     }
     NewVollieVC *vc = [segue destinationViewController];
     vc.whichRoom = self.room;
+    vc.whichMessagesRoom = self.messageItComesFrom;
     ParseVolliePackage *package = [ParseVolliePackage new];
     package.refreshDelegate = self;
     vc.package = package;
