@@ -636,7 +636,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     }
     else
     {
-    return CGSizeMake(80, 80);
+    return CGSizeMake(85, 85);
     }
 }
 
