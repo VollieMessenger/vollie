@@ -90,8 +90,8 @@
 		[application registerUserNotificationSettings:settings];
 		[application registerForRemoteNotifications];
 	}
-
-    [PFImageView class];
+#warning do we need this?: commenting out for now
+//    [PFImageView class];
 
 /*
 #warning REMOVE THIS WHEN SHIPPING, TESTING CRASH
@@ -99,9 +99,22 @@
             [NSException raise:NSGenericException format:@"Everything is ok. This is just a test crash."];
     });
 */
+    [self checkForFirstRun];
+    [self setUpScrollViewAndVCs];
 
+    // Parse push notification
+    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+    [self checkForPushNotificationWith:notificationPayload];
+    
+    
+	return YES;
+}
+
+-(void)checkForFirstRun
+{
+    
     NSUserDefaults *userDefualts = [NSUserDefaults standardUserDefaults];
-
+    
     if (![userDefualts boolForKey:@"firstRun"])
     {
         [userDefualts setBool:1 forKey:@"firstRun"];
@@ -113,14 +126,18 @@
         [userDefualts setBool:NO forKey:PF_KEY_SHOULDVIBRATE];
         [userDefualts synchronize];
     }
+}
 
-	self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+-(void)setUpScrollViewAndVCs
+{
+    //sets up the actual view controller that contains the scrollview
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor volleyFamousGreen];
-
     vc = [[UIViewController alloc] init];
     vc.view.frame = self.window.bounds;
+    
+    //sets up scrollView
     scrollView = [[MasterScrollView alloc] init];
-
     scrollView.frame = self.window.bounds;
     [vc.view addSubview:scrollView];
     scrollView.bounces = NO;
@@ -128,50 +145,44 @@
     scrollView.scrollEnabled = YES;
     scrollView.directionalLockEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = NO;
-
-    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
-    camera.scrollView = scrollView;
-
-    MessagesView *messages = [[MessagesView alloc] initWithArchive:NO];
-    messages.scrollView = scrollView;
-
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    MainInboxVC *mainInbox = (MainInboxVC *)[storyboard instantiateViewControllerWithIdentifier:@"MainInboxVC"];
-    mainInbox.scrollView = scrollView;
-    WeekHighlightsVC *weekHighlights = (WeekHighlightsVC *)[storyboard instantiateViewControllerWithIdentifier:@"WeekHighlightsVC"];
-    weekHighlights.scrollView = scrollView;
-
     scrollView.contentSize = CGSizeMake(3 * vc.view.frame.size.width, vc.view.frame.size.height);
-    //in case we want to remove third view:
-//    scrollView.contentSize = CGSizeMake(2 * vc.view.frame.size.width, vc.view.frame.size.height);
-
+    //centers scrollView to middle:
     [scrollView setContentOffset:CGPointMake(vc.view.frame.size.width, 0) animated:0];
-
-    self.navInbox = [[NavigationController alloc] initWithRootViewController:mainInbox];
-    self.navFavorites = [[NavigationController alloc] initWithRootViewController:weekHighlights];
+    
+    //sets up reference to storyboard
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    
+    //set up camera on left of scrollview
+    CustomCameraView *camera = [[CustomCameraView alloc] initWithPopUp:NO];
     self.navCamera = [[NavigationController alloc] initWithRootViewController:camera];
-    self.navFavorites.navigationBar.barTintColor = [UIColor volleyFamousOrange];
-
+    camera.scrollView = scrollView;
     _navCamera.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
-
-    _navInbox.view.frame = CGRectMake(vc.view.frame.size.width, 0, vc.view.frame.size.width, vc.view.frame.size.height);
-
-    _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
-
     [_navCamera didMoveToParentViewController:vc];
-    [_navFavorites didMoveToParentViewController:vc];
-    [_navInbox didMoveToParentViewController:vc];
-
     [scrollView addSubview:_navCamera.view];
+    
+    //set up main inbox for middle of scrollview
+    MainInboxVC *mainInbox = (MainInboxVC *)[storyboard instantiateViewControllerWithIdentifier:@"MainInboxVC"];
+    self.navInbox = [[NavigationController alloc] initWithRootViewController:mainInbox];
+    mainInbox.scrollView = scrollView;
+    _navInbox.view.frame = CGRectMake(vc.view.frame.size.width, 0, vc.view.frame.size.width, vc.view.frame.size.height);
+    [_navInbox didMoveToParentViewController:vc];
     [scrollView addSubview:_navInbox.view];
+    
+    //set up highlights page for right on scrollview
+    WeekHighlightsVC *weekHighlights = (WeekHighlightsVC *)[storyboard instantiateViewControllerWithIdentifier:@"WeekHighlightsVC"];
+    self.navFavorites = [[NavigationController alloc] initWithRootViewController:weekHighlights];
+    self.navFavorites.navigationBar.barTintColor = [UIColor volleyFamousOrange];
+    weekHighlights.scrollView = scrollView;
+    _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
+    [_navFavorites didMoveToParentViewController:vc];
     [scrollView addSubview:_navFavorites.view];
-
+    
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
+}
 
-    // Parese push notification
-    NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-
+-(void)checkForPushNotificationWith:(NSDictionary*)notificationPayload
+{
     if (notificationPayload)
     {
         // Create a pointer to the Photo object
@@ -186,20 +197,17 @@
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
                 MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
                 cardViewController.room = room;
-//                cardViewController
-//#warning SEND TO MESSAGES VIEW (NOT ARCHIVE);
+                //                cardViewController
+                //#warning SEND TO MESSAGES VIEW (NOT ARCHIVE);
                 [scrollView openView:cardViewController];
             }
         }];
     }
-	return YES;
 }
 
--(void)stupidTestMethod
-{
-    NSLog(@"test method called");
-}
 
+
+// these 2 methods move the camera back into the scrollview after it has been presented over NewVollieVC
 - (void)setCameraBack
 {
     [self performSelector:@selector(setCameraBack2) withObject:self afterDelay:0.5f];
@@ -210,12 +218,6 @@
     _navCamera.view.frame = CGRectMake(0, 0, vc.view.frame.size.width, vc.view.frame.size.height);
     scrollView.contentSize = CGSizeMake(2 * vc.view.frame.size.width, vc.view.frame.size.height);
     [scrollView addSubview:_navCamera.view];
-}
-
-
--(void)moveCameraToScrollview
-{
-
 }
 
 - (void)didSendMail:(NSNotification *)notification

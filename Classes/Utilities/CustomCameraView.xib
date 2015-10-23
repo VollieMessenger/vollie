@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -41,9 +41,12 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lfp-60-0qM" userLabel="View - video preview"/>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lfp-60-0qM" userLabel="View - video preview">
+                    <animations/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFi-2c-ftl" userLabel="SWITCH CAMERA">
                     <rect key="frame" x="120" y="-8" width="83" height="73"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="73" id="xkK-lk-lto"/>
                         <constraint firstAttribute="width" constant="83" id="yZE-VI-dxZ"/>
@@ -58,6 +61,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5s0-S6-0LZ" userLabel="CANCEL">
                     <rect key="frame" x="272" y="-16" width="44" height="88"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="88" id="P4f-jS-h54"/>
                         <constraint firstAttribute="width" constant="44" id="aIg-nI-Ghv"/>
@@ -72,6 +76,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLE-J4-IgC" userLabel="SLIDE LEFT">
                     <rect key="frame" x="8" y="70" width="44" height="44"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="WnG-eH-jTb"/>
                         <constraint firstAttribute="height" constant="44" id="oR5-R1-sr2"/>
@@ -88,6 +93,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3y-6Y-SPJ" userLabel="1">
                     <rect key="frame" x="245" y="58" width="65" height="65"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.31764705879999999" green="0.70588235290000001" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="1nt-3Q-Euf"/>
@@ -103,6 +109,7 @@
                 </button>
                 <button opaque="NO" tag="1" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3QZ-7k-Lo6" userLabel="2">
                     <rect key="frame" x="245" y="131" width="65" height="65"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.31764705879999999" green="0.70588235290000001" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="OpP-mg-S5X"/>
@@ -117,6 +124,7 @@
                 </button>
                 <button opaque="NO" tag="2" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pp8-vP-55c" userLabel="3">
                     <rect key="frame" x="245" y="204" width="65" height="65"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.31764705879999999" green="0.70588235290000001" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="65" id="Com-iT-r1a"/>
@@ -131,6 +139,7 @@
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RhJ-Rx-JnZ" userLabel="4">
                     <rect key="frame" x="245" y="277" width="65" height="65"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.31764705879999999" green="0.70588235290000001" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="65" id="55O-Vr-b3I"/>
@@ -146,6 +155,7 @@
                 </button>
                 <button opaque="NO" tag="4" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwy-bJ-5d4" userLabel="5">
                     <rect key="frame" x="245" y="350" width="65" height="65"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.31764705879999999" green="0.70588235290000001" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="5i2-gu-gje"/>
@@ -160,6 +170,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tx-XP-Cbn" userLabel="X 1">
                     <rect key="frame" x="237" y="53" width="25" height="25"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.4431372549" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="25" id="A5a-np-ygJ"/>
@@ -181,6 +192,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bfh-7r-tl5" userLabel="X 2">
                     <rect key="frame" x="239" y="126" width="25" height="25"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.4431372549" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="O2c-yi-bPE"/>
@@ -202,6 +214,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lrM-dB-Ct1" userLabel="X 3">
                     <rect key="frame" x="239" y="198" width="25" height="25"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.4431372549" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="45w-YS-RRa"/>
@@ -222,6 +235,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gje-Py-S0m" userLabel="X 4">
                     <rect key="frame" x="239" y="270" width="25" height="25"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.4431372549" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="WjR-WW-y34"/>
@@ -243,6 +257,7 @@
                 </button>
                 <button hidden="YES" opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b3Q-dO-weE" userLabel="X 5">
                     <rect key="frame" x="239" y="341" width="25" height="25"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.4431372549" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="6fh-Iz-Ajr"/>
@@ -264,6 +279,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oqZ-YL-qcI" userLabel="Button - Cameraroll">
                     <rect key="frame" x="31" y="499" width="60" height="60"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.96470588235294119" green="0.5490196078431373" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Ias-gA-yai"/>
@@ -281,6 +297,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2k-ZW-xiT" userLabel="camera button">
                     <rect key="frame" x="115" y="469" width="90" height="90"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="8UW-Gx-FTK"/>
                         <constraint firstAttribute="height" constant="90" id="XTD-aq-Ghe"/>
@@ -297,6 +314,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4q3-tp-91X" userLabel="FLASH ">
                     <rect key="frame" x="-11" y="0.0" width="64" height="57"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="64" id="9dH-LZ-X4U"/>
                         <constraint firstAttribute="height" constant="57" id="VeE-Ej-KLt"/>
@@ -311,6 +329,7 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8E-L7-dft" userLabel="SLIDE RIGHT">
                     <rect key="frame" x="272" y="-6" width="38" height="69"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="38" id="2Jd-7O-Tjp"/>
                         <constraint firstAttribute="height" constant="69" id="tag-Lg-O5C"/>
@@ -325,6 +344,7 @@
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JUF-M5-nWo" userLabel="COUNTER">
                     <rect key="frame" x="272" y="492" width="25" height="25"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.96470588239999999" green="0.54901960780000003" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="GE4-TU-xqV"/>
@@ -347,6 +367,7 @@
                 </button>
                 <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fYT-16-Nad" userLabel="Done Button">
                     <rect key="frame" x="237" y="501" width="55" height="55"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="55" id="aRD-fX-hs8"/>
                         <constraint firstAttribute="height" constant="55" id="hPL-OT-Ajl"/>
@@ -367,6 +388,7 @@
                     </connections>
                 </button>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="qFi-2c-ftl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-8" id="1Ct-Gz-aI4"/>

@@ -1365,8 +1365,6 @@
     return finalPhone;
 }
 
--(void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didPressLeftBarButton:(UIButton *)sender {}
-
 -(void)resize{
     int position = [UIScreen mainScreen].bounds.size.height - self.view.frame.size.height;
     if (self.canSend && self.isSearching){
@@ -1376,9 +1374,11 @@
               initialSpringVelocity:0.0f
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
+//                             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
                              [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396-position, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
                          }
                          completion:nil];
+        [self.view reloadInputViews];
     } else if (self.canSend){
         [UIView animateWithDuration:0.74
                               delay:0
@@ -1387,7 +1387,8 @@
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
+//            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
+                             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
             [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
         }
                          completion:nil];

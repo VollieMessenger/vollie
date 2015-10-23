@@ -150,7 +150,7 @@
                  // LOAD MESSAGES FROM INBOX INSTEAD.
                  
                  MainInboxVC *mainInbox = nav.viewControllers.firstObject;
-                 [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom];
+                 [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom andNotification:YES];
 
 //                 self.scrollView
 
@@ -172,7 +172,7 @@
                  // LOAD MESSAGES FROM INBOX INSTEAD.
                  
                  MainInboxVC *mainInbox = nav.viewControllers.firstObject;
-                 [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom];
+                 [mainInbox newGoToCardViewWith:self.messagesRoom and:self.selectedRoom andNotification:YES];
              }
          }
          else
@@ -270,7 +270,7 @@
 
 - (IBAction)createRoom:(id)sender {
     CreateChatroomView * view = [[CreateChatroomView alloc]init];
-    view.title = @"ahhhhh";
+//    view.title = @"";
     view.isTherePicturesToSend = self.savedPhotoObjects.count;
     view.photos = self.photosToSend;
     view.invite = NO;

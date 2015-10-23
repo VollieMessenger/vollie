@@ -407,6 +407,8 @@
     {
         self.scrollView.scrollEnabled = NO;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        self.cancelButton.hidden = YES;
+        self.rightButton.hidden = NO;
     }
 
     [self stopCaptureSession];

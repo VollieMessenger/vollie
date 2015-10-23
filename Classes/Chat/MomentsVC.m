@@ -116,7 +116,7 @@
 {
     self.notification = [[AFDropdownNotification alloc] init];
     self.notification.notificationDelegate = self;
-    self.notification.titleText = @"Sending Test!";
+    self.notification.titleText = @"Sending Vollie!";
     self.notification.subtitleText = @"We are uploading your Vollie now. Your new Vollie will appear at the bottom of the thread!";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
     if (self.shouldShowTempCard)
@@ -394,9 +394,7 @@
 
 -(void)scrollToBottomAndReload
 {
-
-
-
+//    NSLog(@"scrolled tos the bottom of the cards");
     [self.tableView reloadData];
     NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
@@ -447,11 +445,12 @@
 
 -(void)getMessagesWithPFQuery:(PFQuery *)query
 {
-    NSLog(@"Fetching messages and organizing into cards");
+    NSLog(@"Fetching messages");
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if(!error)
          {
+             NSLog(@"Organizing messages");
              [self clearPushNotesCounter];
              for (PFObject *object in [objects reverseObjectEnumerator])
              {
@@ -520,6 +519,7 @@
         }
         else
         {
+            NSLog(@"Creating Vollie Card");
             VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object];
             card.actualSet = set;
             [self.vollieCardDataArray addObject:card];
@@ -532,15 +532,15 @@
 
 -(void)reloadAfterMessageSuccessfullySent
 {
-    
     [self loadMessages];
-    [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:.8f];
-//    NSLog(@"i loaded stuff");
+    [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:1];
+    NSLog(@"i loaded messages and dismissed top notification");
 }
 
 -(void)dismissTopNotification
 {
     [self.notification dismissWithGravityAnimation:YES];
+    [self loadMessages];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -558,7 +558,8 @@
     vc.package = package;
 }
 
--(void)titleChange:(NSString *)title{
+-(void)titleChange:(NSString *)title
+{
     self.title = title;
     [self.view setNeedsDisplay];
 }

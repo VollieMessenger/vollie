@@ -233,7 +233,7 @@
         [cell fillPicsWithTop5PicsFromHighlight:highlight];
         if (highlight.howManyWeeksAgo != 0)
         {
-            if (indexPath.row != 1)
+            if (highlight.howManyWeeksAgo != 1)
             {
                 cell.weekLabel.text = [NSString stringWithFormat:@"%i Weeks Ago", highlight.howManyWeeksAgo];
             }

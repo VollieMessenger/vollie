@@ -19,7 +19,7 @@
 @property BOOL shouldShowTempCard;
 
 -(void)goToMostRecentChatRoom;
--(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room;
+-(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room andNotification:(BOOL)notificationShow;
 -(void)loadInbox;
 -(void)setUpTopNotification;
 -(void)hideTopNotification;

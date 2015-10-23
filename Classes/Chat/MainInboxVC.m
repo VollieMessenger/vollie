@@ -553,13 +553,16 @@
 //    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
 //}
 
--(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room
+-(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room andNotification:(BOOL)notificationShow
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     self.cardViewVC = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
     self.cardViewVC.room = room;
     self.cardViewVC.messageItComesFrom = userChatRoom;
-    self.cardViewVC.shouldShowTempCard = YES;
+    if (notificationShow)
+    {
+        self.cardViewVC.shouldShowTempCard = YES;
+    }
     if ([userChatRoom objectForKey:@"nickname"])
     {
         self.cardViewVC.name = [userChatRoom objectForKey:@"nickname"];

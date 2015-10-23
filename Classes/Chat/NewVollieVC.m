@@ -203,15 +203,11 @@ SecondDelegate>
                                                 andRoom:self.whichRoom
                                                  andSet:set];
         }
-//        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1]
-//                                              animated:YES];
-//        MomentsVC *cardVC = [self.navigationController.viewControllers objectAtIndex:1];
-//        cardVC.shouldShowTempCard = YES;
-//        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1]
-//                                                      animated:YES];
+
+         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
          NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
          MainInboxVC *mainInbox = nav.viewControllers.firstObject;
-         [mainInbox newGoToCardViewWith:self.whichMessagesRoom and:self.whichRoom];
+         [mainInbox newGoToCardViewWith:self.whichMessagesRoom and:self.whichRoom andNotification:NO];
     }
     else
     {
@@ -245,7 +241,8 @@ SecondDelegate>
 //    NSLog(@"%fl is size of scroll when New Vollie disappears", cam.scrollView.contentSize.width);
     if (!self.showingCamera && !cam.sentToNewVollie)[cam blankOutButtons];
     
-    if (self.isMovingFromParentViewController) {
+    if (self.isMovingFromParentViewController)
+    {
         cam.messageText = self.textView.text;
     }
 }
