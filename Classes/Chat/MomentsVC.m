@@ -178,15 +178,15 @@
     NSString *title;
 
     [chatt setTitle:title];
-
-    CATransition* transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromRight;
-    transition.timingFunction = UIViewAnimationCurveEaseInOut;
-    transition.fillMode = kCAFillModeForwards;
-    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-    
+//
+//    CATransition* transition = [CATransition animation];
+//    transition.duration = 0.3;
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromRight;
+//    transition.timingFunction = UIViewAnimationCurveEaseInOut;
+//    transition.fillMode = kCAFillModeForwards;
+//    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
+//    
     
     if (card.photosArray.count)
     {
@@ -533,6 +533,7 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     [self loadMessages];
+    
     [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:1];
     NSLog(@"i loaded messages and dismissed top notification");
 }

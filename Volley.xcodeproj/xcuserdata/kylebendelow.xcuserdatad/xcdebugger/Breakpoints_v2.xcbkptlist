@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Chat/CustomChatView.m"
-            timestampString = "465510803.849874"
+            timestampString = "467327642.675789"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
             landmarkName = "-initWithSetId:andColor:"
             landmarkType = "5">
          </BreakpointContent>

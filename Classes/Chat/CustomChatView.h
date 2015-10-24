@@ -19,7 +19,6 @@
 
 - (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom;
 
-
 @property PFObject *room;
 @property PFObject *userChatRoom;
 @property BOOL isFavoritesSets;
