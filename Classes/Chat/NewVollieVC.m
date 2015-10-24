@@ -204,10 +204,15 @@ SecondDelegate>
                                                  andSet:set];
         }
 
-         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
-         NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
-         MainInboxVC *mainInbox = nav.viewControllers.firstObject;
-         [mainInbox newGoToCardViewWith:self.whichMessagesRoom and:self.whichRoom andNotification:NO];
+         [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:NO];
+        MomentsVC *cardVC = [self.navigationController.viewControllers objectAtIndex:1];
+        cardVC.shouldShowTempCard = YES;
+        
+        
+        
+//         NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+//         MainInboxVC *mainInbox = nav.viewControllers.firstObject;
+//         [mainInbox newGoToCardViewWith:self.whichMessagesRoom and:self.whichRoom andNotification:NO];
     }
     else
     {
