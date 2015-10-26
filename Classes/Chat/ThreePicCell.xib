@@ -59,7 +59,7 @@
                                     <constraint firstAttribute="height" constant="300" id="uf1-qB-A4e"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="03p-0x-tbQ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03p-0x-tbQ">
                                 <rect key="frame" x="0.0" y="0.0" width="227" height="357"/>
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,11 +68,12 @@
                         <animations/>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="03p-0x-tbQ" secondAttribute="bottom" id="0GT-JF-4Wi"/>
+                            <constraint firstItem="03p-0x-tbQ" firstAttribute="top" secondItem="Z8f-6x-Eh8" secondAttribute="top" id="6Zh-Jv-bPV"/>
                             <constraint firstItem="RIn-Io-hHR" firstAttribute="centerY" secondItem="Z8f-6x-Eh8" secondAttribute="centerY" id="CX1-W0-NDh"/>
-                            <constraint firstItem="03p-0x-tbQ" firstAttribute="leading" secondItem="Z8f-6x-Eh8" secondAttribute="leading" id="VzO-QA-mtL"/>
+                            <constraint firstItem="RIn-Io-hHR" firstAttribute="leading" secondItem="03p-0x-tbQ" secondAttribute="trailing" id="PfM-Ci-s51"/>
                             <constraint firstAttribute="trailing" secondItem="RIn-Io-hHR" secondAttribute="trailing" constant="8" id="pOJ-hh-Gtg"/>
-                            <constraint firstItem="03p-0x-tbQ" firstAttribute="top" secondItem="Z8f-6x-Eh8" secondAttribute="top" id="vek-Hh-26E"/>
-                            <constraint firstAttribute="bottom" secondItem="03p-0x-tbQ" secondAttribute="bottom" id="wbe-b9-9kZ"/>
+                            <constraint firstItem="03p-0x-tbQ" firstAttribute="leading" secondItem="Z8f-6x-Eh8" secondAttribute="leading" id="zsI-j1-PmZ"/>
                         </constraints>
                     </view>
                 </subviews>
