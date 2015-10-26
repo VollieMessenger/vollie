@@ -18,59 +18,52 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0b-yg-zeQ" userLabel="cardView">
                         <rect key="frame" x="0.0" y="8" width="320" height="300"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bi0-hV-vC7" userLabel="viewForChatVC">
-                                <rect key="frame" x="0.0" y="0.0" width="227" height="300"/>
-                                <animations/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OZu-wm-EJN" userLabel="imageHolderView">
-                                <rect key="frame" x="227" y="60" width="85" height="180"/>
+                                <rect key="frame" x="222" y="55" width="90" height="190"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mNA-KR-Ybv" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="95" width="85" height="85"/>
+                                        <rect key="frame" x="0.0" y="100" width="90" height="90"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="85" id="HhO-nh-N2B"/>
-                                            <constraint firstAttribute="height" constant="85" id="m5R-Zv-Q1a"/>
+                                            <constraint firstAttribute="height" constant="90" id="5Yj-uO-h1w"/>
+                                            <constraint firstAttribute="width" constant="90" id="FuR-jH-ZX7"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K7I-l6-Qgw" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                         <animations/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="85" id="HdS-og-SCT"/>
-                                            <constraint firstAttribute="width" constant="85" id="Tk5-HM-B3l"/>
+                                            <constraint firstAttribute="height" constant="90" id="4MM-kp-6yf"/>
+                                            <constraint firstAttribute="width" constant="90" id="k6c-P9-O36"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="K7I-l6-Qgw" firstAttribute="centerX" secondItem="OZu-wm-EJN" secondAttribute="centerX" id="9l3-Fe-Geh"/>
-                                    <constraint firstItem="mNA-KR-Ybv" firstAttribute="centerX" secondItem="OZu-wm-EJN" secondAttribute="centerX" id="AuR-Qn-z91"/>
-                                    <constraint firstItem="K7I-l6-Qgw" firstAttribute="top" secondItem="OZu-wm-EJN" secondAttribute="top" id="EOa-Ds-l9p"/>
-                                    <constraint firstItem="mNA-KR-Ybv" firstAttribute="top" secondItem="K7I-l6-Qgw" secondAttribute="bottom" constant="10" id="TCN-1U-3Lf"/>
-                                    <constraint firstAttribute="width" constant="85" id="XA8-jA-YPO"/>
-                                    <constraint firstItem="mNA-KR-Ybv" firstAttribute="top" secondItem="K7I-l6-Qgw" secondAttribute="bottom" constant="10" id="a3N-cf-hyj"/>
-                                    <constraint firstAttribute="height" constant="180" id="faP-VN-omp"/>
-                                    <constraint firstAttribute="bottom" secondItem="mNA-KR-Ybv" secondAttribute="bottom" id="ueM-Xh-df8"/>
+                                    <constraint firstAttribute="trailing" secondItem="mNA-KR-Ybv" secondAttribute="trailing" id="0A7-a3-kJT"/>
+                                    <constraint firstAttribute="trailing" secondItem="K7I-l6-Qgw" secondAttribute="trailing" id="9Z1-cX-eg7"/>
+                                    <constraint firstAttribute="height" constant="190" id="HHX-i8-xcg"/>
+                                    <constraint firstAttribute="width" constant="90" id="P5b-Nj-shW"/>
+                                    <constraint firstAttribute="bottom" secondItem="mNA-KR-Ybv" secondAttribute="bottom" id="atZ-tD-U9D"/>
+                                    <constraint firstItem="K7I-l6-Qgw" firstAttribute="top" secondItem="OZu-wm-EJN" secondAttribute="top" id="kPt-BG-tLO"/>
                                 </constraints>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bi0-hV-vC7" userLabel="viewForChatVC">
+                                <rect key="frame" x="0.0" y="0.0" width="222" height="300"/>
+                                <animations/>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OZu-wm-EJN" secondAttribute="trailing" constant="8" id="CvN-ZI-1fi"/>
                             <constraint firstItem="Bi0-hV-vC7" firstAttribute="top" secondItem="E0b-yg-zeQ" secondAttribute="top" id="Esc-Ap-UMa"/>
-                            <constraint firstItem="OZu-wm-EJN" firstAttribute="centerY" secondItem="E0b-yg-zeQ" secondAttribute="centerY" id="GV7-lc-j4h"/>
                             <constraint firstItem="Bi0-hV-vC7" firstAttribute="leading" secondItem="E0b-yg-zeQ" secondAttribute="leading" id="aCr-gd-zew"/>
                             <constraint firstAttribute="bottom" secondItem="Bi0-hV-vC7" secondAttribute="bottom" id="iW6-eq-m9v"/>
+                            <constraint firstAttribute="trailing" secondItem="OZu-wm-EJN" secondAttribute="trailing" constant="8" id="mSE-TP-mAv"/>
+                            <constraint firstItem="OZu-wm-EJN" firstAttribute="centerY" secondItem="E0b-yg-zeQ" secondAttribute="centerY" id="syu-v3-R9q"/>
                             <constraint firstItem="OZu-wm-EJN" firstAttribute="leading" secondItem="Bi0-hV-vC7" secondAttribute="trailing" id="tKX-GY-QUf"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="tKX-GY-QUf"/>
-                            </mask>
-                        </variation>
                     </view>
                 </subviews>
                 <animations/>

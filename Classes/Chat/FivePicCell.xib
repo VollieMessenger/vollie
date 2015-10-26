@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -19,81 +19,51 @@
                         <rect key="frame" x="0.0" y="8" width="320" height="604"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hwt-lb-TVu">
-                                <rect key="frame" x="0.0" y="0.0" width="226" height="604"/>
+                                <rect key="frame" x="0.0" y="0.0" width="222" height="604"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kny-G8-SvY">
-                                <rect key="frame" x="227" y="42" width="85" height="520"/>
+                                <rect key="frame" x="222" y="42" width="90" height="520"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6YV-m1-kSu" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="123" width="85" height="85"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6YV-m1-kSu" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="115" width="90" height="90"/>
                                         <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="85" id="SrY-H9-7aA"/>
-                                            <constraint firstAttribute="width" constant="85" id="yzW-ql-Lma"/>
-                                        </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ceu-XZ-uwz" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="313" width="85" height="85"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ceu-XZ-uwz" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="315" width="90" height="90"/>
                                         <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="85" id="ecA-Qh-Krs"/>
-                                            <constraint firstAttribute="width" constant="85" id="uSP-b6-1xm"/>
-                                        </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="h89-rT-a0c" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="28" width="85" height="85"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h89-rT-a0c" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="15" width="90" height="90"/>
                                         <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="85" id="Cv8-FX-Kzu"/>
-                                            <constraint firstAttribute="width" constant="85" id="F4m-4T-C5J"/>
-                                        </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HgE-T7-QsE" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="408" width="85" height="85"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HgE-T7-QsE" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="415" width="90" height="90"/>
                                         <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="85" id="2N9-cp-GSI"/>
-                                            <constraint firstAttribute="height" constant="85" id="fSF-xn-PUP"/>
-                                        </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3MP-V8-KtZ" customClass="PFImageView">
-                                        <rect key="frame" x="0.0" y="218" width="85" height="85"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3MP-V8-KtZ" customClass="PFImageView">
+                                        <rect key="frame" x="0.0" y="215" width="90" height="90"/>
                                         <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="85" id="V97-1Y-eg4"/>
-                                            <constraint firstAttribute="width" constant="85" id="iBv-PG-Yi2"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="HgE-T7-QsE" firstAttribute="top" secondItem="Ceu-XZ-uwz" secondAttribute="bottom" constant="10" id="1ri-9V-cfJ"/>
-                                    <constraint firstItem="h89-rT-a0c" firstAttribute="centerX" secondItem="Kny-G8-SvY" secondAttribute="centerX" id="82z-Gd-0cx"/>
-                                    <constraint firstItem="3MP-V8-KtZ" firstAttribute="top" secondItem="6YV-m1-kSu" secondAttribute="bottom" constant="10" id="EZO-vY-QUe"/>
-                                    <constraint firstItem="3MP-V8-KtZ" firstAttribute="centerY" secondItem="Kny-G8-SvY" secondAttribute="centerY" id="FFs-BN-e1Y"/>
-                                    <constraint firstItem="Ceu-XZ-uwz" firstAttribute="top" secondItem="3MP-V8-KtZ" secondAttribute="bottom" constant="10" id="GSW-D3-SHA"/>
-                                    <constraint firstItem="6YV-m1-kSu" firstAttribute="centerX" secondItem="Kny-G8-SvY" secondAttribute="centerX" id="JiI-5k-jcd"/>
-                                    <constraint firstItem="3MP-V8-KtZ" firstAttribute="centerX" secondItem="Kny-G8-SvY" secondAttribute="centerX" id="RmJ-CF-BHS"/>
-                                    <constraint firstItem="6YV-m1-kSu" firstAttribute="top" secondItem="h89-rT-a0c" secondAttribute="bottom" constant="10" id="UZ6-3E-L9x"/>
-                                    <constraint firstItem="HgE-T7-QsE" firstAttribute="centerX" secondItem="Kny-G8-SvY" secondAttribute="centerX" id="ea9-OB-hSU"/>
-                                    <constraint firstAttribute="width" constant="85" id="mic-R1-BSv"/>
-                                    <constraint firstItem="Ceu-XZ-uwz" firstAttribute="centerX" secondItem="Kny-G8-SvY" secondAttribute="centerX" id="n05-kt-lWJ"/>
-                                    <constraint firstAttribute="height" constant="520" id="qW6-KN-lht"/>
+                                    <constraint firstAttribute="height" constant="520" id="DZs-eW-bcy"/>
+                                    <constraint firstAttribute="width" constant="90" id="Of5-oT-Obi"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Kny-G8-SvY" firstAttribute="leading" secondItem="Hwt-lb-TVu" secondAttribute="trailing" constant="1" id="8Sf-T9-7iY"/>
-                            <constraint firstAttribute="trailing" secondItem="Kny-G8-SvY" secondAttribute="trailing" constant="8" id="ENH-MG-phN"/>
-                            <constraint firstItem="Hwt-lb-TVu" firstAttribute="top" secondItem="FDD-YO-ryD" secondAttribute="top" id="KPM-hj-x0E"/>
-                            <constraint firstItem="Kny-G8-SvY" firstAttribute="centerY" secondItem="FDD-YO-ryD" secondAttribute="centerY" id="UAr-qh-y1L"/>
-                            <constraint firstItem="Hwt-lb-TVu" firstAttribute="leading" secondItem="FDD-YO-ryD" secondAttribute="leading" id="c9H-Nk-AAo"/>
-                            <constraint firstAttribute="bottom" secondItem="Hwt-lb-TVu" secondAttribute="bottom" id="daV-sD-2Gl"/>
+                            <constraint firstItem="Kny-G8-SvY" firstAttribute="centerY" secondItem="FDD-YO-ryD" secondAttribute="centerY" id="JEi-Bq-Vpz"/>
+                            <constraint firstAttribute="trailing" secondItem="Kny-G8-SvY" secondAttribute="trailing" constant="8" id="KDv-A7-eul"/>
+                            <constraint firstItem="Hwt-lb-TVu" firstAttribute="leading" secondItem="FDD-YO-ryD" secondAttribute="leading" id="QyN-dt-kpF"/>
+                            <constraint firstAttribute="bottom" secondItem="Hwt-lb-TVu" secondAttribute="bottom" id="X9I-xT-JMe"/>
+                            <constraint firstItem="Kny-G8-SvY" firstAttribute="leading" secondItem="Hwt-lb-TVu" secondAttribute="trailing" id="uMf-j6-wRU"/>
+                            <constraint firstItem="Hwt-lb-TVu" firstAttribute="top" secondItem="FDD-YO-ryD" secondAttribute="top" id="yfn-0E-iDQ"/>
                         </constraints>
                     </view>
                 </subviews>
