@@ -312,6 +312,7 @@
 
 - (void)setPopUp
 {
+    
     [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
     _isPoppingUp = YES;
@@ -800,7 +801,7 @@
         [self setButtonsWithImage:image withVideo:false AndURL:0];
 
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
