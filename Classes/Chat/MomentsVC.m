@@ -30,6 +30,7 @@
 #import "NewVollieVC.h"
 #import "ManageChatVC.h"
 #import "OnePicCell.h"
+#import "OnePicCellNew.h"
 #import "TwoPicCell.h"
 #import "ThreePicCell.h"
 #import "FourPicCell.h"
@@ -320,7 +321,13 @@
 
         if (card.photosArray.count == 1)
         {
-            OnePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCell"];
+//            OnePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCell"];
+//            [cell fillPicsWithVollieCardData:card];
+//            [cell formatCell];
+//            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+//            return cell;
+            [self.tableView registerNib:[UINib nibWithNibName:@"OnePicCellNew" bundle:0] forCellReuseIdentifier:@"OnePicCellNew"];
+            OnePicCellNew *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCellNew"];
             [cell fillPicsWithVollieCardData:card];
             [cell formatCell];
             [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];

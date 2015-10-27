@@ -115,6 +115,8 @@
 		324C61881BC2FB720007068E /* ExplainationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324C61861BC2FB720007068E /* ExplainationCell.xib */; };
 		324C618B1BC3678D0007068E /* InstructionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C618A1BC3678D0007068E /* InstructionsVC.m */; };
 		3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260CB771BBAF5A200EEAFF5 /* TestVC.m */; };
+		3263482D1BDEF947004D765C /* OnePicCellNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 3263482B1BDEF947004D765C /* OnePicCellNew.m */; };
+		3263482E1BDEF947004D765C /* OnePicCellNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3263482C1BDEF947004D765C /* OnePicCellNew.xib */; };
 		3272F9311B7A9BED0013FD9C /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
 		32771FBC1B73FB65007726E9 /* WeekHighlightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */; };
 		32771FC01B7417AA007726E9 /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBF1B7417AA007726E9 /* WeekCell.m */; };
@@ -431,6 +433,9 @@
 		324C618A1BC3678D0007068E /* InstructionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsVC.m; sourceTree = "<group>"; };
 		3260CB761BBAF5A200EEAFF5 /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
 		3260CB771BBAF5A200EEAFF5 /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
+		3263482A1BDEF947004D765C /* OnePicCellNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePicCellNew.h; sourceTree = "<group>"; };
+		3263482B1BDEF947004D765C /* OnePicCellNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePicCellNew.m; sourceTree = "<group>"; };
+		3263482C1BDEF947004D765C /* OnePicCellNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnePicCellNew.xib; sourceTree = "<group>"; };
 		32771FBA1B73FB65007726E9 /* WeekHighlightsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekHighlightsVC.h; sourceTree = "<group>"; };
 		32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekHighlightsVC.m; sourceTree = "<group>"; };
 		32771FBE1B7417AA007726E9 /* WeekCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCell.h; sourceTree = "<group>"; };
@@ -1216,6 +1221,9 @@
 			children = (
 				276998BB1B501AF7009FA3E1 /* OnePicCell.h */,
 				276998BC1B501AF7009FA3E1 /* OnePicCell.m */,
+				3263482A1BDEF947004D765C /* OnePicCellNew.h */,
+				3263482B1BDEF947004D765C /* OnePicCellNew.m */,
+				3263482C1BDEF947004D765C /* OnePicCellNew.xib */,
 				27903E931B542ADE004F06F5 /* TwoPicCell.h */,
 				27903E941B542ADE004F06F5 /* TwoPicCell.m */,
 				27903E951B542ADE004F06F5 /* TwoPicCell.xib */,
@@ -1572,6 +1580,7 @@
 				272170821B543AF00050A9D0 /* ThreePicCell.xib in Resources */,
 				2930F93D19E96C73000F7799 /* blank_avatar@2x.png in Resources */,
 				296DD5E31A1F52F400AB9F8C /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
+				3263482E1BDEF947004D765C /* OnePicCellNew.xib in Resources */,
 				9CFEFAF41B1E1A3F005B1BF6 /* InviteCell.xib in Resources */,
 				296DD5D71A1F52F400AB9F8C /* JSQMessagesCollectionViewCellIncoming2.xib in Resources */,
 				274988791B31DDBD00560873 /* CardVC.xib in Resources */,
@@ -1681,6 +1690,7 @@
 				C2F314AB1A79895700675959 /* MasterLoginRegisterView.m in Sources */,
 				32B172D61B8D031B00127129 /* HighlightData.m in Sources */,
 				C27032731A38CFD3008CBF7F /* AppConstant.m in Sources */,
+				3263482D1BDEF947004D765C /* OnePicCellNew.m in Sources */,
 				9C3CCECC1BBC8BD400B31402 /* AFDropdownNotification.m in Sources */,
 				32AB987D1BACD40B003F3034 /* LoadingCell.m in Sources */,
 				296DD5BF1A1F52F400AB9F8C /* UIImage+JSQMessages.m in Sources */,

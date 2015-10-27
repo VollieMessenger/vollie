@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OnePicCellNew" rowHeight="241" id="KGk-i7-Jjw" customClass="OnePicCellNew">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="241"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="240.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWh-QD-e3C" userLabel="cardView">
+                        <rect key="frame" x="0.0" y="8" width="320" height="224.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mFY-2S-cmq" customClass="PFImageView">
+                                <rect key="frame" x="222" y="68" width="90" height="90"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="LXA-x2-7in"/>
+                                    <constraint firstAttribute="height" constant="90" id="z8f-dw-3N5"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-0R-tVb" userLabel="chatView">
+                                <rect key="frame" x="0.0" y="0.0" width="222" height="224.5"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="O1X-0R-tVb" firstAttribute="top" secondItem="bWh-QD-e3C" secondAttribute="top" id="H7t-BJ-Hy3"/>
+                            <constraint firstItem="mFY-2S-cmq" firstAttribute="centerY" secondItem="bWh-QD-e3C" secondAttribute="centerY" id="U5g-Us-9a3"/>
+                            <constraint firstAttribute="trailing" secondItem="mFY-2S-cmq" secondAttribute="trailing" constant="8" id="U7Y-Cz-2O2"/>
+                            <constraint firstItem="mFY-2S-cmq" firstAttribute="leading" secondItem="O1X-0R-tVb" secondAttribute="trailing" id="fan-7H-SKn"/>
+                            <constraint firstAttribute="bottom" secondItem="O1X-0R-tVb" secondAttribute="bottom" id="leM-KT-scX"/>
+                            <constraint firstItem="O1X-0R-tVb" firstAttribute="leading" secondItem="bWh-QD-e3C" secondAttribute="leading" id="r8f-Oy-mp7"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="bWh-QD-e3C" secondAttribute="trailing" constant="-8" id="5dc-RO-aVV"/>
+                    <constraint firstItem="bWh-QD-e3C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="9Y4-wU-xBV"/>
+                    <constraint firstItem="bWh-QD-e3C" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="M6e-ea-3e4"/>
+                    <constraint firstItem="bWh-QD-e3C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="zM1-05-HTD"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="cardView" destination="bWh-QD-e3C" id="iLO-hZ-ld5"/>
+                <outlet property="imageViewOne" destination="mFY-2S-cmq" id="xcI-OI-vmw"/>
+                <outlet property="viewForChatVC" destination="O1X-0R-tVb" id="eLi-Az-MNT"/>
+            </connections>
+            <point key="canvasLocation" x="210" y="303.5"/>
+        </tableViewCell>
+    </objects>
+</document>
