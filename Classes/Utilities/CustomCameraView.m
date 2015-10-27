@@ -403,6 +403,9 @@
 
 //  [self stopCaptureSession];
 
+    self.cancelButton.hidden = YES;
+    self.rightButton.hidden = NO;
+    
     if (_isPoppingUp)
     {
         self.scrollView.scrollEnabled = NO;
@@ -800,7 +803,7 @@
         [self setButtonsWithImage:image withVideo:false AndURL:0];
 
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
     }];
 }
