@@ -193,7 +193,14 @@
 //    cell.selectedImageView.backgroundColor = [UIColor colorWithWhite:0.702 alpha:1.000];
 //    cell.selectedImageView.layer.cornerRadius = 10;
 //    cell.selectedImageView.layer.masksToBounds = YES;
-    cell.selectedImageView.image = [UIImage imageNamed:@"checkmark-unselected-gray"];
+    if (room == self.messagesRoom)
+    {
+        cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
+    }
+    else
+    {
+        cell.selectedImageView.image = [UIImage imageNamed:@"checkmark-unselected-gray"];
+    }
 //    cell.selectedImageView.layer.borderColor = [UIColor volleyFamousOrange].CGColor;
 //    cell.selectedImageView.layer.borderWidth = 1;
 
