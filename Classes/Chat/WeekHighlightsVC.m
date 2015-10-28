@@ -46,9 +46,9 @@
     [super viewDidLoad];
     self.title = @"Flashbacks";
 //    self.rooms = [NSMutableArray new];
-    self.sets = [NSMutableArray new];
-    self.weeks = [NSMutableArray new];
-    self.hightlightsArray = [NSMutableArray new];
+//    self.sets = [NSMutableArray new];
+//    self.weeks = [NSMutableArray new];
+//    self.hightlightsArray = [NSMutableArray new];
     
     [self basicSetUpOFUI];
 }
@@ -112,6 +112,9 @@
     NavigationController *navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
     MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
     NSMutableArray *messagesArray = [NSMutableArray new];
+    self.sets = [NSMutableArray new];
+    self.weeks = [NSMutableArray new];
+    self.hightlightsArray = [NSMutableArray new];
     messagesArray = inbox.messages;
 //    for (PFObject *message in messagesArray)
 //    {
