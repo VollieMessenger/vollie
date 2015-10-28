@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CardVC">
@@ -20,6 +20,7 @@
             <subviews>
                 <collectionView multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tp0-pL-mD2">
                     <rect key="frame" x="218" y="0.0" width="100" height="524"/>
+                    <animations/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="ESn-qC-bOQ"/>
@@ -49,6 +50,7 @@
                 </collectionView>
                 <collectionView opaque="NO" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="zEK-TV-z20" customClass="JSQMessagesCollectionView">
                     <rect key="frame" x="0.0" y="66" width="219" height="502"/>
+                    <animations/>
                     <collectionViewLayout key="collectionViewLayout" id="OpL-cA-Izd" customClass="JSQMessagesCollectionViewFlowLayout"/>
                     <cells/>
                     <connections>
@@ -58,6 +60,7 @@
                 </collectionView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1readMesseageIcon" translatesAutoresizingMaskIntoConstraints="NO" id="hBq-Xk-wOJ">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="35" id="26e-rm-Ouq"/>
                         <constraint firstAttribute="height" constant="35" id="5yE-Ay-cJP"/>
@@ -76,6 +79,7 @@
                     </variation>
                 </imageView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="hBq-Xk-wOJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0TS-cK-Bsi"/>
