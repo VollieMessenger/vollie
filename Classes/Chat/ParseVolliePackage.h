@@ -24,6 +24,8 @@
 @property (nonatomic, assign) id<RefreshMessagesDelegate> refreshDelegate;
 
 @property int countDownForLastPhoto;
+@property int photoArrayCount;
+//@property PFObject *
 @property NSMutableArray *savedPhotoObjects;
 @property NSMutableArray *savedImageFiles;
 @property PFObject *lastPicFromPackage;

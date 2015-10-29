@@ -24,10 +24,11 @@
     self.savedImageFiles = [NSMutableArray new];
     self.savedPhotoObjects = [NSMutableArray new];
     self.countDownForLastPhoto = (int)photosArray.count;
+    self.photoArrayCount = (int)photosArray.count;
     
-#warning this works for now: but be careful:
-    NSMutableArray* reversedArray = [[photosArray reverseObjectEnumerator] allObjects];
-    photosArray = reversedArray;
+//#warning this works for now: but be careful:
+//    NSMutableArray* reversedArray = [[photosArray reverseObjectEnumerator] allObjects];
+//    photosArray = reversedArray;
     
 
     for (id imageOrFile in photosArray)
@@ -43,11 +44,12 @@
                                                          andSet:setID
                                                         andRoom:roomNumber];
             [picture setObject:imageFile forKey:PF_PICTURES_PICTURE];
-
+            
 //            NSLog(@"%@", picture);
 
             [self.savedPhotoObjects addObject:picture];
             [self.savedImageFiles addObject:imageFile];
+//            [setID setValue:picture forKey:@"lastPicture"];
             [self saveParseObjectInBackgroundWith:picture andText:text andRoom:roomNumber andSet:setID];
         }
         else if ([imageOrFile isKindOfClass:[NSDictionary class]])
@@ -143,9 +145,7 @@
                         NSLog(@"%@", error);
                     }
                 }];
-//                setID saveinb
-                
-                
+                                
                 NSLog(@"about to have room save in background");
                 [roomNumber setValue:object forKey:@"lastPicture"];
 //                [roomNumber addObject:@"test2" forKey:@"arrayOfUnreadSets"];

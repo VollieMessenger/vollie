@@ -121,6 +121,9 @@
         if (_image) {
             [_notificationView addSubview:_imageView];
             
+            self.imageView.layer.masksToBounds = YES;
+            self.imageView.layer.cornerRadius = 10;
+            
             if (self.isImageRounded) {
                 self.imageView.clipsToBounds = YES;
                 self.imageView.layer.cornerRadius = kDropdownImageSize/2;

@@ -526,7 +526,7 @@
         }
         else
         {
-            NSLog(@"Creating Vollie Card");
+//            NSLog(@"Creating Vollie Card");
             VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object];
             card.actualSet = set;
             [self.vollieCardDataArray addObject:card];
