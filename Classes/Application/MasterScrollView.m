@@ -15,6 +15,7 @@
 #import "utilities.h"
 #import "messages.h"
 #import "AppConstant.h"
+#import "MomentsVC.h"
 
 @implementation MasterScrollView
 {
@@ -110,12 +111,19 @@
     if ([nav.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
     {
         NSInteger target=nav.viewControllers.count - 2;
-        ChatView *chatView = nav.viewControllers[target];
-        if ([chatView.room_.objectId isEqualToString: roomId])
+        MomentsVC *chatView = nav.viewControllers[target];
+        if ([chatView.room.objectId isEqualToString:roomId])
         {
-            [chatView refresh];
+            
+            NSLog(@"i'm already in this room");
             return YES;
         }
+//        ChatView *chatView = nav.viewControllers[target];
+//        if ([chatView.room_.objectId isEqualToString: roomId])
+//        {
+//            [chatView refresh];
+//            return YES;
+//        }
     }
     return NO;
 }
