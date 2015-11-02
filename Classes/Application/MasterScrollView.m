@@ -85,7 +85,8 @@
 - (BOOL) checkIfCurrentChatIsEqualToRoom:(NSString *)roomId didComeFromBackground:(BOOL)isBack
 {
     NavigationController *nav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
-
+    NavigationController *flashbacks = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];\
+    
     if (nav.presentedViewController)
     {
         return NO;
@@ -125,6 +126,16 @@
 //            return YES;
 //        }
     }
+    
+    if ([flashbacks.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
+    {
+        CustomChatView *chatView = flashbacks.viewControllers.lastObject;
+        if ([chatView.room.objectId isEqualToString:roomId])
+        {
+            return YES;
+        }
+    }
+
     return NO;
 }
 

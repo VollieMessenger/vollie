@@ -216,8 +216,8 @@
     [self.navigationItem setBackBarButtonItem: backButton];
     
     [self.collectionView setFrame:CGRectMake(0, 66, [UIScreen mainScreen].bounds.size.width - 101   , [UIScreen mainScreen].bounds.size.height - 100)];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
+//
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
 
     bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
@@ -435,9 +435,18 @@
         }];
         
 
+        objectIds = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
+        for (PFObject *object in pictures)
+        {
+            [objectIds addObject:object.objectId];
+        }
 //        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
+//        for (PFObject *object in messages)
+//        {
+//            [objectIds addObject:object.objectId];
+//        }
 
         //Loading PFFile into memory or at least cache
         [self loadPicutresFilesInBackground];
@@ -507,6 +516,11 @@
 -(void)loadMessages
 {
     NSLog(@"loading messages in custom chat view");
+    
+    setComments = [NSMutableArray new];
+    setPicturesObjects = [NSMutableArray new];
+    objectIds = [NSMutableArray new];
+    
     self.shouldUpdateUnreadUsers = false;
     PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
     [query whereKey:PF_CHAT_SETID equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];
@@ -522,10 +536,12 @@
             NSLog(@"%li messages and pics", objects.count);
             for (PFObject *object in objects)
             {
+                NSLog(@"%@", object);
                 if (![objectIds containsObject:object.objectId])
                 {
                     [objectIds addObject:object.objectId];
 
+//                    setPicturesObjects = [NSMutableArray new];
                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
                     {
                         [setPicturesObjects addObject:object];
