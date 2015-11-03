@@ -370,6 +370,7 @@
                      
                      if (scrollView.contentOffset.x)
                      {
+                         //says if you aren't looking at camera
                          NSLog(@"IN APP NOTIFICATION");
                          
                          [JCNotificationCenter enqueueNotificationWithTitle:title
@@ -381,8 +382,19 @@
                                                                      
                                                                      [scrollView openView:cardViewController];
                                                                  }];
-                     } else {
-                         [scrollView openView:cardViewController];
+                     } else
+                     {
+                         //this is if the notification happens while you're looking at the camera
+//                         [scrollView openView:cardViewController];
+//                         [JCNotificationCenter enqueueNotificationWithTitle:title
+//                                                                    message:alertText
+//                                                                 tapHandler:^{
+//                                                                     
+//                                                                     //Dismiss Modal Views
+//                                                                     PostNotification(NOTIFICATION_CLICKED_PUSH);
+//                                                                     
+//                                                                     [scrollView openView:cardViewController];
+//                                                                 }];
                      }
                      completionHandler(UIBackgroundFetchResultNewData);
                  } else {
