@@ -445,7 +445,7 @@
     [query whereKey:PF_CHAT_ROOM equalTo:self.room];
     [query includeKey:PF_CHAT_USER];
     [query includeKey:PF_CHAT_SETID];
-    [query orderByDescending:PF_PICTURES_UPDATEDACTION];
+    [query orderByDescending:@"createdAt"];
 
     [self getMessagesWithPFQuery:query];
 }

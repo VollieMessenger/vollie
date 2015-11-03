@@ -160,7 +160,7 @@
                                                                 </mask>
                                                             </variation>
                                                             <variation key="widthClass=compact" misplaced="YES">
-                                                                <rect key="frame" x="231" y="9.5" width="85" height="85"/>
+                                                                <rect key="frame" x="231" y="9" width="85" height="85"/>
                                                                 <mask key="constraints">
                                                                     <include reference="Rgs-fX-ikE"/>
                                                                     <include reference="yj7-1h-MDa"/>
