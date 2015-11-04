@@ -68,7 +68,8 @@
 -(void)basicSetUpOFUI
 {
 //    self.tableView.backgroundColor = [UIColor clearColor];
-    
+    NSLog(@"Set up WeekHighlights/Flashbacks UI");
+//    NSLog(@"    ");
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"settings"
                                                                         style:UIBarButtonItemStyleBordered target:self action:@selector(goToSettingsVC)];
     settingsButton.image = [UIImage imageNamed:@"settings"];
@@ -97,10 +98,7 @@
 
 -(void)goBackToInboxVC
 {
-    //why isn't this working!!!
-    
     [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
-//    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
 
 
@@ -108,7 +106,7 @@
 
 -(void)loadRoomsFromMainInbox
 {
-    //maybe i should make this public and have it load after loadinbox finishes in maininbox
+    NSLog(@"Loading data from Inbox");
     NavigationController *navInbox = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
     MainInboxVC *inbox = (MainInboxVC*)navInbox.viewControllers.firstObject;
     NSMutableArray *messagesArray = [NSMutableArray new];
@@ -125,6 +123,8 @@
 //        [self loadSetsFrom:message];
 //    }
 //
+    
+    NSLog(@"Loading cards/sets from chatroom");
     for (int x = 0; x < messagesArray.count; x++)
     {
         PFObject *message = messagesArray[x];
@@ -147,6 +147,7 @@
 
 -(void)loadSetsFrom:(PFObject *)message
 {
+//    NSLog(@"Creating PFquery for chatroom");
     PFObject *room = [message objectForKey:@"room"];
     PFQuery *query = [PFQuery queryWithClassName:@"Sets"];
     [query whereKey:@"room" equalTo:room];
@@ -160,10 +161,12 @@
         if(!error)
         {
 //            [self performSelector:@selector(delayedReloadOfView) withObject:@1 afterDelay:2];
+            NSLog(@"Checking all cards in a chatroom to see if they have 1+ responses");
             for (PFObject *set in objects)
             {
                 if ([set objectForKey:@"numberOfResponses"] && [set objectForKey:@"lastPicture"])
                 {
+//                    NSLog(@"Found a card with some responses");
 //                    NSLog(@"%i responses", [[set objectForKey:@"numberOfResponses"]intValue]);
 //                    [self.sets addObject:set];
                     [self createHighlightWithSet:set andMessage:message];
@@ -207,6 +210,7 @@
     }
     else
     {
+        NSLog(@"Creating A Week Flashback/Highlight");
         [self.weeks addObject:[NSNumber numberWithInt:weeksInt]];
         HighlightData *data = [[HighlightData alloc] initWithPFObject:set andAmountOfWeeks:weeksInt andUserChatroom:message];
 //        data.userChatroom = message;

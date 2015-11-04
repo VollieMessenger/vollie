@@ -16,6 +16,7 @@
 #import "messages.h"
 #import "AppConstant.h"
 #import "MomentsVC.h"
+#import "FullWidthChat.h"
 
 @implementation MasterScrollView
 {
@@ -115,7 +116,7 @@
         MomentsVC *chatView = nav.viewControllers[target];
         if ([chatView.room.objectId isEqualToString:roomId])
         {
-            NSLog(@"i'm already in this room");
+            NSLog(@"User is currently looking at this chat");
             return YES;
         }
 //        ChatView *chatView = nav.viewControllers[target];
@@ -124,6 +125,23 @@
 //            [chatView refresh];
 //            return YES;
 //        }
+    }
+    
+    if ([nav.viewControllers.lastObject isKindOfClass:[FullWidthChat class]])
+    {
+        NSInteger target=nav.viewControllers.count - 2;
+        MomentsVC *chatView = nav.viewControllers[target];
+        if ([chatView.room.objectId isEqualToString:roomId])
+        {
+            NSLog(@"User is currently looking at this chat");
+            return YES;
+        }
+        //        ChatView *chatView = nav.viewControllers[target];
+        //        if ([chatView.room_.objectId isEqualToString: roomId])
+        //        {
+        //            [chatView refresh];
+        //            return YES;
+        //        }
     }
     
     if ([flashbacks.viewControllers.lastObject isKindOfClass:[CustomChatView class]])

@@ -99,6 +99,7 @@
 
 -(void)basicSetUpForUI
 {
+    NSLog(@"Set Up MomentsVC UI");
     self.title = self.name;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -115,6 +116,7 @@
 
 -(void)setUpTopNotification
 {
+    NSLog(@"Initialized Top Notification");
     self.notification = [[AFDropdownNotification alloc] init];
     self.notification.notificationDelegate = self;
     self.notification.titleText = @"Sending Vollie!";
@@ -130,6 +132,7 @@
 
 -(void)goToManageChatVC
 {
+    NSLog(@"Going to Chatroom Settings");
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     ManageChatVC *manageChatVC = (ManageChatVC *)[storyboard instantiateViewControllerWithIdentifier:@"ManageChatVC"];
     manageChatVC.delegate = self;
@@ -191,6 +194,7 @@
     
     if (card.photosArray.count)
     {
+        NSLog(@"Going to CustomChatView because there are pictures");
         CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
         //    chatt.senderId = [self.senderId copy];
         //    chatt.senderDisplayName = [self.senderDisplayName copy];
@@ -200,6 +204,7 @@
     }
     else
     {
+        NSLog(@"Going to a chatroom with no pictures");
         FullWidthChatView *chatt = [[FullWidthChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
         chatt.room = self.room;
         [self.navigationController pushViewController:chatt animated:1];
@@ -429,7 +434,7 @@
 
 -(void)reloadCardsAfterUpload
 {
-//    NSLog(@"i'm going to try to reload the cards");
+    NSLog(@"Sent message to reload cards");
     [self loadMessages];
     [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:0.8f];
 //    [self dismissTopNotification];
@@ -441,6 +446,7 @@
 //    JSQMessage *message_last = [self.messages lastObject];
 //    PFObject *picture_last = [self.pictureObjects lastObject];
 
+    NSLog(@"Created PFQuery for Cards");
     PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
     [query whereKey:PF_CHAT_ROOM equalTo:self.room];
     [query includeKey:PF_CHAT_USER];
@@ -474,13 +480,13 @@
 
 -(void)clearPushNotesCounter
 {
-    
-    NSLog(@"%@ is the message it comes from", self.messageItComesFrom);
+    NSLog(@"checking this room for push notification count: %@ ", self.messageItComesFrom);
     NSNumber *number = [self.messageItComesFrom valueForKey:PF_MESSAGES_COUNTER];
     if (number)
     {
         if ([number intValue] > 0)
         {
+            NSLog(@"Clearing Push Notification Count");
             ClearMessageCounter(self.messageItComesFrom);
         }
     }
@@ -490,6 +496,7 @@
 {
     if (![self.objectIdsArray containsObject:object.objectId])
     {
+        NSLog(@"Found an object that wasn't accounted for before");
         [self.objectIdsArray addObject:object.objectId];
         [self checkForVollieCardWith:object];
     }
@@ -528,7 +535,7 @@
         }
         else
         {
-//            NSLog(@"Creating Vollie Card");
+            NSLog(@"Creating Vollie Card");
             VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object];
             card.actualSet = set;
             [self.vollieCardDataArray addObject:card];
@@ -544,7 +551,7 @@
     [self loadMessages];
     
     [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:1];
-    NSLog(@"i loaded messages and dismissed top notification");
+    NSLog(@"Loading messages and dismissing top notification");
 }
 
 -(void)dismissTopNotification
@@ -570,6 +577,7 @@
 
 -(void)titleChange:(NSString *)title
 {
+    NSLog(@"Changed MomentsVC title bar to %@", title);
     self.title = title;
     [self.view setNeedsDisplay];
 }

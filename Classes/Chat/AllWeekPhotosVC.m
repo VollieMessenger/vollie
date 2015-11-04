@@ -48,6 +48,7 @@
 
 -(void)setUpUserInterface
 {
+    NSLog(@"Setting up UI for AllWeekPhotosVC");
     self.collectionView.backgroundColor = [UIColor clearColor];
 }
 
@@ -111,14 +112,10 @@
         [self loadPicturesWithSet:set andChatRoom:chatroom];
         if (i == setCount -1)
         {
-//            [ProgressHUD showSuccess:@"Success"];
-//            [self performSelector:@selector(delayedShowOfCells) withObject:@1 afterDelay:1.5];
+            NSLog(@"successfully loaded all photos");
         }
     }
-//    for (PFObject *set in self.highlight.sets)
-//    {
-//        [self loadPicturesWithSet:<#(PFObject *)#> andChatRoom:<#(PFObject *)#>:set];
-//    }
+
 }
 
 -(void)delayedShowOfCells

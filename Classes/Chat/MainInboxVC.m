@@ -105,6 +105,7 @@
 
 -(void)basicSetUpAfterLoad
 {
+    NSLog(@"Implemented Notification Center to check for refreshes and disabling scrollview");
     self.isCurrentlyLoadingMessages = false;
     [self setupRefreshControl];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMessages) name:NOTIFICATION_USER_LOGGED_OUT object:0];
@@ -115,6 +116,7 @@
 
 -(void)setUpUserInterface
 {
+    NSLog(@"setting up user interface in MainInboxVC");
     UIImageView *imageViewVolley = [[UIImageView alloc] init];
     imageViewVolley.image = [UIImage imageNamed:@"volley"];
     
@@ -210,6 +212,7 @@
         self.isCurrentlyLoadingMessages = YES;
         
         //should change this to RoomObject.h
+        NSLog(@"Creating PFQuery for chatrooms");
         PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
         [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
         //      [query includeKey:PF_MESSAGES_LASTUSER];
@@ -224,6 +227,7 @@
          {
              if (!error)
              {
+                 NSLog(@"Successfully found chatrooms and adding them to arrays");
                  [self clearMessageArrays];
                  for (PFObject *message in objects)
                  {
@@ -241,6 +245,7 @@
                  self.isCurrentlyLoadingMessages = NO;
                  if (self.firstTimeLoading)
                  {
+                     NSLog(@"Setting up Flashbacks View");
                      NavigationController *navFavorites = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
                      WeekHighlightsVC *vc = (WeekHighlightsVC*)navFavorites.viewControllers.firstObject;
                      [vc loadRoomsFromMainInbox];
@@ -304,6 +309,7 @@
 {
     if (indexPath.row < self.messages.count)
     {
+        NSLog(@"Added RoomCell to inbox");
         RoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
         PFObject *room = self.messages[indexPath.row];
         [cell formatCellWith:room];
@@ -311,6 +317,7 @@
     }
     else
     {
+        NSLog(@"Added Invite Contacts Cell");
         [self.tableView registerNib:[UINib nibWithNibName:@"InviteContactsCell" bundle:0] forCellReuseIdentifier:@"InviteContactsCell"];
         InviteContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InviteContactsCell"];
         return cell;
@@ -323,7 +330,7 @@
     if (indexPath.row < self.messages.count)
     {
         RoomCell *cell = (RoomCell*)[tableView cellForRowAtIndexPath:indexPath];
-        
+        cell.unreadStatusDot.image = [UIImage imageNamed:ASSETS_READ];
         PFObject *room = self.messages[indexPath.row];
         PFObject *customChatRoom = [room objectForKey:PF_MESSAGES_ROOM];
         
@@ -472,6 +479,7 @@
 - (void)refreshMessages
 {
     
+    NSLog(@"User is signed in");
     if ([[[PFUser currentUser] valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
     {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -484,7 +492,8 @@
 
         if (!theHighScore)
         {
-            NSLog(@"tried to show instructions");
+            NSLog(@"User has not seen instructions");
+            NSLog(@"Will show instructions in one second");
             [defaults setBool:NO forKey:@"shouldShowInstructions"];
             [defaults setInteger:1 forKey:@"HighScore"];
             [defaults synchronize];
@@ -516,6 +525,7 @@
 
 -(void)showInstructions
 {
+    NSLog(@"Showing Instructions");
     InstructionsVC *instructionsVC = [InstructionsVC new];
     [self.navigationController showDetailViewController:instructionsVC sender:self];
 }
@@ -529,8 +539,9 @@
 -(void)reloadAfterMessageSuccessfullySent
 {
     //needs to send user to new vollie page
-    NSLog(@"refreshed messages");
+    NSLog(@"refreshed messages after Vollie sent");
     [self.notification dismissWithGravityAnimation:NO];
+    NSLog(@"Dismissed Top Notification");
 //    [self refreshMessages];
     [self performSelector:@selector(loadInbox) withObject:nil afterDelay:1.0];
     [self performSelector:@selector(hideTopNotification) withObject:nil afterDelay:1.0];
@@ -598,11 +609,13 @@
 
 - (void)enableScrollview:(NSNotification *)notification
 {
+    NSLog(@"Enabled Scrollview");
     self.scrollView.scrollEnabled = YES;
 }
 
 - (void)disableScrollView:(NSNotification *)notification
 {
+    NSLog(@"Disabled Scrollview");
     self.scrollView.scrollEnabled = NO;
 }
 
