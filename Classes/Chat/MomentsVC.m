@@ -474,6 +474,8 @@
 
 -(void)clearPushNotesCounter
 {
+    
+    NSLog(@"%@ is the message it comes from", self.messageItComesFrom);
     NSNumber *number = [self.messageItComesFrom valueForKey:PF_MESSAGES_COUNTER];
     if (number)
     {

@@ -115,7 +115,6 @@
         MomentsVC *chatView = nav.viewControllers[target];
         if ([chatView.room.objectId isEqualToString:roomId])
         {
-            
             NSLog(@"i'm already in this room");
             return YES;
         }

@@ -346,6 +346,7 @@
                  
                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
                  MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+                 cardViewController.messageItComesFrom = messageRoom;
                  if ([messageRoom objectForKey:PF_ALBUMS_NICKNAME]) {
                      cardViewController.name = [messageRoom objectForKey:PF_ALBUMS_NICKNAME];
                  } else {
