@@ -330,7 +330,7 @@
     if (indexPath.row < self.messages.count)
     {
         RoomCell *cell = (RoomCell*)[tableView cellForRowAtIndexPath:indexPath];
-        cell.unreadStatusDot.image = [UIImage imageNamed:ASSETS_READ];
+//        cell.unreadStatusDot.image = [UIImage imageNamed:ASSETS_READ];
         PFObject *room = self.messages[indexPath.row];
         PFObject *customChatRoom = [room objectForKey:PF_MESSAGES_ROOM];
         
