@@ -1394,9 +1394,10 @@
     }
     else if (self.canSend)
     {
+        self.sendVollieView.hidden = NO;
         [UIView animateWithDuration:0.74
                               delay:0
-             usingSpringWithDamping:500.0f
+             usingSpringWithDamping:50.0f
               initialSpringVelocity:0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^
@@ -1420,8 +1421,9 @@
                          animations:^
         {
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-55)];
             [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
+            self.sendVollieView.hidden = YES;
 //            [self.tableView reloadData];
         }
         completion:nil];
