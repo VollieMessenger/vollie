@@ -1365,45 +1365,56 @@
     return finalPhone;
 }
 
--(void)resize{
+-(void)resize
+{
     int position = [UIScreen mainScreen].bounds.size.height - self.view.frame.size.height;
-    if (self.canSend && self.isSearching){
+    if (self.canSend && self.isSearching)
+    {
         [UIView animateWithDuration:0.52
                               delay:0
              usingSpringWithDamping:500.0f
               initialSpringVelocity:0.0f
                             options:UIViewAnimationOptionCurveLinear
-                         animations:^{
+                         animations:^
+        {
 //                             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
-                             [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396-position, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
-                         }
-                         completion:nil];
+             [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396-position, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
+         }
+        completion:nil];
         [self.view reloadInputViews];
-    } else if (self.canSend){
+    }
+    else if (self.canSend)
+    {
         [UIView animateWithDuration:0.74
                               delay:0
              usingSpringWithDamping:500.0f
               initialSpringVelocity:0
                             options:UIViewAnimationOptionCurveLinear
-                         animations:^{
+                         animations:^
+        {
+            NSLog(@"Send Button Went Up");
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
 //            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
-                             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
+            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
             [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
         }
-                         completion:nil];
-    } else {
+        completion:nil];
+    }
+    else
+    {
+        NSLog(@"Send Button Went Down");
         [UIView animateWithDuration:0.42
                               delay:0
              usingSpringWithDamping:50.0f
               initialSpringVelocity:0.0f
                             options:UIViewAnimationOptionCurveLinear
-                         animations:^{
+                         animations:^
+        {
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
             [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
         }
-                         completion:nil];
+        completion:nil];
     }
 }
 
