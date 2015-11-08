@@ -964,17 +964,23 @@
         NSString *key = [sortedKeys objectAtIndex:indexPath.section];
         NSDictionary *phoneNumbers;
         NSArray *arrayOfNamesForLetter;
-        if (self.invite) {
+        if (self.invite)
+        {
             phoneNumbers = [lettersForWords objectForKey:key];
-        } else {
+        }
+        else
+        {
             arrayOfNamesForLetter = [lettersForWords objectForKey:key];;
         }
         
         if (arrayOfNamesForLetter.count||phoneNumbers.count)
         {
-            if (self.invite) {
+            if (self.invite)
+            {
                 selectedUser = phoneNumbers[cell.textLabel.text];
-            } else {
+            }
+            else
+            {
                 selectedUser = arrayOfNamesForLetter[indexPath.row];
             }
         }
@@ -984,6 +990,7 @@
     {
         if (self.invite && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
         {
+            
             [self.arrayOfSelectedUsers removeObjectAtIndex:0];
         }
         if (_arrayOfSelectedUsers.count > 100) [ProgressHUD showError:@"100 People Only"];
@@ -1001,10 +1008,12 @@
     }
     else
     {
+        
         [self.arrayOfSelectedUsers removeObject:selectedUser];
         cell.accessoryView = nil;
         cell.accessoryType = UITableViewCellAccessoryNone;
-        if (self.arrayOfSelectedUsers.count == 0) {
+        if (self.arrayOfSelectedUsers.count == 0)
+        {
             self.canSend = NO;
             [self resize];
         }
@@ -1413,6 +1422,7 @@
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
             [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
+//            [self.tableView reloadData];
         }
         completion:nil];
     }
