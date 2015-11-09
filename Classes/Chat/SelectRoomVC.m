@@ -264,15 +264,34 @@
             self.sendButton.alpha = 1;
         }];
     }
-
-    ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
-    cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
-
+    
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
-    self.messagesRoom = room;
-    self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
+    
+    if ([self.messagesRoom isEqual:room])
+    {
+        self.messagesRoom = nil;
+        self.messagesRoom = nil;
+        [UIView animateWithDuration:.2f animations:^{
+            self.sendButton.alpha = 0;
+        }];
+        [self performSelector:@selector(hideRoom) withObject:self afterDelay:0.2f];
+    }
+    else
+    {
+        self.messagesRoom = room;
+        self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
+        
+        ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        //    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
+        cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
+    }
+}
+
+-(void)hideRoom
+{
+    self.sendButton.hidden = YES;
+    self.sendArrows.hidden = YES;
 }
 
 - (IBAction)createRoom:(id)sender {
