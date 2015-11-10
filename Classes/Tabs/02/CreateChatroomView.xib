@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="i5M-Pr-FkT">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="513"/>
                     <animations/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="separatorColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
@@ -35,7 +35,7 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uvu-mp-bQM">
-                    <rect key="frame" x="0.0" y="568" width="320" height="55"/>
+                    <rect key="frame" x="0.0" y="513" width="320" height="55"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Send Picture 2" translatesAutoresizingMaskIntoConstraints="NO" id="Csb-JN-MJE">
                             <rect key="frame" x="265" y="0.0" width="55" height="55"/>
@@ -81,7 +81,7 @@
                 <constraint firstAttribute="trailing" secondItem="uvu-mp-bQM" secondAttribute="trailing" id="AuU-h9-U3X"/>
                 <constraint firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="WBV-vz-MJs"/>
                 <constraint firstItem="i5M-Pr-FkT" firstAttribute="top" secondItem="9Ze-8q-Mqo" secondAttribute="top" id="WQ7-X7-vf4"/>
-                <constraint firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="blW-wr-NF5"/>
+                <constraint firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" constant="55" id="blW-wr-NF5"/>
                 <constraint firstItem="uvu-mp-bQM" firstAttribute="leading" secondItem="9Ze-8q-Mqo" secondAttribute="leading" id="qYg-lX-fuJ"/>
                 <constraint firstItem="uvu-mp-bQM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="xXY-x2-0Ds"/>
             </constraints>

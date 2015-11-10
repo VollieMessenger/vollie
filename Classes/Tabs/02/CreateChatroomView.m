@@ -149,6 +149,7 @@
 - (void)viewDidLoad
 {
     self.canSend = NO;
+    self.sendVollieView.hidden = YES;
     self.sendVollieView.backgroundColor = [UIColor volleyFamousOrange];
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
@@ -1127,6 +1128,7 @@
 {
     _isSearching = NO;
     [self resize];
+    [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
     _searchCloseButton.hidden = YES;
     [textField resignFirstResponder];
     textField.text = @"";
@@ -1387,7 +1389,7 @@
                             options:UIViewAnimationOptionCurveLinear
                          animations:^
         {
-//                             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
+//             [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
              [self.sendVollieView setFrame:CGRectMake(self.sendVollieView.frame.origin.x, 396-position, self.sendVollieView.frame.size.width, self.sendVollieView.frame.size.height)];
          }
         completion:nil];
@@ -1405,9 +1407,11 @@
         {
             NSLog(@"Send Button Went Up");
             [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+//        [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-110)];
+            
+            //stuff i just commented out
 //            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height -55)];
-            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
+//            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
         }
         completion:nil];
     }
@@ -1422,8 +1426,8 @@
                          animations:^
         {
             [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-55)];
-            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height-position, [UIScreen mainScreen].bounds.size.width, 55)];
+//            [self.tableView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-55)];
+            [self.sendVollieView setFrame:CGRectMake(0, self.tableView.frame.size.height, [UIScreen mainScreen].bounds.size.width, 55)];
 //            self.sendVollieView.hidden = YES;
 //            [self.tableView reloadData];
         }
