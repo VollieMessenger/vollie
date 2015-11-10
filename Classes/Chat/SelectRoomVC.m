@@ -84,6 +84,8 @@
     self.sendArrows.hidden = YES;
     self.sendVollieButtonText.hidden = YES;
     
+    [self.tableView setSeparatorColor: [UIColor blackColor]];
+    
     self.selectable = YES;
     
     self.vollieIconOnNewButton.layer.cornerRadius = 10;
