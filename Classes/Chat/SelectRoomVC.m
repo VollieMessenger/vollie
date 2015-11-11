@@ -42,6 +42,7 @@
 
 @property int countDownToPhotoRefresh;
 @property BOOL isThePicturesReadyToSend;
+@property BOOL selectable;
 
 @property int counterForLastPhotoTaken;
 @property (weak, nonatomic) IBOutlet UIImageView *vollieIconOnNewButton;
@@ -82,6 +83,9 @@
     self.sendButton.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
     self.sendArrows.hidden = YES;
     self.sendVollieButtonText.hidden = YES;
+    
+    self.selectable = YES;
+    [self.tableView setSeparatorColor: [UIColor darkGrayColor]];
     
     self.vollieIconOnNewButton.layer.cornerRadius = 10;
     self.vollieIconOnNewButton.layer.masksToBounds = YES;
@@ -248,33 +252,56 @@
 {
     for (ChatRoomCell *cell in self.cellsArray)
     {
-//        cell.selectedImageView.backgroundColor = [UIColor clearColor];
+        //        cell.selectedImageView.backgroundColor = [UIColor clearColor];
         cell.selectedImageView.image = [UIImage imageNamed:@"checkmark-unselected-gray"];
     }
-
-//    self.sendButton.hidden = NO;
-
-    if (self.sendButton.isHidden)
+    
+    //    self.sendButton.hidden = NO;
+    
+    if (self.selectable == YES)
     {
-        self.sendArrows.hidden = NO;
-        self.sendVollieButtonText.hidden = NO;
-        self.sendButton.hidden = NO;
-        self.sendButton.alpha = 0;
-        [UIView animateWithDuration:.3f animations:^{
-            self.sendButton.alpha = 1;
-        }];
+        if (self.sendButton.isHidden)
+        {
+            self.sendArrows.hidden = NO;
+            self.sendVollieButtonText.hidden = NO;
+            self.sendButton.hidden = NO;
+            self.sendButton.alpha = 0;
+            [UIView animateWithDuration:.3f animations:^{
+                self.sendButton.alpha = 1;
+            }];
+        }
+        
+        PFObject *room = [self.messages objectAtIndex:indexPath.row];
+        
+        if ([self.messagesRoom isEqual:room])
+        {
+            self.selectable = NO;
+            self.messagesRoom = nil;
+            self.messagesRoom = nil;
+            [UIView animateWithDuration:.2f animations:^{
+                self.sendButton.alpha = 0;
+            }];
+            [self performSelector:@selector(hideRoom) withObject:self afterDelay:0.2f];
+        }
+        else
+        {
+            self.messagesRoom = room;
+            self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
+            
+            ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            //    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
+            cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
+        }
     }
-
-    ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
-    cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
-
-    PFObject *room = [self.messages objectAtIndex:indexPath.row];
-    self.messagesRoom = room;
-    self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
 }
 
+-(void)hideRoom
+{
+    self.selectable = YES;
+    self.sendButton.hidden = YES;
+    self.sendArrows.hidden = YES;
+}
 - (IBAction)createRoom:(id)sender {
     CreateChatroomView * view = [[CreateChatroomView alloc]init];
 //    view.title = @"";
