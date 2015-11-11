@@ -84,6 +84,8 @@
     self.sendArrows.hidden = YES;
     self.sendVollieButtonText.hidden = YES;
     
+    NSLog(@"ME TOO :( :( :( ");
+    
     self.selectable = YES;
     [self.tableView setSeparatorColor: [UIColor darkGrayColor]];
     
