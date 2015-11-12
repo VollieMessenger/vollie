@@ -488,7 +488,7 @@
     [query includeKey:PF_CHAT_USER];
     [query includeKey:PF_CHAT_SETID];
     //    [query setCachePolicy:kPFCachePolicyCacheThe;p n
-    [query orderByAscending:PF_PICTURES_UPDATEDACTION];
+    [query orderByAscending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if (!error)
