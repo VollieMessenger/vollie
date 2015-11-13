@@ -223,13 +223,17 @@
     {
         cell.lastTextLabel.text = room[PF_MESSAGES_LASTMESSAGE];
     }
+    cell.imageView.layer.cornerRadius = 10;
+    cell.imageView.layer.masksToBounds = YES;
+    
+    cell.imageView.image = [UIImage imageNamed:@"Vollie-icon"];
     PFObject *picture = room[PF_MESSAGES_LASTPICTURE];
     if (picture)
     {
         PFFile *file = [picture valueForKey:PF_PICTURES_THUMBNAIL];
         cell.imageView.file = file;
-        cell.imageView.layer.cornerRadius = 10;
-        cell.imageView.layer.masksToBounds = YES;
+//        cell.imageView.layer.cornerRadius = 10;
+//        cell.imageView.layer.masksToBounds = YES;
         [cell.imageView loadInBackground];
     }
     return cell;
@@ -254,6 +258,7 @@
     {
         //        cell.selectedImageView.backgroundColor = [UIColor clearColor];
         cell.selectedImageView.image = [UIImage imageNamed:@"checkmark-unselected-gray"];
+        cell.backgroundColor = [UIColor whiteColor];
     }
     
     //    self.sendButton.hidden = NO;
@@ -292,6 +297,10 @@
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             //    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
             cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
+            [UIView animateWithDuration:.2f animations:^{
+                cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0];
+            }];
+//            cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0];
         }
     }
 }
