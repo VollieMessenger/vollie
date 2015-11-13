@@ -93,26 +93,26 @@
                                     <constraint firstItem="obr-Ub-1Me" firstAttribute="top" secondItem="htr-X0-VFJ" secondAttribute="bottom" constant="8" id="wfF-3d-974"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="doubleArrowForWeeks" translatesAutoresizingMaskIntoConstraints="NO" id="nUp-JT-kot">
-                                <rect key="frame" x="380" y="77" width="33" height="40"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="next-button-charcoal" translatesAutoresizingMaskIntoConstraints="NO" id="UnS-nO-Whv">
+                                <rect key="frame" x="394" y="82.5" width="25" height="25"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="nUp-JT-kot" secondAttribute="height" multiplier="33:40" id="5s9-9l-DCn"/>
+                                    <constraint firstAttribute="height" constant="25" id="Qkc-uH-def"/>
+                                    <constraint firstAttribute="width" constant="25" id="cOh-0M-7jx"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="nUp-JT-kot" firstAttribute="leading" secondItem="fbH-SA-ZQY" secondAttribute="trailing" constant="30" id="1wE-gi-3nq"/>
+                            <constraint firstAttribute="trailing" secondItem="UnS-nO-Whv" secondAttribute="trailing" constant="2" id="3tf-Zs-kNK"/>
                             <constraint firstAttribute="bottom" secondItem="Xuv-Ye-oSy" secondAttribute="bottom" constant="10.5" id="4Ad-tM-nHL"/>
+                            <constraint firstItem="UnS-nO-Whv" firstAttribute="centerY" secondItem="b3W-qR-uo3" secondAttribute="centerY" id="7rA-0w-hpK"/>
                             <constraint firstItem="Xuv-Ye-oSy" firstAttribute="top" secondItem="b3W-qR-uo3" secondAttribute="top" constant="10" id="KdR-x6-0Y0"/>
                             <constraint firstAttribute="bottom" secondItem="fbH-SA-ZQY" secondAttribute="bottom" constant="10.5" id="aCz-15-9Q0"/>
-                            <constraint firstAttribute="trailing" secondItem="nUp-JT-kot" secondAttribute="trailing" constant="25" id="dwU-g1-uJo"/>
                             <constraint firstItem="fbH-SA-ZQY" firstAttribute="leading" secondItem="Xuv-Ye-oSy" secondAttribute="trailing" constant="8" id="ger-pM-xsw"/>
                             <constraint firstItem="Xuv-Ye-oSy" firstAttribute="leading" secondItem="b3W-qR-uo3" secondAttribute="leading" constant="8" id="lu4-0C-5Gz"/>
                             <constraint firstItem="fbH-SA-ZQY" firstAttribute="top" secondItem="b3W-qR-uo3" secondAttribute="top" constant="10" id="pGu-tO-YnM"/>
-                            <constraint firstItem="nUp-JT-kot" firstAttribute="centerY" secondItem="b3W-qR-uo3" secondAttribute="centerY" id="wTN-hg-6jV"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -142,7 +142,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="doubleArrowForWeeks" width="47" height="62"/>
+        <image name="next-button-charcoal" width="139" height="150"/>
         <image name="orange-vollie-logo" width="616" height="616"/>
     </resources>
 </document>

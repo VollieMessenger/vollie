@@ -279,7 +279,10 @@
     }
     else
     {
-        return 187;
+//        return 187;
+//        return 183;
+        return self.tableView.bounds.size.height / 3;
+
     }
 }
 
