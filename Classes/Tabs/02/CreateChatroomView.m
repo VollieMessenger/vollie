@@ -953,6 +953,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithRed:.93 green:.93 blue:.93 alpha:1.0];
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     PFUser *selectedUser;
@@ -1009,7 +1010,7 @@
     }
     else
     {
-        
+        cell.backgroundColor = [UIColor whiteColor];
         [self.arrayOfSelectedUsers removeObject:selectedUser];
         cell.accessoryView = nil;
         cell.accessoryType = UITableViewCellAccessoryNone;
