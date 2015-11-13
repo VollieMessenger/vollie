@@ -280,9 +280,7 @@
     else
     {
 //        return 187;
-//        return 183;
         return self.tableView.bounds.size.height / 3;
-
     }
 }
 
@@ -300,6 +298,9 @@
     NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
     HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
     allPhotosVC.highlight = highlight;
+    FlashbackCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    allPhotosVC.title = cell.weekLabel.text;
+//    allPhotosVC.title = 
     [self.navigationController pushViewController:allPhotosVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:1];
 }
