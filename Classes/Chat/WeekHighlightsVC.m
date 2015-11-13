@@ -16,6 +16,7 @@
 #import "AllWeekPhotosVC.h"
 #import "ProfileView.h"
 #import "ExplainationCell.h"
+#import "FlashbackCell.h"
 
 @interface WeekHighlightsVC () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -234,7 +235,11 @@
 {
     if (indexPath.row < self.sortedHighlightsArray.count)
     {
-        WeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+        
+        [self.tableView registerNib:[UINib nibWithNibName:@"FlashbackCell" bundle:0] forCellReuseIdentifier:@"FlashbackCell"];
+        FlashbackCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FlashbackCell"];
+        
+//        WeekCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
         HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
         [cell formatCell];
         [cell fillPicsWithTop5PicsFromHighlight:highlight];
