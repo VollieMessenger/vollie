@@ -191,6 +191,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ChatRoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.backgroundColor = [UIColor whiteColor];
     PFObject *room = [self.messages objectAtIndex:indexPath.row];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
@@ -200,6 +201,7 @@
     if (room == self.messagesRoom)
     {
         cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
+        cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1];
     }
     else
     {
