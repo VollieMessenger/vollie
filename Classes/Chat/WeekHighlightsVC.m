@@ -85,13 +85,13 @@
     [self setupRefreshControl];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    AllWeekPhotosVC *vc = [segue destinationViewController];
-    NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
-    HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
-    vc.highlight = highlight;
-}
+//-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    AllWeekPhotosVC *vc = [segue destinationViewController];
+//    NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
+//    HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
+//    vc.highlight = highlight;
+//}
 
 -(void)goToSettingsVC
 {
@@ -291,6 +291,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    AllWeekPhotosVC *allPhotosVC = (AllWeekPhotosVC *)[storyboard instantiateViewControllerWithIdentifier:@"AllWeekPhotosVC"];
+    NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
+    HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
+    allPhotosVC.highlight = highlight;
+    [self.navigationController pushViewController:allPhotosVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:1];
 }
 

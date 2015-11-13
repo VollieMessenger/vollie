@@ -1909,7 +1909,7 @@
         <!--All Week PhotosVC-->
         <scene sceneID="ggG-7x-zqJ">
             <objects>
-                <viewController id="Xg1-nn-nqQ" customClass="AllWeekPhotosVC" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AllWeekPhotosVC" storyboardIdentifier="AllWeekPhotosVC" id="Xg1-nn-nqQ" customClass="AllWeekPhotosVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="S8b-i6-0kl"/>
                         <viewControllerLayoutGuide type="bottom" id="PgS-tH-MRg"/>
