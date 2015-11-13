@@ -83,11 +83,9 @@
     self.sendButton.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
     self.sendArrows.hidden = YES;
     self.sendVollieButtonText.hidden = YES;
-    
-    NSLog(@"ME TOO :( :( :( ");
-    
+        
     self.selectable = YES;
-    [self.tableView setSeparatorColor: [UIColor darkGrayColor]];
+//    [self.tableView setSeparatorColor: [UIColor lightGrayColor]];
     
     self.vollieIconOnNewButton.layer.cornerRadius = 10;
     self.vollieIconOnNewButton.layer.masksToBounds = YES;

@@ -80,6 +80,8 @@
     inboxButton.image = [UIImage imageNamed:ASSETS_INBOX_FLIP];
     self.navigationItem.leftBarButtonItem = inboxButton;
     
+    [self.tableView setSeparatorColor: [UIColor lightGrayColor]];
+    
     [self setupRefreshControl];
 }
 
