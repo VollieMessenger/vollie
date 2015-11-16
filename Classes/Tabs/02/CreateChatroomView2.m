@@ -391,6 +391,7 @@
         }
         else
         {
+            
             [_arrayofSelectedPhoneNumbers removeObject:firstNumber];
             if (_arrayofSelectedPhoneNumbers.count == 0) {
             }

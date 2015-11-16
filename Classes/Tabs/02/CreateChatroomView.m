@@ -951,6 +951,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithRed:.93 green:.93 blue:.93 alpha:1.0];
@@ -990,10 +991,17 @@
 
     if (cell.accessoryView == nil && cell.accessoryType == UITableViewCellAccessoryNone)
     {
-        if (self.invite && [self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
+        
+        
+        if (self.invite)
         {
-            
-            [self.arrayOfSelectedUsers removeObjectAtIndex:0];
+            if(self.arrayOfSelectedUsers.count == 1)
+            {
+                if ([self.arrayOfSelectedUsers[0] isKindOfClass:[PFUser class]])
+                {
+                    [self.arrayOfSelectedUsers removeObjectAtIndex:0];
+                }
+            }
         }
         if (_arrayOfSelectedUsers.count > 100) [ProgressHUD showError:@"100 People Only"];
         else
