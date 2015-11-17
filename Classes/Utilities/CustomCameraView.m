@@ -341,9 +341,17 @@
     }
     else
     {
-        self.scrollView.scrollEnabled = YES;
+        NavigationController *nav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+        if ([nav.viewControllers.lastObject isKindOfClass:[NewVollieVC class]])
+        {
+            
+            
+        }
+        else
+        {
+            self.scrollView.scrollEnabled = YES;
+        }
         NSLog(@"Scroll Enabled in VDA");
-
     }
     
     [self checkIfNewChatRoom];
@@ -354,6 +362,8 @@
     
     if (!_didViewJustLoad)
     {
+        
+        
         if (self.navigationController.visibleViewController == self && self.scrollView.contentOffset.x  < 2)
         {
 //            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
