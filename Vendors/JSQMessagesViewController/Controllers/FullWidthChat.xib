@@ -18,7 +18,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="cpZ-Ec-ysK">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="cpZ-Ec-ysK">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <animations/>
                 </imageView>
@@ -68,6 +68,7 @@
                 <constraint firstAttribute="trailing" secondItem="cpZ-Ec-ysK" secondAttribute="trailing" id="NVW-Gu-wFO"/>
                 <constraint firstItem="cpZ-Ec-ysK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="RSS-0K-bVC"/>
                 <constraint firstAttribute="trailing" secondItem="uHe-jh-Se9" secondAttribute="trailing" id="aBk-SS-We6"/>
+                <constraint firstAttribute="bottom" secondItem="cpZ-Ec-ysK" secondAttribute="bottom" id="apQ-pd-8Jo"/>
                 <constraint firstItem="uHe-jh-Se9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="chH-zl-dTC"/>
                 <constraint firstItem="6gd-Gg-2Da" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="i3h-qV-ity"/>
                 <constraint firstItem="cpZ-Ec-ysK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="rBh-So-Ey8"/>
@@ -81,6 +82,7 @@
                 <mask key="constraints">
                     <exclude reference="NVW-Gu-wFO"/>
                     <exclude reference="RSS-0K-bVC"/>
+                    <exclude reference="apQ-pd-8Jo"/>
                     <exclude reference="rBh-So-Ey8"/>
                     <exclude reference="DhW-xO-wvx"/>
                     <exclude reference="aBk-SS-We6"/>
@@ -101,11 +103,12 @@
                 <mask key="constraints">
                     <include reference="NVW-Gu-wFO"/>
                     <include reference="RSS-0K-bVC"/>
+                    <include reference="apQ-pd-8Jo"/>
                     <include reference="rBh-So-Ey8"/>
                     <include reference="DhW-xO-wvx"/>
                     <include reference="aBk-SS-We6"/>
                     <include reference="chH-zl-dTC"/>
-                    <include reference="6st-m8-DCA"/>
+                    <exclude reference="6st-m8-DCA"/>
                     <include reference="B3w-lR-BPj"/>
                     <include reference="DuN-06-VLM"/>
                     <include reference="L2i-vw-bbO"/>
