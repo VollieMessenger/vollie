@@ -88,6 +88,13 @@
     NavigationController *nav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
     NavigationController *flashbacks = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];\
     
+    
+    if([nav.visibleViewController isKindOfClass:[CustomCameraView class]])
+    {
+        NSLog(@"i'm a camera");
+        return YES;
+    }
+    
     if (nav.presentedViewController)
     {
         return NO;
@@ -125,6 +132,24 @@
 //            [chatView refresh];
 //            return YES;
 //        }
+    }
+    
+    
+    if ([nav.viewControllers.lastObject isKindOfClass:[CustomCameraView class]])
+    {
+//        NSInteger target=nav.viewControllers.count - 2;
+//        MomentsVC *chatView = nav.viewControllers[target];
+//        if ([chatView.room.objectId isEqualToString:roomId])
+//        {
+//            NSLog(@"User is currently looking at this chat");
+            return YES;
+//        }
+        //        ChatView *chatView = nav.viewControllers[target];
+        //        if ([chatView.room_.objectId isEqualToString: roomId])
+        //        {
+        //            [chatView refresh];
+        //            return YES;
+        //        }
     }
     
     if ([nav.viewControllers.lastObject isKindOfClass:[FullWidthChat class]])
