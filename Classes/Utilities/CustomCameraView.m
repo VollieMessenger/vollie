@@ -261,6 +261,7 @@
 -(void)enableScrollview:(NSNotification *)notification
 {
     self.scrollView.scrollEnabled = YES;
+    NSLog(@"Scroll Enabled");
 }
 
 
@@ -341,6 +342,8 @@
     else
     {
         self.scrollView.scrollEnabled = YES;
+        NSLog(@"Scroll Enabled in VDA");
+
     }
     
     [self checkIfNewChatRoom];
@@ -356,6 +359,7 @@
 //            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
             self.scrollView.scrollEnabled = YES;
+            NSLog(@"Scroll Enabled in if statement in VDA");
         }
         else
         {
@@ -390,9 +394,11 @@
     {
         [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
         self.scrollView.scrollEnabled = NO;
+        NSLog(@"Scroll disabled");
     }
 
     self.scrollView.scrollEnabled = NO;
+    NSLog(@"Scroll disabled");
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -409,6 +415,7 @@
     if (_isPoppingUp)
     {
         self.scrollView.scrollEnabled = NO;
+        NSLog(@"Scroll disabled");
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         self.cancelButton.hidden = YES;
         self.rightButton.hidden = NO;
@@ -649,6 +656,7 @@
 
     self.cancelButton.hidden = YES;
     self.rightButton.hidden = NO;
+    self.comingFromNewVollie = YES;
 
     PostNotification(NOTIFICATION_CAMERA_POPUP);
 
@@ -805,6 +813,8 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 //        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
+        NSLog(@"Scroll enabled");
+
     }];
 }
 
@@ -814,6 +824,7 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 //        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
+        NSLog(@"Scroll enabled");
     }];
 }
 
