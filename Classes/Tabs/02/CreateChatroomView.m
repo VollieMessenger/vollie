@@ -153,7 +153,8 @@
     self.sendVollieView.backgroundColor = [UIColor volleyFamousOrange];
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
+
     [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     self.navigationController.navigationBar.titleTextAttributes =  @{
