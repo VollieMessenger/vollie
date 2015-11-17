@@ -80,6 +80,11 @@
                     <exclude reference="uHe-jh-Se9"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="6st-m8-DCA"/>
+                    <exclude reference="B3w-lR-BPj"/>
+                    <exclude reference="DuN-06-VLM"/>
+                    <exclude reference="L2i-vw-bbO"/>
+                    <exclude reference="i3h-qV-ity"/>
                     <exclude reference="NVW-Gu-wFO"/>
                     <exclude reference="RSS-0K-bVC"/>
                     <exclude reference="apQ-pd-8Jo"/>
@@ -87,11 +92,6 @@
                     <exclude reference="DhW-xO-wvx"/>
                     <exclude reference="aBk-SS-We6"/>
                     <exclude reference="chH-zl-dTC"/>
-                    <exclude reference="6st-m8-DCA"/>
-                    <exclude reference="B3w-lR-BPj"/>
-                    <exclude reference="DuN-06-VLM"/>
-                    <exclude reference="L2i-vw-bbO"/>
-                    <exclude reference="i3h-qV-ity"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -101,6 +101,11 @@
                     <include reference="uHe-jh-Se9"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="6st-m8-DCA"/>
+                    <include reference="B3w-lR-BPj"/>
+                    <include reference="DuN-06-VLM"/>
+                    <include reference="L2i-vw-bbO"/>
+                    <include reference="i3h-qV-ity"/>
                     <include reference="NVW-Gu-wFO"/>
                     <include reference="RSS-0K-bVC"/>
                     <include reference="apQ-pd-8Jo"/>
@@ -108,11 +113,6 @@
                     <include reference="DhW-xO-wvx"/>
                     <include reference="aBk-SS-We6"/>
                     <include reference="chH-zl-dTC"/>
-                    <exclude reference="6st-m8-DCA"/>
-                    <include reference="B3w-lR-BPj"/>
-                    <include reference="DuN-06-VLM"/>
-                    <include reference="L2i-vw-bbO"/>
-                    <include reference="i3h-qV-ity"/>
                 </mask>
             </variation>
         </view>
