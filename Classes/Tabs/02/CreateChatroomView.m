@@ -924,18 +924,21 @@
         number = [self.arrayOfNamesAndNumbers objectForKey:inviteUser][0];
     }
     cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
+    cell.textLabel.font = [UIFont systemFontOfSize:18];
 
     if ([_arrayOfSelectedUsers containsObject:selectedUser])
     {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         imageView.tintColor = [UIColor volleyFamousOrange];
         cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
         cell.accessoryView = imageView;
         cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     else if ([self.arrayOfSelectedUsers containsObject:number]){
         cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
         UIImage *image = self.invite ? [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         cell.accessoryView = [[UIImageView alloc] initWithImage:image];
         cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
@@ -948,7 +951,7 @@
 
 //    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
     cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:18];
+    
     return cell;
 }
 
@@ -958,6 +961,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithRed:.93 green:.93 blue:.93 alpha:1.0];
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
     //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     PFUser *selectedUser;
