@@ -175,6 +175,7 @@
         [PFUser logOut];
         fieldName.text = @"";
         ParsePushUserResign();
+        [self.navigationController showDetailViewController:[MasterLoginRegisterView new] sender:self];
 //        [self dismissViewControllerAnimated:1 completion:^{
 //            PostNotification(NOTIFICATION_USER_LOGGED_OUT);
 //        }];
