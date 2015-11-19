@@ -111,7 +111,8 @@
         else
         {
             //POP CURRENT ROOM IF NOT PUSH ROOM.//ACTUALLY NO, ONLY IF COMING FROM BACKGROUND.
-            if (isBack) {
+            if (isBack)
+            {
                 [nav popToRootViewControllerAnimated:0];
             }
         }
