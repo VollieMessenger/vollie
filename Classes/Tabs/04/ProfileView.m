@@ -48,6 +48,8 @@
 
 @property UIActionSheet *changeNameActionSheet;
 
+@property NSString *userNameString;
+
 @end
 
 @implementation ProfileView
@@ -60,7 +62,14 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    [self changeUsername];
+    
+    NSString *changeNameString = [NSString stringWithFormat:@"Are you sure you want to change your name to %@? Your name will be seen like this by all users.", self.userNameString];
+    self.changeNameActionSheet = [[UIActionSheet alloc] initWithTitle:changeNameString delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
+                                               otherButtonTitles:@"Change Name", nil];
+    [self.changeNameActionSheet showInView:self.view];
+//    [action showInView:self.view];
+    
+//    [self changeUsername];
     return YES;
 }
 
@@ -127,8 +136,10 @@
 - (void)profileLoad
 {
 	PFUser *user = [PFUser currentUser];
-    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    [user fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error)
+    {
         self.nameTextField.placeholder =  [NSString stringWithFormat:@"%@", object[PF_USER_FULLNAME]];
+        self.userNameString = object[PF_USER_FULLNAME];
     }];
 
 }
@@ -184,14 +195,21 @@
 {
 	if (buttonIndex != actionSheet.cancelButtonIndex)
 	{
-        [PFUser logOut];
-        fieldName.text = @"";
-        ParsePushUserResign();
-        [self.navigationController showDetailViewController:[MasterLoginRegisterView new] sender:self];
-//        [self dismissViewControllerAnimated:1 completion:^{
-//            PostNotification(NOTIFICATION_USER_LOGGED_OUT);
-//        }];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        if (actionSheet == self.changeNameActionSheet)
+        {
+            [self changeUsername];
+        }
+        else
+        {
+            [PFUser logOut];
+            fieldName.text = @"";
+            ParsePushUserResign();
+            [self.navigationController showDetailViewController:[MasterLoginRegisterView new] sender:self];
+    //        [self dismissViewControllerAnimated:1 completion:^{
+    //            PostNotification(NOTIFICATION_USER_LOGGED_OUT);
+    //        }];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
     }
 }
 
