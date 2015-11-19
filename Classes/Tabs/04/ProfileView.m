@@ -20,7 +20,7 @@
 
 #import "MasterLoginRegisterView.h"
 
-@interface ProfileView ()
+@interface ProfileView () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellName;
 
@@ -29,6 +29,10 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellTOS;
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellPP;
+
+@property (strong, nonatomic) IBOutlet UITableViewCell *nameCell;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 @property (strong, nonatomic) IBOutlet UITextField *fieldPhoneNumber;
 
@@ -42,6 +46,8 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *buttonLogout;
 
+@property UIActionSheet *changeNameActionSheet;
+
 @end
 
 @implementation ProfileView
@@ -54,6 +60,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
+    [self changeUsername];
     return YES;
 }
 
@@ -70,6 +77,11 @@
 	[super viewDidLoad];
 
     self.tableView.alwaysBounceVertical = YES;
+    
+    self.nameTextField.delegate = self;
+    
+    self.nameTextField.layer.borderWidth = 0;
+    self.nameTextField.borderStyle = UITextBorderStyleNone;
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(actionDismiss) name:NOTIFICATION_CLICKED_PUSH object:0];
 
@@ -116,7 +128,7 @@
 {
 	PFUser *user = [PFUser currentUser];
     [user fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        fieldName.text =  [NSString stringWithFormat:@"%@ - %@", object[PF_USER_FULLNAME], [object valueForKey:PF_USER_USERNAME]];
+        self.nameTextField.placeholder =  [NSString stringWithFormat:@"%@", object[PF_USER_FULLNAME]];
     }];
 
 }
@@ -216,32 +228,57 @@
     [self.navigationController pushViewController:pp animated:1];
 }
 
-- (IBAction)actionSave:(id)sender
+
+-(void)changeUsername
 {
-	[self dismissKeyboard];
-    [self.navigationController popViewControllerAnimated:0];
-    return;
-
-	if ([fieldName.text isEqualToString:@""] == NO)
-	{
-		[ProgressHUD show:@"Please wait..."];
-
-		PFUser *user = [PFUser currentUser];
-		user[PF_USER_FULLNAME] = fieldName.text;
-		user[PF_USER_FULLNAME_LOWER] = [fieldName.text lowercaseString];
-
-		[user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-		{
-			if (error == nil)
-			{
-                [self.navigationController popViewControllerAnimated:0];
-                [ProgressHUD showSuccess:@"Saved."];
-			}
-			else [ProgressHUD showError:@"Network error."];
-		}];
-	}
-	else [ProgressHUD showError:@"Name field must be set."];
+    if ([self.nameTextField.text isEqualToString:@""] == NO)
+    {
+        [ProgressHUD show:@"Please wait..."];
+        
+        PFUser *user = [PFUser currentUser];
+        user[PF_USER_FULLNAME] = self.nameTextField.text;
+        user[PF_USER_FULLNAME_LOWER] = [self.nameTextField.text lowercaseString];
+        
+        [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+         {
+             if (error == nil)
+             {
+//                 [self.navigationController popViewControllerAnimated:0];
+                 [ProgressHUD showSuccess:@"Saved."];
+             }
+             else [ProgressHUD showError:@"Network error."];
+         }];
+    }
+    else [ProgressHUD showError:@"Name field must be set."];
 }
+
+
+//- (IBAction)actionSave:(id)sender
+//{
+////	[self dismissKeyboard];
+//    [self.navigationController popViewControllerAnimated:0];
+//    return;
+//
+//	if ([fieldName.text isEqualToString:@""] == NO)
+//	{
+//		[ProgressHUD show:@"Please wait..."];
+//
+//		PFUser *user = [PFUser currentUser];
+//		user[PF_USER_FULLNAME] = fieldName.text;
+//		user[PF_USER_FULLNAME_LOWER] = [fieldName.text lowercaseString];
+//
+//		[user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//		{
+//			if (error == nil)
+//			{
+//                [self.navigationController popViewControllerAnimated:0];
+//                [ProgressHUD showSuccess:@"Saved."];
+//			}
+//			else [ProgressHUD showError:@"Network error."];
+//		}];
+//	}
+//	else [ProgressHUD showError:@"Name field must be set."];
+//}
 
 #pragma mark - Table view data source
 
@@ -262,7 +299,7 @@
 {
     if (indexPath.section == 0)
     {
-        if (indexPath.row == 0) return cellName;
+        if (indexPath.row == 0) return self.nameCell;
 //        if (indexPath.row == 1) return _cellPhoneNumber;
     }
     if (indexPath.section == 1) return cellVibrate;
