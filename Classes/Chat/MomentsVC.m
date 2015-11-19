@@ -107,9 +107,14 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.vollieIconImageView.layer.cornerRadius = 10;
     self.vollieIconImageView.layer.masksToBounds = YES;
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(goToManageChatVC)];
-    barButton.image = [UIImage imageNamed:ASSETS_TYPING];
-    self.navigationItem.rightBarButtonItem = barButton;
+    
+    if (![self.messageItComesFrom.objectId isEqualToString:@"YQjK00ePzE"])
+    {
+        //will only let you customize chat if it's not the onboarding screen
+        UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(goToManageChatVC)];
+        barButton.image = [UIImage imageNamed:ASSETS_TYPING];
+        self.navigationItem.rightBarButtonItem = barButton;
+    }
     
     [self setUpTopNotification];
 }

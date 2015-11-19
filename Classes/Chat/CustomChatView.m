@@ -803,7 +803,7 @@
                      
                  } progressBlock:^(int percentDone) {
                      if (percentDone < 90) {
-                         [ProgressHUD show:[NSString stringWithFormat:@"%i", percentDone]];
+                         [ProgressHUD show:[NSString stringWithFormat:@"%i %", percentDone]];
                      }
                  }];
             }
