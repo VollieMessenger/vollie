@@ -63,7 +63,7 @@
 {
     [textField resignFirstResponder];
     
-    NSString *changeNameString = [NSString stringWithFormat:@"Are you sure you want to change your name to %@? Your name will be seen like this by all users.", self.userNameString];
+    NSString *changeNameString = [NSString stringWithFormat:@"Are you sure you want to change your name to %@? Your name will be seen like this by all users.", self.nameTextField.text];
     self.changeNameActionSheet = [[UIActionSheet alloc] initWithTitle:changeNameString delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil
                                                otherButtonTitles:@"Change Name", nil];
     [self.changeNameActionSheet showInView:self.view];
@@ -155,34 +155,34 @@
 
 
 //Not used
-- (IBAction) actionDelete
-{
-//PFCloud *cloud = [PFCloud callFunction:@"DeleteAll" withParameters:0];
-#warning FETCHING OTHER CLASSES TOO????
-    PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-        [objects.firstObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (error) {
-                [ProgressHUD showError:@"Your not Neo"];
-                return;
-            } else {
-                for (PFObject *object in objects) {
-                    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        if (!error && object == objects.lastObject) {
-                            [self dismissViewControllerAnimated:1 completion:0];
-                            [ProgressHUD showSuccess:@"Deleted All Chats"];
-                            [query clearCachedResult];
-                        }
-                    }];
-                }
-            }
-            }];
-        } else {
-            [ProgressHUD showError:@"Network Error"];
-        }
-    }];
-}
+//- (IBAction) actionDelete
+//{
+////PFCloud *cloud = [PFCloud callFunction:@"DeleteAll" withParameters:0];
+//#warning FETCHING OTHER CLASSES TOO????
+//    PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//        [objects.firstObject deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if (error) {
+//                [ProgressHUD showError:@"Error"];
+//                return;
+//            } else {
+//                for (PFObject *object in objects) {
+//                    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                        if (!error && object == objects.lastObject) {
+//                            [self dismissViewControllerAnimated:1 completion:0];
+//                            [ProgressHUD showSuccess:@"Deleted All Chats"];
+//                            [query clearCachedResult];
+//                        }
+//                    }];
+//                }
+//            }
+//            }];
+//        } else {
+//            [ProgressHUD showError:@"Network Error"];
+//        }
+//    }];
+//}
 
 - (void)actionDismiss
 {
@@ -263,6 +263,8 @@
              {
 //                 [self.navigationController popViewControllerAnimated:0];
                  [ProgressHUD showSuccess:@"Saved."];
+                 self.nameTextField.placeholder = self.nameTextField.text;
+                 self.nameTextField.text = @"";
              }
              else [ProgressHUD showError:@"Network error."];
          }];
