@@ -245,7 +245,14 @@
 {
     if (self.selectedRoom)
     {
-        [self beginSendingVolliePackage];
+        if (![self.messagesRoom.objectId isEqualToString:@"YQjK00ePzE"])
+        {
+            [self beginSendingVolliePackage];
+        }
+        else
+        {
+            [ProgressHUD showError:@"Cannot Send To All Users!"];
+        }
     }
 }
 
@@ -294,6 +301,7 @@
         {
             self.messagesRoom = room;
             self.selectedRoom = [room objectForKey:PF_MESSAGES_ROOM];
+            NSLog(@"%@", self.messagesRoom.objectId);
             
             ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
