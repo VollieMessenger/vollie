@@ -71,14 +71,18 @@ SecondDelegate>
     self.showingCamera = NO;
 
     //do we need these?
-    [self.navigationController setNavigationBarHidden: NO animated:YES];
-    self.navigationController.navigationBar.translucent = NO;
+//    if self.NavigationController.
+    
+//    [self.navigationController setNavigationBarHidden: NO animated:YES];
+//    self.navigationController.navigationBar.translucent = NO;
 //    [self performSelector:@selector(changeToBlackStatusBar) withObject:self afterDelay:0.1f];
 
 
     if(self.comingFromCamera == true)
     {
         [self performSelector:@selector(changeToBlackStatusBar) withObject:self afterDelay:0.1f];
+        [self.navigationController setNavigationBarHidden: NO animated:YES];
+        self.navigationController.navigationBar.translucent = NO;
     }
     else
     {
