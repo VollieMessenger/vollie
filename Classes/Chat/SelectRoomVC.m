@@ -245,7 +245,9 @@
 {
     if (self.selectedRoom)
     {
+        self.sendButton.userInteractionEnabled = NO;
         [self beginSendingVolliePackage];
+//        self.sendButton
     }
 }
 
@@ -313,7 +315,8 @@
     self.sendButton.hidden = YES;
     self.sendArrows.hidden = YES;
 }
-- (IBAction)createRoom:(id)sender {
+- (IBAction)createRoom:(id)sender
+{
     CreateChatroomView * view = [[CreateChatroomView alloc]init];
 //    view.title = @"";
     view.isTherePicturesToSend = self.savedPhotoObjects.count;

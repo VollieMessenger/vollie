@@ -98,7 +98,7 @@
 //    [ProgressHUD show:@"Loading..."];
 //    [ProgressHUD showSuccess:@"Loading"];
 //    NSLog(@"%li photos this week", self.highlight.sets.count);
-    NSString *progressHUDstring = [NSString stringWithFormat:@"Loading %li Pictures...", self.highlight.sets.count];
+    NSString *progressHUDstring = [NSString stringWithFormat:@"Loading %li Vollies...", self.highlight.sets.count];
     [ProgressHUD show:progressHUDstring];
     self.masterSetCounter = (int)self.highlight.sets.count;
     self.masterSetCounterBefore = self.masterSetCounter;
