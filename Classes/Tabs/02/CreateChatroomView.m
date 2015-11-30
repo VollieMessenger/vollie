@@ -29,7 +29,7 @@
 
 #import "MasterScrollView.h"
 
-@interface CreateChatroomView () <CreateChatroom2Delegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
+@interface CreateChatroomView () <CreateChatroom2Delegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate, UISearchBarDelegate>
 {
     NSMutableArray *users;
 
@@ -1156,6 +1156,14 @@
 - (IBAction)closeSearch:(id)sender
 {
     [_searchTextField resignFirstResponder];
+    _isSearching = NO;
+    if (self.invite) {
+        arrayOfNamesAndNumbers = [self.namesAndNumbersConstant mutableCopy];
+        [self inviteWordsFromLetters:arrayOfNamesAndNumbers];
+    } else {
+        [self wordsFromLetters:users];
+    }
+    [_tableView reloadData];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
