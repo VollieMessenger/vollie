@@ -19,6 +19,8 @@
 
 #import "CreateChatroomView.h"
 
+#import "CustomChatView.h"
+
 #import "MessagesView.h"
 
 #import "ProfileView.h"
@@ -327,9 +329,13 @@
         PFObject *room = [PFObject objectWithoutDataWithClassName:PF_CHATROOMS_CLASS_NAME
                                                             objectId:roomId];
         
+        
+        
         if ([scrollView checkIfCurrentChatIsEqualToRoom:roomId didComeFromBackground:didJustOpenFromBackground])
         {
             //SAME CHATROOOM
+            
+            
             PostNotification(NOTIFICATION_REFRESH_CHATROOM);
         } else {
 
@@ -343,6 +349,15 @@
              {
                  PFObject *messageRoom = objects[0];
                  PFObject *customChatRoom = [messageRoom objectForKey:PF_MESSAGES_ROOM];
+                 PFObject *lastPicture = [messageRoom objectForKey:@"lastPicture"];
+//                 [lastPicture fetchinbac];
+////
+//                 PFObject *set = [lastPicture objectForKey:@"setId"];
+//                 PFObject *room = [lastPicture objectForKey:@"room"];
+//                 CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:set andUserChatRoom:room];
+//                 [self.navigationController pushViewController:vc animated:YES];
+//
+                 
                  
                  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
                  MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
@@ -381,9 +396,17 @@
                                                                      //Dismiss Modal Views
                                                                      PostNotification(NOTIFICATION_CLICKED_PUSH);
                                                                      
-                                                                     [scrollView openView:cardViewController];
+                                                                          [lastPicture fetch];
+                                                    
+                                                                          PFObject *set = [lastPicture objectForKey:@"setId"];
+                                                                          PFObject *room = [lastPicture objectForKey:@"room"];
+                                                                          CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:set andUserChatRoom:room];
+//                                                                          [self.navigationController pushViewController:vc animated:YES];
+                                                                     
+                                                                     [scrollView openView:deepChatView];
                                                                  }];
-                     } else
+                     }
+                     else
                      {
                          //this is if the notification happens while you're looking at the camera
 //                         [scrollView openView:cardViewController];
@@ -398,7 +421,8 @@
 //                                                                 }];
                      }
                      completionHandler(UIBackgroundFetchResultNewData);
-                 } else {
+                 }
+                 else {
                      [scrollView openView:cardViewController];
                      completionHandler(UIBackgroundFetchResultNoData);
                  }

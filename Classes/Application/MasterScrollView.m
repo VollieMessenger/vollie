@@ -17,6 +17,7 @@
 #import "AppConstant.h"
 #import "MomentsVC.h"
 #import "FullWidthChat.h"
+#import "MainInboxVC.h"
 
 @implementation MasterScrollView
 {
@@ -121,12 +122,20 @@
     if ([nav.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
     {
         NSInteger target=nav.viewControllers.count - 2;
-        MomentsVC *chatView = nav.viewControllers[target];
-        if ([chatView.room.objectId isEqualToString:roomId])
+        if ([nav.viewControllers[target] isKindOfClass:[MomentsVC class]])
         {
-            NSLog(@"User is currently looking at this chat");
+            {
+                NSLog(@"User is currently looking at this chat");
+                return YES;
+            }
+        }
+        if ([nav.viewControllers[target] isKindOfClass:[MainInboxVC class]])
+        {
             return YES;
         }
+        
+
+        
 //        ChatView *chatView = nav.viewControllers[target];
 //        if ([chatView.room_.objectId isEqualToString: roomId])
 //        {

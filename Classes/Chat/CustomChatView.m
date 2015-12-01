@@ -330,6 +330,7 @@
         setId_ = setID;
         self.set = set;
         self.userChatRoom = userChatRoom;
+        [self.userChatRoom fetchIfNeeded];
         NSString *roomNameString = [self.userChatRoom objectForKey:@"nickname"];
         
         if (roomNameString)
