@@ -400,7 +400,9 @@
                                                     
                                                                           PFObject *set = [lastPicture objectForKey:@"setId"];
                                                                           PFObject *room = [lastPicture objectForKey:@"room"];
-                                                                          CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:set andUserChatRoom:room];
+                                                                          CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:set andUserChatRoom:messageRoom];
+//                                                                     deepChatView.room = room;
+//                                                                        deepChatView.room = customChatRoom;
 //                                                                          [self.navigationController pushViewController:vc animated:YES];
                                                                      
                                                                      [scrollView openView:deepChatView];

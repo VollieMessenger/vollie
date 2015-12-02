@@ -131,6 +131,7 @@ void UpdateMessageCounter(PFObject *room, NSString *lastMessage, PFObject *pictu
 
                 [message setValue:@NO forKey:PF_MESSAGES_HIDE_UNTIL_NEXT];
 
+                
                 if (pictureAttached)
                 {
                     message[PF_MESSAGES_LASTPICTURE] = pictureAttached;

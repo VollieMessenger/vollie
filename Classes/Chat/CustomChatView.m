@@ -36,6 +36,8 @@
 @property PFObject *set;
 @property NSMutableArray *arrayOfUnreadUsers;
 @property BOOL shouldUpdateUnreadUsers;
+@property PFObject *actualSet;
+
 @end
 
 @implementation CustomChatView
@@ -71,7 +73,8 @@
     object[PF_CHAT_USER] = [PFUser currentUser];
     object[PF_CHAT_ROOM] = self.room;
     object[PF_CHAT_TEXT] = text;
-    [object setValue:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_] forKey:PF_CHAT_SETID];
+//    [object setValue:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_] forKey:PF_CHAT_SETID];
+    object[@"setId"] = self.set;
     [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
     [self finishSendingMessage];
 
@@ -79,23 +82,28 @@
      {
          if (!error && succeeded)
          {
+             
+             
              JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName setId:setId_ date:[NSDate date] text:text];
              [setComments addObject:message];
 
              [self.collectionView reloadData];
              [self scrollToBottomAnimated:1];
+             [self.set fetchIfNeeded];
 
              PFObject *picToSetAsLastPic = self.set[@"lastPicture"];
+             
+             
              [JSQSystemSoundPlayer jsq_playMessageSentSound];
              SendPushNotification(self.room, text);
              UpdateMessageCounter(self.room, text, picToSetAsLastPic);
 
              //We must update the date for the set, so we know when it is last edited in favorites.
-             PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
-             PFRelation *usersWhoHaventRead = [set relationForKey:@"unreadUsers"];
+//             PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
+             PFRelation *usersWhoHaventRead = [self.set relationForKey:@"unreadUsers"];
 //             [set setValue:object forKey:@"lastPicture"];
-             [set incrementKey:@"numberOfResponses" byAmount:@1];
-             [set setValue:[NSDate date] forKey:PF_SET_UPDATED];
+             [self.set incrementKey:@"numberOfResponses" byAmount:@1];
+             [self.set setValue:[NSDate date] forKey:PF_SET_UPDATED];
              PFRelation *users = [self.room relationForKey:PF_CHATROOMS_USERS];
              PFQuery *query = [users query];
              [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
@@ -116,7 +124,7 @@
                          }
                      }
                  }
-                 [set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                 [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
                   {
                       if (!error)
                       {
@@ -330,6 +338,7 @@
         NSString *setID = set.objectId;
         setId_ = setID;
         self.set = set;
+        [self.set fetchIfNeeded];
         self.userChatRoom = userChatRoom;
         [self.userChatRoom fetchIfNeeded];
         NSString *roomNameString = [self.userChatRoom objectForKey:@"nickname"];
@@ -352,6 +361,8 @@
         }
             
         self.room = [userChatRoom objectForKey:@"room"];
+        
+        
 //        NSLog(@"%@", self.room);
 //        [self.room fetchInBackground];
         setComments = [NSMutableArray new];
