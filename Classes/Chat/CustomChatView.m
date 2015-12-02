@@ -85,9 +85,10 @@
              [self.collectionView reloadData];
              [self scrollToBottomAnimated:1];
 
+             PFObject *picToSetAsLastPic = self.set[@"lastPicture"];
              [JSQSystemSoundPlayer jsq_playMessageSentSound];
              SendPushNotification(self.room, text);
-             UpdateMessageCounter(self.room, text, nil);
+             UpdateMessageCounter(self.room, text, picToSetAsLastPic);
 
              //We must update the date for the set, so we know when it is last edited in favorites.
              PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];

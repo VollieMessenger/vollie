@@ -25,5 +25,6 @@
 @property PFObject *album;
 @property NSString *setIDforCardCheck;
 @property PFObject *setChat;
+@property PFObject *setMaster;
 
 @end
