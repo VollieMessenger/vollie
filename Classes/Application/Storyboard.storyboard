@@ -1119,7 +1119,7 @@
                                             <action selector="onNewMessageButtonTapped:" destination="fMY-X3-CnX" eventType="touchUpInside" id="39t-li-B3T"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon3-newmessage" translatesAutoresizingMaskIntoConstraints="NO" id="f4B-CD-sUK">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wedNewVollieIcon" translatesAutoresizingMaskIntoConstraints="NO" id="f4B-CD-sUK">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                         <animations/>
                                         <constraints>
@@ -1192,7 +1192,9 @@
                                     <constraint firstAttribute="bottom" secondItem="8F9-dE-I6l" secondAttribute="bottom" id="7aw-KJ-djx"/>
                                     <constraint firstAttribute="height" constant="65" id="H7c-lS-4Xm"/>
                                     <constraint firstAttribute="trailing" secondItem="8F9-dE-I6l" secondAttribute="trailing" id="KG9-dp-CsI"/>
-                                    <constraint firstItem="aso-T2-arH" firstAttribute="leading" secondItem="f4B-CD-sUK" secondAttribute="trailing" constant="8" id="ULz-wz-rpK"/>
+                                    <constraint firstItem="aso-T2-arH" firstAttribute="leading" secondItem="f4B-CD-sUK" secondAttribute="trailing" constant="8" id="ULz-wz-rpK">
+                                        <variation key="widthClass=compact" constant="0.0"/>
+                                    </constraint>
                                     <constraint firstItem="8F9-dE-I6l" firstAttribute="top" secondItem="yf2-Jt-KVJ" secondAttribute="top" id="agc-cI-lAV"/>
                                     <constraint firstItem="8F9-dE-I6l" firstAttribute="top" secondItem="yf2-Jt-KVJ" secondAttribute="top" id="dMk-Nk-fHz"/>
                                     <constraint firstItem="f4B-CD-sUK" firstAttribute="leading" secondItem="yf2-Jt-KVJ" secondAttribute="leading" constant="8" id="dkZ-1w-xGO"/>
@@ -2791,11 +2793,11 @@
         <image name="cardsview-artwork" width="717" height="1136"/>
         <image name="double-orange-arrows" width="139" height="150"/>
         <image name="greyBackGround2" width="816" height="1183"/>
-        <image name="icon3-newmessage" width="126" height="126"/>
         <image name="image-header-newmessage" width="420" height="151"/>
         <image name="orange-vollie-logo" width="616" height="616"/>
         <image name="packageimg6" width="87" height="87"/>
         <image name="small-charcoal-next" width="75" height="76"/>
+        <image name="wedNewVollieIcon" width="103" height="103"/>
         <image name="white-vollie-v" width="290" height="158"/>
     </resources>
     <inferredMetricsTieBreakers>

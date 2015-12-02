@@ -708,7 +708,7 @@
                 moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
                 moviePlayer.view.layer.cornerRadius = moviePlayer.view.frame.size.width/10;
                 moviePlayer.view.layer.borderColor = [UIColor whiteColor].CGColor;
-                moviePlayer.view.layer.borderWidth = 5;
+                moviePlayer.view.layer.borderWidth = 2;
                 moviePlayer.view.layer.cornerRadius = 10;
                 //              moviePlayer.repeatMode = MPMovieRepeatModeNone;
                 moviePlayer.repeatMode = MPMovieRepeatModeOne;
@@ -782,7 +782,7 @@
 
                          popUpImageView2.layer.cornerRadius = 10;
                          popUpImageView2.layer.borderColor = [UIColor whiteColor].CGColor;
-                         popUpImageView2.layer.borderWidth = 5;
+                         popUpImageView2.layer.borderWidth = 2;
 
                          UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
                          tap2.delegate = self;
@@ -1120,6 +1120,7 @@
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
+//    NSAttributedString *test = [NSAttributedString alloc] initwith
     return nil;
 }
 

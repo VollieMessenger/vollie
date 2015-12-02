@@ -205,7 +205,7 @@
     {
         button.layer.masksToBounds = YES;
         button.layer.cornerRadius = 10;
-        button.layer.borderWidth = 3;
+        button.layer.borderWidth = 2;
         button.layer.borderColor = [UIColor whiteColor].CGColor;
 //        [button addTarget:self action:@selector(dragOut:withEvent:)forControlEvents:UIControlEventTouchDragInside];
         [button.imageView setContentMode:UIViewContentModeScaleAspectFill];
@@ -889,7 +889,7 @@
     self.cameraRollButton.layer.masksToBounds = 1;
     self.cameraRollButton.layer.cornerRadius = 10;
     self.cameraRollButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.cameraRollButton.layer.borderWidth = 3;
+    self.cameraRollButton.layer.borderWidth = 2;
 }
 
 - (UIImage *)squareImageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
@@ -2021,7 +2021,7 @@
                 moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
                 moviePlayer.view.layer.cornerRadius = self.moviePlayer.view.frame.size.width/10;
                 moviePlayer.view.layer.borderColor = [UIColor whiteColor].CGColor;
-                moviePlayer.view.layer.borderWidth = 5;
+                moviePlayer.view.layer.borderWidth = 2;
                 moviePlayer.view.layer.cornerRadius = 10;
 
     //          moviePlayer.repeatMode = MPMovieRepeatModeNone;
@@ -2078,7 +2078,7 @@
                 popUpImageView.contentMode = UIViewContentModeScaleToFill;
                 popUpImageView.layer.cornerRadius = popUpImageView.frame.size.width/10;
                 popUpImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-                popUpImageView.layer.borderWidth = 5;
+                popUpImageView.layer.borderWidth = 2;
                 popUpImageView.layer.cornerRadius = 10;
                 popUpImageView.userInteractionEnabled = YES;
 
