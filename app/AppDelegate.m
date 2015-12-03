@@ -350,6 +350,8 @@
                  PFObject *messageRoom = objects[0];
                  PFObject *customChatRoom = [messageRoom objectForKey:PF_MESSAGES_ROOM];
                  PFObject *lastPicture = [messageRoom objectForKey:@"lastPicture"];
+                 [lastPicture fetch];
+
 //                 [lastPicture fetchinbac];
 ////
 //                 PFObject *set = [lastPicture objectForKey:@"setId"];
@@ -424,8 +426,12 @@
                      }
                      completionHandler(UIBackgroundFetchResultNewData);
                  }
-                 else {
-                     [scrollView openView:cardViewController];
+                 else
+                 {
+                     NSLog(@"I was opened from a push note");
+                     PFObject *set = [lastPicture objectForKey:@"setId"];
+                     CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:set andUserChatRoom:messageRoom withOrangeBubbles:NO];
+                     [scrollView openView:deepChatView];
                      completionHandler(UIBackgroundFetchResultNoData);
                  }
              }
