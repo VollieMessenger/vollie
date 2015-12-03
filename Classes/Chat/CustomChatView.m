@@ -320,15 +320,24 @@
     
 }
 
-- (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom;
+- (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom withOrangeBubbles:(BOOL)orangeBubbles
 {
     //kyle's new init method from highlights
     self = [super init];
     if (self)
     {
         NSLog(@"%@ is the chatroom", userChatRoom);
-        backgroundColor_ = [UIColor volleyFamousOrange];
-        backgroundColor_ = [UIColor colorWithRed:1.0  green:.70 blue:.5 alpha:1];
+        
+        if (orangeBubbles == YES)
+        {
+            backgroundColor_ = [UIColor colorWithRed:1.0  green:.70 blue:.5 alpha:1];
+        }
+        else
+        {
+            backgroundColor_ = [UIColor volleyFamousGreen];
+        }
+//        backgroundColor_ = [UIColor volleyFamousOrange];
+//        backgroundColor_ = [UIColor blackColor];
         
         if (!self.senderId || self.senderDisplayName)
         {

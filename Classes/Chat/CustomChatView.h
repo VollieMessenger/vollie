@@ -17,7 +17,7 @@
 
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor;
 
-- (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom;
+- (id)initWithSet:(PFObject*)set andUserChatRoom:(PFObject*)userChatRoom withOrangeBubbles:(BOOL)orangeBubbles;
 
 @property PFObject *room;
 @property PFObject *userChatRoom;

@@ -70,7 +70,7 @@
     PFObject *chatRoom = mediaObject.userChatroom;
 //    NSString *setID = set.objectId;
 //    CustomChatView *vc = [[CustomChatView alloc] initWithSetId:setID andColor:[UIColor volleyFamousGreen]];
-    CustomChatView *vc = [[CustomChatView alloc] initWithSet:set andUserChatRoom:chatRoom];
+    CustomChatView *vc = [[CustomChatView alloc] initWithSet:set andUserChatRoom:chatRoom withOrangeBubbles:YES];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
