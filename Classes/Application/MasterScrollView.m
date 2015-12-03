@@ -125,13 +125,22 @@
         if ([nav.viewControllers[target] isKindOfClass:[MomentsVC class]])
         {
             {
-                NSLog(@"User is currently looking at this chat");
-                return YES;
+                MomentsVC *vc = nav.viewControllers[target];
+                if ([vc.room.objectId isEqualToString:roomId])
+                {
+                    NSLog(@"User is currently looking at this chat");
+                    return YES;
+                }
             }
         }
         if ([nav.viewControllers[target] isKindOfClass:[MainInboxVC class]])
         {
-            return YES;
+            MomentsVC *vc = nav.viewControllers[target+1];
+            if ([vc.room.objectId isEqualToString:roomId])
+            {
+                NSLog(@"User is currently looking at this chat");
+                return YES;
+            }
         }
         
 
