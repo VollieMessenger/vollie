@@ -385,6 +385,20 @@
     return self;
 }
 
+-(void)clearPushNotesCounter
+{
+    NSLog(@"checking this room for push notification count: %@ ", self.userChatRoom);
+    NSNumber *number = [self.userChatRoom valueForKey:PF_MESSAGES_COUNTER];
+    if (number)
+    {
+        if ([number intValue] > 0)
+        {
+            NSLog(@"Clearing Push Notification Count");
+            ClearMessageCounter(self.userChatRoom);
+        }
+    }
+}
+
 -(void)goToManageChatVC
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
@@ -592,6 +606,7 @@
     }];
     
     [self removeCurrentUserFromUnreadUsers];
+    [self clearPushNotesCounter];
     
 //    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
 //    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
