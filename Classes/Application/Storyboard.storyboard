@@ -351,6 +351,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="N08-G0-BJm"/>
                     <connections>
+                        <outlet property="nextVollieButton" destination="TWX-U2-Z6f" id="mg4-hM-Bra"/>
                         <outlet property="tableView" destination="bJ6-gv-Klf" id="5rM-6C-tvl"/>
                         <outlet property="vollieIconImageView" destination="WI7-OH-oRb" id="09C-Q7-zXb"/>
                     </connections>

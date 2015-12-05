@@ -50,6 +50,8 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *vollieIconImageView;
 
+@property (weak, nonatomic) IBOutlet UIButton *nextVollieButton;
+
 @property BOOL isLoading;
 
 @property NSMutableArray *messages;
@@ -124,6 +126,7 @@
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
     if (self.shouldShowTempCard)
     {
+        self.nextVollieButton.userInteractionEnabled = NO;
         NSLog(@"showing notificaiton");
         [self.notification presentInView:self.view withGravityAnimation:NO];
         self.shouldShowTempCard = NO;
@@ -556,6 +559,7 @@
 
 -(void)dismissTopNotification
 {
+    self.nextVollieButton.userInteractionEnabled = YES;
     [self.notification dismissWithGravityAnimation:YES];
     [self loadMessages];
 }
