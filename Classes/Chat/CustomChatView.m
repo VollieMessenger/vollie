@@ -649,10 +649,10 @@
 -(void)tappedAvatarPicWithIndexPath:(NSIndexPath *)indexPath
 {
 //    NSLog(@"%lu is indexpath length", (unsigned long)indexPath.length);
+    [self performSelector:@selector(stopTheDTapBlocker) withObject:self afterDelay:.5];
+
     if (indexPath.item != setPicturesObjects.count)
     {
-        [self performSelector:@selector(stopTheDTapBlocker) withObject:self afterDelay:.5];
-        
         if (setPicturesObjects.count && self.navigationController.visibleViewController == self && !self.inputToolbar.contentView.textView.isFirstResponder)
         {
             
