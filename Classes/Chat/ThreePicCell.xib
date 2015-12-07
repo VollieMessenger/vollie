@@ -60,11 +60,24 @@
                                 <animations/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbl-V7-aD6">
+                                <rect key="frame" x="258" y="336" width="54" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="F4L-io-zxm"/>
+                                    <constraint firstAttribute="height" constant="21" id="Z2T-LP-4EU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Bbl-V7-aD6" secondAttribute="trailing" constant="8" id="1HY-Fq-Sz5"/>
                             <constraint firstItem="RIn-Io-hHR" firstAttribute="leading" secondItem="03p-0x-tbQ" secondAttribute="trailing" id="5V5-ms-o5C"/>
+                            <constraint firstAttribute="bottom" secondItem="Bbl-V7-aD6" secondAttribute="bottom" id="8x5-Yu-ylT"/>
                             <constraint firstItem="RIn-Io-hHR" firstAttribute="centerY" secondItem="Z8f-6x-Eh8" secondAttribute="centerY" id="KgI-BW-XVo"/>
                             <constraint firstItem="03p-0x-tbQ" firstAttribute="leading" secondItem="Z8f-6x-Eh8" secondAttribute="leading" id="VzO-QA-mtL"/>
                             <constraint firstAttribute="trailing" secondItem="RIn-Io-hHR" secondAttribute="trailing" constant="8" id="vWQ-Fo-VYI"/>

@@ -54,13 +54,26 @@
                                     <constraint firstAttribute="width" constant="90" id="Of5-oT-Obi"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2c-tC-bLC">
+                                <rect key="frame" x="258" y="583" width="54" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="DK6-Ky-61P"/>
+                                    <constraint firstAttribute="height" constant="21" id="a4m-q4-gfQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="u2c-tC-bLC" secondAttribute="trailing" constant="8" id="JCz-f0-yOP"/>
                             <constraint firstItem="Kny-G8-SvY" firstAttribute="centerY" secondItem="FDD-YO-ryD" secondAttribute="centerY" id="JEi-Bq-Vpz"/>
                             <constraint firstAttribute="trailing" secondItem="Kny-G8-SvY" secondAttribute="trailing" constant="8" id="KDv-A7-eul"/>
                             <constraint firstItem="Hwt-lb-TVu" firstAttribute="leading" secondItem="FDD-YO-ryD" secondAttribute="leading" id="QyN-dt-kpF"/>
+                            <constraint firstAttribute="bottom" secondItem="u2c-tC-bLC" secondAttribute="bottom" id="X4q-fb-GAc"/>
                             <constraint firstAttribute="bottom" secondItem="Hwt-lb-TVu" secondAttribute="bottom" id="X9I-xT-JMe"/>
                             <constraint firstItem="Kny-G8-SvY" firstAttribute="leading" secondItem="Hwt-lb-TVu" secondAttribute="trailing" id="uMf-j6-wRU"/>
                             <constraint firstItem="Hwt-lb-TVu" firstAttribute="top" secondItem="FDD-YO-ryD" secondAttribute="top" id="yfn-0E-iDQ"/>

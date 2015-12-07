@@ -69,13 +69,26 @@
                                     <constraint firstItem="j2c-n3-QHP" firstAttribute="top" secondItem="nHE-jR-jUv" secondAttribute="bottom" constant="10" id="kkg-Ge-vOi"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-jU-omz">
+                                <rect key="frame" x="258" y="448" width="54" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="CrC-0h-nAF"/>
+                                    <constraint firstAttribute="width" constant="54" id="qNs-of-17y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="33y-Wp-Emd" firstAttribute="leading" secondItem="dg9-a9-3Nb" secondAttribute="trailing" id="FPV-KV-c0k"/>
+                            <constraint firstAttribute="bottom" secondItem="nWW-jU-omz" secondAttribute="bottom" id="KCd-3Y-2v2"/>
                             <constraint firstItem="dg9-a9-3Nb" firstAttribute="leading" secondItem="LMR-57-PIQ" secondAttribute="leading" constant="-1" id="LdI-of-G5q"/>
                             <constraint firstItem="dg9-a9-3Nb" firstAttribute="top" secondItem="LMR-57-PIQ" secondAttribute="top" id="U3Z-m4-UeR"/>
+                            <constraint firstAttribute="trailing" secondItem="nWW-jU-omz" secondAttribute="trailing" constant="8" id="Vti-hT-md2"/>
                             <constraint firstAttribute="bottom" secondItem="dg9-a9-3Nb" secondAttribute="bottom" id="df2-pT-bFw"/>
                             <constraint firstItem="33y-Wp-Emd" firstAttribute="centerY" secondItem="LMR-57-PIQ" secondAttribute="centerY" id="j4X-iO-uO3"/>
                             <constraint firstAttribute="trailing" secondItem="33y-Wp-Emd" secondAttribute="trailing" constant="8" id="uRw-gP-deV"/>

@@ -31,11 +31,24 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGs-4W-Q2f">
+                                <rect key="frame" x="258" y="203" width="54" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="cGu-9g-9e3"/>
+                                    <constraint firstAttribute="height" constant="21" id="vti-zY-zam"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="O1X-0R-tVb" firstAttribute="top" secondItem="bWh-QD-e3C" secondAttribute="top" id="H7t-BJ-Hy3"/>
+                            <constraint firstAttribute="bottom" secondItem="qGs-4W-Q2f" secondAttribute="bottom" constant="0.5" id="PDo-HP-dSC"/>
+                            <constraint firstAttribute="trailing" secondItem="qGs-4W-Q2f" secondAttribute="trailing" constant="8" id="QaT-zB-bjo"/>
                             <constraint firstItem="mFY-2S-cmq" firstAttribute="centerY" secondItem="bWh-QD-e3C" secondAttribute="centerY" id="U5g-Us-9a3"/>
                             <constraint firstAttribute="trailing" secondItem="mFY-2S-cmq" secondAttribute="trailing" constant="8" id="U7Y-Cz-2O2"/>
                             <constraint firstItem="mFY-2S-cmq" firstAttribute="leading" secondItem="O1X-0R-tVb" secondAttribute="trailing" id="fan-7H-SKn"/>
