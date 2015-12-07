@@ -339,13 +339,18 @@
         self.cancelButton.hidden = false;
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     }
+    else if (self.comingFromCustomChatView == YES)
+    {
+        self.rightButton.hidden = true;
+        self.cancelButton.hidden = false;
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
+    }
     else
     {
         NavigationController *nav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
         if ([nav.viewControllers.lastObject isKindOfClass:[NewVollieVC class]])
         {
-            
-            
+            //??
         }
         else
         {
@@ -1714,6 +1719,14 @@
 
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
+            [self dismissViewControllerAnimated:NO completion:nil];
+        }
+        else if (self.comingFromCustomChatView == YES)
+        {
+            
+            self.comingFromCustomChatView = false;
+            PostNotification(NOTIFICATION_CAMERA_POPUP);
+            [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
             [self dismissViewControllerAnimated:NO completion:nil];
         }
         else if (self.isPoppingUp)

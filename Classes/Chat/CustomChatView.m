@@ -633,13 +633,53 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.doubleTapBlocker == false)
+    if (indexPath.item != setPicturesObjects.count)
     {
-        self.doubleTapBlocker = true;
-        [self tappedAvatarPicWithIndexPath:indexPath];
+        //if it's a normal pic
+        if (self.doubleTapBlocker == false)
+        {
+            self.doubleTapBlocker = true;
+            [self tappedAvatarPicWithIndexPath:indexPath];
+        }
     }
+    else
+    {
+        //if it's the add picture cell
+        [self bringUpCameraView];
+    }
+    
     [collectionView deselectItemAtIndexPath:indexPath animated:1];
 }
+
+-(void)bringUpCameraView
+{
+    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+    if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
+    {
+        CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+        //        NSLog(@"%f)
+        //        NSLog(@"%fl is size of scroll when i hit bring up camera view", cam.scrollView.contentSize.width);
+        cam.scrollView.contentSize = CGSizeMake(3 * cam.view.frame.size.width, cam.view.frame.size.height);
+        cam.delegate = self;
+        cam.comingFromCustomChatView = YES;
+        //        if (self.photosArray.count >= 1)
+        //        {
+        //            cam.arrayOfTakenPhotos = self.photosArray;
+//        cam.photosFromNewVC = setPicturesObjects;
+        //        [cam loadImagesSaved];
+//        self.showingCamera = YES;
+//        cam.comingFromNewVollie = YES;
+//        cam.textFromLastVC = self.textView.text;
+        //        cam.photosFromNewVC = self.photosArray;
+        //        NSLog(@"%li photos before popping up camera", self.photosArray.count);
+//        cam.myDelegate = self;
+        
+        [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:NO completion:0];
+        
+        //        [self presentViewController:cam animated:YES completion:nil];
+    }
+}
+
 
 -(void)stopTheDTapBlocker
 {
@@ -650,218 +690,208 @@
 {
 //    NSLog(@"%lu is indexpath length", (unsigned long)indexPath.length);
     [self performSelector:@selector(stopTheDTapBlocker) withObject:self afterDelay:.5];
-
-    if (indexPath.item != setPicturesObjects.count)
+    if (setPicturesObjects.count && self.navigationController.visibleViewController == self && !self.inputToolbar.contentView.textView.isFirstResponder)
     {
-        if (setPicturesObjects.count && self.navigationController.visibleViewController == self && !self.inputToolbar.contentView.textView.isFirstResponder)
+        
+        self.arrayOfScrollView = [NSMutableArray arrayWithCapacity:setPicturesObjects.count];
+        
+        for (int i = 0; i < setPicturesObjects.count; i++) {
+            [self.arrayOfScrollView addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+        
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+        scrollView.bounces = YES;
+        scrollView.pagingEnabled = 1;
+        scrollView.alwaysBounceHorizontal = 1;
+        scrollView.delegate = self;
+        scrollView.tag = 22;
+        scrollView.directionalLockEnabled = YES;
+        scrollView.showsHorizontalScrollIndicator = 0;
+        
+        self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height - 20, scrollView.frame.size.width, 10)];
+        [self.pageControl setNumberOfPages:setPicturesObjects.count];
+        [self.pageControl setCurrentPage:indexPath.item];
+        
+        scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * setPicturesObjects.count, self.view.bounds.size.width);
+        
+        [scrollView setContentOffset:CGPointMake((self.view.frame.size.width * indexPath.row), 0) animated:0];
+        int counter = 0;
+        //Set the count.
+        __block int count = (int)setPicturesObjects.count;
+        for (PFObject *picture in setPicturesObjects)
         {
+            counter += 1;
+            CGRect rect = CGRectMake(([setPicturesObjects indexOfObject:picture] * self.view.bounds.size.width - 2) + 2, 0, self.view.frame.size.width, self.view.frame.size.height);
             
-            self.arrayOfScrollView = [NSMutableArray arrayWithCapacity:setPicturesObjects.count];
+            PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:rect];
             
-            for (int i = 0; i < setPicturesObjects.count; i++) {
-                [self.arrayOfScrollView addObject:[NSString stringWithFormat:@"%d",i]];
+            PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
+            
+            if (!file)
+            {
+                [picture fetch];
+                file = [picture valueForKey:PF_PICTURES_PICTURE];
             }
             
-            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-            scrollView.bounces = YES;
-            scrollView.pagingEnabled = 1;
-            scrollView.alwaysBounceHorizontal = 1;
-            scrollView.delegate = self;
-            scrollView.tag = 22;
-            scrollView.directionalLockEnabled = YES;
-            scrollView.showsHorizontalScrollIndicator = 0;
-            
-            self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height - 20, scrollView.frame.size.width, 10)];
-            [self.pageControl setNumberOfPages:setPicturesObjects.count];
-            [self.pageControl setCurrentPage:indexPath.item];
-            
-            scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * setPicturesObjects.count, self.view.bounds.size.width);
-            
-            [scrollView setContentOffset:CGPointMake((self.view.frame.size.width * indexPath.row), 0) animated:0];
-            int counter = 0;
-            //Set the count.
-            __block int count = (int)setPicturesObjects.count;
-            for (PFObject *picture in setPicturesObjects)
+            if ([[picture valueForKey:PF_PICTURES_IS_VIDEO] isEqual:@YES])
             {
-                counter += 1;
-                CGRect rect = CGRectMake(([setPicturesObjects indexOfObject:picture] * self.view.bounds.size.width - 2) + 2, 0, self.view.frame.size.width, self.view.frame.size.height);
+                NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
+                NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
+                NSFileManager *fileManager = [NSFileManager defaultManager];
                 
-                PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:rect];
-                
-                PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
-                
-                if (!file)
+                if (![fileManager fileExistsAtPath:outputPath])
                 {
-                    [picture fetch];
-                    file = [picture valueForKey:PF_PICTURES_PICTURE];
+                    [[file getData] writeToFile:outputPath atomically:1];
+                }
+                MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
+                
+                moviePlayer.view.frame = rect;
+                [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
+                [moviePlayer setFullscreen:1];
+                [moviePlayer setMovieSourceType:MPMovieSourceTypeFile];
+                
+                UIButton *saveImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
+                
+                saveImageButton.imageView.hidden = YES;
+                
+                saveImageButton.tag = [setPicturesObjects indexOfObject:picture];
+                
+                [saveImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
+                
+                [saveImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
+                saveImageButton.backgroundColor = [UIColor volleyFamousGreen];
+                saveImageButton.layer.masksToBounds = 1;
+                saveImageButton.layer.cornerRadius = 5;
+                saveImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
+                saveImageButton.layer.borderWidth = 2;
+                
+                [moviePlayer.view addSubview:saveImageButton];
+                
+                moviePlayer.controlStyle = MPMovieControlStyleNone;
+                moviePlayer.view.layer.masksToBounds = YES;
+                moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
+                moviePlayer.view.layer.cornerRadius = moviePlayer.view.frame.size.width/10;
+                moviePlayer.view.layer.borderColor = [UIColor whiteColor].CGColor;
+                moviePlayer.view.layer.borderWidth = 2;
+                moviePlayer.view.layer.cornerRadius = 10;
+                //              moviePlayer.repeatMode = MPMovieRepeatModeNone;
+                moviePlayer.repeatMode = MPMovieRepeatModeOne;
+                
+                [moviePlayer prepareToPlay];
+                if ([setPicturesObjects indexOfObject:picture] != indexPath.row)
+                {
+                    [moviePlayer setShouldAutoplay:false];
                 }
                 
-                if ([[picture valueForKey:PF_PICTURES_IS_VIDEO] isEqual:@YES])
+                [scrollView addSubview:moviePlayer.view];
+                [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:moviePlayer];
+                count--;
+                if (count == 0)
                 {
-                    NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
-                    NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
-                    NSFileManager *fileManager = [NSFileManager defaultManager];
+                    //                    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
+                    [[UIApplication sharedApplication] setStatusBarHidden:1];
                     
-                    if (![fileManager fileExistsAtPath:outputPath])
-                    {
-                        [[file getData] writeToFile:outputPath atomically:1];
-                    }
-                    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
+                    [ProgressHUD dismiss];
                     
-                    moviePlayer.view.frame = rect;
-                    [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
-                    [moviePlayer setFullscreen:1];
-                    [moviePlayer setMovieSourceType:MPMovieSourceTypeFile];
+                    self.popUp = [KLCPopup popupWithContentView:scrollView
+                                                       showType:KLCPopupShowTypeSlideInFromLeft
+                                                    dismissType:KLCPopupDismissTypeSlideOutToLeft
+                                                       maskType:KLCPopupMaskTypeDimmed
+                                       dismissOnBackgroundTouch:0
+                                          dismissOnContentTouch:0];
                     
-                    UIButton *saveImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
+                    [self.popUp addSubview:self.pageControl];
                     
-                    saveImageButton.imageView.hidden = YES;
+                    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
+                    [self.popUp addGestureRecognizer:tap2];
                     
-                    saveImageButton.tag = [setPicturesObjects indexOfObject:picture];
-                    
-                    [saveImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
-                    
-                    [saveImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
-                    saveImageButton.backgroundColor = [UIColor volleyFamousGreen];
-                    saveImageButton.layer.masksToBounds = 1;
-                    saveImageButton.layer.cornerRadius = 5;
-                    saveImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
-                    saveImageButton.layer.borderWidth = 2;
-                    
-                    [moviePlayer.view addSubview:saveImageButton];
-                    
-                    moviePlayer.controlStyle = MPMovieControlStyleNone;
-                    moviePlayer.view.layer.masksToBounds = YES;
-                    moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
-                    moviePlayer.view.layer.cornerRadius = moviePlayer.view.frame.size.width/10;
-                    moviePlayer.view.layer.borderColor = [UIColor whiteColor].CGColor;
-                    moviePlayer.view.layer.borderWidth = 2;
-                    moviePlayer.view.layer.cornerRadius = 10;
-                    //              moviePlayer.repeatMode = MPMovieRepeatModeNone;
-                    moviePlayer.repeatMode = MPMovieRepeatModeOne;
-                    
-                    [moviePlayer prepareToPlay];
-                    if ([setPicturesObjects indexOfObject:picture] != indexPath.row)
-                    {
-                        [moviePlayer setShouldAutoplay:false];
-                    }
-                    
-                    [scrollView addSubview:moviePlayer.view];
-                    [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:moviePlayer];
-                    count--;
-                    if (count == 0)
-                    {
-                        //                    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
-                        [[UIApplication sharedApplication] setStatusBarHidden:1];
-                        
-                        [ProgressHUD dismiss];
-                        
-                        self.popUp = [KLCPopup popupWithContentView:scrollView
-                                                           showType:KLCPopupShowTypeSlideInFromLeft
-                                                        dismissType:KLCPopupDismissTypeSlideOutToLeft
-                                                           maskType:KLCPopupMaskTypeDimmed
-                                           dismissOnBackgroundTouch:0
-                                              dismissOnContentTouch:0];
-                        
-                        [self.popUp addSubview:self.pageControl];
-                        
-                        UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
-                        [self.popUp addGestureRecognizer:tap2];
-                        
-                        [self.popUp show];
-                    }
-                    
-                } else if (file) {
-                    
-                    //Gets cache if available
-                    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+                    [self.popUp show];
+                }
+                
+            } else if (file) {
+                
+                //Gets cache if available
+                [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+                 {
+                     if (!error)
                      {
-                         if (!error)
+                         popUpImageView2.image = [UIImage imageWithData:data];
+                         popUpImageView2.layer.masksToBounds = YES;
+                         popUpImageView2.userInteractionEnabled = YES;
+                         
+                         UIButton *saveImageButton2 = [[UIButton alloc] initWithFrame:CGRectMake(popUpImageView2.frame.size.width - 55, popUpImageView2.frame.size.height - 55, 40, 40)];
+                         saveImageButton2.imageView.image = [UIImage imageWithData:data];
+                         saveImageButton2.imageView.hidden = YES;
+                         saveImageButton2.tag = [setPicturesObjects indexOfObject:picture];
+                         [saveImageButton2 addTarget:self action:@selector(downloadPicture:) forControlEvents:UIControlEventTouchUpInside];
+                         [saveImageButton2 setImage:[UIImage imageNamed:ASSETS_BACK_BUTTON_DOWN] forState:UIControlStateNormal];
+                         saveImageButton2.backgroundColor = [UIColor volleyFamousGreen];
+                         saveImageButton2.layer.masksToBounds = 1;
+                         saveImageButton2.layer.cornerRadius = 5;
+                         saveImageButton2.layer.borderColor = [UIColor whiteColor].CGColor;
+                         saveImageButton2.layer.borderWidth = 2;
+                         [popUpImageView2 addSubview:saveImageButton2];
+                         
+                         UIButton *closeImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
+                         closeImageButton.imageView.hidden = YES;
+                         closeImageButton.tag = [setPicturesObjects indexOfObject:picture];
+                         [closeImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
+                         [closeImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
+                         closeImageButton.backgroundColor = [UIColor volleyFamousGreen];
+                         closeImageButton.layer.masksToBounds = 1;
+                         closeImageButton.layer.cornerRadius = 5;
+                         closeImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
+                         closeImageButton.layer.borderWidth = 2;
+                         [popUpImageView2 addSubview:closeImageButton];
+                         
+                         popUpImageView2.layer.cornerRadius = 10;
+                         popUpImageView2.layer.borderColor = [UIColor whiteColor].CGColor;
+                         popUpImageView2.layer.borderWidth = 2;
+                         
+                         UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
+                         tap2.delegate = self;
+                         [popUpImageView addGestureRecognizer:tap2];
+                         
+                         [scrollView addSubview:popUpImageView2];
+                         [self.arrayOfScrollView addObject:popUpImageView2];
+                         [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:popUpImageView2];
+                         count--;
+                         if (count == 0)
                          {
-                             popUpImageView2.image = [UIImage imageWithData:data];
-                             popUpImageView2.layer.masksToBounds = YES;
-                             popUpImageView2.userInteractionEnabled = YES;
+                             [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
                              
-                             UIButton *saveImageButton2 = [[UIButton alloc] initWithFrame:CGRectMake(popUpImageView2.frame.size.width - 55, popUpImageView2.frame.size.height - 55, 40, 40)];
-                             saveImageButton2.imageView.image = [UIImage imageWithData:data];
-                             saveImageButton2.imageView.hidden = YES;
-                             saveImageButton2.tag = [setPicturesObjects indexOfObject:picture];
-                             [saveImageButton2 addTarget:self action:@selector(downloadPicture:) forControlEvents:UIControlEventTouchUpInside];
-                             [saveImageButton2 setImage:[UIImage imageNamed:ASSETS_BACK_BUTTON_DOWN] forState:UIControlStateNormal];
-                             saveImageButton2.backgroundColor = [UIColor volleyFamousGreen];
-                             saveImageButton2.layer.masksToBounds = 1;
-                             saveImageButton2.layer.cornerRadius = 5;
-                             saveImageButton2.layer.borderColor = [UIColor whiteColor].CGColor;
-                             saveImageButton2.layer.borderWidth = 2;
-                             [popUpImageView2 addSubview:saveImageButton2];
+                             [ProgressHUD dismiss];
                              
-                             UIButton *closeImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
-                             closeImageButton.imageView.hidden = YES;
-                             closeImageButton.tag = [setPicturesObjects indexOfObject:picture];
-                             [closeImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
-                             [closeImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
-                             closeImageButton.backgroundColor = [UIColor volleyFamousGreen];
-                             closeImageButton.layer.masksToBounds = 1;
-                             closeImageButton.layer.cornerRadius = 5;
-                             closeImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
-                             closeImageButton.layer.borderWidth = 2;
-                             [popUpImageView2 addSubview:closeImageButton];
+                             self.popUp = [KLCPopup popupWithContentView:scrollView
+                                                                showType:KLCPopupShowTypeSlideInFromLeft
+                                                             dismissType:KLCPopupDismissTypeSlideOutToLeft
+                                                                maskType:KLCPopupMaskTypeDimmed
+                                                dismissOnBackgroundTouch:0
+                                                   dismissOnContentTouch:0];
                              
-                             popUpImageView2.layer.cornerRadius = 10;
-                             popUpImageView2.layer.borderColor = [UIColor whiteColor].CGColor;
-                             popUpImageView2.layer.borderWidth = 2;
+                             [self.popUp addSubview:self.pageControl];
                              
                              UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
-                             tap2.delegate = self;
-                             [popUpImageView addGestureRecognizer:tap2];
+                             [self.popUp addGestureRecognizer:tap2];
                              
-                             [scrollView addSubview:popUpImageView2];
-                             [self.arrayOfScrollView addObject:popUpImageView2];
-                             [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:popUpImageView2];
-                             count--;
-                             if (count == 0)
-                             {
-                                 [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
-                                 
-                                 [ProgressHUD dismiss];
-                                 
-                                 self.popUp = [KLCPopup popupWithContentView:scrollView
-                                                                    showType:KLCPopupShowTypeSlideInFromLeft
-                                                                 dismissType:KLCPopupDismissTypeSlideOutToLeft
-                                                                    maskType:KLCPopupMaskTypeDimmed
-                                                    dismissOnBackgroundTouch:0
-                                                       dismissOnContentTouch:0];
-                                 
-                                 [self.popUp addSubview:self.pageControl];
-                                 
-                                 UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
-                                 [self.popUp addGestureRecognizer:tap2];
-                                 
-                                 [self.popUp show];
-                             }
+                             [self.popUp show];
                          }
-                         
-                     } progressBlock:^(int percentDone) {
-                         if (percentDone < 90) {
-                             [ProgressHUD show:[NSString stringWithFormat:@"%i", percentDone]];
-                         }
-                     }];
-                }
-            }//end for loop
-            NSObject *object = self.arrayOfScrollView[indexPath.row];
-            if ([object isKindOfClass:[MPMoviePlayerController class]])
-            {
-                MPMoviePlayerController *mp = [self.arrayOfScrollView objectAtIndex:indexPath.row];
-                [mp play];
+                     }
+                     
+                 } progressBlock:^(int percentDone) {
+                     if (percentDone < 90) {
+                         [ProgressHUD show:[NSString stringWithFormat:@"%i", percentDone]];
+                     }
+                 }];
             }
+        }//end for loop
+        NSObject *object = self.arrayOfScrollView[indexPath.row];
+        if ([object isKindOfClass:[MPMoviePlayerController class]])
+        {
+            MPMoviePlayerController *mp = [self.arrayOfScrollView objectAtIndex:indexPath.row];
+            [mp play];
         }
     }
-    else
-    {
-        //clicked bottom cell
-        [ProgressHUD showError:@"NOPE" Interaction:YES];
-    }
-
 }
 
 //- (void) processDoubleTap:(UITapGestureRecognizer *)sender

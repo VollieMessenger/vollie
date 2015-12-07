@@ -60,6 +60,9 @@
 @property NSString *messageText;
 @property NSMutableArray *photosFromNewVC;
 
+//for adding photos to existing chats
+@property BOOL comingFromCustomChatView;
+
 @property (weak, nonatomic) IBOutlet UIButton *x1;
 @property (weak, nonatomic) IBOutlet UIButton *x2;
 @property (weak, nonatomic) IBOutlet UIButton *x3;
