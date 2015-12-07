@@ -22,6 +22,8 @@
 #warning RASTERIZING
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.layer.shouldRasterize = YES;
+    self.imageView.image = [UIImage imageNamed:@"packageimg6"];
+
 
 
 }
@@ -41,7 +43,6 @@
         self.imageView.backgroundColor = [UIColor clearColor];
         self.imageView.layer.cornerRadius = 5;
         self.imageView.layer.masksToBounds = 1;
-
 
         // Selected background view
         UIView *backgroundView = [[UIView alloc]initWithFrame:self.bounds];
@@ -85,6 +86,8 @@
         self.label.font = [UIFont fontWithName:@"Helvetica Bold" size:12];
         self.label.textColor = [UIColor darkGrayColor];
         [self insertSubview:self.label aboveSubview:self.imageView];
+        self.imageView.image = [UIImage imageNamed:@"packageimg6"];
+
     }
     return self;
 }

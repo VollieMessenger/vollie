@@ -627,7 +627,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (collectionView == self.collectionView) return setComments.count;
-    else if (collectionView == self.collectionViewPictures) return setPicturesObjects.count;
+    else if (collectionView == self.collectionViewPictures) return setPicturesObjects.count + 1;
     else return 0;
 }
 
@@ -648,210 +648,220 @@
 
 -(void)tappedAvatarPicWithIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSelector:@selector(stopTheDTapBlocker) withObject:self afterDelay:.5];
-
-    if (setPicturesObjects.count && self.navigationController.visibleViewController == self && !self.inputToolbar.contentView.textView.isFirstResponder)
+//    NSLog(@"%lu is indexpath length", (unsigned long)indexPath.length);
+    if (indexPath.item != setPicturesObjects.count)
     {
-
-        self.arrayOfScrollView = [NSMutableArray arrayWithCapacity:setPicturesObjects.count];
-
-        for (int i = 0; i < setPicturesObjects.count; i++) {
-            [self.arrayOfScrollView addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-        scrollView.bounces = YES;
-        scrollView.pagingEnabled = 1;
-        scrollView.alwaysBounceHorizontal = 1;
-        scrollView.delegate = self;
-        scrollView.tag = 22;
-        scrollView.directionalLockEnabled = YES;
-        scrollView.showsHorizontalScrollIndicator = 0;
-
-        self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height - 20, scrollView.frame.size.width, 10)];
-        [self.pageControl setNumberOfPages:setPicturesObjects.count];
-        [self.pageControl setCurrentPage:indexPath.item];
-
-        scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * setPicturesObjects.count, self.view.bounds.size.width);
-
-        [scrollView setContentOffset:CGPointMake((self.view.frame.size.width * indexPath.row), 0) animated:0];
-        int counter = 0;
-        //Set the count.
-        __block int count = (int)setPicturesObjects.count;
-        for (PFObject *picture in setPicturesObjects)
+        [self performSelector:@selector(stopTheDTapBlocker) withObject:self afterDelay:.5];
+        
+        if (setPicturesObjects.count && self.navigationController.visibleViewController == self && !self.inputToolbar.contentView.textView.isFirstResponder)
         {
-            counter += 1;
-            CGRect rect = CGRectMake(([setPicturesObjects indexOfObject:picture] * self.view.bounds.size.width - 2) + 2, 0, self.view.frame.size.width, self.view.frame.size.height);
-
-            PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:rect];
-
-            PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
-
-            if (!file)
-            {
-                [picture fetch];
-                file = [picture valueForKey:PF_PICTURES_PICTURE];
+            
+            self.arrayOfScrollView = [NSMutableArray arrayWithCapacity:setPicturesObjects.count];
+            
+            for (int i = 0; i < setPicturesObjects.count; i++) {
+                [self.arrayOfScrollView addObject:[NSString stringWithFormat:@"%d",i]];
             }
-
-            if ([[picture valueForKey:PF_PICTURES_IS_VIDEO] isEqual:@YES])
+            
+            UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+            scrollView.bounces = YES;
+            scrollView.pagingEnabled = 1;
+            scrollView.alwaysBounceHorizontal = 1;
+            scrollView.delegate = self;
+            scrollView.tag = 22;
+            scrollView.directionalLockEnabled = YES;
+            scrollView.showsHorizontalScrollIndicator = 0;
+            
+            self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, scrollView.frame.size.height - 20, scrollView.frame.size.width, 10)];
+            [self.pageControl setNumberOfPages:setPicturesObjects.count];
+            [self.pageControl setCurrentPage:indexPath.item];
+            
+            scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * setPicturesObjects.count, self.view.bounds.size.width);
+            
+            [scrollView setContentOffset:CGPointMake((self.view.frame.size.width * indexPath.row), 0) animated:0];
+            int counter = 0;
+            //Set the count.
+            __block int count = (int)setPicturesObjects.count;
+            for (PFObject *picture in setPicturesObjects)
             {
-                NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
-                NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
-                NSFileManager *fileManager = [NSFileManager defaultManager];
-
-                if (![fileManager fileExistsAtPath:outputPath])
+                counter += 1;
+                CGRect rect = CGRectMake(([setPicturesObjects indexOfObject:picture] * self.view.bounds.size.width - 2) + 2, 0, self.view.frame.size.width, self.view.frame.size.height);
+                
+                PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:rect];
+                
+                PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
+                
+                if (!file)
                 {
-                    [[file getData] writeToFile:outputPath atomically:1];
+                    [picture fetch];
+                    file = [picture valueForKey:PF_PICTURES_PICTURE];
                 }
-                MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
-
-                moviePlayer.view.frame = rect;
-                [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
-                [moviePlayer setFullscreen:1];
-                [moviePlayer setMovieSourceType:MPMovieSourceTypeFile];
-
-                UIButton *saveImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
-
-                saveImageButton.imageView.hidden = YES;
-
-                saveImageButton.tag = [setPicturesObjects indexOfObject:picture];
-
-                [saveImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
-
-                [saveImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
-                saveImageButton.backgroundColor = [UIColor volleyFamousGreen];
-                saveImageButton.layer.masksToBounds = 1;
-                saveImageButton.layer.cornerRadius = 5;
-                saveImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
-                saveImageButton.layer.borderWidth = 2;
-
-                [moviePlayer.view addSubview:saveImageButton];
-
-                moviePlayer.controlStyle = MPMovieControlStyleNone;
-                moviePlayer.view.layer.masksToBounds = YES;
-                moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
-                moviePlayer.view.layer.cornerRadius = moviePlayer.view.frame.size.width/10;
-                moviePlayer.view.layer.borderColor = [UIColor whiteColor].CGColor;
-                moviePlayer.view.layer.borderWidth = 2;
-                moviePlayer.view.layer.cornerRadius = 10;
-                //              moviePlayer.repeatMode = MPMovieRepeatModeNone;
-                moviePlayer.repeatMode = MPMovieRepeatModeOne;
-
-                [moviePlayer prepareToPlay];
-                if ([setPicturesObjects indexOfObject:picture] != indexPath.row)
+                
+                if ([[picture valueForKey:PF_PICTURES_IS_VIDEO] isEqual:@YES])
                 {
-                    [moviePlayer setShouldAutoplay:false];
-                }
-
-                [scrollView addSubview:moviePlayer.view];
-                [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:moviePlayer];
-                count--;
-                if (count == 0)
-                {
-//                    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
-                    [[UIApplication sharedApplication] setStatusBarHidden:1];
-
-                    [ProgressHUD dismiss];
-
-                    self.popUp = [KLCPopup popupWithContentView:scrollView
-                                                       showType:KLCPopupShowTypeSlideInFromLeft
-                                                    dismissType:KLCPopupDismissTypeSlideOutToLeft
-                                                       maskType:KLCPopupMaskTypeDimmed
-                                       dismissOnBackgroundTouch:0
-                                          dismissOnContentTouch:0];
-
-                    [self.popUp addSubview:self.pageControl];
-
-                    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
-                    [self.popUp addGestureRecognizer:tap2];
-
-                    [self.popUp show];
-                }
-
-            } else if (file) {
-
-                //Gets cache if available
-                [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
-                 {
-                     if (!error)
+                    NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
+                    NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
+                    NSFileManager *fileManager = [NSFileManager defaultManager];
+                    
+                    if (![fileManager fileExistsAtPath:outputPath])
+                    {
+                        [[file getData] writeToFile:outputPath atomically:1];
+                    }
+                    MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
+                    
+                    moviePlayer.view.frame = rect;
+                    [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
+                    [moviePlayer setFullscreen:1];
+                    [moviePlayer setMovieSourceType:MPMovieSourceTypeFile];
+                    
+                    UIButton *saveImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
+                    
+                    saveImageButton.imageView.hidden = YES;
+                    
+                    saveImageButton.tag = [setPicturesObjects indexOfObject:picture];
+                    
+                    [saveImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
+                    
+                    [saveImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
+                    saveImageButton.backgroundColor = [UIColor volleyFamousGreen];
+                    saveImageButton.layer.masksToBounds = 1;
+                    saveImageButton.layer.cornerRadius = 5;
+                    saveImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
+                    saveImageButton.layer.borderWidth = 2;
+                    
+                    [moviePlayer.view addSubview:saveImageButton];
+                    
+                    moviePlayer.controlStyle = MPMovieControlStyleNone;
+                    moviePlayer.view.layer.masksToBounds = YES;
+                    moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
+                    moviePlayer.view.layer.cornerRadius = moviePlayer.view.frame.size.width/10;
+                    moviePlayer.view.layer.borderColor = [UIColor whiteColor].CGColor;
+                    moviePlayer.view.layer.borderWidth = 2;
+                    moviePlayer.view.layer.cornerRadius = 10;
+                    //              moviePlayer.repeatMode = MPMovieRepeatModeNone;
+                    moviePlayer.repeatMode = MPMovieRepeatModeOne;
+                    
+                    [moviePlayer prepareToPlay];
+                    if ([setPicturesObjects indexOfObject:picture] != indexPath.row)
+                    {
+                        [moviePlayer setShouldAutoplay:false];
+                    }
+                    
+                    [scrollView addSubview:moviePlayer.view];
+                    [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:moviePlayer];
+                    count--;
+                    if (count == 0)
+                    {
+                        //                    [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
+                        [[UIApplication sharedApplication] setStatusBarHidden:1];
+                        
+                        [ProgressHUD dismiss];
+                        
+                        self.popUp = [KLCPopup popupWithContentView:scrollView
+                                                           showType:KLCPopupShowTypeSlideInFromLeft
+                                                        dismissType:KLCPopupDismissTypeSlideOutToLeft
+                                                           maskType:KLCPopupMaskTypeDimmed
+                                           dismissOnBackgroundTouch:0
+                                              dismissOnContentTouch:0];
+                        
+                        [self.popUp addSubview:self.pageControl];
+                        
+                        UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
+                        [self.popUp addGestureRecognizer:tap2];
+                        
+                        [self.popUp show];
+                    }
+                    
+                } else if (file) {
+                    
+                    //Gets cache if available
+                    [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
                      {
-                         popUpImageView2.image = [UIImage imageWithData:data];
-                         popUpImageView2.layer.masksToBounds = YES;
-                         popUpImageView2.userInteractionEnabled = YES;
-
-                         UIButton *saveImageButton2 = [[UIButton alloc] initWithFrame:CGRectMake(popUpImageView2.frame.size.width - 55, popUpImageView2.frame.size.height - 55, 40, 40)];
-                         saveImageButton2.imageView.image = [UIImage imageWithData:data];
-                         saveImageButton2.imageView.hidden = YES;
-                         saveImageButton2.tag = [setPicturesObjects indexOfObject:picture];
-                         [saveImageButton2 addTarget:self action:@selector(downloadPicture:) forControlEvents:UIControlEventTouchUpInside];
-                         [saveImageButton2 setImage:[UIImage imageNamed:ASSETS_BACK_BUTTON_DOWN] forState:UIControlStateNormal];
-                         saveImageButton2.backgroundColor = [UIColor volleyFamousGreen];
-                         saveImageButton2.layer.masksToBounds = 1;
-                         saveImageButton2.layer.cornerRadius = 5;
-                         saveImageButton2.layer.borderColor = [UIColor whiteColor].CGColor;
-                         saveImageButton2.layer.borderWidth = 2;
-                         [popUpImageView2 addSubview:saveImageButton2];
-
-                         UIButton *closeImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
-                         closeImageButton.imageView.hidden = YES;
-                         closeImageButton.tag = [setPicturesObjects indexOfObject:picture];
-                         [closeImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
-                         [closeImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
-                         closeImageButton.backgroundColor = [UIColor volleyFamousGreen];
-                         closeImageButton.layer.masksToBounds = 1;
-                         closeImageButton.layer.cornerRadius = 5;
-                         closeImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
-                         closeImageButton.layer.borderWidth = 2;
-                         [popUpImageView2 addSubview:closeImageButton];
-
-                         popUpImageView2.layer.cornerRadius = 10;
-                         popUpImageView2.layer.borderColor = [UIColor whiteColor].CGColor;
-                         popUpImageView2.layer.borderWidth = 2;
-
-                         UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
-                         tap2.delegate = self;
-                         [popUpImageView addGestureRecognizer:tap2];
-
-                         [scrollView addSubview:popUpImageView2];
-                         [self.arrayOfScrollView addObject:popUpImageView2];
-                         [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:popUpImageView2];
-                         count--;
-                         if (count == 0)
+                         if (!error)
                          {
-                             [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
-
-                             [ProgressHUD dismiss];
-
-                             self.popUp = [KLCPopup popupWithContentView:scrollView
-                                                                showType:KLCPopupShowTypeSlideInFromLeft
-                                                             dismissType:KLCPopupDismissTypeSlideOutToLeft
-                                                                maskType:KLCPopupMaskTypeDimmed
-                                                dismissOnBackgroundTouch:0
-                                                   dismissOnContentTouch:0];
-
-                             [self.popUp addSubview:self.pageControl];
+                             popUpImageView2.image = [UIImage imageWithData:data];
+                             popUpImageView2.layer.masksToBounds = YES;
+                             popUpImageView2.userInteractionEnabled = YES;
+                             
+                             UIButton *saveImageButton2 = [[UIButton alloc] initWithFrame:CGRectMake(popUpImageView2.frame.size.width - 55, popUpImageView2.frame.size.height - 55, 40, 40)];
+                             saveImageButton2.imageView.image = [UIImage imageWithData:data];
+                             saveImageButton2.imageView.hidden = YES;
+                             saveImageButton2.tag = [setPicturesObjects indexOfObject:picture];
+                             [saveImageButton2 addTarget:self action:@selector(downloadPicture:) forControlEvents:UIControlEventTouchUpInside];
+                             [saveImageButton2 setImage:[UIImage imageNamed:ASSETS_BACK_BUTTON_DOWN] forState:UIControlStateNormal];
+                             saveImageButton2.backgroundColor = [UIColor volleyFamousGreen];
+                             saveImageButton2.layer.masksToBounds = 1;
+                             saveImageButton2.layer.cornerRadius = 5;
+                             saveImageButton2.layer.borderColor = [UIColor whiteColor].CGColor;
+                             saveImageButton2.layer.borderWidth = 2;
+                             [popUpImageView2 addSubview:saveImageButton2];
+                             
+                             UIButton *closeImageButton = [[UIButton alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
+                             closeImageButton.imageView.hidden = YES;
+                             closeImageButton.tag = [setPicturesObjects indexOfObject:picture];
+                             [closeImageButton addTarget:self action:@selector(didTapKLC:) forControlEvents:UIControlEventTouchUpInside];
+                             [closeImageButton setImage:[UIImage imageNamed:ASSETS_CLOSE] forState:UIControlStateNormal];
+                             closeImageButton.backgroundColor = [UIColor volleyFamousGreen];
+                             closeImageButton.layer.masksToBounds = 1;
+                             closeImageButton.layer.cornerRadius = 5;
+                             closeImageButton.layer.borderColor = [UIColor whiteColor].CGColor;
+                             closeImageButton.layer.borderWidth = 2;
+                             [popUpImageView2 addSubview:closeImageButton];
+                             
+                             popUpImageView2.layer.cornerRadius = 10;
+                             popUpImageView2.layer.borderColor = [UIColor whiteColor].CGColor;
+                             popUpImageView2.layer.borderWidth = 2;
                              
                              UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
-                             [self.popUp addGestureRecognizer:tap2];
+                             tap2.delegate = self;
+                             [popUpImageView addGestureRecognizer:tap2];
                              
-                             [self.popUp show];
+                             [scrollView addSubview:popUpImageView2];
+                             [self.arrayOfScrollView addObject:popUpImageView2];
+                             [self.arrayOfScrollView replaceObjectAtIndex:counter-1 withObject:popUpImageView2];
+                             count--;
+                             if (count == 0)
+                             {
+                                 [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
+                                 
+                                 [ProgressHUD dismiss];
+                                 
+                                 self.popUp = [KLCPopup popupWithContentView:scrollView
+                                                                    showType:KLCPopupShowTypeSlideInFromLeft
+                                                                 dismissType:KLCPopupDismissTypeSlideOutToLeft
+                                                                    maskType:KLCPopupMaskTypeDimmed
+                                                    dismissOnBackgroundTouch:0
+                                                       dismissOnContentTouch:0];
+                                 
+                                 [self.popUp addSubview:self.pageControl];
+                                 
+                                 UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
+                                 [self.popUp addGestureRecognizer:tap2];
+                                 
+                                 [self.popUp show];
+                             }
                          }
-                     }
-                     
-                 } progressBlock:^(int percentDone) {
-                     if (percentDone < 90) {
-                         [ProgressHUD show:[NSString stringWithFormat:@"%i", percentDone]];
-                     }
-                 }];
+                         
+                     } progressBlock:^(int percentDone) {
+                         if (percentDone < 90) {
+                             [ProgressHUD show:[NSString stringWithFormat:@"%i", percentDone]];
+                         }
+                     }];
+                }
+            }//end for loop
+            NSObject *object = self.arrayOfScrollView[indexPath.row];
+            if ([object isKindOfClass:[MPMoviePlayerController class]])
+            {
+                MPMoviePlayerController *mp = [self.arrayOfScrollView objectAtIndex:indexPath.row];
+                [mp play];
             }
-        }//end for loop
-        NSObject *object = self.arrayOfScrollView[indexPath.row];
-        if ([object isKindOfClass:[MPMoviePlayerController class]])
-        {
-            MPMoviePlayerController *mp = [self.arrayOfScrollView objectAtIndex:indexPath.row];
-            [mp play];
         }
     }
+    else
+    {
+        //clicked bottom cell
+        [ProgressHUD showError:@"NOPE" Interaction:YES];
+    }
+
 }
 
 //- (void) processDoubleTap:(UITapGestureRecognizer *)sender
@@ -978,36 +988,50 @@
         if (setPicturesObjects.count > 0)
         {
             [cell format];
-
-            PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
-            NSLog(@"%li", indexPath.item);
-
-            [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    if (!error) {
+            cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
+            
+            if (indexPath.item == setPicturesObjects.count)
+            {
+                NSLog(@"%ld is the index path", (long)indexPath.item);
+                cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
+                cell.backgroundColor = [UIColor clearColor];
+                cell.label.hidden = NO;
+                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
+                cell.label.text = @"+";
+            }
+            else
+            {
+                PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
+                NSLog(@"%li", indexPath.item);
+                
+                [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    if (!error)
+                    {
                         cell.imageView.image = [UIImage imageWithData:data];
                     }
                 }];
-
-            cell.backgroundColor = [UIColor clearColor];
-
-            cell.label.hidden = YES;
-            
-            if (indexPath.item == 0)
-            {
-                cell.label.hidden = NO;
-                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
-                NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
-                NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
-                [array removeObject:@" "];
-                NSString *first = array.firstObject;
-                NSString *last = array.lastObject;
-                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
-                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
-                name = [first stringByAppendingString:last];
-                cell.label.text = name;
+                
+                cell.backgroundColor = [UIColor clearColor];
+                
+                cell.label.hidden = YES;
+                
+                if (indexPath.item == 0)
+                {
+                    cell.label.hidden = NO;
+                    cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
+                    NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+                    NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
+                    [array removeObject:@" "];
+                    NSString *first = array.firstObject;
+                    NSString *last = array.lastObject;
+                    first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
+                    last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
+                    name = [first stringByAppendingString:last];
+                    cell.label.text = name;
+                }
+                
+                cell.imageView.layer.borderColor = backgroundColor_.CGColor;
             }
-
-            cell.imageView.layer.borderColor = backgroundColor_.CGColor;
 //            cell.label.backgroundColor = backgroundColor_;
         }
         return cell;
@@ -1224,112 +1248,120 @@
     spinner.frame = CGRectMake(self.view.frame.size.width/2 -50, self.view.frame.size.height/2 - 50, 100, 100);
     
     NSIndexPath *indexPath = [self.collectionViewPictures indexPathForItemAtPoint:touch];
-
-    if (self.inputToolbar.contentView.textView.isFirstResponder)
-    {
-        [self.inputToolbar.contentView.textView resignFirstResponder];
-    }
     
-    if (indexPath && longPress.state == UIGestureRecognizerStateBegan)
+    if (indexPath.item != setPicturesObjects.count)
     {
-        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-        //User long pressed image
         
-        [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
-        
-        isTouching = YES;
-        
-        longPressImageView = [[PFImageView alloc] initWithFrame:self.view.bounds];
-        
-        longPressImageView.backgroundColor = [UIColor volleyFamousGreen];
-        
-        PFObject *picture = [setPicturesObjects objectAtIndex:indexPath.item];
-        
-        __block PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
-        
-        if (!file)
+        if (self.inputToolbar.contentView.textView.isFirstResponder)
         {
-            [picture fetch];
-            file = [picture valueForKey:PF_PICTURES_PICTURE];
+            [self.inputToolbar.contentView.textView resignFirstResponder];
         }
         
-        if ([[picture valueForKey:PF_PICTURES_IS_VIDEO]  isEqual: @YES])
+        if (indexPath && longPress.state == UIGestureRecognizerStateBegan)
         {
-            NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
-            NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
-            NSFileManager *fileManager = [NSFileManager defaultManager];
+            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+            //User long pressed image
             
-            if (![fileManager fileExistsAtPath:outputPath])
+            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationFade];
+            
+            isTouching = YES;
+            
+            longPressImageView = [[PFImageView alloc] initWithFrame:self.view.bounds];
+            
+            longPressImageView.backgroundColor = [UIColor volleyFamousGreen];
+            
+            PFObject *picture = [setPicturesObjects objectAtIndex:indexPath.item];
+            
+            __block PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
+            
+            if (!file)
             {
-                [[file getData] writeToFile:outputPath atomically:1];
+                [picture fetch];
+                file = [picture valueForKey:PF_PICTURES_PICTURE];
             }
-
-            self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
-            [self.moviePlayer.view setFrame:self.view.window.frame];
-            self.moviePlayer.fullscreen = NO;
-            [self.moviePlayer prepareToPlay];
-            longPressImageView.backgroundColor = [UIColor blackColor];
-
-            [UIView animateWithDuration:1.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                longPressImageView.alpha = 0;
-                longPressImageView.alpha = 1;
-                [spinner startAnimating];
-                [longPressImageView addSubview:spinner];
-                [self.view.window addSubview:longPressImageView];
-            } completion:0];
-
-            self.moviePlayer.controlStyle = MPMovieControlStyleNone;
-            [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
-            self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
-            [self.moviePlayer play];
-            [longPressImageView addSubview:self.moviePlayer.view];
-            return;
-        }
-        else
-        {
-            //
+            
+            if ([[picture valueForKey:PF_PICTURES_IS_VIDEO]  isEqual: @YES])
+            {
+                NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"cache%@.mov", picture.objectId]];
+                NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                
+                if (![fileManager fileExistsAtPath:outputPath])
+                {
+                    [[file getData] writeToFile:outputPath atomically:1];
+                }
+                
+                self.moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
+                [self.moviePlayer.view setFrame:self.view.window.frame];
+                self.moviePlayer.fullscreen = NO;
+                [self.moviePlayer prepareToPlay];
+                longPressImageView.backgroundColor = [UIColor blackColor];
+                
+                [UIView animateWithDuration:1.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    longPressImageView.alpha = 0;
+                    longPressImageView.alpha = 1;
+                    [spinner startAnimating];
+                    [longPressImageView addSubview:spinner];
+                    [self.view.window addSubview:longPressImageView];
+                } completion:0];
+                
+                self.moviePlayer.controlStyle = MPMovieControlStyleNone;
+                [self.moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
+                self.moviePlayer.repeatMode = MPMovieRepeatModeOne;
+                [self.moviePlayer play];
+                [longPressImageView addSubview:self.moviePlayer.view];
+                return;
+            }
+            else
+            {
+                //
+            }
+            
+            if (file)
+            {
+                [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    if (!error) {
+                        [spinner stopAnimating];
+                        [longPressImageView setContentMode:UIViewContentModeScaleAspectFill];
+                        longPressImageView.image = [UIImage imageWithData:data];
+                    }
+                }];
+                
+                longPressImageView.backgroundColor = [UIColor blackColor];
+                
+                [UIView animateWithDuration:.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                    longPressImageView.alpha = 0;
+                    longPressImageView.alpha = 1;
+                    [spinner startAnimating];
+                    [longPressImageView addSubview:spinner];
+                    [self.view.window addSubview:longPressImageView];
+                } completion:0];
+                
+            }
         }
         
-        if (file)
+        if (longPress.state == UIGestureRecognizerStateEnded)
         {
-            [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                if (!error) {
-                    [spinner stopAnimating];
-                    [longPressImageView setContentMode:UIViewContentModeScaleAspectFill];
-                    longPressImageView.image = [UIImage imageWithData:data];
-                }
+            [[UIApplication sharedApplication] setStatusBarHidden:0];
+            self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+            
+            [self.moviePlayer pause];
+            [self.moviePlayer.view removeFromSuperview];
+            self.moviePlayer = nil;
+            
+            [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                longPressImageView.alpha = 1;
+                longPressImageView.alpha = 0;
+            }completion:^(BOOL finished){
+                [longPressImageView removeFromSuperview];
             }];
             
-            longPressImageView.backgroundColor = [UIColor blackColor];
-            
-            [UIView animateWithDuration:.6 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-                longPressImageView.alpha = 0;
-                longPressImageView.alpha = 1;
-                [spinner startAnimating];
-                [longPressImageView addSubview:spinner];
-                [self.view.window addSubview:longPressImageView];
-            } completion:0];
-            
+            isTouching = NO;
         }
     }
-    
-    if (longPress.state == UIGestureRecognizerStateEnded)
+    else
     {
-        [[UIApplication sharedApplication] setStatusBarHidden:0];
-        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-        
-        [self.moviePlayer pause];
-        [self.moviePlayer.view removeFromSuperview];
-        self.moviePlayer = nil;
-        
-        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            longPressImageView.alpha = 1;
-            longPressImageView.alpha = 0;
-        }completion:^(BOOL finished){
-            [longPressImageView removeFromSuperview];
-        }];
-        
-        isTouching = NO;
+        [ProgressHUD showError:@"NOPE" Interaction:YES];
     }
 }
 
