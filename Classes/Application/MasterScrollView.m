@@ -87,7 +87,7 @@
 - (BOOL) checkIfCurrentChatIsEqualToRoom:(NSString *)roomId didComeFromBackground:(BOOL)isBack
 {
     NavigationController *nav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
-    NavigationController *flashbacks = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];\
+    NavigationController *flashbacks = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
     
     
     if([nav.visibleViewController isKindOfClass:[CustomCameraView class]])

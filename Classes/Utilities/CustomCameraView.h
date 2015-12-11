@@ -9,11 +9,12 @@
 #import "MasterScrollView.h"
 #import <Parse/Parse.h>
 #import "ParseVolliePackage.h"
-
+#import "CustomChatView.h"
 
 #pragma mark - DELEGATE
 @protocol CustomCameraDelegate <NSObject>
 -(void)sendBackPictures:(NSArray *)images withBool:(bool)didTakePicture andComment:(NSString *)comment;
+-(void)displayTopNotification;
 @end
 
 @protocol SecondDelegate <NSObject>

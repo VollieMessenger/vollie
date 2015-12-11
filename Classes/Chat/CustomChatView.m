@@ -27,7 +27,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate>
+@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate, CustomCameraDelegate>
 
 @property KLCPopup *popUp;
 @property NSMutableArray *arrayOfScrollView;
@@ -184,6 +184,11 @@
 
 //    setPicturesObjects = [NSMutableArray new];
 
+}
+
+-(void)displayTopNotification
+{
+    [self setUpTopNotification];
 }
 
 -(void)setUpTopNotification

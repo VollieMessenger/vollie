@@ -1724,8 +1724,28 @@
         }
         else if (self.comingFromCustomChatView == YES)
         {
+            
+            
+            
+//            
+//            NavigationController *nav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+//            NavigationController *flashbacks = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
+//            
+//            
+//            
+//            if (nav.viewControllers.lastObject == self)
+//            {
+//                NSLog(@"I am a camera from the inbox");
+//            }
+//            
+//        
+//            
+            
             [self.package sendPhotosWithPhotosArray:self.arrayOfTakenPhotos andText:nil andRoom:self.roomToSendPhotosTo andSet:self.setToSendPhotosTo];
             self.comingFromCustomChatView = false;
+            [self clearCameraStuff];
+            
+            
             PostNotification(NOTIFICATION_CAMERA_POPUP);
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
             [self dismissViewControllerAnimated:NO completion:nil];
