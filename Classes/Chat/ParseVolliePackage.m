@@ -155,14 +155,18 @@
                     if(!error)
                     {
                         NSLog(@"saved room in background");
-                        if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
+                        if (text)
                         {
-                            [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
-                            
-                            //temporarily putting this here:
-                            //                    [self showSuccessNotificationWithString:@"New Picture!"
-                            //                                                  andObject:object
-                            //                                              andRoomNumber:roomNumber];
+                            if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
+                            {
+                                [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
+                            }
+                            else
+                            {
+                                [self showSuccessNotificationWithString:@"New Picture!"
+                                                              andObject:object
+                                                          andRoomNumber:roomNumber];
+                            }
                         }
                         else
                         {

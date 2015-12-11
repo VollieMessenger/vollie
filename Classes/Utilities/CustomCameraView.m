@@ -22,6 +22,7 @@
 #import "NewVollieVC.h"
 #import "ParseVolliePackage.h"
 #import "MainInboxVC.h"
+#import "ParseVolliePackage.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -1723,7 +1724,7 @@
         }
         else if (self.comingFromCustomChatView == YES)
         {
-            
+            [self.package sendPhotosWithPhotosArray:self.arrayOfTakenPhotos andText:nil andRoom:self.roomToSendPhotosTo andSet:self.setToSendPhotosTo];
             self.comingFromCustomChatView = false;
             PostNotification(NOTIFICATION_CAMERA_POPUP);
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];

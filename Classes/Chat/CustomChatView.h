@@ -26,5 +26,6 @@
 @property NSString *setIDforCardCheck;
 @property PFObject *setChat;
 @property PFObject *setMaster;
+@property BOOL shouldShowTempCard;
 
 @end

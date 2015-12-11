@@ -7,6 +7,9 @@
 #import <UIKit/UIKit.h>
 #import "MessagesView.h"
 #import "MasterScrollView.h"
+#import <Parse/Parse.h>
+#import "ParseVolliePackage.h"
+
 
 #pragma mark - DELEGATE
 @protocol CustomCameraDelegate <NSObject>
@@ -62,6 +65,9 @@
 
 //for adding photos to existing chats
 @property BOOL comingFromCustomChatView;
+@property PFObject *setToSendPhotosTo;
+@property PFObject *roomToSendPhotosTo;
+@property ParseVolliePackage *package;
 
 @property (weak, nonatomic) IBOutlet UIButton *x1;
 @property (weak, nonatomic) IBOutlet UIButton *x2;

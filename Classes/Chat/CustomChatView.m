@@ -22,10 +22,12 @@
 #import "utilities.h"
 #import "VollieCardData.h"
 #import "ManageChatVC.h"
+#import "ParseVolliePackage.h"
+#import "AFDropdownNotification.h"
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomChatView ()
+@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate>
 
 @property KLCPopup *popUp;
 @property NSMutableArray *arrayOfScrollView;
@@ -37,6 +39,8 @@
 @property NSMutableArray *arrayOfUnreadUsers;
 @property BOOL shouldUpdateUnreadUsers;
 @property PFObject *actualSet;
+@property (nonatomic, strong) AFDropdownNotification *notification;
+
 
 @end
 
@@ -172,9 +176,25 @@
     [super viewDidAppear:1];
     [self removeCurrentUserFromUnreadUsers];
     [self.view setNeedsDisplay];
+    if (self.shouldShowTempCard)
+    {
+        self.shouldShowTempCard = NO;
+        [self setUpTopNotification];
+    }
 
 //    setPicturesObjects = [NSMutableArray new];
 
+}
+
+-(void)setUpTopNotification
+{
+    self.notification = [[AFDropdownNotification alloc] init];
+    self.notification.notificationDelegate = self;
+    self.notification.titleText = @"Sending Vollie!";
+    self.notification.subtitleText = @"We are uploading your Vollie now. Your new chatroom will show up soon! ";
+    self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
+    [self.notification presentInView:self.view withGravityAnimation:NO];
+    self.shouldShowTempCard = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -214,6 +234,7 @@
     NSParameterAssert(self.senderId != nil);
     NSParameterAssert(setId_ != nil);
     NSParameterAssert(self.senderDisplayName != nil);
+    
 //    NSParameterAssert(self.room != nil);
 
     [self.collectionViewPictures registerClass:[CustomCollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
@@ -383,6 +404,12 @@
         [self loadMessages];
     }
     return self;
+}
+
+-(void)reloadAfterMessageSuccessfullySent
+{
+    [self.notification dismissWithGravityAnimation:NO];
+    [self loadMessages];
 }
 
 -(void)clearPushNotesCounter
@@ -645,6 +672,7 @@
     else
     {
         //if it's the add picture cell
+        self.shouldShowTempCard = YES;
         [self bringUpCameraView];
     }
     
@@ -659,7 +687,12 @@
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
         //        NSLog(@"%f)
         //        NSLog(@"%fl is size of scroll when i hit bring up camera view", cam.scrollView.contentSize.width);
+        ParseVolliePackage *package = [ParseVolliePackage new];
+        package.refreshDelegate = self;
+        cam.package = package;
         cam.scrollView.contentSize = CGSizeMake(3 * cam.view.frame.size.width, cam.view.frame.size.height);
+        cam.setToSendPhotosTo = self.set;
+        cam.roomToSendPhotosTo = self.room;
         cam.delegate = self;
         cam.comingFromCustomChatView = YES;
         //        if (self.photosArray.count >= 1)
