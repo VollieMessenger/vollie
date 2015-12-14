@@ -60,7 +60,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
 
     //Must come before appidkey, RUN SCRIPT IN BUILD PHASE
     [ParseCrashReporting enable];
@@ -173,7 +175,9 @@
     //set up highlights page for right on scrollview
     WeekHighlightsVC *weekHighlights = (WeekHighlightsVC *)[storyboard instantiateViewControllerWithIdentifier:@"WeekHighlightsVC"];
     self.navFavorites = [[NavigationController alloc] initWithRootViewController:weekHighlights];
-    self.navFavorites.navigationBar.barTintColor = [UIColor volleyFamousOrange];
+//    self.navFavorites.navigationBar.barTintColor = [UIColor volleyFamousOrange];
+    self.navFavorites.navigationBar.barTintColor = [UIColor whiteColor];
+
     weekHighlights.scrollView = scrollView;
     _navFavorites.view.frame = CGRectMake(vc.view.frame.size.width * 2, 0, vc.view.frame.size.width, vc.view.frame.size.height);
     [_navFavorites didMoveToParentViewController:vc];

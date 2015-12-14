@@ -64,9 +64,12 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
     self.navigationController.navigationBar.titleTextAttributes =  @{
                                                                      NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
-                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
+                                                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0f],
                                                                      NSShadowAttributeName:[NSShadow new]
                                                                      };
+    self.navigationController.navigationBar.topItem.backBarButtonItem = [[UIBarButtonItem alloc]
+                                                                         initWithTitle:@"   " style:UIBarButtonItemStylePlain target:nil action:nil];
+
 //    self.navigationController.navigationBar set
     self.title = @"Send to...";
     self.messages = [NSMutableArray new];
@@ -78,7 +81,7 @@
     self.counterForLastPhotoTaken = (int)self.photosToSend.count;
 
     self.sendButton.hidden = YES;
-    self.sendButton.backgroundColor = [UIColor volleyFamousOrange];
+    self.sendButton.backgroundColor = [UIColor volleyFamousGreen];
     [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.sendButton.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:17.0];
     self.sendArrows.hidden = YES;
@@ -200,7 +203,7 @@
 //    cell.selectedImageView.layer.masksToBounds = YES;
     if (room == self.messagesRoom)
     {
-        cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
+        cell.selectedImageView.image = [UIImage imageNamed:@"vollie-green-checkmark"];
         cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1];
     }
     else
@@ -300,7 +303,7 @@
             ChatRoomCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             //    cell.selectedImageView.backgroundColor = [UIColor volleyFamousOrange];
-            cell.selectedImageView.image = [UIImage imageNamed:@"checkmark"];
+            cell.selectedImageView.image = [UIImage imageNamed:@"vollie-green-checkmark"];
             [UIView animateWithDuration:.2f animations:^{
                 cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1.0];
             }];

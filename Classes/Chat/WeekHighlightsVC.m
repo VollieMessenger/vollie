@@ -71,14 +71,24 @@
 //    self.tableView.backgroundColor = [UIColor clearColor];
     NSLog(@"Set up WeekHighlights/Flashbacks UI");
 //    NSLog(@"    ");
-    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@"settings"
+    UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@" "
                                                                         style:UIBarButtonItemStyleBordered target:self action:@selector(goToSettingsVC)];
     settingsButton.image = [UIImage imageNamed:@"settings"];
     self.navigationItem.rightBarButtonItem = settingsButton;
-    UIBarButtonItem *inboxButton = [[UIBarButtonItem alloc] initWithTitle:@"inbox"
+    UIBarButtonItem *inboxButton = [[UIBarButtonItem alloc] initWithTitle:@" "
                                                                        style:UIBarButtonItemStyleBordered target:self action:@selector(goBackToInboxVC)];
     inboxButton.image = [UIImage imageNamed:ASSETS_INBOX_FLIP];
     self.navigationItem.leftBarButtonItem = inboxButton;
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+
+    [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousOrange]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithWhite:.98 alpha:1]];
+        self.navigationController.navigationBar.titleTextAttributes =  @{
+                                                                     NSForegroundColorAttributeName: [UIColor orangeColor],
+                                                                     NSFontAttributeName: [UIFont boldSystemFontOfSize:18],
+                                                                     NSShadowAttributeName:[NSShadow new]
+                                                                     };
     
     [self.tableView setSeparatorColor: [UIColor lightGrayColor]];
     

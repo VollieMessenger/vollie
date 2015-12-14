@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "app/AppDelegate.m"
-            timestampString = "470878849.108506"
+            timestampString = "471815974.107548"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "-checkForPushNotificationWith:"
             landmarkType = "5">
          </BreakpointContent>

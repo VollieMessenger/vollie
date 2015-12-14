@@ -150,7 +150,7 @@
 {
     self.canSend = NO;
     self.sendVollieView.hidden = YES;
-    self.sendVollieView.backgroundColor = [UIColor volleyFamousOrange];
+    self.sendVollieView.backgroundColor = [UIColor volleyFamousGreen];
 
     self.tableView.sectionIndexColor = [UIColor lightGrayColor];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:1];
@@ -195,6 +195,12 @@
                                    style: UIBarButtonItemStyleBordered
                                    target: nil action: nil];
     [self.navigationItem setBackBarButtonItem: backButton];
+    
+    self.navigationController.navigationBar.titleTextAttributes =  @{
+                                                                     NSForegroundColorAttributeName: [UIColor volleyFamousGreen],
+                                                                     NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0f],
+                                                                     NSShadowAttributeName:[NSShadow new]
+                                                                     };
 
     self.searchBar.placeholder = @"Search...";
 
@@ -342,7 +348,7 @@
         if ([MFMessageComposeViewController canSendText]) {
             MFMessageComposeViewController * msgComposer = [[MFMessageComposeViewController alloc] init];
             msgComposer.recipients = self.arrayOfSelectedUsers;
-            msgComposer.body = [NSString stringWithFormat:@"You should download Vollie so we can talk to each other! Download it from the App Store here: %@.",[NSURL URLWithString:@"https://appsto.re/us/D13q5.i"]];
+            msgComposer.body = [NSString stringWithFormat:@"Download Vollie from the App Store here: %@.",[NSURL URLWithString:@"https://appsto.re/us/D13q5.i"]];
             msgComposer.messageComposeDelegate = self;
             [self presentViewController:msgComposer animated:YES completion:nil];
             return;
@@ -940,7 +946,9 @@
     else if ([self.arrayOfSelectedUsers containsObject:number]){
         cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
-        UIImage *image = self.invite ? [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        UIImage *image = self.invite ? [[UIImage imageNamed:@"green-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        UIImage *image = [UIImage imageNamed:@"super-tiny-green-text2"];
+
         cell.accessoryView = [[UIImageView alloc] initWithImage:image];
         cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -1018,7 +1026,8 @@
             self.canSend = YES;
             [self resize];
             [self togglePhoneNumbersCountIndicator];
-            UIImage *image = self.invite ? [[UIImage imageNamed:@"text-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//            UIImage *image = self.invite ? [[UIImage imageNamed:@"green-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+            UIImage *image = [UIImage imageNamed:@"super-tiny-green-text2"];
             cell.accessoryView = [[UIImageView alloc] initWithImage:image];
             cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;

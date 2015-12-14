@@ -240,6 +240,14 @@
     {
         [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
     }
+    else if (lastContentOffset == self.bounds.size.width * 2)
+    {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    }
+    else if (lastContentOffset < self.bounds.size.width * 2  && lastContentOffset > self.bounds.size.width)
+    {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    }
     else
     {
         [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];

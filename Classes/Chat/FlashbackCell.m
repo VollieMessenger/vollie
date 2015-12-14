@@ -18,8 +18,9 @@
 
 -(void)formatCell
 {
-    //    self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor clearColor];
     self.fourPicUIView.backgroundColor = [UIColor clearColor];
+//    self.fourPicUIView.layer.cornerRadius = 10;
     self.topSpacerView.backgroundColor = [UIColor clearColor];
     
     self.imageViewArray = [[NSMutableArray alloc] initWithObjects:self.imageViewOneBig, self.imageViewTwo, self.imageViewThree, self.imageViewFour, self.imageViewFive, nil];

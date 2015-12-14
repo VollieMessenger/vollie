@@ -1075,7 +1075,7 @@
                 cell.imageView.image = nil;
                 cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
                 cell.backgroundColor = [UIColor clearColor];
-//                cell.label.hidden = NO;
+                cell.label.hidden = YES;
 //                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
 //                cell.label.text = @"+";
             }
