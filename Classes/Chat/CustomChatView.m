@@ -176,6 +176,7 @@
     [super viewDidAppear:1];
     [self removeCurrentUserFromUnreadUsers];
     [self.view setNeedsDisplay];
+    self.collectionViewPictures.hidden = NO;
     [self.collectionViewPictures reloadData];
 //    self.collectionViewPictures.hidden = NO;
     if (self.shouldShowTempCard)
@@ -210,6 +211,7 @@
     [self isSetFavorited];
     [self finishReceivingMessage:0];
     [self.view setNeedsDisplay];
+    self.collectionViewPictures.hidden = YES;
 }
 
 - (void)viewDidLoad
@@ -1073,9 +1075,9 @@
                 cell.imageView.image = nil;
                 cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
                 cell.backgroundColor = [UIColor clearColor];
-                cell.label.hidden = NO;
-                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
-                cell.label.text = @"+";
+//                cell.label.hidden = NO;
+//                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
+//                cell.label.text = @"+";
             }
             else
             {
