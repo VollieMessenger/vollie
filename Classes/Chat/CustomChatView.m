@@ -176,6 +176,8 @@
     [super viewDidAppear:1];
     [self removeCurrentUserFromUnreadUsers];
     [self.view setNeedsDisplay];
+    [self.collectionViewPictures reloadData];
+//    self.collectionViewPictures.hidden = NO;
     if (self.shouldShowTempCard)
     {
         self.shouldShowTempCard = NO;
@@ -1047,6 +1049,12 @@
 
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CustomCollectionViewCell *cell2 = (CustomCollectionViewCell *)[self.collectionViewPictures cellForItemAtIndexPath:indexPath];
+    cell2 = nil;
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (collectionView == self.collectionViewPictures)
@@ -1056,11 +1064,13 @@
         if (setPicturesObjects.count > 0)
         {
             [cell format];
-            cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
+//            cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
             
             if (indexPath.item == setPicturesObjects.count)
             {
-                NSLog(@"%ld is the index path", (long)indexPath.item);
+//                NSLog(@"%ld is the index path", (long)indexPath.item);
+                NSLog(@"%@ is the image", cell.imageView.image);
+                cell.imageView.image = nil;
                 cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
                 cell.backgroundColor = [UIColor clearColor];
                 cell.label.hidden = NO;
@@ -1070,7 +1080,7 @@
             else
             {
                 PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
-                NSLog(@"%li", indexPath.item);
+//                NSLog(@"%li", indexPath.item);
                 
                 [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                     if (!error)

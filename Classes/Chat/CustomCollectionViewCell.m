@@ -22,10 +22,16 @@
 #warning RASTERIZING
     self.layer.rasterizationScale = [UIScreen mainScreen].scale;
     self.layer.shouldRasterize = YES;
-    self.imageView.image = [UIImage imageNamed:@"packageimg6"];
+//    self.imageView.image = [UIImage imageNamed:@"packageimg6"];
 
 
 
+}
+
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    self.imageView.image = nil;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -86,7 +92,7 @@
         self.label.font = [UIFont fontWithName:@"Helvetica Bold" size:12];
         self.label.textColor = [UIColor darkGrayColor];
         [self insertSubview:self.label aboveSubview:self.imageView];
-        self.imageView.image = [UIImage imageNamed:@"packageimg6"];
+//        self.imageView.image = [UIImage imageNamed:@"packageimg6"];
 
     }
     return self;
