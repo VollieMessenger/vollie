@@ -935,7 +935,7 @@
 
     if ([_arrayOfSelectedUsers containsObject:selectedUser])
     {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"GreenCheckMarkTiny"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         imageView.tintColor = [UIColor volleyFamousOrange];
         cell.backgroundColor = [UIColor colorWithRed:.9 green:.9 blue:.9 alpha:1];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:18];
@@ -1026,8 +1026,8 @@
             self.canSend = YES;
             [self resize];
             [self togglePhoneNumbersCountIndicator];
-//            UIImage *image = self.invite ? [[UIImage imageNamed:@"green-message-icon"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"checkmark"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-            UIImage *image = [UIImage imageNamed:@"super-tiny-green-text2"];
+            UIImage *image = self.invite ? [[UIImage imageNamed:@"super-tiny-green-text2"] imageWithRenderingMode:UIImageRenderingModeAutomatic] : [[UIImage imageNamed:@"GreenCheckMarkTiny"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//            UIImage *image = [UIImage imageNamed:@"super-tiny-green-text2"];
             cell.accessoryView = [[UIImageView alloc] initWithImage:image];
             cell.accessoryView.tintColor = [UIColor volleyFamousOrange];
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
