@@ -56,6 +56,8 @@
 @property UILongPressGestureRecognizer *longPress;
 @property UITapGestureRecognizer *tap;
 
+@property PFObject *sharedChatroom;
+
 //@property MomentsVC *cardViewVC;
 
 //arrays
@@ -213,6 +215,26 @@
 //        WeekHighlightsVC *vc = (WeekHighlightsVC*)navFavorites.viewControllers.firstObject;
         self.isCurrentlyLoadingMessages = YES;
         
+        PFQuery *query2 = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
+        [query2 whereKey:@"objectId" equalTo:@"YQjK00ePzE"];
+        //      [query includeKey:PF_MESSAGES_LASTUSER];
+        [query2 includeKey:PF_MESSAGES_ROOM];
+        [query2 includeKey:PF_MESSAGES_USER]; // doesn't need to be here
+        [query2 includeKey:PF_MESSAGES_LASTPICTURE];
+        [query2 includeKey:PF_MESSAGES_LASTPICTUREUSER];
+        //        [query2 whereKey:PF_MESSAGES_HIDE_UNTIL_NEXT equalTo:@NO];
+        [query2 orderByDescending:PF_MESSAGES_UPDATEDACTION];
+        [query2 setCachePolicy:kPFCachePolicyCacheThenNetwork];
+        [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+        {
+             if (!error)
+             {
+                 
+                 
+                 self.sharedChatroom = objects.firstObject;
+             }
+        }];
+        
         //should change this to RoomObject.h
         NSLog(@"Creating PFQuery for chatrooms");
         PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
@@ -241,6 +263,13 @@
                      else
                      {
                          [self.messages addObject:message];
+                     }
+                 }
+                 if (![self.messages containsObject:self.sharedChatroom])
+                 {
+                     if (self.sharedChatroom != nil)
+                     {
+                         [self.messages addObject:self.sharedChatroom];
                      }
                  }
                  [self.tableView reloadData];

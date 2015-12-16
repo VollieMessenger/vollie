@@ -248,9 +248,14 @@
 {
     if (self.selectedRoom)
     {
-        self.sendButton.userInteractionEnabled = NO;
-        [self beginSendingVolliePackage];
-//        self.sendButton
+        if (![self.messagesRoom.objectId isEqualToString:@"YQjK00ePzE"])
+        {
+            [self beginSendingVolliePackage];
+        }
+        else
+        {
+            [ProgressHUD showError:@"Cannot Send To All Users!"];
+        }
     }
 }
 

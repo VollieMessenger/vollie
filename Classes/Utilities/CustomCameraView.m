@@ -373,8 +373,6 @@
     
     if (!_didViewJustLoad)
     {
-        
-        
         if (self.navigationController.visibleViewController == self && self.scrollView.contentOffset.x  < 2)
         {
 //            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
