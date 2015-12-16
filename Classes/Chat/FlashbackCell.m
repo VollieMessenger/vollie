@@ -18,10 +18,10 @@
 
 -(void)formatCell
 {
-        self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor clearColor];
     self.fourPicUIView.backgroundColor = [UIColor clearColor];
 //    self.fourPicUIView.layer.cornerRadius = 10;
-    self.topSpacerView.backgroundColor = [UIColor clearColor];
+    self.topSpacerView.backgroundColor = [UIColor whiteColor];
     
     self.imageViewArray = [[NSMutableArray alloc] initWithObjects:self.imageViewOneBig, self.imageViewTwo, self.imageViewThree, self.imageViewFour, self.imageViewFive, nil];
     
@@ -30,7 +30,6 @@
         imageview.layer.masksToBounds = YES;
         imageview.layer.cornerRadius = 10;
         [imageview setImage:[UIImage imageNamed:@"orange-vollie-logo"]];
-        
     }
 }
 
