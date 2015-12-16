@@ -10,6 +10,7 @@
 #import "JSQMessages.h"
 #import <Parse/Parse.h>
 #import "CustomCameraView.h"
+#import "MasterScrollView.h"
 
 @interface CustomChatView : JSQMessagesViewController <JSQMessagesCollectionViewDelegateFlowLayout, JSQMessagesCollectionViewDataSource, UITextViewDelegate, UIScrollViewDelegate>
 
@@ -27,5 +28,6 @@
 @property PFObject *setChat;
 @property PFObject *setMaster;
 @property BOOL shouldShowTempCard;
+@property MasterScrollView *scrollView;
 
 @end

@@ -25,12 +25,17 @@
 -(void) pushToCard;
 @end
 
+@protocol UploadingDropDownDelegate <NSObject>
+-(void)dismissedCamera:(BOOL)shouldShowDropDown;
+@end
+
 @interface CustomCameraView : UIViewController
 {
 //    id                              myDelegate;
 }
 @property (nonatomic, assign) id<SecondDelegate>    myDelegate;
 @property (nonatomic, assign) id<PushToCardDelegate> pushToCardDelegate;
+@property (nonatomic, assign) id<UploadingDropDownDelegate> shouldShowDropDownDelegate;
 @property(nonatomic,assign)id delegate;
 
 -(id)initWithPopUp:(BOOL)popup;

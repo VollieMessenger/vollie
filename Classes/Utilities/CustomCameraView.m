@@ -89,6 +89,7 @@
 
 @synthesize delegate;
 @synthesize myDelegate;
+@synthesize shouldShowDropDownDelegate;
 
 - (id)initWithPopUp:(BOOL)popup
 {
@@ -352,6 +353,10 @@
         if ([nav.viewControllers.lastObject isKindOfClass:[NewVollieVC class]])
         {
             //??
+        }
+        else if ([nav.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
+        {
+            
         }
         else
         {
@@ -673,6 +678,8 @@
     self.cancelButton.hidden = YES;
     self.rightButton.hidden = NO;
     self.comingFromNewVollie = YES;
+    self.comingFromCustomChatView = NO;
+    self.scrollView.scrollEnabled = NO;
 
     PostNotification(NOTIFICATION_CAMERA_POPUP);
 
@@ -1724,28 +1731,16 @@
         }
         else if (self.comingFromCustomChatView == YES)
         {
-            
-            
-            
-//            
-//            NavigationController *nav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
-//            NavigationController *flashbacks = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
-//            
-//            
-//            
-//            if (nav.viewControllers.lastObject == self)
-//            {
-//                NSLog(@"I am a camera from the inbox");
-//            }
-//            
-//        
-//            
+            if([self.shouldShowDropDownDelegate respondsToSelector:@selector(dismissedCamera:)])
+            {
+                [self.shouldShowDropDownDelegate dismissedCamera:YES];
+            }
             
             [self.package sendPhotosWithPhotosArray:self.arrayOfTakenPhotos andText:nil andRoom:self.roomToSendPhotosTo andSet:self.setToSendPhotosTo];
             self.comingFromCustomChatView = false;
             [self clearCameraStuff];
             
-            
+            self.comingFromCustomChatView = NO;
             PostNotification(NOTIFICATION_CAMERA_POPUP);
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
             [self dismissViewControllerAnimated:NO completion:nil];

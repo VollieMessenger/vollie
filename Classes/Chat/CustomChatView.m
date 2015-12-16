@@ -27,7 +27,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate, CustomCameraDelegate>
+@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate, CustomCameraDelegate, UploadingDropDownDelegate>
 
 @property KLCPopup *popUp;
 @property NSMutableArray *arrayOfScrollView;
@@ -179,11 +179,11 @@
     self.collectionViewPictures.hidden = NO;
     [self.collectionViewPictures reloadData];
 //    self.collectionViewPictures.hidden = NO;
-    if (self.shouldShowTempCard)
-    {
-        self.shouldShowTempCard = NO;
-        [self setUpTopNotification];
-    }
+//    if (self.shouldShowTempCard)
+//    {
+//        self.shouldShowTempCard = NO;
+////        [self setUpTopNotification];
+//    }
 
 //    setPicturesObjects = [NSMutableArray new];
 
@@ -202,7 +202,7 @@
     self.notification.subtitleText = @"We are uploading your Vollie now. Your new chatroom will show up soon! ";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
     [self.notification presentInView:self.view withGravityAnimation:NO];
-    self.shouldShowTempCard = NO;
+//    self.shouldShowTempCard = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -217,7 +217,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    
     self.collectionView.backgroundColor = [UIColor clearColor];
     self.collectionViewPictures.backgroundColor = [UIColor clearColor];
     //Change send button to orange
@@ -691,7 +692,7 @@
     else
     {
         //if it's the add picture cell
-        self.shouldShowTempCard = YES;
+//        self.shouldShowTempCard = YES;
         [self bringUpCameraView];
     }
     
@@ -713,6 +714,7 @@
         cam.setToSendPhotosTo = self.set;
         cam.roomToSendPhotosTo = self.room;
         cam.delegate = self;
+        cam.shouldShowDropDownDelegate = self;
         cam.comingFromCustomChatView = YES;
         //        if (self.photosArray.count >= 1)
         //        {
@@ -729,6 +731,14 @@
         [self presentViewController:[(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera] animated:NO completion:0];
         
         //        [self presentViewController:cam animated:YES completion:nil];
+    }
+}
+
+-(void)dismissedCamera:(BOOL)shouldShowDropDown
+{
+    if (shouldShowDropDown)
+    {
+        [self setUpTopNotification];
     }
 }
 

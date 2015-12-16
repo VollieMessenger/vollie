@@ -238,6 +238,7 @@
     lastContentOffset = scrollView.contentOffset.x;
     if (lastContentOffset < self.bounds.size.width - 1)
     {
+        
         [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
     }
     else if (lastContentOffset == self.bounds.size.width * 2)
