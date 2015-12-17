@@ -76,99 +76,85 @@
     PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
     object[PF_CHAT_USER] = [PFUser currentUser];
     object[PF_CHAT_ROOM] = self.room;
+    NSLog(@"%@", self.room.objectId);
     object[PF_CHAT_TEXT] = text;
 //    [object setValue:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_] forKey:PF_CHAT_SETID];
     object[@"setId"] = self.set;
     [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
     [self finishSendingMessage];
-
-    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-     {
-         if (!error && succeeded)
+    
+    if(![self.room.objectId isEqualToString:@"K4wmuA9M8n"])
+    {
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
-             
-             
-             JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName setId:setId_ date:[NSDate date] text:text];
-             [setComments addObject:message];
-
-             [self.collectionView reloadData];
-             [self scrollToBottomAnimated:1];
-             [self.set fetchIfNeeded];
-
-             PFObject *picToSetAsLastPic = self.set[@"lastPicture"];
-             
-             
-             [JSQSystemSoundPlayer jsq_playMessageSentSound];
-             SendPushNotification(self.room, text);
-             UpdateMessageCounter(self.room, text, picToSetAsLastPic);
-
-             //We must update the date for the set, so we know when it is last edited in favorites.
-//             PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
-             PFRelation *usersWhoHaventRead = [self.set relationForKey:@"unreadUsers"];
-//             [set setValue:object forKey:@"lastPicture"];
-             [self.set incrementKey:@"numberOfResponses" byAmount:@1];
-             [self.set setValue:[NSDate date] forKey:PF_SET_UPDATED];
-             PFRelation *users = [self.room relationForKey:PF_CHATROOMS_USERS];
-             PFQuery *query = [users query];
-             [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
-             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+             if (!error && succeeded)
              {
-                 if (!error)
-                 {
-                     for (PFUser *user in objects)
-                     {
-                         if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
-                         {
-                             [usersWhoHaventRead addObject:user];
-                             NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
-
-//                             [usersWhoHaventRead addObject:user];
-//                             NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
-//                             NSLog(@"%li users are being added as unread users";
-                         }
-                     }
-                 }
-                 [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                 JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName setId:setId_ date:[NSDate date] text:text];
+                 [setComments addObject:message];
+                 
+                 [self.collectionView reloadData];
+                 [self scrollToBottomAnimated:1];
+                 [self.set fetchIfNeeded];
+                 
+                 PFObject *picToSetAsLastPic = self.set[@"lastPicture"];
+                 
+                 
+                 [JSQSystemSoundPlayer jsq_playMessageSentSound];
+                 SendPushNotification(self.room, text);
+                 UpdateMessageCounter(self.room, text, picToSetAsLastPic);
+                 
+                 //We must update the date for the set, so we know when it is last edited in favorites.
+                 //             PFObject *set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
+                 PFRelation *usersWhoHaventRead = [self.set relationForKey:@"unreadUsers"];
+                 //             [set setValue:object forKey:@"lastPicture"];
+                 [self.set incrementKey:@"numberOfResponses" byAmount:@1];
+                 [self.set setValue:[NSDate date] forKey:PF_SET_UPDATED];
+                 PFRelation *users = [self.room relationForKey:PF_CHATROOMS_USERS];
+                 PFQuery *query = [users query];
+                 [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
+                 [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
                   {
                       if (!error)
                       {
-                          NSLog(@"updated set in background with block");
+                          for (PFUser *user in objects)
+                          {
+                              if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
+                              {
+                                  [usersWhoHaventRead addObject:user];
+                                  NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
+                                  
+                                  //                             [usersWhoHaventRead addObject:user];
+                                  //                             NSLog(@"Added %@ as a user who hasn't read this chat", user.objectId);
+                                  //                             NSLog(@"%li users are being added as unread users";
+                              }
+                          }
                       }
+                      [self.set saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+                       {
+                           if (!error)
+                           {
+                               NSLog(@"updated set in background with block");
+                           }
+                       }];
                   }];
-             }];
-//             [set saveEventually];
+             }
+             else
+             {
+                 [ProgressHUD showError:@"Network error."];
+                 [object deleteInBackground];
+             }
+         }];
+    }
+    else
+    {
+        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName setId:setId_ date:[NSDate date] text:text];
+        [setComments addObject:message];
+        
+        [self.collectionView reloadData];
+        [self scrollToBottomAnimated:1];
 
-             
-             
-             
-             
-//             
-//
-//             PFRelation *users = [roomNumber relationForKey:PF_CHATROOMS_USERS];
-//             PFQuery *query = [users query];
-//             
-//             //get rid of this to test unread status:
-//             //                [query whereKey:@"objectId" notEqualTo:[PFUser currentUser].objectId];
-//             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-//                 if (!error)
-//                 {
-//                     for (PFUser *user in objects)
-//                     {
-//                         if ([[user valueForKey:PF_USER_ISVERIFIED] isEqualToNumber:@YES])
-//                         {
-//                             [usersWhoHaventRead addObject:user];
-//                         }
-//                     }
-//                 }
-//             }];
-//             [setID saveInBackground];
-         }
-         else
-         {
-             [ProgressHUD showError:@"Network error."];
-             [object deleteInBackground];
-         }
-     }];
+        [ProgressHUD showError:@"This is a shared chat with all Vollie Users, so that message did not send. We're happy that you're trying things out, though!" Interaction:NO];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -178,6 +164,7 @@
     [self.view setNeedsDisplay];
     self.collectionViewPictures.hidden = NO;
     [self.collectionViewPictures reloadData];
+    NSLog(@"%@ is the id", self.room.objectId);
 //    self.collectionViewPictures.hidden = NO;
 //    if (self.shouldShowTempCard)
 //    {
@@ -198,8 +185,8 @@
 {
     self.notification = [[AFDropdownNotification alloc] init];
     self.notification.notificationDelegate = self;
-    self.notification.titleText = @"Sending Vollie!";
-    self.notification.subtitleText = @"We are uploading your Vollie now. Your new chatroom will show up soon! ";
+    self.notification.titleText = @"Sending Pictures!";
+    self.notification.subtitleText = @"We are uploading your pictures now. Your new pictures will show up soon! ";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
     [self.notification presentInView:self.view withGravityAnimation:NO];
 //    self.shouldShowTempCard = NO;
