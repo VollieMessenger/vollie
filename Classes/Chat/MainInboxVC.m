@@ -229,8 +229,6 @@
         {
              if (!error)
              {
-                 
-                 
                  self.sharedChatroom = objects.firstObject;
              }
         }];
