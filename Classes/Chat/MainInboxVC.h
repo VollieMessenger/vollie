@@ -10,6 +10,7 @@
 #import "MasterScrollView.h"
 #import <Parse/Parse.h>
 #import "MomentsVC.h"
+#import "InboxModal.h"
 
 @interface MainInboxVC : UIViewController
 
@@ -17,6 +18,8 @@
 @property NSMutableArray *messages;
 @property MomentsVC *cardViewVC;
 @property BOOL shouldShowTempCard;
+@property InboxModal *inboxModalTool;
+
 
 //-(void)goToMostRecentChatRoom;
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room andNotification:(BOOL)notificationShow;

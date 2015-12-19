@@ -59,8 +59,6 @@
 
 @property PFObject *sharedChatroom;
 
-@property InboxModal *inboxModalTool;
-
 //@property MomentsVC *cardViewVC;
 
 //arrays
@@ -98,6 +96,8 @@
         [self setUpTopNotification];
         self.shouldShowTempCard = NO;
     }
+    
+    [self.inboxModalTool checkIfCustomChatViewIsVisible];
 //    NSLog(@"%@", self.scrollView);
 }
 
@@ -120,6 +120,7 @@
     
     self.inboxModalTool = [InboxModal new];
     self.inboxModalTool.nav = self.navigationController;
+    self.inboxModalTool.scrollView = self.scrollView;
 }
 
 -(void)setUpUserInterface

@@ -10,6 +10,9 @@
 #import "CreateChatroomView.h"
 #import "AppConstant.h"
 #import "UIColor+JSQMessages.h"
+#import "AppDelegate.h"
+#import "CustomChatView.h"
+#import "WeekHighlightsVC.h"
 
 @interface InboxModal ()
 
@@ -78,11 +81,22 @@
     return cardViewController;
 }
 
+-(void)checkIfCustomChatViewIsVisible
+{
+    UINavigationController* flashbacksNavController = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
+    if ([flashbacksNavController.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
+    {
+        [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width * 2, 0) animated:0];
+        self.scrollView.scrollEnabled = NO;
+    }
+}
+
 - (void)viewDidLoad
 {
+    // this isn't firing
+    
     [super viewDidLoad];
     NSLog(@"Set up the inbox modal tool");
-
 }
 
 - (void)didReceiveMemoryWarning

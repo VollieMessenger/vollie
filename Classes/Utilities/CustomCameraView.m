@@ -366,6 +366,8 @@
         else
         {
             self.scrollView.scrollEnabled = YES;
+            MainInboxVC *vc = nav.viewControllers.lastObject;
+            [vc.inboxModalTool checkIfCustomChatViewIsVisible];
         }
         NSLog(@"Scroll Enabled in VDA");
     }

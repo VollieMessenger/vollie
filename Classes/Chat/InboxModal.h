@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "MomentsVC.h"
+#import "MasterScrollView.h"
 
 
 @interface InboxModal : UIViewController
@@ -18,8 +19,10 @@
 -(void)inviteContacts;
 -(void)formatNavigationBar:(UINavigationBar*)bar;
 -(MomentsVC *)createMomentsVCWith:(PFObject *)room andCustomChatRoom:(PFObject*)customChatRoom;
+-(void)checkIfCustomChatViewIsVisible;
 
 @property UINavigationController *nav;
+@property MasterScrollView *scrollView;
 
 
 @end
