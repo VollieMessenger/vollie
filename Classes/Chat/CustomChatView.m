@@ -762,7 +762,6 @@
         [self.pageControl setCurrentPage:indexPath.item];
         
         scrollView.contentSize = CGSizeMake(self.view.bounds.size.width * setPicturesObjects.count, self.view.bounds.size.width);
-        
         [scrollView setContentOffset:CGPointMake((self.view.frame.size.width * indexPath.row), 0) animated:0];
         int counter = 0;
         //Set the count.

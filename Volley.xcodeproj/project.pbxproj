@@ -128,6 +128,7 @@
 		32873A691BC5E15000618A05 /* PageThree.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32873A671BC5E15000618A05 /* PageThree.xib */; };
 		32873A6D1BC5E26600618A05 /* PageFour.m in Sources */ = {isa = PBXBuildFile; fileRef = 32873A6B1BC5E26600618A05 /* PageFour.m */; };
 		32873A6E1BC5E26600618A05 /* PageFour.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32873A6C1BC5E26600618A05 /* PageFour.xib */; };
+		329F1AB91C2254D300A0B65A /* InboxModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F1AB81C2254D300A0B65A /* InboxModal.m */; };
 		329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9D221B700F340025D3EC /* FivePicsFavCell.m */; };
 		329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329F9D231B700F340025D3EC /* FivePicsFavCell.xib */; };
 		32A76AC01BCD8795006DE6CC /* FullWidthChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A76ABE1BCD8795006DE6CC /* FullWidthChat.m */; };
@@ -454,6 +455,8 @@
 		32873A6A1BC5E26600618A05 /* PageFour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageFour.h; sourceTree = "<group>"; };
 		32873A6B1BC5E26600618A05 /* PageFour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageFour.m; sourceTree = "<group>"; };
 		32873A6C1BC5E26600618A05 /* PageFour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageFour.xib; sourceTree = "<group>"; };
+		329F1AB71C2254D300A0B65A /* InboxModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxModal.h; sourceTree = "<group>"; };
+		329F1AB81C2254D300A0B65A /* InboxModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxModal.m; sourceTree = "<group>"; };
 		329F9D211B700F340025D3EC /* FivePicsFavCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FivePicsFavCell.h; sourceTree = "<group>"; };
 		329F9D221B700F340025D3EC /* FivePicsFavCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FivePicsFavCell.m; sourceTree = "<group>"; };
 		329F9D231B700F340025D3EC /* FivePicsFavCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FivePicsFavCell.xib; sourceTree = "<group>"; };
@@ -1291,6 +1294,8 @@
 		32DA3D3F1B8FCD5B00DDEFA2 /* MainInboxModal */ = {
 			isa = PBXGroup;
 			children = (
+				329F1AB71C2254D300A0B65A /* InboxModal.h */,
+				329F1AB81C2254D300A0B65A /* InboxModal.m */,
 				324843F21B715606009810D3 /* Chat.h */,
 				324843F31B715606009810D3 /* Chat.m */,
 				324843F51B715E58009810D3 /* RoomCell.h */,
@@ -1681,6 +1686,7 @@
 				C2832CB51A704A6100CDF19D /* IQKeyboardReturnKeyHandler.m in Sources */,
 				C2832CB11A704A6100CDF19D /* IQNSArray+Sort.m in Sources */,
 				296DD5CE1A1F52F400AB9F8C /* JSQMessage.m in Sources */,
+				329F1AB91C2254D300A0B65A /* InboxModal.m in Sources */,
 				296DD5BD1A1F52F400AB9F8C /* UIColor+JSQMessages.m in Sources */,
 				C2CA16E01A82860E00DD25AC /* DidFavoriteView.m in Sources */,
 				270D7EF81B3DE1DA00FE28E9 /* PopUpScrollView.m in Sources */,

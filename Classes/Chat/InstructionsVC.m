@@ -130,6 +130,7 @@
 
 -(void) setToCenter
 {
+    
     [scrollView setContentOffset:CGPointMake(self.view.frame.size.width, 0) animated:1];
 }
 

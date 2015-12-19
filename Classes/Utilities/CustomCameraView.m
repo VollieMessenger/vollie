@@ -273,7 +273,8 @@
 #warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.\
     
 //    NSLog(@"size of scrollview is %fl on camera view will appear", self.scrollView.contentSize.width);
-    
+    self.scrollView.contentSize = CGSizeMake(3 * self.view.frame.size.width, self.view.frame.size.height);
+    NSLog(@"hard coded scrollview size to %fl ", self.scrollView.contentSize.width);
     if(self.photosFromNewVC.count)
     {
         self.arrayOfTakenPhotos = self.photosFromNewVC;
@@ -301,16 +302,20 @@
 
     self.navigationController.navigationBarHidden = 1;
     NSLog(@"%li in photosfromNewVC after if statement", self.photosFromNewVC.count);
+    
+    self.scrollView.contentSize = CGSizeMake(3 * self.view.frame.size.width, self.view.frame.size.height);
+    NSLog(@"hard coded scrollview size to %fl ", self.scrollView.contentSize.width);
 
     //Only way to check which camera is up and what screen is present.
-    if (self.scrollView.contentOffset.x == 0)
-    {
-        if (!_didViewJustLoad && !_isPoppingUp)
-        {
-            [self.scrollView setContentOffset:CGPointMake(1, 0)];
-            [self.scrollView setContentOffset:CGPointMake(0, 0)];
-        }
-    }
+//    if (self.scrollView.contentOffset.x == 0)
+//    {
+//        if (!_didViewJustLoad && !_isPoppingUp)
+//        {
+//            [self.scrollView setContentOffset:CGPointMake(1, 0)];
+//            [self.scrollView setContentOffset:CGPointMake(0, 0)];
+//        }
+//    }
+    
 }
 
 - (void)setPopUp
@@ -423,7 +428,9 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-//    NSLog(@"size of scrollview is %fl when camera goes away", self.scrollView.contentSize.width);
+    self.scrollView.contentSize = CGSizeMake(3 * self.view.frame.size.width, self.view.frame.size.height);
+    NSLog(@"hard coded scrollview size to %fl ", self.scrollView.contentSize.width);
+    NSLog(@"size of scrollview is %fl when camera goes away", self.scrollView.contentSize.width);
 
 
 //  [self stopCaptureSession];
@@ -683,9 +690,16 @@
 
     [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
 
+//    [self performSelector:@selector(dismissCamera) withObject:self afterDelay:0.5f];
     [self dismissViewControllerAnimated:0 completion:0];
+//    [self dismissViewControllerAnimated:0 completion:0];
 
     self.didPickImageFromAlbum = NO;
+}
+
+-(void)dismissCamera
+{
+    [self dismissViewControllerAnimated:0 completion:0];
 }
 
 -(void)freezeCamera

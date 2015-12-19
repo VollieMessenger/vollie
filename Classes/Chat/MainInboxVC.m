@@ -25,6 +25,7 @@
 #import "WeekHighlightsVC.h"
 #import "AFDropdownNotification.h"
 #import "InstructionsVC.h"
+#import "InboxModal.h"
 
 
 @interface MainInboxVC () <UITableViewDelegate, UITableViewDataSource, RefreshMessagesDelegate, PushToCardDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, AFDropdownNotificationDelegate>
@@ -57,6 +58,8 @@
 @property UITapGestureRecognizer *tap;
 
 @property PFObject *sharedChatroom;
+
+@property InboxModal *inboxModalTool;
 
 //@property MomentsVC *cardViewVC;
 
@@ -114,6 +117,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshMessages) name:NOTIFICATION_USER_LOGGED_IN object:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enableScrollview:) name:NOTIFICATION_ENABLESCROLLVIEW object:0];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableScrollView:) name:NOTIFICATION_DISABLESCROLLVIEW object:0];
+    
+    self.inboxModalTool = [InboxModal new];
+    self.inboxModalTool.nav = self.navigationController;
 }
 
 -(void)setUpUserInterface
@@ -158,14 +164,7 @@
 
 -(void)setNavBarColor
 {
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithWhite:.98 alpha:1]];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor volleyFamousGreen]];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
-    self.navigationController.navigationBar.titleTextAttributes =  @{
-                                                                     NSForegroundColorAttributeName: [UIColor whiteColor],
-                                                                     NSFontAttributeName: [UIFont fontWithName:@"Helvetica Neue" size:20.0f],
-                                                                     NSShadowAttributeName:[NSShadow new]
-                                                                     };
+    [self.inboxModalTool formatNavigationBar:self.navigationController.navigationBar];
 }
 
 -(void)setUpTopNotification
@@ -184,7 +183,7 @@
     [self.notification dismissWithGravityAnimation:NO];
 }
 
--(void) swipeRightToFavorites:(UIBarButtonItem *)button
+-(void)swipeRightToFavorites:(UIBarButtonItem *)button
 {
     [self.scrollView setContentOffset:CGPointMake(self.view.frame.size.width * 2, 0) animated:1];
 }
@@ -215,16 +214,7 @@
 //        WeekHighlightsVC *vc = (WeekHighlightsVC*)navFavorites.viewControllers.firstObject;
         self.isCurrentlyLoadingMessages = YES;
         
-        PFQuery *query2 = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
-        [query2 whereKey:@"objectId" equalTo:@"YQjK00ePzE"];
-        //      [query includeKey:PF_MESSAGES_LASTUSER];
-        [query2 includeKey:PF_MESSAGES_ROOM];
-        [query2 includeKey:PF_MESSAGES_USER]; // doesn't need to be here
-        [query2 includeKey:PF_MESSAGES_LASTPICTURE];
-        [query2 includeKey:PF_MESSAGES_LASTPICTUREUSER];
-        //        [query2 whereKey:PF_MESSAGES_HIDE_UNTIL_NEXT equalTo:@NO];
-        [query2 orderByDescending:PF_MESSAGES_UPDATEDACTION];
-        [query2 setCachePolicy:kPFCachePolicyCacheThenNetwork];
+        PFQuery *query2 = [self.inboxModalTool createQueryForSharedChatRoom];
         [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
         {
              if (!error)
@@ -235,16 +225,8 @@
         
         //should change this to RoomObject.h
         NSLog(@"Creating PFQuery for chatrooms");
-        PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
-        [query whereKey:PF_MESSAGES_USER equalTo:[PFUser currentUser]];
-        //      [query includeKey:PF_MESSAGES_LASTUSER];
-        [query includeKey:PF_MESSAGES_ROOM];
-        [query includeKey:PF_MESSAGES_USER]; // doesn't need to be here
-        [query includeKey:PF_MESSAGES_LASTPICTURE];
-        [query includeKey:PF_MESSAGES_LASTPICTUREUSER];
-        [query whereKey:PF_MESSAGES_HIDE_UNTIL_NEXT equalTo:@NO];
-        [query orderByDescending:PF_MESSAGES_UPDATEDACTION];
-        [query setCachePolicy:kPFCachePolicyCacheThenNetwork];
+        
+        PFQuery *query = [self.inboxModalTool createQueryForUserChatRooms];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
          {
              if (!error)
@@ -360,24 +342,17 @@
     {
         RoomCell *cell = (RoomCell*)[tableView cellForRowAtIndexPath:indexPath];
 //        cell.unreadStatusDot.image = [UIImage imageNamed:ASSETS_READ];
-        PFObject *room = self.messages[indexPath.row];
-        PFObject *customChatRoom = [room objectForKey:PF_MESSAGES_ROOM];
-        
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-        MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+        PFObject *customRoom = self.messages[indexPath.row];
+        PFObject *notCustomRoom = [customRoom objectForKey:PF_MESSAGES_ROOM];
+        MomentsVC *cardViewController = [self.inboxModalTool createMomentsVCWith:customRoom andCustomChatRoom:notCustomRoom];
         cardViewController.name = cell.chatRoomLabel.text;
-        cardViewController.room = customChatRoom;
-        cardViewController.messageItComesFrom = room;
         [self.navigationController pushViewController:cardViewController animated:YES];
     }
     else
     {
-        CreateChatroomView * view = [[CreateChatroomView alloc]init];
-        view.title = @"ahhhhh";
-        view.isTherePicturesToSend = NO;
-        view.invite = YES;
-        [self.navigationController pushViewController:view animated:YES];
-        return;
+//        InboxModal *inboxModalTool = [InboxModal new];
+//        self.inboxModalTool.nav = self.navigationController;
+        [self.inboxModalTool inviteContacts];
     }
 }
 
@@ -480,7 +455,6 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
     if (buttonIndex != alertView.cancelButtonIndex && [alertView textFieldAtIndex:0].hasText)
     {
         NSLog(@"you clicked rename");
@@ -561,7 +535,6 @@
 
 -(void)pushToCard
 {
-//    self.scrollView.scrollEnabled = NO;
     [self reloadAfterMessageSuccessfullySent];
 }
 
@@ -571,33 +544,15 @@
     NSLog(@"refreshed messages after Vollie sent");
     [self.notification dismissWithGravityAnimation:NO];
     NSLog(@"Dismissed Top Notification");
-//    [self refreshMessages];
     [self performSelector:@selector(loadInbox) withObject:nil afterDelay:1.0];
     [self performSelector:@selector(hideTopNotification) withObject:nil afterDelay:1.0];
-
-//    NSLog(@"About to Push to Card 0");
-//    if (!self.isCurrentlyLoadingMessages)
-//    {
-//        [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
-//    }
-//    else
-//    {
-//        [self performSelector:@selector(delayedGoToCardWithMessage) withObject:self afterDelay:1.0f];
-//        [self.tableView reloadData];
-//    }
     [self.cardViewVC reloadCardsAfterUpload];
 }
-
-//-(void)delayedGoToCardWithMessage
-//{
-//    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:2.0f];
-//}
 
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room andNotification:(BOOL)notificationShow
 {
     self.scrollView.scrollEnabled = false;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    self.cardViewVC = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+    self.cardViewVC = [self.inboxModalTool createMomentsVCWith:userChatRoom andCustomChatRoom:room];
     self.cardViewVC.room = room;
     self.cardViewVC.messageItComesFrom = userChatRoom;
     if (notificationShow)
@@ -612,27 +567,14 @@
     {
         self.cardViewVC.name = [userChatRoom objectForKey:@"description"];
     }
-//    self.cardViewVC.name = [userChatRoom objectForKey:@"]
     [self.navigationController pushViewController:self.cardViewVC animated:NO];
 }
 
 -(void)goToCardViewWithMessage
 {
-//    self.scrollView.scrollEnabled = YES;
     PFObject *message = [self.messages objectAtIndex:0];
     PFObject *room = [message objectForKey:PF_MESSAGES_ROOM];
-//    RoomCell *cell = (RoomCell*)[self.tableView cellForRowAtIndexPath:0];
-
-//    NSString *nameString = cell.room
-//    selectedRoom = room.objectId;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
-    ////    cardViewController.name = cell.labelDescription.text;
-    cardViewController.room = room;
-//    cardViewController.name = cell.chatRoomLabel.text;
-//    NSLog(@"%@", cell.chatRoomLabel.text);
-    cardViewController.messageItComesFrom = message;
-//    self.scrollView.scrollEnabled = YES;
+    MomentsVC *cardViewController = [self.inboxModalTool createMomentsVCWith:message andCustomChatRoom:room];
     [self.navigationController pushViewController:cardViewController animated:YES];
 }
 
@@ -648,22 +590,13 @@
     self.scrollView.scrollEnabled = NO;
 }
 
-//-(void)goToSettingsVC:(id)id
+//-(void)goToMostRecentChatRoom
 //{
-////    NavigationController *nav = [[NavigationController alloc] initWithRootViewController: [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped]];
-//    
-//    ProfileView *vc = [[ProfileView alloc] initWithStyle:UITableViewStyleGrouped];
-//    [self.navigationController pushViewController:vc animated:YES];
-////    [self showDetailViewController:nav sender:self];
+////    NSLog(@"test success");
+//    self.scrollView.scrollEnabled = NO;
+//    [self refreshMessages];
+//    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
 //}
-
--(void)goToMostRecentChatRoom
-{
-//    NSLog(@"test success");
-    self.scrollView.scrollEnabled = NO;
-    [self refreshMessages];
-    [self performSelector:@selector(goToCardViewWithMessage) withObject:self afterDelay:1.0f];
-}
 
 #pragma mark "Refresh Control"
 - (void)setupRefreshControl
