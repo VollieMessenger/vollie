@@ -1069,57 +1069,57 @@
     {
         CustomCollectionViewCell *cell =[collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
 
-        if (setPicturesObjects.count > 0)
-        {
-            [cell format];
+//        if (setPicturesObjects.count > 0)
+//        {
+        [cell format];
 //            cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
-            
-            if (indexPath.item == setPicturesObjects.count)
-            {
+        
+        if (indexPath.item == setPicturesObjects.count)
+        {
 //                NSLog(@"%ld is the index path", (long)indexPath.item);
-                NSLog(@"%@ is the image", cell.imageView.image);
-                cell.imageView.image = nil;
-                cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
-                cell.backgroundColor = [UIColor clearColor];
-                cell.label.hidden = YES;
+            NSLog(@"%@ is the image", cell.imageView.image);
+            cell.imageView.image = nil;
+            cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
+            cell.backgroundColor = [UIColor clearColor];
+            cell.label.hidden = YES;
 //                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
 //                cell.label.text = @"+";
-            }
-            else
-            {
-                PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
-//                NSLog(@"%li", indexPath.item);
-                
-                [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    if (!error)
-                    {
-                        cell.imageView.image = [UIImage imageWithData:data];
-                    }
-                }];
-                
-                cell.backgroundColor = [UIColor clearColor];
-                
-                cell.label.hidden = YES;
-                
-                if (indexPath.item == 0)
-                {
-                    cell.label.hidden = NO;
-                    cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
-                    NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
-                    NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
-                    [array removeObject:@" "];
-                    NSString *first = array.firstObject;
-                    NSString *last = array.lastObject;
-                    first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
-                    last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
-                    name = [first stringByAppendingString:last];
-                    cell.label.text = name;
-                }
-                
-                cell.imageView.layer.borderColor = backgroundColor_.CGColor;
-            }
-//            cell.label.backgroundColor = backgroundColor_;
         }
+        else
+        {
+            PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
+//                NSLog(@"%li", indexPath.item);
+            
+            [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                if (!error)
+                {
+                    cell.imageView.image = [UIImage imageWithData:data];
+                }
+            }];
+            
+            cell.backgroundColor = [UIColor clearColor];
+            
+            cell.label.hidden = YES;
+            
+            if (indexPath.item == 0)
+            {
+                cell.label.hidden = NO;
+                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
+                NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+                NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
+                [array removeObject:@" "];
+                NSString *first = array.firstObject;
+                NSString *last = array.lastObject;
+                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
+                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
+                name = [first stringByAppendingString:last];
+                cell.label.text = name;
+            }
+            
+            cell.imageView.layer.borderColor = backgroundColor_.CGColor;
+        }
+//            cell.label.backgroundColor = backgroundColor_;
+//        }
         return cell;
     }
     else

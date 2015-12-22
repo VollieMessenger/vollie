@@ -195,23 +195,23 @@
 //    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
 //    
     
-    if (card.photosArray.count)
-    {
+//    if (card.photosArray.count)
+//    {
         NSLog(@"Going to CustomChatView because there are pictures");
-        CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
+//        CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
         //    chatt.senderId = [self.senderId copy];
         //    chatt.senderDisplayName = [self.senderDisplayName copy];
         //    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:chatRoom];
         chatt.room = self.room;
         [self.navigationController pushViewController:chatt animated:1];
-    }
-    else
-    {
-        NSLog(@"Going to a chatroom with no pictures");
-        FullWidthChatView *chatt = [[FullWidthChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
-        chatt.room = self.room;
-        [self.navigationController pushViewController:chatt animated:1];
-    }
+//    }
+//    else
+//    {
+//        NSLog(@"Going to a chatroom with no pictures");
+//        FullWidthChatView *chatt = [[FullWidthChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
+//        chatt.room = self.room;
+//        [self.navigationController pushViewController:chatt animated:1];
+//    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -250,13 +250,13 @@
                     return 260;
                     break;
                 case 2:
-                    return 260;
+                    return 280;
                 case 3:
-                    return 350;
+                    return 375;
                 case 4:
-                    return 470;
+                    return 480;
                 case 5:
-                    return 530;
+                    return 575;
 //                    return 200; // this wax good for when i didn't have arrows
 //                    return 175;
                 default:

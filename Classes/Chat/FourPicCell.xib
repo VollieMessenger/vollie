@@ -70,37 +70,37 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-jU-omz">
-                                <rect key="frame" x="235" y="448" width="54" height="21"/>
+                                <rect key="frame" x="235" y="442" width="54" height="21"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="54" id="9AY-Dh-tAW"/>
-                                    <constraint firstAttribute="height" constant="21" id="oZJ-Kp-Csv"/>
+                                    <constraint firstAttribute="width" constant="54" id="FCm-Ks-dgv"/>
+                                    <constraint firstAttribute="height" constant="21" id="fym-WK-MFB"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Reply-Gray-Color" translatesAutoresizingMaskIntoConstraints="NO" id="KX1-FF-WNh">
-                                <rect key="frame" x="291" y="444" width="29" height="29"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="KX1-FF-WNh">
+                                <rect key="frame" x="291" y="438" width="29" height="29"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="29" id="3iT-xT-gtY"/>
-                                    <constraint firstAttribute="height" constant="29" id="ula-62-hK5"/>
+                                    <constraint firstAttribute="height" constant="29" id="Khd-3M-xNY"/>
+                                    <constraint firstAttribute="width" constant="29" id="PvZ-w0-mnp"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="KX1-FF-WNh" secondAttribute="bottom" constant="-4" id="FDS-fN-g77"/>
+                            <constraint firstItem="KX1-FF-WNh" firstAttribute="leading" secondItem="nWW-jU-omz" secondAttribute="trailing" constant="2" id="EmH-r0-M54"/>
                             <constraint firstItem="33y-Wp-Emd" firstAttribute="leading" secondItem="dg9-a9-3Nb" secondAttribute="trailing" id="FPV-KV-c0k"/>
                             <constraint firstItem="dg9-a9-3Nb" firstAttribute="leading" secondItem="LMR-57-PIQ" secondAttribute="leading" constant="-1" id="LdI-of-G5q"/>
-                            <constraint firstAttribute="trailing" secondItem="KX1-FF-WNh" secondAttribute="trailing" id="Mqd-9M-k0G"/>
+                            <constraint firstAttribute="trailing" secondItem="KX1-FF-WNh" secondAttribute="trailing" id="So4-bo-rmb"/>
+                            <constraint firstAttribute="bottom" secondItem="nWW-jU-omz" secondAttribute="bottom" constant="6" id="TEj-Gi-Mdd"/>
                             <constraint firstItem="dg9-a9-3Nb" firstAttribute="top" secondItem="LMR-57-PIQ" secondAttribute="top" id="U3Z-m4-UeR"/>
                             <constraint firstAttribute="bottom" secondItem="dg9-a9-3Nb" secondAttribute="bottom" id="df2-pT-bFw"/>
                             <constraint firstItem="33y-Wp-Emd" firstAttribute="centerY" secondItem="LMR-57-PIQ" secondAttribute="centerY" id="j4X-iO-uO3"/>
-                            <constraint firstItem="KX1-FF-WNh" firstAttribute="leading" secondItem="nWW-jU-omz" secondAttribute="trailing" constant="2" id="kSF-fd-5WJ"/>
-                            <constraint firstAttribute="bottom" secondItem="nWW-jU-omz" secondAttribute="bottom" id="roP-Ha-wHH"/>
+                            <constraint firstAttribute="bottom" secondItem="KX1-FF-WNh" secondAttribute="bottom" constant="2" id="rBh-HM-zRV"/>
                             <constraint firstAttribute="trailing" secondItem="33y-Wp-Emd" secondAttribute="trailing" constant="8" id="uRw-gP-deV"/>
                         </constraints>
                     </view>
@@ -126,6 +126,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Reply-Gray-Color" width="131" height="81"/>
+        <image name="mediumReply" width="115" height="76"/>
     </resources>
 </document>

@@ -31,38 +31,38 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Reply-Gray-Color" translatesAutoresizingMaskIntoConstraints="NO" id="PHg-0y-jcH">
-                                <rect key="frame" x="291" y="199" width="29" height="29"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="PHg-0y-jcH">
+                                <rect key="frame" x="291" y="195.5" width="29" height="29"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="29" id="dy0-am-XBc"/>
-                                    <constraint firstAttribute="height" constant="29" id="lnI-Jf-IYY"/>
+                                    <constraint firstAttribute="width" constant="29" id="IU8-Rg-YOt"/>
+                                    <constraint firstAttribute="height" constant="29" id="hSk-LA-1Yc"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGs-4W-Q2f">
-                                <rect key="frame" x="235" y="203" width="54" height="21"/>
+                                <rect key="frame" x="235" y="199.5" width="54" height="21"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="HDM-5R-MW7"/>
-                                    <constraint firstAttribute="width" constant="54" id="QnJ-Rl-aUO"/>
+                                    <constraint firstAttribute="width" constant="54" id="Qr4-7n-PXZ"/>
+                                    <constraint firstAttribute="height" constant="21" id="xwz-g2-lYR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="PHg-0y-jcH" secondAttribute="trailing" id="8Zr-d9-ffR"/>
+                            <constraint firstAttribute="bottom" secondItem="qGs-4W-Q2f" secondAttribute="bottom" constant="4" id="BYj-hY-sP3"/>
+                            <constraint firstItem="PHg-0y-jcH" firstAttribute="leading" secondItem="qGs-4W-Q2f" secondAttribute="trailing" constant="2" id="EFg-GL-ibX"/>
                             <constraint firstItem="O1X-0R-tVb" firstAttribute="top" secondItem="bWh-QD-e3C" secondAttribute="top" id="H7t-BJ-Hy3"/>
-                            <constraint firstAttribute="bottom" secondItem="PHg-0y-jcH" secondAttribute="bottom" constant="-3.5" id="LHa-ag-qvA"/>
                             <constraint firstItem="mFY-2S-cmq" firstAttribute="centerY" secondItem="bWh-QD-e3C" secondAttribute="centerY" id="U5g-Us-9a3"/>
                             <constraint firstAttribute="trailing" secondItem="mFY-2S-cmq" secondAttribute="trailing" constant="8" id="U7Y-Cz-2O2"/>
-                            <constraint firstAttribute="bottom" secondItem="qGs-4W-Q2f" secondAttribute="bottom" constant="0.5" id="fKq-1b-4Hq"/>
+                            <constraint firstAttribute="bottom" secondItem="PHg-0y-jcH" secondAttribute="bottom" id="WM6-Ug-ykA"/>
+                            <constraint firstAttribute="trailing" secondItem="PHg-0y-jcH" secondAttribute="trailing" id="ag7-p4-9ng"/>
                             <constraint firstItem="mFY-2S-cmq" firstAttribute="leading" secondItem="O1X-0R-tVb" secondAttribute="trailing" id="fan-7H-SKn"/>
                             <constraint firstAttribute="bottom" secondItem="O1X-0R-tVb" secondAttribute="bottom" id="leM-KT-scX"/>
-                            <constraint firstItem="PHg-0y-jcH" firstAttribute="leading" secondItem="qGs-4W-Q2f" secondAttribute="trailing" constant="2" id="mat-ir-vm9"/>
                             <constraint firstItem="O1X-0R-tVb" firstAttribute="leading" secondItem="bWh-QD-e3C" secondAttribute="leading" id="r8f-Oy-mp7"/>
                         </constraints>
                     </view>
@@ -85,6 +85,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Reply-Gray-Color" width="131" height="81"/>
+        <image name="mediumReply" width="115" height="76"/>
     </resources>
 </document>
