@@ -53,12 +53,20 @@
                                 <rect key="frame" x="0.0" y="0.0" width="222" height="300"/>
                                 <animations/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmx-AX-OdM">
-                                <rect key="frame" x="258" y="279" width="54" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Reply-Gray-Color" translatesAutoresizingMaskIntoConstraints="NO" id="Xj0-Oi-jxY">
+                                <rect key="frame" x="291" y="275" width="29" height="29"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="EKp-yD-WMf"/>
-                                    <constraint firstAttribute="width" constant="54" id="q4D-W5-vec"/>
+                                    <constraint firstAttribute="width" constant="29" id="9Z3-cl-EE3"/>
+                                    <constraint firstAttribute="height" constant="29" id="cf0-Ii-HCg"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmx-AX-OdM">
+                                <rect key="frame" x="237" y="279" width="54" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="hPl-rr-qge"/>
+                                    <constraint firstAttribute="width" constant="54" id="qn9-39-iAM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <color key="textColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -69,13 +77,15 @@
                         <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Bi0-hV-vC7" firstAttribute="top" secondItem="E0b-yg-zeQ" secondAttribute="top" id="Esc-Ap-UMa"/>
-                            <constraint firstAttribute="bottom" secondItem="zmx-AX-OdM" secondAttribute="bottom" id="Lh6-LW-74t"/>
                             <constraint firstItem="Bi0-hV-vC7" firstAttribute="leading" secondItem="E0b-yg-zeQ" secondAttribute="leading" id="aCr-gd-zew"/>
                             <constraint firstAttribute="bottom" secondItem="Bi0-hV-vC7" secondAttribute="bottom" id="iW6-eq-m9v"/>
                             <constraint firstAttribute="trailing" secondItem="OZu-wm-EJN" secondAttribute="trailing" constant="8" id="mSE-TP-mAv"/>
+                            <constraint firstAttribute="bottom" secondItem="zmx-AX-OdM" secondAttribute="bottom" id="rfk-ph-dQK"/>
+                            <constraint firstAttribute="bottom" secondItem="Xj0-Oi-jxY" secondAttribute="bottom" constant="-4" id="rt6-tI-Kms"/>
                             <constraint firstItem="OZu-wm-EJN" firstAttribute="centerY" secondItem="E0b-yg-zeQ" secondAttribute="centerY" id="syu-v3-R9q"/>
                             <constraint firstItem="OZu-wm-EJN" firstAttribute="leading" secondItem="Bi0-hV-vC7" secondAttribute="trailing" id="tKX-GY-QUf"/>
-                            <constraint firstAttribute="trailing" secondItem="zmx-AX-OdM" secondAttribute="trailing" constant="8" id="zVj-y9-LQI"/>
+                            <constraint firstAttribute="trailing" secondItem="Xj0-Oi-jxY" secondAttribute="trailing" id="wPE-Kn-l05"/>
+                            <constraint firstItem="Xj0-Oi-jxY" firstAttribute="leading" secondItem="zmx-AX-OdM" secondAttribute="trailing" id="y3Z-pX-NhF"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -97,4 +107,7 @@
             <point key="canvasLocation" x="190" y="362.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Reply-Gray-Color" width="131" height="81"/>
+    </resources>
 </document>
