@@ -94,7 +94,6 @@
 - (void)viewDidLoad
 {
     // this isn't firing
-    
     [super viewDidLoad];
     NSLog(@"Set up the inbox modal tool");
 }

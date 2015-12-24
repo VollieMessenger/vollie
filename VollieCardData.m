@@ -26,7 +26,7 @@
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
         self.unreadStatus = false;
         
-//        
+//    
 //        PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
 //        [setQuery getObjectInBackgroundWithId:self.set block:^(PFObject *fullSet, NSError *error)
 //         {

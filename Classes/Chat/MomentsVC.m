@@ -382,27 +382,27 @@
         }
         else
         {
-        CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-        cell.cardOutline.backgroundColor = [UIColor clearColor];
-        cell.backgroundColor = [UIColor clearColor];
-        CardCellView *vc = card.viewController;
-        vc.room = self.room;
-        vc.view.backgroundColor =[UIColor whiteColor];
-        [self.vollieVCcardArray addObject:vc];
+            CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
+            cell.cardOutline.backgroundColor = [UIColor clearColor];
+            cell.backgroundColor = [UIColor clearColor];
+            CardCellView *vc = card.viewController;
+            vc.room = self.room;
+            vc.view.backgroundColor = [UIColor whiteColor];
+            [self.vollieVCcardArray addObject:vc];
 
-    //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
-        vc.view.frame = cell.cardOutline.bounds;
-//        cell.cardOutline.layer.cornerRadius = 10;
-        cell.cardOutline.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
+        //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
+            vc.view.frame = cell.cardOutline.bounds;
+    //        cell.cardOutline.layer.cornerRadius = 10;
+            cell.cardOutline.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
 
-        cell.cardOutline.layer.borderWidth = 1;
-        cell.cardOutline.layer.masksToBounds = YES;
-    //    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
-    //    NSLog(@"%f is VC height", vc.card.bounds.size.height);
-        [self addChildViewController:vc];
-        [cell.cardOutline addSubview:vc.view];
-        [vc didMoveToParentViewController:self];
-        return cell;
+            cell.cardOutline.layer.borderWidth = 1;
+            cell.cardOutline.layer.masksToBounds = YES;
+        //    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
+        //    NSLog(@"%f is VC height", vc.card.bounds.size.height);
+            [self addChildViewController:vc];
+            [cell.cardOutline addSubview:vc.view];
+            [vc didMoveToParentViewController:self];
+            return cell;
         }
     }
 }
@@ -499,6 +499,7 @@
 {
     if (![self.objectIdsArray containsObject:object.objectId])
     {
+//        NSLog(@"%@", object[@"updatedAction"]);
         NSLog(@"Found an object that wasn't accounted for before");
         [self.objectIdsArray addObject:object.objectId];
         [self checkForVollieCardWith:object];

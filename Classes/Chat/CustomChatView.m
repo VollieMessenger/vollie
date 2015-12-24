@@ -40,6 +40,7 @@
 @property BOOL shouldUpdateUnreadUsers;
 @property PFObject *actualSet;
 @property (nonatomic, strong) AFDropdownNotification *notification;
+@property NSMutableArray *arrayOfInitialsForThumbnails;
 
 
 @end
@@ -396,6 +397,7 @@
         setPicturesObjects = [NSMutableArray new];
         objectIds = [NSMutableArray new];
         self.arrayOfUnreadUsers = [NSMutableArray new];
+        self.arrayOfInitialsForThumbnails = [NSMutableArray new];
         self.shouldUpdateUnreadUsers = false;
         
         [self loadMessages];
@@ -497,9 +499,20 @@
 
         objectIds = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
+        self.arrayOfInitialsForThumbnails = [NSMutableArray new];
         for (PFObject *object in pictures)
         {
             [objectIds addObject:object.objectId];
+            NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+            NSMutableArray *array = [NSMutableArray arrayWithArray:[initials componentsSeparatedByString:@" "]];
+            [array removeObject:@" "];
+            NSString *first = array.firstObject;
+            NSString *last = array.lastObject;
+            first = [first stringByPaddingToLength:1 withString:initials startingAtIndex:0];
+            last = [last stringByPaddingToLength:1 withString:initials startingAtIndex:0];
+            initials = [first stringByAppendingString:last];
+            [self.arrayOfInitialsForThumbnails addObject:initials];
+            //
         }
 //        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
@@ -607,6 +620,19 @@
                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
                     {
                         [setPicturesObjects addObject:object];
+                        
+                        NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+                        NSMutableArray *array = [NSMutableArray arrayWithArray:[initials componentsSeparatedByString:@" "]];
+                        [array removeObject:@" "];
+                        NSString *first = array.firstObject;
+                        NSString *last = array.lastObject;
+                        first = [first stringByPaddingToLength:1 withString:initials startingAtIndex:0];
+                        last = [last stringByPaddingToLength:1 withString:initials startingAtIndex:0];
+                        initials = [first stringByAppendingString:last];
+                        [self.arrayOfInitialsForThumbnails addObject:initials];
+//                        cell.label.text = name;
+                        
+                        
 //                        NSLog(@"%li in pictureObjectsArray", setPicturesObjects.count);
                     }
                     else
@@ -1101,19 +1127,27 @@
             
             cell.label.hidden = YES;
             
+            NSString *initials = self.arrayOfInitialsForThumbnails[indexPath.item];
             if (indexPath.item == 0)
             {
                 cell.label.hidden = NO;
                 cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
-                NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
-                NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
-                [array removeObject:@" "];
-                NSString *first = array.firstObject;
-                NSString *last = array.lastObject;
-                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
-                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
-                name = [first stringByAppendingString:last];
+//                NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+//                NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
+//                [array removeObject:@" "];
+//                NSString *first = array.firstObject;
+//                NSString *last = array.lastObject;
+//                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
+//                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
+//                name = [first stringByAppendingString:last];
+                NSString *name = self.arrayOfInitialsForThumbnails[indexPath.item];
                 cell.label.text = name;
+            }
+            else if(![initials isEqualToString:self.arrayOfInitialsForThumbnails[indexPath.item -1]])
+            {
+                cell.label.hidden = NO;
+                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
+                cell.label.text = initials;
             }
             
             cell.imageView.layer.borderColor = backgroundColor_.CGColor;
