@@ -138,6 +138,8 @@ SecondDelegate>
     {
         self.textView.textColor = [UIColor blackColor];
         [self removePlaceHolderText];
+        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(checkToContinueSending)];
+        self.navigationItem.rightBarButtonItem = anotherButton;
     }
     else
     {
@@ -166,23 +168,28 @@ SecondDelegate>
     //this code makes "done" or "return" button resign first responder
     if ([text isEqualToString:@"\n"])
     {
-        if (self.photosArray.count)
-        {
-            [self continueSendingVollie];
-        }
-        else if (![self.textView.text isEqualToString:@"Type Message Here..."] && self.textView.text.length !=0)
-        {
-            [self continueSendingVollie];
-        }
-        else
-        {
-            [ProgressHUD showError:@"No Pics or Text"];
-        }
+        [self checkToContinueSending];
         return NO;
     }
     else
     {
         return YES;
+    }
+}
+
+-(void)checkToContinueSending
+{
+    if (self.photosArray.count)
+    {
+        [self continueSendingVollie];
+    }
+    else if (![self.textView.text isEqualToString:@"Type Message Here..."] && self.textView.text.length !=0)
+    {
+        [self continueSendingVollie];
+    }
+    else
+    {
+        [ProgressHUD showError:@"No Pics or Text"];
     }
 }
 
