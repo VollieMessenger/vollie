@@ -220,6 +220,7 @@
         {
              if (!error)
              {
+                 
                  self.sharedChatroom = objects.firstObject;
              }
         }];
@@ -250,6 +251,7 @@
                  {
                      if (self.sharedChatroom != nil)
                      {
+                         
                          [self.messages addObject:self.sharedChatroom];
                      }
                  }

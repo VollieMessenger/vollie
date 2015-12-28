@@ -131,6 +131,7 @@
 		329F1AB91C2254D300A0B65A /* InboxModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F1AB81C2254D300A0B65A /* InboxModal.m */; };
 		329F9D241B700F340025D3EC /* FivePicsFavCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9D221B700F340025D3EC /* FivePicsFavCell.m */; };
 		329F9D251B700F340025D3EC /* FivePicsFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 329F9D231B700F340025D3EC /* FivePicsFavCell.xib */; };
+		32A5F1DE1C2BC6E300863F41 /* CustomChatModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A5F1DD1C2BC6E300863F41 /* CustomChatModel.m */; };
 		32A76AC01BCD8795006DE6CC /* FullWidthChat.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A76ABE1BCD8795006DE6CC /* FullWidthChat.m */; };
 		32A76AC11BCD8795006DE6CC /* FullWidthChat.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32A76ABF1BCD8795006DE6CC /* FullWidthChat.xib */; };
 		32A76AC41BCD9752006DE6CC /* FullWidthChatView.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A76AC31BCD9752006DE6CC /* FullWidthChatView.m */; };
@@ -460,6 +461,8 @@
 		329F9D211B700F340025D3EC /* FivePicsFavCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FivePicsFavCell.h; sourceTree = "<group>"; };
 		329F9D221B700F340025D3EC /* FivePicsFavCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FivePicsFavCell.m; sourceTree = "<group>"; };
 		329F9D231B700F340025D3EC /* FivePicsFavCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FivePicsFavCell.xib; sourceTree = "<group>"; };
+		32A5F1DC1C2BC6E300863F41 /* CustomChatModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomChatModel.h; sourceTree = "<group>"; };
+		32A5F1DD1C2BC6E300863F41 /* CustomChatModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomChatModel.m; sourceTree = "<group>"; };
 		32A76ABD1BCD8795006DE6CC /* FullWidthChat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullWidthChat.h; sourceTree = "<group>"; };
 		32A76ABE1BCD8795006DE6CC /* FullWidthChat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullWidthChat.m; sourceTree = "<group>"; };
 		32A76ABF1BCD8795006DE6CC /* FullWidthChat.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullWidthChat.xib; sourceTree = "<group>"; };
@@ -1334,6 +1337,8 @@
 		32DA3D421B8FCDEC00DDEFA2 /* CustomChatView */ = {
 			isa = PBXGroup;
 			children = (
+				32A5F1DC1C2BC6E300863F41 /* CustomChatModel.h */,
+				32A5F1DD1C2BC6E300863F41 /* CustomChatModel.m */,
 				C2BD53E71A31077D006D721E /* CustomChatView.h */,
 				C2BD53E81A31077D006D721E /* CustomChatView.m */,
 				32A76AC21BCD9752006DE6CC /* FullWidthChatView.h */,
@@ -1741,6 +1746,7 @@
 				296DD5D01A1F52F400AB9F8C /* JSQMessagesBubbleImage.m in Sources */,
 				29271A6B19F284B1009C308B /* utilities.m in Sources */,
 				29271A6019F284B1009C308B /* MessagesView.m in Sources */,
+				32A5F1DE1C2BC6E300863F41 /* CustomChatModel.m in Sources */,
 				C21DD6E71A71D73B0009BC6A /* JCNotificationBannerPresenterIOS7Style.m in Sources */,
 				3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */,
 				296DD5DB1A1F52F400AB9F8C /* JSQMessagesInputToolbar.m in Sources */,

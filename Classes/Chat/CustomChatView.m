@@ -184,6 +184,7 @@
 
 -(void)setUpTopNotification
 {
+#warning model this
     self.notification = [[AFDropdownNotification alloc] init];
     self.notification.notificationDelegate = self;
     self.notification.titleText = @"Sending Pictures!";
@@ -196,7 +197,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:1];
-    [self isSetFavorited];
+//    [self isSetFavorited];
     [self finishReceivingMessage:0];
     [self.view setNeedsDisplay];
     self.collectionViewPictures.hidden = YES;
@@ -258,7 +259,7 @@
 //    self.inputToolbar.contentView.textView.textColor = [UIColor whiteColor];
 //    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
 
-
+#warning model this
     self.inputToolbar.contentView.textView.backgroundColor = [UIColor whiteColor];
     self.inputToolbar.contentView.textView.textColor = [UIColor blackColor];
     self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithWhite:0.600 alpha:1.000];
@@ -280,43 +281,43 @@
 //    [self.view addGestureRecognizer:doubleTapFolderGesture];
 }
 
-- (void)isSetFavorited
-{
-    if (!_isFavoritesSets)
-    {
-//        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+//- (void)isSetFavorited
+//{
+//    if (!_isFavoritesSets)
+//    {
+////        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+////        self.navigationItem.rightBarButtonItem = favorites;
+//
+//        //IF HAS BEEN FAVORITED.
+//        PFQuery *query = [PFQuery queryWithClassName:PF_FAVORITES_CLASS_NAME];
+//#warning MAY ACCIDENTLY FIND ONE THAT IS NOT FAVORITED.
+//        [query whereKey:PF_FAVORITES_SET equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];
+//        [query whereKey:PF_FAVORITES_USER equalTo:[PFUser currentUser]];
+//
+//        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+//         {
+//             if (!error)
+//             {
+//                 if (objects.count > 0)
+//                 {
+////                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR6"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+////                     self.navigationItem.rightBarButtonItem = favorites;
+//                 }
+//                 else
+//                 {
+////                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
+////                     self.navigationItem.rightBarButtonItem = favorites;
+//                 }
+//             }
+//         }];
+//    }
+//    else
+//    {
+//        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR7"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
 //        self.navigationItem.rightBarButtonItem = favorites;
-
-        //IF HAS BEEN FAVORITED.
-        PFQuery *query = [PFQuery queryWithClassName:PF_FAVORITES_CLASS_NAME];
-#warning MAY ACCIDENTLY FIND ONE THAT IS NOT FAVORITED.
-        [query whereKey:PF_FAVORITES_SET equalTo:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_]];
-        [query whereKey:PF_FAVORITES_USER equalTo:[PFUser currentUser]];
-
-        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
-             if (!error)
-             {
-                 if (objects.count > 0)
-                 {
-//                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR6"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//                     self.navigationItem.rightBarButtonItem = favorites;
-                 }
-                 else
-                 {
-//                     UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR5"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-//                     self.navigationItem.rightBarButtonItem = favorites;
-                 }
-             }
-         }];
-    }
-    else
-    {
-        UIBarButtonItem *favorites = [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:@"STAR7"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStyleBordered target:self action:@selector(actionStar)];
-        self.navigationItem.rightBarButtonItem = favorites;
-
-    }
-}
+//
+//    }
+//}
 
 -(void)actionStar
 {
@@ -502,6 +503,7 @@
         self.arrayOfInitialsForThumbnails = [NSMutableArray new];
         for (PFObject *object in pictures)
         {
+#warning model this
             [objectIds addObject:object.objectId];
             NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
             NSMutableArray *array = [NSMutableArray arrayWithArray:[initials componentsSeparatedByString:@" "]];
@@ -621,6 +623,7 @@
                     {
                         [setPicturesObjects addObject:object];
                         
+#warning model this
                         NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
                         NSMutableArray *array = [NSMutableArray arrayWithArray:[initials componentsSeparatedByString:@" "]];
                         [array removeObject:@" "];
@@ -717,6 +720,7 @@
     NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
     if ([navCamera.viewControllers.firstObject isKindOfClass:[CustomCameraView class]])
     {
+#warning model this
         CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
         //        NSLog(@"%f)
         //        NSLog(@"%fl is size of scroll when i hit bring up camera view", cam.scrollView.contentSize.width);
@@ -774,6 +778,7 @@
             [self.arrayOfScrollView addObject:[NSString stringWithFormat:@"%d",i]];
         }
         
+#warning model this
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
         scrollView.bounces = YES;
         scrollView.pagingEnabled = 1;
