@@ -77,7 +77,7 @@
     PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
     object[PF_CHAT_USER] = [PFUser currentUser];
     object[PF_CHAT_ROOM] = self.room;
-    NSLog(@"%@", self.room.objectId);
+//    NSLog(@"%@", self.room.objectId);
     object[PF_CHAT_TEXT] = text;
 //    [object setValue:[PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_] forKey:PF_CHAT_SETID];
     object[@"setId"] = self.set;
@@ -408,13 +408,14 @@
 
 -(void)reloadAfterMessageSuccessfullySent
 {
+    NSLog(@"reloading");
     [self.notification dismissWithGravityAnimation:NO];
     [self loadMessages];
 }
 
 -(void)clearPushNotesCounter
 {
-    NSLog(@"checking this room for push notification count: %@ ", self.userChatRoom);
+//    NSLog(@"checking this room for push notification count: %@ ", self.userChatRoom);
     NSNumber *number = [self.userChatRoom valueForKey:PF_MESSAGES_COUNTER];
     if (number)
     {
@@ -595,6 +596,7 @@
     setComments = [NSMutableArray new];
     setPicturesObjects = [NSMutableArray new];
     objectIds = [NSMutableArray new];
+    self.arrayOfInitialsForThumbnails = [NSMutableArray new];
     
     self.shouldUpdateUnreadUsers = false;
     PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
@@ -604,7 +606,6 @@
 //    [query setCachePolicy:kPFCachePolicyCacheThe;p n
 //    [query orderByAscending:PF_PICTURES_UPDATEDACTION];
     [query orderByAscending:@"createdAt"];
-
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
         if (!error)
@@ -613,16 +614,14 @@
             NSLog(@"%li messages and pics", objects.count);
             for (PFObject *object in objects)
             {
-                NSLog(@"%@", object);
+//                NSLog(@"%@", object);
                 if (![objectIds containsObject:object.objectId])
                 {
                     [objectIds addObject:object.objectId];
-
 //                    setPicturesObjects = [NSMutableArray new];
                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
                     {
                         [setPicturesObjects addObject:object];
-                        
 #warning model this
                         NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
                         NSMutableArray *array = [NSMutableArray arrayWithArray:[initials componentsSeparatedByString:@" "]];
@@ -633,9 +632,8 @@
                         last = [last stringByPaddingToLength:1 withString:initials startingAtIndex:0];
                         initials = [first stringByAppendingString:last];
                         [self.arrayOfInitialsForThumbnails addObject:initials];
+                        NSLog(@"%@", initials);
 //                        cell.label.text = name;
-                        
-                        
 //                        NSLog(@"%li in pictureObjectsArray", setPicturesObjects.count);
                     }
                     else
@@ -643,7 +641,6 @@
                         [comments addObject:object];
                         NSLog(@"%li messsages", comments.count);
                     }
-
                 }
             }
             [self addJSQMessage:comments];
@@ -696,6 +693,8 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
     if (indexPath.item != setPicturesObjects.count)
     {
         //if it's a normal pic
