@@ -74,6 +74,23 @@
         button.backgroundColor = [UIColor volleyFamousOrange];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
+    if (button == self.silenceButton)
+    {
+        NSLog(@"%@ message but really room", self.messageButReallyRoom);
+        if ([self.messageButReallyRoom objectForKey:PF_MESSAGES_USER_DONOTDISTURB])
+        {
+            [self.silenceButton setTitle:@"Silence" forState:UIControlStateNormal];
+        }
+        else
+        {
+            [self.silenceButton setTitle:@"Unsilence" forState:UIControlStateNormal];
+        }
+//        self.messageButReallyRoom
+//        button.
+//        if (obj) {
+        
+        
+    }
 //
 //    if (button == self.peopleButton)
 //    {
@@ -153,12 +170,20 @@
     if (buttonIndex != alertView.cancelButtonIndex && alertView.tag == 69)
     {
         PFObject *message = self.messageButReallyRoom;
-        if ([alertView.title isEqualToString:@"Silence Push Notifications?"]) {
+        if ([message objectForKey:PF_MESSAGES_USER_DONOTDISTURB])
+        {
             [message removeObjectForKey:PF_MESSAGES_USER_DONOTDISTURB];
-        } else {
-            [message setValue:[PFUser currentUser] forKey:PF_MESSAGES_USER_DONOTDISTURB];
+            [self.silenceButton setTitle:@"Unsilence" forState:UIControlStateNormal];
+
         }
-        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        else
+        {
+            [message setObject:[PFUser currentUser] forKey:PF_MESSAGES_USER_DONOTDISTURB];
+            [self.silenceButton setTitle:@"Silence" forState:UIControlStateNormal];
+
+        }
+        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
             if (succeeded)
             {
                 [ProgressHUD showSuccess:@"Saved"];
@@ -282,7 +307,7 @@
         if (!error) {
             if (!object[PF_MESSAGES_USER_DONOTDISTURB])
             {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Show Push Notifications?" message:nil delegate:self
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unsilence Push Notifications?" message:nil delegate:self
                                                       cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
                 alert.tag = 69;
                 [alert show];
