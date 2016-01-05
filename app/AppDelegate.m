@@ -441,10 +441,8 @@
              }
          }];
         }
-
     //Need to download new message if it exists.
         PostNotification(NOTIFICATION_REFRESH_INBOX);
-
         // Show photo view controller
         //Irrelevant but acceptable
     }

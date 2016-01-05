@@ -138,8 +138,7 @@ SecondDelegate>
     {
         self.textView.textColor = [UIColor blackColor];
         [self removePlaceHolderText];
-        UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(checkToContinueSending)];
-        self.navigationItem.rightBarButtonItem = anotherButton;
+        [self addSendButtonToNavBar];
     }
     else
     {
@@ -270,14 +269,7 @@ SecondDelegate>
     self.textView.delegate = self;
     [self.textView becomeFirstResponder];
     [self.collectionView reloadData];
-    
-//ask TJ why he did this?
-//    for (UIImage * pic in photosForFirst) {
-//        if ([self.photosArray containsObject:pic]) {
-//            [self.photosArray removeObject:pic];
-//        }
-//    }
-//    [self.photosArray addObjectsFromArray:photosForFirst];
+    [self addSendButtonToNavBar];
 }
 
 -(void)bringUpCameraView
@@ -306,6 +298,17 @@ SecondDelegate>
         
 //        [self presentViewController:cam animated:YES completion:nil];
     }
+}
+
+-(void)addSendButtonToNavBar
+{
+    UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"Send" style:UIBarButtonItemStylePlain target:self action:@selector(checkToContinueSending)];
+    [anotherButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                           [UIFont fontWithName:@"Helvetica-Bold" size:19], NSFontAttributeName,
+                                           [UIColor volleyFamousGreen], NSForegroundColorAttributeName,
+                                           nil]
+                                 forState:UIControlStateNormal];
+    self.navigationItem.rightBarButtonItem = anotherButton;
 }
 
 #pragma mark "ScrollView"

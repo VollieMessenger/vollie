@@ -1460,7 +1460,6 @@
                     [longPressImageView addSubview:spinner];
                     [self.view.window addSubview:longPressImageView];
                 } completion:0];
-                
             }
         }
         

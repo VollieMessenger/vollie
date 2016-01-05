@@ -124,6 +124,7 @@
     self.notification.titleText = @"Sending Vollie!";
     self.notification.subtitleText = @"We are uploading your Vollie now. Your new Vollie will appear at the bottom of the thread!";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
+    self.notification.dismissOnTap = YES;
     if (self.shouldShowTempCard)
     {
         self.nextVollieButton.userInteractionEnabled = NO;

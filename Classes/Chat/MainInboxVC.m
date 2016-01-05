@@ -172,6 +172,7 @@
 {
     self.notification = [[AFDropdownNotification alloc] init];
     self.notification.notificationDelegate = self;
+    self.notification.dismissOnTap = YES;
     self.notification.titleText = @"Sending Vollie!";
     self.notification.subtitleText = @"We are uploading your Vollie now. Your new chatroom will show up soon! ";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
