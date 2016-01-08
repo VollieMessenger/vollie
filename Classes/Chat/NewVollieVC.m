@@ -94,6 +94,8 @@ SecondDelegate>
 -(void)changeToBlackStatusBar
 {
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
+ 
 }
 
 -(void)basicSetUpAndInit

@@ -70,7 +70,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWW-jU-omz">
-                                <rect key="frame" x="235" y="442" width="54" height="21"/>
+                                <rect key="frame" x="227" y="442" width="54" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="FCm-Ks-dgv"/>
@@ -81,7 +81,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="KX1-FF-WNh">
-                                <rect key="frame" x="291" y="438" width="29" height="29"/>
+                                <rect key="frame" x="283" y="438" width="29" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="Khd-3M-xNY"/>
@@ -95,7 +95,7 @@
                             <constraint firstItem="KX1-FF-WNh" firstAttribute="leading" secondItem="nWW-jU-omz" secondAttribute="trailing" constant="2" id="EmH-r0-M54"/>
                             <constraint firstItem="33y-Wp-Emd" firstAttribute="leading" secondItem="dg9-a9-3Nb" secondAttribute="trailing" id="FPV-KV-c0k"/>
                             <constraint firstItem="dg9-a9-3Nb" firstAttribute="leading" secondItem="LMR-57-PIQ" secondAttribute="leading" constant="-1" id="LdI-of-G5q"/>
-                            <constraint firstAttribute="trailing" secondItem="KX1-FF-WNh" secondAttribute="trailing" id="So4-bo-rmb"/>
+                            <constraint firstAttribute="trailing" secondItem="KX1-FF-WNh" secondAttribute="trailing" constant="8" id="So4-bo-rmb"/>
                             <constraint firstAttribute="bottom" secondItem="nWW-jU-omz" secondAttribute="bottom" constant="6" id="TEj-Gi-Mdd"/>
                             <constraint firstItem="dg9-a9-3Nb" firstAttribute="top" secondItem="LMR-57-PIQ" secondAttribute="top" id="U3Z-m4-UeR"/>
                             <constraint firstAttribute="bottom" secondItem="dg9-a9-3Nb" secondAttribute="bottom" id="df2-pT-bFw"/>

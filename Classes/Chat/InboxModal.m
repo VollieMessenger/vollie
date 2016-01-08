@@ -38,7 +38,7 @@
 -(PFQuery*)createQueryForSharedChatRoom
 {
     PFQuery *query2 = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
-    [query2 whereKey:@"objectId" equalTo:@"YQjK00ePzE"];
+    [query2 whereKey:@"objectId" equalTo:@"LKOjl2KHk4"];
     //      [query includeKey:PF_MESSAGES_LASTUSER];
     [query2 includeKey:PF_MESSAGES_ROOM];
     [query2 includeKey:PF_MESSAGES_USER]; // doesn't need to be here

@@ -363,10 +363,15 @@
         {
             
         }
+        else if ([nav.viewControllers.lastObject isKindOfClass:[MomentsVC class]])
+        {
+            
+        }
         else
         {
             self.scrollView.scrollEnabled = YES;
             MainInboxVC *vc = nav.viewControllers.lastObject;
+            
             [vc.inboxModalTool checkIfCustomChatViewIsVisible];
         }
         NSLog(@"Scroll Enabled in VDA");
@@ -684,7 +689,7 @@
 
     self.cancelButton.hidden = YES;
     self.rightButton.hidden = NO;
-    self.comingFromNewVollie = YES;
+    self.comingFromNewVollie = NO;
     self.comingFromCustomChatView = NO;
     self.scrollView.scrollEnabled = NO;
 

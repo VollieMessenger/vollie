@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -32,7 +32,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="PHg-0y-jcH">
-                                <rect key="frame" x="291" y="195.5" width="29" height="29"/>
+                                <rect key="frame" x="283" y="195.5" width="29" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="29" id="IU8-Rg-YOt"/>
@@ -40,7 +40,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGs-4W-Q2f">
-                                <rect key="frame" x="235" y="199.5" width="54" height="21"/>
+                                <rect key="frame" x="227" y="199.5" width="54" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="Qr4-7n-PXZ"/>
@@ -60,7 +60,7 @@
                             <constraint firstItem="mFY-2S-cmq" firstAttribute="centerY" secondItem="bWh-QD-e3C" secondAttribute="centerY" id="U5g-Us-9a3"/>
                             <constraint firstAttribute="trailing" secondItem="mFY-2S-cmq" secondAttribute="trailing" constant="8" id="U7Y-Cz-2O2"/>
                             <constraint firstAttribute="bottom" secondItem="PHg-0y-jcH" secondAttribute="bottom" id="WM6-Ug-ykA"/>
-                            <constraint firstAttribute="trailing" secondItem="PHg-0y-jcH" secondAttribute="trailing" id="ag7-p4-9ng"/>
+                            <constraint firstAttribute="trailing" secondItem="PHg-0y-jcH" secondAttribute="trailing" constant="8" id="ag7-p4-9ng"/>
                             <constraint firstItem="mFY-2S-cmq" firstAttribute="leading" secondItem="O1X-0R-tVb" secondAttribute="trailing" id="fan-7H-SKn"/>
                             <constraint firstAttribute="bottom" secondItem="O1X-0R-tVb" secondAttribute="bottom" id="leM-KT-scX"/>
                             <constraint firstItem="O1X-0R-tVb" firstAttribute="leading" secondItem="bWh-QD-e3C" secondAttribute="leading" id="r8f-Oy-mp7"/>

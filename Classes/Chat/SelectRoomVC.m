@@ -248,7 +248,7 @@
 {
     if (self.selectedRoom)
     {
-        if (![self.messagesRoom.objectId isEqualToString:@"YQjK00ePzE"])
+        if (![self.messagesRoom.objectId isEqualToString:@"LKOjl2KHk4"])
         {
             [self beginSendingVolliePackage];
         }

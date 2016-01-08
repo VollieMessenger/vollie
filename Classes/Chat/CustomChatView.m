@@ -84,7 +84,7 @@
     [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
     [self finishSendingMessage];
     
-    if(![self.room.objectId isEqualToString:@"K4wmuA9M8n"])
+    if(![self.room.objectId isEqualToString:@"Z7eWbRVHl9"])
     {
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
          {
@@ -156,6 +156,12 @@
 
         [ProgressHUD showError:@"This is a shared chat with all Vollie Users, so that message did not send. We're happy that you're trying things out, though!" Interaction:NO];
     }
+}
+
+-(void)addFakeMessagesToChat
+{
+    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:self.senderId senderDisplayName:self.senderDisplayName setId:setId_ date:[NSDate date] text:@"Will Do! Thanks"];
+    [setComments addObject:message];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -321,19 +327,19 @@
 
 -(void)actionStar
 {
-    DidFavoriteView *favoriteView = [DidFavoriteView new];
-    favoriteView.title = @"Save to...";
-
-    if (_isFavoritesSets)
-    {
-        favoriteView.title = @"Move to...";
-        favoriteView.isMovingAlbum = YES;
-    }
-
-    favoriteView.set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
-    favoriteView.album = self.album;
-    NavigationController *nav = [[NavigationController alloc] initWithRootViewController:favoriteView];
-    [self showDetailViewController:nav sender:self];
+//    DidFavoriteView *favoriteView = [DidFavoriteView new];
+//    favoriteView.title = @"Save to...";
+//
+//    if (_isFavoritesSets)
+//    {
+//        favoriteView.title = @"Move to...";
+//        favoriteView.isMovingAlbum = YES;
+//    }
+//
+//    favoriteView.set = [PFObject objectWithoutDataWithClassName:PF_SET_CLASS_NAME objectId:setId_];
+//    favoriteView.album = self.album;
+//    NavigationController *nav = [[NavigationController alloc] initWithRootViewController:favoriteView];
+//    [self showDetailViewController:nav sender:self];
 }
 
 - (void)didPressAccessoryButton:(UIButton *)sender {
@@ -1204,6 +1210,13 @@
     if ([message.senderId isEqualToString:self.senderId])
     {
         return outgoingBubbleImageData;
+    }
+    if ([self.room.objectId isEqualToString:@"Z7eWbRVHl9"])
+    {
+        if ([message.senderId isEqualToString:@"hj1Gh5738B"])
+        {
+            return outgoingBubbleImageData;
+        }
     }
     return incomingBubbleImageData;
 }

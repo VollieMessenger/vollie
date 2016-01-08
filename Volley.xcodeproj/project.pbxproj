@@ -120,6 +120,8 @@
 		3272F9311B7A9BED0013FD9C /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
 		32771FBC1B73FB65007726E9 /* WeekHighlightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */; };
 		32771FC01B7417AA007726E9 /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBF1B7417AA007726E9 /* WeekCell.m */; };
+		32813FD91C3B9BCF006659DB /* FullWidthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32813FD71C3B9BCF006659DB /* FullWidthCell.m */; };
+		32813FDA1C3B9BCF006659DB /* FullWidthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32813FD81C3B9BCF006659DB /* FullWidthCell.xib */; };
 		32873A5E1BC5DC9300618A05 /* PageOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 32873A5C1BC5DC9300618A05 /* PageOne.m */; };
 		32873A5F1BC5DC9300618A05 /* PageOne.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32873A5D1BC5DC9300618A05 /* PageOne.xib */; };
 		32873A631BC5E03F00618A05 /* PageTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 32873A611BC5E03F00618A05 /* PageTwo.m */; };
@@ -444,6 +446,9 @@
 		32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekHighlightsVC.m; sourceTree = "<group>"; };
 		32771FBE1B7417AA007726E9 /* WeekCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCell.h; sourceTree = "<group>"; };
 		32771FBF1B7417AA007726E9 /* WeekCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekCell.m; sourceTree = "<group>"; };
+		32813FD61C3B9BCF006659DB /* FullWidthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullWidthCell.h; sourceTree = "<group>"; };
+		32813FD71C3B9BCF006659DB /* FullWidthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullWidthCell.m; sourceTree = "<group>"; };
+		32813FD81C3B9BCF006659DB /* FullWidthCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullWidthCell.xib; sourceTree = "<group>"; };
 		32873A5B1BC5DC9300618A05 /* PageOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageOne.h; sourceTree = "<group>"; };
 		32873A5C1BC5DC9300618A05 /* PageOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageOne.m; sourceTree = "<group>"; };
 		32873A5D1BC5DC9300618A05 /* PageOne.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageOne.xib; sourceTree = "<group>"; };
@@ -1250,6 +1255,9 @@
 				32AB987A1BACD40B003F3034 /* LoadingCell.h */,
 				32AB987B1BACD40B003F3034 /* LoadingCell.m */,
 				32AB987C1BACD40B003F3034 /* LoadingCell.xib */,
+				32813FD61C3B9BCF006659DB /* FullWidthCell.h */,
+				32813FD71C3B9BCF006659DB /* FullWidthCell.m */,
+				32813FD81C3B9BCF006659DB /* FullWidthCell.xib */,
 			);
 			name = CardViewCells;
 			sourceTree = "<group>";
@@ -1611,6 +1619,7 @@
 				2930F94119E96C73000F7799 /* tab_private@2x.png in Resources */,
 				C2CA16ED1A85116500DD25AC /* MessagesCellDot.xib in Resources */,
 				32F748081B82367400870840 /* InviteContactsCell.xib in Resources */,
+				32813FDA1C3B9BCF006659DB /* FullWidthCell.xib in Resources */,
 				2721708C1B5443ED0050A9D0 /* FivePicCell.xib in Resources */,
 				C2CDFB0A1A42912E0078DE43 /* Default-568h@2x.png in Resources */,
 				29EB241919E9292500D7AA97 /* LaunchScreen.xib in Resources */,
@@ -1708,6 +1717,7 @@
 				C21DD6E81A71D73B0009BC6A /* JCNotificationBannerPresenterIOSStyle.m in Sources */,
 				32873A631BC5E03F00618A05 /* PageTwo.m in Sources */,
 				29271A6A19F284B1009C308B /* messages.m in Sources */,
+				32813FD91C3B9BCF006659DB /* FullWidthCell.m in Sources */,
 				C2F314AB1A79895700675959 /* MasterLoginRegisterView.m in Sources */,
 				32B172D61B8D031B00127129 /* HighlightData.m in Sources */,
 				C27032731A38CFD3008CBF7F /* AppConstant.m in Sources */,

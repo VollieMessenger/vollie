@@ -556,7 +556,12 @@
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room andNotification:(BOOL)notificationShow
 {
     self.scrollView.scrollEnabled = false;
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+//    MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+//    cardViewController.room = userChatRoom;
+//    cardViewController.messageItComesFrom = room;
     self.cardViewVC = [self.inboxModalTool createMomentsVCWith:userChatRoom andCustomChatRoom:room];
+//    self.cardViewVC = cardViewController;
     self.cardViewVC.room = room;
     self.cardViewVC.messageItComesFrom = userChatRoom;
     if (notificationShow)
@@ -571,6 +576,7 @@
     {
         self.cardViewVC.name = [userChatRoom objectForKey:@"description"];
     }
+    
     [self.navigationController pushViewController:self.cardViewVC animated:NO];
 }
 

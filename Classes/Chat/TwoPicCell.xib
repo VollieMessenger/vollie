@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -54,7 +54,7 @@
                                 <animations/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="Xj0-Oi-jxY">
-                                <rect key="frame" x="291" y="265" width="29" height="29"/>
+                                <rect key="frame" x="283" y="265" width="29" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="7bF-fX-Eim"/>
@@ -62,7 +62,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmx-AX-OdM">
-                                <rect key="frame" x="235" y="269" width="54" height="21"/>
+                                <rect key="frame" x="227" y="269" width="54" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="7Po-0F-Ktl"/>
@@ -76,7 +76,7 @@
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Xj0-Oi-jxY" secondAttribute="trailing" id="50y-Po-f6r"/>
+                            <constraint firstAttribute="trailing" secondItem="Xj0-Oi-jxY" secondAttribute="trailing" constant="8" id="50y-Po-f6r"/>
                             <constraint firstItem="Bi0-hV-vC7" firstAttribute="top" secondItem="E0b-yg-zeQ" secondAttribute="top" id="Esc-Ap-UMa"/>
                             <constraint firstAttribute="bottom" secondItem="Xj0-Oi-jxY" secondAttribute="bottom" constant="6" id="Roe-Hv-Gq2"/>
                             <constraint firstAttribute="bottom" secondItem="zmx-AX-OdM" secondAttribute="bottom" constant="10" id="Zk5-Id-NaR"/>

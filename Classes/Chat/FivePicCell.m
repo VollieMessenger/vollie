@@ -48,6 +48,8 @@
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData
 {
     int i = 0;
+//    NSMutableArray* reversedArray = [[vollieCardData.photosArray reverseObjectEnumerator] allObjects];
+//    vollieCardData.photosArray = reversedArray;
     for (PFObject *photo in vollieCardData.photosArray)
     {
         //        PFObject *photo = vollieCardData.photosArray.firstObject;

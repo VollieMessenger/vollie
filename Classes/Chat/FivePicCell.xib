@@ -55,7 +55,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2c-tC-bLC">
-                                <rect key="frame" x="235" y="577" width="54" height="21"/>
+                                <rect key="frame" x="227" y="577" width="54" height="21"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="uuD-F7-c6W"/>
@@ -66,7 +66,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="Yer-fF-gHi">
-                                <rect key="frame" x="291" y="573" width="29" height="29"/>
+                                <rect key="frame" x="283" y="573" width="29" height="29"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="ASF-Kz-BB4"/>
@@ -83,7 +83,7 @@
                             <constraint firstItem="Hwt-lb-TVu" firstAttribute="leading" secondItem="FDD-YO-ryD" secondAttribute="leading" id="QyN-dt-kpF"/>
                             <constraint firstAttribute="bottom" secondItem="Hwt-lb-TVu" secondAttribute="bottom" id="X9I-xT-JMe"/>
                             <constraint firstAttribute="bottom" secondItem="u2c-tC-bLC" secondAttribute="bottom" constant="6" id="b4S-2V-4Ov"/>
-                            <constraint firstAttribute="trailing" secondItem="Yer-fF-gHi" secondAttribute="trailing" id="l0w-dm-lha"/>
+                            <constraint firstAttribute="trailing" secondItem="Yer-fF-gHi" secondAttribute="trailing" constant="8" id="l0w-dm-lha"/>
                             <constraint firstItem="Kny-G8-SvY" firstAttribute="leading" secondItem="Hwt-lb-TVu" secondAttribute="trailing" id="uMf-j6-wRU"/>
                             <constraint firstItem="Yer-fF-gHi" firstAttribute="leading" secondItem="u2c-tC-bLC" secondAttribute="trailing" constant="2" id="vRo-WN-43D"/>
                             <constraint firstItem="Hwt-lb-TVu" firstAttribute="top" secondItem="FDD-YO-ryD" secondAttribute="top" id="yfn-0E-iDQ"/>
