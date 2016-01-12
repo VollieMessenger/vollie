@@ -83,6 +83,131 @@
 
 }
 
+- (BOOL) checkIfOnCard:(NSString *)roomId didComeFromBackground:(BOOL)isBack andSetId:(NSString*)setId
+{
+    
+    NavigationController *nav = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
+    NavigationController *flashbacks = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navFavorites];
+    
+    
+    if([nav.visibleViewController isKindOfClass:[CustomCameraView class]])
+    {
+        NSLog(@"i'm a camera");
+        return YES;
+    }
+    
+    if (nav.presentedViewController)
+    {
+        return NO;
+    }
+    
+    if ([nav.viewControllers.lastObject isKindOfClass:[ChatView class]])
+    {
+        ChatView *chatView = nav.viewControllers.lastObject;
+        if ([chatView.room_.objectId isEqualToString: roomId])
+        {
+            [chatView refresh];
+            return YES;
+        }
+        else
+        {
+            //POP CURRENT ROOM IF NOT PUSH ROOM.//ACTUALLY NO, ONLY IF COMING FROM BACKGROUND.
+            if (isBack)
+            {
+                [nav popToRootViewControllerAnimated:0];
+            }
+        }
+    }
+    
+    if ([nav.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
+    {
+        CustomChatView *chatView = nav.viewControllers.lastObject;
+        if ([chatView.set.objectId isEqualToString:setId])
+        {
+            return YES;
+        }
+        else
+        {
+            NSLog(@"Chatview set id is %@ and set ID is %@", chatView.setIDforCardCheck, setId);
+        }
+//        NSInteger target=nav.viewControllers.count - 2;
+//        if ([nav.viewControllers[target] isKindOfClass:[MomentsVC class]])
+//        {
+//            {
+//                MomentsVC *vc = nav.viewControllers[target];
+//                if ([vc.room.objectId isEqualToString:roomId])
+//                {
+//                    NSLog(@"User is currently looking at this chat");
+//                    return YES;
+//                }
+//            }
+//        }
+//        if ([nav.viewControllers[target] isKindOfClass:[MainInboxVC class]])
+//        {
+//            MomentsVC *vc = nav.viewControllers[target+1];
+//            if ([vc.room.objectId isEqualToString:roomId])
+//            {
+//                NSLog(@"User is currently looking at this chat");
+//                return YES;
+//            }
+//        }
+        
+        
+        
+        //        ChatView *chatView = nav.viewControllers[target];
+        //        if ([chatView.room_.objectId isEqualToString: roomId])
+        //        {
+        //            [chatView refresh];
+        //            return YES;
+        //        }
+    }
+    
+    
+    if ([nav.viewControllers.lastObject isKindOfClass:[CustomCameraView class]])
+    {
+        //        NSInteger target=nav.viewControllers.count - 2;
+        //        MomentsVC *chatView = nav.viewControllers[target];
+        //        if ([chatView.room.objectId isEqualToString:roomId])
+        //        {
+        //            NSLog(@"User is currently looking at this chat");
+        return YES;
+        //        }
+        //        ChatView *chatView = nav.viewControllers[target];
+        //        if ([chatView.room_.objectId isEqualToString: roomId])
+        //        {
+        //            [chatView refresh];
+        //            return YES;
+        //        }
+    }
+    
+    if ([nav.viewControllers.lastObject isKindOfClass:[FullWidthChat class]])
+    {
+        NSInteger target=nav.viewControllers.count - 2;
+        MomentsVC *chatView = nav.viewControllers[target];
+        if ([chatView.room.objectId isEqualToString:roomId])
+        {
+            NSLog(@"User is currently looking at this chat");
+            return YES;
+        }
+        //        ChatView *chatView = nav.viewControllers[target];
+        //        if ([chatView.room_.objectId isEqualToString: roomId])
+        //        {
+        //            [chatView refresh];
+        //            return YES;
+        //        }
+    }
+    
+    if ([flashbacks.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
+    {
+        CustomChatView *chatView = flashbacks.viewControllers.lastObject;
+        if ([chatView.room.objectId isEqualToString:roomId] && [chatView.setIDforCardCheck isEqualToString:setId])
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 
 - (BOOL) checkIfCurrentChatIsEqualToRoom:(NSString *)roomId didComeFromBackground:(BOOL)isBack
 {

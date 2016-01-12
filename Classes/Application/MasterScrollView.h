@@ -19,6 +19,8 @@
 -(void)openView:(UIViewController *)view2;
 
 - (BOOL) checkIfCurrentChatIsEqualToRoom:(NSString *)roomId didComeFromBackground:(BOOL)isBack;
+- (BOOL) checkIfOnCard:(NSString *)roomId didComeFromBackground:(BOOL)isBack andSetId:(NSString*)setId;
+
 
 @property BOOL didJustFinishSendingVollie;
 

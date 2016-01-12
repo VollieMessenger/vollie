@@ -35,7 +35,7 @@
 @property MPMoviePlayerController *moviePlayer;
 @property BOOL doubleTapBlocker;
 @property VollieCardData *cardData;
-@property PFObject *set;
+//@property PFObject *set;
 @property NSMutableArray *arrayOfUnreadUsers;
 @property BOOL shouldUpdateUnreadUsers;
 @property PFObject *actualSet;

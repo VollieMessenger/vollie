@@ -26,6 +26,7 @@
 @property PFObject *album;
 @property NSString *setIDforCardCheck;
 @property PFObject *setChat;
+@property PFObject *set;
 @property PFObject *setMaster;
 @property BOOL shouldShowTempCard;
 @property MasterScrollView *scrollView;
