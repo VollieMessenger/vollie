@@ -348,14 +348,15 @@
         //      [query includeKey:PF_MESSAGES_LASTUSER];
         [query whereKey:PF_MESSAGES_ROOM equalTo:room];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-         {
-             if (!error && objects.count)
-             {
-                 PFObject *messageRoom = objects[0];
-                 PFObject *customChatRoom = [messageRoom objectForKey:PF_MESSAGES_ROOM];
-                 PFObject *lastPicture = [messageRoom objectForKey:@"lastPicture"];
-                 [lastPicture fetch];
-
+        {
+            if (!error && objects.count)
+            {
+                PFObject *messageRoom = objects[0];
+                PFObject *customChatRoom = [messageRoom objectForKey:PF_MESSAGES_ROOM];
+                PFObject *lastPicture = [messageRoom objectForKey:@"lastPicture"];
+                [lastPicture fetch];
+                PFObject *set = [lastPicture objectForKey:@"setId"];
+                NSLog(@"%@ this is the set", set);
 //                 [lastPicture fetchinbac];
 ////
 //                 PFObject *set = [lastPicture objectForKey:@"setId"];
@@ -405,7 +406,7 @@
                                                                           [lastPicture fetch];
                                                     
                                                                           PFObject *set = [lastPicture objectForKey:@"setId"];
-                                                                          PFObject *room = [lastPicture objectForKey:@"room"];
+//                                                                          PFObject *room = [lastPicture objectForKey:@"room"];
                                                                           CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:set andUserChatRoom:messageRoom withOrangeBubbles:NO];
 //                                                                     deepChatView.room = room;
 //                                                                        deepChatView.room = customChatRoom;
