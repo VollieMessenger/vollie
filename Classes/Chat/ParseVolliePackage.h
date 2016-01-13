@@ -25,6 +25,7 @@
 
 @property int countDownForLastPhoto;
 @property int photoArrayCount;
+@property int photoNumberCount;
 //@property PFObject *
 @property NSMutableArray *savedPhotoObjects;
 @property NSMutableArray *savedImageFiles;

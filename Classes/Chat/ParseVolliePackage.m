@@ -25,6 +25,7 @@
     self.savedPhotoObjects = [NSMutableArray new];
     self.countDownForLastPhoto = (int)photosArray.count;
     self.photoArrayCount = (int)photosArray.count;
+    self.photoNumberCount = 0;
     
 //#warning this works for now: but be careful:
 //    NSMutableArray* reversedArray = [[photosArray reverseObjectEnumerator] allObjects];
@@ -33,6 +34,7 @@
 
     for (id imageOrFile in photosArray)
     {
+        self.photoNumberCount++;
         if ([imageOrFile isKindOfClass:[UIImage class]])
         {
             UIImage *image = imageOrFile;
@@ -44,6 +46,9 @@
                                                          andSet:setID
                                                         andRoom:roomNumber];
             [picture setObject:imageFile forKey:PF_PICTURES_PICTURE];
+            [picture setValue:@1 forKey:@"photoNumber"];
+//            object[@"score"] = @(test);
+            picture[@"photoNumber"] = @(self.photoNumberCount);
             
 //            NSLog(@"%@", picture);
 

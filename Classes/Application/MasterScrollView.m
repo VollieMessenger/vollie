@@ -200,7 +200,7 @@
     if ([flashbacks.viewControllers.lastObject isKindOfClass:[CustomChatView class]])
     {
         CustomChatView *chatView = flashbacks.viewControllers.lastObject;
-        if ([chatView.room.objectId isEqualToString:roomId] && [chatView.setIDforCardCheck isEqualToString:setId])
+        if ([chatView.set.objectId isEqualToString:setId])
         {
             return YES;
         }
