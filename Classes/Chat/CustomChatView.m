@@ -732,6 +732,7 @@
         ParseVolliePackage *package = [ParseVolliePackage new];
         package.refreshDelegate = self;
         cam.package = package;
+        cam.numberOfPhotosInPackageAlready = (int)setPicturesObjects.count;
         cam.scrollView.contentSize = CGSizeMake(3 * cam.view.frame.size.width, cam.view.frame.size.height);
         cam.setToSendPhotosTo = self.set;
         cam.roomToSendPhotosTo = self.room;

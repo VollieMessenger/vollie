@@ -1755,6 +1755,7 @@
                 [self.shouldShowDropDownDelegate dismissedCamera:YES];
             }
             
+            self.package.photoNumberCount = self.numberOfPhotosInPackageAlready;
             [self.package sendPhotosWithPhotosArray:self.arrayOfTakenPhotos andText:nil andRoom:self.roomToSendPhotosTo andSet:self.setToSendPhotosTo];
             self.comingFromCustomChatView = false;
             [self clearCameraStuff];
@@ -1792,6 +1793,7 @@
             vc.textDelegate = self;
             ParseVolliePackage *package = [ParseVolliePackage new];
             package.refreshDelegate = self;
+            package.photoNumberCount = self.numberOfPhotosInPackageAlready;
             vc.package = package;
             if (self.messageText.length > 0){
                 vc.message = self.messageText;

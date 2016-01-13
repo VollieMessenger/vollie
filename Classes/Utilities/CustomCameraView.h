@@ -74,6 +74,7 @@
 @property PFObject *setToSendPhotosTo;
 @property PFObject *roomToSendPhotosTo;
 @property ParseVolliePackage *package;
+@property int numberOfPhotosInPackageAlready;
 
 @property (weak, nonatomic) IBOutlet UIButton *x1;
 @property (weak, nonatomic) IBOutlet UIButton *x2;

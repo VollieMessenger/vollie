@@ -25,8 +25,19 @@
     self.savedPhotoObjects = [NSMutableArray new];
     self.countDownForLastPhoto = (int)photosArray.count;
     self.photoArrayCount = (int)photosArray.count;
-    self.photoNumberCount = 0;
     
+    if (self.photoNumberCount)
+    {
+//        self.photoNumberCount = 0;
+    }
+    else
+    {
+        
+    }
+    
+    
+    
+
 //#warning this works for now: but be careful:
 //    NSMutableArray* reversedArray = [[photosArray reverseObjectEnumerator] allObjects];
 //    photosArray = reversedArray;
