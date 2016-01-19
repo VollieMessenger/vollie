@@ -623,6 +623,7 @@
             [self.arrayOfTakenPhotos removeObjectAtIndex:0];
             self.savedButton1.imageView.image = nil;
             [self moveImageUpToLatestBlank:self.x1];
+            [self checkToSeeIfShouldShowTakePictureButton];
             break;
 
         case 1:
@@ -632,6 +633,7 @@
             [self.arrayOfTakenPhotos removeObjectAtIndex:1];
             self.savedButton2.imageView.image = nil;
             [self moveImageUpToLatestBlank:self.x2];
+            [self checkToSeeIfShouldShowTakePictureButton];
             break;
         case 2:
             self.x3.hidden = YES;
@@ -639,6 +641,8 @@
             [self.arrayOfTakenPhotos removeObjectAtIndex:2];
             self.savedButton3.imageView.image = nil;
             [self moveImageUpToLatestBlank:self.x3];
+            [self checkToSeeIfShouldShowTakePictureButton];
+
             break;
         case 3:
             self.x4.hidden = YES;
@@ -646,6 +650,8 @@
             [self.arrayOfTakenPhotos removeObjectAtIndex:3];  //kyle note this is where it crashes
             self.savedButton4.imageView.image = nil;
             [self moveImageUpToLatestBlank:self.x4];
+            [self checkToSeeIfShouldShowTakePictureButton];
+
             break;
         case 4:
             self.x5.hidden = YES;
@@ -653,6 +659,7 @@
             [self.arrayOfTakenPhotos removeObjectAtIndex:4];
             self.savedButton5.imageView.image = nil;
             [self moveImageUpToLatestBlank:self.x5];
+            [self checkToSeeIfShouldShowTakePictureButton];
             self.cameraRollButton.hidden = NO;
             self.takePictureButton.hidden = NO;
             break;
@@ -1640,6 +1647,7 @@
             self.cameraRollButton.hidden = NO;
         }];
     }
+        
     if (self.savedButton1.hidden)
     {
 //        self.nextButton.hidden = NO;
@@ -1654,6 +1662,11 @@
         [self.savedButton1 setImage:image forState:UIControlStateNormal];
         self.savedButton1.hidden = NO;
         self.x1.hidden = NO;
+        
+        if (self.numberOfPhotosInPackageAlready == 4)
+        {
+            [self hideTheTakePictureButton];
+        }
     }
     else if (self.savedButton2.hidden)
     {
@@ -1661,19 +1674,27 @@
         self.savedButton2.hidden = NO;
         if (isVideoTag)
         {
-        self.savedButton2.titleLabel.text = videoURL.path;
+            self.savedButton2.titleLabel.text = videoURL.path;
         }
         self.x2.hidden = NO;
+        if (self.numberOfPhotosInPackageAlready == 3)
+        {
+            [self hideTheTakePictureButton];
+        }
     }
     else if (self.savedButton3.hidden)
     {
         [self.savedButton3 setImage:image forState:UIControlStateNormal];
         if (isVideoTag)
         {
-        self.savedButton3.titleLabel.text = videoURL.path;
+            self.savedButton3.titleLabel.text = videoURL.path;
         }
         self.savedButton3.hidden = NO;
         self.x3.hidden = NO;
+        if (self.numberOfPhotosInPackageAlready == 2)
+        {
+            [self hideTheTakePictureButton];
+        }
     }
     else if (self.savedButton4.hidden)
     {
@@ -1684,6 +1705,11 @@
         }
         self.savedButton4.hidden = NO;
         self.x4.hidden = NO;
+        
+        if (self.numberOfPhotosInPackageAlready == 1)
+        {
+            [self hideTheTakePictureButton];
+        }
     }
     else if (self.savedButton5.hidden)
     {
@@ -1697,19 +1723,60 @@
 
         [ProgressHUD showSuccess:@"Hit Next"];
 
-        [UIView animateWithDuration:.3f animations:^{
+        [UIView animateWithDuration:.3f animations:^
+        {
             self.takePictureButton.alpha = 1;
             self.takePictureButton.alpha = 0;
             self.cameraRollButton.alpha = 1;
             self.cameraRollButton.alpha = 0;
 //            self.nextButton.alpha = 0;
             self.nextButton.alpha = 1;
-        } completion:^(BOOL finished) {
+        } completion:^(BOOL finished)
+        {
             self.takePictureButton.hidden = YES;
             self.cameraRollButton.hidden = YES;
         }];
     }
 }}
+
+-(void)hideTheTakePictureButton
+{
+    [ProgressHUD showSuccess:@"Hit Next"];
+    
+    [UIView animateWithDuration:.3f animations:^
+     {
+         self.takePictureButton.alpha = 1;
+         self.takePictureButton.alpha = 0;
+         self.cameraRollButton.alpha = 1;
+         self.cameraRollButton.alpha = 0;
+         //            self.nextButton.alpha = 0;
+         self.nextButton.alpha = 1;
+     } completion:^(BOOL finished)
+     {
+         self.takePictureButton.hidden = YES;
+         self.cameraRollButton.hidden = YES;
+     }];
+}
+
+-(void)checkToSeeIfShouldShowTakePictureButton
+{
+    if (self.takePictureButton.hidden == YES)
+    {
+        [UIView animateWithDuration:.3f animations:^
+         {
+             self.takePictureButton.alpha = 0;
+             self.takePictureButton.alpha = 1;
+             self.cameraRollButton.alpha = 0;
+             self.cameraRollButton.alpha = 1;
+             //            self.nextButton.alpha = 0;
+//             self.nextButton.alpha = 1;
+         } completion:^(BOOL finished)
+         {
+             self.takePictureButton.hidden = NO;
+             self.cameraRollButton.hidden = NO;
+         }];
+    }
+}
 
 -(void) newVollieDismissed:(NSString *)textForCam andPhotos:(NSMutableArray*)photosArray
 {

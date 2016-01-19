@@ -112,9 +112,30 @@
         if ([object valueForKey:PF_CHAT_ISUPLOADED])
         {
             [self.photosArray addObject:object];
+            
+            if (object[@"photoNumber"])
+            {
+                NSSortDescriptor *sortDescriptor;
+                sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"photoNumber"
+                                                             ascending:YES];
+                NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                NSArray *sortedArray = [self.photosArray sortedArrayUsingDescriptors:sortDescriptors];
+                
+//                NSLog(@"%@", sortedArray);
+                
+//                self.photosArray = [NSMutableArray new];
+//                for (PFObject *object2 in sortedArray)
+//                {
+//                    [self.photosArray addObject:object2];
+//                }
+                self.photosArray = [[NSMutableArray alloc] initWithArray:sortedArray];
+//                self.photosArray = sortedArray;
+            }
+            
 //            self.dateUpdated = object.createdAt;
             PFObject *set = object[PF_CHAT_SETID];
             NSDate *date = object[PF_PICTURES_UPDATEDACTION];
+//            self.numberFromDateToSortWith = object[@"photoNumber"];
             self.dateUpdated = date;
             self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
 
@@ -158,6 +179,7 @@
                                                           text:object[PF_CHAT_TEXT]];
 
     [self.messagesArray addObject:message];
+    
     self.dateUpdated = date;
     self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
     [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];

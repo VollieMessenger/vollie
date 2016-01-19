@@ -627,6 +627,27 @@
 //                    setPicturesObjects = [NSMutableArray new];
                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
                     {
+                        if (object[@"photoNumber"])
+                        {
+                            NSSortDescriptor *sortDescriptor;
+                            sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"photoNumber"
+                                                                         ascending:YES];
+                            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+                            NSArray *sortedArray = [setPicturesObjects sortedArrayUsingDescriptors:sortDescriptors];
+                            
+                            //                NSLog(@"%@", sortedArray);
+                            
+//                            setPicturesObjects = sortedArray;
+                            
+                            setPicturesObjects = [[NSMutableArray alloc] initWithArray:sortedArray];
+//                            for (PFObject *object2 in sortedArray)
+//                            {
+//                                [setPicturesObjects addObject:object2];
+//                            }
+                            //                self.photosArray = sortedArray;
+                        }
+
+                        
                         [setPicturesObjects addObject:object];
 #warning model this
                         NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
