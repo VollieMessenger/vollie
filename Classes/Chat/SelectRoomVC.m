@@ -250,6 +250,7 @@
     {
         if (![self.messagesRoom.objectId isEqualToString:@"LKOjl2KHk4"])
         {
+            self.sendButton.enabled = NO;
             [self beginSendingVolliePackage];
         }
         else

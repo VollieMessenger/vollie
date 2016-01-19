@@ -348,7 +348,7 @@
         if ([MFMessageComposeViewController canSendText]) {
             MFMessageComposeViewController * msgComposer = [[MFMessageComposeViewController alloc] init];
             msgComposer.recipients = self.arrayOfSelectedUsers;
-            msgComposer.body = [NSString stringWithFormat:@"Download Vollie from the App Store here: %@.",[NSURL URLWithString:@"https://appsto.re/us/D13q5.i"]];
+            msgComposer.body = [NSString stringWithFormat:@"Download Vollie from the App Store here: %@",[NSURL URLWithString:@"https://appsto.re/us/D13q5.i"]];
             msgComposer.messageComposeDelegate = self;
             [self presentViewController:msgComposer animated:YES completion:nil];
             return;
