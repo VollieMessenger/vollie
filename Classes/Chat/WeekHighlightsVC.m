@@ -72,11 +72,11 @@
     NSLog(@"Set up WeekHighlights/Flashbacks UI");
 //    NSLog(@"    ");
     UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithTitle:@" "
-                                                                        style:UIBarButtonItemStyleBordered target:self action:@selector(goToSettingsVC)];
+                                                                        style:UIBarButtonItemStylePlain target:self action:@selector(goToSettingsVC)];
     settingsButton.image = [UIImage imageNamed:@"settings"];
     self.navigationItem.rightBarButtonItem = settingsButton;
     UIBarButtonItem *inboxButton = [[UIBarButtonItem alloc] initWithTitle:@" "
-                                                                       style:UIBarButtonItemStyleBordered target:self action:@selector(goBackToInboxVC)];
+                                                                       style:UIBarButtonItemStylePlain target:self action:@selector(goBackToInboxVC)];
     inboxButton.image = [UIImage imageNamed:ASSETS_INBOX_FLIP];
     self.navigationItem.leftBarButtonItem = inboxButton;
     
@@ -302,17 +302,20 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    AllWeekPhotosVC *allPhotosVC = (AllWeekPhotosVC *)[storyboard instantiateViewControllerWithIdentifier:@"AllWeekPhotosVC"];
-    NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
-    HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
-    allPhotosVC.highlight = highlight;
-    FlashbackCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    allPhotosVC.title = cell.weekLabel.text;
-//    allPhotosVC.title = 
-    [self.navigationController pushViewController:allPhotosVC animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:1];
+    if (indexPath.row != self.sortedHighlightsArray.count)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        AllWeekPhotosVC *allPhotosVC = (AllWeekPhotosVC *)[storyboard instantiateViewControllerWithIdentifier:@"AllWeekPhotosVC"];
+        NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
+        HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
+        allPhotosVC.highlight = highlight;
+        FlashbackCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        allPhotosVC.title = cell.weekLabel.text;
+        //    allPhotosVC.title =
+        [self.navigationController pushViewController:allPhotosVC animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:1];
+    }
 }
 
 #pragma mark "Refresh Swipe Down"

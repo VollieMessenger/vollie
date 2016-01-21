@@ -120,8 +120,16 @@
                                                              ascending:YES];
                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
                 NSArray *sortedArray = [self.photosArray sortedArrayUsingDescriptors:sortDescriptors];
+                NSArray* reversed = [[sortedArray reverseObjectEnumerator] allObjects];
+                sortedArray = reversed;
+
                 
 //                NSLog(@"%@", sortedArray);
+                
+//                for (PFObject *object in sortedArray)
+//                {
+//                    NSLog(@"%@", object[@"photoNumber"]);
+//                }
                 
 //                self.photosArray = [NSMutableArray new];
 //                for (PFObject *object2 in sortedArray)

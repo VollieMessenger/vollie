@@ -142,12 +142,12 @@
     self.title = @"";
     self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc] initWithTitle:@"Fav"
-                                                             style:UIBarButtonItemStyleBordered target:self action:@selector(swipeRightToFavorites:)];
+                                                             style:UIBarButtonItemStylePlain target:self action:@selector(swipeRightToFavorites:)];
 //    favoritesButton.image = [UIImage imageNamed:@"settings"];
 //    favoritesButton.image = [UIImage imageNamed:ASSETS_STAR_ON];
     favoritesButton.image = [UIImage imageNamed:@"newStarIcon"];
     self.navigationItem.rightBarButtonItem = favoritesButton;
-    UIBarButtonItem *cameraButton =[[UIBarButtonItem alloc] initWithTitle:@"Cam" style:UIBarButtonItemStyleBordered target:self action:@selector(swipeLeftToCamera:)];
+    UIBarButtonItem *cameraButton =[[UIBarButtonItem alloc] initWithTitle:@"Cam" style:UIBarButtonItemStylePlain target:self action:@selector(swipeLeftToCamera:)];
 //    cameraButton.image = [UIImage imageNamed:ASSETS_NEW_CAMERA];
     cameraButton.image = [UIImage imageNamed:@"newCameraIcon"];
     self.navigationItem.leftBarButtonItem = cameraButton;

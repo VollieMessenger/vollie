@@ -627,6 +627,10 @@
 //                    setPicturesObjects = [NSMutableArray new];
                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
                     {
+                        NSLog(@"photo number %@", object[@"photoNumber"]);
+
+                        [setPicturesObjects addObject:object];
+
                         if (object[@"photoNumber"])
                         {
                             NSSortDescriptor *sortDescriptor;
@@ -634,21 +638,9 @@
                                                                          ascending:YES];
                             NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
                             NSArray *sortedArray = [setPicturesObjects sortedArrayUsingDescriptors:sortDescriptors];
-                            
-                            //                NSLog(@"%@", sortedArray);
-                            
-//                            setPicturesObjects = sortedArray;
-                            
                             setPicturesObjects = [[NSMutableArray alloc] initWithArray:sortedArray];
-//                            for (PFObject *object2 in sortedArray)
-//                            {
-//                                [setPicturesObjects addObject:object2];
-//                            }
-                            //                self.photosArray = sortedArray;
                         }
-
                         
-                        [setPicturesObjects addObject:object];
 #warning model this
                         NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
                         NSMutableArray *array = [NSMutableArray arrayWithArray:[initials componentsSeparatedByString:@" "]];
@@ -659,7 +651,6 @@
                         last = [last stringByPaddingToLength:1 withString:initials startingAtIndex:0];
                         initials = [first stringByAppendingString:last];
                         [self.arrayOfInitialsForThumbnails addObject:initials];
-                        NSLog(@"%@", initials);
 //                        cell.label.text = name;
 //                        NSLog(@"%li in pictureObjectsArray", setPicturesObjects.count);
                     }
