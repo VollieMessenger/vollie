@@ -33,10 +33,10 @@
 //    self.view.backgroundColor = [UIColor whiteColor];
     
     UIBarButtonItem *favoritesButton = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                        style:UIBarButtonItemStyleBordered target:self action:nil];
+                                                                        style:UIBarButtonItemStylePlain target:self action:nil];
     favoritesButton.image = [UIImage imageNamed:@"transCam"];
     self.navigationItem.rightBarButtonItem = favoritesButton;
-    UIBarButtonItem *cameraButton =[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:nil];
+    UIBarButtonItem *cameraButton =[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     cameraButton.image = [UIImage imageNamed:@"transCam"];
     self.navigationItem.leftBarButtonItem = cameraButton;
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "app/AppDelegate.m"
-            timestampString = "471815974.107548"
+            timestampString = "475028209.925375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-checkForPushNotificationWith:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Utilities/CustomCameraView.m"
-            timestampString = "474923302.388953"
+            timestampString = "475028209.925375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1901"
-            endingLineNumber = "1901"
+            startingLineNumber = "1900"
+            endingLineNumber = "1900"
             landmarkName = "-checkIfNewChatRoom"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Classes/Utilities/CustomCameraView.m"
-            timestampString = "473912721.509809"
+            timestampString = "475028209.925375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "323"
-            endingLineNumber = "323"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "-setPopUp"
             landmarkType = "5">
          </BreakpointContent>

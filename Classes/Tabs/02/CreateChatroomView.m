@@ -29,6 +29,8 @@
 
 #import "MasterScrollView.h"
 
+#import "CustomCameraView.h"
+
 @interface CreateChatroomView () <CreateChatroom2Delegate,MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate, UISearchBarDelegate>
 {
     NSMutableArray *users;
@@ -192,7 +194,7 @@
 
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @"Back"
-                                   style: UIBarButtonItemStyleBordered
+                                   style: UIBarButtonItemStylePlain
                                    target: nil action: nil];
     [self.navigationItem setBackBarButtonItem: backButton];
     
@@ -631,6 +633,10 @@
 
     NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
     // LOAD MESSAGES FROM INBOX INSTEAD.
+    
+    NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+    CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+    [cam blankOutButtons];
     
     self.scrollView = [(AppDelegate *)[[UIApplication sharedApplication] delegate] scrollView];
     [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:NO];

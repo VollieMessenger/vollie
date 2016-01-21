@@ -94,7 +94,6 @@
 		[application registerUserNotificationSettings:settings];
 		[application registerForRemoteNotifications];
 	}
-#warning do we need this?: commenting out for now
 //    [PFImageView class];
 
 /*

@@ -693,7 +693,7 @@
     //BAR BUTTONS
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @""
-                                   style: UIBarButtonItemStyleBordered
+                                   style: UIBarButtonItemStylePlain
                                    target: nil action: nil];
     [self.navigationItem setBackBarButtonItem: backButton];
 
@@ -708,7 +708,7 @@
     [self.inputToolbar.contentView.leftBarButtonItem setTitleColor:[[UIColor blueTintColor] jsq_colorByDarkeningColorWithValue:0.1f] forState:UIControlStateHighlighted];
 
 
-    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStyleBordered target:self action:@selector(popUpNames)];
+    UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"More" style:UIBarButtonItemStylePlain target:self action:@selector(popUpNames)];
     barButton.image = [UIImage imageNamed:ASSETS_TYPING];
     self.navigationItem.rightBarButtonItem = barButton;
 

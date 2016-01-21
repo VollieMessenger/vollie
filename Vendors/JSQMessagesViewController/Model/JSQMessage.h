@@ -35,7 +35,6 @@
 @property (copy, nonatomic, readonly) NSString *senderId;
 
 
-#warning CUSTOM PROPERTY
 @property (copy, nonatomic, readonly) NSString *setId;
 
 /**

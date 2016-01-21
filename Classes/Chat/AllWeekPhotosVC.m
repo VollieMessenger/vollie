@@ -160,8 +160,7 @@
                                                                ascending:NO];
                 NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
                 self.sortedPicturesArray = [self.picturesArray sortedArrayUsingDescriptors:sortDescriptors];
-                 self.picturesArray = self.sortedPicturesArray;
-                
+                 self.picturesArray = [[NSMutableArray alloc] initWithArray:self.sortedPicturesArray];                
                  NSLog(@"showing all pictures now");
                  self.collectionView.hidden = NO;
                  [ProgressHUD dismiss];

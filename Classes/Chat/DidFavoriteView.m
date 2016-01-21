@@ -365,7 +365,7 @@
     _composeButton.backgroundColor = [UIColor whiteColor];
 
 
-    UIBarButtonItem *close =  [[UIBarButtonItem alloc] initWithTitle:@"Close " style:UIBarButtonItemStyleBordered target:self
+    UIBarButtonItem *close =  [[UIBarButtonItem alloc] initWithTitle:@"Close " style:UIBarButtonItemStylePlain target:self
                                                               action:@selector(actionDismiss)];
     close.image = [UIImage imageNamed:ASSETS_CLOSE];
     self.navigationItem.rightBarButtonItem = close;
@@ -385,7 +385,7 @@
 
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
                                    initWithTitle: @""
-                                   style: UIBarButtonItemStyleBordered
+                                   style: UIBarButtonItemStylePlain
                                    target: nil action: nil];
     [self.navigationItem setBackBarButtonItem: backButton];
 

@@ -27,7 +27,6 @@
  */
 @interface JSQMessagesBubbleImageFactory : NSObject
 
-#warning CUSTOM CLASSES AND STUFF NOT WORKING;
 - (instancetype)initWithTaillessBubble;
 - (instancetype)initWithTaillessBubbleStroked;
 

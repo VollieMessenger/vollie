@@ -270,7 +270,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:1];
-#warning GETS CALLED WITH MESSAGESVIEW SIMULTANEOUSLY.\
     
 //    NSLog(@"size of scrollview is %fl on camera view will appear", self.scrollView.contentSize.width);
     self.scrollView.contentSize = CGSizeMake(3 * self.view.frame.size.width, self.view.frame.size.height);
