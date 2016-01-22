@@ -38,8 +38,6 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
 @end
 
-
-
 @implementation JSQMessagesToolbarContentView
 
 #pragma mark - Class methods

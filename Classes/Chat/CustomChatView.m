@@ -266,18 +266,18 @@
 //    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
 
 #warning model this
-//    self.inputToolbar.contentView.textView.backgroundColor = [UIColor whiteColor];
-//    self.inputToolbar.contentView.textView.textColor = [UIColor blackColor];
-//    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithWhite:0.600 alpha:1.000];
-//    self.inputToolbar.contentView.backgroundColor = [UIColor whiteColor];
-//    self.inputToolbar.contentView.textView.layer.borderColor = [UIColor whiteColor].CGColor;
-////    self.inputToolbar.contentView.textView.font = 
-//    self.inputToolbar.contentView.leftBarButtonItem = nil;
-    
-    self.inputToolbar.contentView.textView.backgroundColor = backgroundColor_;
-    self.inputToolbar.contentView.textView.textColor = [UIColor whiteColor];
-    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
+    self.inputToolbar.contentView.textView.backgroundColor = [UIColor whiteColor];
+    self.inputToolbar.contentView.textView.textColor = [UIColor blackColor];
+    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithWhite:0.600 alpha:1.000];
+    self.inputToolbar.contentView.backgroundColor = [UIColor whiteColor];
+    self.inputToolbar.contentView.textView.layer.borderColor = [UIColor whiteColor].CGColor;
+//    self.inputToolbar.contentView.textView.font = 
     self.inputToolbar.contentView.leftBarButtonItem = nil;
+//
+//    self.inputToolbar.contentView.textView.backgroundColor = backgroundColor_;
+//    self.inputToolbar.contentView.textView.textColor = [UIColor whiteColor];
+//    self.inputToolbar.contentView.textView.placeHolderTextColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.95f];
+//    self.inputToolbar.contentView.leftBarButtonItem = nil;
 
     [self finishReceivingMessage:0];
 
@@ -1212,7 +1212,7 @@
         CGPoint touchPoint = [tap locationInView:self.view];
         if(CGRectContainsPoint(self.collectionView.bounds, touchPoint))
         {
-            NSLog(@"within bounds!");
+            NSLog(@"within bounds of text box");
             [self.inputToolbar.contentView.textView resignFirstResponder];
         }
     }

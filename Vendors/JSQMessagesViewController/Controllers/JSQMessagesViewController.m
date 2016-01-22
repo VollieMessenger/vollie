@@ -754,7 +754,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)jsq_didReceiveMenuWillShowNotification:(NSNotification *)notification
 {
-    if (!self.selectedIndexPathForMenu) {
+    if (!self.selectedIndexPathForMenu)
+    {
         return;
     }
     
@@ -779,7 +780,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)jsq_didReceiveMenuWillHideNotification:(NSNotification *)notification
 {
-    if (!self.selectedIndexPathForMenu) {
+    if (!self.selectedIndexPathForMenu)
+    {
         return;
     }
     
@@ -831,13 +833,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (void)jsq_setToolbarBottomLayoutGuideConstant:(CGFloat)constant
 {
     self.toolbarBottomLayoutGuide.constant = constant;
-
     [self.view setNeedsUpdateConstraints];
-
     [self.view layoutIfNeeded];
-
 //    [self jsq_updateCollectionViewInsets];
-    
 //    self.navigationController.view.frame.size.height
 }
 
@@ -850,10 +848,12 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)jsq_handleInteractivePopGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 {
-    switch (gestureRecognizer.state) {
+    switch (gestureRecognizer.state)
+    {
         case UIGestureRecognizerStateBegan:
         {
-            if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
+            if ([UIDevice jsq_isCurrentDeviceBeforeiOS8])
+            {
                 [self.snapshotView removeFromSuperview];
             }
             
@@ -862,10 +862,10 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
             if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
                 [self.inputToolbar.contentView.textView resignFirstResponder];
                 [UIView animateWithDuration:0.0
-                                 animations:^{
-                                     [self jsq_setToolbarBottomLayoutGuideConstant:0.0f];
-                                 }];
-                
+                                 animations:^
+                {
+                     [self jsq_setToolbarBottomLayoutGuideConstant:0.0f];
+                }];
                 UIView *snapshot = [self.view snapshotViewAfterScreenUpdates:YES];
                 [self.view addSubview:snapshot];
                 self.snapshotView = snapshot;
