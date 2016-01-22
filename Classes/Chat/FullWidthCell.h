@@ -12,5 +12,9 @@
 #import "VollieCardData.h"
 
 @interface FullWidthCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *cardView;
+@property (weak, nonatomic) IBOutlet UIView *viewForChatVC;
+
+-(void)formatCell;
 
 @end
