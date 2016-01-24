@@ -18,7 +18,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCO-f1-shp">
                         <rect key="frame" x="8" y="8" width="304" height="211"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="Pvt-db-DSm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="Pvt-db-DSm">
                                 <rect key="frame" x="283" y="215" width="29" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="29" id="PmG-R2-GQy"/>
@@ -37,24 +37,30 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHI-Bl-Wjy">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tU8-gY-CQ9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tU8-gY-CQ9">
                                 <rect key="frame" x="217" y="219" width="54" height="21"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHI-Bl-Wjy">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Pvt-db-DSm" secondAttribute="trailing" constant="8" id="1AA-13-cli"/>
+                            <constraint firstAttribute="trailing" secondItem="Pvt-db-DSm" secondAttribute="trailing" constant="8" id="1AA-13-cli">
+                                <variation key="widthClass=compact" constant="16"/>
+                            </constraint>
                             <constraint firstItem="Pvt-db-DSm" firstAttribute="leading" secondItem="tU8-gY-CQ9" secondAttribute="trailing" constant="2" id="EiK-u0-Xwr"/>
-                            <constraint firstItem="vHI-Bl-Wjy" firstAttribute="leading" secondItem="CCO-f1-shp" secondAttribute="leading" id="GeM-BM-nCm"/>
+                            <constraint firstItem="vHI-Bl-Wjy" firstAttribute="leading" secondItem="CCO-f1-shp" secondAttribute="leading" id="GeM-BM-nCm">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstAttribute="bottom" secondItem="Pvt-db-DSm" secondAttribute="bottom" constant="2" id="QCV-Oh-gOw"/>
-                            <constraint firstAttribute="trailing" secondItem="vHI-Bl-Wjy" secondAttribute="trailing" id="az4-vG-nqv"/>
+                            <constraint firstAttribute="trailing" secondItem="vHI-Bl-Wjy" secondAttribute="trailing" id="az4-vG-nqv">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstAttribute="bottom" secondItem="tU8-gY-CQ9" secondAttribute="bottom" constant="6.5" id="f2S-1O-Sdd"/>
                             <constraint firstItem="Pvt-db-DSm" firstAttribute="leading" secondItem="tU8-gY-CQ9" secondAttribute="trailing" constant="2" id="pM3-PO-wr4"/>
                             <constraint firstItem="tU8-gY-CQ9" firstAttribute="top" secondItem="vHI-Bl-Wjy" secondAttribute="bottom" constant="3" id="qfp-E0-GQF"/>
@@ -64,8 +70,8 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Pvt-db-DSm"/>
-                                <exclude reference="vHI-Bl-Wjy"/>
                                 <exclude reference="tU8-gY-CQ9"/>
+                                <exclude reference="vHI-Bl-Wjy"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="GeM-BM-nCm"/>
@@ -83,8 +89,8 @@
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Pvt-db-DSm"/>
-                                <include reference="vHI-Bl-Wjy"/>
                                 <include reference="tU8-gY-CQ9"/>
+                                <include reference="vHI-Bl-Wjy"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="GeM-BM-nCm"/>
@@ -102,11 +108,15 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="CCO-f1-shp" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="4k8-Ft-xzb"/>
+                    <constraint firstItem="CCO-f1-shp" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="4k8-Ft-xzb">
+                        <variation key="widthClass=compact" constant="8"/>
+                    </constraint>
                     <constraint firstAttribute="bottomMargin" secondItem="CCO-f1-shp" secondAttribute="bottom" constant="21.5" id="66f-bK-L9Z">
                         <variation key="widthClass=compact" constant="0.0"/>
                     </constraint>
-                    <constraint firstItem="CCO-f1-shp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7Js-yL-4zv"/>
+                    <constraint firstItem="CCO-f1-shp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7Js-yL-4zv">
+                        <variation key="widthClass=compact" constant="-8"/>
+                    </constraint>
                     <constraint firstItem="CCO-f1-shp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="8n0-Qs-2Eg"/>
                 </constraints>
             </tableViewCellContentView>
