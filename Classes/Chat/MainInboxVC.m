@@ -422,35 +422,40 @@
     UITableViewRowAction *button = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Delete" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
     {
         [self.tableView setEditing:0 animated:1];
-        PFObject *message = [self.messages objectAtIndex:indexPath.row];
-        [message setValue:@YES forKey:PF_MESSAGES_HIDE_UNTIL_NEXT];
-        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error)
-            {
-                //Remove all traces of messages
-                [self.messages removeObject:message];
-                
-                //Animation
-                [self.tableView beginUpdates];
-                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                [self.tableView endUpdates];
-            }
-        }];
+        if(indexPath.row != self.messages.count)
+        {
+            PFObject *message = [self.messages objectAtIndex:indexPath.row];
+            [message setValue:@YES forKey:PF_MESSAGES_HIDE_UNTIL_NEXT];
+            [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error)
+                {
+                    //Remove all traces of messages
+                    [self.messages removeObject:message];
+                    
+                    //Animation
+                    [self.tableView beginUpdates];
+                    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    [self.tableView endUpdates];
+                }
+            }];
+        }
     }];
     button.backgroundColor = [UIColor redColor];
     
     UITableViewRowAction *button2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"Rename" handler:^(UITableViewRowAction *action, NSIndexPath *indexPath)
     {
         [self.tableView setEditing:0 animated:1];
-        self.messageToRenameDelete = [self.messages objectAtIndex:indexPath.row];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Rename..." message:0 delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rename", nil];
-        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-        if (self.messageToRenameDelete[PF_MESSAGES_NICKNAME])
+        if (indexPath.row != self.messages.count)
         {
-            [alert textFieldAtIndex:0].text = [self.messageToRenameDelete valueForKey:PF_ALBUMS_NICKNAME];
+            self.messageToRenameDelete = [self.messages objectAtIndex:indexPath.row];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Rename..." message:0 delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Rename", nil];
+            alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+            if (self.messageToRenameDelete[PF_MESSAGES_NICKNAME])
+            {
+                [alert textFieldAtIndex:0].text = [self.messageToRenameDelete valueForKey:PF_ALBUMS_NICKNAME];
+            }
+            [alert show];
         }
-        [alert show];
-        
     }];
     
     button2.backgroundColor = [UIColor colorWithRed:.75f green:.75f blue:.75f alpha:1]; //arbitrary color
