@@ -126,7 +126,7 @@ void UpdateMessageCounter(PFObject *room, NSString *lastMessage, PFObject *pictu
 
                 if (lastMessage.length)
                 {
-				message[PF_MESSAGES_LASTMESSAGE] = lastMessage;
+                    message[PF_MESSAGES_LASTMESSAGE] = lastMessage;
                 }
 
                 [message setValue:@NO forKey:PF_MESSAGES_HIDE_UNTIL_NEXT];

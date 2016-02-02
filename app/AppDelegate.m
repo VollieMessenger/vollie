@@ -339,7 +339,6 @@
         {
             if (!error && objects.count)
             {
-                
                 PFObject *messageRoom = objects[0];
                 PFObject *customChatRoom = [messageRoom objectForKey:PF_MESSAGES_ROOM];
                 PFObject *lastPicture = [messageRoom objectForKey:@"lastPicture"];
@@ -401,7 +400,6 @@
                             }];
                             completionHandler(UIBackgroundFetchResultNewData);
                         }
-
                     }
                     else
                     {
