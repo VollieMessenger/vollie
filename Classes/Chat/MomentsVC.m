@@ -422,6 +422,12 @@
     [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
 }
 
+-(void)scrollToBottom
+{
+    [self.tableView reloadData];
+    [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height) animated:NO];
+}
+
 -(void)fillUIView:(UIView*)view withCardVC:(CardCellView *)vc
 {
     vc.view.frame = view.bounds;
@@ -540,7 +546,8 @@
                     }
                     self.vollieCardDataArray = [NSMutableArray arrayWithArray:self.sortedCardsArray];
 
-                    [self scrollToBottomAndReload];
+//                    [self scrollToBottomAndReload];
+                    [self scrollToBottom];
                 }
             }
         }
@@ -552,7 +559,8 @@
             [self.vollieCardDataArray addObject:card];
             [self.setsIDsArray addObject:set.objectId];
             //create vollie card
-            [self scrollToBottomAndReload];
+//            [self scrollToBottomAndReload];
+            [self scrollToBottom];
         }
     }
 }
