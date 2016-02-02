@@ -313,13 +313,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 4;
+	return 5;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 2) return 3;
+    if (section == 3) return 2;
     else return 1;
 }
 
@@ -332,14 +332,15 @@
 //        if (indexPath.row == 1) return _cellPhoneNumber;
     }
     if (indexPath.section == 1) return cellVibrate;
+    
+    if (indexPath.section == 2) return self.cellForInstructions;
 
-    if (indexPath.section == 2)
+    if (indexPath.section == 3)
     {
         if (indexPath.row == 0) return _cellTOS;
         if (indexPath.row == 1) return _cellPP;
-        if (indexPath.row == 2) return self.cellForInstructions;
     }
-    if (indexPath.section == 3) return cellButton;
+    if (indexPath.section == 4) return cellButton;
 	return nil;
 }
 
