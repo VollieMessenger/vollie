@@ -20,6 +20,8 @@
 
 #import "MasterLoginRegisterView.h"
 
+#import "InstructionsVC.h"
+
 @interface ProfileView () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellName;
@@ -45,6 +47,8 @@
 @property (strong, nonatomic) IBOutlet UISwitch *switchVibrate;
 
 @property (strong, nonatomic) IBOutlet UIButton *buttonLogout;
+
+@property (strong, nonatomic) IBOutlet UITableViewCell *cellForInstructions;
 
 @property UIActionSheet *changeNameActionSheet;
 
@@ -125,7 +129,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 - (void)dismissKeyboard
@@ -246,6 +250,11 @@
     [self.navigationController pushViewController:pp animated:1];
 }
 
+- (IBAction)presentInstructions:(id)sender
+{
+    InstructionsVC *instructionsVC = [InstructionsVC new];
+    [self.navigationController showDetailViewController:instructionsVC sender:self];
+}
 
 -(void)changeUsername
 {
@@ -310,7 +319,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 2) return 2;
+    if (section == 2) return 3;
     else return 1;
 }
 
@@ -328,6 +337,7 @@
     {
         if (indexPath.row == 0) return _cellTOS;
         if (indexPath.row == 1) return _cellPP;
+        if (indexPath.row == 2) return self.cellForInstructions;
     }
     if (indexPath.section == 3) return cellButton;
 	return nil;

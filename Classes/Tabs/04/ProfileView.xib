@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="buttonLogout" destination="mXk-Ra-dpa" id="ffK-qb-eDS"/>
                 <outlet property="cellButton" destination="ykX-pB-JwM" id="Kgr-hC-GTT"/>
+                <outlet property="cellForInstructions" destination="nkt-if-bmS" id="No4-xM-hQ8"/>
                 <outlet property="cellName" destination="Pys-L0-BnF" id="TEA-h7-zsM"/>
                 <outlet property="cellPP" destination="nEY-uI-Aq7" id="bvw-nm-Bod"/>
                 <outlet property="cellPhoneNumber" destination="bzw-vr-5Pp" id="lgA-fe-zgR"/>
@@ -26,7 +27,6 @@
         <tableView opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="10" sectionFooterHeight="10" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <animations/>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="dataSource" destination="-1" id="Tng-2m-Rnh"/>
@@ -44,14 +44,11 @@
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yzF-Iv-4oJ">
                         <rect key="frame" x="15" y="0.0" width="290" height="60"/>
-                        <animations/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                     </textField>
                 </subviews>
-                <animations/>
             </tableViewCellContentView>
-            <animations/>
             <point key="canvasLocation" x="595" y="214"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="ykX-pB-JwM">
@@ -63,7 +60,6 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mXk-Ra-dpa">
                         <rect key="frame" x="22" y="6" width="276" height="49"/>
-                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                         <state key="normal" title="Logout">
@@ -81,7 +77,6 @@
                         </connections>
                     </button>
                 </subviews>
-                <animations/>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="mXk-Ra-dpa" firstAttribute="leading" secondItem="dS6-jP-Okb" secondAttribute="leadingMargin" constant="14" id="0Y8-LP-Pbm"/>
@@ -90,7 +85,6 @@
                     <constraint firstAttribute="bottomMargin" secondItem="mXk-Ra-dpa" secondAttribute="bottom" constant="-4" id="x9Y-Kc-2Wn"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <point key="canvasLocation" x="601" y="330"/>
         </tableViewCell>
@@ -103,7 +97,6 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9R-u3-Dsn" userLabel="App Notifications">
                         <rect key="frame" x="8" y="10" width="209" height="42"/>
-                        <animations/>
                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                         <state key="normal" title="In-App Notifications">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,13 +111,11 @@
                     </button>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zPz-ES-WHx">
                         <rect key="frame" x="263" y="15" width="51" height="31"/>
-                        <animations/>
                         <connections>
                             <action selector="switchVibrate:" destination="-1" eventType="valueChanged" id="hcG-7W-eSv"/>
                         </connections>
                     </switch>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="zPz-ES-WHx" firstAttribute="centerY" secondItem="foN-mf-No5" secondAttribute="centerY" constant="1" id="2I9-ZA-dXL"/>
                     <constraint firstItem="H9R-u3-Dsn" firstAttribute="leading" secondItem="foN-mf-No5" secondAttribute="leadingMargin" id="DXk-Cf-VS9"/>
@@ -134,7 +125,6 @@
                     <constraint firstItem="zPz-ES-WHx" firstAttribute="trailing" secondItem="foN-mf-No5" secondAttribute="trailingMargin" id="yTQ-fR-PS4"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <point key="canvasLocation" x="601" y="113"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="bzw-vr-5Pp">
@@ -146,14 +136,11 @@
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hSb-tL-nal">
                         <rect key="frame" x="15" y="0.0" width="290" height="60"/>
-                        <animations/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="18"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                     </textField>
                 </subviews>
-                <animations/>
             </tableViewCellContentView>
-            <animations/>
             <point key="canvasLocation" x="898" y="225"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="nzH-Dh-uPK">
@@ -165,7 +152,6 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5K-SD-K56">
                         <rect key="frame" x="8" y="11" width="279" height="42"/>
-                        <animations/>
                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                         <state key="normal" title="Terms of Service">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -182,7 +168,6 @@
                         </connections>
                     </button>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="b5K-SD-K56" firstAttribute="top" secondItem="04v-xi-hay" secondAttribute="topMargin" constant="3" id="CMk-1x-31G"/>
                     <constraint firstItem="b5K-SD-K56" firstAttribute="leading" secondItem="04v-xi-hay" secondAttribute="leadingMargin" id="muh-LK-Ezn"/>
@@ -190,7 +175,6 @@
                     <constraint firstItem="b5K-SD-K56" firstAttribute="centerX" secondItem="04v-xi-hay" secondAttribute="centerX" constant="4" id="z6f-uL-MVk"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <point key="canvasLocation" x="601" y="-99"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="nEY-uI-Aq7">
@@ -202,7 +186,6 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ob7-Vf-s5P">
                         <rect key="frame" x="8" y="11" width="279" height="42"/>
-                        <animations/>
                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                         <state key="normal" title="Privacy Policy">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -219,7 +202,6 @@
                         </connections>
                     </button>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="ob7-Vf-s5P" secondAttribute="bottom" constant="-2" id="TOV-y3-rIA"/>
                     <constraint firstItem="ob7-Vf-s5P" firstAttribute="leading" secondItem="C3f-of-fYY" secondAttribute="leadingMargin" id="kcC-Vf-zGe"/>
@@ -227,7 +209,6 @@
                     <constraint firstItem="ob7-Vf-s5P" firstAttribute="centerX" secondItem="C3f-of-fYY" secondAttribute="centerX" constant="4" id="xmy-ex-LxB"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <point key="canvasLocation" x="601" y="6"/>
         </tableViewCell>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BWD-Uh-s0d">
@@ -239,12 +220,10 @@
                 <subviews>
                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tDe-FD-X4O">
                         <rect key="frame" x="0.0" y="8" width="320" height="38.5"/>
-                        <animations/>
                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="18"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="tDe-FD-X4O" secondAttribute="trailing" constant="-8" id="8fc-fN-8uI"/>
                     <constraint firstItem="tDe-FD-X4O" firstAttribute="top" secondItem="yRU-Go-hUX" secondAttribute="topMargin" id="8lk-tp-i4H"/>
@@ -252,8 +231,34 @@
                     <constraint firstItem="tDe-FD-X4O" firstAttribute="leading" secondItem="yRU-Go-hUX" secondAttribute="leadingMargin" constant="-8" id="QVs-SO-U2d"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <point key="canvasLocation" x="610" y="491.5"/>
+        </tableViewCell>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="70" id="nkt-if-bmS">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nkt-if-bmS" id="AeT-xz-e5d">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFi-51-yMw">
+                        <rect key="frame" x="8" y="8" width="279" height="53.5"/>
+                        <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                        <state key="normal" title="Instructions">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="presentInstructions:" destination="-1" eventType="touchUpInside" id="ene-M4-j5P"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cFi-51-yMw" firstAttribute="leading" secondItem="AeT-xz-e5d" secondAttribute="leadingMargin" id="1EC-6E-F49"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="cFi-51-yMw" secondAttribute="trailing" constant="-8" id="PNr-c4-pUf"/>
+                    <constraint firstItem="cFi-51-yMw" firstAttribute="top" secondItem="AeT-xz-e5d" secondAttribute="topMargin" id="Rmb-RR-w1s"/>
+                    <constraint firstItem="cFi-51-yMw" firstAttribute="bottom" secondItem="AeT-xz-e5d" secondAttribute="bottomMargin" id="Wm2-zJ-rZd"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="1009" y="418"/>
         </tableViewCell>
     </objects>
 </document>
