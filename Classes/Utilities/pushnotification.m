@@ -29,6 +29,36 @@ void ParsePushUserResign(void)
 		}
 	}];
 }
+void SendPushNotificationWithChat(PFObject *chat, PFObject *room, NSString *text)
+{
+    PFQuery *query = [PFQuery queryWithClassName:PF_MESSAGES_CLASS_NAME];
+    [query whereKey:PF_MESSAGES_ROOM equalTo:room];
+    [query whereKey:PF_MESSAGES_USER notEqualTo:[PFUser currentUser]];
+    [query includeKey:PF_MESSAGES_USER_DONOTDISTURB];
+    [query setLimit:1000];
+    PFQuery *queryInstallation = [PFInstallation query];
+    [queryInstallation whereKey:PF_INSTALLATION_USER matchesKey:PF_MESSAGES_USER_DONOTDISTURB inQuery:query];
+    
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:queryInstallation];
+    NSString *name = [[PFUser currentUser] valueForKey:PF_USER_FULLNAME];
+    text = [NSString stringWithFormat:@"%@: %@", name, text];
+    
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          text, @"alert",
+                          @"Increment", @"badge",
+                          @"default", @"sound",
+                          chat.objectId, @"r",
+                          nil];
+    [push setData:data];
+    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         if (error != nil)
+         {
+             NSLog(@"sent push notification!");
+         }
+     }];
+}
 
 void SendPushNotification(PFObject *room, NSString *text)
 {

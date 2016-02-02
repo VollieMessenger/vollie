@@ -282,7 +282,8 @@
 
 -(void)showSuccessNotificationWithString:(NSString *)string andObject:(PFObject*)object andRoomNumber:(PFObject*)roomNumber
 {
-    SendPushNotification(roomNumber, string);
+//    SendPushNotification(roomNumber, string);
+    SendPushNotificationWithChat(object, roomNumber, string);
     if (self.lastPicFromPackage)
     {
         UpdateMessageCounter(roomNumber, string, self.lastPicFromPackage);

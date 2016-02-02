@@ -101,7 +101,8 @@
                  
                  
                  [JSQSystemSoundPlayer jsq_playMessageSentSound];
-                 SendPushNotification(self.room, text);
+//                 SendPushNotification(self.room, text);
+                 SendPushNotificationWithChat(object, self.room, text);
                  UpdateMessageCounter(self.room, text, picToSetAsLastPic);
                  
                  //We must update the date for the set, so we know when it is last edited in favorites.

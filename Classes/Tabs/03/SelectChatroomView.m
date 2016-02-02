@@ -120,7 +120,8 @@
 
                     PFObject *lastPicture = self.savedPhotoObjects.lastObject;
 
-                    SendPushNotification(self.selectedRoom, @"New Picture!");
+//                    SendPushNotification(self.selectedRoom, @"New Picture!");
+                    SendPushNotificationWithChat(picture, self.selectedRoom, @"New Picture!");
                     UpdateMessageCounter(self.selectedRoom, @"New Picture!", lastPicture);
 
                     ChatView *chatView = [[ChatView alloc] initWith:self.selectedRoom
