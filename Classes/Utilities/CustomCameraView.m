@@ -2724,6 +2724,7 @@
 -(void)blankOutButtons
 {
     self.arrayOfTakenPhotos = [NSMutableArray new];
+    self.numberOfPhotosInPackageAlready = 0;
     self.savedButton1.hidden = YES;
     self.savedButton2.hidden = YES;
     self.savedButton3.hidden = YES;
