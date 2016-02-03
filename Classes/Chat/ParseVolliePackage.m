@@ -81,6 +81,7 @@
                                                       andRoom:roomNumber];
             [video setValue:@YES forKey:PF_PICTURES_IS_VIDEO];
             [video setObject:videoFile forKey:PF_PICTURES_PICTURE];
+            [video setValue:@1 forKey:@"photoNumber"];
             video[@"photoNumber"] = @(self.photoNumberCount);
 
 
