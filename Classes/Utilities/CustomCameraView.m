@@ -1826,6 +1826,7 @@
             [self.package sendPhotosWithPhotosArray:self.arrayOfTakenPhotos andText:nil andRoom:self.roomToSendPhotosTo andSet:self.setToSendPhotosTo];
             self.comingFromCustomChatView = false;
             [self clearCameraStuff];
+            self.numberOfPhotosInPackageAlready = 0;
             
             self.comingFromCustomChatView = NO;
             PostNotification(NOTIFICATION_CAMERA_POPUP);
