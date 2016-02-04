@@ -254,7 +254,7 @@
     [self.collectionView setFrame:CGRectMake(0, 66, [UIScreen mainScreen].bounds.size.width - 101   , [UIScreen mainScreen].bounds.size.height - 100)];
 //
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CUSTOMCHAT object:0];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessages) name:NOTIFICATION_REFRESH_CHATROOM object:0];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadMessagesFromPushNotification) name:NOTIFICATION_REFRESH_CHATROOM object:0];
 
     bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
     outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:backgroundColor_];
@@ -600,6 +600,20 @@
     [self.collectionView reloadData];
 }
 
+
+-(void)loadMessagesFromPushNotification
+{
+    NSUserDefaults *userDefualts = [NSUserDefaults standardUserDefaults];
+    if ([userDefualts boolForKey:PF_KEY_SHOULDVIBRATE])
+    {
+        [JSQSystemSoundPlayer jsq_playMessageReceivedAlert];
+    }
+    else
+    {
+        [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+    }
+    [self loadMessages];
+}
 //Archive Has to find all the goodies.
 -(void)loadMessages
 {
