@@ -59,8 +59,6 @@
     self.scrollView.scrollEnabled = YES;
 }
 
-
-
 -(void)viewWillDisappear:(BOOL)animated
 {
     self.scrollView.scrollEnabled = NO;
@@ -302,13 +300,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [tableView deselectRowAtIndexPath:indexPath animated:1];
+    
     if (indexPath.row != self.sortedHighlightsArray.count)
     {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
         AllWeekPhotosVC *allPhotosVC = (AllWeekPhotosVC *)[storyboard instantiateViewControllerWithIdentifier:@"AllWeekPhotosVC"];
-        NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
-        HighlightData *highlight = self.sortedHighlightsArray[indexpath.row];
+//        NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
+        HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
+        NSLog(@"%li", highlight.sets.count);
         allPhotosVC.highlight = highlight;
         FlashbackCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         allPhotosVC.title = cell.weekLabel.text;
