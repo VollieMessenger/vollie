@@ -708,6 +708,7 @@
 //    [self dismissViewControllerAnimated:0 completion:0];
 
     self.didPickImageFromAlbum = NO;
+    self.numberOfPhotosInPackageAlready = 0;
 }
 
 -(void)dismissCamera
