@@ -307,13 +307,10 @@
     {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
         AllWeekPhotosVC *allPhotosVC = (AllWeekPhotosVC *)[storyboard instantiateViewControllerWithIdentifier:@"AllWeekPhotosVC"];
-//        NSIndexPath *indexpath = [self.tableView indexPathForSelectedRow];
         HighlightData *highlight = self.sortedHighlightsArray[indexPath.row];
-        NSLog(@"%li", highlight.sets.count);
         allPhotosVC.highlight = highlight;
         FlashbackCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         allPhotosVC.title = cell.weekLabel.text;
-        //    allPhotosVC.title =
         [self.navigationController pushViewController:allPhotosVC animated:YES];
         [tableView deselectRowAtIndexPath:indexPath animated:1];
     }
