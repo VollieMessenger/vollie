@@ -427,16 +427,29 @@
 
 -(void)clearPushNotesCounter
 {
-//    NSLog(@"checking this room for push notification count: %@ ", self.userChatRoom);
-    NSNumber *number = [self.userChatRoom valueForKey:PF_MESSAGES_COUNTER];
-    if (number)
+    
+    [self.set fetchIfNeeded];
+    self.room = [self.set objectForKey:@"room"];
+    [self.room fetchIfNeeded];
+    PFQuery *query = [PFQuery queryWithClassName:@"Messages"];
+    [query whereKey:@"room" equalTo:self.room];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
-        if ([number intValue] > 0)
+        self.userChatRoom = objects[0];
+        NSNumber *number = [self.userChatRoom valueForKey:PF_MESSAGES_COUNTER];
+        if (number)
         {
-            NSLog(@"Clearing Push Notification Count");
-            ClearMessageCounter(self.userChatRoom);
+            if ([number intValue] > 0)
+            {
+                NSLog(@"%@", self.userChatRoom);
+                NSLog(@"Clearing Push Notification Count");
+                ClearMessageCounter(self.userChatRoom);
+            }
         }
-    }
+    }];
+//    query find
+//    NSLog(@"checking this room for push notification count: %@ ", self.userChatRoom);
 }
 
 -(void)goToManageChatVC
@@ -841,6 +854,9 @@
             CGRect rect = CGRectMake(([setPicturesObjects indexOfObject:picture] * self.view.bounds.size.width - 2) + 2, 0, self.view.frame.size.width, self.view.frame.size.height);
             
             PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:rect];
+            [popUpImageView2 setContentMode: UIViewContentModeScaleAspectFit];
+            popUpImageView2.frame = rect;
+
             
             PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
             
@@ -966,6 +982,7 @@
                          popUpImageView2.layer.borderWidth = 2;
                          popUpImageView2.backgroundColor = [UIColor blackColor];
                          popUpImageView2.contentMode = UIViewContentModeScaleAspectFit;
+//                         popUpImageView2.contentMode = UIViewContentModeScaleAspectFill;
                          
                          UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
                          tap2.delegate = self;

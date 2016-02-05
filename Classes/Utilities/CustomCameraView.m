@@ -2191,10 +2191,12 @@
                 UIImageView *popUpImageView;
                 UIImage *image = (UIImage *)pictureOrDic;
                 popUpImageView = [[UIImageView alloc] initWithFrame:rect];
+                popUpImageView.contentMode = UIViewContentModeScaleAspectFit;
+                popUpImageView.frame = rect;
                 popUpImageView.image = image;
                 popUpImageView.backgroundColor = [UIColor blackColor];
                 popUpImageView.layer.masksToBounds = YES;
-                popUpImageView.contentMode = UIViewContentModeScaleAspectFit;
+//                popUpImageView.contentMode = UIViewContentModeScaleAspectFit;
                 popUpImageView.layer.cornerRadius = popUpImageView.frame.size.width/10;
                 popUpImageView.layer.borderColor = [UIColor whiteColor].CGColor;
                 popUpImageView.layer.borderWidth = 2;
