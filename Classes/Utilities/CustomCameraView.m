@@ -847,11 +847,11 @@
 
     UIImage *image =  [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    if (image.size.height/image.size.width * 9 != 16)
-    {
-        image = [self getSubImageFrom:image WithRect:CGRectMake(0, 0, 1080, 1920)];
-    } else {
-    }
+//    if (image.size.height/image.size.width * 9 != 16)
+//    {
+//        image = [self getSubImageFrom:image WithRect:CGRectMake(0, 0, 1080, 1920)];
+//    } else {
+//    }
 
     self.didPickImageFromAlbum = YES;
 
@@ -2192,8 +2192,9 @@
                 UIImage *image = (UIImage *)pictureOrDic;
                 popUpImageView = [[UIImageView alloc] initWithFrame:rect];
                 popUpImageView.image = image;
+                popUpImageView.backgroundColor = [UIColor blackColor];
                 popUpImageView.layer.masksToBounds = YES;
-                popUpImageView.contentMode = UIViewContentModeScaleToFill;
+                popUpImageView.contentMode = UIViewContentModeScaleAspectFit;
                 popUpImageView.layer.cornerRadius = popUpImageView.frame.size.width/10;
                 popUpImageView.layer.borderColor = [UIColor whiteColor].CGColor;
                 popUpImageView.layer.borderWidth = 2;

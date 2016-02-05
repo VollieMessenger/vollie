@@ -964,6 +964,8 @@
                          popUpImageView2.layer.cornerRadius = 10;
                          popUpImageView2.layer.borderColor = [UIColor whiteColor].CGColor;
                          popUpImageView2.layer.borderWidth = 2;
+                         popUpImageView2.backgroundColor = [UIColor blackColor];
+                         popUpImageView2.contentMode = UIViewContentModeScaleAspectFit;
                          
                          UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapKLC:)];
                          tap2.delegate = self;
@@ -1498,7 +1500,7 @@
                 [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                     if (!error) {
                         [spinner stopAnimating];
-                        [longPressImageView setContentMode:UIViewContentModeScaleAspectFill];
+                        [longPressImageView setContentMode:UIViewContentModeScaleAspectFit];
                         longPressImageView.image = [UIImage imageWithData:data];
                     }
                 }];
