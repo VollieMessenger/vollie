@@ -23,6 +23,7 @@
 #import "VollieCardData.h"
 #import "ManageChatVC.h"
 #import "ParseVolliePackage.h"
+#import <AudioToolbox/AudioToolbox.h>
 #import "AFDropdownNotification.h"
 
 #import <MediaPlayer/MediaPlayer.h>
@@ -624,6 +625,7 @@
     else
     {
         [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
     }
     [self loadMessages];
 }

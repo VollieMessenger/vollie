@@ -54,6 +54,8 @@
 #import "JCNotificationBannerPresenterIOS7Style.h"
 #import "JCNotificationBannerPresenter.h"
 
+#import <AudioToolbox/AudioServices.h>
+
 @implementation AppDelegate
 
 @synthesize scrollView, vc;
@@ -367,10 +369,13 @@
                                      if ([userDefualts boolForKey:PF_KEY_SHOULDVIBRATE])
                                      {
                                          [JSQSystemSoundPlayer jsq_playMessageReceivedAlert];
+                                         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+
                                      }
                                      else
                                      {
                                          [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+                                         AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
                                      }
 
                                      [JCNotificationCenter sharedCenter].presenter = [JCNotificationBannerPresenterIOS7Style new];
