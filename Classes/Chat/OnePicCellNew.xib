@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -19,21 +19,18 @@
                         <rect key="frame" x="0.0" y="8" width="320" height="224.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mFY-2S-cmq" customClass="PFImageView">
-                                <rect key="frame" x="222" y="68" width="90" height="90"/>
-                                <animations/>
+                                <rect key="frame" x="222" y="18" width="90" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="90" id="LXA-x2-7in"/>
-                                    <constraint firstAttribute="height" constant="90" id="z8f-dw-3N5"/>
+                                    <constraint firstAttribute="width" constant="90" id="kT7-84-ASV"/>
+                                    <constraint firstAttribute="height" constant="90" id="rts-Ff-DM0"/>
                                 </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-0R-tVb" userLabel="chatView">
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O1X-0R-tVb" userLabel="chatView">
                                 <rect key="frame" x="0.0" y="0.0" width="222" height="224.5"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="PHg-0y-jcH">
                                 <rect key="frame" x="283" y="195.5" width="29" height="29"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="29" id="IU8-Rg-YOt"/>
                                     <constraint firstAttribute="height" constant="29" id="hSk-LA-1Yc"/>
@@ -41,7 +38,6 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGs-4W-Q2f">
                                 <rect key="frame" x="227" y="199.5" width="54" height="21"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="Qr4-7n-PXZ"/>
                                     <constraint firstAttribute="height" constant="21" id="xwz-g2-lYR"/>
@@ -51,23 +47,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="qGs-4W-Q2f" secondAttribute="bottom" constant="4" id="BYj-hY-sP3"/>
+                            <constraint firstAttribute="trailing" secondItem="mFY-2S-cmq" secondAttribute="trailing" constant="8" id="Bf3-X7-K8r"/>
                             <constraint firstItem="PHg-0y-jcH" firstAttribute="leading" secondItem="qGs-4W-Q2f" secondAttribute="trailing" constant="2" id="EFg-GL-ibX"/>
                             <constraint firstItem="O1X-0R-tVb" firstAttribute="top" secondItem="bWh-QD-e3C" secondAttribute="top" id="H7t-BJ-Hy3"/>
-                            <constraint firstItem="mFY-2S-cmq" firstAttribute="centerY" secondItem="bWh-QD-e3C" secondAttribute="centerY" id="U5g-Us-9a3"/>
-                            <constraint firstAttribute="trailing" secondItem="mFY-2S-cmq" secondAttribute="trailing" constant="8" id="U7Y-Cz-2O2"/>
                             <constraint firstAttribute="bottom" secondItem="PHg-0y-jcH" secondAttribute="bottom" id="WM6-Ug-ykA"/>
                             <constraint firstAttribute="trailing" secondItem="PHg-0y-jcH" secondAttribute="trailing" constant="8" id="ag7-p4-9ng"/>
-                            <constraint firstItem="mFY-2S-cmq" firstAttribute="leading" secondItem="O1X-0R-tVb" secondAttribute="trailing" id="fan-7H-SKn"/>
+                            <constraint firstItem="mFY-2S-cmq" firstAttribute="top" secondItem="bWh-QD-e3C" secondAttribute="top" constant="18" id="dJ9-ao-0xr"/>
                             <constraint firstAttribute="bottom" secondItem="O1X-0R-tVb" secondAttribute="bottom" id="leM-KT-scX"/>
                             <constraint firstItem="O1X-0R-tVb" firstAttribute="leading" secondItem="bWh-QD-e3C" secondAttribute="leading" id="r8f-Oy-mp7"/>
                         </constraints>
                     </view>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="bWh-QD-e3C" secondAttribute="trailing" constant="-8" id="5dc-RO-aVV"/>
                     <constraint firstItem="bWh-QD-e3C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="9Y4-wU-xBV"/>
@@ -75,7 +68,6 @@
                     <constraint firstItem="bWh-QD-e3C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="zM1-05-HTD"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="cardView" destination="bWh-QD-e3C" id="iLO-hZ-ld5"/>
                 <outlet property="imageViewOne" destination="mFY-2S-cmq" id="xcI-OI-vmw"/>

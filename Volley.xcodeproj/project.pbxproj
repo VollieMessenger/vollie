@@ -146,6 +146,8 @@
 		32DA3D3B1B8FBD2600DDEFA2 /* ParseMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */; };
 		32E0C3891BF55380005F1EB7 /* FlashbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E0C3871BF55380005F1EB7 /* FlashbackCell.m */; };
 		32E0C38A1BF55380005F1EB7 /* FlashbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E0C3881BF55380005F1EB7 /* FlashbackCell.xib */; };
+		32E294651C6E927A00F13FDB /* DynamicCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E294631C6E927A00F13FDB /* DynamicCardCell.m */; };
+		32E294661C6E927A00F13FDB /* DynamicCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E294641C6E927A00F13FDB /* DynamicCardCell.xib */; };
 		32EBB9C71BB1E7EC00938704 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EBB9C61BB1E7EC00938704 /* Bolts.framework */; };
 		32EBB9C91BB1E7EE00938704 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EBB9C81BB1E7EE00938704 /* Parse.framework */; };
 		32EBB9CB1BB1E7F100938704 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EBB9CA1BB1E7F100938704 /* ParseUI.framework */; };
@@ -489,6 +491,9 @@
 		32E0C3861BF55380005F1EB7 /* FlashbackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashbackCell.h; sourceTree = "<group>"; };
 		32E0C3871BF55380005F1EB7 /* FlashbackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlashbackCell.m; sourceTree = "<group>"; };
 		32E0C3881BF55380005F1EB7 /* FlashbackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlashbackCell.xib; sourceTree = "<group>"; };
+		32E294621C6E927A00F13FDB /* DynamicCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicCardCell.h; sourceTree = "<group>"; };
+		32E294631C6E927A00F13FDB /* DynamicCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicCardCell.m; sourceTree = "<group>"; };
+		32E294641C6E927A00F13FDB /* DynamicCardCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicCardCell.xib; sourceTree = "<group>"; };
 		32EBB9C61BB1E7EC00938704 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../../Downloads/parse-library-1-2/Bolts.framework"; sourceTree = "<group>"; };
 		32EBB9C81BB1E7EE00938704 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../../Downloads/parse-library-1-2/Parse.framework"; sourceTree = "<group>"; };
 		32EBB9CA1BB1E7F100938704 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../../../Downloads/parse-library-1-2/ParseUI.framework"; sourceTree = "<group>"; };
@@ -1327,6 +1332,9 @@
 				2749887B1B31E71400560873 /* CardCellView.m */,
 				2749887D1B31F98200560873 /* CellForCard.h */,
 				2749887E1B31F98200560873 /* CellForCard.m */,
+				32E294621C6E927A00F13FDB /* DynamicCardCell.h */,
+				32E294631C6E927A00F13FDB /* DynamicCardCell.m */,
+				32E294641C6E927A00F13FDB /* DynamicCardCell.xib */,
 			);
 			name = "Card Data";
 			sourceTree = "<group>";
@@ -1631,6 +1639,7 @@
 				272170871B543F240050A9D0 /* FourPicCell.xib in Resources */,
 				296DD5E11A1F52F400AB9F8C /* JSQMessagesToolbarContentView.xib in Resources */,
 				32A76AC11BCD8795006DE6CC /* FullWidthChat.xib in Resources */,
+				32E294661C6E927A00F13FDB /* DynamicCardCell.xib in Resources */,
 				32873A5F1BC5DC9300618A05 /* PageOne.xib in Resources */,
 				32873A6E1BC5E26600618A05 /* PageFour.xib in Resources */,
 				C2CA16E11A82860E00DD25AC /* DidFavoriteView.xib in Resources */,
@@ -1722,6 +1731,7 @@
 				32B172D61B8D031B00127129 /* HighlightData.m in Sources */,
 				C27032731A38CFD3008CBF7F /* AppConstant.m in Sources */,
 				3263482D1BDEF947004D765C /* OnePicCellNew.m in Sources */,
+				32E294651C6E927A00F13FDB /* DynamicCardCell.m in Sources */,
 				9C3CCECC1BBC8BD400B31402 /* AFDropdownNotification.m in Sources */,
 				32AB987D1BACD40B003F3034 /* LoadingCell.m in Sources */,
 				296DD5BF1A1F52F400AB9F8C /* UIImage+JSQMessages.m in Sources */,

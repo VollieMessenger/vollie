@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -23,7 +23,6 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mNA-KR-Ybv" customClass="PFImageView">
                                         <rect key="frame" x="0.0" y="100" width="90" height="90"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="5Yj-uO-h1w"/>
                                             <constraint firstAttribute="width" constant="90" id="FuR-jH-ZX7"/>
@@ -31,14 +30,12 @@
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K7I-l6-Qgw" customClass="PFImageView">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="4MM-kp-6yf"/>
                                             <constraint firstAttribute="width" constant="90" id="k6c-P9-O36"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mNA-KR-Ybv" secondAttribute="trailing" id="0A7-a3-kJT"/>
@@ -51,11 +48,9 @@
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bi0-hV-vC7" userLabel="viewForChatVC">
                                 <rect key="frame" x="0.0" y="0.0" width="222" height="300"/>
-                                <animations/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="Xj0-Oi-jxY">
                                 <rect key="frame" x="283" y="265" width="29" height="29"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="29" id="7bF-fX-Eim"/>
                                     <constraint firstAttribute="width" constant="29" id="gUn-qG-vyC"/>
@@ -63,7 +58,6 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmx-AX-OdM">
                                 <rect key="frame" x="227" y="269" width="54" height="21"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="54" id="7Po-0F-Ktl"/>
                                     <constraint firstAttribute="height" constant="21" id="dWZ-DL-xIY"/>
@@ -73,7 +67,6 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Xj0-Oi-jxY" secondAttribute="trailing" constant="8" id="50y-Po-f6r"/>
@@ -95,7 +88,6 @@
                         </variation>
                     </view>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="E0b-yg-zeQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="5gH-Ht-ESH"/>
                     <constraint firstAttribute="bottomMargin" secondItem="E0b-yg-zeQ" secondAttribute="bottom" constant="0.5" id="BoR-x5-vLV"/>
@@ -103,7 +95,6 @@
                     <constraint firstItem="E0b-yg-zeQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="tF1-1v-jio"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="cardView" destination="E0b-yg-zeQ" id="tux-IC-rUA"/>
                 <outlet property="imageViewOne" destination="K7I-l6-Qgw" id="XDV-ny-aam"/>

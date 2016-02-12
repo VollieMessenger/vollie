@@ -331,6 +331,7 @@ SecondDelegate>
     cell.backgroundColor = [UIColor clearColor];
     cell.imageView.layer.cornerRadius = 10;
     cell.imageView.layer.masksToBounds = YES;
+    cell.imageView.image = [UIImage imageNamed:@"packageimg6"];
     if(self.photosArray.count > 0 && indexPath.item < self.photosArray.count)
     {
         id imageOrFile = self.photosArray[indexPath.item];

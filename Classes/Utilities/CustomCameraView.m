@@ -692,6 +692,17 @@
  */
 
 //  [self.navigationController popViewControllerAnimated:NO];
+    
+    //
+    if(self.comingFromNewVollie == true)
+    {
+        if([self.myDelegate respondsToSelector:@selector(secondViewControllerDismissed:)])
+        {
+            [self.myDelegate secondViewControllerDismissed:self.arrayOfTakenPhotos];
+            self.comingFromNewVollie = false;
+        }
+    }
+    //
 
     self.cancelButton.hidden = YES;
     self.rightButton.hidden = NO;

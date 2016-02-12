@@ -25,7 +25,6 @@
 #import "AppDelegate.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "VollieCardData.h"
-#import "CellForCard.h"
 #import "ChatColView.h"
 #import "NewVollieVC.h"
 #import "ManageChatVC.h"
@@ -40,6 +39,7 @@
 #import "AFDropdownNotification.h"
 #import "FullWidthChatView.h"
 #import "FullWidthCell.h"
+#import "DynamicCardCell.h"
 
 
 
@@ -345,8 +345,14 @@
         }
         if (card.photosArray.count == 2)
         {
-            [self.tableView registerNib:[UINib nibWithNibName:@"TwoPicCell" bundle:0] forCellReuseIdentifier:@"TwoPicCell"];
-            TwoPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TwoPicCell"];
+//            [self.tableView registerNib:[UINib nibWithNibName:@"TwoPicCell" bundle:0] forCellReuseIdentifier:@"TwoPicCell"];
+//            TwoPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TwoPicCell"];
+//            [cell fillPicsWithVollieCardData:card];
+//            [cell formatCell];
+//            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+//            return cell;
+            [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
+            DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
             [cell fillPicsWithVollieCardData:card];
             [cell formatCell];
             [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
@@ -384,27 +390,6 @@
         }
         else
         {
-//            CellForCard *cell = [tableView dequeueReusableCellWithIdentifier:@"cellid"];
-//            cell.cardOutline.backgroundColor = [UIColor clearColor];
-//            cell.backgroundColor = [UIColor clearColor];
-//            CardCellView *vc = card.viewController;
-//            vc.room = self.room;
-//            vc.view.backgroundColor = [UIColor whiteColor];
-//            [self.vollieVCcardArray addObject:vc];
-//
-//        //    superTest *cv = [self.storyboard instantiateViewControllerWithIdentifier:@"testID"];
-//            vc.view.frame = cell.cardOutline.bounds;
-//    //        cell.cardOutline.layer.cornerRadius = 10;
-//            cell.cardOutline.layer.borderColor = [UIColor colorWithWhite:0.829 alpha:1.000].CGColor;
-//
-//            cell.cardOutline.layer.borderWidth = 1;
-//            cell.cardOutline.layer.masksToBounds = YES;
-//        //    NSLog(@"%f is cell height", cell.cardOutline.bounds.size.height);
-//        //    NSLog(@"%f is VC height", vc.card.bounds.size.height);
-//            [self addChildViewController:vc];
-//            [cell.cardOutline addSubview:vc.view];
-//            [vc didMoveToParentViewController:self];
-//            return cell;
             [self.tableView registerNib:[UINib nibWithNibName:@"FullWidthCell" bundle:0] forCellReuseIdentifier:@"FullWidthCell"];
             FullWidthCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FullWidthCell"];
             [cell formatCell];
