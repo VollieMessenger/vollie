@@ -64,6 +64,54 @@
          }];
         i++;
     }
+    
+//    vollieCardData.pho
+    PFObject *tempPhoto = vollieCardData.photosArray[0];
+    
+    long tempcount = vollieCardData.photosArray.count;
+    int count = (int)tempcount;
+    
+
+    if (count == 0)
+    {
+        imageViewOne.image = [UIImage imageNamed:@"Vollie-icon"];
+        imageViewTwo.image = [UIImage imageNamed:@"Vollie-icon"];
+    }
+    else if (count == 1)
+    {
+        PFObject *tempPhoto = vollieCardData.photosArray[0];
+        PFFile *thumbnail = [tempPhoto objectForKey:@"thumbnail"];
+        [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+        {
+            if (!error)
+            {
+                imageViewOne.image = [UIImage imageWithData:data];
+                imageViewTwo.image = [UIImage imageNamed:@"Vollie-icon"];
+            }
+        }];
+    }
+    else
+    {
+        PFObject *firstPhoto = vollieCardData.photosArray[count-1];
+        PFFile *firstThumbnailData = [firstPhoto objectForKey:@"thumbnail"];
+        [firstThumbnailData getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+        {
+            if (!error)
+            {
+                imageViewOne.image = [UIImage imageWithData:data];
+            }
+        }];
+        PFObject *secondPhoto = vollieCardData.photosArray[count-1];
+        PFFile *secondPhotoFile = [secondPhoto objectForKey:@"thumbnail"];
+        [secondPhotoFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
+         {
+             if (!error)
+             {
+                 imageViewTwo.image = [UIImage imageWithData:data];
+             }
+         }];
+//        pfo
+    }
 }
 
 @end
