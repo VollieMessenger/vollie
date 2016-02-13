@@ -45,7 +45,17 @@
 }
 
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData
-{    
+{
+    NSLog(@"Created card in MomentsVC");
+    if (vollieCardData.titleForCard)
+    {
+        self.titleLabel.text = vollieCardData.titleForCard;
+    }
+    else
+    {
+        self.titleLabel.text = @"";
+    }
+    
     long tempcount = vollieCardData.photosArray.count;
     int count = (int)tempcount;
     

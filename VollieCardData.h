@@ -39,8 +39,12 @@
 @property CardCellView *viewController;
 @property NSDate *dateUpdated;
 @property NSNumber *numberFromDateToSortWith;
+@property NSString *titleForCard;
 
--(instancetype)initWithPFObject:(PFObject *)object;
+//-(instancetype)initWithPFObject:(PFObject *)object;
+
+-(instancetype)initWithPFObject:(PFObject *)object andSet:(PFObject*)setObject;
+
 
 -(void)modifyCardWith:(PFObject *)object;
 

@@ -285,11 +285,10 @@
         vc.room = self.room;
         vc.view.backgroundColor = [UIColor whiteColor];
         [self.vollieVCcardArray addObject:vc];
-
         [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
         DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
-        [cell fillPicsWithVollieCardData:card];
         [cell formatCell];
+        [cell fillPicsWithVollieCardData:card];
         [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
         return cell;
     }
@@ -322,11 +321,7 @@
 
 -(void)loadMessages
 {
-//    if (self.isLoading == NO)
-//    {
-//        self.isLoading = YES;
-        [self createQuery];
-//    }
+    [self createQuery];
 }
 
 -(void)reloadCardsAfterUpload
@@ -435,7 +430,7 @@
         else
         {
             NSLog(@"Creating Vollie Card");
-            VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object];
+            VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object andSet:set];
             card.actualSet = set;
             [self.vollieCardDataArray addObject:card];
             [self.setsIDsArray addObject:set.objectId];

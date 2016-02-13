@@ -25,23 +25,6 @@
     self.savedPhotoObjects = [NSMutableArray new];
     self.countDownForLastPhoto = (int)photosArray.count;
     self.photoArrayCount = (int)photosArray.count;
-    
-    if (self.photoNumberCount)
-    {
-//        self.photoNumberCount = 0;
-    }
-    else
-    {
-        
-    }
-    
-    
-    
-
-//#warning this works for now: but be careful:
-//    NSMutableArray* reversedArray = [[photosArray reverseObjectEnumerator] allObjects];
-//    photosArray = reversedArray;
-    
 
     for (id imageOrFile in photosArray)
     {
@@ -130,6 +113,7 @@
                 PFRelation *usersWhoHaventRead = [setID relationForKey:@"unreadUsers"];
                 [setID setValue:object forKey:@"lastPicture"];
                 [setID setValue:@0 forKey:@"numberOfResponses"];
+                [setID setValue:text forKey:@"title"];
                 PFRelation *users = [roomNumber relationForKey:PF_CHATROOMS_USERS];
                 PFQuery *query = [users query];
                 
@@ -178,10 +162,12 @@
                         {
                             if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
                             {
+                                NSLog(@"went part 1");
                                 [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
                             }
                             else
                             {
+                                NSLog(@"went part 2");
                                 [self showSuccessNotificationWithString:@"New Picture!"
                                                               andObject:object
                                                           andRoomNumber:roomNumber];
@@ -189,6 +175,7 @@
                         }
                         else
                         {
+                            NSLog(@"went part 3");
                             [self showSuccessNotificationWithString:@"New Picture!"
                                                           andObject:object
                                                       andRoomNumber:roomNumber];
@@ -201,22 +188,6 @@
                 }];
 
                 self.lastPicFromPackage = object;
-//
-//                if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
-//                {
-//                    [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
-//                    
-//                    //temporarily putting this here:
-////                    [self showSuccessNotificationWithString:@"New Picture!"
-////                                                  andObject:object
-////                                              andRoomNumber:roomNumber];
-//                }
-//                else
-//                {
-//                    [self showSuccessNotificationWithString:@"New Picture!"
-//                                                  andObject:object
-//                                              andRoomNumber:roomNumber];
-//                }
             }
             else
             {
@@ -248,26 +219,30 @@
 
         [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
         NSLog(@"about to upload text");
+        [self showSuccessNotificationWithString:text
+                                      andObject:object
+                                  andRoomNumber:roomNumber];
+    
 
-        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-        {
-            if(!error)
-            {
-//                NSLog(@"uploaded text!");
-                [self showSuccessNotificationWithString:text
-                                              andObject:object
-                                          andRoomNumber:roomNumber];
-            }
-            if (succeeded)
-            {
-                NSLog(@"uploaded text");
-            }
-            else
-            {
-                NSLog(@"error error error %@",error);
-                [self showErrorNotification];
-            }
-        }];
+//        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//        {
+//            if(!error)
+//            {
+////                NSLog(@"uploaded text!");
+//                [self showSuccessNotificationWithString:text
+//                                              andObject:object
+//                                          andRoomNumber:roomNumber];
+//            }
+//            if (succeeded)
+//            {
+//                NSLog(@"uploaded text");
+//            }
+//            else
+//            {
+//                NSLog(@"error error error %@",error);
+//                [self showErrorNotification];
+//            }
+//        }];
 }
 
 -(void)hideProgressHUD

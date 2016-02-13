@@ -12,12 +12,18 @@
 
 //this subclass contains the methods to create and modify cards
 
--(instancetype)initWithPFObject:(PFObject *)object
+-(instancetype)initWithPFObject:(PFObject *)object andSet:(PFObject *)setObject
 {
     self = [super self];
     if(self)
     {
 //        NSLog(@"%@", object);
+        
+        if ([setObject objectForKey:@"title"])
+        {
+            self.titleForCard = [setObject objectForKey:@"title"];
+        }
+        
         self.actualSet = object;
         PFObject *set = [object objectForKey:@"setId"];
         self.set = set.objectId;
@@ -25,6 +31,9 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
         self.unreadStatus = false;
+        
+        
+       //        PFObject *set
         
 //    
 //        PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
