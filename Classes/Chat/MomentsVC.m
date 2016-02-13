@@ -241,35 +241,7 @@
     }
     else
     {
-        VollieCardData *data = self.vollieCardDataArray[(indexPath.item/2)];
-//        VollieCardData *data = self.sortedCardsArray[(indexPath.item/2)];
-
-        if (data.photosArray.count)
-        {
-            switch (data.photosArray.count)
-            {
-                case 1:
-                    return 260;
-                    break;
-                case 2:
-                    return 280;
-                case 3:
-                    return 375;
-                case 4:
-                    return 480;
-                case 5:
-                    return 575;
-//                    return 200; // this wax good for when i didn't have arrows
-//                    return 175;
-                default:
-                    return 200;
-                    break;
-            }
-        }
-        else
-        {
-            return 200;
-        }
+        return 280;
     }
 }
 
@@ -305,21 +277,6 @@
         }
         return spacerCell;
     }
-//    else if(indexPath.row == 0)
-//    {
-//        UITableViewCell * spacerCell = [tableView dequeueReusableCellWithIdentifier:@"fakeCellID"];
-//        
-//        if (spacerCell == nil)
-//        {
-//            //this is our spacer cell
-//            spacerCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-//                                                reuseIdentifier:@"fakeCellID"];
-//            spacerCell.backgroundColor = [UIColor blueColor];
-////            [spacerCell.contentView setAlpha:1];
-//            [spacerCell setUserInteractionEnabled:NO];
-//        }
-//        return spacerCell;
-//    }
     else
     {
         VollieCardData *card = [self.vollieCardDataArray objectAtIndex:(indexPath.row/2)];
@@ -329,73 +286,12 @@
         vc.view.backgroundColor = [UIColor whiteColor];
         [self.vollieVCcardArray addObject:vc];
 
-        if (card.photosArray.count == 1)
-        {
-//            OnePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCell"];
-//            [cell fillPicsWithVollieCardData:card];
-//            [cell formatCell];
-//            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-//            return cell;
-            [self.tableView registerNib:[UINib nibWithNibName:@"OnePicCellNew" bundle:0] forCellReuseIdentifier:@"OnePicCellNew"];
-            OnePicCellNew *cell = [tableView dequeueReusableCellWithIdentifier:@"OnePicCellNew"];
-            [cell fillPicsWithVollieCardData:card];
-            [cell formatCell];
-            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-            return cell;
-        }
-        if (card.photosArray.count == 2)
-        {
-//            [self.tableView registerNib:[UINib nibWithNibName:@"TwoPicCell" bundle:0] forCellReuseIdentifier:@"TwoPicCell"];
-//            TwoPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TwoPicCell"];
-//            [cell fillPicsWithVollieCardData:card];
-//            [cell formatCell];
-//            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-//            return cell;
-            [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
-            DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
-            [cell fillPicsWithVollieCardData:card];
-            [cell formatCell];
-            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-            return cell;
-        }
-        if (card.photosArray.count == 3)
-        {
-            [self.tableView registerNib:[UINib nibWithNibName:@"ThreePicCell" bundle:0] forCellReuseIdentifier:@"ThreePicCell"];
-            ThreePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ThreePicCell"];
-            [cell fillPicsWithVollieCardData:card];
-            [cell formatCell];
-            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-            return cell;
-        }
-        if (card.photosArray.count == 4)
-        {
-            [self.tableView registerNib:[UINib nibWithNibName:@"FourPicCell" bundle:0] forCellReuseIdentifier:@"FourPicCell"];
-            FourPicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FourPicCell"];
-            [cell fillPicsWithVollieCardData:card];
-            [cell formatCell];
-            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-            return cell;
-        }
-        if (card.photosArray.count == 5)
-        {
-            [self.tableView registerNib:[UINib nibWithNibName:@"FivePicCell" bundle:0] forCellReuseIdentifier:@"FivePicCell"];
-            FivePicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicCell"];
-//            FivePicsFavCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FivePicsFavCell"];
-            [cell formatCell];
-            [cell fillPicsWithVollieCardData:card];
-//            [cell fillPicsWithVollieCardData:card];
-//            [cell formatCell];
-            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-            return cell;
-        }
-        else
-        {
-            [self.tableView registerNib:[UINib nibWithNibName:@"FullWidthCell" bundle:0] forCellReuseIdentifier:@"FullWidthCell"];
-            FullWidthCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FullWidthCell"];
-            [cell formatCell];
-            [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
-            return cell;
-        }
+        [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
+        DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
+        [cell fillPicsWithVollieCardData:card];
+        [cell formatCell];
+        [self fillUIView:cell.viewForChatVC withCardVC:card.viewController];
+        return cell;
     }
 }
 

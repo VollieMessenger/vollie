@@ -45,29 +45,7 @@
 }
 
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData
-{
-    int i = 0;
-    //    NSMutableArray* reversedArray = [[vollieCardData.photosArray reverseObjectEnumerator] allObjects];
-    //    vollieCardData.photosArray = reversedArray;
-    for (PFObject *photo in vollieCardData.photosArray)
-    {
-        //        PFObject *photo = vollieCardData.photosArray.firstObject;
-        //        NSLog(@"%@", photo);
-        PFFile *thumbnail = [photo objectForKey:@"thumbnail"];
-        [thumbnail getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
-         {
-             if (!error)
-             {
-                 PFImageView *imageView = self.imageViewArray[i];
-                 imageView.image = [UIImage imageWithData:data];
-             }
-         }];
-        i++;
-    }
-    
-//    vollieCardData.pho
-    PFObject *tempPhoto = vollieCardData.photosArray[0];
-    
+{    
     long tempcount = vollieCardData.photosArray.count;
     int count = (int)tempcount;
     
@@ -92,7 +70,7 @@
     }
     else
     {
-        PFObject *firstPhoto = vollieCardData.photosArray[count-1];
+        PFObject *firstPhoto = vollieCardData.photosArray[count-2];
         PFFile *firstThumbnailData = [firstPhoto objectForKey:@"thumbnail"];
         [firstThumbnailData getDataInBackgroundWithBlock:^(NSData *data, NSError *error)
         {
