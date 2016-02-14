@@ -56,7 +56,7 @@ SecondDelegate>
 
     if (!self.photosArray) self.photosArray = [NSMutableArray new];
     if (self.message) [self.textView setText:self.message];
-    if ([self.textView.text isEqualToString:@"Type Vollie Title Here..."])
+    if ([self.textView.text isEqualToString:@"Create Vollie Title Here..."])
     {
         [self.textView setTextColor:[UIColor lightGrayColor]];
     } else {
@@ -120,7 +120,7 @@ SecondDelegate>
     {
         self.textView.text = self.textFromLastVC;
     }
-    if ([self.textView.text isEqualToString:@"Type Vollie Title Here..."])
+    if ([self.textView.text isEqualToString:@"Create Vollie Title Here..."])
     {
         [self.textView setTextColor:[UIColor lightGrayColor]];
     }
@@ -136,7 +136,7 @@ SecondDelegate>
 
 -(void) textViewDidChange:(UITextView *)textView
 {
-    if(![self.textView.text isEqualToString:@"Type Vollie Title Here..."])
+    if(![self.textView.text isEqualToString:@"Create Vollie Title Here..."])
     {
         self.textView.textColor = [UIColor blackColor];
         [self removePlaceHolderText];
@@ -151,8 +151,8 @@ SecondDelegate>
 -(void)removePlaceHolderText
 {
     //this is for the random edgecases where a user might try to edit the placeholder text
-    self.textView.text = [self returnStringButGetRidOf:@"Type Vollie Title Here..." fromTheString:self.textView.text];
-    self.textView.text = [self returnStringButGetRidOf:@"Type " fromTheString:self.textView.text];
+    self.textView.text = [self returnStringButGetRidOf:@"Create Vollie Title Here..." fromTheString:self.textView.text];
+    self.textView.text = [self returnStringButGetRidOf:@"Create " fromTheString:self.textView.text];
     self.textView.text = [self returnStringButGetRidOf:@"Vollie " fromTheString:self.textView.text];
     self.textView.text = [self returnStringButGetRidOf:@"Title " fromTheString:self.textView.text];
     self.textView.text = [self returnStringButGetRidOf:@"Here.." fromTheString:self.textView.text];
@@ -185,7 +185,7 @@ SecondDelegate>
     {
         [self continueSendingVollie];
     }
-    else if (![self.textView.text isEqualToString:@"Type Vollie Title Here..."] && self.textView.text.length !=0)
+    else if (![self.textView.text isEqualToString:@"Create Vollie Title Here..."] && self.textView.text.length !=0)
     {
         [self continueSendingVollie];
     }
@@ -247,7 +247,7 @@ SecondDelegate>
     if(self.textView.text.length == 0)
     {
         self.textView.textColor = [UIColor lightGrayColor];
-        self.textView.text = @"Type Vollie Title Here...";
+        self.textView.text = @"Create Vollie Title Here...";
     }
 }
 

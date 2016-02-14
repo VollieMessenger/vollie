@@ -115,7 +115,7 @@
     {
         [self.arrayOfTakenPhotos removeAllObjects];
         NSLog(@"%@ in textForNextVC when the photos cleared", self.textFromNextVC);
-        self.textFromNextVC = @"Type Message Here...";
+        self.textFromNextVC = @"Create Vollie Title Here...";
         [self moveImageUpToLatestBlank:0];
         [self unhideButtons];
         [self performSelector:@selector(popRoot) withObject:self afterDelay:1.0f];

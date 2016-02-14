@@ -361,7 +361,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="sLS-t5-9nN">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Type Vollie Title Here..." translatesAutoresizingMaskIntoConstraints="NO" id="tXe-lP-mxS">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Create Vollie Title Here..." translatesAutoresizingMaskIntoConstraints="NO" id="tXe-lP-mxS">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
