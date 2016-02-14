@@ -183,6 +183,8 @@
 //    chatt.senderDisplayName = [self.senderDisplayName copy];
 //    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:chatRoom];
     chatt.room = self.room;
+    
+    chatt.titleLabel.text = card.titleForCard;
 
     NSString *title;
 

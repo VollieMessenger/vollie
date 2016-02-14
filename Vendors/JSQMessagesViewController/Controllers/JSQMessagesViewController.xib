@@ -10,6 +10,7 @@
                 <outlet property="collectionView" destination="l9u-2b-4LK" id="bLP-6g-CkO"/>
                 <outlet property="collectionViewPictures" destination="eSa-Yo-Z0P" id="oW3-s1-HkO"/>
                 <outlet property="inputToolbar" destination="BoD-Az-3DM" id="w74-g9-1qA"/>
+                <outlet property="titleLabel" destination="AZU-Tz-XhT" id="RdB-fN-ZmW"/>
                 <outlet property="toolbarBottomLayoutGuide" destination="SSb-EC-Eyt" id="cmS-xD-NNN"/>
                 <outlet property="toolbarHeightConstraint" destination="HIk-02-qcW" id="jE8-xC-1eD"/>
                 <outlet property="view" destination="mUa-cS-ru4" id="nki-T1-RTI"/>
@@ -24,7 +25,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="321" height="568"/>
                 </imageView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eSa-Yo-Z0P">
-                    <rect key="frame" x="218" y="66" width="100" height="458"/>
+                    <rect key="frame" x="218" y="85" width="100" height="439"/>
                     <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="bvd-Rr-F5e"/>
@@ -41,7 +42,7 @@
                     </connections>
                 </collectionView>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
-                    <rect key="frame" x="0.0" y="66" width="219" height="458"/>
+                    <rect key="frame" x="0.0" y="85" width="219" height="439"/>
                     <collectionViewLayout key="collectionViewLayout" id="dZl-7C-LHR" customClass="JSQMessagesCollectionViewFlowLayout"/>
                     <cells/>
                     <connections>
@@ -59,17 +60,29 @@
                         <outlet property="delegate" destination="-1" id="QaA-Ky-Z0o"/>
                     </connections>
                 </toolbar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZU-Tz-XhT">
+                    <rect key="frame" x="0.0" y="66" width="320" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="bR2-jY-zui"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" constant="-1" id="7xc-Ha-asg"/>
                 <constraint firstItem="eSa-Yo-Z0P" firstAttribute="top" secondItem="l9u-2b-4LK" secondAttribute="top" id="8JS-ut-zm7"/>
+                <constraint firstAttribute="trailing" secondItem="AZU-Tz-XhT" secondAttribute="trailing" id="D5W-Op-0fZ"/>
                 <constraint firstItem="eSa-Yo-Z0P" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="top" id="Gqc-Vj-RML"/>
                 <constraint firstItem="xqy-Hg-uFr" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="Q5G-ZI-0it"/>
                 <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="SSb-EC-Eyt"/>
+                <constraint firstItem="AZU-Tz-XhT" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="TYH-hz-yg9"/>
+                <constraint firstItem="AZU-Tz-XhT" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="66" id="V9y-G5-Gia"/>
                 <constraint firstAttribute="trailing" secondItem="eSa-Yo-Z0P" secondAttribute="trailing" constant="2" id="b1O-Vo-A70"/>
                 <constraint firstAttribute="trailing" secondItem="l9u-2b-4LK" secondAttribute="trailing" constant="101" id="fg5-C2-lmN"/>
-                <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="66" id="gwc-y1-N8n"/>
+                <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="85" id="gwc-y1-N8n"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="BoD-Az-3DM" secondAttribute="leading" constant="-1" id="ipF-wa-T5s"/>
                 <constraint firstItem="xqy-Hg-uFr" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="o2E-Hn-Gdn"/>
                 <constraint firstAttribute="bottom" secondItem="xqy-Hg-uFr" secondAttribute="bottom" id="sgj-o4-J8J"/>

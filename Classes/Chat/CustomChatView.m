@@ -521,6 +521,14 @@
                 PFObject *set = objects.firstObject;
                 self.set = set;
                 [self removeCurrentUserFromUnreadUsers];
+                if([set objectForKey:@"title"])
+                {
+                    self.titleLabel.text = [set objectForKey:@"title"];
+                }
+                else
+                {
+                    self.titleLabel.text = @"No Title Available";
+                }
             }
         }];
         

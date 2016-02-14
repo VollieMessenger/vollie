@@ -31,6 +31,7 @@
 @interface JSQMessagesViewController : UIViewController <JSQMessagesCollectionViewDataSource,
             JSQMessagesCollectionViewDelegateFlowLayout,
                                                          UITextViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate >
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionViewPictures;
 /**
