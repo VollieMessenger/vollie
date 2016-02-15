@@ -88,6 +88,8 @@
     self.collectionView.hidden = YES;
 //    self.collectionView.backgroundColor = [UIColor orangeColor];
     self.view.layer.backgroundColor = [UIColor clearColor].CGColor;
+    
+    self.unreadNotificationDot.hidden = YES;
 //    self.view.layer.backgroundColor = [UIColor purpleColor].CGColor;
 //    [self scrollToBottomAnimated:YES];
 
@@ -202,23 +204,23 @@
 
 -(void)checkForUnreadUsersWithSet:(PFObject *)set
 {
-    PFRelation *unreadUsers = [set relationForKey:@"unreadUsers"];
-    [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (!error)
-         {
-             self.unreadNotificationDot.image = [UIImage imageNamed:@"1readMesseageIcon"];
-             for (PFUser *user in objects)
-             {
-                 if ([user.objectId isEqualToString:[PFUser currentUser].objectId])
-                 {
-                     NSLog(@"There is an updated card in this room you haven't read");
-                     self.unreadNotificationDot.image = [UIImage imageNamed:@"1unreadMesseageIcon"];
-                 }
-                 //            NSLog(@"%@", user.objectId);
-             }
-         }
-     }];
+//    PFRelation *unreadUsers = [set relationForKey:@"unreadUsers"];
+//    [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+//     {
+//         if (!error)
+//         {
+//             self.unreadNotificationDot.image = [UIImage imageNamed:@"1readMesseageIcon"];
+//             for (PFUser *user in objects)
+//             {
+//                 if ([user.objectId isEqualToString:[PFUser currentUser].objectId])
+//                 {
+////                     NSLog(@"There is an updated card in this room you haven't read");
+//                     self.unreadNotificationDot.image = [UIImage imageNamed:@"1unreadMesseageIcon"];
+//                 }
+//                 //            NSLog(@"%@", user.objectId);
+//             }
+//         }
+//     }];
 }
 
 -(void)clearUnreadDot

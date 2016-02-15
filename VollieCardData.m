@@ -30,29 +30,6 @@
         self.dateUpdated = object.createdAt;
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-        self.unreadStatus = false;
-        
-        
-       //        PFObject *set
-        
-//    
-//        PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
-//        [setQuery getObjectInBackgroundWithId:self.set block:^(PFObject *fullSet, NSError *error)
-//         {
-//             if(!error)
-//             {
-//                 self.actualSet = fullSet;
-//                 [self setUnreadDotWithSet:fullSet];
-//                 //             NSLog(@"%@", fullSet);
-//             }
-//         }];
-        
-//        [self setUnreadDotWithSet:];
-//        NSDate *todaysDate;
-//        NSLog(@"Initialized date is %@",[formatter stringFromDate:self.dateUpdated]);
-
-
-//        NSLog(@"%@ is my my date", self.dateUpdated);
 
         self.photosArray = [NSMutableArray new];
         self.messagesArray = [NSMutableArray new];

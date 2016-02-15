@@ -170,7 +170,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
-    [card.viewController clearUnreadDot];
+//    [card.viewController clearUnreadDot];
+    card.unreadStatus = false;
+    DynamicCardCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.unreadMessagesLabel.hidden = YES;
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
@@ -238,12 +241,12 @@
 {
     if (indexPath.item % 2 == 1)
     {
-        return 15;
+        return 0;
         //this is the spacerCell
     }
     else
     {
-        return 280;
+        return 320;
     }
 }
 
@@ -432,10 +435,32 @@
         else
         {
             NSLog(@"Creating Vollie Card");
+            
             VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object andSet:set];
             card.actualSet = set;
+            card.unreadStatus = false;
             [self.vollieCardDataArray addObject:card];
             [self.setsIDsArray addObject:set.objectId];
+            PFRelation *unreadUsers = [set relationForKey:@"unreadUsers"];
+            [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+             {
+                 if (!error)
+                 {
+    //                 self..image = [UIImage imageNamed:@"1readMesseageIcon"];
+                     for (PFUser *user in objects)
+                     {
+                         if ([user.objectId isEqualToString:[PFUser currentUser].objectId])
+                         {
+                             NSLog(@"There is an updated card in this room you haven't read");
+                             card.unreadStatus = true;
+                             [self.tableView reloadData];
+    //                         self.unreadNotificationDot.image = [UIImage imageNamed:@"1unreadMesseageIcon"];
+                         }
+                         //            NSLog(@"%@", user.objectId);
+                     }
+                 }
+             }];
+            
             //create vollie card
 //            [self scrollToBottomAndReload];
             [self scrollToBottom];

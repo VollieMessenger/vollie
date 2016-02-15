@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property NSMutableArray *imageViewArray;
+@property (weak, nonatomic) IBOutlet UILabel *unreadMessagesLabel;
 
 @end

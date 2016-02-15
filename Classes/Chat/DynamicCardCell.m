@@ -33,6 +33,10 @@
     self.cardView.layer.borderWidth = 1;
     self.cardView.layer.masksToBounds = YES;
     
+    self.unreadMessagesLabel.layer.cornerRadius = 7.5;
+    self.unreadMessagesLabel.layer.masksToBounds = YES;
+    self.unreadMessagesLabel.hidden = YES;
+    
     self.viewForChatVC.backgroundColor = [UIColor purpleColor];
     
     self.imageViewArray = [[NSMutableArray alloc] initWithObjects:self.imageViewOne, self.imageViewTwo, nil];
@@ -47,6 +51,11 @@
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData
 {
     NSLog(@"Created card in MomentsVC");
+    if (vollieCardData.unreadStatus == true)
+    {
+        self.unreadMessagesLabel.hidden = false;
+    }
+    
     if (vollieCardData.titleForCard)
     {
         self.titleLabel.text = vollieCardData.titleForCard;
@@ -100,6 +109,11 @@
          }];
 //        pfo
     }
+}
+
+-(void)unreadStatusWith:(VollieCardData*)cardData
+{
+    
 }
 
 @end
