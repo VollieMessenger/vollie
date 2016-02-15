@@ -108,13 +108,21 @@
         {
             NSLog(@"uploaded media!");
             self.countDownForLastPhoto --;
+            NSLog(@"Photos left: %i", self.countDownForLastPhoto);
             if(self.countDownForLastPhoto == 0)
             {
                 PFRelation *usersWhoHaventRead = [setID relationForKey:@"unreadUsers"];
                 [setID setValue:object forKey:@"lastPicture"];
                 [setID setValue:@0 forKey:@"numberOfResponses"];
-                [setID setValue:text forKey:@"title"];
-                PFRelation *users = [roomNumber relationForKey:PF_CHATROOMS_USERS];
+                if (text)
+                {
+                    [setID setValue:text forKey:@"title"];
+                }
+                NSLog(@"%@", roomNumber);
+//                NSLog(@"%@", [roomNumber relationForKey:@"users"]);
+                PFRelation *users = [roomNumber relationForKey:@"users"];
+                
+                
                 PFQuery *query = [users query];
                 
                 //get rid of this to test unread status:

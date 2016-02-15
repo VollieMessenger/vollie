@@ -740,14 +740,14 @@
     if (collectionView == self.collectionView) return setComments.count;
     else if (collectionView == self.collectionViewPictures)
     {
-        if (setPicturesObjects.count < 5)
-        {
+//        if (setPicturesObjects.count < 5)
+//        {
             return setPicturesObjects.count + 1;
-        }
-        else
-        {
-            return setPicturesObjects.count;
-        }
+//        }
+//        else
+//        {
+//            return setPicturesObjects.count;
+//        }
     }
     else return 0;
 }

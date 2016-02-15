@@ -1674,10 +1674,10 @@
         self.savedButton1.hidden = NO;
         self.x1.hidden = NO;
         
-        if (self.numberOfPhotosInPackageAlready == 4)
-        {
-            [self hideTheTakePictureButton];
-        }
+//        if (self.numberOfPhotosInPackageAlready == 4)
+//        {
+//            [self hideTheTakePictureButton];
+//        }
     }
     else if (self.savedButton2.hidden)
     {
@@ -1688,10 +1688,10 @@
             self.savedButton2.titleLabel.text = videoURL.path;
         }
         self.x2.hidden = NO;
-        if (self.numberOfPhotosInPackageAlready == 3)
-        {
-            [self hideTheTakePictureButton];
-        }
+//        if (self.numberOfPhotosInPackageAlready == 3)
+//        {
+//            [self hideTheTakePictureButton];
+//        }
     }
     else if (self.savedButton3.hidden)
     {
@@ -1702,10 +1702,10 @@
         }
         self.savedButton3.hidden = NO;
         self.x3.hidden = NO;
-        if (self.numberOfPhotosInPackageAlready == 2)
-        {
-            [self hideTheTakePictureButton];
-        }
+//        if (self.numberOfPhotosInPackageAlready == 2)
+//        {
+//            [self hideTheTakePictureButton];
+//        }
     }
     else if (self.savedButton4.hidden)
     {
@@ -1717,10 +1717,10 @@
         self.savedButton4.hidden = NO;
         self.x4.hidden = NO;
         
-        if (self.numberOfPhotosInPackageAlready == 1)
-        {
-            [self hideTheTakePictureButton];
-        }
+//        if (self.numberOfPhotosInPackageAlready == 1)
+//        {
+//            [self hideTheTakePictureButton];
+//        }
     }
     else if (self.savedButton5.hidden)
     {
@@ -1834,6 +1834,7 @@
             }
             
             self.package.photoNumberCount = self.numberOfPhotosInPackageAlready;
+            NSLog(@"In camera. Sending %li photos to room %@", self.arrayOfTakenPhotos.count, self.roomToSendPhotosTo);
             [self.package sendPhotosWithPhotosArray:self.arrayOfTakenPhotos andText:nil andRoom:self.roomToSendPhotosTo andSet:self.setToSendPhotosTo];
             self.comingFromCustomChatView = false;
             [self clearCameraStuff];
