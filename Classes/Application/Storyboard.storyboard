@@ -344,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SKk-Ae-Ezb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1471.5" y="274"/>
+            <point key="canvasLocation" x="1282.5" y="274"/>
         </scene>
         <!--New VollieVC-->
         <scene sceneID="gCw-hI-Bzq">
@@ -499,7 +499,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLu-fb-Sjw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2389.5" y="1034"/>
+            <point key="canvasLocation" x="2059.5" y="1158"/>
         </scene>
         <!--Select RoomVC-->
         <scene sceneID="5Iu-sk-Fge">
@@ -2246,6 +2246,115 @@
             </objects>
             <point key="canvasLocation" x="553.5" y="274"/>
         </scene>
+        <!--Edit CardVC-->
+        <scene sceneID="tan-XP-8Ta">
+            <objects>
+                <viewController storyboardIdentifier="EditCardVC" id="vJc-na-fwt" customClass="EditCardVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jFU-x7-NkZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="brD-Nu-gqf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G4X-ci-XcP">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="SRy-jR-AZA">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                                </variation>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rename Card" minimumFontSize="19" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ujt-9S-GDi">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="59" id="da7-Wl-7xV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="da7-Wl-7xV"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="da7-Wl-7xV"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSE-TN-ZSM">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="hjx-VQ-AT0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="hjx-VQ-AT0"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="hjx-VQ-AT0"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="onCancelButtonTapped:" destination="vJc-na-fwt" eventType="touchUpInside" id="R1x-y5-3Kq"/>
+                                    <action selector="onCancelButtonTapped:" destination="iBC-oC-D8T" eventType="touchUpInside" id="SGI-Ks-9Yx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ujt-9S-GDi" secondAttribute="trailing" constant="-16" id="2tJ-1u-qe8"/>
+                            <constraint firstItem="Ujt-9S-GDi" firstAttribute="leading" secondItem="G4X-ci-XcP" secondAttribute="leadingMargin" constant="-16" id="L7F-U4-aFf"/>
+                            <constraint firstItem="zSE-TN-ZSM" firstAttribute="leading" secondItem="G4X-ci-XcP" secondAttribute="leadingMargin" constant="-16" id="MAt-Zf-JDw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zSE-TN-ZSM" secondAttribute="trailing" constant="-16" id="ROl-cL-Y3b"/>
+                            <constraint firstItem="brD-Nu-gqf" firstAttribute="top" secondItem="zSE-TN-ZSM" secondAttribute="bottom" constant="8" id="UoL-Sg-NV5"/>
+                            <constraint firstItem="Ujt-9S-GDi" firstAttribute="top" secondItem="jFU-x7-NkZ" secondAttribute="bottom" constant="16" id="ccm-G2-MRg"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="SRy-jR-AZA"/>
+                                <exclude reference="Ujt-9S-GDi"/>
+                                <exclude reference="zSE-TN-ZSM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="2tJ-1u-qe8"/>
+                                <exclude reference="L7F-U4-aFf"/>
+                                <exclude reference="ccm-G2-MRg"/>
+                                <exclude reference="MAt-Zf-JDw"/>
+                                <exclude reference="ROl-cL-Y3b"/>
+                                <exclude reference="UoL-Sg-NV5"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="SRy-jR-AZA"/>
+                                <include reference="Ujt-9S-GDi"/>
+                                <include reference="zSE-TN-ZSM"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="2tJ-1u-qe8"/>
+                                <include reference="L7F-U4-aFf"/>
+                                <include reference="ccm-G2-MRg"/>
+                                <include reference="MAt-Zf-JDw"/>
+                                <include reference="ROl-cL-Y3b"/>
+                                <include reference="UoL-Sg-NV5"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="zSE-TN-ZSM" id="nGC-Kq-thv"/>
+                        <outlet property="titleTextField" destination="Ujt-9S-GDi" id="NRA-6c-mAf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTE-7q-c77" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2232" y="274"/>
+        </scene>
         <!--Manage ChatVC-->
         <scene sceneID="29t-ot-tZ5">
             <objects>
@@ -2525,7 +2634,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="42T-nb-aIH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2667" y="274"/>
+            <point key="canvasLocation" x="2952" y="274"/>
         </scene>
         <!--Members ViewVC-->
         <scene sceneID="sBz-Cv-so6">

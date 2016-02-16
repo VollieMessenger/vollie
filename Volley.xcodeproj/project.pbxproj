@@ -114,6 +114,7 @@
 		324C61871BC2FB720007068E /* ExplainationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C61851BC2FB720007068E /* ExplainationCell.m */; };
 		324C61881BC2FB720007068E /* ExplainationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324C61861BC2FB720007068E /* ExplainationCell.xib */; };
 		324C618B1BC3678D0007068E /* InstructionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C618A1BC3678D0007068E /* InstructionsVC.m */; };
+		325AB4071C72A929007B3463 /* EditCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 325AB4061C72A929007B3463 /* EditCardVC.m */; };
 		3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260CB771BBAF5A200EEAFF5 /* TestVC.m */; };
 		3263482D1BDEF947004D765C /* OnePicCellNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 3263482B1BDEF947004D765C /* OnePicCellNew.m */; };
 		3263482E1BDEF947004D765C /* OnePicCellNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3263482C1BDEF947004D765C /* OnePicCellNew.xib */; };
@@ -439,6 +440,8 @@
 		324C61861BC2FB720007068E /* ExplainationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExplainationCell.xib; sourceTree = "<group>"; };
 		324C61891BC3678D0007068E /* InstructionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsVC.h; sourceTree = "<group>"; };
 		324C618A1BC3678D0007068E /* InstructionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsVC.m; sourceTree = "<group>"; };
+		325AB4051C72A929007B3463 /* EditCardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCardVC.h; sourceTree = "<group>"; };
+		325AB4061C72A929007B3463 /* EditCardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCardVC.m; sourceTree = "<group>"; };
 		3260CB761BBAF5A200EEAFF5 /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
 		3260CB771BBAF5A200EEAFF5 /* TestVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestVC.m; sourceTree = "<group>"; };
 		3263482A1BDEF947004D765C /* OnePicCellNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePicCellNew.h; sourceTree = "<group>"; };
@@ -1359,6 +1362,8 @@
 				C2BD53E81A31077D006D721E /* CustomChatView.m */,
 				32A76AC21BCD9752006DE6CC /* FullWidthChatView.h */,
 				32A76AC31BCD9752006DE6CC /* FullWidthChatView.m */,
+				325AB4051C72A929007B3463 /* EditCardVC.h */,
+				325AB4061C72A929007B3463 /* EditCardVC.m */,
 			);
 			name = CustomChatView;
 			sourceTree = "<group>";
@@ -1793,6 +1798,7 @@
 				296DD5D41A1F52F400AB9F8C /* JSQMessagesCollectionView.m in Sources */,
 				296DD5DD1A1F52F400AB9F8C /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				296DD5D11A1F52F400AB9F8C /* JSQPhotoMediaItem.m in Sources */,
+				325AB4071C72A929007B3463 /* EditCardVC.m in Sources */,
 				C2832CB71A704A6100CDF19D /* IQTextView.m in Sources */,
 				29271A6219F284B1009C308B /* ProfileView.m in Sources */,
 				C2832CB61A704A6100CDF19D /* IQSegmentedNextPrevious.m in Sources */,

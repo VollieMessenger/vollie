@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dvj-Gu-wMg">
-                        <rect key="frame" x="0.0" y="28" width="350" height="304.5"/>
+                        <rect key="frame" x="0.0" y="28.5" width="350" height="304.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r99-Mm-LCY">
                                 <rect key="frame" x="252" y="67.5" width="90" height="190"/>
@@ -59,6 +59,23 @@
                                 <rect key="frame" x="0.0" y="27" width="252" height="297.5"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="XDK-og-hjs">
+                                <rect key="frame" x="317" y="275" width="29" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="29" id="5NQ-Eh-LWS"/>
+                                    <constraint firstAttribute="height" constant="29" id="TE0-s6-b0T"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRT-xX-G3E">
+                                <rect key="frame" x="260" y="279" width="54" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="CD7-AA-Owe"/>
+                                    <constraint firstAttribute="width" constant="54" id="GKM-mX-fbK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -66,10 +83,14 @@
                             <constraint firstItem="r99-Mm-LCY" firstAttribute="centerY" secondItem="Dvj-Gu-wMg" secondAttribute="centerY" constant="10.25" id="7ae-ZS-2Oc"/>
                             <constraint firstAttribute="trailing" secondItem="mFy-sf-4hz" secondAttribute="trailing" id="8yf-p6-0bt"/>
                             <constraint firstItem="c2j-B9-tUe" firstAttribute="top" secondItem="mFy-sf-4hz" secondAttribute="bottom" id="9W0-I8-QV5"/>
+                            <constraint firstAttribute="trailing" secondItem="XDK-og-hjs" secondAttribute="trailing" constant="4" id="NxC-Cl-KuZ"/>
                             <constraint firstItem="r99-Mm-LCY" firstAttribute="leading" secondItem="c2j-B9-tUe" secondAttribute="trailing" id="PRp-1k-SH9"/>
+                            <constraint firstItem="XDK-og-hjs" firstAttribute="leading" secondItem="sRT-xX-G3E" secondAttribute="trailing" constant="3" id="Pqo-zS-GYq"/>
                             <constraint firstAttribute="trailing" secondItem="r99-Mm-LCY" secondAttribute="trailing" constant="8" id="QNG-OH-avE"/>
                             <constraint firstAttribute="bottom" secondItem="c2j-B9-tUe" secondAttribute="bottom" constant="-20" id="TaZ-SL-QPS"/>
+                            <constraint firstAttribute="bottom" secondItem="sRT-xX-G3E" secondAttribute="bottom" constant="4.5" id="bRk-SJ-mgs"/>
                             <constraint firstItem="mFy-sf-4hz" firstAttribute="leading" secondItem="Dvj-Gu-wMg" secondAttribute="leading" id="c0N-17-jAT"/>
+                            <constraint firstAttribute="bottom" secondItem="XDK-og-hjs" secondAttribute="bottom" constant="0.5" id="vby-bl-Kkn"/>
                             <constraint firstItem="c2j-B9-tUe" firstAttribute="leading" secondItem="Dvj-Gu-wMg" secondAttribute="leading" id="xvI-pM-DiQ"/>
                         </constraints>
                     </view>
@@ -105,4 +126,7 @@
             <point key="canvasLocation" x="113" y="166.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="mediumReply" width="115" height="76"/>
+    </resources>
 </document>

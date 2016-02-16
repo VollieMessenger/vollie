@@ -23,9 +23,9 @@
 #import "VollieCardData.h"
 #import "ManageChatVC.h"
 #import "ParseVolliePackage.h"
+#import "EditCardVC.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "AFDropdownNotification.h"
-
 #import <MediaPlayer/MediaPlayer.h>
 
 @interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate, CustomCameraDelegate, UploadingDropDownDelegate>
@@ -532,7 +532,11 @@
             }
         }];
         
-
+        self.actualSet = actualSet;
+        [self createEditButtonInTopRight];
+        
+        
+        
         objectIds = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
         self.arrayOfInitialsForThumbnails = [NSMutableArray new];
@@ -575,6 +579,28 @@
 //             NSLog(@"sent request to remove user from list of unread users");
          }
      }];
+}
+
+-(void)createEditButtonInTopRight
+{
+    PFObject *userWhoCreatedCard = [self.actualSet objectForKey:@"user"];
+    NSString *currentUserString = [PFUser currentUser].objectId;
+    if ([userWhoCreatedCard.objectId isEqualToString:currentUserString])
+    {
+        NSLog(@"THIS USER CREATED THE CARD");
+        UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(goToEditCardPage)];
+        barButton.image = [UIImage imageNamed:ASSETS_TYPING];
+        self.navigationItem.rightBarButtonItem = barButton;
+    }
+}
+
+-(void)goToEditCardPage
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    EditCardVC *editCardVC = (EditCardVC *)[storyboard instantiateViewControllerWithIdentifier:@"EditCardVC"];
+    [self.navigationController pushViewController:editCardVC animated:YES];
+
+//    MainInboxVC *mainInbox = (MainInboxVC *)[storyboard instantiateViewControllerWithIdentifier:@"MainInboxVC"];
 }
 
 -(void)loadPicutresFilesInBackground
