@@ -187,17 +187,17 @@ SecondDelegate>
 
 -(void)checkToContinueSending
 {
-    if (self.photosArray.count)
-    {
-        [self continueSendingVollie];
-    }
-    else if (![self.textView.text isEqualToString:@"Create Vollie Title Here..."] && self.textView.text.length !=0)
+//    if (self.photosArray.count)
+//    {
+//        [self continueSendingVollie];
+//    }
+    if (![self.textView.text isEqualToString:@"Create Vollie Title Here..."] && self.textView.text.length !=0)
     {
         [self continueSendingVollie];
     }
     else
     {
-        [ProgressHUD showError:@"No Pics or Text"];
+        [ProgressHUD showError:@"Error: No Title"];
     }
 }
 
