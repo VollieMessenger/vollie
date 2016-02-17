@@ -8,6 +8,7 @@
 
 #import "EditCardVC.h"
 #import "JSQMessages.h"
+#import "ProgressHUD.h"
 
 @interface EditCardVC () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -22,10 +23,6 @@
     [super viewDidLoad];
     [self setUpTextForLabelsAndButtons];
     [self setUpUserInterface];
-    
-    
-
-
 }
 
 -(void)basicSetUpOfUI
@@ -54,6 +51,12 @@
 
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self saveNickname];
+    return YES;
+}
+
 -(void)setUpTextForLabelsAndButtons
 {
     self.titleTextField.delegate = self;
@@ -65,10 +68,35 @@
 //        //        self.textField.placeholder = self.messageButReallyRoom[@"nickname"];
 //        self.textField.placeholder = string;
 //    }
-//    
-//    NSArray *peopleArray = self.room[@"userObjects"];
-//    NSString *peopleString = [NSString stringWithFormat:@"%li People in Chat", peopleArray.count];
-//    [self.peopleButton setTitle:peopleString forState:UIControlStateNormal];
+}
+
+- (void) saveNickname
+{
+    PFObject *message = self.set;
+    if (self.titleTextField.isFirstResponder)
+    {
+        if (self.titleTextField.hasText)
+        {
+            [message setValue:self.titleTextField.text forKey:@"title"];
+        }
+        else
+        {
+//            [message removeObjectForKey:];
+        }
+        [message saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
+            if (succeeded)
+            {
+                [self.cardDelegate titleChange:self.titleTextField.text];
+                [ProgressHUD showSuccess:@"Saved Nickname"];
+                [self.titleTextField resignFirstResponder];
+            }
+            else
+            {
+                [ProgressHUD showError:@"Network Error"];
+            }
+        }];
+    }
 }
 
 
@@ -76,8 +104,9 @@
 
 - (IBAction)onCancelButtonTapped:(id)sender
 {
-//        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:YES];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    long whereToGo = self.navigationController.viewControllers.count - 2;
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:whereToGo] animated:YES];
+//    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

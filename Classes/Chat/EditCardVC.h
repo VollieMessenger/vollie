@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
+@protocol EditCardDelegate <NSObject>
+-(void)titleChange:(NSString *)title;
+@end
 
 @interface EditCardVC : UIViewController
 @property NSString *cardTitle;
 @property PFObject *set;
+
+@property (nonatomic, assign) id<EditCardDelegate> cardDelegate;
 
 @end

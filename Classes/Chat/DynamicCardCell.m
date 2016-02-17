@@ -50,7 +50,7 @@
 
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData
 {
-    NSLog(@"Created card in MomentsVC");
+//    NSLog(@"Created card in MomentsVC");
     if (vollieCardData.unreadStatus == true)
     {
         self.unreadMessagesLabel.hidden = false;

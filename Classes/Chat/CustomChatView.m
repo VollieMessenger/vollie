@@ -28,7 +28,7 @@
 #import "AFDropdownNotification.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate, CustomCameraDelegate, UploadingDropDownDelegate>
+@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate, CustomCameraDelegate, UploadingDropDownDelegate, EditCardDelegate>
 
 @property KLCPopup *popUp;
 @property NSMutableArray *arrayOfScrollView;
@@ -521,6 +521,7 @@
                 PFObject *set = objects.firstObject;
                 self.set = set;
                 [self removeCurrentUserFromUnreadUsers];
+                self.titleLabel.text = @"";
                 if([set objectForKey:@"title"])
                 {
                     self.titleLabel.text = [set objectForKey:@"title"];
@@ -598,6 +599,8 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     EditCardVC *editCardVC = (EditCardVC *)[storyboard instantiateViewControllerWithIdentifier:@"EditCardVC"];
+    editCardVC.set = self.actualSet;
+    editCardVC.cardDelegate = self;
     [self.navigationController pushViewController:editCardVC animated:YES];
 
 //    MainInboxVC *mainInbox = (MainInboxVC *)[storyboard instantiateViewControllerWithIdentifier:@"MainInboxVC"];
@@ -760,6 +763,12 @@
 //    NSLog(@"%@ is user chatroom", self.userChatRoom);
 }
 
+-(void)titleChange:(NSString *)title
+{
+    NSLog(@"Changed CustomChatView title bar to %@", title);
+    self.titleLabel.text = title;
+    [self.view setNeedsDisplay];
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {

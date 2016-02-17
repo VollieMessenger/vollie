@@ -141,6 +141,7 @@ SecondDelegate>
         self.textView.textColor = [UIColor blackColor];
         [self removePlaceHolderText];
         [self addSendButtonToNavBar];
+        
     }
     else
     {
@@ -173,9 +174,14 @@ SecondDelegate>
         [self checkToContinueSending];
         return NO;
     }
-    else
+    else if (textView.text.length < 30)
     {
         return YES;
+    }
+    else
+    {
+        [ProgressHUD showError:@"Max Title Limit"];
+        return NO;
     }
 }
 

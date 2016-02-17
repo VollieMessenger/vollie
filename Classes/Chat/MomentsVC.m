@@ -54,6 +54,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextVollieButton;
 
 @property BOOL isLoading;
+@property BOOL shouldScrollDown;
 
 @property NSMutableArray *messages;
 @property NSMutableArray *pictureObjects;
@@ -96,8 +97,9 @@
     self.objectIdsArray = [NSMutableArray new];
     self.vollieVCcardArray = [NSMutableArray new];
     self.sortedCardsArray = [NSArray new];
+    self.shouldScrollDown = YES;
 
-    [self loadMessages];
+//    [self loadMessages];
 }
 
 -(void)basicSetUpForUI
@@ -177,14 +179,8 @@
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
-//    NSLog(@"date is %@",[formatter stringFromDate:card.dateUpdated]);
-//    VollieCardData *card = self.sortedCardsArray[(indexPath.row/2)];
 
-//    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.actualSet andUserChatRoom:self.room];
     CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
-//    chatt.senderId = [self.senderId copy];
-//    chatt.senderDisplayName = [self.senderDisplayName copy];
-//    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:chatRoom];
     chatt.room = self.room;
     
     chatt.titleLabel.text = card.titleForCard;
@@ -192,34 +188,10 @@
     NSString *title;
 
     [chatt setTitle:title];
-//
-//    CATransition* transition = [CATransition animation];
-//    transition.duration = 0.3;
-//    transition.type = kCATransitionPush;
-//    transition.subtype = kCATransitionFromRight;
-//    transition.timingFunction = UIViewAnimationCurveEaseInOut;
-//    transition.fillMode = kCAFillModeForwards;
-//    [self.navigationController.view.layer addAnimation:transition forKey:kCATransition];
-//    
-    
-//    if (card.photosArray.count)
-//    {
-        NSLog(@"Going to CustomChatView because there are pictures");
-//        CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
-        //    chatt.senderId = [self.senderId copy];
-        //    chatt.senderDisplayName = [self.senderDisplayName copy];
-        //    CustomChatView *chatt = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:chatRoom];
-        chatt.room = self.room;
-        [self.navigationController pushViewController:chatt animated:1];
-//    }
-//    else
-//    {
-//        NSLog(@"Going to a chatroom with no pictures");
-//        FullWidthChatView *chatt = [[FullWidthChatView alloc] initWithSetId:card.set andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.actualSet];
-//        chatt.room = self.room;
-//        [self.navigationController pushViewController:chatt animated:1];
-//    }
+    chatt.room = self.room;
+    [self.navigationController pushViewController:chatt animated:1];
 }
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 //    return self.vollieCardDataArray.count;
@@ -246,7 +218,7 @@
     }
     else
     {
-        return 320;
+        return 325;
     }
 }
 
@@ -299,18 +271,35 @@
     }
 }
 
--(void)scrollToBottomAndReload
-{
-//    NSLog(@"scrolled tos the bottom of the cards");
-    [self.tableView reloadData];
-    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
-    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
-}
+//-(void)scrollToBottomAndReload
+//{
+////    NSLog(@"scrolled tos the bottom of the cards");
+//    [self.tableView reloadData];
+//    NSIndexPath* ip = [NSIndexPath indexPathForRow:[self.tableView numberOfRowsInSection:0] - 1 inSection:0];
+//    [self.tableView scrollToRowAtIndexPath:ip atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//}
 
 -(void)scrollToBottom
 {
-    [self.tableView reloadData];
-    [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height) animated:NO];
+    if (self.shouldScrollDown)
+    {
+        NSLog(@"Scrolling to the bottom");
+        [self.tableView reloadData];
+         [self.tableView scrollRectToVisible:CGRectMake(0, self.tableView.contentSize.height - self.tableView.bounds.size.height, self.tableView.bounds.size.width, self.tableView.bounds.size.height) animated:NO];
+    }
+    else
+    {
+        CGFloat oldTableViewOffset = self.tableView.contentOffset.y;
+//        How : float verticalContentOffset  = tableView.contentOffset.y;
+        
+
+        NSLog(@"Trying not to scroll to bottom");
+        [self.tableView reloadData];
+        // Put your scroll position to where it was before
+//        CGFloat newTableViewHeight = self.tableView.contentSize.height;
+        self.tableView.contentOffset = CGPointMake(0, oldTableViewOffset);
+        self.shouldScrollDown = YES;
+    }
 }
 
 -(void)fillUIView:(UIView*)view withCardVC:(CardCellView *)vc
@@ -348,6 +337,7 @@
     [query whereKey:PF_CHAT_ROOM equalTo:self.room];
     [query includeKey:PF_CHAT_USER];
     [query includeKey:PF_CHAT_SETID];
+    [query setLimit:1000];
     [query orderByDescending:@"createdAt"];
 
     [self getMessagesWithPFQuery:query];
@@ -360,12 +350,29 @@
      {
          if(!error)
          {
+             NSLog(@"Found %li messages", objects.count);
              NSLog(@"Organizing messages");
              [self clearPushNotesCounter];
+             
+             if (self.objectIdsArray.count == objects.count)
+             {
+                 NSLog(@"Searched and found %li messages. Before we had %li messages", self.objectIdsArray.count, objects.count);
+//                 self.shouldNotScrollDown = true;
+//                 NSLog(@"IT SEARCHED AND BROUGHT UP THE SAME AMOUNT OF MESSAGES");
+                 self.shouldScrollDown = NO;
+             }
+             
+             self.setsIDsArray = [NSMutableArray new];
+             self.vollieCardDataArray = [NSMutableArray new];
+             self.objectIdsArray = [NSMutableArray new];
+             self.vollieVCcardArray = [NSMutableArray new];
+             self.sortedCardsArray = [NSArray new];
+             
              for (PFObject *object in [objects reverseObjectEnumerator])
              {
                  [self checkForObjectIdWith:object];
              }
+             [self scrollToBottom];
          }
          else
          {
@@ -377,7 +384,7 @@
 
 -(void)clearPushNotesCounter
 {
-    NSLog(@"checking this room for push notification count: %@ ", self.messageItComesFrom);
+//    NSLog(@"checking this room for push notification count: %@ ", self.messageItComesFrom);
     NSNumber *number = [self.messageItComesFrom valueForKey:PF_MESSAGES_COUNTER];
     if (number)
     {
@@ -394,7 +401,7 @@
     if (![self.objectIdsArray containsObject:object.objectId])
     {
 //        NSLog(@"%@", object[@"updatedAction"]);
-        NSLog(@"Found an object that wasn't accounted for before");
+//        NSLog(@"Found an object that wasn't accounted for before");
         [self.objectIdsArray addObject:object.objectId];
         [self checkForVollieCardWith:object];
     }
@@ -427,14 +434,13 @@
                     }
                     self.vollieCardDataArray = [NSMutableArray arrayWithArray:self.sortedCardsArray];
 
-//                    [self scrollToBottomAndReload];
-                    [self scrollToBottom];
+//                    [self scrollToBottom];
                 }
             }
         }
         else
         {
-            NSLog(@"Creating Vollie Card");
+//            NSLog(@"Creating Vollie Card");
             
             VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object andSet:set];
             card.actualSet = set;
@@ -453,7 +459,8 @@
                          {
                              NSLog(@"There is an updated card in this room you haven't read");
                              card.unreadStatus = true;
-                             [self.tableView reloadData];
+//                             [self.tableView reloadData];
+//                             [self scrollToBottom];
     //                         self.unreadNotificationDot.image = [UIImage imageNamed:@"1unreadMesseageIcon"];
                          }
                          //            NSLog(@"%@", user.objectId);
@@ -462,8 +469,7 @@
              }];
             
             //create vollie card
-//            [self scrollToBottomAndReload];
-            [self scrollToBottom];
+//            [self scrollToBottom];
         }
     }
 }
