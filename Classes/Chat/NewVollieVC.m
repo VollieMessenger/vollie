@@ -169,13 +169,16 @@ SecondDelegate>
  replacementText:(NSString *)text
 {
     //this code makes "done" or "return" button resign first responder
+    NSLog(@"%@", text);
+    NSLog(@"%lu", textView.text.length);
     if ([text isEqualToString:@"\n"])
     {
         [self checkToContinueSending];
         return NO;
     }
-    else if (textView.text.length < 30)
+    else if (textView.text.length + (text.length - range.length) <= 30)
     {
+        //    return textView.text.length + (text.length - range.length) <= 140;
         return YES;
     }
     else
