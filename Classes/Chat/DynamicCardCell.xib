@@ -105,18 +105,28 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="Zbt-Px-T9t">
+                        <rect key="frame" x="55" y="117" width="240" height="128"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="240" id="4dh-xg-276"/>
+                            <constraint firstAttribute="height" constant="128" id="4fb-DJ-5Q1"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="JRb-Ja-1pK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9ZE-Hy-kke"/>
+                    <constraint firstItem="Zbt-Px-T9t" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="I6a-XP-bR8"/>
                     <constraint firstItem="Dvj-Gu-wMg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="Rdz-vE-pM5"/>
                     <constraint firstItem="Dvj-Gu-wMg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Xdb-t0-6cA"/>
                     <constraint firstAttribute="bottomMargin" secondItem="JRb-Ja-1pK" secondAttribute="bottom" constant="8.5" id="ZcP-xo-Pt4"/>
                     <constraint firstItem="Dvj-Gu-wMg" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="-20" id="mzZ-hH-V1m"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Dvj-Gu-wMg" secondAttribute="trailing" constant="-8" id="tsI-2s-s33"/>
+                    <constraint firstItem="Zbt-Px-T9t" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uGX-uh-WSF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="cardView" destination="Dvj-Gu-wMg" id="SRe-KK-TnL"/>
+                <outlet property="imageIfNoMessages" destination="Zbt-Px-T9t" id="C07-bx-Avr"/>
                 <outlet property="imageViewOne" destination="llq-Of-e1H" id="ONS-0f-Ude"/>
                 <outlet property="imageViewTwo" destination="n0z-5Z-dQG" id="ZQ0-Yr-JL1"/>
                 <outlet property="titleLabel" destination="mFy-sf-4hz" id="6Wq-9W-NMJ"/>
@@ -128,5 +138,6 @@
     </objects>
     <resources>
         <image name="mediumReply" width="115" height="76"/>
+        <image name="record" width="320" height="304"/>
     </resources>
 </document>

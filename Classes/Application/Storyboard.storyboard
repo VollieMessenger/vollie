@@ -2255,6 +2255,7 @@
                         <viewControllerLayoutGuide type="bottom" id="brD-Nu-gqf"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="G4X-ci-XcP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyBackGround2" translatesAutoresizingMaskIntoConstraints="NO" id="SRy-jR-AZA">
@@ -2325,9 +2326,9 @@
                                 <exclude reference="2tJ-1u-qe8"/>
                                 <exclude reference="L7F-U4-aFf"/>
                                 <exclude reference="ccm-G2-MRg"/>
+                                <exclude reference="UoL-Sg-NV5"/>
                                 <exclude reference="MAt-Zf-JDw"/>
                                 <exclude reference="ROl-cL-Y3b"/>
-                                <exclude reference="UoL-Sg-NV5"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -2340,9 +2341,9 @@
                                 <include reference="2tJ-1u-qe8"/>
                                 <include reference="L7F-U4-aFf"/>
                                 <include reference="ccm-G2-MRg"/>
+                                <include reference="UoL-Sg-NV5"/>
                                 <include reference="MAt-Zf-JDw"/>
                                 <include reference="ROl-cL-Y3b"/>
-                                <include reference="UoL-Sg-NV5"/>
                             </mask>
                         </variation>
                     </view>

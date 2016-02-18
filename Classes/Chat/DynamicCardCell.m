@@ -37,6 +37,8 @@
     self.unreadMessagesLabel.layer.masksToBounds = YES;
     self.unreadMessagesLabel.hidden = YES;
     
+    self.imageIfNoMessages.hidden = YES;
+    
     self.viewForChatVC.backgroundColor = [UIColor purpleColor];
     
     self.imageViewArray = [[NSMutableArray alloc] initWithObjects:self.imageViewOne, self.imageViewTwo, nil];
@@ -54,6 +56,12 @@
     if (vollieCardData.unreadStatus == true)
     {
         self.unreadMessagesLabel.hidden = false;
+    }
+    
+    if (vollieCardData.numberOfTextMessages == 0)
+    {
+        self.imageIfNoMessages.hidden = NO;
+        NSLog(@"showing no messages image");
     }
     
     if (vollieCardData.titleForCard)

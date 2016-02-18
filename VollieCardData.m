@@ -33,6 +33,7 @@
 
         self.photosArray = [NSMutableArray new];
         self.messagesArray = [NSMutableArray new];
+        self.numberOfTextMessages = 0;
 
         [self checkIfIsPictureOrMessageWith:object];
     }
@@ -139,6 +140,7 @@
     else
     {// IS A COMMENT
         [self addMessageToOurArrayWith:object];
+        self.numberOfTextMessages++;
 //        if (object.createdAt > self.dateUpdated)
 //        {
 //            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];

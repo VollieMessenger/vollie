@@ -40,6 +40,7 @@
 @property NSDate *dateUpdated;
 @property NSNumber *numberFromDateToSortWith;
 @property NSString *titleForCard;
+@property int *numberOfTextMessages;
 
 //-(instancetype)initWithPFObject:(PFObject *)object;
 

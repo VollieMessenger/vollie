@@ -24,5 +24,6 @@
 
 @property NSMutableArray *imageViewArray;
 @property (weak, nonatomic) IBOutlet UILabel *unreadMessagesLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageIfNoMessages;
 
 @end

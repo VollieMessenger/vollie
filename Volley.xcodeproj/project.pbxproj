@@ -684,6 +684,7 @@
 		27C3C1261B3B2E7000F555FD /* New Version */ = {
 			isa = PBXGroup;
 			children = (
+				27C3C12A1B3B344800F555FD /* Moments VC */,
 				27C3C12B1B3B39D500F555FD /* New Vollie VC */,
 				32DA3D411B8FCDCF00DDEFA2 /* CameraVC */,
 				324843EE1B714DE1009810D3 /* MainInboxVC */,
@@ -1190,7 +1191,6 @@
 		324843EE1B714DE1009810D3 /* MainInboxVC */ = {
 			isa = PBXGroup;
 			children = (
-				27C3C12A1B3B344800F555FD /* Moments VC */,
 				324843EF1B714E00009810D3 /* MainInboxVC.h */,
 				324843F01B714E00009810D3 /* MainInboxVC.m */,
 				32DA3D3F1B8FCD5B00DDEFA2 /* MainInboxModal */,
