@@ -140,7 +140,6 @@
     else
     {// IS A COMMENT
         [self addMessageToOurArrayWith:object];
-        self.numberOfTextMessages++;
 //        if (object.createdAt > self.dateUpdated)
 //        {
 //            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -168,13 +167,18 @@
     PFObject *set = object[PF_CHAT_SETID];
 
     if (!date) date = [NSDate date];
-    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId
-                                             senderDisplayName:user[PF_USER_FULLNAME]
-                                                         setId:set.objectId
-                                                          date:date
-                                                          text:object[PF_CHAT_TEXT]];
-
-    [self.messagesArray addObject:message];
+    
+    if (![object[PF_CHAT_TEXT] isEqualToString:@"emptyCard"])
+    {
+        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId
+                                                 senderDisplayName:user[PF_USER_FULLNAME]
+                                                             setId:set.objectId
+                                                              date:date
+                                                              text:object[PF_CHAT_TEXT]];
+        
+        [self.messagesArray addObject:message];
+        self.numberOfTextMessages++;
+    }
     
     self.dateUpdated = date;
     self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
