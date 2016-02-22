@@ -36,6 +36,7 @@
     self.unreadMessagesLabel.layer.cornerRadius = 7.5;
     self.unreadMessagesLabel.layer.masksToBounds = YES;
     self.unreadMessagesLabel.hidden = YES;
+    self.unreadMessagesLabel.backgroundColor = [UIColor volleyFamousOrange];
     
     self.imageIfNoMessages.hidden = YES;
     

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dvj-Gu-wMg">
-                        <rect key="frame" x="0.0" y="28.5" width="350" height="304.5"/>
+                        <rect key="frame" x="0.0" y="28" width="350" height="304.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r99-Mm-LCY">
-                                <rect key="frame" x="252" y="67.5" width="90" height="190"/>
+                                <rect key="frame" x="252" y="67" width="90" height="190"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="llq-Of-e1H" customClass="PFImageView">
                                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
@@ -47,7 +48,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This will be a title for the card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFy-sf-4hz">
-                                <rect key="frame" x="0.0" y="0.0" width="350" height="27"/>
+                                <rect key="frame" x="0.0" y="8" width="350" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="okJ-5O-kCF"/>
                                 </constraints>
@@ -56,7 +57,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c2j-B9-tUe">
-                                <rect key="frame" x="0.0" y="27" width="252" height="297.5"/>
+                                <rect key="frame" x="0.0" y="35" width="252" height="289.5"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mediumReply" translatesAutoresizingMaskIntoConstraints="NO" id="XDK-og-hjs">
@@ -64,6 +65,12 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="29" id="5NQ-Eh-LWS"/>
                                     <constraint firstAttribute="height" constant="29" id="TE0-s6-b0T"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Vollie5-add" translatesAutoresizingMaskIntoConstraints="NO" id="Zbt-Px-T9t">
+                                <rect key="frame" x="6" y="98" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Zbt-Px-T9t" secondAttribute="height" multiplier="15:8" id="JpE-Eg-PSP"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reply" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sRT-xX-G3E">
@@ -79,7 +86,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="mFy-sf-4hz" firstAttribute="top" secondItem="Dvj-Gu-wMg" secondAttribute="top" id="5jI-lq-jfJ"/>
+                            <constraint firstItem="mFy-sf-4hz" firstAttribute="top" secondItem="Dvj-Gu-wMg" secondAttribute="top" constant="8" id="5jI-lq-jfJ"/>
                             <constraint firstItem="r99-Mm-LCY" firstAttribute="centerY" secondItem="Dvj-Gu-wMg" secondAttribute="centerY" constant="10.25" id="7ae-ZS-2Oc"/>
                             <constraint firstAttribute="trailing" secondItem="mFy-sf-4hz" secondAttribute="trailing" id="8yf-p6-0bt"/>
                             <constraint firstItem="c2j-B9-tUe" firstAttribute="top" secondItem="mFy-sf-4hz" secondAttribute="bottom" id="9W0-I8-QV5"/>
@@ -88,8 +95,11 @@
                             <constraint firstItem="XDK-og-hjs" firstAttribute="leading" secondItem="sRT-xX-G3E" secondAttribute="trailing" constant="3" id="Pqo-zS-GYq"/>
                             <constraint firstAttribute="trailing" secondItem="r99-Mm-LCY" secondAttribute="trailing" constant="8" id="QNG-OH-avE"/>
                             <constraint firstAttribute="bottom" secondItem="c2j-B9-tUe" secondAttribute="bottom" constant="-20" id="TaZ-SL-QPS"/>
+                            <constraint firstItem="Zbt-Px-T9t" firstAttribute="centerY" secondItem="r99-Mm-LCY" secondAttribute="centerY" id="amq-45-KJR"/>
                             <constraint firstAttribute="bottom" secondItem="sRT-xX-G3E" secondAttribute="bottom" constant="4.5" id="bRk-SJ-mgs"/>
                             <constraint firstItem="mFy-sf-4hz" firstAttribute="leading" secondItem="Dvj-Gu-wMg" secondAttribute="leading" id="c0N-17-jAT"/>
+                            <constraint firstItem="r99-Mm-LCY" firstAttribute="leading" secondItem="Zbt-Px-T9t" secondAttribute="trailing" constant="6" id="cc2-LQ-A9m"/>
+                            <constraint firstItem="Zbt-Px-T9t" firstAttribute="leading" secondItem="Dvj-Gu-wMg" secondAttribute="leading" constant="6" id="iao-xW-sGL"/>
                             <constraint firstAttribute="bottom" secondItem="XDK-og-hjs" secondAttribute="bottom" constant="0.5" id="vby-bl-Kkn"/>
                             <constraint firstItem="c2j-B9-tUe" firstAttribute="leading" secondItem="Dvj-Gu-wMg" secondAttribute="leading" id="xvI-pM-DiQ"/>
                         </constraints>
@@ -105,23 +115,14 @@
                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="record" translatesAutoresizingMaskIntoConstraints="NO" id="Zbt-Px-T9t">
-                        <rect key="frame" x="55" y="117" width="240" height="128"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="240" id="4dh-xg-276"/>
-                            <constraint firstAttribute="height" constant="128" id="4fb-DJ-5Q1"/>
-                        </constraints>
-                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="JRb-Ja-1pK" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9ZE-Hy-kke"/>
-                    <constraint firstItem="Zbt-Px-T9t" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="I6a-XP-bR8"/>
                     <constraint firstItem="Dvj-Gu-wMg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="Rdz-vE-pM5"/>
                     <constraint firstItem="Dvj-Gu-wMg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Xdb-t0-6cA"/>
                     <constraint firstAttribute="bottomMargin" secondItem="JRb-Ja-1pK" secondAttribute="bottom" constant="8.5" id="ZcP-xo-Pt4"/>
                     <constraint firstItem="Dvj-Gu-wMg" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="-20" id="mzZ-hH-V1m"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Dvj-Gu-wMg" secondAttribute="trailing" constant="-8" id="tsI-2s-s33"/>
-                    <constraint firstItem="Zbt-Px-T9t" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uGX-uh-WSF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -137,7 +138,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Vollie5-add" width="241" height="69"/>
         <image name="mediumReply" width="115" height="76"/>
-        <image name="record" width="320" height="304"/>
     </resources>
 </document>

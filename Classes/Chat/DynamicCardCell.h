@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "VollieCardData.h"
+#import "JSQMessages.h"
 
 @interface DynamicCardCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet PFImageView *imageViewOne;
