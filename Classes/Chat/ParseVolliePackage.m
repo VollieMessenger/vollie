@@ -227,16 +227,16 @@
 
         [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
         NSLog(@"about to upload text");
-        [self showSuccessNotificationWithString:text
-                                      andObject:object
-                                  andRoomNumber:roomNumber];
+//        [self showSuccessNotificationWithString:text
+//                                      andObject:object
+//                                  andRoomNumber:roomNumber];
     
 
 //        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
 //        {
 //            if(!error)
 //            {
-////                NSLog(@"uploaded text!");
+//                NSLog(@"uploaded text!");
 //                [self showSuccessNotificationWithString:text
 //                                              andObject:object
 //                                          andRoomNumber:roomNumber];
@@ -251,6 +251,38 @@
 //                [self showErrorNotification];
 //            }
 //        }];
+}
+
+-(void)createEmptyVollieCardWith:(PFObject*)setID andRoom:(PFObject *)roomNumber andText:(NSString*)text
+{
+    PFObject *object = [PFObject objectWithClassName:PF_CHAT_CLASS_NAME];
+    object[PF_CHAT_USER] = [PFUser currentUser];
+    object[PF_CHAT_ROOM] = roomNumber;
+    object[PF_CHAT_TEXT] = @"emptyCard";
+    object[PF_CHAT_SETID] = setID;
+    roomNumber[@"lastMessage"] = text;
+    [object setValue:[NSDate date] forKey:PF_PICTURES_UPDATEDACTION];
+    NSLog(@"about to upload text");
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+     {
+         if(!error)
+         {
+             NSLog(@"uploaded text!");
+             [self showSuccessNotificationWithString:text
+                                           andObject:object
+                                       andRoomNumber:roomNumber];
+         }
+         if (succeeded)
+         {
+             NSLog(@"uploaded text");
+         }
+         else
+         {
+             NSLog(@"error error error %@",error);
+             [self showErrorNotification];
+         }
+     }];
+
 }
 
 -(void)hideProgressHUD

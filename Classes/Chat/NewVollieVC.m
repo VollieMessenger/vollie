@@ -211,6 +211,7 @@ SecondDelegate>
         PFObject *set = [PFObject objectWithClassName:PF_SET_CLASS_NAME];
         [set setValue:self.whichRoom forKey:PF_SET_ROOM];
         [set setValue:[PFUser currentUser] forKey:PF_SET_USER];
+        [set setValue:self.textView.text forKey:@"title"];
         if (self.photosArray.count)
         {
             [self.package sendPhotosWithPhotosArray:self.photosArray
@@ -221,9 +222,10 @@ SecondDelegate>
         else
         {
             
-            [self.package checkForTextAndSendItWithText:self.textView.text
-                                                andRoom:self.whichRoom
-                                                 andSet:set];
+//            [self.package checkForTextAndSendItWithText:self.textView.text
+//                                                andRoom:self.whichRoom
+//                                                 andSet:set];
+            [self.package createEmptyVollieCardWith:set andRoom:self.whichRoom andText:self.textView.text];
         }
 
          [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:1] animated:NO];

@@ -21,6 +21,8 @@
 
 -(void)checkForTextAndSendItWithText:(NSString*)text andRoom:(PFObject *)roomNumber andSet:(PFObject*)setID;
 
+-(void)createEmptyVollieCardWith:(PFObject*)setID andRoom:(PFObject *)roomNumber andText:(NSString*)text;
+
 @property (nonatomic, assign) id<RefreshMessagesDelegate> refreshDelegate;
 
 @property int countDownForLastPhoto;

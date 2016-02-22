@@ -140,6 +140,7 @@
              [self.selectedRoom setValue:@(numberOfSets + 1) forKey:PF_CHATROOMS_ROOMNUMBER];
              [self.selectedSet setValue:self.selectedRoom forKey:PF_SET_ROOM];
              [self.selectedSet setValue:[PFUser currentUser] forKey:PF_SET_USER];
+             [self.selectedSet setValue:self.textToSend forKey:@"title"];
 
              if (self.photosToSend.count)
              {
@@ -155,8 +156,8 @@
                  self.scrollView = [(AppDelegate *)[[UIApplication sharedApplication] delegate] scrollView];
                  [self.scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width, 0) animated:NO];
                  
-                 NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
-                 CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
+//                 NavigationController *navCamera = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navCamera];
+//                 CustomCameraView *cam = (CustomCameraView *)navCamera.viewControllers.firstObject;
                  
                  NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
                  // LOAD MESSAGES FROM INBOX INSTEAD.
@@ -173,13 +174,17 @@
              else
              {
 //                 ParseVolliePackage *volliePackage = [ParseVolliePackage new];
-                 [self.package checkForTextAndSendItWithText:self.textToSend
-                                                      andRoom:self.selectedRoom
-                                                       andSet:self.selectedSet];
+//                 [self.package checkForTextAndSendItWithText:self.textToSend
+//                                                      andRoom:self.selectedRoom
+//                                                       andSet:self.selectedSet];
+                 
+                 [self.package createEmptyVollieCardWith:self.selectedSet andRoom:self.selectedRoom andText:self.textToSend];
                  
 //                 [self.package.topNotification presentInView:self.view withGravityAnimation:YES];
 
                  [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
+                 
+                 
                  NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
                  // LOAD MESSAGES FROM INBOX INSTEAD.
                  
