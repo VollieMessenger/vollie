@@ -232,25 +232,25 @@
 //                                  andRoomNumber:roomNumber];
     
 
-//        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-//        {
-//            if(!error)
-//            {
-//                NSLog(@"uploaded text!");
-//                [self showSuccessNotificationWithString:text
-//                                              andObject:object
-//                                          andRoomNumber:roomNumber];
-//            }
-//            if (succeeded)
-//            {
-//                NSLog(@"uploaded text");
-//            }
-//            else
-//            {
-//                NSLog(@"error error error %@",error);
-//                [self showErrorNotification];
-//            }
-//        }];
+        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+        {
+            if(!error)
+            {
+                NSLog(@"uploaded text!");
+                [self showSuccessNotificationWithString:text
+                                              andObject:object
+                                          andRoomNumber:roomNumber];
+            }
+            if (succeeded)
+            {
+                NSLog(@"uploaded text");
+            }
+            else
+            {
+                NSLog(@"error error error %@",error);
+                [self showErrorNotification];
+            }
+        }];
 }
 
 -(void)createEmptyVollieCardWith:(PFObject*)setID andRoom:(PFObject *)roomNumber andText:(NSString*)text

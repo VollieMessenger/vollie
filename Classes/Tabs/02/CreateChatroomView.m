@@ -623,9 +623,10 @@
     }
     else
     {
-        [self.package checkForTextAndSendItWithText:self.sendingMessage
-                                            andRoom:chatroom
-                                             andSet:set];
+//        [self.package checkForTextAndSendItWithText:self.sendingMessage
+//                                            andRoom:chatroom
+//                                             andSet:set];
+        [self.package createEmptyVollieCardWith:set andRoom:chatroom andText:self.sendingMessage];
     }
 
 //     [self.navigationController.navigationBar setTintColor:[UIColor volleyFamousGreen]];
