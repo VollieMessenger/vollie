@@ -114,6 +114,8 @@
 		324C61871BC2FB720007068E /* ExplainationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C61851BC2FB720007068E /* ExplainationCell.m */; };
 		324C61881BC2FB720007068E /* ExplainationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 324C61861BC2FB720007068E /* ExplainationCell.xib */; };
 		324C618B1BC3678D0007068E /* InstructionsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324C618A1BC3678D0007068E /* InstructionsVC.m */; };
+		324D16C11C7D4A790083FDCA /* CardsViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 324D16C01C7D4A790083FDCA /* CardsViewHelper.m */; };
+		324D16C41C7D4ADD0083FDCA /* CardObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 324D16C31C7D4ADD0083FDCA /* CardObject.m */; };
 		325AB4071C72A929007B3463 /* EditCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 325AB4061C72A929007B3463 /* EditCardVC.m */; };
 		3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260CB771BBAF5A200EEAFF5 /* TestVC.m */; };
 		3263482D1BDEF947004D765C /* OnePicCellNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 3263482B1BDEF947004D765C /* OnePicCellNew.m */; };
@@ -440,6 +442,10 @@
 		324C61861BC2FB720007068E /* ExplainationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExplainationCell.xib; sourceTree = "<group>"; };
 		324C61891BC3678D0007068E /* InstructionsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsVC.h; sourceTree = "<group>"; };
 		324C618A1BC3678D0007068E /* InstructionsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsVC.m; sourceTree = "<group>"; };
+		324D16BF1C7D4A790083FDCA /* CardsViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsViewHelper.h; sourceTree = "<group>"; };
+		324D16C01C7D4A790083FDCA /* CardsViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsViewHelper.m; sourceTree = "<group>"; };
+		324D16C21C7D4ADD0083FDCA /* CardObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardObject.h; sourceTree = "<group>"; };
+		324D16C31C7D4ADD0083FDCA /* CardObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardObject.m; sourceTree = "<group>"; };
 		325AB4051C72A929007B3463 /* EditCardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCardVC.h; sourceTree = "<group>"; };
 		325AB4061C72A929007B3463 /* EditCardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCardVC.m; sourceTree = "<group>"; };
 		3260CB761BBAF5A200EEAFF5 /* TestVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestVC.h; sourceTree = "<group>"; };
@@ -704,6 +710,10 @@
 				27DB352A1B4C616200A765A2 /* ManageChat VC */,
 				2762FF601B289A530070AD59 /* MomentsVC.h */,
 				2762FF611B289A530070AD59 /* MomentsVC.m */,
+				324D16C21C7D4ADD0083FDCA /* CardObject.h */,
+				324D16C31C7D4ADD0083FDCA /* CardObject.m */,
+				324D16BF1C7D4A790083FDCA /* CardsViewHelper.h */,
+				324D16C01C7D4A790083FDCA /* CardsViewHelper.m */,
 				32DA3D401B8FCD8900DDEFA2 /* Card Data */,
 				276998BA1B501AE0009FA3E1 /* Cells */,
 			);
@@ -1694,6 +1704,7 @@
 				296DD5C71A1F52F400AB9F8C /* JSQMessagesTimestampFormatter.m in Sources */,
 				C21DD6ED1A71D73B0009BC6A /* JCNotificationBannerViewIOSStyle.m in Sources */,
 				C2F314AF1A79CF7400675959 /* NSDate+TimeAgo.m in Sources */,
+				324D16C41C7D4ADD0083FDCA /* CardObject.m in Sources */,
 				C21DD6EB1A71D73B0009BC6A /* JCNotificationBannerViewController.m in Sources */,
 				279D7C991B2F38AC0090C1AD /* ChatColView.m in Sources */,
 				296DD5BB1A1F52F400AB9F8C /* JSQSystemSoundPlayer+JSQMessages.m in Sources */,
@@ -1810,6 +1821,7 @@
 				29271A5E19F284B1009C308B /* MessagesCell.m in Sources */,
 				C27189381A3243BA00F52320 /* KLCPopup.m in Sources */,
 				C2832CB31A704A6100CDF19D /* IQUIWindow+Hierarchy.m in Sources */,
+				324D16C11C7D4A790083FDCA /* CardsViewHelper.m in Sources */,
 				324843F41B715606009810D3 /* Chat.m in Sources */,
 				272170861B543F240050A9D0 /* FourPicCell.m in Sources */,
 				296DD5C41A1F52F400AB9F8C /* JSQMessagesAvatarImageFactory.m in Sources */,

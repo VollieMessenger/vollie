@@ -23,6 +23,29 @@
     // Configure the view for the selected state
 }
 
+-(void)formatCellWithCardObject:(CardObject *)card
+{
+    [self formatCell];
+    self.imageViewOne.image = card.imageOne;
+    self.imageViewTwo.image = card.imageTwo;
+    if (card.unreadStatus == true)
+    {
+        self.unreadMessagesLabel.hidden = false;
+    }
+    if (card.numberOfTextMessages == 0)
+    {
+        self.imageIfNoMessages.hidden = false;
+    }
+    if (card.title)
+    {
+        self.titleLabel.text = card.title;
+    }
+    else
+    {
+        self.titleLabel.text = @"";
+    }
+}
+
 -(void)formatCell
 {
     self.backgroundColor = [UIColor clearColor];

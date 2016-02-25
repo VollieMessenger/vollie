@@ -78,6 +78,8 @@
     MomentsVC *cardViewController = (MomentsVC *)[storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
     cardViewController.room = customChatRoom;
     cardViewController.messageItComesFrom = room;
+    
+    
     return cardViewController;
 }
 

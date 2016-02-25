@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "VollieCardData.h"
+#import "CardObject.h"
 #import "JSQMessages.h"
 
 @interface DynamicCardCell : UITableViewCell
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIView *cardView;
 
 -(void)fillPicsWithVollieCardData:(VollieCardData*)vollieCardData;
+-(void)formatCellWithCardObject:(CardObject *)card;
 -(void)formatCell;
 @property (strong, nonatomic) IBOutlet UIView *viewForChatVC;
 @property (weak, nonatomic) IBOutlet UIImageView *notificationDot;

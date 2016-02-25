@@ -23,7 +23,6 @@
 @property PFObject *lastParseObject;
 @property BOOL shouldShowTempCard;
 
-
 -(void)reloadCardsAfterUpload;
 
 @end
