@@ -28,6 +28,13 @@
         self.messagesArray = [NSMutableArray new];
         self.numberOfTextMessages = 0;
         [self checkIfIsPictureOrMessageWith:object];
+        
+        NSDate *date = object[PF_PICTURES_UPDATEDACTION];
+        self.dateUpdated = date;
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+        NSLog(@"Card %@ date is %@", self.title, [formatter stringFromDate:date]);
+        self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
 //        NSLog(@"CREATED CARD");
     }
     return self;
@@ -58,11 +65,6 @@
                 self.photosArray = [[NSMutableArray alloc] initWithArray:sortedArray];
             }
             
-            NSDate *date = object[PF_PICTURES_UPDATEDACTION];
-
-            self.dateUpdated = date;
-            self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
-            
 //            [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];
         }
     }
@@ -92,8 +94,8 @@
         self.numberOfTextMessages++;
     }
     
-    self.dateUpdated = date;
-    self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
+//    self.dateUpdated = date;
+//    self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
 //    [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];
 }
 

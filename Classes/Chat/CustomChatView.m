@@ -381,6 +381,7 @@
         setId_ = setID;
         self.set = set;
         [self.set fetchIfNeeded];
+        self.titleLabel.text = [self.set objectForKey:@"title"];
         self.userChatRoom = userChatRoom;
         [self.userChatRoom fetchIfNeeded];
         NSString *roomNameString = [self.userChatRoom objectForKey:@"nickname"];
@@ -637,15 +638,18 @@
     {
         PFUser *user = object[PF_CHAT_USER];
         PFObject *set = [object valueForKey:PF_CHAT_SETID];
-        JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId senderDisplayName:user[PF_USER_FULLNAME] setId:set.objectId date:object[PF_PICTURES_UPDATEDACTION]  text:object[PF_CHAT_TEXT]];
-
-        [JSQMessages addObject:message];
-        
-        setComments = JSQMessages;
-
-        if (objects.count == JSQMessages.count)
+        if (![object[PF_CHAT_TEXT] isEqualToString:@"emptyCard"])
         {
-            [self finishReceivingMessage:1];
+            JSQMessage *message = [[JSQMessage alloc] initWithSenderId:user.objectId senderDisplayName:user[PF_USER_FULLNAME] setId:set.objectId date:object[PF_PICTURES_UPDATEDACTION]  text:object[PF_CHAT_TEXT]];
+
+            [JSQMessages addObject:message];
+            
+            setComments = JSQMessages;
+
+            if (objects.count == JSQMessages.count)
+            {
+                [self finishReceivingMessage:1];
+            }
         }
     }
     [self.collectionView reloadData];
@@ -688,6 +692,7 @@
     {
         if (!error)
         {
+            self.titleLabel.text = [self.set objectForKey:@"title"];
             NSMutableArray *comments = [NSMutableArray new];
             NSLog(@"%li messages and pics", objects.count);
             for (PFObject *object in objects)
