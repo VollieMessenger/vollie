@@ -43,8 +43,6 @@
 #import "CardObject.h"
 #import "CardsViewHelper.h"
 
-
-
 //for testing the fav cells
 #import "FivePicsFavCell.h"
 
@@ -308,20 +306,25 @@
 
 -(void)newParseLoad
 {
-    [ProgressHUD show:@"Loading" Interaction:NO];
     [CardObject retrieveResultsWithSearchTerm:self.room withCompletion:^(NSArray *results)
     {
         [self clearPushNotesCounter];
         NSLog(@"%lu is the number of found chat objects!", results.count);
-        self.kyleChatArray = results;
 //        NSLog(@"%@ is the first result!", results.firstObject);
-        [self createCards];
+        if (results.count != self.kyleChatArray.count)
+        {
+            self.kyleChatArray = results;
+            [self createCards];
+        }
     }];
 }
 
 -(void)createCards
 {
     self.setsIDsArray = [NSMutableArray new];
+    self.kyleCardsArray = [NSMutableArray new];
+    self.kyleSetsArray = [NSMutableArray new];
+    [ProgressHUD show:@"Loading" Interaction:NO];
     for (PFObject* chatObject in self.kyleChatArray)
     {
         [self NEWERcheckForVollieCardWith:chatObject];
