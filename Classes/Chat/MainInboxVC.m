@@ -324,7 +324,7 @@
 {
     if (indexPath.row < self.messages.count)
     {
-        NSLog(@"Added RoomCell to inbox");
+//        NSLog(@"Added RoomCell to inbox");
         RoomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID" forIndexPath:indexPath];
         PFObject *room = self.messages[indexPath.row];
         [cell formatCellWith:room];

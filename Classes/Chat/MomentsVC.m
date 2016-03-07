@@ -34,7 +34,6 @@
 #import "ThreePicCell.h"
 #import "FourPicCell.h"
 #import "FivePicCell.h"
-#import "LoadingCell.h"
 #import "ParseVolliePackage.h"
 #import "AFDropdownNotification.h"
 #import "FullWidthChatView.h"
@@ -42,6 +41,7 @@
 #import "DynamicCardCell.h"
 #import "CardObject.h"
 #import "CardsViewHelper.h"
+#import "LoadMoreCell.h"
 
 //for testing the fav cells
 #import "FivePicsFavCell.h"
@@ -189,28 +189,36 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
-    CardObject *card = self.finishedCardsArray[indexPath.row];
-
-//    [card.viewController clearUnreadDot];
-    card.unreadStatus = false;
-    DynamicCardCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.unreadMessagesLabel.hidden = YES;
-
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
     
-//    CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:self.room withOrangeBubbles:NO];
-
-    CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.setID andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.set];
-//    chatt.room = self.room;
-    
-    chatt.titleLabel.text = card.title;
-
-    NSString *title;
-
-    [chatt setTitle:title];
-    chatt.room = self.room;
-    [self.navigationController pushViewController:chatt animated:1];
+    if (indexPath.row != 0)
+    {
+        CardObject *card = self.finishedCardsArray[indexPath.row - 1];
+        
+        //    [card.viewController clearUnreadDot];
+        card.unreadStatus = false;
+        DynamicCardCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        cell.unreadMessagesLabel.hidden = YES;
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+        
+        //    CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:self.room withOrangeBubbles:NO];
+        
+        CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.setID andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.set];
+        //    chatt.room = self.room;
+        
+        chatt.titleLabel.text = card.title;
+        
+        NSString *title;
+        
+        [chatt setTitle:title];
+        chatt.room = self.room;
+        [self.navigationController pushViewController:chatt animated:1];
+    }
+    else
+    {
+        [self getDataForSetOfCards];
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -227,7 +235,7 @@
     if (self.finishedCardsArray.count)
     {
 //        return 7;
-        return self.finishedCardsArray.count;
+        return self.finishedCardsArray.count + 1;
     }
     else
     {
@@ -246,25 +254,41 @@
 //    {
 //        return 325;
 //    }
-    return 325;
+    if (indexPath.row != 0)
+    {
+        return 325;
+    }
+    else
+    {
+        return 80;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row];
-    CardCellView *vc = card.chatVC;
-//        VollieCardData *card = [self.sortedCardsArray objectAtIndex:(indexPath.row/2)];
-//        CardCellView *vc = card.viewController;
-    vc.room = self.room;
-    vc.view.backgroundColor = [UIColor whiteColor];
-    [self.vollieVCcardArray addObject:vc];
-    [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
-    DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
-//        [cell formatCell];
-    [cell formatCellWithCardObject:card];
-//        [cell fillPicsWithVollieCardData:card];
-    [self fillUIView:cell.viewForChatVC withCardVC:card.chatVC];
-    return cell;
+    if (indexPath.row != 0)
+    {
+        CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row - 1];
+        CardCellView *vc = card.chatVC;
+        //        VollieCardData *card = [self.sortedCardsArray objectAtIndex:(indexPath.row/2)];
+        //        CardCellView *vc = card.viewController;
+        vc.room = self.room;
+        vc.view.backgroundColor = [UIColor whiteColor];
+        [self.vollieVCcardArray addObject:vc];
+        [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
+        DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
+        //        [cell formatCell];
+        [cell formatCellWithCardObject:card];
+        //        [cell fillPicsWithVollieCardData:card];
+        [self fillUIView:cell.viewForChatVC withCardVC:card.chatVC];
+        return cell;
+    }
+    else
+    {
+        [self.tableView registerNib:[UINib nibWithNibName:@"LoadMoreCell" bundle:0] forCellReuseIdentifier:@"LoadMoreCell"];
+        LoadMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadMoreCell"];
+        return cell;
+    }
 }
 
 
@@ -354,11 +378,11 @@
     }
 }
 
--(void)reverseArrayWith:(NSMutableArray*)array
-{
-    NSArray *reversedArray = [[array reverseObjectEnumerator] allObjects];
-    self.finishedCardsArray = [NSMutableArray arrayWithArray:reversedArray];
-}
+//-(void)reverseArrayWith:(NSMutableArray*)array
+//{
+//    NSArray *reversedArray = [[array reverseObjectEnumerator] allObjects];
+//    self.finishedCardsArray = [NSMutableArray arrayWithArray:reversedArray];
+//}
 
 -(void)sortFinishedCards
 {
@@ -388,11 +412,33 @@
     
     if (self.kyleCardsArray.count >= 7)
     {
-        numberOfCardsToLoad = 7;
+        if (self.kyleCardsArray.count - self.numberToSearchThrough > 6)
+        {
+            numberOfCardsToLoad = 7;
+        }
+        else
+        {
+            numberOfCardsToLoad = (int)self.kyleCardsArray.count - self.numberToSearchThrough;
+            
+        }
     }
     else
     {
-        numberOfCardsToLoad = (int)self.kyleCardsArray.count;
+        if (self.numberToSearchThrough != self.kyleCardsArray.count)
+        {
+            numberOfCardsToLoad = (int)self.kyleCardsArray.count;
+        }
+        else
+        {
+            numberOfCardsToLoad = 0;
+            [self scrollToBottom];
+        }
+    }
+    
+    NSLog(@"%i cards going to load", numberOfCardsToLoad);
+    if (numberOfCardsToLoad == self.numberToSearchThrough)
+    {
+        [self scrollToBottom];
     }
     
     __block int numberOfCardsWithMessagesStatusLoaded = 0;
@@ -405,7 +451,7 @@
             if (finished)
             {
                 numberOfCardsWithMessagesStatusLoaded++;
-                NSLog(@"finished checking for unread users for card %i", i);
+//                NSLog(@"finished checking for unread users for card %i", i);
                 if(numberOfCardsWithPicsLoaded == numberOfCardsToLoad && numberOfCardsWithMessagesStatusLoaded == numberOfCardsToLoad)
                 {
 //                    NSLog(@"YOU CAN RETURN NOW");
@@ -414,14 +460,14 @@
                 }
             }
         }];
-        NSLog(@"Getting data for %@",card.title);
+//        NSLog(@"Getting data for %@",card.title);
         
 //        [self.helperTool getPicsWith:card];
         [card getPicsForCardwithPics:^(BOOL pics)
         {
             if (pics)
             {
-                NSLog(@"downloaded pics finished for card %i", i);
+//                NSLog(@"downloaded pics finished for card %i", i);
                 numberOfCardsWithPicsLoaded++;
 //                NSLog(@"x is %i", x);
                 if(numberOfCardsWithPicsLoaded == numberOfCardsToLoad && numberOfCardsWithMessagesStatusLoaded == numberOfCardsToLoad)

@@ -21,7 +21,7 @@
     
     if (count == 0)
     {
-        NSLog(@"no images");
+//        NSLog(@"no images");
         card.imageOne = [UIImage imageNamed:@"Vollie-icon"];
         card.imageTwo = [UIImage imageNamed:@"Vollie-icon"];
     }
@@ -33,7 +33,7 @@
          {
              if (!error)
              {
-                 NSLog(@"downloaded 1 pic");
+//                 NSLog(@"downloaded 1 pic");
                  card.imageOne = [UIImage imageWithData:data];
                  card.imageTwo = [UIImage imageNamed:@"Vollie-icon"];
              }
@@ -56,7 +56,7 @@
          {
              if (!error)
              {
-                 NSLog(@"downloaded 2 pics");
+//                 NSLog(@"downloaded 2 pics");
                  card.imageTwo = [UIImage imageWithData:data];
              }
          }];

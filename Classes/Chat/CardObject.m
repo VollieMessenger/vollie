@@ -113,12 +113,16 @@
     [query includeKey:PF_CHAT_USER];
     [query includeKey:PF_CHAT_SETID];
     [query setLimit:1000];
-    [query orderByDescending:@"createdAt"];
+//    [query orderByDescending:@"createdAt"];
+    [query orderByAscending:@"createdAt"];
 
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
     {
         if (!error)
         {
+            
+            
+            
             complete(objects);
         }
         else
@@ -135,7 +139,7 @@
     
     if (count == 0)
     {
-        NSLog(@"no images");
+//        NSLog(@"no images");
         self.imageOne = [UIImage imageNamed:@"Vollie-icon"];
         self.imageTwo = [UIImage imageNamed:@"Vollie-icon"];
         complete (YES);
@@ -148,7 +152,7 @@
          {
              if (!error)
              {
-                 NSLog(@"downloaded 1 pic");
+//                 NSLog(@"downloaded 1 pic");
                  self.imageOne = [UIImage imageWithData:data];
                  self.imageTwo = [UIImage imageNamed:@"Vollie-icon"];
                  complete (YES);
@@ -172,7 +176,7 @@
          {
              if (!error)
              {
-                 NSLog(@"downloaded 2 pics");
+//                 NSLog(@"downloaded 2 pics");
                  self.imageTwo = [UIImage imageWithData:data];
                  complete (YES);
              }
