@@ -700,6 +700,7 @@
 //                NSLog(@"%@", object);
                 if (![objectIds containsObject:object.objectId])
                 {
+
                     [objectIds addObject:object.objectId];
 //                    setPicturesObjects = [NSMutableArray new];
                     if ([object valueForKey:PF_PICTURES_THUMBNAIL])
@@ -733,7 +734,17 @@
                     }
                     else
                     {
-                        [comments addObject:object];
+                        if ([object valueForKey:@"text"])
+                        {
+                            if ([[object valueForKey:@"text"] isEqualToString:@"emptyCard"])
+                            {
+                                
+                            }
+                            else
+                            {
+                                [comments addObject:object];
+                            }
+                        }
                         NSLog(@"%li messsages", comments.count);
                     }
                 }

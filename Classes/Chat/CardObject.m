@@ -35,7 +35,6 @@
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
         NSLog(@"Card %@ date is %@", self.title, [formatter stringFromDate:date]);
         self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
-//        NSLog(@"CREATED CARD");
     }
     return self;
 }
@@ -94,8 +93,14 @@
         self.numberOfTextMessages++;
     }
     
-//    self.dateUpdated = date;
-//    self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
+    self.dateUpdated = date;
+    self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
+    //        NSDate *date = object[PF_PICTURES_UPDATEDACTION];
+    //        self.dateUpdated = date;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    NSLog(@"Card %@ date is %@", self.title, [formatter stringFromDate:date]);
+    //        self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
 //    [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];
 }
 
@@ -120,9 +125,6 @@
     {
         if (!error)
         {
-            
-            
-            
             complete(objects);
         }
         else

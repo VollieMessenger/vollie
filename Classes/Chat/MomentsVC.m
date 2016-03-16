@@ -337,6 +337,7 @@
 //        NSLog(@"%@ is the first result!", results.firstObject);
         if (results.count != self.kyleChatArray.count)
         {
+//            self.kyleCardsArray = [NSMutableArray new];
             self.kyleChatArray = results;
             [self createCards];
         }
@@ -415,10 +416,12 @@
         if (self.kyleCardsArray.count - self.numberToSearchThrough > 6)
         {
             numberOfCardsToLoad = 7;
+//            NSLog(@"set number of cards to load as 7");
         }
         else
         {
             numberOfCardsToLoad = (int)self.kyleCardsArray.count - self.numberToSearchThrough;
+//            NSLog(@"set number of cards to load as %i", numberOfCardsToLoad);
             
         }
     }
@@ -436,10 +439,12 @@
     }
     
     NSLog(@"%i cards going to load", numberOfCardsToLoad);
-    if (numberOfCardsToLoad == self.numberToSearchThrough)
-    {
-        [self scrollToBottom];
-    }
+//    if (numberOfCardsToLoad == self.numberToSearchThrough)
+//    {
+//        //this means it's loading from ViewDidAppear after adding content to an additional card
+//        NSLog(@"TEST TEST TEST");
+//        [self scrollToBottom];
+//    }
     
     __block int numberOfCardsWithMessagesStatusLoaded = 0;
     for (int i = 0; i < numberOfCardsToLoad; i++)

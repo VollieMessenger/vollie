@@ -170,12 +170,15 @@
                         {
                             if(![text isEqualToString:@""] && ![text isEqualToString:@"Type Message Here..."])
                             {
-                                NSLog(@"went part 1");
-                                [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
+//                                NSLog(@"went part 1");
+//                                [self checkForTextAndSendItWithText:text andRoom:roomNumber andSet:setID];
+                                [self showSuccessNotificationWithString:@"New Vollie!"
+                                                              andObject:object
+                                                          andRoomNumber:roomNumber];
                             }
                             else
                             {
-                                NSLog(@"went part 2");
+//                                NSLog(@"went part 2");
                                 [self showSuccessNotificationWithString:@"New Picture!"
                                                               andObject:object
                                                           andRoomNumber:roomNumber];
@@ -183,7 +186,7 @@
                         }
                         else
                         {
-                            NSLog(@"went part 3");
+//                            NSLog(@"went part 3");
                             [self showSuccessNotificationWithString:@"New Picture!"
                                                           andObject:object
                                                       andRoomNumber:roomNumber];

@@ -389,6 +389,7 @@
                                           //Dismiss Modal Views
                                           PostNotification(NOTIFICATION_CLICKED_PUSH);
           //                                [lastPicture fetch];
+                                              
           //                                PFObject *set = [lastPicture objectForKey:@"setId"];
                                           CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:set andUserChatRoom:messageRoom withOrangeBubbles:NO];
                                           [scrollView openView:deepChatView];
@@ -400,6 +401,8 @@
                                  {
                                      NSLog(@"I was opened from a push note");
                                      CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:set andUserChatRoom:messageRoom withOrangeBubbles:NO];
+                                     deepChatView.titleLabel.text = [set objectForKey:@"title"];;
+
                                      [scrollView openView:deepChatView];
                                      completionHandler(UIBackgroundFetchResultNoData);
                                  }
