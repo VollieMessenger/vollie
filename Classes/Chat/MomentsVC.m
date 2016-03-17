@@ -339,6 +339,8 @@
         {
 //            self.kyleCardsArray = [NSMutableArray new];
             self.kyleChatArray = results;
+//            self.finishedCardsArray = [NSMutableArray new];
+            self.numberToSearchThrough = 0;
             [self createCards];
         }
     }];
@@ -349,6 +351,8 @@
     self.setsIDsArray = [NSMutableArray new];
     self.kyleCardsArray = [NSMutableArray new];
     self.kyleSetsArray = [NSMutableArray new];
+    self.sortedCardsArray = [NSMutableArray new];
+    self.finishedCardsArray = [NSMutableArray new];
     [ProgressHUD show:@"Loading" Interaction:NO];
     for (PFObject* chatObject in self.kyleChatArray)
     {

@@ -153,8 +153,8 @@ SecondDelegate>
 {
     //this is for the random edgecases where a user might try to edit the placeholder text
     self.textView.text = [self returnStringButGetRidOf:@"Create Vollie Title Here..." fromTheString:self.textView.text];
-    self.textView.text = [self returnStringButGetRidOf:@"Create " fromTheString:self.textView.text];
-    self.textView.text = [self returnStringButGetRidOf:@"Vollie " fromTheString:self.textView.text];
+    self.textView.text = [self returnStringButGetRidOf:@"Create V" fromTheString:self.textView.text];
+    self.textView.text = [self returnStringButGetRidOf:@"Create Vollie " fromTheString:self.textView.text];
     self.textView.text = [self returnStringButGetRidOf:@"Title " fromTheString:self.textView.text];
     self.textView.text = [self returnStringButGetRidOf:@"Here.." fromTheString:self.textView.text];
 }
