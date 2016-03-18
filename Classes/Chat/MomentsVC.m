@@ -80,8 +80,8 @@
 @property int numberToSearchThrough;
 @property CardsViewHelper *helperTool;
 @property NSMutableArray *finishedCardsArray;
-
 @property NSArray *sortedCardsArray;
+@property BOOL shouldShowLoadMoreButton;
 
 @property int isLoadingEarlierCount;
 
@@ -104,6 +104,7 @@
     self.vollieVCcardArray = [NSMutableArray new];
     self.sortedCardsArray = [NSArray new];
     self.shouldScrollDown = YES;
+//    self.shou
     
     
     //new loading stuff:
@@ -114,6 +115,7 @@
     self.helperTool = [CardsViewHelper new];
     self.sortedCardsArray = [NSMutableArray new];
     self.finishedCardsArray = [NSMutableArray new];
+    self.shouldShowLoadMoreButton = NO;
 
 //    [self loadMessages];
 }
@@ -235,7 +237,14 @@
     if (self.finishedCardsArray.count)
     {
 //        return 7;
-        return self.finishedCardsArray.count + 1;
+        if(self.shouldShowLoadMoreButton)
+        {
+            return self.finishedCardsArray.count + 1;
+        }
+        else
+        {
+            return self.finishedCardsArray.count;
+        }
     }
     else
     {
@@ -254,21 +263,64 @@
 //    {
 //        return 325;
 //    }
-    if (indexPath.row != 0)
+    if (self.shouldShowLoadMoreButton)
     {
-        return 325;
+        if (indexPath.row == 0)
+        {
+            return 80;
+        }
+        else
+        {
+            return 325;
+        }
     }
     else
     {
-        return 80;
+        return 325;
     }
+    
+    
+//    if (indexPath.row != 0)
+//    {
+//        return 325;
+//    }
+//    else
+//    {
+//        return 80;
+//    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row != 0)
+    
+//    CardObject *card = [CardObject new];
+    if (self.shouldShowLoadMoreButton)
     {
-        CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row - 1];
+        if (indexPath.row == 0)
+        {
+            [self.tableView registerNib:[UINib nibWithNibName:@"LoadMoreCell" bundle:0] forCellReuseIdentifier:@"LoadMoreCell"];
+            LoadMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadMoreCell"];
+            return cell;
+        }
+        else
+        {
+            CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row - 1];
+            CardCellView *vc = card.chatVC;
+            vc.room = self.room;
+            vc.view.backgroundColor = [UIColor whiteColor];
+            [self.vollieVCcardArray addObject:vc];
+            [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
+            DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
+            //        [cell formatCell];
+            [cell formatCellWithCardObject:card];
+            //        [cell fillPicsWithVollieCardData:card];
+            [self fillUIView:cell.viewForChatVC withCardVC:card.chatVC];
+            return cell;        }
+    }
+    else
+    {
+        CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row];
+//        card = [self.finishedCardsArray objectAtIndex:indexPath.row];
         CardCellView *vc = card.chatVC;
         //        VollieCardData *card = [self.sortedCardsArray objectAtIndex:(indexPath.row/2)];
         //        CardCellView *vc = card.viewController;
@@ -283,12 +335,30 @@
         [self fillUIView:cell.viewForChatVC withCardVC:card.chatVC];
         return cell;
     }
-    else
-    {
-        [self.tableView registerNib:[UINib nibWithNibName:@"LoadMoreCell" bundle:0] forCellReuseIdentifier:@"LoadMoreCell"];
-        LoadMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadMoreCell"];
-        return cell;
-    }
+    
+//    if (indexPath.row != 0)
+//    {
+//        CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row - 1];
+//        CardCellView *vc = card.chatVC;
+//        //        VollieCardData *card = [self.sortedCardsArray objectAtIndex:(indexPath.row/2)];
+//        //        CardCellView *vc = card.viewController;
+//        vc.room = self.room;
+//        vc.view.backgroundColor = [UIColor whiteColor];
+//        [self.vollieVCcardArray addObject:vc];
+//        [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
+//        DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
+//        //        [cell formatCell];
+//        [cell formatCellWithCardObject:card];
+//        //        [cell fillPicsWithVollieCardData:card];
+//        [self fillUIView:cell.viewForChatVC withCardVC:card.chatVC];
+//        return cell;
+//    }
+//    else
+//    {
+//        [self.tableView registerNib:[UINib nibWithNibName:@"LoadMoreCell" bundle:0] forCellReuseIdentifier:@"LoadMoreCell"];
+//        LoadMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadMoreCell"];
+//        return cell;
+//    }
 }
 
 
@@ -420,12 +490,14 @@
         if (self.kyleCardsArray.count - self.numberToSearchThrough > 6)
         {
             numberOfCardsToLoad = 7;
-//            NSLog(@"set number of cards to load as 7");
+            NSLog(@"loading %i cards", numberOfCardsToLoad);
+            self.shouldShowLoadMoreButton = YES;
         }
         else
         {
             numberOfCardsToLoad = (int)self.kyleCardsArray.count - self.numberToSearchThrough;
-//            NSLog(@"set number of cards to load as %i", numberOfCardsToLoad);
+            NSLog(@"loading remaining %i cards", numberOfCardsToLoad);
+            self.shouldShowLoadMoreButton = NO;
             
         }
     }
@@ -434,6 +506,8 @@
         if (self.numberToSearchThrough != self.kyleCardsArray.count)
         {
             numberOfCardsToLoad = (int)self.kyleCardsArray.count;
+            NSLog(@"only had %lu cards", self.kyleCardsArray.count);
+            self.shouldShowLoadMoreButton = NO;
         }
         else
         {
@@ -442,7 +516,7 @@
         }
     }
     
-    NSLog(@"%i cards going to load", numberOfCardsToLoad);
+//    NSLog(@"%i cards going to load", numberOfCardsToLoad);
 //    if (numberOfCardsToLoad == self.numberToSearchThrough)
 //    {
 //        //this means it's loading from ViewDidAppear after adding content to an additional card
@@ -501,7 +575,8 @@
 -(void)reloadCardsAfterUpload
 {
     NSLog(@"Sent message to reload cards");
-    [self loadMessages];
+//    [self loadMessages];
+    [self newParseLoad];
     [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:0.8f];
 //    [self dismissTopNotification];
 //    [self.notification dismissWithGravityAnimation:NO];
