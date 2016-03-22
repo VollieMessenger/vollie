@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadMoreCell" rowHeight="66" id="KGk-i7-Jjw" customClass="LoadMoreCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="66"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadMoreCell" rowHeight="67" id="KGk-i7-Jjw" customClass="LoadMoreCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="65.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="66.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zrX-ZZ-hfo">
+                        <rect key="frame" x="-2" y="8" width="322" height="49.5"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Load More" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qx-qv-5dw">
                         <rect key="frame" x="110" y="22" width="100" height="21"/>
                         <constraints>
@@ -21,16 +26,23 @@
                             <constraint firstAttribute="width" constant="100" id="rwt-BF-t4Y"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                        <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="zrX-ZZ-hfo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-10" id="10v-Yr-qmN"/>
                     <constraint firstItem="8Qx-qv-5dw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="51Q-ko-kLH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zrX-ZZ-hfo" secondAttribute="trailing" constant="-8" id="XMV-f6-12l"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zrX-ZZ-hfo" secondAttribute="bottom" constant="1" id="Z1f-cH-4pY"/>
                     <constraint firstItem="8Qx-qv-5dw" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ZLf-mH-OaC"/>
+                    <constraint firstItem="zrX-ZZ-hfo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="d67-ic-Wwy"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="322" y="277"/>
+            <connections>
+                <outlet property="cardView" destination="zrX-ZZ-hfo" id="rCM-Jo-DM9"/>
+            </connections>
+            <point key="canvasLocation" x="322" y="276.5"/>
         </tableViewCell>
     </objects>
 </document>

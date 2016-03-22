@@ -62,6 +62,10 @@
                 NSArray *sortedArray = [self.photosArray sortedArrayUsingDescriptors:sortDescriptors];
 
                 self.photosArray = [[NSMutableArray alloc] initWithArray:sortedArray];
+                
+                NSDate *date = object[PF_PICTURES_UPDATEDACTION];
+                self.dateUpdated = date;
+                self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
             }
             
 //            [self createCardVCwithSetID:set.objectId andPictures:self.photosArray andComments:self.messagesArray];

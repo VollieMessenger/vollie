@@ -267,7 +267,7 @@
     {
         if (indexPath.row == 0)
         {
-            return 80;
+            return 75;
         }
         else
         {

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface LoadMoreCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIView *cardView;
 
 @end
