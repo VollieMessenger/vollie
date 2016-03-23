@@ -192,9 +192,41 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    VollieCardData *card = self.vollieCardDataArray[(indexPath.row/2)];
     
-    if (indexPath.row != 0)
+    if (self.shouldShowLoadMoreButton)
     {
-        CardObject *card = self.finishedCardsArray[indexPath.row - 1];
+        if (indexPath.row != 0)
+        {
+            CardObject *card = self.finishedCardsArray[indexPath.row - 1];
+            
+            //    [card.viewController clearUnreadDot];
+            card.unreadStatus = false;
+            DynamicCardCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            cell.unreadMessagesLabel.hidden = YES;
+            
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+            
+            //    CustomChatView *deepChatView = [[CustomChatView alloc] initWithSet:card.set andUserChatRoom:self.room withOrangeBubbles:NO];
+            
+            CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:card.setID andColor:[UIColor volleyFamousGreen] andPictures:card.photosArray andComments:card.messagesArray andActualSet:card.set];
+            //    chatt.room = self.room;
+            
+            chatt.titleLabel.text = card.title;
+            
+            NSString *title;
+            
+            [chatt setTitle:title];
+            chatt.room = self.room;
+            [self.navigationController pushViewController:chatt animated:1];
+        }
+        else
+        {
+            [self getDataForSetOfCards];
+        }
+    }
+    else
+    {
+        CardObject *card = self.finishedCardsArray[indexPath.row];
         
         //    [card.viewController clearUnreadDot];
         card.unreadStatus = false;
@@ -216,10 +248,7 @@
         [chatt setTitle:title];
         chatt.room = self.room;
         [self.navigationController pushViewController:chatt animated:1];
-    }
-    else
-    {
-        [self getDataForSetOfCards];
+
     }
 }
 
@@ -376,13 +405,19 @@
     {
         CGFloat oldTableViewOffset = self.tableView.contentOffset.y;
 //        How : float verticalContentOffset  = tableView.contentOffset.y;
+        NSLog(@"%@ is content size", NSStringFromCGSize(self.tableView.contentSize));
         
+        CGFloat whereToScrollTo = self.tableView.contentSize.height;
+        
+        //2275
 
         NSLog(@"Trying not to scroll to bottom");
         [self.tableView reloadData];
+        CGFloat newHeight = self.tableView.contentSize.height;
+        
         // Put your scroll position to where it was before
 //        CGFloat newTableViewHeight = self.tableView.contentSize.height;
-        self.tableView.contentOffset = CGPointMake(0, oldTableViewOffset);
+        self.tableView.contentOffset = CGPointMake(0, (newHeight-whereToScrollTo));
         self.shouldScrollDown = YES;
     }
 }
@@ -484,6 +519,17 @@
 //    int numberOfCardsWithPicsLoaded = 0;
     int numberOfCardsToLoad;
     __block int numberOfCardsWithPicsLoaded = 0; //  x lives in block storage
+    
+    if (self.numberToSearchThrough == 0)
+    {
+        NSLog(@"initial load of cards");
+        self.shouldScrollDown = YES;
+    }
+    else
+    {
+        self.shouldScrollDown = NO;
+        NSLog(@"not initial load of cardS");
+    }
     
     if (self.kyleCardsArray.count >= 7)
     {
