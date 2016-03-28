@@ -173,6 +173,7 @@
     [self.view setNeedsDisplay];
     self.collectionViewPictures.hidden = NO;
     [self.collectionViewPictures reloadData];
+    [self scrollToBottomAnimated:YES];
     NSLog(@"%@ is the id", self.room.objectId);
 //    self.collectionViewPictures.hidden = NO;
 //    if (self.shouldShowTempCard)
@@ -653,6 +654,8 @@
         }
     }
     [self.collectionView reloadData];
+//    [self scrollToBottomAnimated:NO];
+//    self.collectionView
 }
 
 

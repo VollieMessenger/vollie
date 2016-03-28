@@ -537,7 +537,14 @@
         {
             numberOfCardsToLoad = 7;
             NSLog(@"loading %i cards", numberOfCardsToLoad);
-            self.shouldShowLoadMoreButton = YES;
+            if (self.kyleCardsArray.count - self.numberToSearchThrough == 7)
+            {
+                self.shouldShowLoadMoreButton = NO;
+            }
+            else
+            {
+                self.shouldShowLoadMoreButton = YES;                
+            }
         }
         else
         {

@@ -147,7 +147,7 @@
                         </mask>
                     </variation>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructions2-cardWithVollieText" translatesAutoresizingMaskIntoConstraints="NO" id="B9k-Jq-rVn">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VollieInstructions-new-cardsview" translatesAutoresizingMaskIntoConstraints="NO" id="B9k-Jq-rVn">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                 </imageView>
             </subviews>
@@ -196,7 +196,7 @@
     <resources>
         <image name="SwipeLeft" width="447" height="168"/>
         <image name="Swiperight" width="457" height="168"/>
+        <image name="VollieInstructions-new-cardsview" width="558" height="748"/>
         <image name="instructions-lighterGrayBox" width="791" height="521"/>
-        <image name="instructions2-cardWithVollieText" width="605" height="714"/>
     </resources>
 </document>

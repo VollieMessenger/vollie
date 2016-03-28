@@ -257,6 +257,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
         [self.snapshotView removeFromSuperview];
     }
+//    [self scrollToBottomAnimated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
