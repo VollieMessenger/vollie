@@ -175,6 +175,7 @@
     [self.collectionViewPictures reloadData];
     [self scrollToBottomAnimated:YES];
     NSLog(@"%@ is the id", self.room.objectId);
+    
 //    self.collectionViewPictures.hidden = NO;
 //    if (self.shouldShowTempCard)
 //    {
@@ -200,7 +201,6 @@
     self.notification.subtitleText = @"We are uploading your pictures now. Your new pictures will show up soon! ";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
     [self.notification presentInView:self.view withGravityAnimation:NO];
-//    self.shouldShowTempCard = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -97,6 +97,7 @@
         self.numberOfTextMessages++;
     }
     
+    
     self.dateUpdated = date;
     self.numberFromDateToSortWith = [NSNumber numberWithDouble:[date timeIntervalSinceReferenceDate]];
     //        NSDate *date = object[PF_PICTURES_UPDATEDACTION];

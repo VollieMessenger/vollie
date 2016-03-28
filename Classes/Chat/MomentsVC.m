@@ -215,7 +215,7 @@
             
             NSString *title;
             
-            [chatt setTitle:title];
+            [chatt setTitle:self.name];
             chatt.room = self.room;
             [self.navigationController pushViewController:chatt animated:1];
         }

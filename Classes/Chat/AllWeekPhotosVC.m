@@ -84,8 +84,24 @@
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 //    return CGSizeMake((self.collectionView.frame.size.width/3-10), self.collectionView.frame.size.width/3-10);
-    return CGSizeMake((self.collectionView.frame.size.width/3-14), self.collectionView.frame.size.width/3-14);
+    return CGSizeMake((self.collectionView.frame.size.width/3-7), self.collectionView.frame.size.width/3-7);
+    
 
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 7;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 7;
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 #pragma mark - "Parse Pull"
