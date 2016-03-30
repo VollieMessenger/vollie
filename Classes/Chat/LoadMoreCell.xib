@@ -29,10 +29,20 @@
                         <color key="textColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="t9U-da-h0G">
+                        <rect key="frame" x="141" y="14" width="37" height="37"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="37" id="M23-Oy-0DE"/>
+                            <constraint firstAttribute="height" constant="37" id="ghZ-vU-MK3"/>
+                        </constraints>
+                        <color key="color" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="zrX-ZZ-hfo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-10" id="10v-Yr-qmN"/>
                     <constraint firstItem="8Qx-qv-5dw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="51Q-ko-kLH"/>
+                    <constraint firstItem="t9U-da-h0G" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="HgY-UI-e1c"/>
+                    <constraint firstItem="t9U-da-h0G" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ox8-tm-7df"/>
                     <constraint firstAttribute="trailingMargin" secondItem="zrX-ZZ-hfo" secondAttribute="trailing" constant="-8" id="XMV-f6-12l"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zrX-ZZ-hfo" secondAttribute="bottom" constant="1" id="Z1f-cH-4pY"/>
                     <constraint firstItem="8Qx-qv-5dw" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="ZLf-mH-OaC"/>
@@ -41,6 +51,8 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="cardView" destination="zrX-ZZ-hfo" id="rCM-Jo-DM9"/>
+                <outlet property="spinner" destination="t9U-da-h0G" id="MhF-oe-gJ0"/>
+                <outlet property="titleLabel" destination="8Qx-qv-5dw" id="6h0-zg-npA"/>
             </connections>
             <point key="canvasLocation" x="322" y="276.5"/>
         </tableViewCell>

@@ -220,9 +220,12 @@
 - (IBAction)switchVibrate:(UISwitch *)sender
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    if (sender.isOn) {
+    if (sender.isOn)
+    {
          [userDefaults setBool:YES forKey:PF_KEY_SHOULDVIBRATE];
-    } else {
+    }
+    else
+    {
         [userDefaults setBool:NO forKey:PF_KEY_SHOULDVIBRATE];
     }
     [userDefaults synchronize];

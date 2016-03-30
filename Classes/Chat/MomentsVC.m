@@ -85,6 +85,8 @@
 
 @property int isLoadingEarlierCount;
 
+@property LoadMoreCell *masterLoadMoreCell;
+
 @end
 
 @implementation MomentsVC
@@ -221,6 +223,13 @@
         }
         else
         {
+////            LoadMoreCell *cell = 
+//            cell.titleLabel.hidden = YES;
+//            cell.spinner.hidden = NO;
+//            [cell.spinner startAnimating];
+            self.masterLoadMoreCell.titleLabel.hidden = YES;
+            self.masterLoadMoreCell.spinner.hidden = NO;
+            [self.masterLoadMoreCell.spinner startAnimating];
             [self getDataForSetOfCards];
         }
     }
@@ -329,6 +338,7 @@
         {
             [self.tableView registerNib:[UINib nibWithNibName:@"LoadMoreCell" bundle:0] forCellReuseIdentifier:@"LoadMoreCell"];
             LoadMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadMoreCell"];
+            self.masterLoadMoreCell = cell;
             return cell;
         }
         else
@@ -513,6 +523,13 @@
 //    [self.sortedCardsArray reverseObjectEnumerator];
 }
 
+-(void)stopAnimationOfTopCell
+{
+    self.masterLoadMoreCell.titleLabel.hidden = NO;
+    self.masterLoadMoreCell.spinner.hidden = YES;
+//    self.masterLoadMoreCell 
+}
+
 -(void)getDataForSetOfCards
 {
     [self sortCards];
@@ -591,6 +608,7 @@
                 if(numberOfCardsWithPicsLoaded == numberOfCardsToLoad && numberOfCardsWithMessagesStatusLoaded == numberOfCardsToLoad)
                 {
 //                    NSLog(@"YOU CAN RETURN NOW");
+                    [self stopAnimationOfTopCell];
                     [self scrollToBottom];
 //                    [self.tableView]
                 }
@@ -609,6 +627,7 @@
                 if(numberOfCardsWithPicsLoaded == numberOfCardsToLoad && numberOfCardsWithMessagesStatusLoaded == numberOfCardsToLoad)
                 {
 //                    NSLog(@"YOU CAN RETURN NOW");
+                    [self stopAnimationOfTopCell];
                     [self scrollToBottom];
                 }
             }

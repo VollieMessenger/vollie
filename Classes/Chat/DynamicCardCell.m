@@ -55,6 +55,8 @@
     self.cardView.layer.borderColor = [UIColor colorWithWhite:0.76 alpha:1.000].CGColor;
     self.cardView.layer.borderWidth = 1;
     self.cardView.layer.masksToBounds = YES;
+
+//    self.spi
     
     self.unreadMessagesLabel.layer.cornerRadius = 7.5;
     self.unreadMessagesLabel.layer.masksToBounds = YES;
