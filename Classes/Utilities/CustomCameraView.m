@@ -804,7 +804,7 @@
 
             UIImage *one = [[UIImage alloc] initWithCGImage:oneRef];
             UIImage *video = [UIImage imageNamed:@"video"];
-            one = [self drawImage:video inImage:one atPoint:CGPointMake((one.size.width/2 - video.size.width/2) , (one.size.height/2 - video.size.height/2))];
+//            one = [self drawImage:video inImage:one atPoint:CGPointMake((one.size.width/2 - video.size.width/2) , (one.size.height/2 - video.size.height/2))];
 
 
             NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@", NSTemporaryDirectory(), [NSString stringWithFormat:@"outputC%i.mov", _captureVideoNowCounter]];
@@ -847,6 +847,8 @@
             }];
 
             [picker dismissViewControllerAnimated:1 completion:0];
+            
+            
             return;
         } else {
             [picker dismissViewControllerAnimated:1 completion:0];
@@ -871,7 +873,7 @@
         [self setButtonsWithImage:image withVideo:false AndURL:0];
 
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
         NSLog(@"Scroll enabled");
 
@@ -881,8 +883,8 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:1 completion:^{
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-//        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
+//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
         NSLog(@"Scroll enabled");
     }];
