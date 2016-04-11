@@ -400,8 +400,10 @@
     [self preSendCheck];
 }
 
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
     [controller dismissViewControllerAnimated:YES completion:nil];
+    [ProgressHUD showSuccess:@"Sent!"];
 }
 
 - (IBAction)actionSend
