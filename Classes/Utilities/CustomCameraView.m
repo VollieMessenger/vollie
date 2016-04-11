@@ -386,7 +386,7 @@
     {
         if (self.navigationController.visibleViewController == self && self.scrollView.contentOffset.x  < 2)
         {
-//            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
+            [[UIApplication sharedApplication] setStatusBarHidden:1 withAnimation:UIStatusBarAnimationSlide];
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:1];
             self.scrollView.scrollEnabled = YES;
             NSLog(@"Scroll Enabled in if statement in VDA");
