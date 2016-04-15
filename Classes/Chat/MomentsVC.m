@@ -132,6 +132,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.vollieIconImageView.layer.cornerRadius = 10;
     self.vollieIconImageView.layer.masksToBounds = YES;
+//    self.navigationItem.rightBarButtonItem = nil;
     UIBarButtonItem *barButton = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(goToManageChatVC)];
     barButton.image = [UIImage imageNamed:ASSETS_TYPING];
     self.navigationItem.rightBarButtonItem = barButton;
@@ -215,7 +216,7 @@
             
             chatt.titleLabel.text = card.title;
             
-            NSString *title;
+//            NSString *title;
             
             [chatt setTitle:self.name];
             chatt.room = self.room;
@@ -263,15 +264,6 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if (self.shouldShowTempCard == NO)
-//    {
-//        return self.vollieCardDataArray.count * 2 - 1;
-//    }
-//    else
-//    {
-////        return 1;
-//        return  self.vollieCardDataArray.count * 2;
-//    }
     if (self.finishedCardsArray.count)
     {
 //        return 7;
@@ -374,30 +366,6 @@
         [self fillUIView:cell.viewForChatVC withCardVC:card.chatVC];
         return cell;
     }
-    
-//    if (indexPath.row != 0)
-//    {
-//        CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row - 1];
-//        CardCellView *vc = card.chatVC;
-//        //        VollieCardData *card = [self.sortedCardsArray objectAtIndex:(indexPath.row/2)];
-//        //        CardCellView *vc = card.viewController;
-//        vc.room = self.room;
-//        vc.view.backgroundColor = [UIColor whiteColor];
-//        [self.vollieVCcardArray addObject:vc];
-//        [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
-//        DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
-//        //        [cell formatCell];
-//        [cell formatCellWithCardObject:card];
-//        //        [cell fillPicsWithVollieCardData:card];
-//        [self fillUIView:cell.viewForChatVC withCardVC:card.chatVC];
-//        return cell;
-//    }
-//    else
-//    {
-//        [self.tableView registerNib:[UINib nibWithNibName:@"LoadMoreCell" bundle:0] forCellReuseIdentifier:@"LoadMoreCell"];
-//        LoadMoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LoadMoreCell"];
-//        return cell;
-//    }
 }
 
 
@@ -413,7 +381,7 @@
     }
     else
     {
-        CGFloat oldTableViewOffset = self.tableView.contentOffset.y;
+//        CGFloat oldTableViewOffset = self.tableView.contentOffset.y;
 //        How : float verticalContentOffset  = tableView.contentOffset.y;
         NSLog(@"%@ is content size", NSStringFromCGSize(self.tableView.contentSize));
         
@@ -498,12 +466,6 @@
     }
 }
 
-//-(void)reverseArrayWith:(NSMutableArray*)array
-//{
-//    NSArray *reversedArray = [[array reverseObjectEnumerator] allObjects];
-//    self.finishedCardsArray = [NSMutableArray arrayWithArray:reversedArray];
-//}
-
 -(void)sortFinishedCards
 {
     NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"numberFromDateToSortWith" ascending:YES];
@@ -586,14 +548,6 @@
         }
     }
     
-//    NSLog(@"%i cards going to load", numberOfCardsToLoad);
-//    if (numberOfCardsToLoad == self.numberToSearchThrough)
-//    {
-//        //this means it's loading from ViewDidAppear after adding content to an additional card
-//        NSLog(@"TEST TEST TEST");
-//        [self scrollToBottom];
-//    }
-    
     __block int numberOfCardsWithMessagesStatusLoaded = 0;
     for (int i = 0; i < numberOfCardsToLoad; i++)
     {
@@ -653,64 +607,6 @@
 //    [self dismissTopNotification];
 //    [self.notification dismissWithGravityAnimation:NO];
 }
-
-//-(void)createQuery
-//{
-////    JSQMessage *message_last = [self.messages lastObject];
-////    PFObject *picture_last = [self.pictureObjects lastObject];
-//
-//    NSLog(@"Created PFQuery for Cards");
-//    PFQuery *query = [PFQuery queryWithClassName:PF_CHAT_CLASS_NAME];
-//    [query whereKey:PF_CHAT_ROOM equalTo:self.room];
-//    [query includeKey:PF_CHAT_USER];
-//    [query includeKey:PF_CHAT_SETID];
-//    [query setLimit:1000];
-//    [query orderByDescending:@"createdAt"];
-//
-//    [self getMessagesWithPFQuery:query];
-//}
-
-//-(void)getMessagesWithPFQuery:(PFQuery *)query
-//{
-//    NSLog(@"Fetching messages");
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-//     {
-//         if(!error)
-//         {
-//             NSLog(@"Found %li messages", objects.count);
-//             NSLog(@"Organizing messages");
-//             [self clearPushNotesCounter];
-//             
-//             if (self.objectIdsArray.count == objects.count)
-//             {
-//                 NSLog(@"Searched and found %li messages. Before we had %li messages", self.objectIdsArray.count, objects.count);
-////                 self.shouldNotScrollDown = true;
-////                 NSLog(@"IT SEARCHED AND BROUGHT UP THE SAME AMOUNT OF MESSAGES");
-//                 self.shouldScrollDown = NO;
-//             }
-//             
-////             NSLog(@"%@", [objects.firstObject objectForKey:@"setId"]);
-//             
-//             self.setsIDsArray = [NSMutableArray new];
-//             self.vollieCardDataArray = [NSMutableArray new];
-//             self.objectIdsArray = [NSMutableArray new];
-//             self.vollieVCcardArray = [NSMutableArray new];
-//             self.sortedCardsArray = [NSArray new];
-//             
-//             for (PFObject *object in [objects reverseObjectEnumerator])
-//             {
-//                 [self checkForObjectIdWith:object];
-//             }
-//             [self scrollToBottom];
-//         }
-//         else
-//         {
-//             NSLog(@"%@",error);
-//             [ProgressHUD showError:@"network connection error"];
-//         }
-//     }];
-//}
-
 -(void)clearPushNotesCounter
 {
 //    NSLog(@"checking this room for push notification count: %@ ", self.messageItComesFrom);
@@ -724,86 +620,6 @@
         }
     }
 }
-
-//-(void)checkForObjectIdWith:(PFObject *)object
-//{
-//    if (![self.objectIdsArray containsObject:object.objectId])
-//    {
-////        NSLog(@"%@", object[@"updatedAction"]);
-////        NSLog(@"Found an object that wasn't accounted for before");
-//        [self.objectIdsArray addObject:object.objectId];
-//        [self checkForVollieCardWith:object];
-//    }
-//    else
-//    {
-////        NSLog(@"this message is already somewhere");
-//    }
-//}
-//
-//-(void)checkForVollieCardWith:(PFObject *)object
-//{
-//    PFObject *set = [object objectForKey:@"setId"];
-//    if (set)
-//    {
-//        if ([self.setsIDsArray containsObject:set.objectId])
-//        {
-//            //find the correct vollie card
-//            for (VollieCardData *card in self.vollieCardDataArray)
-//            {   //THIS can be refactored to containsObject...
-//                if ([card.set isEqualToString:set.objectId])
-//                {
-//                    [card modifyCardWith:object];
-//                    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"numberFromDateToSortWith" ascending:YES];
-//                    NSArray *sortedCards = [self.vollieCardDataArray sortedArrayUsingDescriptors:@[sortDescriptor]];
-//                    self.sortedCardsArray = sortedCards;
-//
-//                    if (self.sortedCardsArray.count == self.vollieCardDataArray.count)
-//                    {
-//                        //test to see if it is the right count after the sort
-//                    }
-//                    self.vollieCardDataArray = [NSMutableArray arrayWithArray:self.sortedCardsArray];
-//
-////                    [self scrollToBottom];
-//                }
-//            }
-//        }
-//        else
-//        {
-////            NSLog(@"Creating Vollie Card");
-//            
-//            VollieCardData *card = [[VollieCardData alloc] initWithPFObject:object andSet:set];
-//            card.actualSet = set;
-//            card.unreadStatus = false;
-//            [self.vollieCardDataArray addObject:card];
-//            [self.setsIDsArray addObject:set.objectId];
-//            
-//            //DO THIS SOON:
-////            PFRelation *unreadUsers = [set relationForKey:@"unreadUsers"];
-////            [unreadUsers.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-////             {
-////                 if (!error)
-////                 {
-////    //                 self..image = [UIImage imageNamed:@"1readMesseageIcon"];
-////                     for (PFUser *user in objects)
-////                     {
-////                         if ([user.objectId isEqualToString:[PFUser currentUser].objectId])
-////                         {
-////                             NSLog(@"There is an updated card in this room you haven't read");
-////                             card.unreadStatus = true;
-//////                             [self.tableView reloadData];
-//////                             [self scrollToBottom];
-////    //                         self.unreadNotificationDot.image = [UIImage imageNamed:@"1unreadMesseageIcon"];
-////                         }
-////                         //            NSLog(@"%@", user.objectId);
-////                     }
-////                 }
-////             }];
-//            
-//            //create vollie card
-////            [self scrollToBottom];
-//        }
-//    }
-//}
 
 -(void)reloadAfterMessageSuccessfullySent
 {

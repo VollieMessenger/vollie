@@ -943,7 +943,7 @@
                 MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:outputURL];
                 
                 moviePlayer.view.frame = rect;
-                [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
+                [moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
                 [moviePlayer setFullscreen:1];
                 [moviePlayer setMovieSourceType:MPMovieSourceTypeFile];
                 
@@ -966,7 +966,7 @@
                 
                 moviePlayer.controlStyle = MPMovieControlStyleNone;
                 moviePlayer.view.layer.masksToBounds = YES;
-                moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
+                moviePlayer.view.contentMode = UIViewContentModeScaleAspectFit;
                 moviePlayer.view.layer.cornerRadius = moviePlayer.view.frame.size.width/10;
                 moviePlayer.view.layer.borderColor = [UIColor whiteColor].CGColor;
                 moviePlayer.view.layer.borderWidth = 2;

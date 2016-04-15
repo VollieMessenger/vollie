@@ -2144,13 +2144,14 @@
                 MPMoviePlayerController *moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
                 moviePlayer.view.frame = rect;
                 moviePlayer.view.userInteractionEnabled = 1;
-                [moviePlayer setScalingMode:MPMovieScalingModeAspectFill];
+                [moviePlayer setScalingMode:MPMovieScalingModeAspectFit];
 
                 moviePlayer.controlStyle = MPMovieControlStyleNone;
                 [moviePlayer setFullscreen:1];
                 [moviePlayer setMovieSourceType:MPMovieSourceTypeFile];
                 moviePlayer.view.layer.masksToBounds = YES;
-                moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
+//                moviePlayer.view.contentMode = UIViewContentModeScaleToFill;
+                moviePlayer.view.contentMode = UIViewContentModeScaleAspectFit;
                 moviePlayer.view.layer.cornerRadius = self.moviePlayer.view.frame.size.width/10;
                 moviePlayer.view.layer.borderColor = [UIColor whiteColor].CGColor;
                 moviePlayer.view.layer.borderWidth = 2;
