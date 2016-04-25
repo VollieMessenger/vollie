@@ -779,6 +779,7 @@
         [self presentViewController:self.picker animated:1 completion:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
             [[UIApplication sharedApplication] setStatusBarHidden:0 withAnimation:UIStatusBarAnimationSlide];
+//            self.picker = nil;
         }];
     }
 }
@@ -847,6 +848,7 @@
             }];
 
             [picker dismissViewControllerAnimated:1 completion:0];
+            self.picker = nil;
             
             
             return;
@@ -875,6 +877,7 @@
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
         self.scrollView.scrollEnabled = YES;
+        self.picker = nil;
         NSLog(@"Scroll enabled");
 
     }];

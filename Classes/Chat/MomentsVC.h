@@ -22,6 +22,7 @@
 @property PFObject *messageItComesFrom;
 @property PFObject *lastParseObject;
 @property BOOL shouldShowTempCard;
+@property BOOL isComingFromSendingNewVollie;
 
 -(void)reloadCardsAfterUpload;
 

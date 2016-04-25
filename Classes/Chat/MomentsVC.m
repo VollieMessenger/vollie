@@ -436,7 +436,11 @@
     self.kyleSetsArray = [NSMutableArray new];
     self.sortedCardsArray = [NSMutableArray new];
     self.finishedCardsArray = [NSMutableArray new];
-    [ProgressHUD show:@"Loading" Interaction:NO];
+    if (!self.isComingFromSendingNewVollie)
+    {
+        [ProgressHUD show:@"Loading" Interaction:NO];
+        self.isComingFromSendingNewVollie = NO;
+    }
     for (PFObject* chatObject in self.kyleChatArray)
     {
         [self NEWERcheckForVollieCardWith:chatObject];

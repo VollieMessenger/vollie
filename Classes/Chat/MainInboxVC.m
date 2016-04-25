@@ -582,6 +582,7 @@
     {
         self.cardViewVC.name = [userChatRoom objectForKey:@"description"];
     }
+    self.cardViewVC.isComingFromSendingNewVollie = YES;
     
     [self.navigationController pushViewController:self.cardViewVC animated:NO];
 }
