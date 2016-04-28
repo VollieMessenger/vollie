@@ -347,7 +347,8 @@
 {
     //Includes current user already.
     if (self.invite) {
-        if ([MFMessageComposeViewController canSendText]) {
+        if ([MFMessageComposeViewController canSendText])
+        {
             MFMessageComposeViewController * msgComposer = [[MFMessageComposeViewController alloc] init];
             msgComposer.recipients = self.arrayOfSelectedUsers;
             msgComposer.body = [NSString stringWithFormat:@"Download Vollie from the App Store here: %@",[NSURL URLWithString:@"https://appsto.re/us/D13q5.i"]];
@@ -649,6 +650,10 @@
     
     
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+    
+    
+    [mainInbox goToNewChatRoomWithRoom:chatroom andPhotos:self.photos andTitle:self.sendingMessage];
+    
     
 //    NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];
 //    // LOAD MESSAGES FROM INBOX INSTEAD.

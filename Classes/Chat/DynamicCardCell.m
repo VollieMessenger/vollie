@@ -65,7 +65,7 @@
     
     self.imageIfNoMessages.hidden = YES;
     
-    self.viewForChatVC.backgroundColor = [UIColor purpleColor];
+//    self.viewForChatVC.backgroundColor = [UIColor purpleColor];
     
     self.imageViewArray = [[NSMutableArray alloc] initWithObjects:self.imageViewOne, self.imageViewTwo, nil];
     

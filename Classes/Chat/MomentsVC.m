@@ -172,7 +172,14 @@
 -(void)viewDidAppear:(BOOL)animated
 {
 //    [self loadMessages];
-    [self newParseLoad];
+    if (self.isComingFromSendingNewChatRoom)
+    {
+        [self createCardForNewChatroomWith:self.picsArrayForNewCard andText:self.titleForNewCard];
+    }
+    else
+    {
+        [self newParseLoad];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -348,6 +355,21 @@
             [self fillUIView:cell.viewForChatVC withCardVC:card.chatVC];
             return cell;        }
     }
+    else if (self.isComingFromSendingNewChatRoom)
+    {
+        CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row];
+        [self.tableView registerNib:[UINib nibWithNibName:@"DynamicCardCell" bundle:0] forCellReuseIdentifier:@"DynamicCardCell"];
+        DynamicCardCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DynamicCardCell"];
+        cell.viewForChatVC.backgroundColor = [UIColor whiteColor];
+        cell.imageIfNoMessages.hidden = false;
+//        CardCellView *vc = [CardCellView new];
+        //        VollieCardData *card = [self.sortedCardsArray objectAtIndex:(indexPath.row/2)];
+        //        CardCellView *vc = card.viewController;
+//        vc.room = self.room;
+//        vc.view.backgroundColor = [UIColor whiteColor];
+        [cell formatCellWithCardObject:card];
+        return cell;
+    }
     else
     {
         CardObject *card = [self.finishedCardsArray objectAtIndex:indexPath.row];
@@ -447,6 +469,32 @@
     }
     NSLog(@"%lu cards", self.kyleCardsArray.count);
     [self getDataForSetOfCards];
+}
+
+-(void)createCardForNewChatroomWith:(NSArray*)picsArray andText:(NSString*)titleForCard
+{
+//    CardObject *card = [[CardObject alloc] initWithTitle:titleForCard andPics:picsArray];
+    CardObject *card = [CardObject new];
+    card.set = self.setIfNewChatRoom;
+    card.room = self.room;
+    card.customChatRoom = self.messageItComesFrom;
+    card.userWhoCreatedCard = [PFUser currentUser];
+    card.numberOfMessages = 0;
+    card.title = titleForCard;
+    card.photosArray = [NSMutableArray arrayWithArray:picsArray];
+    if (picsArray.count >= 2)
+    {
+        card.imageOne = picsArray[picsArray.count-2];
+        card.imageTwo = picsArray.lastObject;
+    }
+    else if (picsArray.count == 1)
+    {
+        card.imageOne = picsArray.firstObject;
+    }
+    [self.finishedCardsArray addObject:card];
+    [self.tableView reloadData];
+//    self.car
+
 }
 
 -(void)NEWERcheckForVollieCardWith:(PFObject*)chatObject

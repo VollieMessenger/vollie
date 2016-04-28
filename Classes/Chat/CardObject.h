@@ -34,6 +34,7 @@
 
 
 - (instancetype)initWithChatObject:(PFObject *)object;
+- (instancetype)initWithTitle:(NSString*)title andPics:(NSArray*)picsArray;
 -(void)modifyCardWith:(PFObject *)object;
 + (void)retrieveResultsWithSearchTerm:(PFObject *)chatRoom withCompletion:(void (^)(NSArray *results))complete;
 - (void)getPicsForCardwithPics:(void (^)(BOOL pics))complete;

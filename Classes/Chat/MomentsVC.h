@@ -21,8 +21,14 @@
 @property NSString *name;
 @property PFObject *messageItComesFrom;
 @property PFObject *lastParseObject;
+@property PFObject *setIfNewChatRoom;
 @property BOOL shouldShowTempCard;
 @property BOOL isComingFromSendingNewVollie;
+
+//new chatroom stuff:
+@property BOOL isComingFromSendingNewChatRoom;
+@property NSString *titleForNewCard;
+@property NSArray *picsArrayForNewCard;
 
 -(void)reloadCardsAfterUpload;
 

@@ -595,6 +595,18 @@
     [self.navigationController pushViewController:cardViewController animated:YES];
 }
 
+-(void)goToNewChatRoomWithRoom:(PFObject *)room andPhotos:(NSArray *)pics andTitle:(NSString *)titleText
+{
+    //    MomentsVC *cardViewController =     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+    MomentsVC *cardViewController = (MomentsVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+//    cardViewController.room = customChatRoom;
+    cardViewController.messageItComesFrom = room;
+    cardViewController.titleForNewCard = titleText;
+    cardViewController.picsArrayForNewCard = pics;
+    cardViewController.isComingFromSendingNewChatRoom = YES;
+    [self.navigationController pushViewController:cardViewController animated:YES];
+}
+
 - (void)enableScrollview:(NSNotification *)notification
 {
     NSLog(@"Enabled Scrollview");
