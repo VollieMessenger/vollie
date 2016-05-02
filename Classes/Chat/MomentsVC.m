@@ -174,6 +174,14 @@
 //    [self loadMessages];
     if (self.isComingFromSendingNewChatRoom)
     {
+        if (self.room)
+        {
+            NSLog(@"has a room in view did appear");
+        }
+        else
+        {
+            NSLog(@"does not have a room in view did appear");
+        }
         [self createCardForNewChatroomWith:self.picsArrayForNewCard andText:self.titleForNewCard];
     }
     else
@@ -441,10 +449,22 @@
 
 -(void)newParseLoad
 {
+    NSLog(@"ENTERED NEW PARSE LOAD");
+    
+    if (self.room)
+    {
+        NSLog(@"has a room in newParseLoad");
+    }
+    else
+    {
+        NSLog(@"does not have a room in newParseLoad");
+    }
+    
     [CardObject retrieveResultsWithSearchTerm:self.room withCompletion:^(NSArray *results)
     {
         [self clearPushNotesCounter];
         NSLog(@"%lu is the number of found chat objects!", results.count);
+        self.isComingFromSendingNewChatRoom = NO;
 //        NSLog(@"%@ is the first result!", results.firstObject);
         if (results.count != self.kyleChatArray.count)
         {
@@ -459,6 +479,7 @@
 
 -(void)createCards
 {
+    NSLog(@"Creating cards");
     self.setsIDsArray = [NSMutableArray new];
     self.kyleCardsArray = [NSMutableArray new];
     self.kyleSetsArray = [NSMutableArray new];
@@ -480,6 +501,17 @@
 -(void)createCardForNewChatroomWith:(NSArray*)picsArray andText:(NSString*)titleForCard
 {
 //    CardObject *card = [[CardObject alloc] initWithTitle:titleForCard andPics:picsArray];
+    
+    NSLog(@"Created fake card because new chat room");
+    
+    if (self.room)
+    {
+        NSLog(@"has a room in createCardForNewChat");
+    }
+    else
+    {
+        NSLog(@"does not have a room in createCardForNewChat");
+    }
     CardObject *card = [CardObject new];
     card.set = self.setIfNewChatRoom;
     card.room = self.room;
@@ -662,12 +694,30 @@
 {
 //    [self createQuery];
     [self newParseLoad];
+    
+    if (self.room)
+    {
+        NSLog(@"has a room in loadMessages");
+    }
+    else
+    {
+        NSLog(@"does not have a room in loadMessages");
+    }
 }
 
 -(void)reloadCardsAfterUpload
 {
+    if (self.room)
+    {
+        NSLog(@"has a room in reloadCardsAferUpload");
+    }
+    else
+    {
+        NSLog(@"does not have a room in reloadCardsAfterUpload");
+    }
     NSLog(@"Sent message to reload cards");
 //    [self loadMessages];
+    NSLog(@"about to send message to do NEW PARSE LOAD");
     [self newParseLoad];
     [self performSelector:@selector(dismissTopNotification) withObject:self afterDelay:0.8f];
 //    [self dismissTopNotification];

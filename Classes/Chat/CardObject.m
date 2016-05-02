@@ -130,6 +130,7 @@
     {
         if (!error)
         {
+            NSLog(@"found %li objects", objects.count);
             complete(objects);
         }
         else

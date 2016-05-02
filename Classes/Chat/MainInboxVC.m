@@ -598,14 +598,25 @@
 -(void)goToNewChatRoomWithRoom:(PFObject *)room andPhotos:(NSArray *)pics andTitle:(NSString *)titleText andSet:(PFObject*)set
 {
     //    MomentsVC *cardViewController =     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    MomentsVC *cardViewController = (MomentsVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
-//    cardViewController.room = customChatRoom;
-    cardViewController.messageItComesFrom = room;
-    cardViewController.titleForNewCard = titleText;
-    cardViewController.picsArrayForNewCard = pics;
-    cardViewController.isComingFromSendingNewChatRoom = YES;
-    cardViewController.setIfNewChatRoom = set;
-    [self.navigationController pushViewController:cardViewController animated:NO];
+//    MomentsVC *cardViewController = (MomentsVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+////    cardViewController.room = customChatRoom;
+//    cardViewController.messageItComesFrom = room;
+//    cardViewController.room = room;
+//    cardViewController.titleForNewCard = titleText;
+//    cardViewController.picsArrayForNewCard = pics;
+//    cardViewController.isComingFromSendingNewChatRoom = YES;
+//    cardViewController.setIfNewChatRoom = set;
+//    [self.navigationController pushViewController:cardViewController animated:NO];
+    
+        self.cardViewVC = (MomentsVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
+    //    cardViewController.room = customChatRoom;
+        self.cardViewVC.messageItComesFrom = room;
+        self.cardViewVC.room = room;
+        self.cardViewVC.titleForNewCard = titleText;
+        self.cardViewVC.picsArrayForNewCard = pics;
+        self.cardViewVC.isComingFromSendingNewChatRoom = YES;
+        self.cardViewVC.setIfNewChatRoom = set;
+        [self.navigationController pushViewController:self.cardViewVC animated:NO];
 }
 
 - (void)enableScrollview:(NSNotification *)notification
