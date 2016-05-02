@@ -176,7 +176,7 @@
     self.notification.titleText = @"Sending Vollie!";
     self.notification.subtitleText = @"We are uploading your Vollie now. Your new chatroom will show up soon! ";
     self.notification.image = [UIImage imageNamed:@"Vollie-icon"];
-    [self.notification presentInView:self.view withGravityAnimation:NO];
+//    [self.notification presentInView:self.view withGravityAnimation:NO];
     self.shouldShowTempCard = NO;
 }
 
@@ -595,7 +595,7 @@
     [self.navigationController pushViewController:cardViewController animated:YES];
 }
 
--(void)goToNewChatRoomWithRoom:(PFObject *)room andPhotos:(NSArray *)pics andTitle:(NSString *)titleText
+-(void)goToNewChatRoomWithRoom:(PFObject *)room andPhotos:(NSArray *)pics andTitle:(NSString *)titleText andSet:(PFObject*)set
 {
     //    MomentsVC *cardViewController =     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
     MomentsVC *cardViewController = (MomentsVC *)[self.storyboard instantiateViewControllerWithIdentifier:@"CardVC"];
@@ -604,7 +604,8 @@
     cardViewController.titleForNewCard = titleText;
     cardViewController.picsArrayForNewCard = pics;
     cardViewController.isComingFromSendingNewChatRoom = YES;
-    [self.navigationController pushViewController:cardViewController animated:YES];
+    cardViewController.setIfNewChatRoom = set;
+    [self.navigationController pushViewController:cardViewController animated:NO];
 }
 
 - (void)enableScrollview:(NSNotification *)notification

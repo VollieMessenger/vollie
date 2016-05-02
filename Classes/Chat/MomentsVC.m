@@ -241,6 +241,12 @@
             [self getDataForSetOfCards];
         }
     }
+    else if (self.isComingFromSendingNewChatRoom)
+    {
+//        CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:self.setIfNewChatRoom.objectId andColor:[UIColor volleyFamousGreen] andPictures: andComments:card.messagesArray andActualSet:card.set];
+        CustomChatView *chatt = [[CustomChatView alloc] initWithSetId:self.setIfNewChatRoom.objectId andColor:[UIColor volleyFamousGreen] andPictures:self.picsArrayForNewCard andComments:nil andActualSet:self.setIfNewChatRoom];
+        [self.navigationController pushViewController:chatt animated:YES];
+    }
     else
     {
         CardObject *card = self.finishedCardsArray[indexPath.row];
@@ -490,6 +496,14 @@
     else if (picsArray.count == 1)
     {
         card.imageOne = picsArray.firstObject;
+        card.imageTwo = [UIImage imageNamed:@"Vollie-icon"];
+
+    }
+    else
+    {
+        card.imageOne = [UIImage imageNamed:@"Vollie-icon"];
+        card.imageTwo = [UIImage imageNamed:@"Vollie-icon"];
+
     }
     [self.finishedCardsArray addObject:card];
     [self.tableView reloadData];

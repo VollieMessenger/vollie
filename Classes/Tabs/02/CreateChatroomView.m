@@ -652,7 +652,7 @@
      [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
     
     
-    [mainInbox goToNewChatRoomWithRoom:chatroom andPhotos:self.photos andTitle:self.sendingMessage];
+    [mainInbox goToNewChatRoomWithRoom:chatroom andPhotos:self.photos andTitle:self.sendingMessage andSet:set];
     
     
 //    NavigationController *nav  = [(AppDelegate *)[[UIApplication sharedApplication] delegate] navInbox];

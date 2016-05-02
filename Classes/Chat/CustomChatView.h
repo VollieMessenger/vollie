@@ -31,4 +31,6 @@
 @property BOOL shouldShowTempCard;
 @property MasterScrollView *scrollView;
 
+@property BOOL isComingFromNewChatRoom;
+
 @end

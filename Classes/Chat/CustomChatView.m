@@ -496,7 +496,8 @@
 - (id)initWithSetId:(NSString *)setId andColor:(UIColor *)backgroundColor andPictures:(NSArray *)pictures andComments:(NSArray *)messages andActualSet:(PFObject *)actualSet
 {
     self = [super init];
-    if (self) {
+    if (self)
+    {
         if ([[UIColor stringFromColor:backgroundColor] isEqualToString:@"0 0 0 0"]) {
 //            backgroundColor_ = [UIColor volleyBubbleGreen];
 //            backgroundColor_ = [UIColor colorWithRed:109/255.0f green:200/255.0f blue:192/255.0f alpha:1.0f];
@@ -543,20 +544,29 @@
         objectIds = [NSMutableArray new];
         setPicturesObjects = [NSMutableArray arrayWithArray:pictures];
         self.arrayOfInitialsForThumbnails = [NSMutableArray new];
-        for (PFObject *object in pictures)
+
+        if([pictures.firstObject isKindOfClass:[PFObject class]])
         {
+            //this if statement is because when there's a new chatroom, it's sending pictures, not parse objects to this viewcontroller
+            
+            for (PFObject *object in pictures)
+            {
 #warning model this
-            [objectIds addObject:object.objectId];
-            NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
-            NSMutableArray *array = [NSMutableArray arrayWithArray:[initials componentsSeparatedByString:@" "]];
-            [array removeObject:@" "];
-            NSString *first = array.firstObject;
-            NSString *last = array.lastObject;
-            first = [first stringByPaddingToLength:1 withString:initials startingAtIndex:0];
-            last = [last stringByPaddingToLength:1 withString:initials startingAtIndex:0];
-            initials = [first stringByAppendingString:last];
-            [self.arrayOfInitialsForThumbnails addObject:initials];
-            //
+                
+                [objectIds addObject:object.objectId];
+                NSString *initials = [[object valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+                NSMutableArray *array = [NSMutableArray arrayWithArray:[initials componentsSeparatedByString:@" "]];
+                [array removeObject:@" "];
+                NSString *first = array.firstObject;
+                NSString *last = array.lastObject;
+                first = [first stringByPaddingToLength:1 withString:initials startingAtIndex:0];
+                last = [last stringByPaddingToLength:1 withString:initials startingAtIndex:0];
+                initials = [first stringByAppendingString:last];
+                [self.arrayOfInitialsForThumbnails addObject:initials];
+                //
+            }
+            [self loadPicutresFilesInBackground];
+
         }
 //        NSLog(@"%li in pictures array", setPicturesObjects.count);
         setComments = [NSMutableArray arrayWithArray:messages];
@@ -566,7 +576,11 @@
 //        }
 
         //Loading PFFile into memory or at least cache
-        [self loadPicutresFilesInBackground];
+            if (!self.isComingFromNewChatRoom)
+            {
+//                [self loadPicutresFilesInBackground];
+
+            }
         }
     return self;
 }
@@ -889,7 +903,8 @@
         
         self.arrayOfScrollView = [NSMutableArray arrayWithCapacity:setPicturesObjects.count];
         
-        for (int i = 0; i < setPicturesObjects.count; i++) {
+        for (int i = 0; i < setPicturesObjects.count; i++)
+        {
             [self.arrayOfScrollView addObject:[NSString stringWithFormat:@"%d",i]];
         }
         
@@ -922,6 +937,10 @@
             popUpImageView2.frame = rect;
 
             
+            if ([picture isKindOfClass:[PFObject class]])
+            {
+                
+            }
             PFFile *file = [picture valueForKey:PF_PICTURES_PICTURE];
             
             if (!file)
@@ -1239,42 +1258,58 @@
         }
         else
         {
-            PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
-//                NSLog(@"%li", indexPath.item);
-            
-            [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                if (!error)
-                {
-                    cell.imageView.image = [UIImage imageWithData:data];
-                }
-            }];
+            if ([setPicturesObjects.firstObject isKindOfClass:[PFObject class]])
+            {
+                PFFile *file = [setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_THUMBNAIL];
+                //                NSLog(@"%li", indexPath.item);
+                
+                [file getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                    if (!error)
+                    {
+                        cell.imageView.image = [UIImage imageWithData:data];
+                    }
+                }];
+            }
+            else
+            {
+//                cell.imageView.image = [setPicturesObjects[indexPath.item];
+                UIImage *image = setPicturesObjects[indexPath.item];
+                cell.imageView.image = image;
+            }
+
             
             cell.backgroundColor = [UIColor clearColor];
             
             cell.label.hidden = YES;
             
-            NSString *initials = self.arrayOfInitialsForThumbnails[indexPath.item];
-            if (indexPath.item == 0)
+            NSString *initials = [NSString new];
+            if (self.arrayOfInitialsForThumbnails.count)
             {
-                cell.label.hidden = NO;
-                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
-//                NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
-//                NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
-//                [array removeObject:@" "];
-//                NSString *first = array.firstObject;
-//                NSString *last = array.lastObject;
-//                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
-//                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
-//                name = [first stringByAppendingString:last];
-                NSString *name = self.arrayOfInitialsForThumbnails[indexPath.item];
-                cell.label.text = name;
+                initials = self.arrayOfInitialsForThumbnails[indexPath.item];
+                if (indexPath.item == 0)
+                {
+                    cell.label.hidden = NO;
+                    cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
+                    //                NSString *name = [[setPicturesObjects[indexPath.item] valueForKey:PF_PICTURES_USER] valueForKey:PF_USER_FULLNAME];
+                    //                NSMutableArray *array = [NSMutableArray arrayWithArray:[name componentsSeparatedByString:@" "]];
+                    //                [array removeObject:@" "];
+                    //                NSString *first = array.firstObject;
+                    //                NSString *last = array.lastObject;
+                    //                first = [first stringByPaddingToLength:1 withString:name startingAtIndex:0];
+                    //                last = [last stringByPaddingToLength:1 withString:name startingAtIndex:0];
+                    //                name = [first stringByAppendingString:last];
+                    NSString *name = self.arrayOfInitialsForThumbnails[indexPath.item];
+                    cell.label.text = name;
+                }
+                else if(![initials isEqualToString:self.arrayOfInitialsForThumbnails[indexPath.item -1]])
+                {
+                    cell.label.hidden = NO;
+                    cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
+                    cell.label.text = initials;
+                }
             }
-            else if(![initials isEqualToString:self.arrayOfInitialsForThumbnails[indexPath.item -1]])
-            {
-                cell.label.hidden = NO;
-                cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
-                cell.label.text = initials;
-            }
+//            initials = self.arrayOfInitialsForThumbnails[indexPath.item];
+
             
             cell.imageView.layer.borderColor = backgroundColor_.CGColor;
         }

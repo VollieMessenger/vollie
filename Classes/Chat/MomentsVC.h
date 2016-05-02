@@ -29,6 +29,7 @@
 @property BOOL isComingFromSendingNewChatRoom;
 @property NSString *titleForNewCard;
 @property NSArray *picsArrayForNewCard;
+@property PFObject *setToSendCustomChat;
 
 -(void)reloadCardsAfterUpload;
 

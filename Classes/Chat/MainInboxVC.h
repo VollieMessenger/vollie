@@ -23,7 +23,7 @@
 
 //-(void)goToMostRecentChatRoom;
 -(void)newGoToCardViewWith:(PFObject*)userChatRoom and:(PFObject*)room andNotification:(BOOL)notificationShow;
--(void)goToNewChatRoomWithRoom:(PFObject*)room andPhotos:(NSArray*)pics andTitle:(NSString*)titleText;
+-(void)goToNewChatRoomWithRoom:(PFObject*)room andPhotos:(NSArray*)pics andTitle:(NSString*)titleText andSet:(PFObject*)set;
 -(void)loadInbox;
 -(void)setUpTopNotification;
 -(void)hideTopNotification;
