@@ -649,7 +649,7 @@
     mainInbox.shouldShowTempCard = YES;
     
     
-     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:NO];
     
     
     [mainInbox goToNewChatRoomWithRoom:chatroom andPhotos:self.photos andTitle:self.sendingMessage andSet:set];
