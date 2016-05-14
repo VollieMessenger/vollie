@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -69,6 +69,13 @@
                     <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newLineForTitles" translatesAutoresizingMaskIntoConstraints="NO" id="0bJ-Yh-q6H">
+                    <rect key="frame" x="71" y="79" width="178" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Kvd-Xt-uN0"/>
+                        <constraint firstAttribute="width" constant="178" id="bD5-FX-QE6"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -76,6 +83,7 @@
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" constant="-1" id="7xc-Ha-asg"/>
                 <constraint firstItem="eSa-Yo-Z0P" firstAttribute="top" secondItem="l9u-2b-4LK" secondAttribute="top" id="8JS-ut-zm7"/>
                 <constraint firstItem="eSa-Yo-Z0P" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="top" id="Gqc-Vj-RML"/>
+                <constraint firstItem="0bJ-Yh-q6H" firstAttribute="centerX" secondItem="mUa-cS-ru4" secondAttribute="centerX" id="Imf-af-zTE"/>
                 <constraint firstItem="xqy-Hg-uFr" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="Q5G-ZI-0it"/>
                 <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="SSb-EC-Eyt"/>
                 <constraint firstAttribute="trailing" secondItem="eSa-Yo-Z0P" secondAttribute="trailing" constant="2" id="b1O-Vo-A70"/>
@@ -87,6 +95,7 @@
                 <constraint firstAttribute="bottom" secondItem="xqy-Hg-uFr" secondAttribute="bottom" id="sgj-o4-J8J"/>
                 <constraint firstAttribute="trailing" secondItem="AZU-Tz-XhT" secondAttribute="trailing" id="tlD-Wy-psd"/>
                 <constraint firstItem="BoD-Az-3DM" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" constant="1" id="ts7-8f-0lH"/>
+                <constraint firstItem="0bJ-Yh-q6H" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="79" id="uOh-Lb-CSp"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" constant="-44" id="uqN-3E-rgf"/>
                 <constraint firstAttribute="trailing" secondItem="xqy-Hg-uFr" secondAttribute="trailing" constant="-1" id="zy3-D1-b1W"/>
             </constraints>
@@ -95,5 +104,6 @@
     </objects>
     <resources>
         <image name="greyBackGround2" width="816" height="1183"/>
+        <image name="newLineForTitles" width="321" height="164"/>
     </resources>
 </document>

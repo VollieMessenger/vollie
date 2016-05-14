@@ -1839,6 +1839,7 @@
             }
             
             self.package.photoNumberCount = self.numberOfPhotosInPackageAlready;
+            
             NSLog(@"In camera. Sending %li photos to room %@", self.arrayOfTakenPhotos.count, self.roomToSendPhotosTo);
             [self.package sendPhotosWithPhotosArray:self.arrayOfTakenPhotos andText:nil andRoom:self.roomToSendPhotosTo andSet:self.setToSendPhotosTo];
             self.comingFromCustomChatView = false;

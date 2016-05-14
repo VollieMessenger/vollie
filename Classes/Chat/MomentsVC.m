@@ -522,12 +522,40 @@
     card.photosArray = [NSMutableArray arrayWithArray:picsArray];
     if (picsArray.count >= 2)
     {
-        card.imageOne = picsArray[picsArray.count-2];
-        card.imageTwo = picsArray.lastObject;
+        if ([[picsArray objectAtIndex:picsArray.count-2] isKindOfClass:[NSDictionary class]])
+        {
+            NSArray * choice = [picsArray[picsArray.count-2] allObjects];
+            card.imageOne = choice[0];
+        }
+        else
+        {
+            card.imageOne = picsArray[picsArray.count-2];
+        }
+        
+        if ([picsArray.lastObject isKindOfClass:[NSDictionary class]])
+        {
+            NSArray * choice = [picsArray.lastObject allObjects];
+            card.imageTwo = choice[0];
+        }
+        else
+        {
+            card.imageTwo = picsArray.lastObject;
+        }
+
+//        card.imageOne = picsArray[picsArray.count-2];
+//        card.imageTwo = picsArray.lastObject;
     }
     else if (picsArray.count == 1)
     {
-        card.imageOne = picsArray.firstObject;
+        if ([picsArray.firstObject isKindOfClass:[NSDictionary class]])
+        {
+            NSArray * choice = [picsArray[picsArray.count-2] allObjects];
+            card.imageOne = choice[0];
+        }
+        else
+        {
+            card.imageOne = picsArray.firstObject;            
+        }
         card.imageTwo = [UIImage imageNamed:@"Vollie-icon"];
 
     }

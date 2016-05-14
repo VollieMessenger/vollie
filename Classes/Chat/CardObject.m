@@ -29,7 +29,8 @@
         self.numberOfTextMessages = 0;
         [self checkIfIsPictureOrMessageWith:object];
         
-        NSDate *date = object[PF_PICTURES_UPDATEDACTION];
+//        NSDate *date = object[PF_PICTURES_UPDATEDACTION];
+        NSDate *date = object.createdAt;
         self.dateUpdated = date;
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];

@@ -354,6 +354,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [self.collectionView reloadData];
     [self.collectionViewPictures reloadData];
     
+    
     if (self.automaticallyScrollsToMostRecentMessage && ![self jsq_isMenuVisible])
     {
         [self scrollToBottomAnimated:animated];

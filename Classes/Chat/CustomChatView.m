@@ -175,7 +175,10 @@
     [self.collectionViewPictures reloadData];
     [self scrollToBottomAnimated:YES];
     NSLog(@"%@ is the id", self.room.objectId);
+    [self performSelector:@selector(clearUnreadStatusOnPhotos) withObject:self afterDelay:5];
+
     
+//    self perform
 //    self.collectionViewPictures.hidden = NO;
 //    if (self.shouldShowTempCard)
 //    {
@@ -566,6 +569,7 @@
                 //
             }
             [self loadPicutresFilesInBackground];
+//            [self clearUnreadStatusOnPhotos];
 
         }
 //        NSLog(@"%li in pictures array", setPicturesObjects.count);
@@ -767,7 +771,7 @@
                 }
             }
             [self addJSQMessage:comments];
-            [self finishReceivingMessage:0];
+            [self finishReceivingMessage:0];            
 
         }
         else
@@ -780,7 +784,8 @@
     
     [self removeCurrentUserFromUnreadUsers];
     [self clearPushNotesCounter];
-    
+//    [self clearUnreadStatusOnPhotos];
+
 //    PFQuery *setQuery = [PFQuery queryWithClassName:@"Sets"];
 //    [setQuery getObjectInBackgroundWithId:self.set.objectId block:^(PFObject *fullSet, NSError *error)
 //    {
@@ -794,6 +799,28 @@
 //    }];
     
 //    NSLog(@"%@ is user chatroom", self.userChatRoom);
+}
+
+-(void)clearUnreadStatusOnPhotos
+{
+    for (PFObject *object in setPicturesObjects)
+    {
+        NSString *currentUserString = [PFUser currentUser].objectId;
+        if ([[object objectForKey:@"unreadUserObjects"] containsObject:currentUserString])
+        {
+            NSMutableArray *arrayWithoutCurrentUser = [NSMutableArray arrayWithArray:[object objectForKey:@"unreadUserObjects"]];
+            [arrayWithoutCurrentUser removeObject:currentUserString];
+            NSLog(@"removed an unread status");
+            NSArray *arrayToSave = [NSArray arrayWithArray:arrayWithoutCurrentUser];
+            [object setValue:arrayToSave forKey:@"unreadUserObjects"];
+            [object saveEventually:^(BOOL succeeded, NSError *error) {
+                if (!error)
+                {
+                    
+                }
+            }];
+        }
+    }
 }
 
 -(void)titleChange:(NSString *)title
@@ -1300,12 +1327,29 @@
                     //                name = [first stringByAppendingString:last];
                     NSString *name = self.arrayOfInitialsForThumbnails[indexPath.item];
                     cell.label.text = name;
+                    PFObject *parseObject = setPicturesObjects[indexPath.item];
+                    if ([parseObject objectForKey:@"unreadUserObjects"])
+                    {
+                        NSString *currentUserString = [PFUser currentUser].objectId;
+                        if ([[parseObject objectForKey:@"unreadUserObjects"] containsObject:currentUserString])
+                        {
+                            cell.label.backgroundColor = [UIColor volleyFamousOrange];
+                            cell.label.textColor = [UIColor whiteColor];
+                        }
+                    }
                 }
                 else if(![initials isEqualToString:self.arrayOfInitialsForThumbnails[indexPath.item -1]])
                 {
                     cell.label.hidden = NO;
                     cell.label.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.85];
                     cell.label.text = initials;
+                    PFObject *parseObject = setPicturesObjects[indexPath.item];
+                    NSString *currentUserString = [PFUser currentUser].objectId;
+                    if ([[parseObject objectForKey:@"unreadUserObjects"] containsObject:currentUserString])
+                    {
+                        cell.label.backgroundColor = [UIColor volleyFamousOrange];
+                        cell.label.textColor = [UIColor whiteColor];
+                    }
                 }
             }
 //            initials = self.arrayOfInitialsForThumbnails[indexPath.item];

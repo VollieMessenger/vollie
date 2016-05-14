@@ -65,6 +65,7 @@
             [video setValue:@YES forKey:PF_PICTURES_IS_VIDEO];
             [video setObject:videoFile forKey:PF_PICTURES_PICTURE];
             [video setValue:@1 forKey:@"photoNumber"];
+            
             video[@"photoNumber"] = @(self.photoNumberCount);
 
 
@@ -81,6 +82,7 @@
 {
     UIImage *thumbnail = ResizeImage(image, image.size.width, image.size.height);
     PFFile *file = [PFFile fileWithName:@"thumbnail.png" data:UIImageJPEGRepresentation(thumbnail, .2)];
+    NSArray *userObjectsArray = [room objectForKey:@"userObjects"];
     //we could make a second "bigger" thumbnail in case it's the main photo
     PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
     [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
@@ -95,6 +97,7 @@
               forKey:PF_PICTURES_UPDATEDACTION];
     [object setObject:file
                forKey:PF_PICTURES_THUMBNAIL];
+    [object setObject:userObjectsArray forKey:@"unreadUserObjects"];
     
     return object;
 }
