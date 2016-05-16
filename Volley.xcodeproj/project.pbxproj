@@ -122,6 +122,8 @@
 		3260CB781BBAF5A200EEAFF5 /* TestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260CB771BBAF5A200EEAFF5 /* TestVC.m */; };
 		3263482D1BDEF947004D765C /* OnePicCellNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 3263482B1BDEF947004D765C /* OnePicCellNew.m */; };
 		3263482E1BDEF947004D765C /* OnePicCellNew.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3263482C1BDEF947004D765C /* OnePicCellNew.xib */; };
+		326FE39C1CEA752D000B4C68 /* AnalyticsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 326FE39A1CEA752D000B4C68 /* AnalyticsVC.m */; };
+		326FE39D1CEA752D000B4C68 /* AnalyticsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 326FE39B1CEA752D000B4C68 /* AnalyticsVC.xib */; };
 		3272F9311B7A9BED0013FD9C /* MainInboxVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 324843F01B714E00009810D3 /* MainInboxVC.m */; };
 		32771FBC1B73FB65007726E9 /* WeekHighlightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */; };
 		32771FC01B7417AA007726E9 /* WeekCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32771FBF1B7417AA007726E9 /* WeekCell.m */; };
@@ -149,6 +151,7 @@
 		32DA3D351B8F929900DDEFA2 /* AllWeekPhotosVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D341B8F929900DDEFA2 /* AllWeekPhotosVC.m */; };
 		32DA3D381B8F946700DDEFA2 /* PhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D371B8F946700DDEFA2 /* PhotoCell.m */; };
 		32DA3D3B1B8FBD2600DDEFA2 /* ParseMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */; };
+		32DA99271CEA7B62000E6F5A /* UserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DA99261CEA7B62000E6F5A /* UserData.m */; };
 		32E0C3891BF55380005F1EB7 /* FlashbackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E0C3871BF55380005F1EB7 /* FlashbackCell.m */; };
 		32E0C38A1BF55380005F1EB7 /* FlashbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32E0C3881BF55380005F1EB7 /* FlashbackCell.xib */; };
 		32E294651C6E927A00F13FDB /* DynamicCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E294631C6E927A00F13FDB /* DynamicCardCell.m */; };
@@ -458,6 +461,9 @@
 		3263482A1BDEF947004D765C /* OnePicCellNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnePicCellNew.h; sourceTree = "<group>"; };
 		3263482B1BDEF947004D765C /* OnePicCellNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnePicCellNew.m; sourceTree = "<group>"; };
 		3263482C1BDEF947004D765C /* OnePicCellNew.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnePicCellNew.xib; sourceTree = "<group>"; };
+		326FE3991CEA752D000B4C68 /* AnalyticsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsVC.h; sourceTree = "<group>"; };
+		326FE39A1CEA752D000B4C68 /* AnalyticsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsVC.m; sourceTree = "<group>"; };
+		326FE39B1CEA752D000B4C68 /* AnalyticsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnalyticsVC.xib; sourceTree = "<group>"; };
 		32771FBA1B73FB65007726E9 /* WeekHighlightsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekHighlightsVC.h; sourceTree = "<group>"; };
 		32771FBB1B73FB65007726E9 /* WeekHighlightsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekHighlightsVC.m; sourceTree = "<group>"; };
 		32771FBE1B7417AA007726E9 /* WeekCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekCell.h; sourceTree = "<group>"; };
@@ -502,6 +508,8 @@
 		32DA3D371B8F946700DDEFA2 /* PhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCell.m; sourceTree = "<group>"; };
 		32DA3D391B8FBD2600DDEFA2 /* ParseMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseMedia.h; sourceTree = "<group>"; };
 		32DA3D3A1B8FBD2600DDEFA2 /* ParseMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParseMedia.m; sourceTree = "<group>"; };
+		32DA99251CEA7B62000E6F5A /* UserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserData.h; sourceTree = "<group>"; };
+		32DA99261CEA7B62000E6F5A /* UserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserData.m; sourceTree = "<group>"; };
 		32E0C3861BF55380005F1EB7 /* FlashbackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashbackCell.h; sourceTree = "<group>"; };
 		32E0C3871BF55380005F1EB7 /* FlashbackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlashbackCell.m; sourceTree = "<group>"; };
 		32E0C3881BF55380005F1EB7 /* FlashbackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FlashbackCell.xib; sourceTree = "<group>"; };
@@ -898,6 +906,11 @@
 				29271A4719F284B1009C308B /* ProfileView.h */,
 				29271A4819F284B1009C308B /* ProfileView.m */,
 				29271A4919F284B1009C308B /* ProfileView.xib */,
+				326FE3991CEA752D000B4C68 /* AnalyticsVC.h */,
+				326FE39A1CEA752D000B4C68 /* AnalyticsVC.m */,
+				326FE39B1CEA752D000B4C68 /* AnalyticsVC.xib */,
+				32DA99251CEA7B62000E6F5A /* UserData.h */,
+				32DA99261CEA7B62000E6F5A /* UserData.m */,
 			);
 			name = 3;
 			path = 04;
@@ -1630,6 +1643,7 @@
 				296DD5DE1A1F52F400AB9F8C /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
 				C27374941A2FFF1F00C4B22A /* CustomCameraView.xib in Resources */,
 				29271A6319F284B1009C308B /* ProfileView.xib in Resources */,
+				326FE39D1CEA752D000B4C68 /* AnalyticsVC.xib in Resources */,
 				C20BECA41A5E5520004C5A80 /* Images.xcassets in Resources */,
 				29271A6519F284B1009C308B /* LoginView.xib in Resources */,
 				C2CA16E31A8286EA00DD25AC /* SelectChatroomView.xib in Resources */,
@@ -1738,6 +1752,7 @@
 				296DD5BD1A1F52F400AB9F8C /* UIColor+JSQMessages.m in Sources */,
 				C2CA16E01A82860E00DD25AC /* DidFavoriteView.m in Sources */,
 				270D7EF81B3DE1DA00FE28E9 /* PopUpScrollView.m in Sources */,
+				326FE39C1CEA752D000B4C68 /* AnalyticsVC.m in Sources */,
 				9CFEFAF31B1E1A3F005B1BF6 /* InviteCell.m in Sources */,
 				296DD5E21A1F52F400AB9F8C /* JSQMessagesTypingIndicatorFooterView.m in Sources */,
 				296DD5BE1A1F52F400AB9F8C /* UIDevice+JSQMessages.m in Sources */,
@@ -1839,6 +1854,7 @@
 				296DD5CB1A1F52F400AB9F8C /* JSQMessagesCollectionViewLayoutAttributes.m in Sources */,
 				27AC59511B39E0B800633EAB /* NewVolliePicCell.m in Sources */,
 				C2CA16E71A82A1FE00DD25AC /* AlbumView.m in Sources */,
+				32DA99271CEA7B62000E6F5A /* UserData.m in Sources */,
 				32873A6D1BC5E26600618A05 /* PageFour.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

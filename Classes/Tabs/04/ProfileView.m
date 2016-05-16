@@ -22,6 +22,10 @@
 
 #import "InstructionsVC.h"
 
+#import "AnalyticsVC.h"
+
+#import "CustomChatView.h"
+
 @interface ProfileView () <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellName;
@@ -50,9 +54,13 @@
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellForInstructions;
 
+@property (strong, nonatomic) IBOutlet UITableViewCell *analyticsCell;
+
 @property UIActionSheet *changeNameActionSheet;
 
 @property NSString *userNameString;
+
+@property BOOL shouldShowAnalyticsButton;
 
 @end
 
@@ -105,6 +113,12 @@
         [_switchVibrate setOn:1 animated:1];
     } else {
         [_switchVibrate setOn:0 animated:1];
+    }
+    
+    NSLog(@"%@", [PFUser currentUser].objectId);
+    if ([[PFUser currentUser].objectId isEqualToString:@"uUVLCYckex"])
+    {
+        self.shouldShowAnalyticsButton = YES;
     }
 
 	self.title = @"Settings";
@@ -284,6 +298,11 @@
     else [ProgressHUD showError:@"Name field must be set."];
 }
 
+- (IBAction)onAnalyticsButtonPressed:(id)sender
+{
+    AnalyticsVC *analytics = [AnalyticsVC new];
+    [self.navigationController pushViewController:analytics animated:YES];
+}
 
 //- (IBAction)actionSave:(id)sender
 //{
@@ -316,7 +335,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 5;
+    if (self.shouldShowAnalyticsButton)
+    {
+        return 6;
+    }
+    else
+    {
+        return 5;
+    }
 }
 
 
@@ -344,6 +370,10 @@
         if (indexPath.row == 1) return _cellPP;
     }
     if (indexPath.section == 4) return cellButton;
+    if (indexPath.section == 5)
+    {
+        return self.analyticsCell;
+    }
 	return nil;
 }
 

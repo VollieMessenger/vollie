@@ -8,6 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileView">
             <connections>
+                <outlet property="analyticsCell" destination="gT4-Cm-OyZ" id="WNp-9b-Y6h"/>
                 <outlet property="buttonLogout" destination="mXk-Ra-dpa" id="ffK-qb-eDS"/>
                 <outlet property="cellButton" destination="ykX-pB-JwM" id="Kgr-hC-GTT"/>
                 <outlet property="cellForInstructions" destination="nkt-if-bmS" id="No4-xM-hQ8"/>
@@ -259,6 +260,41 @@
                 </constraints>
             </tableViewCellContentView>
             <point key="canvasLocation" x="1009" y="418"/>
+        </tableViewCell>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="gT4-Cm-OyZ" userLabel="Analytics">
+            <rect key="frame" x="0.0" y="0.0" width="339" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gT4-Cm-OyZ" id="SfB-WR-Dr4">
+                <rect key="frame" x="0.0" y="0.0" width="339" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Super secret analytics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iwq-e4-lql">
+                        <rect key="frame" x="84" y="24" width="170" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="5VF-Ls-ZQO"/>
+                            <constraint firstAttribute="width" constant="170" id="xhO-WP-R6m"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7NW-AF-XuL">
+                        <rect key="frame" x="0.0" y="0.0" width="339" height="69.5"/>
+                        <connections>
+                            <action selector="onAnalyticsButtonPressed:" destination="-1" eventType="touchUpInside" id="RPc-Oe-Kg9"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="7NW-AF-XuL" secondAttribute="bottom" constant="-8" id="0Oa-WD-jma"/>
+                    <constraint firstItem="7NW-AF-XuL" firstAttribute="leading" secondItem="SfB-WR-Dr4" secondAttribute="leadingMargin" constant="-8" id="1ce-On-D0V"/>
+                    <constraint firstItem="Iwq-e4-lql" firstAttribute="centerY" secondItem="SfB-WR-Dr4" secondAttribute="centerY" id="aN7-CS-Auk"/>
+                    <constraint firstItem="7NW-AF-XuL" firstAttribute="top" secondItem="SfB-WR-Dr4" secondAttribute="topMargin" constant="-8" id="j6J-Nb-HuG"/>
+                    <constraint firstItem="Iwq-e4-lql" firstAttribute="centerX" secondItem="SfB-WR-Dr4" secondAttribute="centerX" id="xli-af-btl"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7NW-AF-XuL" secondAttribute="trailing" constant="-8" id="zly-TF-QJA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="580.5" y="649"/>
         </tableViewCell>
     </objects>
 </document>
