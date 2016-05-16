@@ -83,6 +83,12 @@
     UIImage *thumbnail = ResizeImage(image, image.size.width, image.size.height);
     PFFile *file = [PFFile fileWithName:@"thumbnail.png" data:UIImageJPEGRepresentation(thumbnail, .2)];
     NSArray *userObjectsArray = [room objectForKey:@"userObjects"];
+    if ([userObjectsArray containsObject:[PFUser currentUser].objectId])
+    {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:userObjectsArray];
+        [tempArray removeObject:[PFUser currentUser].objectId];
+        userObjectsArray = tempArray;
+    }
     //we could make a second "bigger" thumbnail in case it's the main photo
     PFObject *object = [PFObject objectWithClassName:PF_PICTURES_CLASS_NAME];
     [object setValue:[PFUser currentUser] forKey:PF_PICTURES_USER];
