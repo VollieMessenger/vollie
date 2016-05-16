@@ -8,18 +8,23 @@
 
 #import "AnalyticsVC.h"
 #import <Parse/Parse.h>
+#import "UserData.h"
 
 @interface AnalyticsVC () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UILabel *messagesSentLabel;
+@property (weak, nonatomic) IBOutlet UILabel *picturesSentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *chatRoomsActiveLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *usersActiveLabel;
 
+//@property NSMutableArray *parseObjectsArray;
 @property NSMutableArray *messagesArray;
+@property NSMutableArray *picturesArray;
 @property NSMutableArray *userArray;
 @property NSMutableArray *userIDArray;
 @property NSMutableArray *chatRoomArray;
 @property NSMutableArray *userNameArray;
+@property NSMutableArray *userDataObjectsArray;
 
 @end
 
@@ -36,10 +41,12 @@
 -(void)basicSetup
 {
     self.messagesArray = [NSMutableArray new];
+    self.picturesArray = [NSMutableArray new];
     self.userArray = [NSMutableArray new];
     self.userIDArray = [NSMutableArray new];
     self.chatRoomArray = [NSMutableArray new];
     self.userNameArray = [NSMutableArray new];
+    self.userDataObjectsArray = [NSMutableArray new];
 }
 
 -(void)fetchDataFromParse
@@ -54,6 +61,8 @@
         {
             [self checkToSeeIfObjectIsWithin24HoursWith:object];
         }
+        self.messagesSentLabel.text = [NSString stringWithFormat:@"%li Messages Sent", self.messagesArray.count];
+        self.picturesSentLabel.text = [NSString stringWithFormat:@"%li Pictures Sent", self.picturesArray.count];
         self.chatRoomsActiveLabel.text = [NSString stringWithFormat:@"%li Chatrooms Active", self.chatRoomArray.count];
         self.usersActiveLabel.text = [NSString stringWithFormat:@"%li Users Active", self.userArray.count];
         [self beginUserDownloads];
@@ -71,8 +80,22 @@
     double days = hours / 24;
     if (days < 1)
     {
+//        [self.messagesArray addObject:object];
+        [self checkToSeeIfPictureOrMessageWith:object];
         [self checkToSeeIfNewChatroomWithParseObject:object];
         [self checkToSeeIfNewUserWithParseObject:object];
+    }
+}
+
+-(void)checkToSeeIfPictureOrMessageWith:(PFObject *)object
+{
+    if ([object objectForKey:@"isUploaded"])
+    {
+        [self.picturesArray addObject:object];
+    }
+    else
+    {
+        [self.messagesArray addObject:object];
     }
 }
 
@@ -93,25 +116,47 @@
     {
         [self.userIDArray addObject:userID];
         [self.userArray addObject:user];
-        NSLog(@"%@", user);
+        UserData *userDataObject = [[UserData alloc] initWithPFObject:object];
+        [self.userDataObjectsArray addObject:userDataObject];
+    }
+    else
+    {
+        for (UserData *userObject in self.userDataObjectsArray)
+        {
+            if ([userObject.userID isEqualToString:userID])
+            {
+                [userObject modifyCardWith:object];
+            }
+        }
     }
 }
 
 -(void)beginUserDownloads
 {
     int numberOfUsersToDownload = (int)self.userArray.count;
-    __block int numberOfUsersDownloaded = 0; //  x lives in block storage
-    for (PFUser *user in self.userArray)
+    for (UserData *userData in self.userDataObjectsArray)
     {
+        PFUser *user = userData.user;
         [user fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            NSLog(@"%@", user);
             [self.userNameArray addObject:[user objectForKey:@"fullname"]];
+            userData.userName = [user objectForKey:@"fullname"];
             if (self.userNameArray.count == numberOfUsersToDownload)
             {
-                [self.tableView reloadData];
+//                [self.tableView reloadData];
+                [self reorganizeUsersAndReloadData];
             }
         }];
     }
+}
+
+-(void)reorganizeUsersAndReloadData
+{
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"numberOfMessages" ascending:YES];
+    NSArray *organizedArray = [self.userDataObjectsArray sortedArrayUsingDescriptors:@[sortDescriptor]];
+    
+    
+    self.userDataObjectsArray = [NSMutableArray arrayWithArray:organizedArray];
+    [self.tableView reloadData];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,8 +165,10 @@
     cell.backgroundColor = [UIColor clearColor];
     if (self.userNameArray.count)
     {
-        NSString *userName = self.userNameArray[indexPath.row];
-        cell.textLabel.text = userName;
+        UserData *data = self.userDataObjectsArray[indexPath.row];
+//        NSString *userName = self.userNameArray[indexPath.row];
+        NSString *stringToShow = [NSString stringWithFormat:@"%@: %li", data.userName, data.messagesArray.count];
+        cell.textLabel.text = stringToShow;
     }
 //    NSString *userName = self.userNameArray[indexPath.row];
 //    cell.textLabel.text = @"test";

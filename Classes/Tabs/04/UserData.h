@@ -12,8 +12,15 @@
 
 @interface UserData : NSObject
 
--(instancetype)initWithPFObject:(PFObject *)object andRoom:(PFObject*)setObject;
-
+-(instancetype)initWithPFObject:(PFObject *)object;
 -(void)modifyCardWith:(PFObject *)object;
+
+@property NSString *userID;
+@property NSString *userName;
+@property int numberOfMessages;
+@property int numberOfChatRooms;
+@property PFUser *user;
+@property NSMutableArray *chatRoomsArray;
+@property NSMutableArray *messagesArray;
 
 @end
