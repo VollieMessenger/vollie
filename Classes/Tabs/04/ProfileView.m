@@ -116,7 +116,7 @@
     }
     
     NSLog(@"%@", [PFUser currentUser].objectId);
-    if ([[PFUser currentUser].objectId isEqualToString:@"uUVLCYckex"])
+    if ([[PFUser currentUser].objectId isEqualToString:@"uUVLCYckex"] || [[PFUser currentUser].objectId isEqualToString:@"FcbQ69M07r"])
     {
         self.shouldShowAnalyticsButton = YES;
     }

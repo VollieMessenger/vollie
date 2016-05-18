@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *chatRoomsActiveLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *usersActiveLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usersTotalLabel;
 
 //@property NSMutableArray *parseObjectsArray;
 @property NSMutableArray *messagesArray;
@@ -66,7 +67,14 @@
         self.chatRoomsActiveLabel.text = [NSString stringWithFormat:@"%li Chatrooms Active", self.chatRoomArray.count];
         self.usersActiveLabel.text = [NSString stringWithFormat:@"%li Users Active", self.userArray.count];
         [self beginUserDownloads];
-        
+    }];
+    
+    PFQuery *userQuery = [PFUser query];
+    [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+        NSLog(@"%li users", objects.count);
+        self.usersTotalLabel.text = [NSString stringWithFormat:@"Users Total: %li", objects.count];
+//        self.usersTotalLabel.text = @"EKLSF";
     }];
 }
 
