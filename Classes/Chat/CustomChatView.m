@@ -28,7 +28,7 @@
 #import "AFDropdownNotification.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate, CustomCameraDelegate, UploadingDropDownDelegate, EditCardDelegate>
+@interface CustomChatView () <RefreshMessagesDelegate, AFDropdownNotificationDelegate, CustomCameraDelegate, UploadingDropDownDelegate, EditCardDelegate, UIScrollViewDelegate>
 
 @property KLCPopup *popUp;
 @property NSMutableArray *arrayOfScrollView;
@@ -959,7 +959,24 @@
             counter += 1;
             CGRect rect = CGRectMake(([setPicturesObjects indexOfObject:picture] * self.view.bounds.size.width - 2) + 2, 0, self.view.frame.size.width, self.view.frame.size.height);
             
-            PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:rect];
+            //
+            
+            UIScrollView *pictureScrollView = [[UIScrollView alloc] initWithFrame:rect];
+            pictureScrollView.delegate = self;
+//            pictureScrollView.pinchGestureRecognizer.delegate = self;
+//            picture.
+            
+            
+            
+            
+            
+            
+            
+            //
+            
+//            PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:rect];
+            PFImageView *popUpImageView2 = [[PFImageView alloc] initWithFrame:pictureScrollView.frame];
+
             [popUpImageView2 setContentMode: UIViewContentModeScaleAspectFit];
             popUpImageView2.frame = rect;
 
@@ -1138,6 +1155,12 @@
             [mp play];
         }
     }
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+//    return ;
+    return nil;
 }
 
 //- (void) processDoubleTap:(UITapGestureRecognizer *)sender
